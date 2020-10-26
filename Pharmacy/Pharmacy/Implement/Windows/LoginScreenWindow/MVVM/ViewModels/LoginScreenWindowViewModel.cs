@@ -11,7 +11,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
     {
         public LoginScreenWindowViewModel()
         {
-
         }
 
         public override void Update()
@@ -20,7 +19,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 
         protected override void InitPropertiesRegistry()
         {
-
         }
     }
 }
