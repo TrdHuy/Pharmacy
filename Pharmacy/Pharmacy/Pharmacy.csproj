@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="Utils\AttachedProperties\PasswordBoxAttachedProperties.cs" />
+    <Compile Include="Utils\Converters\BaseValueConverter.cs" />
+    <Compile Include="Utils\Converters\BooleanToVisiblityConverter.cs" />
     <Page Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

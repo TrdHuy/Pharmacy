@@ -60,8 +60,9 @@
                     <Grid>
                         <TextBlock x:Name="textBlock1" Text="Đăng nhập hệ thống" HorizontalAlignment="Center" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontSize="17" Foreground="#FFFBFBFB" FontFamily="Arial" Width="218" Opacity="0.5"/>
 
-                        <TextBox x:Name="textBox_Copy1" Margin="25,60,25,127" TextWrapping="Wrap" Tag="Tên đăng nhập" Background="{x:Null}" FontSize="15"/>
-                        <TextBox x:Name="textBox_Copy" Margin="25,100,25,87" TextWrapping="Wrap" Tag="Mật khẩu" Background="{x:Null}" FontSize="15" Foreground="Black"/>
+                        <TextBox x:Name="textBox_Copy1" Style="{StaticResource UnderlineTextbox}" Margin="25,75,25,123"  Tag="Tên đăng nhập" Background="{x:Null}" FontSize="17" Foreground="Black" BorderThickness="0,0,0,1.5" BorderBrush="#FF00C541" FontFamily="Tahoma" Padding="0" Height="25" Width="202"/>
+                        <PasswordBox x:Name="textBox_Copy" Margin="25,99,25,78" Tag="Mật khẩu" Background="{x:Null}" FontSize="15"  Width="202" Height="25" Foreground="Black" BorderBrush="#FF00C541" BorderThickness="0,0,0,1.5" Padding="0"/>
+                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="82,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="19"/>
 
                     </Grid>
 
