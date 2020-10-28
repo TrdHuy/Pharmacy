@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.UIEventHandler.Listener
 {
-    public class KeyActionListener
+    public class KeyActionListener : IActionListener
     {
         private static KeyActionListener _instance;
         private KeyActionFactory _keyActionFactory;

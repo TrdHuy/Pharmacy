@@ -89,6 +89,7 @@
     <Compile Include="Implement\UIEventHandler\Listener\KeyActionListener.cs" />
     <Compile Include="Implement\UIEventHandler\KeyFeatureTag.cs" />
     <Compile Include="Implement\UIEventHandler\WindowTag.cs" />
+    <Compile Include="Implement\Utils\InputCommand\RunInputCommand.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Factory\LSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />

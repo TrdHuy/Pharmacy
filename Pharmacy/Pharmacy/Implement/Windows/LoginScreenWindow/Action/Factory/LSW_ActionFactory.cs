@@ -34,3 +34,4 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
             return action;
         }
     }
+}
