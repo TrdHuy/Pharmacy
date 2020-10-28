@@ -9,8 +9,6 @@ namespace Pharmacy.Implement.UIEventHandler.Action
 {
     abstract class KeyActionFactory : IActionFactory
     {
-        private static KeyActionFactory _instance;
-
         public IAction CreateAction(object obj)
         {
             IAction action;

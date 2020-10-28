@@ -10,11 +10,11 @@
         xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"   
         mc:Ignorable="d" FontSize="15"
         Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" ResizeMode="NoResize" WindowStyle="ToolWindow">
-    
+
     <Window.DataContext>
         <vm:LoginScreenWindowViewModel/>
     </Window.DataContext>
-    
+
     <Grid Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -62,7 +62,15 @@
                         <dxe:PasswordBoxEdit Margin="25,109,25,78.143" NullText="Mật khẩu" FontSize="15" ShowCapsLockWarningToolTip="True"/>
 
                         <CheckBox Content="Lưu tên đăng nhập" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="67,0,0,27.143" Foreground="#FFC6C6C6"/>
-                        <dx:SimpleButton Content="Đăng nhập" VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Center" Background="{x:Null}" Foreground="#FF7CB4CD" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Margin="215,0,25,20.143" Width="148" Glyph="{dx:DXImage SvgImages/Icon Builder/Security_Unlock.svg}"/>
+                        <dx:SimpleButton Content="Đăng nhập" 
+                                         VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Center" 
+                                         Background="{x:Null}" 
+                                         Foreground="#FF7CB4CD" 
+                                         RenderTransformOrigin="0.5,0.5" 
+                                         BorderBrush="Black" 
+                                         Margin="215,0,25,20.143" Width="148" 
+                                         Command="{Binding SystemLoginButton}"
+                                         Glyph="{dx:DXImage SvgImages/Icon Builder/Security_Unlock.svg}"/>
                     </Grid>
                 </Border>
             </Grid>
