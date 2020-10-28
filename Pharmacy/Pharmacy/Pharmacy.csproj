@@ -82,6 +82,17 @@
     <Compile Include="Base\Observable\ObserverPattern\IObserver.cs" />
     <Compile Include="Base\Observable\ObserverPattern\IObservable.cs" />
     <Compile Include="Base\Observable\OnPropertyChanged.cs" />
+    <Compile Include="Base\UIEventHandler\Action\IAction.cs" />
+    <Compile Include="Base\UIEventHandler\Action\IActionFactory.cs" />
+    <Compile Include="Base\UIEventHandler\Listener\IActionListener.cs" />
+    <Compile Include="Implement\UIEventHandler\Action\KeyActionFactory.cs" />
+    <Compile Include="Implement\UIEventHandler\Listener\KeyActionListener.cs" />
+    <Compile Include="Implement\UIEventHandler\KeyFeatureTag.cs" />
+    <Compile Include="Implement\UIEventHandler\WindowTag.cs" />
+    <Compile Include="Implement\Windows\LoginScreenWindow\Action\Factory\LSW_ActionFactory.cs" />
+    <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
+    <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />
+    <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_SystemLoginAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Core\MVVM\ViewModels\BaseLoginScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\ViewModels\LoginScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">

@@ -7,8 +7,14 @@
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
         x:Class="Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views.LoginScreenWindow"
+        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"   
         mc:Ignorable="d" FontSize="15"
-        Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" WindowStyle="ToolWindow" ResizeMode="NoResize">
+        Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" ResizeMode="NoResize" WindowStyle="ToolWindow">
+    
+    <Window.DataContext>
+        <vm:LoginScreenWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
