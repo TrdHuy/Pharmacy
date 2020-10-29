@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2c6f9c7_0f43c880",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/LoginScreenWindow/MVVM/ViewModels/LoginScreenWindowViewModel.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2020-10-29T14:41:45Z",
+      "side": 1,
+      "message": "Edited",
+      "parentUuid": "5fe3f08a_ee38e212",
+      "range": {
+        "startLine": 18,
+        "startChar": 48,
+        "endLine": 18,
+        "endChar": 49
+      },
+      "revId": "a751db9925e414ae0b8819b8e146c52b004a47c5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "57cd8bba_88bdf468",
         "filename": "Pharmacy/Pharmacy/Implement/Windows/LoginScreenWindow/MVVM/Views/LoginScreenWindow.xaml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "a751db9925e414ae0b8819b8e146c52b004a47c5",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a54b86c_352a49d6",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/LoginScreenWindow/MVVM/Views/LoginScreenWindow.xaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2020-10-29T14:41:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "57cd8bba_88bdf468",
+      "range": {
+        "startLine": 72,
+        "startChar": 59,
+        "endLine": 72,
+        "endChar": 85
+      },
+      "revId": "a751db9925e414ae0b8819b8e146c52b004a47c5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
