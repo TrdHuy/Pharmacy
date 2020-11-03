@@ -19,6 +19,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Model
         public const string KEY_USER_ADDRESS = "user_address";
         public const string KEY_USER_PHONE = "user_phone";
         public const string KEY_USER_EMAIL = "user_email";
-        
+
+        public const string KEY_USER_ACCESS_LEVEL = "user_access_level";
     }
 }

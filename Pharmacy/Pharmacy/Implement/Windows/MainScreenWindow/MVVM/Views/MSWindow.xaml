@@ -1,0 +1,37 @@
+﻿<cctrl:HPSL_Window
+    x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.MSWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+    xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Window1"
+    Style="{DynamicResource DashboardWindowStyle}">
+   
+    <cctrl:HPSL_Window.MenuTabContent>
+        <uc:MainMenuControl/>
+    </cctrl:HPSL_Window.MenuTabContent>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{StaticResource NormalTheme_LightGreenBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" Background="{StaticResource NormalTheme_DarkGreenBrush}">
+                
+            </Grid>
+        </Grid>
+    </Grid>
+
+    
+</cctrl:HPSL_Window>

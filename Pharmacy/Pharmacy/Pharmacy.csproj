@@ -50,7 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Dashboard.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -58,12 +60,20 @@
     <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="System" />
+    <Reference Include="Microsoft.Expression.Interactions">
+      <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -105,22 +115,42 @@
     <Compile Include="Implement\UIEventHandler\Listener\KeyActionListener.cs" />
     <Compile Include="Implement\UIEventHandler\KeyFeatureTag.cs" />
     <Compile Include="Implement\UIEventHandler\WindowTag.cs" />
+    <Compile Include="Implement\Utils\Converter\MultiBindingConverter.cs" />
+    <Compile Include="Implement\Utils\CustomControls\HPSL_Button.cs" />
+    <Compile Include="Implement\Utils\CustomControls\HPSL_Window.cs" />
     <Compile Include="Implement\Utils\InputCommand\RunInputCommand.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Factory\LSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_SystemLoginAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Core\MVVM\ViewModels\BaseLoginScreenWindowViewModel.cs" />
+    <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\Builder\UserBuilder.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\UserModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\ViewModels\LoginScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\MainScreenWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\MSWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Styles\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Styles\Windows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,8 +164,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\MainScreenWindow.xaml.cs">
-      <DependentUpon>MainScreenWindow.xaml</DependentUpon>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml.cs">
+      <DependentUpon>MainMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\MSWindow.xaml.cs">
+      <DependentUpon>MSWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PharmacyDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -176,6 +209,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resource\Fonts\UVN-BaiSau.TTF" />
+    <Resource Include="Resource\Fonts\libel-suit-rg.ttf" />
+    <Resource Include="Resource\Fonts\Human.otf" />
+    <Resource Include="Resource\Fonts\FredokaOne-Regular.ttf" />
+    <Resource Include="Resource\Fonts\Lato-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -195,7 +233,7 @@
     <Resource Include="Resource\Icons\app info.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\app icon.png" />
+    <Resource Include="Resource\Icons\app_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\Icons\app icon x2.png" />
@@ -230,6 +268,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

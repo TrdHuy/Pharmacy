@@ -7,14 +7,31 @@
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
         x:Class="Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views.LoginScreenWindow"
-        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"   
+        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels" 
+        xmlns:converter="clr-namespace:Pharmacy.Implement.Utils.Converter"   
         mc:Ignorable="d" FontSize="15"
-        Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" ResizeMode="NoResize" WindowStyle="ToolWindow">
+        Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" ResizeMode="NoResize"
+        WindowStyle="ToolWindow">
 
     <Window.DataContext>
         <vm:LoginScreenWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <converter:MultiBindingConverter x:Key="MultiBinding"/>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding SystemLoginButton}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiBinding}">
+                    <Binding ElementName="loginUserNameTextEdit"/>
+                    <Binding ElementName="loginUserPasswordTextEdit"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+    </Window.InputBindings>
+    
     <Grid Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -58,8 +75,8 @@
                     <Grid>
                         <TextBlock Text="Đăng nhập hệ thống" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" TextAlignment="Center" FontSize="17" Foreground="#FFC6C6C6" Width="218" FontWeight="Bold"/>
 
-                        <dxe:TextEdit Margin="25,60,25,127" NullText="Tên đăng nhập" FontSize="15"/>
-                        <dxe:PasswordBoxEdit Margin="25,109,25,78.143" NullText="Mật khẩu" FontSize="15" ShowCapsLockWarningToolTip="True"/>
+                        <dxe:TextEdit x:Name="loginUserNameTextEdit" Margin="25,60,25,127" NullText="Tên đăng nhập" FontSize="15"/>
+                        <dxe:PasswordBoxEdit x:Name="loginUserPasswordTextEdit" Margin="25,109,25,78.143" NullText="Mật khẩu" FontSize="15" ShowCapsLockWarningToolTip="True"/>
 
                         <CheckBox Content="Lưu tên đăng nhập" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="67,0,0,27.143" Foreground="#FFC6C6C6"/>
                         <dx:SimpleButton Content="Đăng nhập" 
@@ -70,7 +87,14 @@
                                          BorderBrush="Black" 
                                          Margin="215,0,25,20.143" Width="148" 
                                          Command="{Binding SystemLoginButton}"
-                                         Glyph="{dx:DXImage SvgImages/Icon Builder/Security_Unlock.svg}"/>
+                                         Glyph="{dx:DXImage SvgImages/Icon Builder/Security_Unlock.svg}">
+                            <dx:SimpleButton.CommandParameter>
+                                <MultiBinding Converter="{StaticResource MultiBinding}">
+                                    <Binding ElementName="loginUserNameTextEdit"/>
+                                    <Binding ElementName="loginUserPasswordTextEdit"/>
+                                </MultiBinding>
+                            </dx:SimpleButton.CommandParameter>
+                        </dx:SimpleButton>
                     </Grid>
                 </Border>
             </Grid>

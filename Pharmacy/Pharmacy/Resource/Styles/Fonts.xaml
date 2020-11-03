@@ -2,17 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Pharmacy"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-    <FontFamily x:Key="LatoThin">pack://application;,,,/Fonts/#Lato Thin</FontFamily>
-    <FontFamily x:Key="LatoRegular">pack://application;,,,/Fonts/#Lato Regular</FontFamily>
-    <FontFamily x:Key="LatoBold">pack://application;,,,/Fonts/#Lato Black</FontFamily>
-    <FontFamily x:Key="FontAwesome">pack://application;,,,/Fonts/#FontAwesome</FontFamily>
-
-    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource LatoThin}" />
-        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}"/>
-    </Style>
+    <FontFamily x:Key="LatoThin">/Pharmacy;component/Resource/Fonts/#Lato Thin</FontFamily>
+    <FontFamily x:Key="Fredoka">/Pharmacy;component/Resource/Fonts/#Fredoka One</FontFamily>
+    <FontFamily x:Key="Human">/Pharmacy;component/Resource/Fonts/#Human</FontFamily>
+    <FontFamily x:Key="LibelSuit">/Pharmacy;component/Resource/Fonts/#Libel Suit Rg</FontFamily>
+    <FontFamily x:Key="UVNBaiSau">/Pharmacy;component/Resource/Fonts/#UVN Bai Sau</FontFamily>
 
     <system:Double x:Key="FontSizeRegular">14</system:Double>
+    <system:Double x:Key="FontSizeLarge">18</system:Double>
+    <system:Double x:Key="FontSizeLarge_Float">22</system:Double>
+
     <system:Double x:Key="FontSizeXXLarge">30</system:Double>
+        
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource LibelSuit}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
+    </Style>
     
 </ResourceDictionary>
