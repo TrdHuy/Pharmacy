@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.Observable
 {
-    abstract class OnPropertyChanged : BaseObservable, INotifyPropertyChanged
+    abstract class OnPropertyChanged : BaseObservable<object>, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

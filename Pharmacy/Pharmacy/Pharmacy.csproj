@@ -118,6 +118,9 @@
     <Compile Include="Implement\Utils\Converter\MultiBindingConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\HPSL_Button.cs" />
     <Compile Include="Implement\Utils\CustomControls\HPSL_Window.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\DbManager.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\SQLQueryCustodian.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\SQLResultHandler.cs" />
     <Compile Include="Implement\Utils\InputCommand\RunInputCommand.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Factory\LSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />

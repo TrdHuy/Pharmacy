@@ -6,25 +6,32 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.Observable.ObserverPattern
 {
-    abstract class BaseObservable : IObservable
+    abstract class BaseObservable<T> : IObservable<T>
     {
-        private List<IObserver> _observers = new List<IObserver>();
+        private List<IObserver<T>> _observers = new List<IObserver<T>>();
+        private T _result;
 
-        public void Attach(IObserver observer)
+        public void Subcribe(IObserver<T> observer)
         {
-            _observers.Add(observer);
+            if (!_observers.Contains(observer))
+            {
+                _observers.Add(observer);
+            }
         }
 
-        public void Detach(IObserver observer)
+        public void Unsubcribe(IObserver<T> observer)
         {
-            _observers.Remove(observer);
+            if (_observers.Contains(observer))
+            {
+                _observers.Remove(observer);
+            }
         }
 
         public void NotifyChange()
         {
-            foreach (IObserver observer in _observers)
+            foreach (IObserver<T> observer in _observers)
             {
-                observer.Update();
+                observer.Update(_result);
             }
         }
     }

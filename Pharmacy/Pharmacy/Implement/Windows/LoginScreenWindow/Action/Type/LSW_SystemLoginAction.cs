@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Editors;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -18,27 +19,36 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 
         public bool Execute(object[] dataTransfer)
         {
-            object[] dataFromView = (object[]) dataTransfer[1];
-            TextEdit userNameTextEdit = (TextEdit) dataFromView[0];
+            object[] dataFromView = (object[])dataTransfer[1];
+            TextEdit userNameTextEdit = (TextEdit)dataFromView[0];
             PasswordBoxEdit userPasswordTextEdit = (PasswordBoxEdit)dataFromView[1];
 
             string userName = userNameTextEdit.Text;
             string passWord = userPasswordTextEdit.Text;
 
-            SqlConnection sqlCon = new SqlConnection(DataConectionPath);
             try
             {
-                if(sqlCon.State == ConnectionState.Closed)
-                {
-                    sqlCon.Open();
-                }
-                String querry = "SELECT COUNT(1) FROM tblUser WHERE UserName=@Username AND UserPassword=@Password";
-                SqlCommand sqlCommand = new SqlCommand(querry, sqlCon);
-                sqlCommand.CommandType = CommandType.Text;
-                sqlCommand.Parameters.AddWithValue("@Username", userName);
-                sqlCommand.Parameters.AddWithValue("@Password", passWord);
+                SQLQueryCustodian observer = new SQLQueryCustodian(SQLQueryCallback);
+                DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.CHECK_USER_AVAIL_CMD_KEY
+                    , observer
+                    , userName, passWord);
 
-                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+            }
+            return true;
+        }
+
+        private void SQLQueryCallback(object queryResult)
+        {
+            try
+            {
+                int count = Convert.ToInt32(((SQLQueryResult)queryResult).Result);
                 if(count == 1)
                 {
                     MessageBox.Show("Login Success!");
@@ -47,18 +57,15 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 }
                 else
                 {
-                    MessageBox.Show("Login fail");
+                    MessageBox.Show("Invaild user or password!");
                 }
             }
-            catch (Exception ex)
+            catch(Exception e)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(e.Message);
             }
-            finally
-            {
-                sqlCon.Close();
-            }
-            return true;
+
+
         }
     }
 }
