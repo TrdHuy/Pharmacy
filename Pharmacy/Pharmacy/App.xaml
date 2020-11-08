@@ -2,11 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Pharmacy"
-             StartupUri="Implement/Windows/LoginScreenWindow/MVVM/Views/LoginScreenWindow.xaml">
+             StartupUri="Implement/Windows/MainScreenWindow/MVVM/Views/MSWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- Order is important -->
+                <ResourceDictionary Source="Resource/Styles/Dimens.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Images.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Fonts.xaml" />

@@ -133,6 +133,14 @@
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\HPSL_TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Styles\Dimens.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +179,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\HPSL_TextBlock.xaml.cs">
+      <DependentUpon>HPSL_TextBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml.cs">
       <DependentUpon>MainMenuControl.xaml</DependentUpon>
     </Compile>
@@ -212,6 +230,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resource\Fonts\HapnaSlabSerif-Light.ttf" />
     <Resource Include="Resource\Fonts\UVN-BaiSau.TTF" />
     <Resource Include="Resource\Fonts\libel-suit-rg.ttf" />
     <Resource Include="Resource\Fonts\Human.otf" />
@@ -271,6 +290,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resource\DebugResource\_test3x4potrait.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\" />

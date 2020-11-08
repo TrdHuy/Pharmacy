@@ -20,6 +20,24 @@ namespace Pharmacy.Implement.Utils.CustomControls
         public static readonly DependencyProperty ImageHeightProperty =
           DependencyProperty.Register("ImageHeight", typeof(double), typeof(HPSL_Button));
 
+        public static readonly DependencyProperty ImageElipseBorderHeightProperty =
+          DependencyProperty.Register("ImageElipseBorderHeight"
+              , typeof(double)
+              , typeof(HPSL_Button)
+              , new FrameworkPropertyMetadata(
+                    0.0,
+                    FrameworkPropertyMetadataOptions.AffectsRender,
+                    OnICBHChange));
+
+        public static readonly DependencyProperty ImageElipseBorderWidthProperty =
+                  DependencyProperty.Register("ImageElipseBorderWidth"
+                      , typeof(double)
+                      , typeof(HPSL_Button)
+                      , new FrameworkPropertyMetadata(
+                        0.0,
+                        FrameworkPropertyMetadataOptions.AffectsRender,
+                        OnICBHChange));
+
         public HPSL_Button() : base()
         {
             this.DefaultStyleKey = typeof(HPSL_Button);
@@ -41,6 +59,24 @@ namespace Pharmacy.Implement.Utils.CustomControls
         {
             get { return (double)GetValue(ImageWidthProperty); }
             set { SetValue(ImageWidthProperty, value); }
+        }
+
+        public double ImageElipseBorderHeight
+        {
+            get { return (double)GetValue(ImageElipseBorderHeightProperty); }
+            set { SetValue(ImageElipseBorderHeightProperty, value); }
+        }
+
+        public double ImageElipseBorderWidth
+        {
+            get { return (double)GetValue(ImageElipseBorderWidthProperty); }
+            set { SetValue(ImageElipseBorderWidthProperty, value); }
+        }
+
+        private static void OnICBHChange
+            (DependencyObject source, DependencyPropertyChangedEventArgs e)
+        {
+
         }
     }
 }

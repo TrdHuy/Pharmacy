@@ -20,6 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls
     /// </summary>
     public partial class MainMenuControl : UserControl
     {
+
         public MainMenuControl()
         {
             InitializeComponent();

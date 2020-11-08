@@ -13,10 +13,10 @@
     <system:Double x:Key="FontSizeLarge_Float">22</system:Double>
 
     <system:Double x:Key="FontSizeXXLarge">30</system:Double>
-        
+
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
         <Setter Property="FontFamily" Value="{StaticResource LibelSuit}" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}"/>
     </Style>
-    
+
 </ResourceDictionary>

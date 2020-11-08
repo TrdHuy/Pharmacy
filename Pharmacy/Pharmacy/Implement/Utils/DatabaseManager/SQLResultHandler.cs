@@ -35,7 +35,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 default:
                     break;
             }
-
             NotifyChange();
         }
 
@@ -67,7 +66,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         {
             string name = paramaters[0];
             string pass = paramaters[1];
-
             try
             {
                 OpenConnection();

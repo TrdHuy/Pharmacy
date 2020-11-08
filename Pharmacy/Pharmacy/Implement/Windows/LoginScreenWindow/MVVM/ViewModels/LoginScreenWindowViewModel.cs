@@ -27,7 +27,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 
         }
 
-        private async void SystemLoginButtonClickEvent(object obj)
+        private void SystemLoginButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;

@@ -15,27 +15,37 @@
         <Setter Property="ImageHeight" Value="{StaticResource ImageSizeRegular}" />
         <Setter Property="ImageWidth" Value="{StaticResource ImageSizeRegular}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
-        
+        <Setter Property="ImageElipseBorderWidth" Value="45" />
+        <Setter Property="ImageElipseBorderHeight" Value="45" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type cctrl:HPSL_Button}">
                     <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                        <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Button}}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-                            <Image
-                                Grid.Column="0"
-                                Height="{Binding ImageHeight, UpdateSourceTrigger=PropertyChanged}"
-                                Width="{Binding ImageWidth, UpdateSourceTrigger=PropertyChanged}"
-                                Source="{Binding ImageSource, FallbackValue={StaticResource AppIcon}}" />
+                        <StackPanel DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Button}}}" Orientation="Horizontal">
+                            <Border Width="{Binding ImageElipseBorderWidth, FallbackValue=45}" Height="{Binding ImageElipseBorderWidth, FallbackValue=45}">
+                                <Grid>
+                                    <Ellipse
+                                        Width="{Binding ImageElipseBorderWidth, FallbackValue=45}"
+                                        Height="{Binding ImageElipseBorderHeight, FallbackValue=45}"
+                                        Stroke="{StaticResource NormalTheme_LightGreenBrush}"
+                                        StrokeThickness="5" />
+                                    <Image
+                                        Width="{Binding ImageWidth, 
+                                        UpdateSourceTrigger=PropertyChanged}"
+                                        Height="{Binding ImageHeight, 
+                                        UpdateSourceTrigger=PropertyChanged}"
+                                        Source="{Binding ImageSource, 
+                                        FallbackValue={StaticResource AppIcon}}" />
+                                </Grid>
+
+                            </Border>
                             <TextBlock
-                                Grid.Column="1"
+                                Margin="15,0,0,0"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center"
                                 Text="{TemplateBinding Content}" />
-                        </Grid>
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -46,9 +56,9 @@
                 <Setter Property="FontSize" Value="{StaticResource FontSizeLarge_Float}" />
                 <Setter Property="Background">
                     <Setter.Value>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="{StaticResource Transparent}" Offset="0"/>
-                            <GradientStop Color="{StaticResource NormalTheme_LightGreen}" Offset="1"/>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Offset="0" Color="{StaticResource Transparent}" />
+                            <GradientStop Offset="1" Color="{StaticResource NormalTheme_LightGreen}" />
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
@@ -56,7 +66,7 @@
                 <Setter Property="ImageWidth" Value="{StaticResource ImageSizeRegular_Float}" />
 
             </Trigger>
-           
+
         </Style.Triggers>
     </Style>
 

@@ -16,6 +16,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
     class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
     {
         private const string DataConectionPath = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
+        private SQLQueryCustodian _observer;
 
         public bool Execute(object[] dataTransfer)
         {
@@ -28,9 +29,9 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 
             try
             {
-                SQLQueryCustodian observer = new SQLQueryCustodian(SQLQueryCallback);
+                _observer = new SQLQueryCustodian(SQLQueryCallback);
                 DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.CHECK_USER_AVAIL_CMD_KEY
-                    , observer
+                    , _observer
                     , userName, passWord);
 
             }
@@ -59,6 +60,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 {
                     MessageBox.Show("Invaild user or password!");
                 }
+                _observer.Updated = true;
             }
             catch(Exception e)
             {

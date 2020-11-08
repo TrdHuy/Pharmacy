@@ -1,0 +1,124 @@
+﻿<Page
+    x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="{StaticResource DefaultHomePageHeight}"
+    d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+    Title="Page1">
+
+    <ScrollViewer>
+        <Grid Height="1000" Background="White">
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--User info area-->
+            <Grid
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Height="{StaticResource DefaultHomePage_UserInfoBarHeight}"
+                Background="{StaticResource NormalTheme_LightGreenBrush}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+
+                <!--User Content area-->
+                <Grid Grid.Row="0" Height="{StaticResource DefaultHomePage_UserInfoBarHeight_Offset}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Width="300" />
+
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontFamily="Britannic Bold" FontSize="30" FontWeight="Thin" Foreground="White">
+                                Nguyễn Thanh Tùng
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Background="{StaticResource NormalTheme_Homepage_BgBrush}" />
+
+
+                <!--Avatar area-->
+                <Grid
+                    Width="{StaticResource DefaultHomePage_UserImageBorderWidth}"
+                    Height="{StaticResource DefaultHomePage_UserImageBoderHeight}"
+                    Margin="100,0,0,-100"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom">
+                    <Ellipse
+                        Stroke="{StaticResource NormalTheme_Homepage_BgBrush}" 
+                        StrokeThickness="10" >
+                        <Ellipse.Clip>
+                            <RectangleGeometry Rect="0,0,200,100"/>
+                        </Ellipse.Clip>
+                    </Ellipse>
+                    <Border
+                        Width="{StaticResource DefaultHomePage_UserImageWidth}"
+                        Height="{StaticResource DefaultHomePage_UserImageHeight}"
+                        Background="#FF2B2B2C"
+                        CornerRadius="0150">
+
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
+                        <Image
+                            Width="{StaticResource DefaultHomePage_UserImageWidth}"
+                            Height="{StaticResource DefaultHomePage_UserImageHeight}"
+                            Source="/Pharmacy;component/Resource/DebugResource/_test3x4potrait.jpg" />
+                    </Border>
+                    <Border
+                        Width="{StaticResource DefaultHomePage_UserImageWidth}"
+                        Height="{StaticResource DefaultHomePage_UserImageHeight}"
+                        Background="#FF2B2B2C"
+                        CornerRadius="0150">
+
+                        <Border.OpacityMask>
+                            <VisualBrush>
+                                <VisualBrush.Visual>
+                                    <Border
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        Background="Black"
+                                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
+                                        SnapsToDevicePixels="True" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.OpacityMask>
+                        <Image
+                            Width="{StaticResource DefaultHomePage_UserImageWidth}"
+                            Height="{StaticResource DefaultHomePage_UserImageHeight}"
+                            Source="/Pharmacy;component/Resource/DebugResource/_test3x4potrait.jpg" />
+                    </Border>
+
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
+</Page>

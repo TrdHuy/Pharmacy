@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Pharmacy"
+                     xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <!--Normal theme-->
+    <system:Double x:Key="DefaultWindowHeight">650</system:Double>
+    <system:Double x:Key="DefaultWindowWidth">1200</system:Double>
+    <system:Double x:Key="DefaultMenuTabWidth">70</system:Double>
+    <system:Double x:Key="DefaultMenuTabExpandedWidth">170</system:Double>
+    <system:Double x:Key="DefaultWindowContentWidth">1130</system:Double> <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
+
+    <system:Double x:Key="DefaultHomePageHeight">1000</system:Double>
+    
+    <system:Double x:Key="DefaultHomePage_UserInfoBarHeight">300</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserInfoBarHeight_Offset">200</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageWidth">160</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageHeight">160</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageBorderWidth">200</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageBoderHeight">200</system:Double>
+    
+    <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
+
+</ResourceDictionary>

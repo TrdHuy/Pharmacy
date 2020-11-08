@@ -1,9 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Pharmacy">
+                    xmlns:local="clr-namespace:Pharmacy"
+                    xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls">
 
+    
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
-
         <Setter Property="FontSize" Value="{StaticResource FontSizeXXLarge}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Padding" Value="10" />

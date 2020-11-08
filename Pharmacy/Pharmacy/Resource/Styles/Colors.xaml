@@ -35,5 +35,8 @@
     <Color x:Key="NormalTheme_DarkGreen">#FF41A653</Color>
     <SolidColorBrush x:Key="NormalTheme_DarkGreenBrush" Color="{StaticResource NormalTheme_DarkGreen}" />
 
+    <Color x:Key="NormalTheme_Homepage_Bg">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="NormalTheme_Homepage_BgBrush" Color="{StaticResource NormalTheme_Homepage_Bg}" />
+
 
 </ResourceDictionary>

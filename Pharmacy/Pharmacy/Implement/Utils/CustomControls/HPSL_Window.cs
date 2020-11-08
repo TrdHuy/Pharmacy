@@ -8,12 +8,14 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Utils.CustomControls
 {
-    [TemplatePart(Name = "PART_AlternativeContentPresenter", Type = typeof(ContentPresenter))]
     public class HPSL_Window : Window
     {
         public static readonly DependencyProperty TitleBarColorProperty =
             DependencyProperty.Register("TitleBarColor", typeof(Color), typeof(HPSL_Window),
-                new PropertyMetadata(Colors.Black, OnTitleBarColorChange));
+              new FrameworkPropertyMetadata(
+                    Colors.Black,
+                    FrameworkPropertyMetadataOptions.AffectsRender,
+                    OnTitleBarColorChange));
 
         public static readonly DependencyProperty TitleBarHeightProperty =
             DependencyProperty.Register("TitleBarHeight", typeof(Double), typeof(HPSL_Window),
@@ -24,8 +26,12 @@ namespace Pharmacy.Implement.Utils.CustomControls
                new PropertyMetadata(false));
 
         public static readonly DependencyProperty MenuTabWidthProperty =
-            DependencyProperty.Register("MenuTabWidth", typeof(Double), typeof(HPSL_Window),
-                new PropertyMetadata(0.0));
+            DependencyProperty.Register("MenuTabWidth", typeof(double), typeof(HPSL_Window),
+              new PropertyMetadata(0.0));
+
+        public static readonly DependencyProperty MenuTabExpandedWidthProperty =
+            DependencyProperty.Register("MenuTabExpandedWidth", typeof(double), typeof(HPSL_Window),
+              new PropertyMetadata(0.0));
 
         public static readonly DependencyProperty TitleBarBackgroundProperty =
             DependencyProperty.Register("TitleBarBackground", typeof(Brush), typeof(HPSL_Window),
@@ -85,10 +91,23 @@ namespace Pharmacy.Implement.Utils.CustomControls
             get { return (Double)GetValue(MenuTabWidthProperty); }
             set { SetValue(MenuTabWidthProperty, value); }
         }
+
+        public Double MenuTabExpandedWidth
+        {
+            get { return (Double)GetValue(MenuTabExpandedWidthProperty); }
+            set { SetValue(MenuTabExpandedWidthProperty, value); }
+        }
+
         public object MenuTabContent
         {
             get { return GetValue(MenuTabContentProperty); }
             set { SetValue(MenuTabContentProperty, value); }
+        }
+
+        private static void OnMenuTabWidthChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            Grid MenuTab = (d as Grid);
+            int a = 1;
         }
 
         private static void OnTitleBarColorChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
