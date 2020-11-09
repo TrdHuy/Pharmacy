@@ -49,7 +49,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
         {
             try
             {
-                int count = Convert.ToInt32(((SQLQueryResult)queryResult).Result);
+                int count = (((SQLQueryResult)queryResult).Result as IEnumerable<DataRow>).Count();
                 if(count == 1)
                 {
                     MessageBox.Show("Login Success!");

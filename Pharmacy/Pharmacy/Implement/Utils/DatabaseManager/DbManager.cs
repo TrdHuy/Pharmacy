@@ -11,18 +11,20 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
     {
         private static DbManager _instance;
 
+        private SQLResultHandler _provider;
+
         private DbManager()
         {
+            _provider = new SQLResultHandler();
         }
 
         public async Task ExecuteQueryAsync(string cmdKey, SQLQueryCustodian observer, params string[] paramaters )
         {
-            SQLResultHandler provider = new SQLResultHandler();
-            provider.Subcribe(observer);
-            provider.ExecuteQueryAsync(cmdKey, paramaters);
+            _provider.Subcribe(observer);
+            _provider.ExecuteQueryAsync(cmdKey, paramaters);
             if (observer.Updated)
             {
-                provider.Unsubcribe(observer);
+                _provider.Unsubcribe(observer);
             }
         }
 

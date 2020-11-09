@@ -1,7 +1,9 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         private List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>> _observers;
         private SqlConnection _sqlCon;
-
+        private DataSet _pharmacyAppDataSet;
         private SQLQueryResult _result;
 
         public SQLResultHandler()
@@ -26,6 +28,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         public async void ExecuteQueryAsync(string SQLCmdKey, params string[] paramaters)
         {
+            FillDataSet();
+
             _result = null;
             switch (SQLCmdKey)
             {
@@ -66,16 +70,16 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         {
             string name = paramaters[0];
             string pass = paramaters[1];
+
             try
             {
-                OpenConnection();
-                string query = "SELECT COUNT(1) FROM tblUser WHERE UserName=@name AND UserPassword=@pass";
-                SqlCommand sqlCmd = new SqlCommand(query, _sqlCon);
-                sqlCmd.CommandType = System.Data.CommandType.Text;
-                sqlCmd.Parameters.AddWithValue("@name", name);
-                sqlCmd.Parameters.AddWithValue("@pass", pass);
-                SQLQueryResult result = new SQLQueryResult(sqlCmd.ExecuteScalar(), query);
+                DataTable tblUser = _pharmacyAppDataSet.Tables["tblUser"];
 
+                var x = tblUser.AsEnumerable().Where(user =>
+                    user.Field<string>("UserName").Equals(name)
+                    && user.Field<string>("UserPassword").Equals(pass));
+
+                SQLQueryResult result = new SQLQueryResult(x,"");
                 return result;
             }
             catch (Exception e)
@@ -87,6 +91,17 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 CloseConnection();
             }
             return null;
+        }
+
+        private void FillDataSet()
+        {
+            if (_pharmacyAppDataSet != null) return;
+
+            OpenConnection();
+            _pharmacyAppDataSet = new DataSet();
+            SqlDataAdapter adapt = new SqlDataAdapter("SELECT * FROM tblUser", _sqlCon);
+            adapt.Fill(_pharmacyAppDataSet, "tblUser");
+            CloseConnection();
         }
 
         private void OpenConnection()
@@ -102,7 +117,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             {
                 MessageBox.Show(e.Message);
             }
-
         }
 
         private void CloseConnection()
