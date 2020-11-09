@@ -1,7 +1,10 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
+using Pharmacy.PharmacyDBDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +17,22 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         private const string DataConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
 
         private List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>> _observers;
-        private SqlConnection _sqlCon;
-
+        
+        private PharmacyDBDataSet _pharmacyAppDataSet;
+        private tblUserTableAdapter _userDataTblApdapter;
         private SQLQueryResult _result;
 
         public SQLResultHandler()
         {
             _observers = new List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>>();
-            _sqlCon = new SqlConnection(DataConnectionString);
+            _pharmacyAppDataSet = new PharmacyDBDataSet();
+            _userDataTblApdapter = new tblUserTableAdapter();
+            RefreshDataset();
         }
 
         public async void ExecuteQueryAsync(string SQLCmdKey, params string[] paramaters)
         {
+
             _result = null;
             switch (SQLCmdKey)
             {
@@ -66,16 +73,15 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         {
             string name = paramaters[0];
             string pass = paramaters[1];
+
             try
             {
-                OpenConnection();
-                string query = "SELECT COUNT(1) FROM tblUser WHERE UserName=@name AND UserPassword=@pass";
-                SqlCommand sqlCmd = new SqlCommand(query, _sqlCon);
-                sqlCmd.CommandType = System.Data.CommandType.Text;
-                sqlCmd.Parameters.AddWithValue("@name", name);
-                sqlCmd.Parameters.AddWithValue("@pass", pass);
-                SQLQueryResult result = new SQLQueryResult(sqlCmd.ExecuteScalar(), query);
+                DataTable tblUser = _pharmacyAppDataSet.Tables["tblUser"];
 
+                var x = tblUser.AsEnumerable().Where(user =>
+                    user.Field<string>("UserName").Equals(name)
+                    && user.Field<string>("UserPassword").Equals(pass));
+                SQLQueryResult result = new SQLQueryResult(x,"");
                 return result;
             }
             catch (Exception e)
@@ -84,42 +90,15 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
             finally
             {
-                CloseConnection();
             }
             return null;
         }
 
-        private void OpenConnection()
+        private void RefreshDataset()
         {
-            try
-            {
-                if (_sqlCon.State != System.Data.ConnectionState.Open)
-                {
-                    _sqlCon.Open();
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
+            _userDataTblApdapter.Fill(_pharmacyAppDataSet.tblUser);
         }
 
-        private void CloseConnection()
-        {
-            try
-            {
-                if (_sqlCon.State == System.Data.ConnectionState.Open)
-                {
-                    _sqlCon.Close();
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-        }
     }
 
     internal class SQLCommandKey
