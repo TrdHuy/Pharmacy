@@ -60,6 +60,12 @@
     <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
@@ -69,6 +75,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity">
@@ -94,6 +102,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="PharmacyDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
     <Page Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,10 +207,15 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\MSWindow.xaml.cs">
       <DependentUpon>MSWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PharmacyDBDataSet.Designer.cs">
+    <Compile Include="PharmacyDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDBDataSet.xsd</DependentUpon>
+      <DependentUpon>PharmacyDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmacyDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyDBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -214,16 +235,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="PharmacyDBDataSet.xsc">
-      <DependentUpon>PharmacyDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="PharmacyDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>PharmacyDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="PharmacyDBDataSet.xss">
-      <DependentUpon>PharmacyDBDataSet.xsd</DependentUpon>
+    <None Include="packages.config" />
+    <EntityDeploy Include="PharmacyDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PharmacyDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PharmacyDBModel.edmx.diagram">
+      <DependentUpon>PharmacyDBModel.edmx</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -286,6 +304,16 @@
     <Content Include="PharmacyDB.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="PharmacyDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmacyDBModel.edmx</DependentUpon>
+      <LastGenOutput>PharmacyDBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PharmacyDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmacyDBModel.edmx</DependentUpon>
+      <LastGenOutput>PharmacyDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="PharmacyDB_log.ldf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
@@ -294,6 +322,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

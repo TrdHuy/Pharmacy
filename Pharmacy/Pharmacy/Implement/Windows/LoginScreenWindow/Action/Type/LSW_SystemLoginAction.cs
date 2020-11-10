@@ -45,11 +45,11 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             return true;
         }
 
-        private void SQLQueryCallback(object queryResult)
+        private void SQLQueryCallback(SQLQueryResult queryResult)
         {
             try
             {
-                int count = (((SQLQueryResult)queryResult).Result as IEnumerable<DataRow>).Count();
+                int count = ((List<Users>)queryResult.Result).Count();
                 if(count == 1)
                 {
                     MessageBox.Show("Login Success!");

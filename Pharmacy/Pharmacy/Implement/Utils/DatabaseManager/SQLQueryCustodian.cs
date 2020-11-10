@@ -9,9 +9,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 {
     class SQLQueryCustodian : Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>
     {
-        private Action<object> _callback;
+        private Action<SQLQueryResult> _callback;
 
-        public SQLQueryCustodian(Action<object> callback)
+        public SQLQueryCustodian(Action<SQLQueryResult> callback)
         {
             _callback = callback;
         }

@@ -1,8 +1,8 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
-using Pharmacy.PharmacyDBDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -12,22 +12,19 @@ using System.Windows;
 
 namespace Pharmacy.Implement.Utils.DatabaseManager
 {
-    class SQLResultHandler : Pharmacy.Base.Observable.ObserverPattern.IObservable<SQLQueryResult>
+    class SQLResultHandler : BaseObservable<SQLQueryResult>
     {
         private const string DataConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
 
         private List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>> _observers;
-        
-        private PharmacyDBDataSet _pharmacyAppDataSet;
-        private tblUserTableAdapter _userDataTblApdapter;
+
+        private PharmacyDBContext _appDBContext;
         private SQLQueryResult _result;
 
         public SQLResultHandler()
         {
             _observers = new List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>>();
-            _pharmacyAppDataSet = new PharmacyDBDataSet();
-            _userDataTblApdapter = new tblUserTableAdapter();
-            RefreshDataset();
+            _appDBContext = new PharmacyDBContext();
         }
 
         public async void ExecuteQueryAsync(string SQLCmdKey, params string[] paramaters)
@@ -42,31 +39,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 default:
                     break;
             }
-            NotifyChange();
-        }
-
-        public void Subcribe(Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult> observer)
-        {
-            if (!_observers.Contains(observer))
-            {
-                _observers.Add(observer);
-            }
-        }
-
-        public void Unsubcribe(Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult> observer)
-        {
-            if (_observers.Contains(observer))
-            {
-                _observers.Remove(observer);
-            }
-        }
-
-        public void NotifyChange()
-        {
-            foreach (var observer in _observers)
-            {
-                observer.Update(_result);
-            }
+            NotifyChange(_result);
         }
 
         private SQLQueryResult CheckUserAvail(string[] paramaters)
@@ -76,11 +49,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
             try
             {
-                DataTable tblUser = _pharmacyAppDataSet.Tables["tblUser"];
+                var x = _appDBContext.Users.Where(user => user.UserName.Equals(name)
+                && user.UserPassword.Equals(pass)).ToList();
 
-                var x = tblUser.AsEnumerable().Where(user =>
-                    user.Field<string>("UserName").Equals(name)
-                    && user.Field<string>("UserPassword").Equals(pass));
                 SQLQueryResult result = new SQLQueryResult(x,"");
                 return result;
             }
@@ -88,15 +59,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             {
                 MessageBox.Show(e.Message);
             }
-            finally
-            {
-            }
             return null;
-        }
-
-        private void RefreshDataset()
-        {
-            _userDataTblApdapter.Fill(_pharmacyAppDataSet.tblUser);
         }
 
     }

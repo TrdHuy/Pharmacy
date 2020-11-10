@@ -9,7 +9,6 @@ namespace Pharmacy.Base.Observable.ObserverPattern
     abstract class BaseObservable<T> : IObservable<T>
     {
         private List<IObserver<T>> _observers = new List<IObserver<T>>();
-        private T _result;
 
         public void Subcribe(IObserver<T> observer)
         {
@@ -27,11 +26,11 @@ namespace Pharmacy.Base.Observable.ObserverPattern
             }
         }
 
-        public void NotifyChange()
+        public void NotifyChange(T result)
         {
             foreach (IObserver<T> observer in _observers)
             {
-                observer.Update(_result);
+                observer.Update(result);
             }
         }
     }
