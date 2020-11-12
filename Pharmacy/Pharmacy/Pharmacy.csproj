@@ -102,6 +102,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,10 +154,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\HPSL_TextBlock.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,9 +194,6 @@
   <ItemGroup>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\HPSL_TextBlock.xaml.cs">
-      <DependentUpon>HPSL_TextBlock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml.cs">
       <DependentUpon>MainMenuControl.xaml</DependentUpon>
@@ -248,12 +242,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Resource\Fonts\HapnaSlabSerif-Light.ttf" />
-    <Resource Include="Resource\Fonts\UVN-BaiSau.TTF" />
+    <Resource Include="Resource\Fonts\VNF-LeagueGothic Regular.ttf" />
+    <Resource Include="Resource\Fonts\VNF-Futura Regular.ttf" />
+    <Resource Include="Resource\Fonts\VNF-Oswald Regular.ttf" />
     <Resource Include="Resource\Fonts\libel-suit-rg.ttf" />
     <Resource Include="Resource\Fonts\Human.otf" />
     <Resource Include="Resource\Fonts\FredokaOne-Regular.ttf" />
-    <Resource Include="Resource\Fonts\Lato-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -318,11 +312,19 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resource\Icons\HomePageIcon\personal_info.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\customner_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\emplyee_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\report_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\sale_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\vendor_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\address_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\mail_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\personal_link_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\phone_icon.png" />
     <Resource Include="Resource\DebugResource\_test3x4potrait.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -120,7 +120,7 @@
         <Setter Property="TitleBarColor" Value="{StaticResource NormalTheme_TitleBarColor}" />
         <Setter Property="WindowStyle" Value="None" />
         <Setter Property="ResizeMode" Value="CanResize" />
-        <Setter Property="TitleBarHeight" Value="50" />
+        <Setter Property="TitleBarHeight" Value="{StaticResource DefaultWindowTitleBarHeight}" />
         <Setter Property="IsEnableMenuTab" Value="True" />
         <Setter Property="MenuTabWidth" Value="{StaticResource DefaultMenuTabWidth}" />
         <Setter Property="MenuTabExpandedWidth" Value="{StaticResource DefaultMenuTabExpandedWidth}" />

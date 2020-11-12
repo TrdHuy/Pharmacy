@@ -2,11 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Pharmacy"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-    <FontFamily x:Key="LatoThin">/Pharmacy;component/Resource/Fonts/#Lato Thin</FontFamily>
     <FontFamily x:Key="Fredoka">/Pharmacy;component/Resource/Fonts/#Fredoka One</FontFamily>
     <FontFamily x:Key="Human">/Pharmacy;component/Resource/Fonts/#Human</FontFamily>
     <FontFamily x:Key="LibelSuit">/Pharmacy;component/Resource/Fonts/#Libel Suit Rg</FontFamily>
-    <FontFamily x:Key="UVNBaiSau">/Pharmacy;component/Resource/Fonts/#UVN Bai Sau</FontFamily>
+    <FontFamily x:Key="VNFOswald">/Pharmacy;component/Resource/Fonts/#VNF-Oswald</FontFamily>
 
     <system:Double x:Key="FontSizeRegular">14</system:Double>
     <system:Double x:Key="FontSizeLarge">18</system:Double>

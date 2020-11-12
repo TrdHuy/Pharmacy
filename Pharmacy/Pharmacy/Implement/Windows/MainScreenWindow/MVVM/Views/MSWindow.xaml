@@ -11,6 +11,8 @@
     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
     mc:Ignorable="d"
     WindowStyle="None"
+    MinHeight="545"
+    MinWidth="930"
     Width="{StaticResource DefaultWindowWidth}"
     Height="{StaticResource DefaultWindowHeight}"
     Style="{DynamicResource DashboardWindowStyle}"
@@ -23,5 +25,4 @@
 
     <pages:HomePage></pages:HomePage>
 
-        
 </cctrl:HPSL_Window>

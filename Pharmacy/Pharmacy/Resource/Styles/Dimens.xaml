@@ -6,18 +6,19 @@
     <!--Normal theme-->
     <system:Double x:Key="DefaultWindowHeight">650</system:Double>
     <system:Double x:Key="DefaultWindowWidth">1200</system:Double>
+    <system:Double x:Key="DefaultWindowTitleBarHeight">30</system:Double>
     <system:Double x:Key="DefaultMenuTabWidth">70</system:Double>
     <system:Double x:Key="DefaultMenuTabExpandedWidth">170</system:Double>
     <system:Double x:Key="DefaultWindowContentWidth">1130</system:Double> <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
 
     <system:Double x:Key="DefaultHomePageHeight">1000</system:Double>
     
-    <system:Double x:Key="DefaultHomePage_UserInfoBarHeight">300</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserInfoBarHeight">150</system:Double>
     <system:Double x:Key="DefaultHomePage_UserInfoBarHeight_Offset">200</system:Double>
-    <system:Double x:Key="DefaultHomePage_UserImageWidth">160</system:Double>
-    <system:Double x:Key="DefaultHomePage_UserImageHeight">160</system:Double>
-    <system:Double x:Key="DefaultHomePage_UserImageBorderWidth">200</system:Double>
-    <system:Double x:Key="DefaultHomePage_UserImageBoderHeight">200</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageWidth">165</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageHeight">165</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageBorderWidth">175</system:Double>
+    <system:Double x:Key="DefaultHomePage_UserImageBoderHeight">175</system:Double>
     
     <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
 
