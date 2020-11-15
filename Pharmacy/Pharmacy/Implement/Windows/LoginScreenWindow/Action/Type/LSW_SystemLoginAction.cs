@@ -1,5 +1,4 @@
-﻿using DevExpress.Xpf.Editors;
-using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {
@@ -18,14 +18,17 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
         private const string DataConectionPath = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
         private SQLQueryCustodian _observer;
 
+        private Window _loginWindow;
+
         public bool Execute(object[] dataTransfer)
         {
             object[] dataFromView = (object[])dataTransfer[1];
-            TextEdit userNameTextEdit = (TextEdit)dataFromView[0];
-            PasswordBoxEdit userPasswordTextEdit = (PasswordBoxEdit)dataFromView[1];
+            TextBox userNameTextEdit = (TextBox)dataFromView[0];
+            PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
+            _loginWindow = (Window)dataFromView[2];
 
             string userName = userNameTextEdit.Text;
-            string passWord = userPasswordTextEdit.Text;
+            string passWord = userPasswordTextEdit.Password;
 
             try
             {
@@ -55,6 +58,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                     MessageBox.Show("Login Success!");
                     MSWindow mSW = new MSWindow();
                     mSW.Show();
+                    _loginWindow.Close();
                 }
                 else
                 {

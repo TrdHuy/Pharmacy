@@ -16,7 +16,8 @@
     Width="{StaticResource DefaultWindowWidth}"
     Height="{StaticResource DefaultWindowHeight}"
     Style="{DynamicResource DashboardWindowStyle}"
-    Title="Window1">
+    Title="Window1"
+    WindowStartupLocation="CenterScreen">
 
     <cctrl:HPSL_Window.MenuTabContent>
         <uc:MainMenuControl/>
