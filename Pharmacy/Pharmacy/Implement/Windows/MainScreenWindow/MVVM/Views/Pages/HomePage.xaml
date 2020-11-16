@@ -6,11 +6,11 @@
     xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+    xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
     mc:Ignorable="d"
     d:DesignHeight="620"
     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
     Title="Page1">
-
 
     <Grid
         Background="White">
@@ -20,6 +20,7 @@
 
         </Grid.RowDefinitions>
         
+        <!--Content area-->
         <ScrollViewer
             Grid.Row="1">
             <Grid Height="800">
@@ -28,7 +29,7 @@
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--Body area-->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -315,8 +316,7 @@
             <Grid Grid.Row="0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*" />
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.2*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
@@ -385,7 +385,7 @@
                 </Grid>
 
                 <!--Name and title area-->
-                <Grid Grid.Column="2">
+                <Grid Grid.Column="1">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*" />
@@ -466,7 +466,7 @@
                 </Grid>
 
                 <!--Contact info area-->
-                <Grid Grid.Column="3">
+                <Grid Grid.Column="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height=".4*" />
                         <RowDefinition Height="0.6*" />
@@ -600,7 +600,6 @@
                 </Grid>
             </Grid>
         </Grid>
-
         
     </Grid>
 

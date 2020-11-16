@@ -92,6 +92,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
                         <TextBlock
+                            FontWeight="Thin"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Text="{TemplateBinding Content}" />
@@ -120,6 +121,33 @@
                 <Setter Property="Background" Value="Red" />
                 <Setter Property="Foreground" Value="{StaticResource ForegroundLightBrush}" />
             </Trigger>
+        </Style.Triggers>
+
+    </Style>
+    
+    <!--Window Maximize button-->
+    <Style
+        x:Key="WindowMaximizeButton"
+        BasedOn="{StaticResource WindowControlButton}"
+        TargetType="{x:Type Button}">
+
+        <Style.Triggers>
+            <DataTrigger Value="NoResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=ResizeMode}">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+
+            <DataTrigger Value="CanResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=ResizeMode}">
+                <Setter Property="Visibility" Value="Visible" />
+            </DataTrigger>
+
+            <DataTrigger Value="Normal" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=WindowState}">
+                <Setter Property="Content" Value="{StaticResource FontAwesomeMaximizeWindowIcon}" />
+            </DataTrigger>
+
+            <DataTrigger Value="Maximized" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=WindowState}">
+                <Setter Property="Content" Value="{StaticResource FontAwesomeRestoreWindowIcon}" />
+            </DataTrigger>
+            
         </Style.Triggers>
 
     </Style>

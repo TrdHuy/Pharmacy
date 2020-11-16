@@ -203,31 +203,14 @@
                                         <StackPanel Grid.Column="2" Orientation="Horizontal">
                                             <Button
                                                 Command="{Binding MinimizeCommand}"
-                                                Content="_"
+                                                Content="{StaticResource FontAwesomeMinimizeWindowIcon}"
                                                 Style="{DynamicResource WindowControlButton}" />
-                                            <Grid>
-                                                <Grid.Style>
-                                                    <Style TargetType="{x:Type Grid}">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Value="NoResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=ResizeMode}">
-                                                                <Setter Property="Visibility" Value="Collapsed" />
-                                                            </DataTrigger>
-
-                                                            <DataTrigger Value="CanResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=ResizeMode}">
-                                                                <Setter Property="Visibility" Value="Visible" />
-                                                            </DataTrigger>
-
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Grid.Style>
-                                                <Button
-                                                    Command="{Binding MaximizeCommand}"
-                                                    Content="[ ]"
-                                                    Style="{DynamicResource WindowControlButton}" />
-                                            </Grid>
+                                            <Button Command="{Binding MaximizeCommand}"
+                                                    Style="{DynamicResource WindowMaximizeButton}" >
+                                            </Button>
                                             <Button
                                                 Command="{Binding CloseCommand}"
-                                                Content="X"
+                                                Content="{StaticResource FontAwesomeCloseWindowIcon}"
                                                 Style="{DynamicResource WindowCloseButton}" />
                                         </StackPanel>
 
