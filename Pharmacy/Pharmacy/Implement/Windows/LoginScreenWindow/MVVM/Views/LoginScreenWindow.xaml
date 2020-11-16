@@ -3,18 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views"
-        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
-        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
         x:Class="Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views.LoginScreenWindow"
-        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"   
+        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels" 
+        xmlns:converter="clr-namespace:Pharmacy.Implement.Utils.Converter"   
+        xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
         mc:Ignorable="d" FontSize="15"
-        Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" ResizeMode="NoResize" WindowStyle="ToolWindow">
+        Title="Đăng nhập" Height="520" Width="680" WindowStartupLocation="CenterScreen" Background="White" ResizeMode="NoResize"
+        WindowStyle="ToolWindow" x:Name="loginWindow">
 
     <Window.DataContext>
         <vm:LoginScreenWindowViewModel/>
     </Window.DataContext>
 
+    <Window.Resources>
+        <converter:MultiBindingConverter x:Key="MultiBinding"/>
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding SystemLoginButton}">
+            <KeyBinding.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultiBinding}">
+                    <Binding ElementName="loginUserNameTextEdit"/>
+                    <Binding ElementName="loginUserPasswordTextEdit"/>
+                    <Binding ElementName="loginWindow"/>
+                </MultiBinding>
+            </KeyBinding.CommandParameter>
+        </KeyBinding>
+    </Window.InputBindings>
+    
     <Grid Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -38,8 +54,18 @@
                     </Border.Background>
                     <Grid>
                         <Image x:Name="image1" HorizontalAlignment="Center" Height="240" VerticalAlignment="Top" Width="240" Source="/Pharmacy;component/Resource/Icons/company logo x2.png" Margin="0,22,0,0" />
-                        <dx:SimpleButton Content="Báo lỗi" VerticalAlignment="Bottom" Width="166" Height="40" HorizontalAlignment="Center" Background="{x:Null}" Foreground="#FF7CB4CD" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Margin="0,0,0,125" Glyph="{dx:DXImage SvgImages/Icon Builder/Security_Bug.svg}"/>
-                        <dx:SimpleButton Content="CSKH" VerticalAlignment="Bottom" Width="166" Height="40" HorizontalAlignment="Center" Background="{x:Null}" Foreground="#FF7CB4CD" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Margin="42,0,42.286,70" Glyph="{dx:DXImage SvgImages/Outlook Inspired/Support.svg}"/>
+                        <Button x:Name="button_Copy" VerticalAlignment="Bottom" Width="166" Height="40" HorizontalAlignment="Center" Background="{x:Null}" Foreground="White" FontFamily="Century Gothic" FontSize="20" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Margin="0,0,0,125">
+                            <StackPanel Width="165" Height="40" Orientation="Horizontal" >
+                                <Image  Width="40" Height="40" Margin="10,0,10,0" Source="/Pharmacy;component/Resource/Icons/bug rp blue.png"/>
+                                <TextBlock  Margin="0,0,0,10" TextWrapping="Wrap" Text="Báo lỗi" FontSize="15" Height="20" VerticalAlignment="Bottom" Foreground="#FF7CB4CD"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="button_Copy1" VerticalAlignment="Bottom" Width="165"  Height="40" HorizontalAlignment="Center" Background="{x:Null}" Foreground="White" FontFamily="Century Gothic" FontSize="20" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" Margin="0,0,0,70">
+                            <StackPanel Width="165" Height="40" Orientation="Horizontal" >
+                                <Image  Width="40" Height="40" Margin="10,0,10,0" Source="/Pharmacy;component/Resource/Icons/CSKH blue.png"/>
+                                <TextBlock  Margin="0,0,0,10" TextWrapping="Wrap" Text="CSKH" FontSize="15" Height="20" VerticalAlignment="Bottom" Foreground="#FF79AFCB"/>
+                            </StackPanel>
+                        </Button>
                     </Grid>
                 </Border>
 
@@ -58,19 +84,26 @@
                     <Grid>
                         <TextBlock Text="Đăng nhập hệ thống" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" TextAlignment="Center" FontSize="17" Foreground="#FFC6C6C6" Width="218" FontWeight="Bold"/>
 
-                        <dxe:TextEdit Margin="25,60,25,127" NullText="Tên đăng nhập" FontSize="15"/>
-                        <dxe:PasswordBoxEdit Margin="25,109,25,78.143" NullText="Mật khẩu" FontSize="15" ShowCapsLockWarningToolTip="True"/>
+                        <TextBox x:Name="loginUserNameTextEdit" Margin="25,60,25,127"/>
+                        <PasswordBox x:Name="loginUserPasswordTextEdit" Margin="25,109,25,78.143"/>
 
                         <CheckBox Content="Lưu tên đăng nhập" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="67,0,0,27.143" Foreground="#FFC6C6C6"/>
-                        <dx:SimpleButton Content="Đăng nhập" 
+                        <Button Content="Đăng nhập" 
                                          VerticalAlignment="Bottom" Height="40" HorizontalAlignment="Center" 
                                          Background="{x:Null}" 
                                          Foreground="#FF7CB4CD" 
                                          RenderTransformOrigin="0.5,0.5" 
                                          BorderBrush="Black" 
                                          Margin="215,0,25,20.143" Width="148" 
-                                         Command="{Binding SystemLoginButton}"
-                                         Glyph="{dx:DXImage SvgImages/Icon Builder/Security_Unlock.svg}"/>
+                                         Command="{Binding SystemLoginButton}">
+                            <Button.CommandParameter>
+                                <MultiBinding Converter="{StaticResource MultiBinding}">
+                                    <Binding ElementName="loginUserNameTextEdit"/>
+                                    <Binding ElementName="loginUserPasswordTextEdit"/>
+                                    <Binding ElementName="loginWindow"/>
+                                </MultiBinding>
+                            </Button.CommandParameter>
+                        </Button>
                     </Grid>
                 </Border>
             </Grid>

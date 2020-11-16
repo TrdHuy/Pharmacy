@@ -24,10 +24,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views
             InitializeComponent();
         }
 
-        private void GridMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
+       
 
     }
 }

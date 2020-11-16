@@ -22,10 +22,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
             SystemLoginButton = new RunInputCommand(SystemLoginButtonClickEvent);
         }
 
-        public override void Update()
-        {
-        }
-
         protected override void InitPropertiesRegistry()
         {
 

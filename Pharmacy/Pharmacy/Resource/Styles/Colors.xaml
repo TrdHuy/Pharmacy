@@ -1,17 +1,42 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Pharmacy">
+   
+    <Color x:Key="BackgroundLight">#efefef</Color>
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
     
     <Color x:Key="WordBlue">#3099c5</Color>
     <SolidColorBrush x:Key="WordBlueBrush" Color="{StaticResource WordBlue}" />
-
-    <Color x:Key="ForegroundLight">#ffffff</Color>
-    <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
 
     <Color x:Key="ForegroundVeryDark">#000001</Color>
     <SolidColorBrush x:Key="ForegroundVeryDarkBrush" Color="{StaticResource ForegroundVeryDark}" />
 
     <Color x:Key="WordGreen">#00c541</Color>
     <SolidColorBrush x:Key="WordGreenBrush" Color="{StaticResource WordGreen}" />
+
+    <Color x:Key="ForegroundMain">#686868</Color>
+    <SolidColorBrush x:Key="ForegroundMainBrush" Color="{StaticResource ForegroundMain}" />
+
+    <Color x:Key="ForegroundLight">#ffffff</Color>
+    <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
     
+    <!--Theme normal-->
+    <Color x:Key="Transparent">#00000000</Color>
+
+    <Color x:Key="NormalTheme_TitleBarColor">#FFE7E7E7</Color>
+    <SolidColorBrush x:Key="NormalTheme_TitleBarColorBrush" Color="{StaticResource NormalTheme_TitleBarColor}" />
+
+    <Color x:Key="NormalTheme_MenuTabColor">#FF383838</Color>
+    <SolidColorBrush x:Key="NormalTheme_MenuTabColorBrush" Color="{StaticResource NormalTheme_MenuTabColor}" />
+
+    <Color x:Key="NormalTheme_LightGreen">#FF4BBF60</Color>
+    <SolidColorBrush x:Key="NormalTheme_LightGreenBrush" Color="{StaticResource NormalTheme_LightGreen}" />
+
+    <Color x:Key="NormalTheme_DarkGreen">#FF41A653</Color>
+    <SolidColorBrush x:Key="NormalTheme_DarkGreenBrush" Color="{StaticResource NormalTheme_DarkGreen}" />
+
+    <Color x:Key="NormalTheme_Homepage_Bg">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="NormalTheme_Homepage_BgBrush" Color="{StaticResource NormalTheme_Homepage_Bg}" />
+
+
 </ResourceDictionary>

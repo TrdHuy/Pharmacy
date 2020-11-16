@@ -7,9 +7,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- Order is important -->
+                <ResourceDictionary Source="Resource/Styles/Dimens.xaml" />
+                <ResourceDictionary Source="Resource/Styles/Images.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="Resource/Styles/Buttons.xaml" />
                 <ResourceDictionary Source="Resource/Styles/Texts.xaml" />
+                <ResourceDictionary Source="Resource/Styles/Windows.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

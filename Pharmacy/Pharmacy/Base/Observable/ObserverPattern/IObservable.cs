@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.Observable.ObserverPattern
 {
-    interface IObservable
+    interface IObservable<T>
     {
-        void Attach(IObserver observer);
+        void Subcribe(IObserver<T> observer);
 
-        void Detach(IObserver observer);
+        void Unsubcribe(IObserver<T> observer);
 
-        void NotifyChange();
+        void NotifyChange(T result);
     }
 }
