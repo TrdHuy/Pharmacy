@@ -124,11 +124,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Implement\Utils\CustomControls\BoxyCommunicator.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\TestW.xaml.cs">
-      <DependentUpon>TestW.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -185,10 +181,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\MSWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\TestW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
