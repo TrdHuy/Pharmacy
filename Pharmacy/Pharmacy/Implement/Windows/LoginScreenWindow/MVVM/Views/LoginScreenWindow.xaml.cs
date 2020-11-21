@@ -24,7 +24,5 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views
             InitializeComponent();
         }
 
-       
-
     }
 }

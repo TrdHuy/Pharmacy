@@ -27,7 +27,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             _appDBContext = new PharmacyDBContext();
         }
 
-        public async void ExecuteQueryAsync(string SQLCmdKey, params string[] paramaters)
+        public void ExecuteQueryAsync(string SQLCmdKey, params string[] paramaters)
         {
 
             _result = null;
