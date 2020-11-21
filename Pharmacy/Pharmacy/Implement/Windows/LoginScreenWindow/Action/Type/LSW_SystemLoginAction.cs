@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,15 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
     {
         private const string DataConectionPath = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
         private SQLQueryCustodian _observer;
-
         private Window _loginWindow;
+        private LoginScreenWindowViewModel _viewModel;
 
         public bool Execute(object[] dataTransfer)
         {
+            _viewModel = (LoginScreenWindowViewModel)dataTransfer[0];
+
+            //_viewModel.IsLoginButtonRunning = true;
+
             object[] dataFromView = (object[])dataTransfer[1];
             TextBox userNameTextEdit = (TextBox)dataFromView[0];
             PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
@@ -53,7 +58,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             try
             {
                 int count = ((List<Users>)queryResult.Result).Count();
-                if(count == 1)
+                if (count == 1)
                 {
                     MessageBox.Show("Login Success!");
                     MSWindow mSW = new MSWindow();
@@ -66,9 +71,16 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 }
                 _observer.Updated = true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                if (_viewModel != null)
+                {
+                    _viewModel.IsLoginButtonRunning = false;
+                }
             }
 
 

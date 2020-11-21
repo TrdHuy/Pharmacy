@@ -15,7 +15,18 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
     {
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
-        public RunInputCommand SystemLoginButton {get; set;}
+        private bool _isLoginButtonRunnig = false;
+
+        public RunInputCommand SystemLoginButton { get; set; }
+        public bool IsLoginButtonRunning
+        {
+            get { return _isLoginButtonRunnig; }
+            set
+            {
+                _isLoginButtonRunnig = value;
+                InvalidateOwn();
+            }
+        }
 
         public LoginScreenWindowViewModel()
         {
@@ -29,6 +40,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 
         private void SystemLoginButtonClickEvent(object obj)
         {
+            IsLoginButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
