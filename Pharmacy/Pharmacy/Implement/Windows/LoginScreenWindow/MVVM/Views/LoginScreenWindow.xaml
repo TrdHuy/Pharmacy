@@ -6,9 +6,9 @@
     xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
     xmlns:converter="clr-namespace:Pharmacy.Implement.Utils.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"
+    xmlns:local="clr-namespace:Pharmacy"
     Width="680"
     Height="520"
     mc:Ignorable="d"
@@ -76,7 +76,7 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Source="/Pharmacy;component/Resource/Icons/company logo x2.png" />
-                        <hps:IconButton
+                        <local:IconButton
                             Width="166"
                             Height="40"
                             Margin="0,0,0,125"
@@ -96,7 +96,7 @@
                             Padding="0,0,50,0"
                             RenderTransformOrigin="0.5,0.5"
                             TextContent="Báo lỗi" />
-                        <hps:IconButton
+                        <local:IconButton
                             Width="164"
                             Height="40"
                             Margin="40,0,46,70"
@@ -176,7 +176,7 @@
                             VerticalAlignment="Bottom"
                             Content="Lưu tên đăng nhập"
                             Foreground="#FFC6C6C6" />
-                        <hps:IconButton
+                        <local:IconButton
                             IsUsingDropShadowEffect="True"
                             IsBusy="{Binding IsLoginButtonRunning}"
                             ProgressSpinnerBackground="Black"
@@ -192,14 +192,14 @@
                             Foreground="#FF7CB4CD"
                             RenderTransformOrigin="0.5,0.5"
                             TextContent="Đăng nhập">
-                            <hps:IconButton.CommandParameter>
+                            <local:IconButton.CommandParameter>
                                 <MultiBinding Converter="{StaticResource MultiBinding}">
                                     <Binding ElementName="loginUserNameTextEdit" />
                                     <Binding ElementName="loginUserPasswordTextEdit" />
                                     <Binding ElementName="loginWindow" />
                                 </MultiBinding>
-                            </hps:IconButton.CommandParameter>
-                        </hps:IconButton>
+                            </local:IconButton.CommandParameter>
+                        </local:IconButton>
                     </Grid>
                 </Border>
                 
