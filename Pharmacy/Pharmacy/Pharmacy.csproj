@@ -123,7 +123,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Users.cs">
+    <Compile Include="tblCustomer.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMedicine.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMedicineType.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMedicineUnit.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrder.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderDetail.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPromo.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplier.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserType.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWarehouse.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWarehouseImport.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWarehouseImportDetail.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Page Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml">

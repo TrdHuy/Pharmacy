@@ -5,50 +5,925 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="PharmacyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Users">
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblMedicine">
+          <Key>
+            <PropertyRef Name="MedicineID" />
+          </Key>
+          <Property Name="MedicineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MedicineName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MedicineTypeID" Type="int" Nullable="false" />
+          <Property Name="MedicineUnitID" Type="int" Nullable="false" />
+          <Property Name="BidPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="AskingPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MedicineDescription" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblMedicineType">
+          <Key>
+            <PropertyRef Name="MedicineTypeID" />
+          </Key>
+          <Property Name="MedicineTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MedicineTypeName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MedicineTypeDescription" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblMedicineUnit">
+          <Key>
+            <PropertyRef Name="UnitID" />
+          </Key>
+          <Property Name="UnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UnitDescription" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderTime" Type="datetime" Nullable="false" />
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblOrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MedicineID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="OrderID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPromo">
+          <Key>
+            <PropertyRef Name="PromoID" />
+          </Key>
+          <Property Name="PromoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="MedicineID" Type="int" />
+          <Property Name="PromoPrice" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tblSupplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserPassword" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserRealName" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="UserDisplayedName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UserType" Type="int" />
         </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="TypeDescription" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblWarehouse">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MedicineID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="SupplierID" Type="int" Nullable="false" />
+          <Property Name="MinimumExpiredDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblWarehouseImport">
+          <Key>
+            <PropertyRef Name="ImportID" />
+          </Key>
+          <Property Name="ImportID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImportTime" Type="datetime" Nullable="false" />
+          <Property Name="SupplierID" Type="int" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ImportDescription" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblWarehouseImportDetail">
+          <Key>
+            <PropertyRef Name="DetailID" />
+          </Key>
+          <Property Name="DetailID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MedicineID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ImportID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblMedici__Medic__60A75C0F">
+          <End Role="tblMedicineType" Type="Self.tblMedicineType" Multiplicity="1" />
+          <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicineType">
+              <PropertyRef Name="MedicineTypeID" />
+            </Principal>
+            <Dependent Role="tblMedicine">
+              <PropertyRef Name="MedicineTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMedici__Medic__619B8048">
+          <End Role="tblMedicineUnit" Type="Self.tblMedicineUnit" Multiplicity="1" />
+          <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicineUnit">
+              <PropertyRef Name="UnitID" />
+            </Principal>
+            <Dependent Role="tblMedicine">
+              <PropertyRef Name="MedicineUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__Custom__628FA481">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__UserID__6383C8BA">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrderD__Medic__6477ECF3">
+          <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="1" />
+          <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblOrderDetail">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrderD__Order__656C112C">
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1" />
+          <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="tblOrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPromo__Custom__66603565">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblPromo" Type="Self.tblPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblPromo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPromo__Medici__6754599E">
+          <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="0..1" />
+          <End Role="tblPromo" Type="Self.tblPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblPromo">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUser__UserTyp__68487DD7">
+          <End Role="tblUserType" Type="Self.tblUserType" Multiplicity="0..1" />
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Impor__6C190EBB">
+          <End Role="tblWarehouseImport" Type="Self.tblWarehouseImport" Multiplicity="1" />
+          <End Role="tblWarehouseImportDetail" Type="Self.tblWarehouseImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWarehouseImport">
+              <PropertyRef Name="ImportID" />
+            </Principal>
+            <Dependent Role="tblWarehouseImportDetail">
+              <PropertyRef Name="ImportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Medic__693CA210">
+          <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="1" />
+          <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Medic__6D0D32F4">
+          <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="1" />
+          <End Role="tblWarehouseImportDetail" Type="Self.tblWarehouseImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblWarehouseImportDetail">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Suppl__6A30C649">
+          <End Role="tblSupplier" Type="Self.tblSupplier" Multiplicity="1" />
+          <End Role="tblWarehouse" Type="Self.tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSupplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Suppl__6B24EA82">
+          <End Role="tblSupplier" Type="Self.tblSupplier" Multiplicity="1" />
+          <End Role="tblWarehouseImport" Type="Self.tblWarehouseImport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSupplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="tblWarehouseImport">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PharmacyDBModelStoreContainer">
-          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedicine" EntityType="Self.tblMedicine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedicineType" EntityType="Self.tblMedicineType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedicineUnit" EntityType="Self.tblMedicineUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderDetail" EntityType="Self.tblOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPromo" EntityType="Self.tblPromo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserType" EntityType="Self.tblUserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWarehouse" EntityType="Self.tblWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWarehouseImport" EntityType="Self.tblWarehouseImport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWarehouseImportDetail" EntityType="Self.tblWarehouseImportDetail" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblMedici__Medic__60A75C0F" Association="Self.FK__tblMedici__Medic__60A75C0F">
+            <End Role="tblMedicineType" EntitySet="tblMedicineType" />
+            <End Role="tblMedicine" EntitySet="tblMedicine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMedici__Medic__619B8048" Association="Self.FK__tblMedici__Medic__619B8048">
+            <End Role="tblMedicineUnit" EntitySet="tblMedicineUnit" />
+            <End Role="tblMedicine" EntitySet="tblMedicine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__Custom__628FA481" Association="Self.FK__tblOrder__Custom__628FA481">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__UserID__6383C8BA" Association="Self.FK__tblOrder__UserID__6383C8BA">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrderD__Medic__6477ECF3" Association="Self.FK__tblOrderD__Medic__6477ECF3">
+            <End Role="tblMedicine" EntitySet="tblMedicine" />
+            <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrderD__Order__656C112C" Association="Self.FK__tblOrderD__Order__656C112C">
+            <End Role="tblOrder" EntitySet="tblOrder" />
+            <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPromo__Custom__66603565" Association="Self.FK__tblPromo__Custom__66603565">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblPromo" EntitySet="tblPromo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPromo__Medici__6754599E" Association="Self.FK__tblPromo__Medici__6754599E">
+            <End Role="tblMedicine" EntitySet="tblMedicine" />
+            <End Role="tblPromo" EntitySet="tblPromo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUser__UserTyp__68487DD7" Association="Self.FK__tblUser__UserTyp__68487DD7">
+            <End Role="tblUserType" EntitySet="tblUserType" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Impor__6C190EBB" Association="Self.FK__tblWareho__Impor__6C190EBB">
+            <End Role="tblWarehouseImport" EntitySet="tblWarehouseImport" />
+            <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Medic__693CA210" Association="Self.FK__tblWareho__Medic__693CA210">
+            <End Role="tblMedicine" EntitySet="tblMedicine" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Medic__6D0D32F4" Association="Self.FK__tblWareho__Medic__6D0D32F4">
+            <End Role="tblMedicine" EntitySet="tblMedicine" />
+            <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Suppl__6A30C649" Association="Self.FK__tblWareho__Suppl__6A30C649">
+            <End Role="tblSupplier" EntitySet="tblSupplier" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Suppl__6B24EA82" Association="Self.FK__tblWareho__Suppl__6B24EA82">
+            <End Role="tblSupplier" EntitySet="tblSupplier" />
+            <End Role="tblWarehouseImport" EntitySet="tblWarehouseImport" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PharmacyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PharmacyDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users1" EntityType="PharmacyDBModel.Users" />
+          <EntitySet Name="tblCustomers" EntityType="PharmacyDBModel.tblCustomer" />
+          <EntitySet Name="tblMedicines" EntityType="PharmacyDBModel.tblMedicine" />
+          <EntitySet Name="tblMedicineTypes" EntityType="PharmacyDBModel.tblMedicineType" />
+          <EntitySet Name="tblMedicineUnits" EntityType="PharmacyDBModel.tblMedicineUnit" />
+          <EntitySet Name="tblOrders" EntityType="PharmacyDBModel.tblOrder" />
+          <EntitySet Name="tblOrderDetails" EntityType="PharmacyDBModel.tblOrderDetail" />
+          <EntitySet Name="tblPromoes" EntityType="PharmacyDBModel.tblPromo" />
+          <EntitySet Name="tblSuppliers" EntityType="PharmacyDBModel.tblSupplier" />
+          <EntitySet Name="tblUsers" EntityType="PharmacyDBModel.tblUser" />
+          <EntitySet Name="tblUserTypes" EntityType="PharmacyDBModel.tblUserType" />
+          <EntitySet Name="tblWarehouses" EntityType="PharmacyDBModel.tblWarehouse" />
+          <EntitySet Name="tblWarehouseImports" EntityType="PharmacyDBModel.tblWarehouseImport" />
+          <EntitySet Name="tblWarehouseImportDetails" EntityType="PharmacyDBModel.tblWarehouseImportDetail" />
+          <AssociationSet Name="FK__tblOrder__Custom__628FA481" Association="PharmacyDBModel.FK__tblOrder__Custom__628FA481">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPromo__Custom__66603565" Association="PharmacyDBModel.FK__tblPromo__Custom__66603565">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblPromo" EntitySet="tblPromoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMedici__Medic__60A75C0F" Association="PharmacyDBModel.FK__tblMedici__Medic__60A75C0F">
+            <End Role="tblMedicineType" EntitySet="tblMedicineTypes" />
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMedici__Medic__619B8048" Association="PharmacyDBModel.FK__tblMedici__Medic__619B8048">
+            <End Role="tblMedicineUnit" EntitySet="tblMedicineUnits" />
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrderD__Medic__6477ECF3" Association="PharmacyDBModel.FK__tblOrderD__Medic__6477ECF3">
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPromo__Medici__6754599E" Association="PharmacyDBModel.FK__tblPromo__Medici__6754599E">
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+            <End Role="tblPromo" EntitySet="tblPromoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Medic__693CA210" Association="PharmacyDBModel.FK__tblWareho__Medic__693CA210">
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Medic__6D0D32F4" Association="PharmacyDBModel.FK__tblWareho__Medic__6D0D32F4">
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+            <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrder__UserID__6383C8BA" Association="PharmacyDBModel.FK__tblOrder__UserID__6383C8BA">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrderD__Order__656C112C" Association="PharmacyDBModel.FK__tblOrderD__Order__656C112C">
+            <End Role="tblOrder" EntitySet="tblOrders" />
+            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Suppl__6A30C649" Association="PharmacyDBModel.FK__tblWareho__Suppl__6A30C649">
+            <End Role="tblSupplier" EntitySet="tblSuppliers" />
+            <End Role="tblWarehouse" EntitySet="tblWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Suppl__6B24EA82" Association="PharmacyDBModel.FK__tblWareho__Suppl__6B24EA82">
+            <End Role="tblSupplier" EntitySet="tblSuppliers" />
+            <End Role="tblWarehouseImport" EntitySet="tblWarehouseImports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUser__UserTyp__68487DD7" Association="PharmacyDBModel.FK__tblUser__UserTyp__68487DD7">
+            <End Role="tblUserType" EntitySet="tblUserTypes" />
+            <End Role="tblUser" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblWareho__Impor__6C190EBB" Association="PharmacyDBModel.FK__tblWareho__Impor__6C190EBB">
+            <End Role="tblWarehouseImport" EntitySet="tblWarehouseImports" />
+            <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetails" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Users">
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblOrders" Relationship="PharmacyDBModel.FK__tblOrder__Custom__628FA481" FromRole="tblCustomer" ToRole="tblOrder" />
+          <NavigationProperty Name="tblPromoes" Relationship="PharmacyDBModel.FK__tblPromo__Custom__66603565" FromRole="tblCustomer" ToRole="tblPromo" />
+        </EntityType>
+        <EntityType Name="tblMedicine">
+          <Key>
+            <PropertyRef Name="MedicineID" />
+          </Key>
+          <Property Name="MedicineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicineName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MedicineTypeID" Type="Int32" Nullable="false" />
+          <Property Name="MedicineUnitID" Type="Int32" Nullable="false" />
+          <Property Name="BidPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="AskingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MedicineDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMedicineType" Relationship="PharmacyDBModel.FK__tblMedici__Medic__60A75C0F" FromRole="tblMedicine" ToRole="tblMedicineType" />
+          <NavigationProperty Name="tblMedicineUnit" Relationship="PharmacyDBModel.FK__tblMedici__Medic__619B8048" FromRole="tblMedicine" ToRole="tblMedicineUnit" />
+          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Medic__6477ECF3" FromRole="tblMedicine" ToRole="tblOrderDetail" />
+          <NavigationProperty Name="tblPromoes" Relationship="PharmacyDBModel.FK__tblPromo__Medici__6754599E" FromRole="tblMedicine" ToRole="tblPromo" />
+          <NavigationProperty Name="tblWarehouses" Relationship="PharmacyDBModel.FK__tblWareho__Medic__693CA210" FromRole="tblMedicine" ToRole="tblWarehouse" />
+          <NavigationProperty Name="tblWarehouseImportDetails" Relationship="PharmacyDBModel.FK__tblWareho__Medic__6D0D32F4" FromRole="tblMedicine" ToRole="tblWarehouseImportDetail" />
+        </EntityType>
+        <EntityType Name="tblMedicineType">
+          <Key>
+            <PropertyRef Name="MedicineTypeID" />
+          </Key>
+          <Property Name="MedicineTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicineTypeName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MedicineTypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMedicines" Relationship="PharmacyDBModel.FK__tblMedici__Medic__60A75C0F" FromRole="tblMedicineType" ToRole="tblMedicine" />
+        </EntityType>
+        <EntityType Name="tblMedicineUnit">
+          <Key>
+            <PropertyRef Name="UnitID" />
+          </Key>
+          <Property Name="UnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UnitDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMedicines" Relationship="PharmacyDBModel.FK__tblMedici__Medic__619B8048" FromRole="tblMedicineUnit" ToRole="tblMedicine" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="PurchasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="tblCustomer" Relationship="PharmacyDBModel.FK__tblOrder__Custom__628FA481" FromRole="tblOrder" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblUser" Relationship="PharmacyDBModel.FK__tblOrder__UserID__6383C8BA" FromRole="tblOrder" ToRole="tblUser" />
+          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Order__656C112C" FromRole="tblOrder" ToRole="tblOrderDetail" />
+        </EntityType>
+        <EntityType Name="tblOrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicineID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblOrderD__Medic__6477ECF3" FromRole="tblOrderDetail" ToRole="tblMedicine" />
+          <NavigationProperty Name="tblOrder" Relationship="PharmacyDBModel.FK__tblOrderD__Order__656C112C" FromRole="tblOrderDetail" ToRole="tblOrder" />
+        </EntityType>
+        <EntityType Name="tblPromo">
+          <Key>
+            <PropertyRef Name="PromoID" />
+          </Key>
+          <Property Name="PromoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="MedicineID" Type="Int32" />
+          <Property Name="PromoPrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="tblCustomer" Relationship="PharmacyDBModel.FK__tblPromo__Custom__66603565" FromRole="tblPromo" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblPromo__Medici__6754599E" FromRole="tblPromo" ToRole="tblMedicine" />
+        </EntityType>
+        <EntityType Name="tblSupplier">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblWarehouses" Relationship="PharmacyDBModel.FK__tblWareho__Suppl__6A30C649" FromRole="tblSupplier" ToRole="tblWarehouse" />
+          <NavigationProperty Name="tblWarehouseImports" Relationship="PharmacyDBModel.FK__tblWareho__Suppl__6B24EA82" FromRole="tblSupplier" ToRole="tblWarehouseImport" />
+        </EntityType>
+        <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserRealName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="UserDisplayedName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" />
+          <NavigationProperty Name="tblOrders" Relationship="PharmacyDBModel.FK__tblOrder__UserID__6383C8BA" FromRole="tblUser" ToRole="tblOrder" />
+          <NavigationProperty Name="tblUserType" Relationship="PharmacyDBModel.FK__tblUser__UserTyp__68487DD7" FromRole="tblUser" ToRole="tblUserType" />
         </EntityType>
+        <EntityType Name="tblUserType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblUsers" Relationship="PharmacyDBModel.FK__tblUser__UserTyp__68487DD7" FromRole="tblUserType" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblWarehouse">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicineID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="SupplierID" Type="Int32" Nullable="false" />
+          <Property Name="MinimumExpiredDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblWareho__Medic__693CA210" FromRole="tblWarehouse" ToRole="tblMedicine" />
+          <NavigationProperty Name="tblSupplier" Relationship="PharmacyDBModel.FK__tblWareho__Suppl__6A30C649" FromRole="tblWarehouse" ToRole="tblSupplier" />
+        </EntityType>
+        <EntityType Name="tblWarehouseImport">
+          <Key>
+            <PropertyRef Name="ImportID" />
+          </Key>
+          <Property Name="ImportID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImportTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SupplierID" Type="Int32" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="PurchasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ImportDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSupplier" Relationship="PharmacyDBModel.FK__tblWareho__Suppl__6B24EA82" FromRole="tblWarehouseImport" ToRole="tblSupplier" />
+          <NavigationProperty Name="tblWarehouseImportDetails" Relationship="PharmacyDBModel.FK__tblWareho__Impor__6C190EBB" FromRole="tblWarehouseImport" ToRole="tblWarehouseImportDetail" />
+        </EntityType>
+        <EntityType Name="tblWarehouseImportDetail">
+          <Key>
+            <PropertyRef Name="DetailID" />
+          </Key>
+          <Property Name="DetailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicineID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ImportID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblWareho__Medic__6D0D32F4" FromRole="tblWarehouseImportDetail" ToRole="tblMedicine" />
+          <NavigationProperty Name="tblWarehouseImport" Relationship="PharmacyDBModel.FK__tblWareho__Impor__6C190EBB" FromRole="tblWarehouseImportDetail" ToRole="tblWarehouseImport" />
+        </EntityType>
+        <Association Name="FK__tblOrder__Custom__628FA481">
+          <End Type="PharmacyDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPromo__Custom__66603565">
+          <End Type="PharmacyDBModel.tblCustomer" Role="tblCustomer" Multiplicity="0..1" />
+          <End Type="PharmacyDBModel.tblPromo" Role="tblPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblPromo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMedici__Medic__60A75C0F">
+          <End Type="PharmacyDBModel.tblMedicineType" Role="tblMedicineType" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicineType">
+              <PropertyRef Name="MedicineTypeID" />
+            </Principal>
+            <Dependent Role="tblMedicine">
+              <PropertyRef Name="MedicineTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMedici__Medic__619B8048">
+          <End Type="PharmacyDBModel.tblMedicineUnit" Role="tblMedicineUnit" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicineUnit">
+              <PropertyRef Name="UnitID" />
+            </Principal>
+            <Dependent Role="tblMedicine">
+              <PropertyRef Name="MedicineUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrderD__Medic__6477ECF3">
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblOrderDetail">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPromo__Medici__6754599E">
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="0..1" />
+          <End Type="PharmacyDBModel.tblPromo" Role="tblPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblPromo">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Medic__693CA210">
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblWarehouse" Role="tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Medic__6D0D32F4">
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblWarehouseImportDetail" Role="tblWarehouseImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblWarehouseImportDetail">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrder__UserID__6383C8BA">
+          <End Type="PharmacyDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrderD__Order__656C112C">
+          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="tblOrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Suppl__6A30C649">
+          <End Type="PharmacyDBModel.tblSupplier" Role="tblSupplier" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblWarehouse" Role="tblWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSupplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="tblWarehouse">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Suppl__6B24EA82">
+          <End Type="PharmacyDBModel.tblSupplier" Role="tblSupplier" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblWarehouseImport" Role="tblWarehouseImport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSupplier">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="tblWarehouseImport">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUser__UserTyp__68487DD7">
+          <End Type="PharmacyDBModel.tblUserType" Role="tblUserType" Multiplicity="0..1" />
+          <End Type="PharmacyDBModel.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUserType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblWareho__Impor__6C190EBB">
+          <End Type="PharmacyDBModel.tblWarehouseImport" Role="tblWarehouseImport" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblWarehouseImportDetail" Role="tblWarehouseImportDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblWarehouseImport">
+              <PropertyRef Name="ImportID" />
+            </Principal>
+            <Dependent Role="tblWarehouseImportDetail">
+              <PropertyRef Name="ImportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PharmacyDBModelStoreContainer" CdmEntityContainer="PharmacyDBContext">
-          <EntitySetMapping Name="Users1">
-            <EntityTypeMapping TypeName="PharmacyDBModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserDisplayedName" ColumnName="UserDisplayedName" />
-                <ScalarProperty Name="UserRealName" ColumnName="UserRealName" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedicines">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblMedicine">
+              <MappingFragment StoreEntitySet="tblMedicine">
+                <ScalarProperty Name="MedicineDescription" ColumnName="MedicineDescription" />
+                <ScalarProperty Name="AskingPrice" ColumnName="AskingPrice" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="MedicineUnitID" ColumnName="MedicineUnitID" />
+                <ScalarProperty Name="MedicineTypeID" ColumnName="MedicineTypeID" />
+                <ScalarProperty Name="MedicineName" ColumnName="MedicineName" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedicineTypes">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblMedicineType">
+              <MappingFragment StoreEntitySet="tblMedicineType">
+                <ScalarProperty Name="MedicineTypeDescription" ColumnName="MedicineTypeDescription" />
+                <ScalarProperty Name="MedicineTypeName" ColumnName="MedicineTypeName" />
+                <ScalarProperty Name="MedicineTypeID" ColumnName="MedicineTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedicineUnits">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblMedicineUnit">
+              <MappingFragment StoreEntitySet="tblMedicineUnit">
+                <ScalarProperty Name="UnitDescription" ColumnName="UnitDescription" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrders">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderDetails">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblOrderDetail">
+              <MappingFragment StoreEntitySet="tblOrderDetail">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPromoes">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblPromo">
+              <MappingFragment StoreEntitySet="tblPromo">
+                <ScalarProperty Name="PromoPrice" ColumnName="PromoPrice" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PromoID" ColumnName="PromoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSuppliers">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblSupplier">
+              <MappingFragment StoreEntitySet="tblSupplier">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserTypes">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblUserType">
+              <MappingFragment StoreEntitySet="tblUserType">
+                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWarehouses">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblWarehouse">
+              <MappingFragment StoreEntitySet="tblWarehouse">
+                <ScalarProperty Name="MinimumExpiredDate" ColumnName="MinimumExpiredDate" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWarehouseImports">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblWarehouseImport">
+              <MappingFragment StoreEntitySet="tblWarehouseImport">
+                <ScalarProperty Name="ImportDescription" ColumnName="ImportDescription" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="ImportTime" ColumnName="ImportTime" />
+                <ScalarProperty Name="ImportID" ColumnName="ImportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWarehouseImportDetails">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblWarehouseImportDetail">
+              <MappingFragment StoreEntitySet="tblWarehouseImportDetail">
+                <ScalarProperty Name="ImportID" ColumnName="ImportID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+                <ScalarProperty Name="DetailID" ColumnName="DetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
