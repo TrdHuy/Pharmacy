@@ -57,7 +57,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
         {
             try
             {
-                int count = ((List<Users>)queryResult.Result).Count();
+                int count = ((List<tblUser>)queryResult.Result).Count();
                 if (count == 1)
                 {
                     MessageBox.Show("Login Success!");
