@@ -49,8 +49,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
             try
             {
-                var x = _appDBContext.Users.Where(user => user.UserName.Equals(name)
-                && user.UserPassword.Equals(pass)).ToList();
+                var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)
+                && user.Password.Equals(pass)).ToList();
 
                 SQLQueryResult result = new SQLQueryResult(x,"");
                 return result;

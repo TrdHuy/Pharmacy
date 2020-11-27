@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.Observable.ObserverPattern
 {
-    abstract class BaseObservable<T> : IObservable<T>
+    public abstract class BaseObservable<T> : IObservable<T>
     {
         private List<IObserver<T>> _observers = new List<IObserver<T>>();
 

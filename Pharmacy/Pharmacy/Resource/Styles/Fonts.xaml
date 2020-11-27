@@ -17,6 +17,9 @@
     <system:String x:Key="FontAwesomeMinimizeWindowIcon">&#xf2d1;</system:String>
     <system:String x:Key="FontAwesomeMaximizeWindowIcon">&#xf2d0;</system:String>
     <system:String x:Key="FontAwesomeRestoreWindowIcon">&#xf2d2;</system:String>
+    <system:String x:Key="FontAwesomePreviousPageIcon">&#xf0a8;</system:String>
+    <system:String x:Key="FontAwesomeNextPageIcon">&#xf0a9;</system:String>
+
     <system:String x:Key="FontAwesomeSpinningIcon">&#xf110;</system:String>
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">

@@ -81,12 +81,6 @@
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundMainBrush}" />
 
-        <Setter Property="LayoutTransform">
-            <Setter.Value>
-                <ScaleTransform ScaleX="1.5" />
-            </Setter.Value>
-        </Setter>
-
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -104,6 +98,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}" />
             </Trigger>
 
         </Style.Triggers>
@@ -125,31 +120,4 @@
 
     </Style>
     
-    <!--Window Maximize button-->
-    <Style
-        x:Key="WindowMaximizeButton"
-        BasedOn="{StaticResource WindowControlButton}"
-        TargetType="{x:Type Button}">
-
-        <Style.Triggers>
-            <DataTrigger Value="NoResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=ResizeMode}">
-                <Setter Property="Visibility" Value="Collapsed" />
-            </DataTrigger>
-
-            <DataTrigger Value="CanResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=ResizeMode}">
-                <Setter Property="Visibility" Value="Visible" />
-            </DataTrigger>
-
-            <DataTrigger Value="Normal" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=WindowState}">
-                <Setter Property="Content" Value="{StaticResource FontAwesomeMaximizeWindowIcon}" />
-            </DataTrigger>
-
-            <DataTrigger Value="Maximized" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type cctrl:HPSL_Window}}, Path=WindowState}">
-                <Setter Property="Content" Value="{StaticResource FontAwesomeRestoreWindowIcon}" />
-            </DataTrigger>
-            
-        </Style.Triggers>
-
-    </Style>
-
 </ResourceDictionary>
