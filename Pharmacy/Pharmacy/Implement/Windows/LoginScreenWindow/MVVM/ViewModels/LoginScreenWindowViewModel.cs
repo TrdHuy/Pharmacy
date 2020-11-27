@@ -1,8 +1,8 @@
-﻿using Pharmacy.Base.UIEventHandler.Listener;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.InputCommand;
-using Pharmacy.Implement.Windows.LoginScreenWindow.Core.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 {
-    class LoginScreenWindowViewModel : BaseLoginScreenWindowViewModel
+    public class LoginScreenWindowViewModel : AbstractViewModel
     {
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
