@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    interface IActionFactory
+    public interface IActionFactory
     {
         IAction CreateAction(object obj);
     }

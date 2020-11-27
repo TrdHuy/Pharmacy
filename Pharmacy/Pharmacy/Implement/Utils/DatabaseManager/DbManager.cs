@@ -20,6 +20,10 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         public async Task ExecuteQueryAsync(string cmdKey, SQLQueryCustodian observer, params string[] paramaters )
         {
             _provider.Subcribe(observer);
+            
+            // Issue: when first boost app, query function make the app delay for a while
+            await Task.Delay(500);
+
             _provider.ExecuteQueryAsync(cmdKey, paramaters);
             if (observer.Updated)
             {
