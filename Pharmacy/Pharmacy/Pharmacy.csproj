@@ -117,7 +117,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\ApplicationDataManager.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml.cs">
+      <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -185,7 +194,6 @@
     <Compile Include="Implement\UIEventHandler\WindowTag.cs" />
     <Compile Include="Implement\Utils\Converter\MultiBindingConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\HPSL_Button.cs" />
-    <Compile Include="Implement\Utils\CustomControls\HPSL_Window.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\DbManager.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\SQLQueryCustodian.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\SQLResultHandler.cs" />
@@ -194,7 +202,6 @@
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_SystemLoginAction.cs" />
-    <Compile Include="Implement\Windows\LoginScreenWindow\Core\MVVM\ViewModels\BaseLoginScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\Builder\UserBuilder.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\UserModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\ViewModels\LoginScreenWindowViewModel.cs" />
@@ -202,6 +209,10 @@
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

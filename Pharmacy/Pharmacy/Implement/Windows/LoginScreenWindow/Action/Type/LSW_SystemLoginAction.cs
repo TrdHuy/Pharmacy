@@ -14,9 +14,9 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {
-    class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
+    public class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
     {
-        private const string DataConectionPath = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
+        private ApplicationDataManager _applicationDataManager = ApplicationDataManager.Instance;
         private SQLQueryCustodian _observer;
         private Window _loginWindow;
         private LoginScreenWindowViewModel _viewModel;
@@ -55,12 +55,16 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
+            List<tblUser> result = (List<tblUser>)queryResult.Result;
             try
             {
-                int count = ((List<Users>)queryResult.Result).Count();
+                int count = result.Count();
                 if (count == 1)
                 {
+                    CreateSessionID(result[0]);
+
                     MessageBox.Show("Login Success!");
+
                     MSWindow mSW = new MSWindow();
                     mSW.Show();
                     _loginWindow.Close();
@@ -69,7 +73,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 {
                     MessageBox.Show("Invaild user or password!");
                 }
-                _observer.Updated = true;
             }
             catch (Exception e)
             {
@@ -77,12 +80,19 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             }
             finally
             {
+                _observer.Updated = true;
                 if (_viewModel != null)
                 {
                     _viewModel.IsLoginButtonRunning = false;
                 }
             }
+        }
 
+        private void CreateSessionID(tblUser curUser)
+        {
+            string connectionID = _applicationDataManager.GenerateConnectionID();
+            string sessionID = DateTime.Now + "/" + curUser.Username + "/" + connectionID;
+            _applicationDataManager.UpdateSessionInfo(connectionID, sessionID, curUser);
 
         }
     }

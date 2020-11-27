@@ -2,6 +2,7 @@
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,9 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             {
                 case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
                     _keyActionFactory = new LSW_ActionFactory();
+                    break;
+                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
+                    _keyActionFactory = new MSW_ActionFactory();
                     break;
                 default:
                     return null;

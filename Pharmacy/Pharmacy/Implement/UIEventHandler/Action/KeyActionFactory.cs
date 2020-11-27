@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.UIEventHandler.Action
 {
-    abstract class KeyActionFactory : IActionFactory
+    public abstract class KeyActionFactory : IActionFactory
     {
         public IAction CreateAction(object obj)
         {

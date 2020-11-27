@@ -7,11 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
     xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+    xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages"
+    xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
     mc:Ignorable="d"
     d:DesignHeight="620"
+    ShowsNavigationUI="True"
     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
     Title="Page1">
 
+    <Page.DataContext>
+        <vm:HomePageViewModel/>
+    </Page.DataContext>
+    
     <Grid
         Background="White">
         <Grid.RowDefinitions>
@@ -43,42 +50,22 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Grid.Column="0">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource HomePage_PersonalInfoIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Thông tin cá nhân
-                                </TextBlock>
-                            </Grid>
-                            
-                        </Border>
-                    </Grid>
-
+                    <hps:IconButton
+                        Command="{Binding PersonalInfoCommand}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_PersonalInfoIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Thông tin cá nhân"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
+                    
                     <Grid Grid.Row="0" Grid.Column="1">
                         <Border
                             Margin="15"
@@ -411,6 +398,7 @@
                                 FontFamily="{StaticResource VNFOswald}"
                                 FontSize="30"
                                 FontWeight="Bold"
+                                Text="{Binding CurrentUser.FullName}"
                                 Foreground="White">
                                 <TextBlock.Effect>
                                     <DropShadowEffect
@@ -420,10 +408,10 @@
                                         Opacity="0.5"
                                         ShadowDepth="4" />
                                 </TextBlock.Effect>
-                                Nguyễn Thanh Tùng
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="1"
+                                Text="{Binding CurrentUser.NickName}"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Bottom"
                                 FontFamily="{StaticResource VNFOswald}"
@@ -438,10 +426,10 @@
                                         Opacity="0.5"
                                         ShadowDepth="3" />
                                 </TextBlock.Effect>
-                                Tùng Dany
                             </TextBlock>
                             <TextBlock
                                 Grid.Row="2"
+                                Text="{Binding CurrentUser.Job}"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 FontFamily="{StaticResource VNFOswald}"
@@ -456,7 +444,6 @@
                                         Opacity="0.5"
                                         ShadowDepth="3" />
                                 </TextBlock.Effect>
-                                Kỹ sư phần mềm
                             </TextBlock>
                         </Grid>
 
@@ -483,6 +470,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock
+                                Text="{Binding CurrentUser.Username}"
                                 Grid.Column="1"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Right"
@@ -490,7 +478,6 @@
                                 FontSize="12"
                                 FontWeight="Thin"
                                 Foreground="White">
-                                tung.nt
                             </TextBlock>
                             <TextBlock
                                 Grid.Column="2"
@@ -503,6 +490,7 @@
                                 |
                             </TextBlock>
                             <TextBlock
+                                Text="{Binding CurrentTime}"
                                 Grid.Column="3"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
@@ -510,7 +498,6 @@
                                 FontSize="12"
                                 FontWeight="Thin"
                                 Foreground="White">
-                                12:30
                             </TextBlock>
                         </Grid>
                         
@@ -537,12 +524,12 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{StaticResource HomePage_PhoneIcon}" />
                             <TextBlock
+                                Text="{Binding CurrentUser.Phone}"
                                 Grid.Column="2"
                                 VerticalAlignment="Center"
                                 FontFamily="{StaticResource LibelSuit}"
                                 FontSize="15"
                                 Foreground="White">
-                                +84 909079900
                             </TextBlock>
                         </Grid>
 
@@ -554,12 +541,12 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{StaticResource HomePage_MailIcon}" />
                             <TextBlock
+                                Text="{Binding CurrentUser.Email}"
                                 Grid.Column="2"
                                 VerticalAlignment="Center"
                                 FontFamily="{StaticResource LibelSuit}"
                                 FontSize="15"
                                 Foreground="White">
-                                thanhtung1979@gmail.com
                             </TextBlock>
                         </Grid>
 
@@ -571,12 +558,12 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{StaticResource HomePage_PersonalLinkIcon}" />
                             <TextBlock
+                                Text="{Binding CurrentUser.Link}"
                                 Grid.Column="2"
                                 VerticalAlignment="Center"
                                 FontFamily="{StaticResource LibelSuit}"
                                 FontSize="15"
                                 Foreground="White">
-                                facebook.com/thanhtung1979
                             </TextBlock>
                         </Grid>
 
@@ -588,12 +575,12 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0" Source="{StaticResource HomePage_AddressIcon}" />
                             <TextBlock
+                                Text="{Binding CurrentUser.Address}"
                                 Grid.Column="2"
                                 VerticalAlignment="Center"
                                 FontFamily="{StaticResource LibelSuit}"
                                 FontSize="15"
                                 Foreground="White">
-                                25a Phan Huy Chú, Ba Đình, Hà Nội
                             </TextBlock>
                         </Grid>
                     </Grid>
