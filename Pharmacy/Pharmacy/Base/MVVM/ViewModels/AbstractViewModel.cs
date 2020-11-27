@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.MVVM.ViewModels
 {
-    abstract class AbstractViewModel : OnPropertyChanged
+    public abstract class AbstractViewModel : OnPropertyChanged
     {
         private List<string> _propertiesRegistry = new List<string>();
         public AbstractViewModel ParentsModel { get; set; }
