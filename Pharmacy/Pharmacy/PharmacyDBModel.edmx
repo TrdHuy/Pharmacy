@@ -91,9 +91,13 @@
           <Property Name="Username" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Job" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="image" />
           <Property Name="Email" Type="nvarchar" MaxLength="500" />
           <Property Name="Phone" Type="nvarchar" MaxLength="500" />
           <Property Name="Address" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Link" Type="nvarchar" MaxLength="1000" />
           <Property Name="UserType" Type="int" />
         </EntityType>
         <EntityType Name="tblUserType">
@@ -102,7 +106,7 @@
           </Key>
           <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="TypeDescription" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TypeDescription" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblWarehouse">
           <Key>
@@ -172,7 +176,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblOrder__UserID__6383C8BA">
+        <Association Name="FK__tblOrder__UserID__160F4887">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
           <ReferentialConstraint>
@@ -232,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblUser__UserTyp__68487DD7">
+        <Association Name="FK__tblUser__UserTyp__17036CC0">
           <End Role="tblUserType" Type="Self.tblUserType" Multiplicity="0..1" />
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
           <ReferentialConstraint>
@@ -330,7 +334,7 @@
             <End Role="tblCustomer" EntitySet="tblCustomer" />
             <End Role="tblOrder" EntitySet="tblOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblOrder__UserID__6383C8BA" Association="Self.FK__tblOrder__UserID__6383C8BA">
+          <AssociationSet Name="FK__tblOrder__UserID__160F4887" Association="Self.FK__tblOrder__UserID__160F4887">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblOrder" EntitySet="tblOrder" />
           </AssociationSet>
@@ -350,7 +354,7 @@
             <End Role="tblMedicine" EntitySet="tblMedicine" />
             <End Role="tblPromo" EntitySet="tblPromo" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblUser__UserTyp__68487DD7" Association="Self.FK__tblUser__UserTyp__68487DD7">
+          <AssociationSet Name="FK__tblUser__UserTyp__17036CC0" Association="Self.FK__tblUser__UserTyp__17036CC0">
             <End Role="tblUserType" EntitySet="tblUserType" />
             <End Role="tblUser" EntitySet="tblUser" />
           </AssociationSet>
@@ -561,6 +565,10 @@
           <Property Name="UserType" Type="Int32" />
           <NavigationProperty Name="tblOrders" Relationship="PharmacyDBModel.FK__tblOrder__UserID__6383C8BA" FromRole="tblUser" ToRole="tblOrder" />
           <NavigationProperty Name="tblUserType" Relationship="PharmacyDBModel.FK__tblUser__UserTyp__68487DD7" FromRole="tblUser" ToRole="tblUserType" />
+          <Property Name="Job" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NickName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblUserType">
           <Key>
@@ -568,7 +576,7 @@
           </Key>
           <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="TypeDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblUsers" Relationship="PharmacyDBModel.FK__tblUser__UserTyp__68487DD7" FromRole="tblUserType" ToRole="tblUser" />
         </EntityType>
         <EntityType Name="tblWarehouse">
@@ -872,6 +880,10 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PharmacyDBModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
                 <ScalarProperty Name="UserType" ColumnName="UserType" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />

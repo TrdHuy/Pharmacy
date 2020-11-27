@@ -28,6 +28,10 @@ namespace Pharmacy
         public string Phone { get; set; }
         public string Address { get; set; }
         public Nullable<int> UserType { get; set; }
+        public string Job { get; set; }
+        public byte[] Image { get; set; }
+        public string NickName { get; set; }
+        public string Link { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }

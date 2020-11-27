@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    interface IAction
+    public interface IAction
     {
         /// <summary>
         /// Triển khai action cho 1 đối tượng  được định nghĩa trước

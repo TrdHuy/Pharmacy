@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils.CustomControls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class MSWindow : HPSL_Window
+    public partial class MSWindow : Implement.Utils.CustomControls.DashboardWindow
     {
         public MSWindow()
         {
             InitializeComponent();
+            DataContext = new MainScreenWindowViewModel(this);
         }
     }
 }
