@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 {
-    public class MSW_PersonalInfoAction : Base.UIEventHandler.Action.IAction
+    public class MSW_CustomerManagementAction : Base.UIEventHandler.Action.IAction
     {
         private MSW_PageController _pageHost = MSW_PageController.Instance;
 
         public bool Execute(object[] dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.PersonalInfoPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.CustomerManagementPage);
 
             return true;
         }

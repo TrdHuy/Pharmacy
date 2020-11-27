@@ -13,6 +13,12 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_LSW_CUSTOMER_SERVICE_FEATURE = "lsw_customer_service_feature";
 
         public const string KEY_TAG_MSW_PERSONAL_INFO = "msw_personal_info";
+        public const string KEY_TAG_MSW_BUSINESS_MANAGEMENT = "msw_business_management";
+        public const string KEY_TAG_MSW_CUSTOMER_MANAGEMENT = "msw_customer_management";
+        public const string KEY_TAG_MSW_STAFF_MANAGEMENT = "msw_staff_management";
+        public const string KEY_TAG_MSW_VENDOR_MANAGEMENT = "msw_vendor_management";
+        public const string KEY_TAG_MSW_SALE_MANAGEMENT = "msw_sale_management";
+        public const string KEY_TAG_MSW_REPORT = "msw_report";
 
     }
 }
