@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Pharmacy.Implement.Utils.InputCommand
 {
-    class RunInputCommand : ICommand
+    public class RunInputCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
         private Action<object> actionObj;

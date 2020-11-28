@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.Observable.ObserverPattern
 {
-    interface IObserver<in T>
+    public interface IObserver<in T>
     {
         void Update(T value);
     }

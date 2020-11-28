@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Base.Observable.ObserverPattern
 {
-    interface IObservable<T>
+    public interface IObservable<T>
     {
         void Subcribe(IObserver<T> observer);
 

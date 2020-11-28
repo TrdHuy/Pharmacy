@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
 {
-    class LSW_ActionFactory : KeyActionFactory
+    public class LSW_ActionFactory : KeyActionFactory
     {
         public override IAction CreateActionFromCurrentWindow(string keyTag)
         {
