@@ -24,6 +24,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         public tblUser CurrentUser { get; set; }
         public RunInputCommand PersonalInfoCommand { get; set; }
+        public RunInputCommand BusinessManagementCommand { get; set; }
+        public RunInputCommand StaffManagementCommand { get; set; }
+        public RunInputCommand CustomerManagementCommand { get; set; }
+        public RunInputCommand VendorManagementCommand { get; set; }
+        public RunInputCommand ReportCommand { get; set; }
+        public RunInputCommand SaleManagementCommand { get; set; }
 
         #endregion
 
@@ -42,7 +48,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             CurrentUser = _applicationDataManager.CurrentUser;
             ClockIntansiation();
             PersonalInfoCommand = new RunInputCommand(PersonalInfoButtonClickEvent);
-          
+            BusinessManagementCommand = new RunInputCommand(BussinessManagementButtonClickEvent);
+            StaffManagementCommand = new RunInputCommand(StaffManagementButtonClickEvent);
+            CustomerManagementCommand = new RunInputCommand(CustomerManagementButtonClickEvent);
+            VendorManagementCommand = new RunInputCommand(VendorManagementButtonClickEvent);
+            SaleManagementCommand = new RunInputCommand(SaleManagementButtonClickEvent);
+            ReportCommand = new RunInputCommand(ReportButtonClickEvent);
+
         }
         protected override void InitPropertiesRegistry()
         {
@@ -70,6 +82,59 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 , KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
                 , dataTransfer);
         }
-
+        private void BussinessManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_BUSINESS_MANAGEMENT
+                , dataTransfer);
+        }
+        private void StaffManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_STAFF_MANAGEMENT
+                , dataTransfer);
+        }
+        private void CustomerManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_CUSTOMER_MANAGEMENT
+                , dataTransfer);
+        }
+        private void VendorManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_VENDOR_MANAGEMENT
+                , dataTransfer);
+        }
+        private void SaleManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_SALE_MANAGEMENT
+                , dataTransfer);
+        }
+        private void ReportButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_REPORT
+                , dataTransfer);
+        }
     }
 }

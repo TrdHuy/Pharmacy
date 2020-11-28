@@ -65,222 +65,103 @@
                         Background="White"
                         Margin="15" BorderBrush="{x:Null}">
                     </hps:IconButton>
-                    
-                    <Grid Grid.Row="0" Grid.Column="1">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
+                    <hps:IconButton
+                        Command="{Binding BusinessManagementCommand}"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource AppIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý nhà thuốc"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
 
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource AppIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Quản lý nhà thuốc
-                                </TextBlock>
-                            </Grid>
+                    <hps:IconButton
+                        Command="{Binding StaffManagementCommand}"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_EmployeeManageIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý nhân viên"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
+              
+                    <hps:IconButton
+                        Command="{Binding CustomerManagementCommand}"
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_CustomerManageIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý khách hàng"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
+              
+                    <hps:IconButton
+                        Command="{Binding VendorManagementCommand}"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_VendorIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý nhập kho"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
 
-                        </Border>
-                    </Grid>
+                    <hps:IconButton
+                        Command="{Binding SaleManagementCommand}"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_SaleManageIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý bán hàng"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
 
-                    <Grid Grid.Row="0" Grid.Column="2">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
+                    <hps:IconButton
+                        Command="{Binding ReportCommand}"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_ReportIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Báo cáo"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource HomePage_EmployeeManageIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Quản lý nhân viên
-                                </TextBlock>
-                            </Grid>
-
-                        </Border>
-                    </Grid>
-
-                    <Grid Grid.Row="0" Grid.Column="3">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource HomePage_CustomerManageIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Quản lý khách hàng
-                                </TextBlock>
-                            </Grid>
-
-                        </Border>
-                    </Grid>
-
-                    <Grid Grid.Row="1" Grid.Column="0">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource HomePage_VendorIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Quản lý nhập kho
-                                </TextBlock>
-                            </Grid>
-
-                        </Border>
-                    </Grid>
-
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource HomePage_SaleManageIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Quản lý bán hàng
-                                </TextBlock>
-                            </Grid>
-
-                        </Border>
-                    </Grid>
-
-                    <Grid Grid.Row="1" Grid.Column="2">
-                        <Border
-                            Margin="15"
-                            Background="White">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                        Color="Black"
-                                        BlurRadius="4"
-                                        Direction="330"
-                                        Opacity="0.5"
-                                        ShadowDepth="5" />
-                            </Border.Effect>
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-
-                                <Image
-                                    Width="100"
-                                    Height="100"
-                                    Source="{StaticResource HomePage_ReportIcon}">
-                                </Image>
-                                <TextBlock 
-                                    FontFamily="{StaticResource VNFOswald}"
-                                    FontSize="20"
-                                    HorizontalAlignment="Center"
-                                    Grid.Row="1">
-                                    Báo cáo
-                                </TextBlock>
-                            </Grid>
-
-                        </Border>
-                    </Grid>
                 </Grid>
                 
                 <!--Footer Area-->
