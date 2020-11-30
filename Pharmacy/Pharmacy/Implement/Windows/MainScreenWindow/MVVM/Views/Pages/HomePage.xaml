@@ -10,7 +10,7 @@
     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages"
     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
     mc:Ignorable="d"
-    d:DesignHeight="620"
+    d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
     ShowsNavigationUI="True"
     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
     Title="Page1">
