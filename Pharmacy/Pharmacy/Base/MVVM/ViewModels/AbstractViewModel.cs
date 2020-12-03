@@ -51,5 +51,9 @@ namespace Pharmacy.Base.MVVM.ViewModels
 
         protected abstract void InitPropertiesRegistry();
 
+        protected void PropRegister(string propName)
+        {
+            _propertiesRegistry.Add(propName);
+        }
     }
 }
