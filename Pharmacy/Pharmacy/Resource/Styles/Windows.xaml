@@ -260,11 +260,6 @@
                                             Source="{Binding PageSource}"
                                             Content="{TemplateBinding Content}"
                                             Visibility="Visible"/>
-                                        <ContentPresenter
-                                            x:Name="DWContentPresenter"
-                                            Content="{TemplateBinding Content}"
-                                            Visibility="Hidden" />
-
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -380,14 +375,10 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="ContentType" Value="PageType">
                             <Setter TargetName="NavigationPanel" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="DWPageHostFrame" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="DWContentPresenter" Property="Visibility" Value="Hidden" />
                         </Trigger>
 
                         <Trigger Property="ContentType" Value="NormalContentType">
                             <Setter TargetName="NavigationPanel" Property="Visibility" Value="Hidden" />
-                            <Setter TargetName="DWPageHostFrame" Property="Visibility" Value="Hidden" />
-                            <Setter TargetName="DWContentPresenter" Property="Visibility" Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
 
