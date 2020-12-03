@@ -33,7 +33,6 @@
                 <MultiBinding Converter="{StaticResource MultiBinding}">
                     <Binding ElementName="loginUserNameTextEdit" />
                     <Binding ElementName="loginUserPasswordTextEdit" />
-                    <Binding ElementName="loginWindow" />
                 </MultiBinding>
             </KeyBinding.CommandParameter>
         </KeyBinding>
@@ -171,7 +170,8 @@
                                    Text="Đăng nhập hệ thống"
                                    TextAlignment="Center" />
 
-                        <TextBox Tag="Tên đăng nhập"
+                        <TextBox Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Tag="Tên đăng nhập"
                                  Style="{StaticResource LoginTextBox}"
                                  x:Name="loginUserNameTextEdit"
                                  Margin="25,60,25,54" />
@@ -180,7 +180,8 @@
                                      x:Name="loginUserPasswordTextEdit"
                                      Margin="25,109,25,5" />
 
-                        <CheckBox Margin="67,0,0,27"
+                        <CheckBox IsChecked="{Binding IsUserRemember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  Margin="67,0,0,27"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Bottom"
                                   Content="Lưu tên đăng nhập"
