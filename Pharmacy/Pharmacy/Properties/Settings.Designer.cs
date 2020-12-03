@@ -33,5 +33,29 @@ namespace Pharmacy.Properties {
                 return ((string)(this["PharmacyDBConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserName {
+            get {
+                return ((string)(this["UserName"]));
+            }
+            set {
+                this["UserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsUserRemember {
+            get {
+                return ((bool)(this["IsUserRemember"]));
+            }
+            set {
+                this["IsUserRemember"] = value;
+            }
+        }
     }
 }

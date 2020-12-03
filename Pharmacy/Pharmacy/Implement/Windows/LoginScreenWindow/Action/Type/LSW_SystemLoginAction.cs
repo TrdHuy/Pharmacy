@@ -16,9 +16,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {
     public class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
     {
-        private ApplicationDataManager _applicationDataManager = ApplicationDataManager.Instance;
         private SQLQueryCustodian _observer;
-        private Window _loginWindow;
         private LoginScreenWindowViewModel _viewModel;
 
         public bool Execute(object[] dataTransfer)
@@ -30,7 +28,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             object[] dataFromView = (object[])dataTransfer[1];
             TextBox userNameTextEdit = (TextBox)dataFromView[0];
             PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
-            _loginWindow = (Window)dataFromView[2];
 
             string userName = userNameTextEdit.Text;
             string passWord = userPasswordTextEdit.Password;
@@ -61,13 +58,12 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 int count = result.Count();
                 if (count == 1)
                 {
-                    CreateSessionID(result[0]);
-
+                    App.Current.SessionIDInstansiation(result[0]);
+                    SaveUserName(result[0].Username);
                     MessageBox.Show("Login Success!");
-
-                    MSWindow mSW = new MSWindow();
-                    mSW.Show();
-                    _loginWindow.Close();
+                    App.Current.MainScreenWindow.Show();
+                    App.Current.ShowNotifyIcon();
+                    App.Current.LoginScreenWindow.Hide();
                 }
                 else
                 {
@@ -88,12 +84,12 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             }
         }
 
-        private void CreateSessionID(tblUser curUser)
+        private void SaveUserName(string userName)
         {
-            string connectionID = _applicationDataManager.GenerateConnectionID();
-            string sessionID = DateTime.Now + "/" + curUser.Username + "/" + connectionID;
-            _applicationDataManager.UpdateSessionInfo(connectionID, sessionID, curUser);
-
+            if (_viewModel.IsUserRemember)
+            {
+                _viewModel.UserName = userName;
+            }
         }
     }
 }
