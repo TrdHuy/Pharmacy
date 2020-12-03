@@ -1,4 +1,6 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
+﻿using Newtonsoft.Json;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
@@ -15,14 +17,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
     public class HomePageViewModel : AbstractViewModel
     {
-        private ApplicationDataManager _applicationDataManager = ApplicationDataManager.Instance;
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
         private string _currentTime;
+        private PropertyObserver _userObserver;
 
         #region public properties
 
-        public tblUser CurrentUser { get; set; }
+        public tblUser CurrentUser { get { return (tblUser)_userObserver.Value; } }
         public RunInputCommand PersonalInfoCommand { get; set; }
         public RunInputCommand BusinessManagementCommand { get; set; }
         public RunInputCommand StaffManagementCommand { get; set; }
@@ -30,9 +32,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public RunInputCommand VendorManagementCommand { get; set; }
         public RunInputCommand ReportCommand { get; set; }
         public RunInputCommand SaleManagementCommand { get; set; }
-
-        #endregion
-
         public string CurrentTime
         {
             get { return _currentTime; }
@@ -43,9 +42,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             }
         }
 
+        #endregion
+
+
         public HomePageViewModel()
         {
-            CurrentUser = _applicationDataManager.CurrentUser;
+
+            _userObserver = new PropertyObserver(this,typeof(tblUser),"CurrentUser");
+            App.Current.SubcribeProperty(_userObserver);
+
             ClockIntansiation();
             PersonalInfoCommand = new RunInputCommand(PersonalInfoButtonClickEvent);
             BusinessManagementCommand = new RunInputCommand(BussinessManagementButtonClickEvent);
@@ -55,9 +60,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             SaleManagementCommand = new RunInputCommand(SaleManagementButtonClickEvent);
             ReportCommand = new RunInputCommand(ReportButtonClickEvent);
 
+
         }
         protected override void InitPropertiesRegistry()
         {
+            PropRegister("CurrentUser");
         }
 
         private void ClockIntansiation()
@@ -73,6 +80,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             CurrentTime = DateTime.Now.ToString("hh:mm:ss");
         }
 
+        #region PageSourceClickEvent
         private void PersonalInfoButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
@@ -136,5 +144,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 , KeyFeatureTag.KEY_TAG_MSW_REPORT
                 , dataTransfer);
         }
+        #endregion
+
     }
 }
