@@ -19,7 +19,7 @@
     Style="{StaticResource DefaultDashboardStyle}"
     Title="Window1"
     PageSource="{Binding CurrentPageSource}"
-    ContentType="NormalContentType"
+    ContentType="{Binding ContentType}"
     WindowStartupLocation="CenterScreen">
     
     <cctrl:DashboardWindow.MenuTabContent>

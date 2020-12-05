@@ -1,4 +1,5 @@
 using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Config;
 using Pharmacy.Implement.Utils.CustomControls;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
@@ -28,7 +29,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
                 InvalidateOwn();
             }
         }
-
+        public DashboardWindowContentType ContentType
+        {
+            get
+            {
+                return RUNE.IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL ?
+                    DashboardWindowContentType.PageType : DashboardWindowContentType.NormalContentType;
+            }
+        }
 
         protected override void InitPropertiesRegistry()
         {
@@ -54,7 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
     internal class PageSourceWatcher : Base.Observable.ObserverPattern.IObserver<Uri>
     {
         private Action<Uri> OnPageSourceChange;
-        
+
         internal PageSourceWatcher(Action<Uri> onSourceChange)
         {
             OnPageSourceChange = onSourceChange;

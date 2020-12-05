@@ -61,9 +61,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                     App.Current.SessionIDInstansiation(result[0]);
                     SaveUserName(result[0].Username);
                     MessageBox.Show("Login Success!");
-                    App.Current.MainScreenWindow.Show();
-                    App.Current.ShowNotifyIcon();
-                    App.Current.LoginScreenWindow.Hide();
                 }
                 else
                 {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Pharmacy.Implement.Utils.CustomControls
 {
@@ -182,6 +183,21 @@ namespace Pharmacy.Implement.Utils.CustomControls
         }
         #endregion
 
+        #region CloseWindowCommand
+        public static readonly DependencyProperty CloseWindowCommandProperty =
+            DependencyProperty.Register("CloseWindowCommand", typeof(ICommand), typeof(DashboardWindow),
+                  null);
+
+        /// <summary>
+        /// Command of button close window
+        /// </summary>
+        public ICommand CloseWindowCommand
+        {
+            get { return (ICommand)GetValue(CloseWindowCommandProperty); }
+            set { SetValue(CloseWindowCommandProperty, value); }
+        }
+        #endregion
+
         #endregion
 
         private static Brush defaultTitleBarBackground = new SolidColorBrush(Color.FromArgb(40, 26, 195, 237));
@@ -225,7 +241,11 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 }
                 _closeButtonElement = value;
 
-                if (_closeButtonElement != null)
+                if (CloseWindowCommand != null && _closeButtonElement != null)
+                {
+                    _closeButtonElement.Command = CloseWindowCommand;
+                }
+                else if (_closeButtonElement != null)
                 {
                     _closeButtonElement.Click +=
                         new RoutedEventHandler(CloseButtonElement_Click);
@@ -394,7 +414,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         public void Navigate(Uri destinationPage)
         {
-            if(DWPageHostFrameElement != null)
+            if (DWPageHostFrameElement != null)
             {
                 DWPageHostFrameElement.NavigationService.Navigate(destinationPage);
             }
