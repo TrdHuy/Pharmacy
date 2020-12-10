@@ -41,6 +41,7 @@ namespace Pharmacy
                 if (_mainScreenWindow == null)
                 {
                     _mainScreenWindow = new MSWindow();
+                    _mainScreenWindow.CloseWindowCommand = new RunInputCommand(CloseMainScreenWindow);
                 }
                 return _mainScreenWindow;
             }
@@ -100,7 +101,6 @@ namespace Pharmacy
                 _notifyIcon.ContextMenuStrip.Items.Add("Thoát").Click += ExitApplication;
             }
 
-            MainScreenWindow.CloseWindowCommand = new RunInputCommand(CloseMainScreenWindow);
         }
 
         private void CloseMainScreenWindow(object obj)
