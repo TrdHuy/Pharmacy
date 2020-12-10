@@ -15,9 +15,11 @@ namespace Pharmacy
     public partial class tblPromo
     {
         public int PromoID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
-        public Nullable<int> MedicineID { get; set; }
-        public Nullable<decimal> PromoPrice { get; set; }
+        public int CustomerID { get; set; }
+        public string MedicineID { get; set; }
+        public double PromoPercent { get; set; }
+        public string PromoDescription { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual tblCustomer tblCustomer { get; set; }
         public virtual tblMedicine tblMedicine { get; set; }
