@@ -20,9 +20,10 @@ namespace Pharmacy
             this.tblMedicines = new HashSet<tblMedicine>();
         }
     
-        public int UnitID { get; set; }
-        public string UnitName { get; set; }
-        public string UnitDescription { get; set; }
+        public int MedicineUnitID { get; set; }
+        public string MedicineUnitName { get; set; }
+        public int MinimumStockByUnit { get; set; }
+        public string MedicineUnitDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMedicine> tblMedicines { get; set; }

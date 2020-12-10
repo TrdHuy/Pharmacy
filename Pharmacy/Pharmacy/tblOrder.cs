@@ -23,9 +23,12 @@ namespace Pharmacy
         public long OrderID { get; set; }
         public System.DateTime OrderTime { get; set; }
         public int CustomerID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal PurchasePrice { get; set; }
+        public bool IncludeVAT { get; set; }
+        public string OrderDescription { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual tblCustomer tblCustomer { get; set; }
         public virtual tblUser tblUser { get; set; }

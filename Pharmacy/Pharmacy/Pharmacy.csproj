@@ -189,6 +189,9 @@
     <Compile Include="tblOrderDetail.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblOtherPayment.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblPromo.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
@@ -196,12 +199,6 @@
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUser.cs">
-      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblUserType.cs">
-      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblWarehouse.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWarehouseImport.cs">

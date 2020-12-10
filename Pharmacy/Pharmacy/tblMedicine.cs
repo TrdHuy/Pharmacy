@@ -17,28 +17,25 @@ namespace Pharmacy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblMedicine()
         {
-            this.tblOrderDetails = new HashSet<tblOrderDetail>();
             this.tblPromoes = new HashSet<tblPromo>();
-            this.tblWarehouses = new HashSet<tblWarehouse>();
             this.tblWarehouseImportDetails = new HashSet<tblWarehouseImportDetail>();
         }
     
-        public int MedicineID { get; set; }
+        public string MedicineID { get; set; }
         public string MedicineName { get; set; }
         public int MedicineTypeID { get; set; }
         public int MedicineUnitID { get; set; }
+        public int SupplierID { get; set; }
         public decimal BidPrice { get; set; }
         public decimal AskingPrice { get; set; }
         public string MedicineDescription { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual tblMedicineType tblMedicineType { get; set; }
         public virtual tblMedicineUnit tblMedicineUnit { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderDetail> tblOrderDetails { get; set; }
+        public virtual tblSupplier tblSupplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPromo> tblPromoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWarehouse> tblWarehouses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
     }

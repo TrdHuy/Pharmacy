@@ -17,7 +17,7 @@ namespace Pharmacy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblSupplier()
         {
-            this.tblWarehouses = new HashSet<tblWarehouse>();
+            this.tblMedicines = new HashSet<tblMedicine>();
             this.tblWarehouseImports = new HashSet<tblWarehouseImport>();
         }
     
@@ -26,9 +26,11 @@ namespace Pharmacy
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string SupplierDescription { get; set; }
+        public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWarehouse> tblWarehouses { get; set; }
+        public virtual ICollection<tblMedicine> tblMedicines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWarehouseImport> tblWarehouseImports { get; set; }
     }
