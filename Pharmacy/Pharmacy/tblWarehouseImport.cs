@@ -26,6 +26,7 @@ namespace Pharmacy
         public decimal TotalPrice { get; set; }
         public decimal PurchasePrice { get; set; }
         public string ImportDescription { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual tblSupplier tblSupplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

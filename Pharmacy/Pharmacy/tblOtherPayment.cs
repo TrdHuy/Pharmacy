@@ -12,15 +12,13 @@ namespace Pharmacy
     using System;
     using System.Collections.Generic;
     
-    public partial class tblWarehouse
+    public partial class tblOtherPayment
     {
-        public int WarehouseID { get; set; }
-        public int MedicineID { get; set; }
-        public double Quantity { get; set; }
-        public int SupplierID { get; set; }
-        public Nullable<System.DateTime> MinimumExpiredDate { get; set; }
-    
-        public virtual tblMedicine tblMedicine { get; set; }
-        public virtual tblSupplier tblSupplier { get; set; }
+        public long PaymentID { get; set; }
+        public System.DateTime PaymentTime { get; set; }
+        public int PaymentType { get; set; }
+        public string PaymentContent { get; set; }
+        public decimal TotalPrice { get; set; }
+        public bool IsActive { get; set; }
     }
 }

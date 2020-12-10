@@ -189,6 +189,9 @@
     <Compile Include="tblOrderDetail.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblOtherPayment.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblPromo.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
@@ -196,12 +199,6 @@
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUser.cs">
-      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblUserType.cs">
-      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblWarehouse.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWarehouseImport.cs">
@@ -242,8 +239,6 @@
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_SystemLoginAction.cs" />
-    <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\Builder\UserBuilder.cs" />
-    <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\UserModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\ViewModels\LoginScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>

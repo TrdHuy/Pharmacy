@@ -45,6 +45,10 @@ namespace Pharmacy
                 }
                 return _mainScreenWindow;
             }
+            set
+            {
+                _mainScreenWindow = value;
+            }
         }
         public LoginScreenWindow LoginScreenWindow
         {
@@ -55,6 +59,10 @@ namespace Pharmacy
                     _loginWindow = new LoginScreenWindow();
                 }
                 return _loginWindow;
+            }
+            set
+            {
+                _loginWindow = value;
             }
         }
         public WindowDisplayStatus DisplayStatus
@@ -168,6 +176,7 @@ namespace Pharmacy
                         break;
                     case WindowDisplayStatus.OnMainScreen:
                         MainScreenWindow?.Close();
+                        MainScreenWindow = null;
                         break;
                     default:
                         break;
