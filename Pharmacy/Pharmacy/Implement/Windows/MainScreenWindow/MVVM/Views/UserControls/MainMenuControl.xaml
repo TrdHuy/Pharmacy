@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="650"
-    d:DesignWidth="170">
+    d:DesignWidth="200">
 
     <!--Margin 96 right to left-->
     <Grid Background="{StaticResource NormalTheme_MenuTabColorBrush}">
