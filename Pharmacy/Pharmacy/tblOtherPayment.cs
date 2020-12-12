@@ -12,12 +12,13 @@ namespace Pharmacy
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class tblOtherPayment
     {
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
-        public string UserRealName { get; set; }
-        public string UserDisplayedName { get; set; }
+        public long PaymentID { get; set; }
+        public System.DateTime PaymentTime { get; set; }
+        public int PaymentType { get; set; }
+        public string PaymentContent { get; set; }
+        public decimal TotalPrice { get; set; }
+        public bool IsActive { get; set; }
     }
 }

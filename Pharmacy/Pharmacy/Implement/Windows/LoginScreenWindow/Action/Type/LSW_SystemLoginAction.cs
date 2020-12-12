@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,20 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {
-    class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
+    public class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
     {
-        private const string DataConectionPath = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PharmacyDB.mdf;Integrated Security=True";
         private SQLQueryCustodian _observer;
-
-        private Window _loginWindow;
+        private LoginScreenWindowViewModel _viewModel;
 
         public bool Execute(object[] dataTransfer)
         {
+            _viewModel = (LoginScreenWindowViewModel)dataTransfer[0];
+
+            //_viewModel.IsLoginButtonRunning = true;
+
             object[] dataFromView = (object[])dataTransfer[1];
             TextBox userNameTextEdit = (TextBox)dataFromView[0];
             PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
-            _loginWindow = (Window)dataFromView[2];
 
             string userName = userNameTextEdit.Text;
             string passWord = userPasswordTextEdit.Password;
@@ -50,28 +52,41 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
+            List<tblUser> result = (List<tblUser>)queryResult.Result;
             try
             {
-                int count = ((List<Users>)queryResult.Result).Count();
-                if(count == 1)
+                int count = result.Count();
+                if (count == 1)
                 {
+                    App.Current.SessionIDInstansiation(result[0]);
+                    SaveUserName(result[0].Username);
                     MessageBox.Show("Login Success!");
-                    MSWindow mSW = new MSWindow();
-                    mSW.Show();
-                    _loginWindow.Close();
                 }
                 else
                 {
                     MessageBox.Show("Invaild user or password!");
                 }
-                _observer.Updated = true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+            finally
+            {
+                _observer.Updated = true;
+                if (_viewModel != null)
+                {
+                    _viewModel.IsLoginButtonRunning = false;
+                }
+            }
+        }
 
-
+        private void SaveUserName(string userName)
+        {
+            if (_viewModel.IsUserRemember)
+            {
+                _viewModel.UserName = userName;
+            }
         }
     }
 }

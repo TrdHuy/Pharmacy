@@ -24,7 +24,9 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views
             InitializeComponent();
         }
 
-       
-
+        public static implicit operator LoginScreenWindow(Lazy<LoginScreenWindow> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

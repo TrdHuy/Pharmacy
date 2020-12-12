@@ -1,10 +1,10 @@
-﻿<cctrl:HPSL_Window
+﻿<cctrl:DashboardWindow
     x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.MSWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+    xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages"
@@ -13,17 +13,17 @@
     WindowStyle="None"
     MinHeight="545"
     MinWidth="930"
+    xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels"
     Width="{StaticResource DefaultWindowWidth}"
     Height="{StaticResource DefaultWindowHeight}"
-    Style="{DynamicResource DashboardWindowStyle}"
+    Style="{StaticResource DefaultDashboardStyle}"
     Title="Window1"
+    PageSource="{Binding CurrentPageSource}"
+    ContentType="{Binding ContentType}"
     WindowStartupLocation="CenterScreen">
-
-    <cctrl:HPSL_Window.MenuTabContent>
+    
+    <cctrl:DashboardWindow.MenuTabContent>
         <uc:MainMenuControl/>
-
-    </cctrl:HPSL_Window.MenuTabContent>
-
-    <pages:HomePage></pages:HomePage>
-
-</cctrl:HPSL_Window>
+    </cctrl:DashboardWindow.MenuTabContent>
+    
+</cctrl:DashboardWindow>

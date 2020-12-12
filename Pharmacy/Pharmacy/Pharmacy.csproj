@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -55,7 +57,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
@@ -66,30 +68,29 @@
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resource\Icons\notifyIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Dashboard.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Images.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Mvvm.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpf.Core.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="HPSolutionCCDevPackage.netFramework">
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.1.0\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll</HintPath>
@@ -124,15 +125,89 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\Converter\BaseValueConverter.cs" />
+    <Compile Include="Base\Observable\ObserverPattern\BaseObserver.cs" />
+    <Compile Include="Base\Observable\ObserverPattern\ObservableProperty.cs" />
+    <Compile Include="Base\Observable\ObserverPattern\PropertyObserver.cs" />
+    <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
+    <Compile Include="Config\RUNE.cs" />
+    <Compile Include="Implement\UIEventHandler\AttachedProperty\PasswordBoxAttachedProp.cs" />
+    <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
+    <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_StaffManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_CustomerManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_VendorManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SaleManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_BusinessManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagementPage.xaml.cs">
+      <DependentUpon>CustomerManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SaleManagementPage.xaml.cs">
+      <DependentUpon>SaleManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\StaffManagementPage.xaml.cs">
+      <DependentUpon>StaffManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\BusinessManagementPage.xaml.cs">
+      <DependentUpon>BusinessManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml.cs">
+      <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\VendorManagementPage.xaml.cs">
+      <DependentUpon>VendorManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Users.cs">
+    <Compile Include="tblCustomer.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblMedicine.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMedicineType.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblMedicineUnit.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrder.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOrderDetail.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblOtherPayment.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPromo.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSupplier.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWarehouseImport.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblWarehouseImportDetail.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WindowDirector.cs" />
     <Page Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,7 +231,6 @@
     <Compile Include="Implement\UIEventHandler\WindowTag.cs" />
     <Compile Include="Implement\Utils\Converter\MultiBindingConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\HPSL_Button.cs" />
-    <Compile Include="Implement\Utils\CustomControls\HPSL_Window.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\DbManager.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\SQLQueryCustodian.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\SQLResultHandler.cs" />
@@ -165,14 +239,39 @@
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_SystemLoginAction.cs" />
-    <Compile Include="Implement\Windows\LoginScreenWindow\Core\MVVM\ViewModels\BaseLoginScreenWindowViewModel.cs" />
-    <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\Builder\UserBuilder.cs" />
-    <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Model\UserModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\ViewModels\LoginScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\ReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SaleManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\StaffManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\BusinessManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\VendorManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,6 +417,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\AppRunConfig.mk" />
     <Content Include="PharmacyDB.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -335,6 +435,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resource\Icons\notifyIcon.ico" />
     <Resource Include="Resource\Icons\HomePageIcon\personal_info.png" />
     <Resource Include="Resource\Icons\HomePageIcon\customner_manage_icon.png" />
     <Resource Include="Resource\Icons\HomePageIcon\emplyee_manage_icon.png" />

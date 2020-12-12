@@ -10,6 +10,7 @@
     <system:Double x:Key="DefaultMenuTabWidth">70</system:Double>
     <system:Double x:Key="DefaultMenuTabExpandedWidth">170</system:Double>
     <system:Double x:Key="DefaultWindowContentWidth">1130</system:Double> <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
+    <system:Double x:Key="DefaultWindowContentHeight">620</system:Double>
 
     <system:Double x:Key="DefaultHomePageHeight">1000</system:Double>
     

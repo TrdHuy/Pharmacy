@@ -25,6 +25,17 @@ namespace Pharmacy
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<tblCustomer> tblCustomers { get; set; }
+        public virtual DbSet<tblMedicine> tblMedicines { get; set; }
+        public virtual DbSet<tblMedicineType> tblMedicineTypes { get; set; }
+        public virtual DbSet<tblMedicineUnit> tblMedicineUnits { get; set; }
+        public virtual DbSet<tblOrder> tblOrders { get; set; }
+        public virtual DbSet<tblOrderDetail> tblOrderDetails { get; set; }
+        public virtual DbSet<tblOtherPayment> tblOtherPayments { get; set; }
+        public virtual DbSet<tblPromo> tblPromoes { get; set; }
+        public virtual DbSet<tblSupplier> tblSuppliers { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
+        public virtual DbSet<tblWarehouseImport> tblWarehouseImports { get; set; }
+        public virtual DbSet<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
     }
 }
