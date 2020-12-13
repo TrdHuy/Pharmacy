@@ -135,35 +135,47 @@
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_StaffManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_MedicineManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_OtherPaymentsManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_WarehouseManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_UserManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_CustomerManagementAction.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_VendorManagementAction.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SaleManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SupplierManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_InvoiceManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_BusinessManagementAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SellingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagementPage.xaml.cs">
       <DependentUpon>CustomerManagementPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentsManagementPage.xaml.cs">
+      <DependentUpon>OtherPaymentsManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagementPage.xaml.cs">
+      <DependentUpon>WarehouseManagementPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SaleManagementPage.xaml.cs">
-      <DependentUpon>SaleManagementPage.xaml</DependentUpon>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagementPage.xaml.cs">
+      <DependentUpon>InvoiceManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\StaffManagementPage.xaml.cs">
-      <DependentUpon>StaffManagementPage.xaml</DependentUpon>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagementPage.xaml.cs">
+      <DependentUpon>MedicineManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\BusinessManagementPage.xaml.cs">
-      <DependentUpon>BusinessManagementPage.xaml</DependentUpon>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagementPage.xaml.cs">
+      <DependentUpon>UserManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SellingPage.xaml.cs">
+      <DependentUpon>SellingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml.cs">
       <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\VendorManagementPage.xaml.cs">
-      <DependentUpon>VendorManagementPage.xaml</DependentUpon>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagementPage.xaml.cs">
+      <DependentUpon>SupplierManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
@@ -247,19 +259,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentsManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SaleManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\StaffManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\BusinessManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SellingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -271,7 +295,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\VendorManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -435,13 +459,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resource\Icons\close.png" />
+    <Resource Include="Resource\Icons\coupon.png" />
+    <Resource Include="Resource\Icons\edit.png" />
+    <Resource Include="Resource\Icons\excel.png" />
+    <Resource Include="Resource\Icons\print.png" />
+    <Resource Include="Resource\Icons\discount.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\supplier_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\invoice_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\medicine_manage_icon.png" />
     <Resource Include="Resource\Icons\notifyIcon.ico" />
     <Resource Include="Resource\Icons\HomePageIcon\personal_info.png" />
     <Resource Include="Resource\Icons\HomePageIcon\customner_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\emplyee_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\user_manage_icon.png" />
     <Resource Include="Resource\Icons\HomePageIcon\report_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\sale_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\vendor_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\other_payments_manage_icon.png" />
+    <Resource Include="Resource\Icons\HomePageIcon\warehouse_manage_icon.png" />
     <Resource Include="Resource\Icons\HomePageIcon\address_icon.png" />
     <Resource Include="Resource\Icons\HomePageIcon\mail_icon.png" />
     <Resource Include="Resource\Icons\HomePageIcon\personal_link_icon.png" />

@@ -16,9 +16,13 @@
     <BitmapImage x:Key="HomePage_MailIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/mail_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_AddressIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/address_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_PersonalInfoIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/personal_info.png"></BitmapImage>
-    <BitmapImage x:Key="HomePage_EmployeeManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/emplyee_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_MedicineManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/medicine_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_UserManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/user_manage_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_CustomerManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/customner_manage_icon.png"></BitmapImage>
-    <BitmapImage x:Key="HomePage_SaleManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/sale_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_InvoiceManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/invoice_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_SupplierManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/supplier_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_WarehouseManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/warehouse_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_OtherPaymentsManageIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/other_payments_manage_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_ReportIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/report_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_VendorIcon" UriSource="/Pharmacy;component/Resource/Icons/HomePageIcon/vendor_icon.png"></BitmapImage>
 
