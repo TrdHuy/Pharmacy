@@ -21,6 +21,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
         {
             DefaultStyleKey = typeof(DashboardWindow);
             this.WindowStyle = WindowStyle.None;
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
         #region Public properties
@@ -142,7 +143,8 @@ namespace Pharmacy.Implement.Utils.CustomControls
         public static readonly DependencyProperty PageSourceProperty =
             DependencyProperty.Register("PageSource", typeof(Uri), typeof(DashboardWindow),
               new PropertyMetadata(
-                    new PropertyChangedCallback(PageSourceChangeCallBack)));
+                  defaultPageSource,
+                  new PropertyChangedCallback(PageSourceChangeCallBack)));
 
         /// <summary>
         /// Source of the window when using page type display
