@@ -18,15 +18,15 @@
     <Page.DataContext>
         <vm:HomePageViewModel/>
     </Page.DataContext>
-    
+
     <Grid
         Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        
+
         <!--Content area-->
         <ScrollViewer
             Grid.Row="1">
@@ -38,42 +38,15 @@
                 </Grid.RowDefinitions>
 
                 <!--Body area-->
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
+                <UniformGrid Grid.Row="1" Columns="3">
                     <hps:IconButton
-                        Command="{Binding PersonalInfoCommand}"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        IsUsingDropShadowEffect="True"
-                        IconSource="{StaticResource HomePage_PersonalInfoIcon}"
-                        FontFamily="{StaticResource VNFOswald}"
-                        TextContent="Thông tin cá nhân"
-                        FontSize="20"
-                        IBContentOrientation="Vertical"
-                        IconHeight="100"
-                        IconWidth="100"
-                        Background="White"
-                        Margin="15" BorderBrush="{x:Null}">
-                    </hps:IconButton>
-
-                    <hps:IconButton
-                        Command="{Binding BusinessManagementCommand}"
+                        Command="{Binding SellingCommand}"
                         Grid.Row="0"
                         Grid.Column="1"
                         IsUsingDropShadowEffect="True"
                         IconSource="{StaticResource AppIcon}"
                         FontFamily="{StaticResource VNFOswald}"
-                        TextContent="Quản lý nhà thuốc"
+                        TextContent="  Bán thuốc"
                         FontSize="20"
                         IBContentOrientation="Vertical"
                         IconHeight="100"
@@ -83,11 +56,11 @@
                     </hps:IconButton>
 
                     <hps:IconButton
-                        Command="{Binding StaffManagementCommand}"
+                        Command="{Binding UserManagementCommand}"
                         Grid.Row="0"
                         Grid.Column="2"
                         IsUsingDropShadowEffect="True"
-                        IconSource="{StaticResource HomePage_EmployeeManageIcon}"
+                        IconSource="{StaticResource HomePage_UserManageIcon}"
                         FontFamily="{StaticResource VNFOswald}"
                         TextContent="Quản lý nhân viên"
                         FontSize="20"
@@ -97,7 +70,7 @@
                         Background="White"
                         Margin="15" BorderBrush="{x:Null}">
                     </hps:IconButton>
-              
+
                     <hps:IconButton
                         Command="{Binding CustomerManagementCommand}"
                         Grid.Row="0"
@@ -113,13 +86,45 @@
                         Background="White"
                         Margin="15" BorderBrush="{x:Null}">
                     </hps:IconButton>
-              
+
                     <hps:IconButton
-                        Command="{Binding VendorManagementCommand}"
+                        Command="{Binding MedicineManagementCommand}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_MedicineManageIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý thuốc"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
+
+                    <hps:IconButton
+                        Command="{Binding SupplierManagementCommand}"
                         Grid.Row="1"
                         Grid.Column="0"
                         IsUsingDropShadowEffect="True"
-                        IconSource="{StaticResource HomePage_VendorIcon}"
+                        IconSource="{StaticResource HomePage_SupplierManageIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Quản lý nhà cung cấp"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
+
+                    <hps:IconButton
+                        Command="{Binding WarehouseManagementCommand}"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_WarehouseManageIcon}"
                         FontFamily="{StaticResource VNFOswald}"
                         TextContent="Quản lý nhập kho"
                         FontSize="20"
@@ -131,13 +136,29 @@
                     </hps:IconButton>
 
                     <hps:IconButton
-                        Command="{Binding SaleManagementCommand}"
+                        Command="{Binding InvoiceManagementCommand}"
                         Grid.Row="1"
                         Grid.Column="1"
                         IsUsingDropShadowEffect="True"
-                        IconSource="{StaticResource HomePage_SaleManageIcon}"
+                        IconSource="{StaticResource HomePage_InvoiceManageIcon}"
                         FontFamily="{StaticResource VNFOswald}"
-                        TextContent="Quản lý bán hàng"
+                        TextContent="Quản lý hóa đơn"
+                        FontSize="20"
+                        IBContentOrientation="Vertical"
+                        IconHeight="100"
+                        IconWidth="100"
+                        Background="White"
+                        Margin="15" BorderBrush="{x:Null}">
+                    </hps:IconButton>
+
+                    <hps:IconButton
+                        Command="{Binding OtherPaymentsManagementCommand}"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsUsingDropShadowEffect="True"
+                        IconSource="{StaticResource HomePage_OtherPaymentsManageIcon}"
+                        FontFamily="{StaticResource VNFOswald}"
+                        TextContent="Thanh toán khác"
                         FontSize="20"
                         IBContentOrientation="Vertical"
                         IconHeight="100"
@@ -153,7 +174,7 @@
                         IsUsingDropShadowEffect="True"
                         IconSource="{StaticResource HomePage_ReportIcon}"
                         FontFamily="{StaticResource VNFOswald}"
-                        TextContent="Báo cáo"
+                        TextContent="   Báo cáo"
                         FontSize="20"
                         IBContentOrientation="Vertical"
                         IconHeight="100"
@@ -162,17 +183,12 @@
                         Margin="15" BorderBrush="{x:Null}">
                     </hps:IconButton>
 
-                </Grid>
-                
-                <!--Footer Area-->
-                <Grid
-                    Height="{StaticResource DefaultHomePage_UserInfoBarHeight}"
-                    Grid.Row="2" Background="{StaticResource NormalTheme_LightGreenBrush}">
-                    
-                </Grid>
+                </UniformGrid>
+
+
             </Grid>
         </ScrollViewer>
-        
+
         <!--Header area-->
         <Grid
             Grid.Row="0"
@@ -342,7 +358,7 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                       
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="6*"/>
@@ -381,7 +397,7 @@
                                 Foreground="White">
                             </TextBlock>
                         </Grid>
-                        
+
                     </Grid>
 
                     <!--Contact area-->
@@ -468,7 +484,12 @@
                 </Grid>
             </Grid>
         </Grid>
-        
+        <!--Footer Area-->
+        <Grid
+            Height="{StaticResource DefaultHomePage_UserInfoBarHeight}"
+            Grid.Row="2" 
+            Background="{StaticResource NormalTheme_LightGreenBrush}">
+        </Grid>
     </Grid>
 
 </Page>

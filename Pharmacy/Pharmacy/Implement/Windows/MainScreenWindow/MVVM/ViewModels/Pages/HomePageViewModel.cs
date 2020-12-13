@@ -25,13 +25,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         #region public properties
 
         public tblUser CurrentUser { get { return (tblUser)_userObserver.Value; } }
-        public RunInputCommand PersonalInfoCommand { get; set; }
-        public RunInputCommand BusinessManagementCommand { get; set; }
-        public RunInputCommand StaffManagementCommand { get; set; }
+        public RunInputCommand SellingCommand { get; set; }
+        public RunInputCommand UserManagementCommand { get; set; }
         public RunInputCommand CustomerManagementCommand { get; set; }
-        public RunInputCommand VendorManagementCommand { get; set; }
+        public RunInputCommand MedicineManagementCommand { get; set; }
+        public RunInputCommand SupplierManagementCommand { get; set; }
+        public RunInputCommand WarehouseManagementCommand { get; set; }
+        public RunInputCommand InvoiceManagementCommand { get; set; }
+        public RunInputCommand OtherPaymentsManagementCommand { get; set; }
         public RunInputCommand ReportCommand { get; set; }
-        public RunInputCommand SaleManagementCommand { get; set; }
         public string CurrentTime
         {
             get { return _currentTime; }
@@ -52,12 +54,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             App.Current.SubcribeProperty(_userObserver);
 
             ClockIntansiation();
-            PersonalInfoCommand = new RunInputCommand(PersonalInfoButtonClickEvent);
-            BusinessManagementCommand = new RunInputCommand(BussinessManagementButtonClickEvent);
-            StaffManagementCommand = new RunInputCommand(StaffManagementButtonClickEvent);
+            SellingCommand = new RunInputCommand(SellingButtonClickEvent);
+            UserManagementCommand = new RunInputCommand(UserManagementButtonClickEvent);
             CustomerManagementCommand = new RunInputCommand(CustomerManagementButtonClickEvent);
-            VendorManagementCommand = new RunInputCommand(VendorManagementButtonClickEvent);
-            SaleManagementCommand = new RunInputCommand(SaleManagementButtonClickEvent);
+            MedicineManagementCommand = new RunInputCommand(MedicineManagementButtonClickEvent);
+            SupplierManagementCommand = new RunInputCommand(SupplierManagementButtonClickEvent);
+            WarehouseManagementCommand = new RunInputCommand(WarehouseManagementButtonClickEvent);
+            InvoiceManagementCommand = new RunInputCommand(InvoiceManagementButtonClickEvent);
+            OtherPaymentsManagementCommand = new RunInputCommand(OtherPaymentsManagementButtonClickEvent);
             ReportCommand = new RunInputCommand(ReportButtonClickEvent);
 
 
@@ -81,31 +85,31 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         }
 
         #region PageSourceClickEvent
-        private void PersonalInfoButtonClickEvent(object obj)
+        private void SellingButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
+                , KeyFeatureTag.KEY_TAG_MSW_SELLING_MANAGEMENT
                 , dataTransfer);
         }
-        private void BussinessManagementButtonClickEvent(object obj)
+        private void MedicineManagementButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_BUSINESS_MANAGEMENT
+                , KeyFeatureTag.KEY_TAG_MSW_MEDICINE_MANAGEMENT
                 , dataTransfer);
         }
-        private void StaffManagementButtonClickEvent(object obj)
+        private void UserManagementButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_STAFF_MANAGEMENT
+                , KeyFeatureTag.KEY_TAG_MSW_USER_MANAGEMENT
                 , dataTransfer);
         }
         private void CustomerManagementButtonClickEvent(object obj)
@@ -117,22 +121,40 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 , KeyFeatureTag.KEY_TAG_MSW_CUSTOMER_MANAGEMENT
                 , dataTransfer);
         }
-        private void VendorManagementButtonClickEvent(object obj)
+        private void SupplierManagementButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_VENDOR_MANAGEMENT
+                , KeyFeatureTag.KEY_TAG_MSW_SUPPLIER_MANAGEMENT
                 , dataTransfer);
         }
-        private void SaleManagementButtonClickEvent(object obj)
+        private void WarehouseManagementButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SALE_MANAGEMENT
+                , KeyFeatureTag.KEY_TAG_MSW_WAREHOUSE_MANAGEMENT
+                , dataTransfer);
+        }
+        private void InvoiceManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_INVOICE_MANAGEMENT
+                , dataTransfer);
+        }
+        private void OtherPaymentsManagementButtonClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT
                 , dataTransfer);
         }
         private void ReportButtonClickEvent(object obj)
