@@ -20,7 +20,6 @@
     <system:Double x:Key="DefaultHomePage_UserImageHeight">165</system:Double>
     <system:Double x:Key="DefaultHomePage_UserImageBorderWidth">175</system:Double>
     <system:Double x:Key="DefaultHomePage_UserImageBoderHeight">175</system:Double>
-    
     <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
 
 </ResourceDictionary>

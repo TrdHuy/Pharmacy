@@ -21,20 +21,29 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO:
                     action = new MSW_PersonalInfoAction();
                     break;
-                case KeyFeatureTag.KEY_TAG_MSW_BUSINESS_MANAGEMENT:
-                    action = new MSW_BusinessManagementAction();
+                case KeyFeatureTag.KEY_TAG_MSW_SELLING_MANAGEMENT:
+                    action = new MSW_SellingAction();
                     break;
-                case KeyFeatureTag.KEY_TAG_MSW_STAFF_MANAGEMENT:
-                    action = new MSW_StaffManagementAction();
+                case KeyFeatureTag.KEY_TAG_MSW_USER_MANAGEMENT:
+                    action = new MSW_UserManagementAction();
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_CUSTOMER_MANAGEMENT:
                     action = new MSW_CustomerManagementAction();
                     break;
-                case KeyFeatureTag.KEY_TAG_MSW_VENDOR_MANAGEMENT:
-                    action = new MSW_VendorManagementAction();
+                case KeyFeatureTag.KEY_TAG_MSW_SUPPLIER_MANAGEMENT:
+                    action = new MSW_SupplierManagementAction();
                     break;
-                case KeyFeatureTag.KEY_TAG_MSW_SALE_MANAGEMENT:
-                    action = new MSW_SaleManagementAction();
+                case KeyFeatureTag.KEY_TAG_MSW_INVOICE_MANAGEMENT:
+                    action = new MSW_InvoiceManagementAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MEDICINE_MANAGEMENT:
+                    action = new MSW_MedicineManagementAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT:
+                    action = new MSW_OtherPaymentsManagementAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WAREHOUSE_MANAGEMENT:
+                    action = new MSW_WarehouseManagementAction();
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_REPORT:
                     action = new MSW_Repor();
