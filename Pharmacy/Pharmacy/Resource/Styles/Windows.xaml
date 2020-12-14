@@ -298,14 +298,13 @@
 
                                 <Grid
                                     x:Name="menu_content_panel"
-                                    Width="{StaticResource default_menu_tab_width_dashboard_window}"
+                                    Width="{Binding MenuTabWidth}"
                                     Background="Aqua">
                                     <ContentPresenter
-                                        Width="170"
+                                        Width="{Binding MenuTabExpandedWidth}"
                                         HorizontalAlignment="Left"
                                         Content="{Binding MenuTabContent}" />
                                 </Grid>
-
 
                                 <ToggleButton
                                     x:Name="ExpandedToggleButton"
@@ -323,19 +322,19 @@
                                                     <DoubleAnimation
                                                         BeginTime="0:0:0"
                                                         Duration="0:0:0.2"
-                                                        From="{StaticResource default_menu_tab_expanded_width_dashboard_window}"
+                                                        From="{Binding MenuTabExpandedWidth}"
                                                         Storyboard.TargetName="menu_panel"
                                                         Storyboard.TargetProperty="Width"
-                                                        To="{StaticResource default_menu_tab_width_dashboard_window}" />
+                                                        To="{Binding MenuTabWidth}" />
 
 
                                                     <DoubleAnimation
                                                         BeginTime="0:0:0"
                                                         Duration="0:0:0.2"
-                                                        From="{StaticResource default_menu_tab_expanded_width_dashboard_window}"
+                                                        From="{Binding MenuTabExpandedWidth}"
                                                         Storyboard.TargetName="menu_content_panel"
                                                         Storyboard.TargetProperty="Width"
-                                                        To="{StaticResource default_menu_tab_width_dashboard_window}" />
+                                                        To="{Binding MenuTabWidth}" />
 
                                                 </Storyboard>
                                             </BeginStoryboard>
@@ -347,18 +346,18 @@
                                                     <DoubleAnimation
                                                         BeginTime="0:0:0"
                                                         Duration="0:0:0.2"
-                                                        From="{StaticResource default_menu_tab_width_dashboard_window}"
+                                                        From="{Binding MenuTabWidth}"
                                                         Storyboard.TargetName="menu_panel"
                                                         Storyboard.TargetProperty="Width"
-                                                        To="{StaticResource default_menu_tab_expanded_width_dashboard_window}" />
+                                                        To="{Binding MenuTabExpandedWidth}" />
 
                                                     <DoubleAnimation
                                                         BeginTime="0:0:0"
                                                         Duration="0:0:0.2"
-                                                        From="{StaticResource default_menu_tab_width_dashboard_window}"
+                                                        From="{Binding MenuTabWidth}"
                                                         Storyboard.TargetName="menu_content_panel"
                                                         Storyboard.TargetProperty="Width"
-                                                        To="{StaticResource default_menu_tab_expanded_width_dashboard_window}" />
+                                                        To="{Binding MenuTabExpandedWidth}" />
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </EventTrigger>

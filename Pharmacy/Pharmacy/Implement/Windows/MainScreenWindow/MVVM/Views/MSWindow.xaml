@@ -20,7 +20,10 @@
     Title="Window1"
     PageSource="{Binding CurrentPageSource}"
     ContentType="{Binding ContentType}"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    MenuTabWidth="70"
+    MenuTabExpandedWidth="200"
+    >
     
     <cctrl:DashboardWindow.MenuTabContent>
         <uc:MainMenuControl/>
