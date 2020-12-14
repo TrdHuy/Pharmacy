@@ -9,7 +9,7 @@
 
     <system:Double x:Key="default_title_bar_height_dashboard_window">30</system:Double>
     <system:Double x:Key="default_menu_tab_width_dashboard_window">70</system:Double>
-    <system:Double x:Key="default_menu_tab_expanded_width_dashboard_window">200</system:Double>
+    <system:Double x:Key="default_menu_tab_expanded_width_dashboard_window">170</system:Double>
     <system:Double x:Key="default_dashboard_window_width">1200</system:Double>
     <system:Double x:Key="default_dashboard_window_height">650</system:Double>
     
@@ -301,7 +301,7 @@
                                     Width="{StaticResource default_menu_tab_width_dashboard_window}"
                                     Background="Aqua">
                                     <ContentPresenter
-                                        Width="{StaticResource default_menu_tab_expanded_width_dashboard_window}"
+                                        Width="170"
                                         HorizontalAlignment="Left"
                                         Content="{Binding MenuTabContent}" />
                                 </Grid>
