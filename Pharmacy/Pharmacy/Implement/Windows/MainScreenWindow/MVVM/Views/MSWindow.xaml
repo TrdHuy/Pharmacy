@@ -22,11 +22,10 @@
     ContentType="{Binding ContentType}"
     WindowStartupLocation="CenterScreen"
     MenuTabWidth="70"
-    MenuTabExpandedWidth="200"
-    >
+    MenuTabExpandedWidth="200">
     
     <cctrl:DashboardWindow.MenuTabContent>
         <uc:MainMenuControl/>
     </cctrl:DashboardWindow.MenuTabContent>
-    
+  
 </cctrl:DashboardWindow>

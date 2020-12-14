@@ -1,22 +1,26 @@
-﻿<Window x:Class="Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views.LoginScreenWindow"
-        x:Name="loginWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
-        xmlns:converter="clr-namespace:Pharmacy.Implement.Utils.Converter"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"
-        Width="680"
-        Height="520"
-        mc:Ignorable="d"
-        Background="White"
-        FontSize="15"
-        ResizeMode="NoResize"
-        Title="Đăng nhập"
-        WindowStartupLocation="CenterScreen"
-        WindowStyle="ToolWindow">
+﻿<cctrl:DashboardWindow x:Class="Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views.LoginScreenWindow"
+                       x:Name="loginWindow"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+                       xmlns:converter="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels"
+                       Width="680"
+                       Height="520"
+                       mc:Ignorable="d"
+                       Background="White"
+                       FontSize="15"
+                       Title="Đăng nhập"
+                       WindowStartupLocation="CenterScreen"
+                       IsEnableMenuTab="False"
+                       WindowStyle="None"
+                       ResizeMode="NoResize"
+                       TitleBarHeight="30"
+                       ContentType="NormalContentType"
+                       Style="{StaticResource DefaultDashboardStyle}">
 
     <Window.DataContext>
         <vm:LoginScreenWindowViewModel />
@@ -217,4 +221,4 @@
             </Grid>
         </Grid>
     </Grid>
-</Window>
+</cctrl:DashboardWindow>
