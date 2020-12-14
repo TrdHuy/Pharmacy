@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Utils.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,16 +18,12 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views
     /// <summary>
     /// Interaction logic for LoginScreenWindow.xaml
     /// </summary>
-    public partial class LoginScreenWindow : Window
+    public partial class LoginScreenWindow : DashboardWindow
     {
         public LoginScreenWindow()
         {
             InitializeComponent();
         }
 
-        public static implicit operator LoginScreenWindow(Lazy<LoginScreenWindow> v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

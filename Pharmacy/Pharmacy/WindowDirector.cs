@@ -33,8 +33,8 @@ namespace Pharmacy
         private bool _isLoginWindowExited = false;
         private bool _isMainWindowExited = false;
 
-
-        public MSWindow MainScreenWindow
+        #region Private properties
+        private MSWindow MainScreenWindow
         {
             get
             {
@@ -50,13 +50,14 @@ namespace Pharmacy
                 _mainScreenWindow = value;
             }
         }
-        public LoginScreenWindow LoginScreenWindow
+        private LoginScreenWindow LoginScreenWindow
         {
             get
             {
                 if (_loginWindow == null)
                 {
                     _loginWindow = new LoginScreenWindow();
+                    _loginWindow.CloseWindowCommand = new RunInputCommand(CloseLoginWindowCommand);
                 }
                 return _loginWindow;
             }
@@ -65,6 +66,9 @@ namespace Pharmacy
                 _loginWindow = value;
             }
         }
+        #endregion
+
+        #region Public properties
         public WindowDisplayStatus DisplayStatus
         {
             get { return _curStatus; }
@@ -86,6 +90,7 @@ namespace Pharmacy
                 return _instance;
             }
         }
+        #endregion
 
         private WindowDirector()
         {
@@ -108,7 +113,6 @@ namespace Pharmacy
                 _notifyIcon.ContextMenuStrip.Items.Add("Đăng xuất").Click += OnLoggingOut;
                 _notifyIcon.ContextMenuStrip.Items.Add("Thoát").Click += ExitApplication;
             }
-
         }
 
         private void CloseMainScreenWindow(object obj)
@@ -121,6 +125,11 @@ namespace Pharmacy
             {
                 ExitApplication();
             }
+        }
+
+        private void CloseLoginWindowCommand(object obj)
+        {
+            ExitApplication();
         }
 
         private void ShowMainWindow(object sender, EventArgs e)
@@ -200,13 +209,13 @@ namespace Pharmacy
         {
             if (!_isLoginWindowExited)
             {
-                _isLoginWindowExited = true      ;
-                LoginScreenWindow.Close();
+                _isLoginWindowExited = true;
+                LoginScreenWindow?.ForceClose();
             }
             if (!_isMainWindowExited)
             {
                 _isMainWindowExited = true;
-                MainScreenWindow.ForceClose();
+                MainScreenWindow?.ForceClose();
             }
             if (_notityIconEnable)
             {

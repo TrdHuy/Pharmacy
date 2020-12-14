@@ -1,34 +1,48 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
-    xmlns:interactions="clr-namespace:Microsoft.Expression.Interactivity.Input;assembly=Microsoft.Expression.Interactions"
-    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:local="clr-namespace:Pharmacy">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+                    xmlns:interactions="clr-namespace:Microsoft.Expression.Interactivity.Input;assembly=Microsoft.Expression.Interactions"
+                    xmlns:interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:Pharmacy">
 
     <system:Double x:Key="default_title_bar_height_dashboard_window">30</system:Double>
     <system:Double x:Key="default_menu_tab_width_dashboard_window">70</system:Double>
     <system:Double x:Key="default_menu_tab_expanded_width_dashboard_window">170</system:Double>
     <system:Double x:Key="default_dashboard_window_width">1200</system:Double>
     <system:Double x:Key="default_dashboard_window_height">650</system:Double>
-    
-    <SolidColorBrush x:Key="default_title_bar_background_dashboard_window" Color="#FFDEDEDE" />
-    <SolidColorBrush x:Key="default_mouse_over_window_button_background_dashboard_window" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="default_mouse_over_window_button_foreground_dashboard_window" Color="#FF000000" />
-    <SolidColorBrush x:Key="default_window_button_foreground_dashboard_window" Color="#FF686868" />
-    
-    <Style TargetType="{x:Type cctrl:DashboardWindow}" x:Key="DefaultDashboardStyle">
-        <Setter Property="AllowsTransparency" Value="True" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="TitleBarBackground" Value="{StaticResource default_title_bar_background_dashboard_window}" />
-        <Setter Property="WindowStyle" Value="None" />
-        <Setter Property="ResizeMode" Value="CanResize" />
-        <Setter Property="TitleBarHeight" Value="{StaticResource default_title_bar_height_dashboard_window}" />
-        <Setter Property="IsEnableMenuTab" Value="True" />
-        <Setter Property="MenuTabWidth" Value="{StaticResource default_menu_tab_width_dashboard_window}" />
-        <Setter Property="MenuTabExpandedWidth" Value="{StaticResource default_menu_tab_expanded_width_dashboard_window}" />
-        <Setter Property="ContentType" Value="PageType" />
+
+    <SolidColorBrush x:Key="default_title_bar_background_dashboard_window"
+                     Color="#FFDEDEDE" />
+    <SolidColorBrush x:Key="default_mouse_over_window_button_background_dashboard_window"
+                     Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="default_mouse_over_window_button_foreground_dashboard_window"
+                     Color="#FF000000" />
+    <SolidColorBrush x:Key="default_window_button_foreground_dashboard_window"
+                     Color="#FF686868" />
+
+    <Style TargetType="{x:Type cctrl:DashboardWindow}"
+           x:Key="DefaultDashboardStyle">
+        <Setter Property="AllowsTransparency"
+                Value="True" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="TitleBarBackground"
+                Value="{StaticResource default_title_bar_background_dashboard_window}" />
+        <Setter Property="WindowStyle"
+                Value="None" />
+        <Setter Property="ResizeMode"
+                Value="CanResize" />
+        <Setter Property="TitleBarHeight"
+                Value="{StaticResource default_title_bar_height_dashboard_window}" />
+        <Setter Property="IsEnableMenuTab"
+                Value="True" />
+        <Setter Property="MenuTabWidth"
+                Value="{StaticResource default_menu_tab_width_dashboard_window}" />
+        <Setter Property="MenuTabExpandedWidth"
+                Value="{StaticResource default_menu_tab_expanded_width_dashboard_window}" />
+        <Setter Property="ContentType"
+                Value="PageType" />
 
 
         <Setter Property="WindowChrome.WindowChrome">
@@ -47,64 +61,77 @@
                     <ControlTemplate.Resources>
 
                         <!--Window control button-->
-                        <Style
-                            x:Key="WindowControlButton"
-                            BasedOn="{StaticResource BaseStyle}"
-                            TargetType="{x:Type Button}">
-                            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="Padding" Value="8" />
-                            <Setter Property="VerticalAlignment" Value="Stretch" />
-                            <Setter Property="Foreground" Value="{StaticResource default_window_button_foreground_dashboard_window}" />
+                        <Style x:Key="WindowControlButton"
+                               BasedOn="{StaticResource BaseStyle}"
+                               TargetType="{x:Type Button}">
+                            <Setter Property="WindowChrome.IsHitTestVisibleInChrome"
+                                    Value="True" />
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                            <Setter Property="Padding"
+                                    Value="8" />
+                            <Setter Property="VerticalAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="Foreground"
+                                    Value="{StaticResource default_window_button_foreground_dashboard_window}" />
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}" 
+                                        <Border Background="{TemplateBinding Background}"
                                                 Padding="{TemplateBinding Padding}">
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontWeight="Thin"
-                                                Text="{TemplateBinding Content}" />
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontWeight="Thin"
+                                                       Text="{TemplateBinding Content}" />
                                         </Border>
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
 
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource default_mouse_over_window_button_background_dashboard_window}" />
-                                    <Setter Property="Foreground" Value="{StaticResource default_mouse_over_window_button_foreground_dashboard_window}" />
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource default_mouse_over_window_button_background_dashboard_window}" />
+                                    <Setter Property="Foreground"
+                                            Value="{StaticResource default_mouse_over_window_button_foreground_dashboard_window}" />
                                 </Trigger>
 
                             </Style.Triggers>
                         </Style>
 
                         <!--Window Maximize button-->
-                        <Style
-                            x:Key="WindowMaximizeButton"
-                            BasedOn="{StaticResource WindowControlButton}"
-                            TargetType="{x:Type Button}">
+                        <Style x:Key="WindowMaximizeButton"
+                               BasedOn="{StaticResource WindowControlButton}"
+                               TargetType="{x:Type Button}">
 
                             <Style.Triggers>
-                                <DataTrigger Value="NoResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                <DataTrigger Value="NoResize"
+                                             Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                     AncestorType={x:Type cctrl:DashboardWindow}}, Path=ResizeMode}">
-                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
                                 </DataTrigger>
 
-                                <DataTrigger Value="CanResize" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                <DataTrigger Value="CanResize"
+                                             Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                     AncestorType={x:Type cctrl:DashboardWindow}}, Path=ResizeMode}">
-                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
                                 </DataTrigger>
 
-                                <DataTrigger Value="Normal" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                <DataTrigger Value="Normal"
+                                             Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                     AncestorType={x:Type cctrl:DashboardWindow}}, Path=WindowState}">
-                                    <Setter Property="Content" Value="{StaticResource FontAwesomeMaximizeWindowIcon}" />
+                                    <Setter Property="Content"
+                                            Value="{StaticResource FontAwesomeMaximizeWindowIcon}" />
                                 </DataTrigger>
 
-                                <DataTrigger Value="Maximized" Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                <DataTrigger Value="Maximized"
+                                             Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                     AncestorType={x:Type cctrl:DashboardWindow}}, Path=WindowState}">
-                                    <Setter Property="Content" Value="{StaticResource FontAwesomeRestoreWindowIcon}" />
+                                    <Setter Property="Content"
+                                            Value="{StaticResource FontAwesomeRestoreWindowIcon}" />
                                 </DataTrigger>
 
                             </Style.Triggers>
@@ -112,15 +139,17 @@
                         </Style>
 
                         <!-- Window Close Button -->
-                        <Style
-                            x:Key="WindowCloseButton"
-                            BasedOn="{StaticResource WindowControlButton}"
-                            TargetType="{x:Type Button}">
+                        <Style x:Key="WindowCloseButton"
+                               BasedOn="{StaticResource WindowControlButton}"
+                               TargetType="{x:Type Button}">
 
                             <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Red" />
-                                    <Setter Property="Foreground" Value="White" />
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="Red" />
+                                    <Setter Property="Foreground"
+                                            Value="White" />
                                 </Trigger>
                             </Style.Triggers>
 
@@ -128,19 +157,16 @@
 
                     </ControlTemplate.Resources>
 
-                    <Border
-                        x:Name="MainBorderContainer"
-                        Width="{TemplateBinding Width}"
-                        Height="{TemplateBinding Height}">
+                    <Border x:Name="MainBorderContainer"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}">
 
-                        <Grid
-                            x:Name="MainGridContainer">
+                        <Grid x:Name="MainGridContainer">
 
                             <!--Main content field-->
-                            <Grid
-                                x:Name="ContentGrid"
-                                Margin="0,0,0,0"
-                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                            <Grid x:Name="ContentGrid"
+                                  Margin="0,0,0,0"
+                                  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type cctrl:DashboardWindow}}}">
 
                                 <Grid.ColumnDefinitions>
@@ -149,32 +175,31 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--Offset menu field no expanded-->
-                                <Grid
-                                    x:Name="OffsetMenuGrid"
-                                    Grid.Column="0"
-                                    Width="{Binding MenuTabWidth,
+                                <Grid x:Name="OffsetMenuGrid"
+                                      Grid.Column="0"
+                                      Width="{Binding MenuTabWidth,
                                     FallbackValue={StaticResource default_menu_tab_width_dashboard_window}}"
-                                    Background="Black"
-                                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                                      Background="Black"
+                                      WindowChrome.IsHitTestVisibleInChrome="True" />
 
                                 <!--Content and title bar field-->
-                                <Grid x:Name="ContentAndTitleGrid" Grid.Column="1">
+                                <Grid x:Name="ContentAndTitleGrid"
+                                      Grid.Column="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
 
                                     <!--Title bar-->
-                                    <Grid
-                                        x:Name="TitleBartGrid"
-                                        Grid.Row="0"
-                                        Height="{Binding TitleBarHeight, FallbackValue=50}"
-                                        VerticalAlignment="Stretch"
-                                        Background="{Binding TitleBarBackground, 
+                                    <Grid x:Name="TitleBartGrid"
+                                          Grid.Row="0"
+                                          Height="{Binding TitleBarHeight, FallbackValue=50}"
+                                          VerticalAlignment="Stretch"
+                                          Background="{Binding TitleBarBackground, 
                                         FallbackValue={StaticResource default_title_bar_background_dashboard_window}}"
-                                        DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor
+                                          DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor
                                         ,AncestorType={x:Type cctrl:DashboardWindow}}}"
-                                        WindowChrome.IsHitTestVisibleInChrome="False">
+                                          WindowChrome.IsHitTestVisibleInChrome="False">
                                         <Grid.ColumnDefinitions>
                                             <!--Back forward-->
                                             <ColumnDefinition Width="Auto" />
@@ -186,132 +211,115 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!--Back forward-->
-                                        <StackPanel
-                                            x:Name="NavigationPanel"
-                                            Grid.Column="0"
-                                            Orientation="Horizontal">
-                                            <Button
-                                                x:Name="PreviousNavigateButton"
-                                                Content="{StaticResource FontAwesomePreviousPageIcon}"
-                                                Style="{StaticResource WindowControlButton}" />
-                                            <Button
-                                                x:Name="NextNavigateButton"
-                                                Content="{StaticResource FontAwesomeNextPageIcon}"
-                                                Style="{DynamicResource WindowControlButton}" />
+                                        <StackPanel x:Name="NavigationPanel"
+                                                    Grid.Column="0"
+                                                    Orientation="Horizontal">
+                                            <Button x:Name="PreviousNavigateButton"
+                                                    Content="{StaticResource FontAwesomePreviousPageIcon}"
+                                                    Style="{StaticResource WindowControlButton}" />
+                                            <Button x:Name="NextNavigateButton"
+                                                    Content="{StaticResource FontAwesomeNextPageIcon}"
+                                                    Style="{DynamicResource WindowControlButton}" />
                                         </StackPanel>
 
 
                                         <!--Title-->
-                                        <Viewbox
-                                            x:Name="TitleViewBox"
-                                            Grid.Column="1"
-                                            Grid.ColumnSpan="3"
-                                            Margin="5">
+                                        <Viewbox x:Name="TitleViewBox"
+                                                 Grid.Column="1"
+                                                 Margin="5">
                                             <StackPanel x:Name="TitlePanel">
 
-                                                <TextBlock
-                                                    x:Name="MainContentTitleText"
-                                                    Margin="0,0,0,-5"
-                                                    FontFamily="{DynamicResource Fredoka}"
-                                                    FontSize="20"
-                                                    Text="Product" />
-                                                <TextBlock
-                                                    x:Name="SubContentTitleText"
-                                                    Foreground="#FF6B6BF5"
-                                                    Text="by HPSofwareSolution"
-                                                    TextAlignment="Center" />
+                                                <TextBlock x:Name="MainContentTitleText"
+                                                           Margin="0,0,0,-5"
+                                                           FontFamily="{DynamicResource Fredoka}"
+                                                           FontSize="20"
+                                                           Text="Product" />
+                                                <TextBlock x:Name="SubContentTitleText"
+                                                           Foreground="#FF6B6BF5"
+                                                           Text="by HPSofwareSolution"
+                                                           TextAlignment="Center" />
                                             </StackPanel>
                                         </Viewbox>
 
                                         <!--Window Buttons-->
-                                        <StackPanel
-                                            x:Name="WindowControlPanel"
-                                            Grid.Column="2"
-                                            Orientation="Horizontal">
+                                        <StackPanel x:Name="WindowControlPanel"
+                                                    Grid.Column="2"
+                                                    Orientation="Horizontal">
 
-                                            <Button
-                                                x:Name="MinimizeButton"
-                                                Command="{Binding MinimizeCommand}"
-                                                Content="{StaticResource FontAwesomeMinimizeWindowIcon}"
-                                                Style="{StaticResource WindowControlButton}" />
-                                            <Button
-                                                x:Name="MaximizeButton"
-                                                Command="{Binding MaximizeCommand}"
-                                                Style="{StaticResource WindowMaximizeButton}" />
-                                            <Button
-                                                x:Name="CloseButton"
-                                                Command="{Binding CloseCommand}"
-                                                Content="{StaticResource FontAwesomeCloseWindowIcon}"
-                                                Style="{StaticResource WindowCloseButton}" />
+                                            <Button x:Name="MinimizeButton"
+                                                    Command="{Binding MinimizeCommand}"
+                                                    Content="{StaticResource FontAwesomeMinimizeWindowIcon}"
+                                                    Style="{StaticResource WindowControlButton}" />
+                                            <Button x:Name="MaximizeButton"
+                                                    Command="{Binding MaximizeCommand}"
+                                                    Style="{StaticResource WindowMaximizeButton}" />
+                                            <Button x:Name="CloseButton"
+                                                    Command="{Binding CloseCommand}"
+                                                    Content="{StaticResource FontAwesomeCloseWindowIcon}"
+                                                    Style="{StaticResource WindowCloseButton}" />
                                         </StackPanel>
 
                                     </Grid>
 
                                     <!--Content field-->
-                                    <Grid
-                                        x:Name="MainContentGrid"
-                                        Grid.Row="1"
-                                        VerticalAlignment="Stretch">
+                                    <Grid x:Name="MainContentGrid"
+                                          Grid.Row="1"
+                                          VerticalAlignment="Stretch">
 
-                                        <Frame
-                                            x:Name="DWPageHostFrame"
-                                            Background="White"
-                                            NavigationUIVisibility="Hidden"
-                                            Source="{Binding PageSource}"
-                                            Content="{TemplateBinding Content}"
-                                            Visibility="Visible"/>
+                                        <Frame x:Name="DWPageHostFrame"
+                                               Background="White"
+                                               NavigationUIVisibility="Hidden"
+                                               Source="{Binding PageSource}"
+                                               Content="{TemplateBinding Content}"
+                                               Visibility="Visible" />
                                     </Grid>
                                 </Grid>
                             </Grid>
 
                             <!--Menu field-->
-                            <Grid
-                                x:Name="menu_panel"
-                                HorizontalAlignment="Left"
-                                Background="Yellow"
-                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                            <Grid x:Name="menu_panel"
+                                  HorizontalAlignment="Left"
+                                  Background="Yellow"
+                                  DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type cctrl:DashboardWindow}}}"
-                                WindowChrome.IsHitTestVisibleInChrome="True">
+                                  WindowChrome.IsHitTestVisibleInChrome="True">
 
                                 <Grid.Style>
                                     <Style TargetType="{x:Type Grid}">
                                         <Style.Triggers>
-                                            <DataTrigger 
-                                                Value="False" 
-                                                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                            <DataTrigger Value="False"
+                                                         Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
                                                 AncestorType={x:Type cctrl:DashboardWindow}}, 
                                                 Path=IsEnableMenuTab}">
-                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed" />
                                             </DataTrigger>
 
-                                            <DataTrigger 
-                                                Value="True" 
-                                                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+                                            <DataTrigger Value="True"
+                                                         Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
                                                 AncestorType={x:Type cctrl:DashboardWindow}}, 
                                                 Path=IsEnableMenuTab}">
-                                                <Setter Property="Visibility" Value="Visible" />
+                                                <Setter Property="Visibility"
+                                                        Value="Visible" />
                                             </DataTrigger>
 
                                         </Style.Triggers>
                                     </Style>
                                 </Grid.Style>
 
-                                <Grid
-                                    x:Name="menu_content_panel"
-                                    Width="{Binding MenuTabWidth}"
-                                    Background="Aqua">
-                                    <ContentPresenter
-                                        Width="{Binding MenuTabExpandedWidth}"
-                                        HorizontalAlignment="Left"
-                                        Content="{Binding MenuTabContent}" />
+                                <Grid x:Name="menu_content_panel"
+                                      Width="{Binding MenuTabWidth}"
+                                      Background="Aqua">
+                                    <ContentPresenter Width="{Binding MenuTabExpandedWidth}"
+                                                      HorizontalAlignment="Left"
+                                                      Content="{Binding MenuTabContent}" />
                                 </Grid>
 
-                                <ToggleButton
-                                    x:Name="ExpandedToggleButton"
-                                    Width="10"
-                                    Height="50"
-                                    Margin="0,0,-10,0"
-                                    HorizontalAlignment="Right">
+                                <ToggleButton x:Name="ExpandedToggleButton"
+                                              Width="10"
+                                              Height="50"
+                                              Margin="0,0,-10,0"
+                                              HorizontalAlignment="Right">
 
                                     <ToggleButton.Triggers>
 
@@ -319,22 +327,20 @@
                                             <BeginStoryboard>
                                                 <Storyboard x:Name="HidePanelStack">
 
-                                                    <DoubleAnimation
-                                                        BeginTime="0:0:0"
-                                                        Duration="0:0:0.2"
-                                                        From="{Binding MenuTabExpandedWidth}"
-                                                        Storyboard.TargetName="menu_panel"
-                                                        Storyboard.TargetProperty="Width"
-                                                        To="{Binding MenuTabWidth}" />
+                                                    <DoubleAnimation BeginTime="0:0:0"
+                                                                     Duration="0:0:0.2"
+                                                                     From="{Binding MenuTabExpandedWidth}"
+                                                                     Storyboard.TargetName="menu_panel"
+                                                                     Storyboard.TargetProperty="Width"
+                                                                     To="{Binding MenuTabWidth}" />
 
 
-                                                    <DoubleAnimation
-                                                        BeginTime="0:0:0"
-                                                        Duration="0:0:0.2"
-                                                        From="{Binding MenuTabExpandedWidth}"
-                                                        Storyboard.TargetName="menu_content_panel"
-                                                        Storyboard.TargetProperty="Width"
-                                                        To="{Binding MenuTabWidth}" />
+                                                    <DoubleAnimation BeginTime="0:0:0"
+                                                                     Duration="0:0:0.2"
+                                                                     From="{Binding MenuTabExpandedWidth}"
+                                                                     Storyboard.TargetName="menu_content_panel"
+                                                                     Storyboard.TargetProperty="Width"
+                                                                     To="{Binding MenuTabWidth}" />
 
                                                 </Storyboard>
                                             </BeginStoryboard>
@@ -343,21 +349,19 @@
                                         <EventTrigger RoutedEvent="ToggleButton.Checked">
                                             <BeginStoryboard>
                                                 <Storyboard x:Name="ShowPanelStack">
-                                                    <DoubleAnimation
-                                                        BeginTime="0:0:0"
-                                                        Duration="0:0:0.2"
-                                                        From="{Binding MenuTabWidth}"
-                                                        Storyboard.TargetName="menu_panel"
-                                                        Storyboard.TargetProperty="Width"
-                                                        To="{Binding MenuTabExpandedWidth}" />
+                                                    <DoubleAnimation BeginTime="0:0:0"
+                                                                     Duration="0:0:0.2"
+                                                                     From="{Binding MenuTabWidth}"
+                                                                     Storyboard.TargetName="menu_panel"
+                                                                     Storyboard.TargetProperty="Width"
+                                                                     To="{Binding MenuTabExpandedWidth}" />
 
-                                                    <DoubleAnimation
-                                                        BeginTime="0:0:0"
-                                                        Duration="0:0:0.2"
-                                                        From="{Binding MenuTabWidth}"
-                                                        Storyboard.TargetName="menu_content_panel"
-                                                        Storyboard.TargetProperty="Width"
-                                                        To="{Binding MenuTabExpandedWidth}" />
+                                                    <DoubleAnimation BeginTime="0:0:0"
+                                                                     Duration="0:0:0.2"
+                                                                     From="{Binding MenuTabWidth}"
+                                                                     Storyboard.TargetName="menu_content_panel"
+                                                                     Storyboard.TargetProperty="Width"
+                                                                     To="{Binding MenuTabExpandedWidth}" />
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </EventTrigger>
@@ -372,12 +376,32 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="ContentType" Value="PageType">
-                            <Setter TargetName="NavigationPanel" Property="Visibility" Value="Visible" />
+                        <Trigger Property="ContentType"
+                                 Value="PageType">
+                            <Setter TargetName="NavigationPanel"
+                                    Property="Visibility"
+                                    Value="Visible" />
                         </Trigger>
 
-                        <Trigger Property="ContentType" Value="NormalContentType">
-                            <Setter TargetName="NavigationPanel" Property="Visibility" Value="Hidden" />
+                        <Trigger Property="ContentType"
+                                 Value="NormalContentType">
+                            <Setter TargetName="NavigationPanel"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnableMenuTab"
+                                 Value="False">
+                            <Setter TargetName="OffsetMenuGrid"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnableMenuTab"
+                                 Value="True">
+                            <Setter TargetName="OffsetMenuGrid"
+                                    Property="Visibility"
+                                    Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
 
