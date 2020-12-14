@@ -429,6 +429,23 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 DWPageHostFrameElement.NavigationService.Navigate(content);
             }
         }
+
+        public new void Close()
+        {
+            if(CloseWindowCommand != null)
+            {
+                CloseWindowCommand?.Execute(this);
+            }
+            else
+            {
+                base.Close();
+            }
+        }
+
+        public void ForceClose()
+        {
+            base.Close();
+        }
     }
 
     public delegate void PageSourceEventHandler(object sender, PageSourceEventArgs e);

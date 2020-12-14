@@ -113,7 +113,7 @@ namespace Pharmacy
 
         private void CloseMainScreenWindow(object obj)
         {
-            if (_notityIconEnable)
+            if (_notityIconEnable && DisplayStatus != WindowDisplayStatus.AppExit)
             {
                 MainScreenWindow?.Hide();
             }
@@ -176,7 +176,6 @@ namespace Pharmacy
                         break;
                     case WindowDisplayStatus.OnMainScreen:
                         MainScreenWindow?.Close();
-                        MainScreenWindow = null;
                         break;
                     default:
                         break;
@@ -201,17 +200,17 @@ namespace Pharmacy
         {
             if (!_isLoginWindowExited)
             {
-                _isLoginWindowExited = true;
+                _isLoginWindowExited = true      ;
                 LoginScreenWindow.Close();
             }
             if (!_isMainWindowExited)
             {
                 _isMainWindowExited = true;
-                MainScreenWindow.Close();
+                MainScreenWindow.ForceClose();
             }
             if (_notityIconEnable)
             {
-                _notifyIcon.Dispose();
+                _notifyIcon?.Dispose();
                 _notifyIcon = null;
             }
         }
