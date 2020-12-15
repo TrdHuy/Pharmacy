@@ -9,10 +9,8 @@
     <Style TargetType="{x:Type TextBox}"
            x:Key="LoginTextBox"
            BasedOn="{StaticResource BaseStyle}">
-        <!--<Setter Property="FontSize" Value="{StaticResource FontSizeXXLarge}" />-->
         <Setter Property="FontFamily"
                 Value="{StaticResource FontAwesome}" />
-        <!--<Setter Property="Padding" Value="10" />-->
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Margin"

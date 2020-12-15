@@ -4,6 +4,18 @@
     xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
     xmlns:local="clr-namespace:Pharmacy">
 
+    <!--Base Button-->
+    <Style TargetType="{x:Type Button}"
+           x:Key="{x:Type Button}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Cursor"
+                        Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <!--Menu tab button-->
     <Style
         x:Key="MenuTabButton"
@@ -28,8 +40,7 @@
                                     <Ellipse
                                         Width="{Binding ImageElipseBorderWidth, FallbackValue=45}"
                                         Height="{Binding ImageElipseBorderHeight, FallbackValue=45}"
-                                        Stroke="{StaticResource NormalTheme_LightGreenBrush}"
-                                        StrokeThickness="5" />
+                                        Fill="{StaticResource NormalTheme_LightGreenBrush}"/>
                                     <Image
                                         Width="{Binding ImageWidth, 
                                         UpdateSourceTrigger=PropertyChanged}"

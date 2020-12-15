@@ -61,11 +61,38 @@ namespace Pharmacy.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to #HP Soultion Features Turner
+        ///
+        ///
+        ///#Notify icon switch
+        ///HPS_FT_IS_SUPPORT_NOTIFY_ICON=TRUE
+        ///
+        ///#Navigation button switch
+        ///HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE.
         /// </summary>
         internal static string AppRunConfig {
             get {
                 return ResourceManager.GetString("AppRunConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap avatar_bg_opacity_mask {
+            get {
+                object obj = ResourceManager.GetObject("avatar_bg_opacity_mask", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap avatar_image_opacity_mask1 {
+            get {
+                object obj = ResourceManager.GetObject("avatar_image_opacity_mask1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

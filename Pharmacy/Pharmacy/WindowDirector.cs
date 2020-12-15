@@ -148,6 +148,8 @@ namespace Pharmacy
         {
             DisplayStatus = WindowDisplayStatus.OnLoginScreen;
             App.Current.ClearSessionID();
+            MainScreenWindow.ForceClose();
+            _mainScreenWindow = null;
         }
         private void ExitApplication(object sender, EventArgs e)
         {

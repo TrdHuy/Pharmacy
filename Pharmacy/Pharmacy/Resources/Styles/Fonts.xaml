@@ -2,16 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Pharmacy"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-    <FontFamily x:Key="FontAwesome">/Pharmacy;component/Resource/Fonts/#FontAwesome</FontFamily>
-    <FontFamily x:Key="Fredoka">/Pharmacy;component/Resource/Fonts/#Fredoka One</FontFamily>
-    <FontFamily x:Key="Human">/Pharmacy;component/Resource/Fonts/#Human</FontFamily>
-    <FontFamily x:Key="LibelSuit">/Pharmacy;component/Resource/Fonts/#Libel Suit Rg</FontFamily>
-    <FontFamily x:Key="VNFOswald">/Pharmacy;component/Resource/Fonts/#VNF-Oswald</FontFamily>
+    <FontFamily x:Key="FontAwesome">/Pharmacy;component/Resources/Fonts/#FontAwesome</FontFamily>
+    <FontFamily x:Key="Fredoka">/Pharmacy;component/Resources/Fonts/#Fredoka One</FontFamily>
+    <FontFamily x:Key="Human">/Pharmacy;component/Resources/Fonts/#Human</FontFamily>
+    <FontFamily x:Key="LibelSuit">/Pharmacy;component/Resources/Fonts/#Libel Suit Rg</FontFamily>
+    <FontFamily x:Key="VNFOswald">/Pharmacy;component/Resources/Fonts/#VNF-Oswald</FontFamily>
 
+    <system:Double x:Key="FontSizeXXSmall">8</system:Double>
+    <system:Double x:Key="FontSizeXSmall">10</system:Double>
+    <system:Double x:Key="FontSizeSmall">12</system:Double>
     <system:Double x:Key="FontSizeRegular">14</system:Double>
     <system:Double x:Key="FontSizeLarge">18</system:Double>
+    <system:Double x:Key="FontSizeXLarge">20</system:Double>
     <system:Double x:Key="FontSizeLarge_Float">22</system:Double>
-    <system:Double x:Key="FontSizeXXLarge">30</system:Double>
+    <system:Double x:Key="FontSizeXXXXLarge">30</system:Double>
 
     <system:String x:Key="FontAwesomeCloseWindowIcon">&#xf2d3;</system:String>
     <system:String x:Key="FontAwesomeMinimizeWindowIcon">&#xf2d1;</system:String>

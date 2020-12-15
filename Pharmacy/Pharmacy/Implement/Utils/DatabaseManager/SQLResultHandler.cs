@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
+using Pharmacy.Implement.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +28,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             _appDBContext = new PharmacyDBContext();
         }
 
-        public void ExecuteQueryAsync(string SQLCmdKey, params string[] paramaters)
+        public void ExecuteQueryAsync(string SQLCmdKey, params object[] paramaters)
         {
 
             _result = null;
@@ -36,16 +37,46 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.CHECK_USER_AVAIL_CMD_KEY:
                     _result = CheckUserAvail(paramaters);
                     break;
+                case SQLCommandKey.UPDATE_USER_INFO_CMD_KEY:
+                    _result = UpdateUserInfo(paramaters);
+                    break;
                 default:
                     break;
             }
             NotifyChange(_result);
         }
 
-        private SQLQueryResult CheckUserAvail(string[] paramaters)
+        private SQLQueryResult UpdateUserInfo(object[] paramaters)
         {
-            string name = paramaters[0];
-            string pass = paramaters[1];
+            tblUser modifiedUser = paramaters[0] as tblUser;
+            tblUser curUser = paramaters[1] as tblUser;
+            SQLQueryResult result = new SQLQueryResult(null, "");
+
+            try
+            {
+                var x = _appDBContext.tblUsers.Where<tblUser>(user => user.Username.Equals(curUser.Username)).First();
+                x.FullName = modifiedUser.FullName;
+                x.Address = modifiedUser.Address;
+                x.Phone = modifiedUser.Phone;
+                x.Email = modifiedUser.Email;
+                x.Link = modifiedUser.Link;
+                x.Password = modifiedUser.Password;
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(x, "");
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+            return result;
+        }
+
+        private SQLQueryResult CheckUserAvail(object[] paramaters)
+        {
+            string name = paramaters[0].ToString();
+            string pass = paramaters[1].ToString();
 
             try
             {
@@ -67,6 +98,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
     internal class SQLCommandKey
     {
         public const string CHECK_USER_AVAIL_CMD_KEY = "check_user_avail";
+        public const string UPDATE_USER_INFO_CMD_KEY = "update_user_info";
+
     }
 
     public class SQLQueryResult
