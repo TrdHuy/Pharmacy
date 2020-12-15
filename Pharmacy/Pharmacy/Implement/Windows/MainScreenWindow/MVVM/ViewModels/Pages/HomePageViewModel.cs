@@ -20,11 +20,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
         private string _currentTime;
-        private PropertyObserver _userObserver;
 
         #region public properties
 
-        public tblUser CurrentUser { get { return (tblUser)_userObserver.Value; } }
+        public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
         public RunInputCommand SellingCommand { get; set; }
         public RunInputCommand UserManagementCommand { get; set; }
         public RunInputCommand CustomerManagementCommand { get; set; }
@@ -34,6 +33,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public RunInputCommand InvoiceManagementCommand { get; set; }
         public RunInputCommand OtherPaymentsManagementCommand { get; set; }
         public RunInputCommand ReportCommand { get; set; }
+        public RunInputCommand PersonalInfoCommand { get; set; }
+        
         public string CurrentTime
         {
             get { return _currentTime; }
@@ -49,10 +50,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         public HomePageViewModel()
         {
-
-            _userObserver = new PropertyObserver(this,typeof(tblUser),"CurrentUser");
-            App.Current.SubcribeProperty(_userObserver);
-
             ClockIntansiation();
             SellingCommand = new RunInputCommand(SellingButtonClickEvent);
             UserManagementCommand = new RunInputCommand(UserManagementButtonClickEvent);
@@ -63,9 +60,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             InvoiceManagementCommand = new RunInputCommand(InvoiceManagementButtonClickEvent);
             OtherPaymentsManagementCommand = new RunInputCommand(OtherPaymentsManagementButtonClickEvent);
             ReportCommand = new RunInputCommand(ReportButtonClickEvent);
-
+            PersonalInfoCommand = new RunInputCommand(PersonalInfoImageClickEvent);
 
         }
+
+
         protected override void InitPropertiesRegistry()
         {
             PropRegister("CurrentUser");
@@ -85,6 +84,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         }
 
         #region PageSourceClickEvent
+
+        private void PersonalInfoImageClickEvent(object obj)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = obj;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
+                , dataTransfer);
+        }
         private void SellingButtonClickEvent(object obj)
         {
             object[] dataTransfer = new object[2];

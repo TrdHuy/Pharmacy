@@ -167,6 +167,19 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         #endregion
 
+        #region WindowShownEvent
+        public static readonly RoutedEvent WindowShownEvent =
+            EventManager.RegisterRoutedEvent("WindowShown", RoutingStrategy.Direct,
+                          typeof(WindowShownEventHandler), typeof(DashboardWindow));
+
+        public event WindowShownEventHandler WindowShown
+        {
+            add { AddHandler(WindowShownEvent, value); }
+            remove { RemoveHandler(WindowShownEvent, value); }
+        }
+
+        #endregion
+
         #region ContentType
         public static readonly DependencyProperty ContentTypeProperty =
             DependencyProperty.Register("ContentType", typeof(DashboardWindowContentType), typeof(DashboardWindow),
@@ -384,7 +397,6 @@ namespace Pharmacy.Implement.Utils.CustomControls
         }
         #endregion
 
-
         private static void PageSourceChangeCallBack(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             DashboardWindow ctl = (DashboardWindow)obj;
@@ -395,11 +407,18 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 new PageSourceEventArgs(DashboardWindow.PageSourceChangedEvent,
                     newValue));
         }
+
         protected virtual void OnPageSourceChanged(PageSourceEventArgs e)
         {
             RaiseEvent(e);
             Navigate(e.Value);
         }
+
+        protected virtual void OnWindowShown(WindowShownEventArgs e)
+        {
+            RaiseEvent(e);
+        }
+
         public override void OnApplyTemplate()
         {
             if (ContentType == DashboardWindowContentType.PageType)
@@ -442,6 +461,12 @@ namespace Pharmacy.Implement.Utils.CustomControls
             }
         }
 
+        public new void Show()
+        {
+            base.Show();
+            OnWindowShown(new WindowShownEventArgs(WindowShownEvent));
+        }
+
         public void ForceClose()
         {
             base.Close();
@@ -449,6 +474,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
     }
 
     public delegate void PageSourceEventHandler(object sender, PageSourceEventArgs e);
+    public delegate void WindowShownEventHandler(object sender, WindowShownEventArgs e);
 
     public class PageSourceEventArgs : RoutedEventArgs
     {
@@ -463,6 +489,14 @@ namespace Pharmacy.Implement.Utils.CustomControls
         public Uri Value
         {
             get { return _value; }
+        }
+    }
+
+    public class WindowShownEventArgs : RoutedEventArgs
+    {
+        public WindowShownEventArgs(RoutedEvent id)
+        {
+            RoutedEvent = id;
         }
     }
 }

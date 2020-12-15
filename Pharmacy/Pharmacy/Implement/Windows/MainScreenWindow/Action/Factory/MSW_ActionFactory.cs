@@ -18,6 +18,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
 
             switch (keyTag)
             {
+                case KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE:
+                    action = new MSW_HomePageButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO:
                     action = new MSW_PersonalInfoAction();
                     break;

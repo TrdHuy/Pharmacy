@@ -7,10 +7,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="650"
     d:DesignWidth="170">
 
+    <UserControl.DataContext>
+        <vm:MainMenuControlViewModel />
+    </UserControl.DataContext>
     <!--Margin 96 right to left-->
     <Grid Background="{StaticResource NormalTheme_MenuTabColorBrush}">
         <Grid.RowDefinitions>
@@ -31,12 +35,14 @@
             Content="TRANG CHỦ"
             ImageSource="{DynamicResource HomeIcon}"
             Padding="10,0,0,0"
+            Command="{Binding HomePageCommand}"
             Style="{DynamicResource MenuTabButton}" />
         <cctrl:HPSL_Button
             Grid.Row="2"
             Content="TÀI KHOẢN"
             ImageSource="{DynamicResource AccountIcon}"
             Padding="10,0,0,0"
+            Command="{Binding PersonalAccountCommand}"
             Style="{DynamicResource MenuTabButton}" />
         <cctrl:HPSL_Button
             Grid.Row="3"

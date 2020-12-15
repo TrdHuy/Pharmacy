@@ -6,13 +6,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- Order is important -->
-                <ResourceDictionary Source="Resource/Styles/Dimens.xaml" />
-                <ResourceDictionary Source="Resource/Styles/Images.xaml" />
-                <ResourceDictionary Source="Resource/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resource/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="Resource/Styles/Buttons.xaml" />
-                <ResourceDictionary Source="Resource/Styles/Texts.xaml" />
-                <ResourceDictionary Source="Resource/Styles/Windows.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Dimens.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Images.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Buttons.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Texts.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Windows.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
