@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a4640947_02acc73f",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/HomePage.xaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2020-12-15T15:37:08Z",
+      "side": 1,
+      "message": "Can not build, please remove this",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 24
+      },
+      "revId": "3a8dfa4e5d7b51d18396b30d308b555ee66b3d64",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": true
+    }
+  ]
+}
