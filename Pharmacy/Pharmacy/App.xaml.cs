@@ -24,6 +24,7 @@ namespace Pharmacy
         private ApplicationDataContext _applicationDataContext;
         private WindowDirector _winDirector;
 
+        //Only bind this to un-modified property
         public tblUser CurrentUser
         {
             get { return _applicationDataContext.CurrentUser; }
@@ -67,7 +68,14 @@ namespace Pharmacy
 
         public void SubcribeProperty(PropertyObserver observer)
         {
-            _applicationDataContext.SubcirbeProperty(observer);
+            if (observer != null)
+            {
+                _applicationDataContext.SubcirbeProperty(observer);
+            }
+            else
+            {
+                throw new ArgumentNullException(observer.GetType().Name, "PropertyObserver was null, please instantinate first!");
+            }
         }
 
         public void ClearSessionID()

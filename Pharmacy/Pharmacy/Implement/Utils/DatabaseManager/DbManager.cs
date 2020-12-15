@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Utils.DatabaseManager
 {
-    class DbManager
+    public class DbManager
     {
         private static DbManager _instance;
 
@@ -17,7 +17,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             _provider = new SQLResultHandler();
         }
 
-        public async Task ExecuteQueryAsync(string cmdKey, SQLQueryCustodian observer, params string[] paramaters )
+        public async Task ExecuteQueryAsync(string cmdKey, SQLQueryCustodian observer, params object[] paramaters )
         {
             _provider.Subcribe(observer);
             

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages
         {
             InitializeComponent();
         }
+
+        private void ImageGridContainerSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ((PersonalInfoPageViewModel)DataContext).GridSizeChangedCommand.Execute(sender, e, AvatarBoder, this);
+        }
+
+        private void CurrentPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ((PersonalInfoPageViewModel)DataContext).CurrentPasswordChangedCommand.Execute(sender, e, this);
+        }
+
+        private void NewPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ((PersonalInfoPageViewModel)DataContext).NewPasswordChangedCommand.Execute(sender, e, this);
+        }
+
+        private void VerifiedPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ((PersonalInfoPageViewModel)DataContext).VerifiedPasswordChangedCommand.Execute(sender, e, this);
+        }
+
     }
 }

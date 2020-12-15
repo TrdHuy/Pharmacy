@@ -60,11 +60,11 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 {
                     App.Current.SessionIDInstansiation(result[0]);
                     SaveUserName(result[0].Username);
-                    MessageBox.Show("Login Success!");
+                    MessageBox.Show("Đăng nhập thành công!");
                 }
                 else
                 {
-                    MessageBox.Show("Invaild user or password!");
+                    MessageBox.Show("Thông tin đăng nhập không chính xác!");
                 }
             }
             catch (Exception e)

@@ -2,6 +2,7 @@
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
 
             switch (keyTag)
             {
+                case KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE:
+                    action = new MSW_HomePageButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO:
                     action = new MSW_PersonalInfoAction();
                     break;
@@ -47,6 +51,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_REPORT:
                     action = new MSW_Repor();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_PIP_SAVE_BUTTON:
+                    action = new MSW_PIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_PIP_CANCLE_BUTTON:
+                    action = new MSW_PIP_CancleButtonAction();
                     break;
                 default:
                     action = null;

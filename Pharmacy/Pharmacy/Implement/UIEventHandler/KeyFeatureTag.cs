@@ -12,6 +12,7 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_LSW_BUG_REPORT_FEATURE = "lsw_bug_report_feature";
         public const string KEY_TAG_LSW_CUSTOMER_SERVICE_FEATURE = "lsw_customer_service_feature";
 
+        public const string KEY_TAG_MSW_HOME_PAGE = "msw_home_page";
         public const string KEY_TAG_MSW_PERSONAL_INFO = "msw_personal_info";
         public const string KEY_TAG_MSW_SELLING_MANAGEMENT = "msw_selling_management";
         public const string KEY_TAG_MSW_CUSTOMER_MANAGEMENT = "msw_customer_management";
@@ -22,6 +23,11 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT = "msw_other_payments_management";
         public const string KEY_TAG_MSW_WAREHOUSE_MANAGEMENT = "msw_warehouse_management";
         public const string KEY_TAG_MSW_REPORT = "msw_report";
+
+        //Personal info page key string
+        public const string KEY_TAG_MSW_PIP_SAVE_BUTTON = "msw_pip_save_button";
+        public const string KEY_TAG_MSW_PIP_CANCLE_BUTTON = "msw_pip_cancle_button";
+
 
     }
 }

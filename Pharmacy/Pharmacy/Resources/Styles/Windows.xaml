@@ -328,7 +328,7 @@
                                                 <Storyboard x:Name="HidePanelStack">
 
                                                     <DoubleAnimation BeginTime="0:0:0"
-                                                                     Duration="0:0:0.2"
+                                                                     Duration="0:0:0.1"
                                                                      From="{Binding MenuTabExpandedWidth}"
                                                                      Storyboard.TargetName="menu_panel"
                                                                      Storyboard.TargetProperty="Width"
@@ -336,7 +336,7 @@
 
 
                                                     <DoubleAnimation BeginTime="0:0:0"
-                                                                     Duration="0:0:0.2"
+                                                                     Duration="0:0:0.1"
                                                                      From="{Binding MenuTabExpandedWidth}"
                                                                      Storyboard.TargetName="menu_content_panel"
                                                                      Storyboard.TargetProperty="Width"
@@ -350,14 +350,14 @@
                                             <BeginStoryboard>
                                                 <Storyboard x:Name="ShowPanelStack">
                                                     <DoubleAnimation BeginTime="0:0:0"
-                                                                     Duration="0:0:0.2"
+                                                                     Duration="0:0:0.1"
                                                                      From="{Binding MenuTabWidth}"
                                                                      Storyboard.TargetName="menu_panel"
                                                                      Storyboard.TargetProperty="Width"
                                                                      To="{Binding MenuTabExpandedWidth}" />
 
                                                     <DoubleAnimation BeginTime="0:0:0"
-                                                                     Duration="0:0:0.2"
+                                                                     Duration="0:0:0.1"
                                                                      From="{Binding MenuTabWidth}"
                                                                      Storyboard.TargetName="menu_content_panel"
                                                                      Storyboard.TargetProperty="Width"

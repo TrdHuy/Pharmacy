@@ -74,7 +74,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resource\Icons\notifyIcon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\notifyIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -83,8 +83,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HPSolutionCCDevPackage.netFramework">
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.1.0\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.1\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -125,6 +126,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\Converter\BaseMultiValueConverter.cs" />
     <Compile Include="Base\Converter\BaseValueConverter.cs" />
     <Compile Include="Base\Observable\ObserverPattern\BaseObserver.cs" />
     <Compile Include="Base\Observable\ObserverPattern\ObservableProperty.cs" />
@@ -132,9 +134,15 @@
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\UIEventHandler\AttachedProperty\PasswordBoxAttachedProp.cs" />
+    <Compile Include="Implement\Utils\Attributes\StringValueAttribute.cs" />
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
+    <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
+    <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
+    <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_MedicineManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_OtherPaymentsManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_WarehouseManagementAction.cs" />
@@ -145,8 +153,12 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SellingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagementPage.xaml.cs">
       <DependentUpon>CustomerManagementPage.xaml</DependentUpon>
     </Compile>
@@ -182,6 +194,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="tblCustomer.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
@@ -307,31 +324,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Colors.xaml">
+    <Page Include="Resources\Styles\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Buttons.xaml">
+    <Page Include="Resources\Styles\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Dimens.xaml">
+    <Page Include="Resources\Styles\Dimens.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Images.xaml">
+    <Page Include="Resources\Styles\Images.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Windows.xaml">
+    <Page Include="Resources\Styles\Windows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Fonts.xaml">
+    <Page Include="Resources\Styles\Fonts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resource\Styles\Texts.xaml">
+    <Page Include="Resources\Styles\Texts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -359,11 +376,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -387,46 +399,46 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <Resource Include="Resource\Fonts\fontawesome-webfont.ttf" />
-    <Resource Include="Resource\Fonts\VNF-LeagueGothic Regular.ttf" />
-    <Resource Include="Resource\Fonts\VNF-Futura Regular.ttf" />
-    <Resource Include="Resource\Fonts\VNF-Oswald Regular.ttf" />
-    <Resource Include="Resource\Fonts\libel-suit-rg.ttf" />
-    <Resource Include="Resource\Fonts\Human.otf" />
-    <Resource Include="Resource\Fonts\FredokaOne-Regular.ttf" />
+    <Resource Include="Resources\Fonts\fontawesome-webfont.ttf" />
+    <Resource Include="Resources\Fonts\VNF-LeagueGothic Regular.ttf" />
+    <Resource Include="Resources\Fonts\VNF-Futura Regular.ttf" />
+    <Resource Include="Resources\Fonts\VNF-Oswald Regular.ttf" />
+    <Resource Include="Resources\Fonts\libel-suit-rg.ttf" />
+    <Resource Include="Resources\Fonts\Human.otf" />
+    <Resource Include="Resources\Fonts\FredokaOne-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\home.png" />
-    <Resource Include="Resource\Icons\user.png" />
+    <Resource Include="Resources\Icons\home.png" />
+    <Resource Include="Resources\Icons\user.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\setting.png" />
+    <Resource Include="Resources\Icons\setting.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\bug rp.png" />
-    <Resource Include="Resource\Icons\customer support.png" />
+    <Resource Include="Resources\Icons\bug rp.png" />
+    <Resource Include="Resources\Icons\customer support.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\app info.png" />
+    <Resource Include="Resources\Icons\app info.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\app_icon.png" />
+    <Resource Include="Resources\Icons\app_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\app icon x2.png" />
+    <Resource Include="Resources\Icons\app icon x2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\company logo.png" />
+    <Resource Include="Resources\Icons\company logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\company logo x2.png" />
+    <Resource Include="Resources\Icons\company logo x2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\Icons\bug rp blue.png" />
-    <Resource Include="Resource\Icons\CSKH blue.png" />
+    <Resource Include="Resources\Icons\bug rp blue.png" />
+    <Resource Include="Resources\Icons\CSKH blue.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -459,27 +471,29 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
-    <Resource Include="Resource\Icons\close.png" />
-    <Resource Include="Resource\Icons\coupon.png" />
-    <Resource Include="Resource\Icons\edit.png" />
-    <Resource Include="Resource\Icons\excel.png" />
-    <Resource Include="Resource\Icons\print.png" />
-    <Resource Include="Resource\Icons\discount.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\supplier_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\invoice_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\medicine_manage_icon.png" />
-    <Resource Include="Resource\Icons\notifyIcon.ico" />
-    <Resource Include="Resource\Icons\HomePageIcon\personal_info.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\customner_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\user_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\report_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\other_payments_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\warehouse_manage_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\address_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\mail_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\personal_link_icon.png" />
-    <Resource Include="Resource\Icons\HomePageIcon\phone_icon.png" />
-    <Resource Include="Resource\DebugResource\_test3x4potrait.jpg" />
+    <Resource Include="Resources\Images\avatar_bg_opacity_mask.png" />
+    <Resource Include="Resources\Images\avatar_image_opacity_mask.png" />
+    <Resource Include="Resources\Icons\close.png" />
+    <Resource Include="Resources\Icons\coupon.png" />
+    <Resource Include="Resources\Icons\edit.png" />
+    <Resource Include="Resources\Icons\excel.png" />
+    <Resource Include="Resources\Icons\print.png" />
+    <Resource Include="Resources\Icons\discount.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\supplier_manage_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\invoice_manage_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\medicine_manage_icon.png" />
+    <Resource Include="Resources\Icons\notifyIcon.ico" />
+    <Resource Include="Resources\Icons\HomePageIcon\personal_info.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\customner_manage_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\user_manage_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\report_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\other_payments_manage_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\warehouse_manage_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\address_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\mail_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\personal_link_icon.png" />
+    <Resource Include="Resources\Icons\HomePageIcon\phone_icon.png" />
+    <Resource Include="Resources\DebugResource\_test3x4potrait.jpg" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
