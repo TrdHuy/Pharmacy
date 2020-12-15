@@ -12,6 +12,7 @@
     mc:Ignorable="d"
     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
     ShowsNavigationUI="True"
+    Loaded="Page_Loaded"
     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
     Title="Page1">
 
@@ -38,7 +39,18 @@
                 </Grid.RowDefinitions>
 
                 <!--Body area-->
-                <UniformGrid Grid.Row="1" Columns="3">
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <hps:IconButton
                         Command="{Binding SellingCommand}"
                         Grid.Row="0"
@@ -183,7 +195,7 @@
                         Margin="15" BorderBrush="{x:Null}">
                     </hps:IconButton>
 
-                </UniformGrid>
+                </Grid>
 
 
             </Grid>
@@ -221,30 +233,6 @@
                             Width="{StaticResource DefaultHomePage_UserImageWidth}"
                             Height="{StaticResource DefaultHomePage_UserImageHeight}"
                             Background="#FF2B2B2C"
-                            CornerRadius="150">
-
-                            <Border.OpacityMask>
-                                <VisualBrush>
-                                    <VisualBrush.Visual>
-                                        <Border
-                                            Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
-                                            Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
-                                            Background="Black"
-                                            CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource AncestorType=Border}}"
-                                            SnapsToDevicePixels="True" />
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Border.OpacityMask>
-                            <Image
-                                x:Name="user_image"
-                                Width="{StaticResource DefaultHomePage_UserImageWidth}"
-                                Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                                Source="/Pharmacy;component/Resource/DebugResource/_test3x4potrait.jpg" />
-                        </Border>
-                        <Border
-                            Width="{StaticResource DefaultHomePage_UserImageWidth}"
-                            Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                            Background="#FF2B2B2C"
                             CornerRadius="0150">
 
                             <Border.OpacityMask>
@@ -259,10 +247,30 @@
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </Border.OpacityMask>
-                            <Image
+                            <!--<Image
                                 Width="{StaticResource DefaultHomePage_UserImageWidth}"
                                 Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                                Source="/Pharmacy;component/Resource/DebugResource/_test3x4potrait.jpg" />
+                                Source="/Pharmacy;component/Resource/DebugResource/_test3x4potrait.jpg" />-->
+                            <hps:IconButton 
+                                
+                                Width="{StaticResource DefaultHomePage_UserImageWidth}"
+                                            Height="{StaticResource DefaultHomePage_UserImageHeight}"
+                                            IconSource="/Pharmacy;component/Resources/DebugResource/_test3x4potrait.jpg"
+                                            IconWidth="{StaticResource DefaultHomePage_UserImageWidth}"
+                                            IconHeight="{StaticResource DefaultHomePage_UserImageHeight}"
+                                            Command="{Binding PersonalInfoCommand}">
+                                <hps:IconButton.Style>
+                                    <Style TargetType="{x:Type hps:IconButton}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver"
+                                                     Value="True">
+                                                <Setter Property="Cursor"
+                                                        Value="Hand" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </hps:IconButton.Style>
+                            </hps:IconButton>
                         </Border>
 
                     </Grid>

@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Pharmacy"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <BitmapImage x:Key="AppIcon" UriSource="/Pharmacy;component/Resources/Icons/app_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomeIcon" UriSource="/Pharmacy;component/Resources/Icons/home.png"></BitmapImage>
+    <BitmapImage x:Key="AccountIcon" UriSource="/Pharmacy;component/Resources/Icons/user.png"></BitmapImage>
+    <BitmapImage x:Key="SettingIcon" UriSource="/Pharmacy;component/Resources/Icons/setting.png"></BitmapImage>
+    <BitmapImage x:Key="BugIcon" UriSource="/Pharmacy;component/Resources/Icons/bug rp.png"></BitmapImage>
+    <BitmapImage x:Key="CSIcon" UriSource="/Pharmacy;component/Resources/Icons/customer support.png"></BitmapImage>
+    <BitmapImage x:Key="AppInfoIcon" UriSource="/Pharmacy;component/Resources/Icons/app info.png"></BitmapImage>
+
+    <BitmapImage x:Key="HomePage_PhoneIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/phone_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_PersonalLinkIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/personal_link_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_MailIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/mail_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_AddressIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/address_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_PersonalInfoIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/personal_info.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_MedicineManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/medicine_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_UserManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/user_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_CustomerManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/customner_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_InvoiceManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/invoice_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_SupplierManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/supplier_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_WarehouseManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/warehouse_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_OtherPaymentsManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/other_payments_manage_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_ReportIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/report_icon.png"></BitmapImage>
+    <BitmapImage x:Key="HomePage_VendorIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/vendor_icon.png"></BitmapImage>
+
+    <BitmapImage x:Key="AvatarImageOpacityMask"
+                 UriSource="/Pharmacy;component/Resources/Images/avatar_image_opacity_mask.png"></BitmapImage>
+    <BitmapImage x:Key="AvatarBGImageOpacityMask"
+                 UriSource="/Pharmacy;component/Resources/Images/avatar_bg_opacity_mask.png"></BitmapImage>
+
+
+    <system:Double x:Key="ImageSizeRegular">34</system:Double>
+    <system:Double x:Key="ImageSizeRegular_Float">40</system:Double>
+
+</ResourceDictionary>
