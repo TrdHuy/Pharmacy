@@ -82,8 +82,10 @@
                                Margin="0,22,0,0"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
-                               Source="/Pharmacy;component/Resource/Icons/company logo x2.png" />
-                        <hps:IconButton Width="166"
+                               Source="/Pharmacy;component/Resources/Icons/company logo x2.png" />
+                        <hps:IconButton 
+                            IconStretch="UniformToFill"
+                            Width="166"
                                         Height="40"
                                         Margin="0,0,0,125"
                                         HorizontalAlignment="Center"
@@ -96,13 +98,14 @@
                                         Foreground="#FF7CB4CD"
                                         IBTextVerticalAlignment="Center"
                                         IconHeight="40"
-                                        IconSource="/Pharmacy;component/Resource/Icons/bug rp blue.png"
+                                        IconSource="/Pharmacy;component/Resources/Icons/bug rp blue.png"
                                         IconTextGapWidth="10"
                                         IconWidth="40"
                                         Padding="0,0,50,0"
                                         RenderTransformOrigin="0.5,0.5"
                                         TextContent="Báo lỗi" />
-                        <hps:IconButton Width="164"
+                        <hps:IconButton IconStretch="UniformToFill"
+                                        Width="164"
                                         Height="40"
                                         Margin="40,0,46,70"
                                         HorizontalAlignment="Center"
@@ -115,7 +118,7 @@
                                         Foreground="#FF7CB4CD"
                                         IBTextVerticalAlignment="Center"
                                         IconHeight="40"
-                                        IconSource="/Pharmacy;component/Resource/Icons/CSKH blue.png"
+                                        IconSource="/Pharmacy;component/Resources/Icons/CSKH blue.png"
                                         IconTextGapWidth="10"
                                         IconWidth="40"
                                         Padding="0,0,50,0"
@@ -135,7 +138,7 @@
                        Margin="0,47,0,0"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
-                       Source="/Pharmacy;component/Resource/Icons/app icon x2.png" />
+                       Source="/Pharmacy;component/Resources/Icons/app icon x2.png" />
                 <TextBlock x:Name="textBlock"
                            Height="20"
                            Margin="0,170,0,0"
