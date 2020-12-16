@@ -423,7 +423,7 @@
                                  BorderThickness="2"
                                  BorderBrush="Black"
                                  FontSize="{StaticResource FontSizeXLarge}" />
-                   
+
                     <TextBlock x:Name="CurrentPasswordAwareTextBlock"
                                Visibility="{Binding CurrentPasswordAwareTextBlockVisibility}"
                                IsHitTestVisible="False"
@@ -489,21 +489,25 @@
                     <ColumnDefinition Width="0.13*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="0,5,0,20"
-                        Grid.Column="1"
-                        Content="Trở lại"
-                        FontSize="25"
-                        BorderThickness="0"
-                        Foreground="White" />
-                <Button Margin="0,5,0,20"
-                        Grid.Column="3"
-                        Content="Lưu"
-                        FontSize="25"
-                        BorderThickness="0"
-                        Command="{Binding SaveButtonCommand}"
-                        Foreground="White"
-                        Background="{StaticResource NormalTheme_LightGreenBrush}" />
-
+                <hps:IconButton Margin="0,5,0,20"
+                                Grid.Column="1"
+                                TextContent="Trở lại"
+                                IsUsingDropShadowEffect="True"
+                                FontSize="{StaticResource FontSizeXLarge}"
+                                BorderThickness="0"
+                                Foreground="White" />
+                <hps:IconButton Margin="0,5,0,20"
+                                Grid.Column="3"
+                                TextContent="Lưu"
+                                IsBusy="{Binding IsSaveButtonRunning}"
+                                ProgressSpinnerSize="30"
+                                ProgressSpinnerBackground="Black"
+                                FontSize="{StaticResource FontSizeXLarge}"
+                                BorderThickness="0"
+                                IsUsingDropShadowEffect="True"
+                                Command="{Binding SaveButtonCommand}"
+                                Foreground="White"
+                                Background="{StaticResource NormalTheme_LightGreenBrush}" />
 
             </Grid>
         </Grid>

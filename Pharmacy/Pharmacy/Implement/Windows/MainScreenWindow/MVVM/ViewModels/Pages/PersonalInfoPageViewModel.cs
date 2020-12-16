@@ -35,6 +35,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private string _newPassword = "";
         private string _verifiedPassword = "";
         private string _newPasswordAwareTextBlockContent = "";
+        private bool _isSaveButtonRunning = false;
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
         public string FullNameText
@@ -235,6 +236,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                     VerifiedPasswordAwareTextBlockVisibility != Visibility.Visible;
             }
         }
+        public bool IsSaveButtonRunning
+        {
+            get
+            {
+                return _isSaveButtonRunning;
+            }
+            set
+            {
+                _isSaveButtonRunning = value;
+                InvalidateOwn();
+            }
+        }
 
         public EventHandleCommand GridSizeChangedCommand;
         public EventHandleCommand CurrentPasswordChangedCommand;
@@ -258,6 +271,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         private void OnSaveButtonClickEvent(object paramaters)
         {
+            IsSaveButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;

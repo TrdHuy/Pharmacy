@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -22,6 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             if (!_viewModel.IsSaveButtonCanPerform)
             {
                 MessageBox.Show("Kiểm tra lại các trường bị sai trên!");
+                _viewModel.IsSaveButtonRunning = false;
                 return false;
             }
 
@@ -36,6 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_USER_INFO_CMD_KEY
+                    , PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME
                     , _sqlCmdObserver
                     , modifiedInfo, App.Current.CurrentUser);
             return true;
@@ -60,6 +63,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             {
                 MessageBox.Show("Lỗi cập nhật thông tin!");
             }
+            _viewModel.IsSaveButtonRunning = false;
         }
     }
 }
