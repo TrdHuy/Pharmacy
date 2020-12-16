@@ -11,6 +11,10 @@ namespace Pharmacy.Implement.Utils.Definitions
     {
         public static readonly int MINIMUM_PASSWORD_LENGHT = 8;
         public static readonly char[] SPECIAL_CHARS_OF_PASSWORD = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".ToCharArray();
+
+        public static readonly int LOGIN_BUTTON_PERFORM_DELAY_TIME = 500;
+        public static readonly int SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
+
     }
 
     public enum NewPasswordAwareMessage

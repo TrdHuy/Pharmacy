@@ -2,11 +2,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+    xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
     xmlns:local="clr-namespace:Pharmacy">
 
     <!--Base Button-->
-    <Style TargetType="{x:Type Button}"
-           x:Key="{x:Type Button}">
+    <Style TargetType="{x:Type hps:IconButton}"
+           x:Key="{x:Type  hps:IconButton}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver"
                      Value="True">

@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
@@ -36,6 +37,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             {
                 _observer = new SQLQueryCustodian(SQLQueryCallback);
                 DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.CHECK_USER_AVAIL_CMD_KEY
+                    , PharmacyDefinitions.LOGIN_BUTTON_PERFORM_DELAY_TIME
                     , _observer
                     , userName, passWord);
 
