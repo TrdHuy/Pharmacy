@@ -13,7 +13,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
     public class MSW_PageController : BaseObservable<Uri>
     {
         private static MSW_PageController _instance;
-        int a = 7;
+        int a = 8;
         public Lazy<Uri> HomePage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/HomePage.xaml", UriKind.Relative));
 
