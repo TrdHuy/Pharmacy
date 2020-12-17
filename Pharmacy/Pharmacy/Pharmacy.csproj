@@ -159,34 +159,34 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml.cs">
       <DependentUpon>CustomerManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentsManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\OtherPaymentsManagementPage.xaml.cs">
       <DependentUpon>OtherPaymentsManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\WarehouseManagementPage.xaml.cs">
       <DependentUpon>WarehouseManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\ReportPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Report\ReportPage.xaml.cs">
       <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagement\InvoiceManagementPage.xaml.cs">
       <DependentUpon>InvoiceManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\MedicineManagementPage.xaml.cs">
       <DependentUpon>MedicineManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserManagementPage.xaml.cs">
       <DependentUpon>UserManagementPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SellingPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Selling\SellingPage.xaml.cs">
       <DependentUpon>SellingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfo\PersonalInfoPage.xaml.cs">
       <DependentUpon>PersonalInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagementPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierManagementPage.xaml.cs">
       <DependentUpon>SupplierManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
@@ -272,47 +272,47 @@
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentsManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\OtherPaymentsManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\WarehouseManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\ReportPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Report\ReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagement\InvoiceManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\MedicineManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SellingPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Selling\SellingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Home\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfoPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\PersonalInfo\PersonalInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagementPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,7 +354,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\HomePage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Home\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\MainMenuControl.xaml.cs">

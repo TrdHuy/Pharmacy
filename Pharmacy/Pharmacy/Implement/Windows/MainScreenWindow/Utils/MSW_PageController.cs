@@ -15,37 +15,37 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         private static MSW_PageController _instance;
 
         public Lazy<Uri> HomePage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/HomePage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml", UriKind.Relative));
 
         public Lazy<Uri> PersonalInfoPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/PersonalInfoPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/PersonalInfo/PersonalInfoPage.xaml", UriKind.Relative));
 
         public Lazy<Uri> SellingPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SellingPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml", UriKind.Relative));
         
         public Lazy<Uri> UserManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagementPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserManagementPage.xaml", UriKind.Relative));
         
         public Lazy<Uri> CustomerManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagementPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerManagementPage.xaml", UriKind.Relative));
         
         public Lazy<Uri> SupplierManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagementPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierManagementPage.xaml", UriKind.Relative));
         
         public Lazy<Uri> InvoiceManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/InvoiceManagementPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/InvoiceManagement/InvoiceManagementPage.xaml", UriKind.Relative));
 
         public Lazy<Uri> MedicineManagementPage = new Lazy<Uri>(() =>
-         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagementPage.xaml", UriKind.Relative));
+         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagement/MedicineManagementPage.xaml", UriKind.Relative));
 
         public Lazy<Uri> OtherPaymentsManagementPage = new Lazy<Uri>(() =>
-         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentsManagementPage.xaml", UriKind.Relative));
+         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/OtherPaymentsManagementPage.xaml", UriKind.Relative));
 
         public Lazy<Uri> WarehouseManagementPage = new Lazy<Uri>(() =>
-         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagementPage.xaml", UriKind.Relative));
+         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/WarehouseManagementPage.xaml", UriKind.Relative));
 
         public Lazy<Uri> ReportPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/ReportPage.xaml", UriKind.Relative));
+            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Report/ReportPage.xaml", UriKind.Relative));
 
         public Uri CurrentPageSource;
 
