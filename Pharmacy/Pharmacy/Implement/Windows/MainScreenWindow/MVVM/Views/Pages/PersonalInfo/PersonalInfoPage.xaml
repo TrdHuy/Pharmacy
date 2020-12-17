@@ -97,10 +97,13 @@
                       Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.05*" />
-                        <ColumnDefinition Width="1.33*" />
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.93*" />
+                        <ColumnDefinition Width="0.2*" />
+
                     </Grid.ColumnDefinitions>
 
-                    <Border Grid.Column="1"
+                    <Border Grid.Column="2"
                             x:Name="AvatarBoder"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
@@ -118,9 +121,24 @@
                             <Image Stretch="UniformToFill"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Source="/Pharmacy;component/Resources/DebugResource/_test3x4potrait.jpg" />
+                                   Source="{Binding UserAvatarSource}" />
                         </Grid>
                     </Border>
+
+                    <hps:IconButton Grid.Column="2"
+                                    ToolTip="Đổi ảnh đại diện của bạn"
+                                    Background="Transparent"
+                                    IBContentOrientation="Vertical"
+                                    IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
+                                    IconStretch="UniformToFill"
+                                    IconHeight="15"
+                                    IconWidth="15"
+                                    Command="{Binding CameraButtonCommand}"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top">
+
+                    </hps:IconButton>
                 </Grid>
             </Grid>
 

@@ -132,6 +132,7 @@
     <Compile Include="Base\Observable\ObserverPattern\ObservableProperty.cs" />
     <Compile Include="Base\Observable\ObserverPattern\PropertyObserver.cs" />
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
+    <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\UIEventHandler\AttachedProperty\PasswordBoxAttachedProp.cs" />
     <Compile Include="Implement\Utils\Attributes\StringValueAttribute.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
+    <Compile Include="Implement\Utils\FileIOUtil.cs" />
     <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />
@@ -153,6 +155,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SellingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
@@ -471,6 +474,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Images\default_user_image.png" />
+    <Resource Include="Resources\Icons\PersonalInfoPageIcons\camera.png" />
     <Resource Include="Resources\Images\avatar_bg_opacity_mask.png" />
     <Resource Include="Resources\Images\avatar_image_opacity_mask.png" />
     <Resource Include="Resources\Icons\close.png" />

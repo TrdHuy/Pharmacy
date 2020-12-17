@@ -27,6 +27,7 @@ namespace Pharmacy.Implement.UIEventHandler
         //Personal info page key string
         public const string KEY_TAG_MSW_PIP_SAVE_BUTTON = "msw_pip_save_button";
         public const string KEY_TAG_MSW_PIP_CANCLE_BUTTON = "msw_pip_cancle_button";
+        public const string KEY_TAG_MSW_PIP_CAMERA_BUTTON = "msw_pip_camera_button";
 
 
     }

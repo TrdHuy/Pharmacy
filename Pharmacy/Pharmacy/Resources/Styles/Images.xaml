@@ -30,6 +30,8 @@
                  UriSource="/Pharmacy;component/Resources/Images/avatar_image_opacity_mask.png"></BitmapImage>
     <BitmapImage x:Key="AvatarBGImageOpacityMask"
                  UriSource="/Pharmacy;component/Resources/Images/avatar_bg_opacity_mask.png"></BitmapImage>
+    <BitmapImage x:Key="PersonalInfoPage_CameraIcon"
+                 UriSource="/Pharmacy;component/Resources/Icons/PersonalInfoPageIcons/camera.png"></BitmapImage>
 
 
     <system:Double x:Key="ImageSizeRegular">34</system:Double>

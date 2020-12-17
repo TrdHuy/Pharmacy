@@ -259,22 +259,10 @@
                                             Width="{StaticResource DefaultHomePage_UserImageWidth}"
                                             Height="{StaticResource DefaultHomePage_UserImageHeight}"
                                             IBContentOrientation="Vertical"
-                                            IconSource="/Pharmacy;component/Resources/DebugResource/_test3x4potrait.jpg"
+                                            IconSource="{Binding UserAvatarSource}"
                                             IconWidth="165"
                                             IconHeight="210"
-                                            Command="{Binding PersonalInfoCommand}">
-                                <hps:IconButton.Style>
-                                    <Style TargetType="{x:Type hps:IconButton}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver"
-                                                     Value="True">
-                                                <Setter Property="Cursor"
-                                                        Value="Hand" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </hps:IconButton.Style>
-                            </hps:IconButton>
+                                            Command="{Binding PersonalInfoCommand}" />
                         </Border>
 
                     </Grid>
