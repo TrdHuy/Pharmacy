@@ -54,7 +54,7 @@
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource AppIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
-                                    TextContent="  Bán thuốc"
+                                    TextContent="Bán thuốc"
                                     FontSize="20"
                                     IBContentOrientation="Vertical"
                                     IconHeight="100"
@@ -66,7 +66,7 @@
 
                     <hps:IconButton IconStretch="UniformToFill"
                                     Command="{Binding UserManagementCommand}"
-                                    Grid.Row="0"
+                                    Grid.Row="2"
                                     Grid.Column="2"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_UserManageIcon}"
@@ -117,7 +117,7 @@
 
                     <hps:IconButton IconStretch="UniformToFill"
                                     Command="{Binding SupplierManagementCommand}"
-                                    Grid.Row="1"
+                                    Grid.Row="3"
                                     Grid.Column="0"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_SupplierManageIcon}"
@@ -151,7 +151,7 @@
 
                     <hps:IconButton IconStretch="UniformToFill"
                                     Command="{Binding InvoiceManagementCommand}"
-                                    Grid.Row="1"
+                                    Grid.Row="2"
                                     Grid.Column="1"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_InvoiceManageIcon}"
