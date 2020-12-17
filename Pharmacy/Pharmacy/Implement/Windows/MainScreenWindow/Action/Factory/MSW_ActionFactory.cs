@@ -58,6 +58,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_PIP_CANCLE_BUTTON:
                     action = new MSW_PIP_CancleButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_PIP_CAMERA_BUTTON:
+                    action = new MSW_PIP_CameraButtonAction();
+                    break;
                 default:
                     action = null;
                     break;
