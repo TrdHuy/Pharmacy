@@ -1,6 +1,7 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Config;
 using Pharmacy.Implement.Utils.CustomControls;
+using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -55,6 +56,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
         {
             CurrentPageSource = newSource;
 
+            //Rollback the manipulation to the entity data
+            DbManager.Instance.RollBack();
+            
             //Every time navigate to new source, the view model of those source page will be instantiated again
             _mainScreenWindow.Navigate(newSource);
         }

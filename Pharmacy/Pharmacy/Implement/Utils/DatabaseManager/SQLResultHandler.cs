@@ -3,6 +3,7 @@ using Pharmacy.Implement.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -26,6 +27,29 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         {
             _observers = new List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>>();
             _appDBContext = new PharmacyDBContext();
+        }
+
+        public void RollBack()
+        {
+            var changedEntries = _appDBContext.ChangeTracker.Entries()
+                .Where(x => x.State != EntityState.Unchanged).ToList();
+
+            foreach (var entry in changedEntries)
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.CurrentValues.SetValues(entry.OriginalValues);
+                        entry.State = EntityState.Unchanged;
+                        break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Unchanged;
+                        break;
+                }
+            }
         }
 
         public void ExecuteQueryAsync(string SQLCmdKey, params object[] paramaters)

@@ -23,11 +23,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
     {
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
-        private string _fullNameText = null;
-        private string _addressText = null;
-        private string _phoneText = null;
-        private string _emailText = null;
-        private string _linkText = null;
         private Visibility _fullNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _currentPasswordAwareTextBlockVisibility = Visibility.Collapsed;
@@ -45,17 +40,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             get
             {
-                if (_fullNameText == null)
-                {
-                    _fullNameText = CurrentUser.FullName;
-                    _fullNameAwareTextBlockVisibility = String.IsNullOrEmpty(_fullNameText) ?
-                        Visibility.Visible : Visibility.Collapsed;
-                }
-                return _fullNameText;
+                FullNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentUser.FullName) ?
+                  Visibility.Visible : Visibility.Collapsed;
+                return CurrentUser.FullName;
             }
             set
             {
-                _fullNameText = value;
+                CurrentUser.FullName = value;
                 FullNameAwareTextBlockVisibility = String.IsNullOrEmpty(value) ?
                     Visibility.Visible : Visibility.Collapsed;
                 InvalidateOwn();
@@ -65,17 +56,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             get
             {
-                if (_phoneText == null)
-                {
-                    _phoneText = CurrentUser.Phone;
-                    _phoneNameAwareTextBlockVisibility = String.IsNullOrEmpty(_phoneText) ?
-                            Visibility.Visible : Visibility.Collapsed;
-                }
-                return _phoneText;
+                PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentUser.Phone) ?
+                 Visibility.Visible : Visibility.Collapsed;
+                return CurrentUser.Phone;
             }
             set
             {
-                _phoneText = value;
+                CurrentUser.Phone = value;
                 PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(value) ?
                     Visibility.Visible : Visibility.Collapsed;
                 InvalidateOwn();
@@ -85,15 +72,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             get
             {
-                if (_addressText == null)
-                {
-                    _addressText = CurrentUser.Address;
-                }
-                return _addressText;
+                return CurrentUser.Address;
             }
             set
             {
-                _addressText = value;
+                CurrentUser.Address = value;
                 InvalidateOwn();
             }
         }
@@ -101,15 +84,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             get
             {
-                if (_emailText == null)
-                {
-                    _emailText = CurrentUser.Email;
-                }
-                return _emailText;
+                return CurrentUser.Email;
             }
             set
             {
-                _emailText = value;
+                CurrentUser.Email = value;
                 InvalidateOwn();
             }
         }
@@ -117,15 +96,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             get
             {
-                if (_linkText == null)
-                {
-                    _linkText = CurrentUser.Link;
-                }
-                return _linkText;
+                return CurrentUser.Link;
             }
             set
             {
-                _linkText = value;
+                CurrentUser.Link = value;
                 InvalidateOwn();
             }
         }
@@ -191,10 +166,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         }
         public string CurrentPassword
         {
-            get { return _currentPassword; }
+            get { return CurrentUser.Password; }
             set
             {
-                _currentPassword = value;
+                CurrentUser.Password = value;
                 InvalidateOwn();
             }
         }
@@ -251,23 +226,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
-        public ImageSource UserAvatarSource 
+        public ImageSource UserAvatarSource
         {
             get
             {
-                if(_userAvatarSource == null)
+                if (_userAvatarSource == null)
                 {
-                    _userAvatarSource = 
-                        FileIOUtil.GetBitmapFromUserName(App.Current.CurrentUser.Username).
+                    _userAvatarSource =
+                        FileIOUtil.GetBitmapFromUserName(CurrentUser.Username).
                         ToImageSource();
                 }
                 return _userAvatarSource;
             }
-            set 
+            set
             {
                 _userAvatarSource = value;
                 InvalidateOwn();
-            } 
+            }
         }
 
         public EventHandleCommand GridSizeChangedCommand;

@@ -31,6 +31,11 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
         }
 
+        public void RollBack()
+        {
+            _provider?.RollBack();
+        }
+
         public static DbManager Instance
         {
             get
