@@ -16,7 +16,8 @@
     <system:Double x:Key="FontSizeXLarge">20</system:Double>
     <system:Double x:Key="FontSizeLarge_Float">22</system:Double>
     <system:Double x:Key="FontSizeXXXXLarge">30</system:Double>
-
+    <system:Double x:Key="HeaderFontSize">30</system:Double>
+    
     <system:String x:Key="FontAwesomeCloseWindowIcon">&#xf2d3;</system:String>
     <system:String x:Key="FontAwesomeMinimizeWindowIcon">&#xf2d1;</system:String>
     <system:String x:Key="FontAwesomeMaximizeWindowIcon">&#xf2d0;</system:String>
