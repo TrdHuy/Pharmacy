@@ -287,6 +287,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             SaveButtonCommand = new RunInputCommand(OnSaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(OnCameraButtonClickEvent);
+            CancleButtonCommand = new RunInputCommand(OnCancleButtonClickEvent);
 
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             CurrentPasswordChangedCommand = new EventHandleCommand(OnCurrentPasswordChagedEvent);
@@ -295,6 +296,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         }
 
         #region Button, event field
+
+        private void OnCancleButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_PIP_CANCLE_BUTTON
+                , dataTransfer);
+        }
+
         private void OnCameraButtonClickEvent(object paramaters)
         {
             object[] dataTransfer = new object[2];

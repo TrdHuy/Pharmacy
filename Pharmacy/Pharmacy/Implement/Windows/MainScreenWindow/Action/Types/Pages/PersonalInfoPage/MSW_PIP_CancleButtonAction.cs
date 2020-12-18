@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
 {
     public class MSW_PIP_CancleButtonAction : Base.UIEventHandler.Action.IAction
     {
+        private MSW_PageController _pageHost = MSW_PageController.Instance;
+
         public bool Execute(object[] dataTransfer)
         {
-            throw new NotImplementedException();
+            _pageHost.UpdateCurrentPageSource(PageSource.HomePage); 
+            return true;
         }
     }
 }
