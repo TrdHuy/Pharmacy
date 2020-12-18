@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Implement.Models;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels;
@@ -60,7 +61,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 int count = result.Count();
                 if (count == 1)
                 {
-                    App.Current.SessionIDInstansiation(result[0]);
+                    App.Current.SessionIDInstansiation(new UserModel(result[0]));
                     SaveUserName(result[0].Username);
                     MessageBox.Show("Đăng nhập thành công!");
                 }

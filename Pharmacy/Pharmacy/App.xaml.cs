@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Config;
+using Pharmacy.Implement.Models;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
@@ -25,7 +26,7 @@ namespace Pharmacy
         private WindowDirector _winDirector;
 
         //Only bind this to un-modified property
-        public tblUser CurrentUser
+        public UserModel CurrentUser
         {
             get { return _applicationDataContext.CurrentUser; }
         }
@@ -58,7 +59,7 @@ namespace Pharmacy
             _winDirector.DisplayStatus = WindowDisplayStatus.OnLoginScreen;
         }
 
-        public void SessionIDInstansiation(tblUser curUser)
+        public void SessionIDInstansiation(UserModel curUser)
         {
             string connectionID = _applicationDataContext.GenerateConnectionID();
             string sessionID = DateTime.Now + "/" + curUser.Username + "/" + connectionID;
@@ -92,9 +93,9 @@ namespace Pharmacy
 
             public string ConnectionID { get; set; }
             public string SessionID { get; set; }
-            public tblUser CurrentUser
+            public UserModel CurrentUser
             {
-                get { return (tblUser)_opUser.Value; }
+                get { return (UserModel)_opUser.Value; }
                 set { _opUser.Value = value; }
             }
 
@@ -112,7 +113,7 @@ namespace Pharmacy
                 }
             }
 
-            public void UpdateSessionInfo(string con, string ses, tblUser curUser)
+            public void UpdateSessionInfo(string con, string ses, UserModel curUser)
             {
                 ConnectionID = con;
                 SessionID = ses;

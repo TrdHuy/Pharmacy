@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Models;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
@@ -40,7 +41,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private bool _isSaveButtonRunning = false;
         private ImageSource _userAvatarSource = null;
 
-        public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
+        public UserModel CurrentUser { get { return App.Current.CurrentUser; } }
         public string FullNameText
         {
             get
@@ -283,7 +284,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             PropRegister("CurrentUser");
         }
 
-        public PersonalInfoPageViewModel()
+        public PersonalInfoPageViewModel() : base()
         {
             SaveButtonCommand = new RunInputCommand(OnSaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(OnCameraButtonClickEvent);

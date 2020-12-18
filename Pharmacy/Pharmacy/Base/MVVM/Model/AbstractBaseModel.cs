@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Pharmacy.Base.MVVM.Model
 {
-    abstract class AbstractBaseModel
+    public abstract class AbstractBaseModel : ICloneable
     {
         private Dictionary<string, object> _parts = new Dictionary<string, object>();
 
@@ -31,5 +31,6 @@ namespace Pharmacy.Base.MVVM.Model
             set { _parts[key] = value; }
         }
 
+        public abstract object Clone();
     }
 }

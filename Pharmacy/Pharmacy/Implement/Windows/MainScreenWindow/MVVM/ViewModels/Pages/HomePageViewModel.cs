@@ -2,6 +2,7 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Base.UIEventHandler.Listener;
+using Pharmacy.Implement.Models;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
@@ -27,7 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         #region public properties
 
-        public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
+        public UserModel CurrentUser { get { return App.Current.CurrentUser; } }
         public ImageSource UserAvatarSource
         {
             get

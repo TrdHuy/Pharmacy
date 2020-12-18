@@ -133,7 +133,9 @@
     <Compile Include="Base\Observable\ObserverPattern\PropertyObserver.cs" />
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
+    <Compile Include="Base\Utils\IClonable.cs" />
     <Compile Include="Config\RUNE.cs" />
+    <Compile Include="Implement\Models\UserModel.cs" />
     <Compile Include="Implement\UIEventHandler\AttachedProperty\PasswordBoxAttachedProp.cs" />
     <Compile Include="Implement\Utils\Attributes\StringValueAttribute.cs" />
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml.cs">
       <DependentUpon>CustomerManagementPage.xaml</DependentUpon>

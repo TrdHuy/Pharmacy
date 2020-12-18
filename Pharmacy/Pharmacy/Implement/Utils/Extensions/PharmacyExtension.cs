@@ -1,11 +1,14 @@
-﻿using Pharmacy.Implement.Utils.Attributes;
+﻿using Newtonsoft.Json;
+using Pharmacy.Implement.Utils.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -53,6 +56,13 @@ namespace Pharmacy.Implement.Utils.Extensions
             {
                 DeleteObject(handle);
             }
+        }
+
+        public static T JSONCloneObject <T>(this T source)
+        {
+            var serialized = JsonConvert.SerializeObject(source);
+            T result = JsonConvert.DeserializeObject<T>(serialized);
+            return result;
         }
     }
 }
