@@ -514,6 +514,7 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 FontSize="{StaticResource FontSizeXLarge}"
+                                Command="{Binding CancleButtonCommand}"
                                 BorderThickness="0"
                                 Foreground="White" />
                 <hps:IconButton Margin="0,5,0,20"
