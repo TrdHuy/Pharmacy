@@ -267,18 +267,12 @@
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </Border.OpacityMask>
-                            <!--<Grid>
-                                <Image VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       Stretch="UniformToFill"
-                                       Source="/Pharmacy;component/Resources/DebugResource/_test3x4potrait.jpg" />
-                            </Grid>-->
                         
                             <hps:IconButton 
                                             IconStretch="UniformToFill"
                                             Width="{StaticResource DefaultHomePage_UserImageWidth}"
                                             Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                                            IconSource="/Pharmacy;component/Resources/DebugResource/_test3x4potrait.jpg"
+                                            IconSource="{Binding UserAvatarSource}"
                                             HorizontalContentAlignment="Center"
                                             VerticalContentAlignment="Center"
                                             Command="{Binding PersonalInfoCommand}" />
