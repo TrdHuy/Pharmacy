@@ -65,6 +65,10 @@ namespace Pharmacy.Implement.Utils
             // Save the bitmap as a JPEG file with quality
             EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, USER_IMAGE_QUALITY);
             myEncoderParameters.Param[0] = myEncoderParameter;
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
             userImage.Save(filePath, myImageCodecInfo, myEncoderParameters);
         }
 
