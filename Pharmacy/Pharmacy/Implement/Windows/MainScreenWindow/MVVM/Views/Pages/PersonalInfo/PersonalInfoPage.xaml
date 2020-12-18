@@ -89,7 +89,7 @@
                            Grid.Column="3"
                            Text="Thông tin cá nhân" />
             </Grid>
-            
+
             <!--Avatar-->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
@@ -165,7 +165,7 @@
                              Stretch="Uniform"
                              Grid.Row="0">
                         <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                   Text="{Binding CurrentUser.FullName}" />
+                                   Text="{Binding FullNameText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                     </Viewbox>
 
                     <Viewbox HorizontalAlignment="Left"
