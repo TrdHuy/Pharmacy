@@ -474,6 +474,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Icons\HomePageIcon\personal_info.png" />
     <Resource Include="Resources\Images\default_user_image.png" />
     <Resource Include="Resources\Icons\PersonalInfoPageIcons\camera.png" />
     <Resource Include="Resources\Images\avatar_bg_opacity_mask.png" />
@@ -488,7 +489,6 @@
     <Resource Include="Resources\Icons\HomePageIcon\invoice_manage_icon.png" />
     <Resource Include="Resources\Icons\HomePageIcon\medicine_manage_icon.png" />
     <Resource Include="Resources\Icons\notifyIcon.ico" />
-    <Resource Include="Resources\Icons\HomePageIcon\personal_info.png" />
     <Resource Include="Resources\Icons\HomePageIcon\customner_manage_icon.png" />
     <Resource Include="Resources\Icons\HomePageIcon\user_manage_icon.png" />
     <Resource Include="Resources\Icons\HomePageIcon\report_icon.png" />

@@ -59,40 +59,44 @@
                 </Border>
 
             </Grid>
-            <!--Avatar & page title areas-->
+
+            <!--Page title-->
+            <Grid x:Name="PageTitleGridArea"
+                  Grid.Row="0"
+                  Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.71*" />
+                    <RowDefinition Height="1.61*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.61*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="7.71*" />
+                    <ColumnDefinition Width="1.8*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Stretch="UniformToFill"
+                       Source="{StaticResource HomePage_PersonalInfoIcon}" />
+                <TextBlock TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource FontAwesome}"
+                           FontSize="{StaticResource HeaderFontSize}"
+                           Grid.Column="3"
+                           Text="Thông tin cá nhân" />
+            </Grid>
+            
+            <!--Avatar-->
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="0.71*" />
                     <RowDefinition Height="1.61*" />
                 </Grid.RowDefinitions>
 
-                <!--Page title-->
-                <Grid x:Name="PageTitleGridArea"
-                      Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.61*" />
-                        <ColumnDefinition Width="1.71*" />
-                        <ColumnDefinition Width="0.2*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image Grid.Column="0"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Stretch="Uniform"
-                           Source="{StaticResource HomePage_PersonalInfoIcon}" />
-
-                    <Viewbox Stretch="Uniform"
-                             Grid.Column="1">
-                        <TextBlock TextWrapping="Wrap"
-                                   FontFamily="{StaticResource FontAwesome}"
-                                   Grid.Column="1"
-                                   Text="Thông tin cá nhân" />
-                    </Viewbox>
-
-
-                </Grid>
-
-                <!--Avatar-->
                 <Grid x:Name="AvatarGridArea"
                       Grid.Row="1">
                     <Grid.ColumnDefinitions>
