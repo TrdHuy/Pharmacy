@@ -511,6 +511,8 @@
                                 Grid.Column="1"
                                 TextContent="Trở lại"
                                 IsUsingDropShadowEffect="True"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
                                 FontSize="{StaticResource FontSizeXLarge}"
                                 BorderThickness="0"
                                 Foreground="White" />
@@ -522,6 +524,8 @@
                                 ProgressSpinnerBackground="Black"
                                 FontSize="{StaticResource FontSizeXLarge}"
                                 BorderThickness="0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
                                 IsUsingDropShadowEffect="True"
                                 Command="{Binding SaveButtonCommand}"
                                 Foreground="White"
