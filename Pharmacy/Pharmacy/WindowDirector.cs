@@ -14,7 +14,7 @@ namespace Pharmacy
 {
     public enum WindowDisplayStatus
     {
-        OnLoginScreen = 1,
+        OnLoginScreen = 1, 
         OnMainScreen = 2,
         AppExit = 10
     }
