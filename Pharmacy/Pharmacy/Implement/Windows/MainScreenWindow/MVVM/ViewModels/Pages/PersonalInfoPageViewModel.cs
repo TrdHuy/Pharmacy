@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using Pharmacy.Implement.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
@@ -36,6 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private string _verifiedPassword = "";
         private string _newPasswordAwareTextBlockContent = "";
         private bool _isSaveButtonRunning = false;
+        private ImageSource _userAvatarSource = null;
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
         public string FullNameText
@@ -248,12 +251,32 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+        public ImageSource UserAvatarSource 
+        {
+            get
+            {
+                if(_userAvatarSource == null)
+                {
+                    _userAvatarSource = 
+                        FileIOUtil.GetBitmapFromUserName(App.Current.CurrentUser.Username).
+                        ToImageSource();
+                }
+                return _userAvatarSource;
+            }
+            set 
+            {
+                _userAvatarSource = value;
+                InvalidateOwn();
+            } 
+        }
 
         public EventHandleCommand GridSizeChangedCommand;
         public EventHandleCommand CurrentPasswordChangedCommand;
         public EventHandleCommand NewPasswordChangedCommand;
         public EventHandleCommand VerifiedPasswordChangedCommand;
         public RunInputCommand SaveButtonCommand { get; set; }
+        public RunInputCommand CancleButtonCommand { get; set; }
+        public RunInputCommand CameraButtonCommand { get; set; }
 
         protected override void InitPropertiesRegistry()
         {
@@ -263,10 +286,35 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public PersonalInfoPageViewModel()
         {
             SaveButtonCommand = new RunInputCommand(OnSaveButtonClickEvent);
+            CameraButtonCommand = new RunInputCommand(OnCameraButtonClickEvent);
+            CancleButtonCommand = new RunInputCommand(OnCancleButtonClickEvent);
+
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             CurrentPasswordChangedCommand = new EventHandleCommand(OnCurrentPasswordChagedEvent);
             NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
             VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+        }
+
+        #region Button, event field
+
+        private void OnCancleButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_PIP_CANCLE_BUTTON
+                , dataTransfer);
+        }
+
+        private void OnCameraButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_PIP_CAMERA_BUTTON
+                , dataTransfer);
         }
 
         private void OnSaveButtonClickEvent(object paramaters)
@@ -315,6 +363,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             NewPassword = ctrl.Password;
             UpdatePasswordAwareTextBlock();
         }
+        #endregion
 
         private void UpdatePasswordAwareTextBlock()
         {
@@ -375,7 +424,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
             NewPasswordAwareTextBlockContent = mes.GetStringValue();
         }
-
 
     }
 }

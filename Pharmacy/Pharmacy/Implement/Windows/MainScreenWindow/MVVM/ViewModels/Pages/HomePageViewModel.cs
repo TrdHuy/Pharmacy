@@ -4,13 +4,16 @@ using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
@@ -20,10 +23,29 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
         private string _currentTime;
+        private ImageSource _userAvatarSource = null;
 
         #region public properties
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
+        public ImageSource UserAvatarSource
+        {
+            get
+            {
+                if (_userAvatarSource == null)
+                {
+                    _userAvatarSource = 
+                        FileIOUtil.GetBitmapFromUserName(App.Current.CurrentUser.Username).
+                        ToImageSource();
+                }
+                return _userAvatarSource;
+            }
+            set
+            {
+                _userAvatarSource = value;
+                InvalidateOwn();
+            }
+        }
         public RunInputCommand SellingCommand { get; set; }
         public RunInputCommand UserManagementCommand { get; set; }
         public RunInputCommand CustomerManagementCommand { get; set; }

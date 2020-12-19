@@ -51,6 +51,8 @@
                                     Command="{Binding SellingCommand}"
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource AppIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -68,6 +70,8 @@
                                     Command="{Binding UserManagementCommand}"
                                     Grid.Row="2"
                                     Grid.Column="2"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_UserManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -85,6 +89,8 @@
                                     Command="{Binding CustomerManagementCommand}"
                                     Grid.Row="0"
                                     Grid.Column="3"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_CustomerManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -102,6 +108,8 @@
                                     Command="{Binding MedicineManagementCommand}"
                                     Grid.Row="0"
                                     Grid.Column="0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_MedicineManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -119,6 +127,8 @@
                                     Command="{Binding SupplierManagementCommand}"
                                     Grid.Row="3"
                                     Grid.Column="0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_SupplierManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -136,6 +146,8 @@
                                     Command="{Binding WarehouseManagementCommand}"
                                     Grid.Row="1"
                                     Grid.Column="0"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_WarehouseManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -153,6 +165,8 @@
                                     Command="{Binding InvoiceManagementCommand}"
                                     Grid.Row="2"
                                     Grid.Column="1"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_InvoiceManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -170,6 +184,8 @@
                                     Command="{Binding OtherPaymentsManagementCommand}"
                                     Grid.Row="1"
                                     Grid.Column="1"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_OtherPaymentsManageIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -187,6 +203,8 @@
                                     Command="{Binding ReportCommand}"
                                     Grid.Row="1"
                                     Grid.Column="2"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
                                     IsUsingDropShadowEffect="True"
                                     IconSource="{StaticResource HomePage_ReportIcon}"
                                     FontFamily="{StaticResource VNFOswald}"
@@ -249,32 +267,15 @@
                                     </VisualBrush.Visual>
                                 </VisualBrush>
                             </Border.OpacityMask>
-                            <!--<Image
-                                Width="{StaticResource DefaultHomePage_UserImageWidth}"
-                                Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                                Source="/Pharmacy;component/Resource/DebugResource/_test3x4potrait.jpg" />-->
-                            <hps:IconButton HorizontalContentAlignment="Center"
-                                            VerticalContentAlignment="Center"
+                        
+                            <hps:IconButton 
                                             IconStretch="UniformToFill"
                                             Width="{StaticResource DefaultHomePage_UserImageWidth}"
                                             Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                                            IBContentOrientation="Vertical"
-                                            IconSource="/Pharmacy;component/Resources/DebugResource/_test3x4potrait.jpg"
-                                            IconWidth="165"
-                                            IconHeight="210"
-                                            Command="{Binding PersonalInfoCommand}">
-                                <hps:IconButton.Style>
-                                    <Style TargetType="{x:Type hps:IconButton}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver"
-                                                     Value="True">
-                                                <Setter Property="Cursor"
-                                                        Value="Hand" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </hps:IconButton.Style>
-                            </hps:IconButton>
+                                            IconSource="{Binding UserAvatarSource}"
+                                            HorizontalContentAlignment="Center"
+                                            VerticalContentAlignment="Center"
+                                            Command="{Binding PersonalInfoCommand}" />
                         </Border>
 
                     </Grid>
