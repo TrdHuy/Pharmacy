@@ -138,6 +138,7 @@
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
+    <Compile Include="Implement\Utils\CustomControls\PageHeaderControl.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
@@ -188,6 +189,9 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierManagementPage.xaml.cs">
       <DependentUpon>SupplierManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageHeader.xaml.cs">
+      <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
@@ -321,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\MSWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
