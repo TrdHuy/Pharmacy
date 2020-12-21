@@ -58,7 +58,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
 
             //Rollback the manipulation to the entity data
             DbManager.Instance.RollBack();
-            
+
             //Every time navigate to new source, the view model of those source page will be instantiated again
             //_mainScreenWindow.Navigate(newSource);
         }
