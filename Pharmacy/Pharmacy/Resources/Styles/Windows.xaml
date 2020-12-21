@@ -155,6 +155,114 @@
 
                         </Style>
 
+                        <!--Waiting grid animation-->
+                        <Storyboard x:Name="Blinking"
+                                    x:Key="Blinking"
+                                    RepeatBehavior="Forever">
+                            <!--Key1-->
+                            <DoubleAnimation BeginTime="0:0:0"
+                                             Storyboard.TargetName="SaleTfDot1st"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:0"
+                                             Storyboard.TargetName="SaleTfDot1st"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:0"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:0"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+
+                            <!--Key3-->
+                            <DoubleAnimation BeginTime="0:0:0.5"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:0.5"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:0.5"
+                                             Storyboard.TargetName="SaleTfDot3rd"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:0.5"
+                                             Storyboard.TargetName="SaleTfDot3rd"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+
+                            <!--Key4-->
+                            <DoubleAnimation BeginTime="0:0:1"
+                                             Storyboard.TargetName="SaleTfDot3rd"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:1"
+                                             Storyboard.TargetName="SaleTfDot3rd"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:1"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:1"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+
+                            <!--Key5-->
+                            <DoubleAnimation BeginTime="0:0:1.5"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:1.5"
+                                             Storyboard.TargetName="SaleTfDot2nd"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="1"
+                                             To="0.5"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:1.5"
+                                             Storyboard.TargetName="SaleTfDot1st"
+                                             Storyboard.TargetProperty="ScaleX"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+                            <DoubleAnimation BeginTime="0:0:1.5"
+                                             Storyboard.TargetName="SaleTfDot1st"
+                                             Storyboard.TargetProperty="ScaleY"
+                                             From="0.5"
+                                             To="1"
+                                             Duration="0:0:0.5" />
+                        </Storyboard>
                     </ControlTemplate.Resources>
 
                     <Border x:Name="MainBorderContainer"
@@ -264,6 +372,7 @@
                                     <!--Content field-->
                                     <Grid x:Name="MainContentGrid"
                                           Grid.Row="1"
+                                          Visibility="Visible"
                                           VerticalAlignment="Stretch">
 
                                         <Frame x:Name="DWPageHostFrame"
@@ -272,6 +381,63 @@
                                                Source="{Binding PageSource}"
                                                Content="{TemplateBinding Content}"
                                                Visibility="Visible" />
+                                    </Grid>
+
+                                    <!--Waiting grid field-->
+                                    <Grid x:Name="WaitingPanelGrid"
+                                          Visibility="Collapsed"
+                                          Background="White"
+                                          Grid.Row="1">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="0.8*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="0.8*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <UniformGrid Grid.Column="1"
+                                                     Grid.Row="1"
+                                                     Rows="1"
+                                                     Columns="3">
+
+
+                                            <!--Content-->
+                                            <Viewbox x:Name="Dot1st"
+                                                     RenderTransformOrigin="0.5,0.5"
+                                                     Stretch="Uniform">
+                                                <Viewbox.RenderTransform>
+                                                    <ScaleTransform x:Name="SaleTfDot1st"
+                                                                    ScaleX="1"
+                                                                    ScaleY="1" />
+                                                </Viewbox.RenderTransform>
+                                                <Image Source="{Binding WaitingIconSource}"></Image>
+                                            </Viewbox>
+                                            <Viewbox x:Name="Dot2nd"
+                                                     RenderTransformOrigin="0.5,0.5"
+                                                     Stretch="Uniform">
+                                                <Viewbox.RenderTransform>
+                                                    <ScaleTransform x:Name="SaleTfDot2nd"
+                                                                    ScaleX="0.5"
+                                                                    ScaleY="0.5" />
+                                                </Viewbox.RenderTransform>
+                                                <Image Source="{Binding WaitingIconSource}"></Image>
+                                            </Viewbox>
+                                            <Viewbox x:Name="Dot3rd"
+                                                     RenderTransformOrigin="0.5,0.5"
+                                                     Stretch="Uniform">
+                                                <Viewbox.RenderTransform>
+                                                    <ScaleTransform x:Name="SaleTfDot3rd"
+                                                                    ScaleX="0.5"
+                                                                    ScaleY="0.5" />
+                                                </Viewbox.RenderTransform>
+                                                <Image Source="{Binding WaitingIconSource}"></Image>
+                                            </Viewbox>
+                                        </UniformGrid>
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -376,6 +542,7 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
+                        <!--Page type trigger-->
                         <Trigger Property="ContentType"
                                  Value="PageType">
                             <Setter TargetName="NavigationPanel"
@@ -383,6 +550,7 @@
                                     Value="Visible" />
                         </Trigger>
 
+                        <!--Normal type trigger-->
                         <Trigger Property="ContentType"
                                  Value="NormalContentType">
                             <Setter TargetName="NavigationPanel"
@@ -390,6 +558,7 @@
                                     Value="Collapsed" />
                         </Trigger>
 
+                        <!--Menu tab disabled trigger-->
                         <Trigger Property="IsEnableMenuTab"
                                  Value="False">
                             <Setter TargetName="OffsetMenuGrid"
@@ -397,12 +566,38 @@
                                     Value="Collapsed" />
                         </Trigger>
 
+                        <!--Menu tab enabled trigger-->
                         <Trigger Property="IsEnableMenuTab"
                                  Value="True">
                             <Setter TargetName="OffsetMenuGrid"
                                     Property="Visibility"
                                     Value="Visible" />
                         </Trigger>
+
+                       
+                        <!--Page loading trigger-->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="ContentType"
+                                           Value="PageType" />
+                                <Condition Property="IsPageLoading"
+                                           Value="True" />
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="MainContentGrid"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter TargetName="WaitingPanelGrid"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource Blinking}"
+                                                 x:Name="BlinkingStoryBoard" />
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="BlinkingStoryBoard" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
                     </ControlTemplate.Triggers>
 
                 </ControlTemplate>

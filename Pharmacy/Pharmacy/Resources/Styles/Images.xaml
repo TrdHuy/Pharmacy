@@ -4,6 +4,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <BitmapImage x:Key="AppIcon" UriSource="/Pharmacy;component/Resources/Icons/app_icon.png"></BitmapImage>
+    <BitmapImage x:Key="AppIconNoCrop" UriSource="/Pharmacy;component/Resources/Icons/app icon x2.png"></BitmapImage>
     <BitmapImage x:Key="HomeIcon" UriSource="/Pharmacy;component/Resources/Icons/home.png"></BitmapImage>
     <BitmapImage x:Key="AccountIcon" UriSource="/Pharmacy;component/Resources/Icons/user.png"></BitmapImage>
     <BitmapImage x:Key="SettingIcon" UriSource="/Pharmacy;component/Resources/Icons/setting.png"></BitmapImage>
