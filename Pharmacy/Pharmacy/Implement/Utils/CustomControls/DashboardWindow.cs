@@ -617,28 +617,6 @@ namespace Pharmacy.Implement.Utils.CustomControls
             base.Close();
         }
 
-        public new void Close()
-        {
-            if(CloseWindowCommand != null)
-            {
-                CloseWindowCommand?.Execute(this);
-            }
-            else
-            {
-                base.Close();
-            }
-        }
-
-        public new void Show()
-        {
-            base.Show();
-            OnWindowShown(new WindowShownEventArgs(WindowShownEvent));
-        }
-
-        public void ForceClose()
-        {
-            base.Close();
-        }
     }
 
     public delegate void PageSourceEventHandler(object sender, PageSourceEventArgs e);
