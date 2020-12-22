@@ -378,7 +378,7 @@
                                         <Frame x:Name="DWPageHostFrame"
                                                Background="White"
                                                NavigationUIVisibility="Hidden"
-                                               Source="{Binding PageSource}"
+                                               Source="{Binding PageSource,Mode=TwoWay}"
                                                Content="{TemplateBinding Content}"
                                                Visibility="Visible" />
                                     </Grid>
