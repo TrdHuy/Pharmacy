@@ -105,26 +105,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
-        public ImageSource UserAvatarSource
-        {
-            get
-            {
-                if (_userAvatarSource == null)
-                {
-                    _userAvatarSource =
-                        FileIOUtil.GetBitmapFromUserName(_userInfo.Username).
-                        ToImageSource();
-                }
-                return _userAvatarSource;
-            }
-            set
-            {
-                _userAvatarSource = value;
-                InvalidateOwn();
-            }
-        }
-
-
+    
         protected override void InitPropertiesRegistry()
         {
         }

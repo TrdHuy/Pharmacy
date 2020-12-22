@@ -233,7 +233,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 if (_userAvatarSource == null)
                 {
                     _userAvatarSource =
-                        FileIOUtil.GetBitmapFromUserName(CurrentUser.Username).
+                        FileIOUtil.GetBitmapFromName(CurrentUser.Username,FileIOUtil.USER_IMAGE_FOLDER_NAME).
                         ToImageSource();
                 }
                 return _userAvatarSource;
