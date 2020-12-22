@@ -25,10 +25,18 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             await Task.Delay(delayTime);
 
             _provider.ExecuteQueryAsync(cmdKey, paramaters);
+
+            // Issue: provider must un-subciribe observer coz it will callback next time
             if (observer.Updated)
             {
                 _provider.Unsubcribe(observer);
             }
+
+        }
+
+        public void RollBack()
+        {
+            _provider?.RollBack();
         }
 
         public void RollBack()

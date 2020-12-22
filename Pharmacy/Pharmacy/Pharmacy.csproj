@@ -139,6 +139,7 @@
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
+    <Compile Include="Implement\Utils\CustomControls\PageHeaderControl.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
@@ -191,6 +192,9 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierManagementPage.xaml.cs">
       <DependentUpon>SupplierManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageHeader.xaml.cs">
+      <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
@@ -289,7 +293,10 @@
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Report\ReportPage.xaml">
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\WarehouseManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\InvoiceManagement\InvoiceManagementPage.xaml">
       <SubType>Designer</SubType>
@@ -301,6 +308,12 @@
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\MedicineManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Selling\SellingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Selling\SellingPage.xaml">
@@ -324,6 +337,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\MSWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

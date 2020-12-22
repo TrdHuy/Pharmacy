@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using System.Threading;
+using System.Diagnostics;
 
 namespace Pharmacy.Implement.Utils.CustomControls
 {
@@ -167,6 +170,27 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         #endregion
 
+        #region WaitingIconSource
+        public static readonly DependencyProperty WaitingIconSourceProperty =
+        DependencyProperty.Register(
+                "WaitingIconSource",
+                typeof(ImageSource),
+                typeof(DashboardWindow),
+                new FrameworkPropertyMetadata(
+                        default(ImageSource),
+                        FrameworkPropertyMetadataOptions.AffectsMeasure |
+                        FrameworkPropertyMetadataOptions.AffectsRender,
+                        null,
+                        null),
+                null);
+
+        public ImageSource WaitingIconSource
+        {
+            get { return (ImageSource)GetValue(WaitingIconSourceProperty); }
+            set { SetValue(WaitingIconSourceProperty, value); }
+        }
+        #endregion
+
         #region WindowShownEvent
         public static readonly RoutedEvent WindowShownEvent =
             EventManager.RegisterRoutedEvent("WindowShown", RoutingStrategy.Direct,
@@ -213,16 +237,70 @@ namespace Pharmacy.Implement.Utils.CustomControls
         }
         #endregion
 
+        #region IsPageLoading
+        public static readonly DependencyProperty IsPageLoadingProperty =
+           DependencyProperty.Register("IsPageLoading", typeof(bool), typeof(DashboardWindow),
+                new FrameworkPropertyMetadata(
+                    defaultIsPageLoading,
+                    FrameworkPropertyMetadataOptions.AffectsRender,
+                    null));
+
+        /// <summary>
+        /// Return true when page is loading
+        /// </summary>
+        public bool IsPageLoading
+        {
+            get { return (bool)GetValue(IsPageLoadingProperty); }
+            set { SetValue(IsPageLoadingProperty, value); }
+        }
+        #endregion
+
+        #region IsPageLoaded
+        public static readonly DependencyProperty IsPageLoadedProperty =
+           DependencyProperty.Register("IsPageLoaded", typeof(bool), typeof(DashboardWindow),
+                new FrameworkPropertyMetadata(
+                    defaultIsPageLoaded,
+                    FrameworkPropertyMetadataOptions.AffectsRender,
+                    null));
+
+        /// <summary>
+        /// Return true when page is loading
+        /// </summary>
+        public bool IsPageLoaded
+        {
+            get { return (bool)GetValue(IsPageLoadedProperty); }
+            set { SetValue(IsPageLoadedProperty, value); }
+        }
+        #endregion
+
+        #region PageLoadingDelayTime
+
+        public static readonly DependencyProperty PageLoadingDelayTimeProperty =
+           DependencyProperty.Register("PageLoadingDelayTime", typeof(long), typeof(DashboardWindow),
+             new PropertyMetadata(defaultPageLoadingDelayTime));
+
+        /// <summary>
+        /// Delay a period of specifictime when navigate to a new source
+        /// </summary>
+        public long PageLoadingDelayTime
+        {
+            get { return (long)GetValue(PageLoadingDelayTimeProperty); }
+            set { SetValue(PageLoadingDelayTimeProperty, value); }
+        }
+        #endregion
         #endregion
 
         private static Brush defaultTitleBarBackground = new SolidColorBrush(Color.FromArgb(40, 26, 195, 237));
         private static double defaultTitleBarHeight = 42d;
         private static bool defaultEnableMenuTab = default(bool);
+        private static bool defaultIsPageLoading = default(bool);
+        private static bool defaultIsPageLoaded = default(bool);
         private static double defaultMenuTabWidth = 0.0d;
         private static double defaultMenuTabExpandedWidth = 0.0d;
         private static object defaultMenuTabContent = default(object);
         private static Uri defaultPageSource = default(Uri);
         private static DashboardWindowContentType defaultContentType = DashboardWindowContentType.PageType;
+        private static long defaultPageLoadingDelayTime = 0;
 
         private Frame _dWPageHostFrameElement;
         private Button _closeButtonElement;
@@ -231,14 +309,79 @@ namespace Pharmacy.Implement.Utils.CustomControls
         private Button _previousNavigationButtonElement;
         private Button _nextNavigationButtonElement;
 
+        #region Page host field
         private Frame DWPageHostFrameElement
         {
             get { return _dWPageHostFrameElement; }
             set
             {
+                if (_dWPageHostFrameElement != null)
+                {
+                    _dWPageHostFrameElement.Navigating -=
+                        new NavigatingCancelEventHandler(OnPageNavigating);
+                    _dWPageHostFrameElement.Navigated -=
+                        new NavigatedEventHandler(OnPageNavigated);
+                }
                 _dWPageHostFrameElement = value;
+                if (_dWPageHostFrameElement != null)
+                {
+                    _dWPageHostFrameElement.Navigating +=
+                        new NavigatingCancelEventHandler(OnPageNavigating);
+                    _dWPageHostFrameElement.Navigated +=
+                        new NavigatedEventHandler(OnPageNavigated);
+                }
             }
         }
+        private Stopwatch _pageLoadingWatacher;
+        private SemaphoreSlim _pageLoadLocker = new SemaphoreSlim(1, 1);
+
+        private async void OnPageNavigated(object sender, NavigationEventArgs e)
+        {
+            // Lock
+            await _pageLoadLocker.WaitAsync();
+            
+            //Handle
+            try
+            {
+                if (_pageLoadingWatacher != null)
+                {
+                    long restLoadingTime = PageLoadingDelayTime - _pageLoadingWatacher.ElapsedMilliseconds;
+
+                    if (restLoadingTime >= 0)
+                    {
+                        await Task.Delay(Convert.ToInt32(restLoadingTime));
+                    }
+                }
+                IsPageLoading = false;
+                IsPageLoaded = true;
+            }
+            finally
+            {
+                // Release
+                _pageLoadLocker.Release();
+            }
+            
+        }
+
+        private async void OnPageNavigating(object sender, NavigatingCancelEventArgs e)
+        {
+            // Lock 
+            await _pageLoadLocker.WaitAsync();
+
+            // Handle 
+            try
+            {
+                IsPageLoading = true;
+                IsPageLoaded = false;
+            }
+            finally
+            {
+                // Release
+                _pageLoadLocker.Release();
+            }
+
+        }
+        #endregion
 
         #region Window button field
         private Button CloseButtonElement
@@ -435,6 +578,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         public void Navigate(Uri destinationPage)
         {
+            _pageLoadingWatacher = Stopwatch.StartNew();
             if (DWPageHostFrameElement != null)
             {
                 DWPageHostFrameElement.NavigationService.Navigate(destinationPage);
@@ -443,10 +587,34 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         public void Navigate(object content)
         {
+            _pageLoadingWatacher = Stopwatch.StartNew();
             if (DWPageHostFrameElement != null)
             {
                 DWPageHostFrameElement.NavigationService.Navigate(content);
             }
+        }
+
+        public new void Close()
+        {
+            if (CloseWindowCommand != null)
+            {
+                CloseWindowCommand?.Execute(this);
+            }
+            else
+            {
+                base.Close();
+            }
+        }
+
+        public new void Show()
+        {
+            base.Show();
+            OnWindowShown(new WindowShownEventArgs(WindowShownEvent));
+        }
+
+        public void ForceClose()
+        {
+            base.Close();
         }
 
         public new void Close()

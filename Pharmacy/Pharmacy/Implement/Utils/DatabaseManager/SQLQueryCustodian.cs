@@ -9,9 +9,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 {
     public class SQLQueryCustodian : Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>
     {
-        private Action<SQLQueryResult> _callback;
+        private ResultHandler _callback;
 
-        public SQLQueryCustodian(Action<SQLQueryResult> callback)
+        public SQLQueryCustodian(ResultHandler callback)
         {
             _callback = callback;
         }
@@ -21,7 +21,10 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         public virtual void Update(SQLQueryResult queryResult)
         {
             _callback?.Invoke(queryResult);
+            Updated = true;
         }
 
     }
+
+    public delegate void ResultHandler(SQLQueryResult queryResult);
 }
