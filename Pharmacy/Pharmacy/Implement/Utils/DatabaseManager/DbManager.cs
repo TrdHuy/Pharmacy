@@ -24,7 +24,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             // Issue: when first boost app, query function make the app delay for a while
             await Task.Delay(delayTime);
 
-            _provider.ExecuteQueryAsync(cmdKey, paramaters);
+            _provider.ExecuteQuery(cmdKey, paramaters);
 
             // Issue: provider must un-subciribe observer coz it will callback next time
             if (observer.Updated)
@@ -32,6 +32,18 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 _provider.Unsubcribe(observer);
             }
 
+        }
+
+        public void ExecuteQuery(string cmdKey, SQLQueryCustodian observer, params object[] paramaters)
+        {
+            _provider.Subcribe(observer);
+
+            _provider.ExecuteQuery(cmdKey, paramaters);
+
+            if (observer.Updated)
+            {
+                _provider.Unsubcribe(observer);
+            }
         }
 
         public void RollBack()

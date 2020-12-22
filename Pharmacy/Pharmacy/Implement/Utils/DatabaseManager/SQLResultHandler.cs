@@ -52,7 +52,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
         }
 
-        public void ExecuteQueryAsync(string SQLCmdKey, params object[] paramaters)
+        public void ExecuteQuery(string SQLCmdKey, params object[] paramaters)
         {
 
             _result = null;
@@ -64,10 +64,48 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.UPDATE_USER_INFO_CMD_KEY:
                     _result = UpdateUserInfo(paramaters);
                     break;
+                case SQLCommandKey.GET_USER_TABLE_DATA_CMD_KEY:
+                    _result = GetAllUserData(paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_NON_ADMIN_USER_DATA_CMD_KEY:
+                    _result = GetAllNonAdminUserData(paramaters);
+                    break;
                 default:
                     break;
             }
             NotifyChange(_result);
+        }
+
+        private SQLQueryResult GetAllNonAdminUserData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, "");
+            try
+            {
+                var x = _appDBContext.tblUsers.
+                    Where<tblUser>(user => !user.IsAdmin).
+                    ToList();
+                result = new SQLQueryResult(x, "");
+            }
+            catch (Exception e)
+            {
+                //Print debug and user log here
+            }
+            return result;
+        }
+
+        private SQLQueryResult GetAllUserData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, "");
+            try
+            {
+                var x = _appDBContext.tblUsers.ToList();
+                result = new SQLQueryResult(x, "");
+            }
+            catch (Exception e)
+            {
+                //Print debug and user log here
+            }
+            return result;
         }
 
         private SQLQueryResult UpdateUserInfo(object[] paramaters)
@@ -121,8 +159,20 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
     internal class SQLCommandKey
     {
+        // Key for checking a user avail or not
         public const string CHECK_USER_AVAIL_CMD_KEY = "check_user_avail";
+        
+        //Key for updating a user info in database
         public const string UPDATE_USER_INFO_CMD_KEY = "update_user_info";
+
+        //Key for getting info of all user in database
+        public const string GET_USER_TABLE_DATA_CMD_KEY = "get_user_table_data";
+
+        //Key for getting info of all employee in database
+        public const string GET_ALL_EMPLOYEE_DATA_CMD_KEY = "get_all_employee_data";
+
+        //Key for getting info of all non admin user in database
+        public const string GET_ALL_NON_ADMIN_USER_DATA_CMD_KEY = "get_all_non_admin_data";
 
     }
 
