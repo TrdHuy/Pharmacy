@@ -333,26 +333,53 @@ namespace Pharmacy.Implement.Utils.CustomControls
             }
         }
         private Stopwatch _pageLoadingWatacher;
+        private SemaphoreSlim _pageLoadLocker = new SemaphoreSlim(1, 1);
 
         private async void OnPageNavigated(object sender, NavigationEventArgs e)
         {
-            if (_pageLoadingWatacher != null)
+            // Lock
+            await _pageLoadLocker.WaitAsync();
+            
+            //Handle
+            try
             {
-                long restLoadingTime = PageLoadingDelayTime - _pageLoadingWatacher.ElapsedMilliseconds;
-
-                if (restLoadingTime >= 0)
+                if (_pageLoadingWatacher != null)
                 {
-                    await Task.Delay(Convert.ToInt32(restLoadingTime));
+                    long restLoadingTime = PageLoadingDelayTime - _pageLoadingWatacher.ElapsedMilliseconds;
+
+                    if (restLoadingTime >= 0)
+                    {
+                        await Task.Delay(Convert.ToInt32(restLoadingTime));
+                    }
                 }
+                IsPageLoading = false;
+                IsPageLoaded = true;
             }
-            IsPageLoading = false;
-            IsPageLoaded = true;
+            finally
+            {
+                // Release
+                _pageLoadLocker.Release();
+            }
+            
         }
 
         private async void OnPageNavigating(object sender, NavigatingCancelEventArgs e)
         {
-            IsPageLoading = true;
-            IsPageLoaded = false;
+            // Lock 
+            await _pageLoadLocker.WaitAsync();
+
+            // Handle 
+            try
+            {
+                IsPageLoading = true;
+                IsPageLoaded = false;
+            }
+            finally
+            {
+                // Release
+                _pageLoadLocker.Release();
+            }
+
         }
         #endregion
 
