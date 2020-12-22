@@ -8,6 +8,7 @@
       xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       mc:Ignorable="d"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       ShowsNavigationUI="True"
@@ -272,7 +273,7 @@
                                             IconStretch="UniformToFill"
                                             Width="{StaticResource DefaultHomePage_UserImageWidth}"
                                             Height="{StaticResource DefaultHomePage_UserImageHeight}"
-                                            IconSource="{Binding UserAvatarSource}"
+                                            IconSource="{Binding CurrentUser.Username, Converter={conv:StringToImageSourceConverter}, ConverterParameter=UserImages}"
                                             HorizontalContentAlignment="Center"
                                             VerticalContentAlignment="Center"
                                             Command="{Binding PersonalInfoCommand}" />

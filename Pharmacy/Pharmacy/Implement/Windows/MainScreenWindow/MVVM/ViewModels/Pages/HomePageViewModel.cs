@@ -23,29 +23,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
         private string _currentTime;
-        private ImageSource _userAvatarSource = null;
 
         #region public properties
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
-        public ImageSource UserAvatarSource
-        {
-            get
-            {
-                if (_userAvatarSource == null)
-                {
-                    _userAvatarSource = 
-                        FileIOUtil.GetBitmapFromUserName(App.Current.CurrentUser.Username).
-                        ToImageSource();
-                }
-                return _userAvatarSource;
-            }
-            set
-            {
-                _userAvatarSource = value;
-                InvalidateOwn();
-            }
-        }
         public RunInputCommand SellingCommand { get; set; }
         public RunInputCommand UserManagementCommand { get; set; }
         public RunInputCommand CustomerManagementCommand { get; set; }

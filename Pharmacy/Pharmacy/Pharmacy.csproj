@@ -138,6 +138,7 @@
     <Compile Include="Implement\Utils\Attributes\StringValueAttribute.cs" />
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\StringToImageSourceConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
     <Compile Include="Implement\Utils\CustomControls\PageHeaderControl.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
