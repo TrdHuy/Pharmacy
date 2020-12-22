@@ -12,32 +12,42 @@ namespace Pharmacy.Implement.Utils
 {
     public class FileIOUtil : BaseFileIOUtil
     {
+        public const string USER_IMAGE_FOLDER_NAME = "UserImages";
+        public const string MEDICINE_IMAGE_FOLDER_NAME = "MedicineImages";
         private const long USER_IMAGE_QUALITY = 1000;
 
-        public static Bitmap GetBitmapFromUserName(string userName)
+        public static Bitmap GetBitmapFromName(string imageName, string folderName)
         {
-            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + "UserImages";
+            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + folderName;
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
-            string fileName = userName + ".jpg";
+            string fileName = imageName + ".jpg";
             string filePath = directory + @"\" + fileName;
 
             if (File.Exists(filePath))
             {
-                Bitmap userBit = (Bitmap)Image.FromFile(filePath);
-                return userBit;
+                Bitmap bit = (Bitmap)Image.FromFile(filePath);
+                return bit;
             }
             else
             {
-                return Pharmacy.Properties.Resources.default_user_image;
+                switch (folderName)
+                {
+                    case USER_IMAGE_FOLDER_NAME:
+                        return Pharmacy.Properties.Resources.default_user_image;
+                    case MEDICINE_IMAGE_FOLDER_NAME:
+                        return Pharmacy.Properties.Resources.default_medicine_image;
+                    default: return null;
+
+                }
             }
-        } 
+        }
 
         public static void SaveUserImageFile(string userName, Bitmap userImage)
         {
-            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + "UserImages";
+            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + USER_IMAGE_FOLDER_NAME;
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
