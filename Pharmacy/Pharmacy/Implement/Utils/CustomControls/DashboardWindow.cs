@@ -339,12 +339,13 @@ namespace Pharmacy.Implement.Utils.CustomControls
         {
             // Lock
             await _pageLoadLocker.WaitAsync();
-            
+
             //Handle
             try
             {
                 if (_pageLoadingWatacher != null)
                 {
+                    _pageLoadingWatacher.Stop();
                     long restLoadingTime = PageLoadingDelayTime - _pageLoadingWatacher.ElapsedMilliseconds;
 
                     if (restLoadingTime >= 0)
@@ -352,6 +353,8 @@ namespace Pharmacy.Implement.Utils.CustomControls
                         await Task.Delay(Convert.ToInt32(restLoadingTime));
                     }
                 }
+
+                _pageLoadingWatacher = null;
                 IsPageLoading = false;
                 IsPageLoaded = true;
             }
@@ -360,11 +363,12 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 // Release
                 _pageLoadLocker.Release();
             }
-            
+
         }
 
         private async void OnPageNavigating(object sender, NavigatingCancelEventArgs e)
         {
+            _pageLoadingWatacher = Stopwatch.StartNew();
             // Lock 
             await _pageLoadLocker.WaitAsync();
 
@@ -554,7 +558,6 @@ namespace Pharmacy.Implement.Utils.CustomControls
         protected virtual void OnPageSourceChanged(PageSourceEventArgs e)
         {
             RaiseEvent(e);
-            Navigate(e.Value);
         }
 
         protected virtual void OnWindowShown(WindowShownEventArgs e)
@@ -569,6 +572,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 DWPageHostFrameElement = GetTemplateChild("DWPageHostFrame") as Frame;
                 PreviousNavigationButtonElement = GetTemplateChild("PreviousNavigateButton") as Button;
                 NextNavigationButtonElement = GetTemplateChild("NextNavigateButton") as Button;
+
             }
             MaximizeButtonElement = GetTemplateChild("MaximizeButton") as Button;
             MinimizeButtonElement = GetTemplateChild("MinimizeButton") as Button;
@@ -578,7 +582,6 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         public void Navigate(Uri destinationPage)
         {
-            _pageLoadingWatacher = Stopwatch.StartNew();
             if (DWPageHostFrameElement != null)
             {
                 DWPageHostFrameElement.NavigationService.Navigate(destinationPage);
@@ -587,7 +590,6 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
         public void Navigate(object content)
         {
-            _pageLoadingWatacher = Stopwatch.StartNew();
             if (DWPageHostFrameElement != null)
             {
                 DWPageHostFrameElement.NavigationService.Navigate(content);
