@@ -38,5 +38,12 @@
     <Color x:Key="NormalTheme_Homepage_Bg">#FFFFFFFF</Color>
     <SolidColorBrush x:Key="NormalTheme_Homepage_BgBrush" Color="{StaticResource NormalTheme_Homepage_Bg}" />
 
+    <Color x:Key="NormalTheme_DefaultDataGrid_ColumnHeaderBackground">#FF7F7F7F</Color>
+    <SolidColorBrush x:Key="NormalTheme_DefaultDataGrid_ColumnHeaderBackgroundBrush"
+                     Color="{StaticResource NormalTheme_DefaultDataGrid_ColumnHeaderBackground}" />
+
+    <Color x:Key="NormalTheme_DataGridCellBgColor">#FFE7E7E7</Color>
+    <SolidColorBrush x:Key="NormalTheme_DataGridCellBgBrush"
+                     Color="{StaticResource NormalTheme_DataGridCellBgColor}" />
 
 </ResourceDictionary>
