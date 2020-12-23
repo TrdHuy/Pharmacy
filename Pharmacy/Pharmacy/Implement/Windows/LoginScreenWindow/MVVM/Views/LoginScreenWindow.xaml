@@ -52,8 +52,8 @@
                 <LinearGradientBrush StartPoint="0.5,0"
                                      EndPoint="0.5,1">
                     <GradientStop Offset="1"
-                                  Color="#FF2A4221" />
-                    <GradientStop Color="#FF9FF082" />
+                                  Color="#FF074168" />
+                    <GradientStop Color="#FFB3E5FC" />
                 </LinearGradientBrush>
             </Grid.Background>
 
@@ -205,7 +205,7 @@
                                         Background="Transparent"
                                         BorderBrush="Black"
                                         Command="{Binding SystemLoginButton}"
-                                        Foreground="#FF7CB4CD"
+                                        Foreground="{StaticResource ForegroundLightBrush}"
                                         RenderTransformOrigin="0.5,0.5"
                                         TextContent="Đăng nhập"
                                         Grid.Row="1">

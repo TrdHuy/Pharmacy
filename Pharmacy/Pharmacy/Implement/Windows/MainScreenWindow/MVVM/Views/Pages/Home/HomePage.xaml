@@ -229,7 +229,7 @@
         <Grid Grid.Row="0"
               Height="{StaticResource DefaultHomePage_UserInfoBarHeight}"
               Grid.ColumnSpan="2"
-              Background="{StaticResource NormalTheme_LightGreenBrush}">
+              Background="{StaticResource NormalTheme_1st_Background_Brush}">
 
             <!--User Content area-->
             <Grid Grid.Row="0">
@@ -492,7 +492,7 @@
         <!--Footer Area-->
         <Grid Height="{StaticResource DefaultHomePage_UserInfoBarHeight}"
               Grid.Row="2"
-              Background="{StaticResource NormalTheme_LightGreenBrush}">
+              Background="{StaticResource NormalTheme_1st_Background_Brush}">
         </Grid>
     </Grid>
 
