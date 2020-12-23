@@ -22,16 +22,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 
         public Lazy<Uri> SellingPage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml", UriKind.Relative));
-        
+
         public Lazy<Uri> UserManagementPage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserManagementPage.xaml", UriKind.Relative));
-        
+
         public Lazy<Uri> CustomerManagementPage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerManagementPage.xaml", UriKind.Relative));
-        
+
         public Lazy<Uri> SupplierManagementPage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierManagementPage.xaml", UriKind.Relative));
-        
+
         public Lazy<Uri> InvoiceManagementPage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/InvoiceManagement/InvoiceManagementPage.xaml", UriKind.Relative));
 
@@ -46,6 +46,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 
         public Lazy<Uri> ReportPage = new Lazy<Uri>(() =>
             new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Report/ReportPage.xaml", UriKind.Relative));
+
+        public Lazy<Uri> UserModificationPage = new Lazy<Uri>(() =>
+          new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserModificationPage.xaml", UriKind.Relative));
+
+        public Lazy<Uri> UserInstantiationPage = new Lazy<Uri>(() =>
+          new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserInstantiationPage.xaml", UriKind.Relative));
 
         public Uri CurrentPageSource;
 
@@ -91,6 +97,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.WarehouseManagementPage:
                     CurrentPageSource = WarehouseManagementPage.Value;
                     break;
+                case PageSource.UserInstantiationPage:
+                    CurrentPageSource = UserInstantiationPage.Value;
+                    break;
+                case PageSource.UserModificationPage:
+                    CurrentPageSource = UserModificationPage.Value;
+                    break;
                 default:
                     CurrentPageSource = HomePage.Value;
                     break;
@@ -124,7 +136,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         MedicineManagementPage = 7,
         OtherPaymentsManagementPage = 8,
         WarehouseManagementPage = 9,
-        ReportPage = 10
+        ReportPage = 10,
+
+        UserModificationPage = 31,
+        UserInstantiationPage = 32
     }
 
 }

@@ -3,6 +3,7 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_PIP_CAMERA_BUTTON:
                     action = new MSW_PIP_CameraButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_EDIT_BUTTON:
+                    action = new MSW_UMP_EditButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_DELETE_BUTTON:
+                    action = new MSW_UMP_DeleteUserButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_ADD_BUTTON:
+                    action = new MSW_UMP_AddNewUserButtonAction();
                     break;
                 default:
                     action = null;

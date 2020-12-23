@@ -64,8 +64,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.UPDATE_USER_INFO_CMD_KEY:
                     _result = UpdateUserInfo(paramaters);
                     break;
-                case SQLCommandKey.GET_USER_TABLE_DATA_CMD_KEY:
-                    _result = GetAllUserData(paramaters);
+                case SQLCommandKey.GET_ALL_ACTIVE_USER_DATA_CMD_KEY:
+                    _result = GetAllActiveUserData(paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_NON_ADMIN_USER_DATA_CMD_KEY:
                     _result = GetAllNonAdminUserData(paramaters);
@@ -93,12 +93,14 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             return result;
         }
 
-        private SQLQueryResult GetAllUserData(object[] paramaters)
+        private SQLQueryResult GetAllActiveUserData(object[] paramaters)
         {
             SQLQueryResult result = new SQLQueryResult(null, "");
             try
             {
-                var x = _appDBContext.tblUsers.ToList();
+                var x = _appDBContext.tblUsers.
+                    Where<tblUser>(user => user.IsActive).
+                    ToList();
                 result = new SQLQueryResult(x, "");
             }
             catch (Exception e)
@@ -145,7 +147,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)
                 && user.Password.Equals(pass)).ToList();
 
-                SQLQueryResult result = new SQLQueryResult(x,"");
+                SQLQueryResult result = new SQLQueryResult(x, "");
                 return result;
             }
             catch (Exception e)
@@ -161,12 +163,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
     {
         // Key for checking a user avail or not
         public const string CHECK_USER_AVAIL_CMD_KEY = "check_user_avail";
-        
+
         //Key for updating a user info in database
         public const string UPDATE_USER_INFO_CMD_KEY = "update_user_info";
 
         //Key for getting info of all user in database
-        public const string GET_USER_TABLE_DATA_CMD_KEY = "get_user_table_data";
+        public const string GET_ALL_ACTIVE_USER_DATA_CMD_KEY = "get_all_active_user_data";
 
         //Key for getting info of all employee in database
         public const string GET_ALL_EMPLOYEE_DATA_CMD_KEY = "get_all_employee_data";

@@ -7,13 +7,13 @@
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="UserManagementPage">
 
     <Page.DataContext>
-        <vm:UserManagementPageViewModel />
+        <vm:UserManagementPageViewModel x:Name="UserManagementPageVM" />
     </Page.DataContext>
 
     <Grid Background="White">
@@ -62,7 +62,8 @@
                   Grid.Row="0">
                 <DataGrid x:Name="UserDataGrid"
                           VerticalAlignment="Top"
-                          
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
                           AutoGenerateColumns="False"
                           ItemsSource="{Binding UserItemSource}"
                           Margin="20"
@@ -83,21 +84,21 @@
                                                   Color="Red" />
                             </Style.Resources>
                         </Style>-->
-                        
+
                         <Style TargetType="DataGridCell"
                                x:Key="DGTextCell">
                             <Setter Property="IsTabStop"
                                     Value="False" />
-                            
+
                             <Setter Property="TextBox.IsReadOnly"
                                     Value="True" />
-                            
+
                             <Setter Property="FontSize"
                                     Value="{StaticResource FontSizeLarge}" />
 
                             <Setter Property="Foreground"
                                     Value="Black" />
-                            
+
                             <Setter Property="Background"
                                     Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
 
@@ -106,23 +107,22 @@
 
                             <Setter Property="VerticalContentAlignment"
                                     Value="Stretch" />
-                            
+
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="DataGridCell">
                                         <Border BorderBrush="{TemplateBinding BorderBrush}"
                                                 BorderThickness="{TemplateBinding BorderThickness}">
                                             <Grid Background="{TemplateBinding Background}">
-                                                <ContentPresenter
-                                                    Focusable="False"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Content="{TemplateBinding Content}">
-                                                    
+                                                <ContentPresenter Focusable="False"
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  Content="{TemplateBinding Content}">
+
                                                 </ContentPresenter>
                                             </Grid>
                                         </Border>
-                                        
+
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -165,7 +165,7 @@
 
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
-                          
+
                             <Setter Property="Height"
                                     Value="{StaticResource DefaultDataGrid_RowHeight}" />
                         </Style>
@@ -188,7 +188,7 @@
                                         <Image Stretch="Uniform"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               Source="{Binding UserAvatarSource}" />
+                                               Source="{Binding Username,Converter={conv:StringToImageSourceConverter},ConverterParameter=UserImages}" />
                                     </Border>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -252,7 +252,7 @@
                                                             HorizontalAlignment="Center"
                                                             VerticalAlignment="Center"
                                                             BorderThickness="0"
-                                                            Command="{Binding EditButtonCommand}"
+                                                            Command="{Binding EditButtonCommand,ElementName=UserManagementPageVM}"
                                                             CommandParameter="{Binding ElementName=UserDataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_EditUserRow}" />
 
@@ -278,7 +278,6 @@
 
         </Grid>
 
-
         <!--Footer area-->
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
@@ -296,6 +295,7 @@
                             ProgressSpinnerBackground="Black"
                             FontSize="{StaticResource FontSizeXLarge}"
                             BorderThickness="0"
+                            Command="{Binding AddNewUserButtonCommand}"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
                             IsUsingDropShadowEffect="True"
