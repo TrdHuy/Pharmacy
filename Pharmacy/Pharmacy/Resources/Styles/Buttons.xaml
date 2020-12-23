@@ -41,7 +41,7 @@
                                     <Ellipse
                                         Width="{Binding ImageElipseBorderWidth, FallbackValue=45}"
                                         Height="{Binding ImageElipseBorderHeight, FallbackValue=45}"
-                                        Fill="{StaticResource NormalTheme_LightGreenBrush}"/>
+                                        Fill="{StaticResource NormalTheme_1st_Background_Brush}"/>
                                     <Image
                                         Width="{Binding ImageWidth, 
                                         UpdateSourceTrigger=PropertyChanged}"
@@ -70,7 +70,7 @@
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                             <GradientStop Offset="0" Color="{StaticResource Transparent}" />
-                            <GradientStop Offset="1" Color="{StaticResource NormalTheme_LightGreen}" />
+                            <GradientStop Offset="1" Color="{StaticResource NormalTheme_1st_Color}" />
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>

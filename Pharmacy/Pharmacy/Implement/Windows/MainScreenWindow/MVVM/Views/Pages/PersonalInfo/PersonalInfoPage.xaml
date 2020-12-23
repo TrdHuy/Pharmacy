@@ -51,7 +51,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Column="0"
                         Grid.Row="2"
-                        Background="{StaticResource NormalTheme_LightGreenBrush}">
+                        Background="{StaticResource NormalTheme_1st_Background_Brush}">
                     <Border.OpacityMask>
                         <ImageBrush Stretch="UniformToFill"
                                     ImageSource="{StaticResource AvatarBGImageOpacityMask}" />
@@ -534,7 +534,7 @@
                                 IsUsingDropShadowEffect="True"
                                 Command="{Binding SaveButtonCommand}"
                                 Foreground="White"
-                                Background="{StaticResource NormalTheme_LightGreenBrush}" />
+                                Background="{StaticResource NormalTheme_1st_Background_Brush}" />
 
             </Grid>
         </Grid>
