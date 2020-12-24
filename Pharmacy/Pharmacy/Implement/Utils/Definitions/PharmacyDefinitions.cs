@@ -11,6 +11,7 @@ namespace Pharmacy.Implement.Utils.Definitions
     {
         public static readonly int MINIMUM_PASSWORD_LENGHT = 8;
         public static readonly char[] SPECIAL_CHARS_OF_PASSWORD = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".ToCharArray();
+        public static readonly char[] SPECIAL_CHARS_OF_USERNAME = "!#$%&'()*+,-/:;<=>?@[]^`{|}~".ToCharArray();
 
         public static readonly int LOGIN_BUTTON_PERFORM_DELAY_TIME = 500;
         public static readonly int SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
@@ -59,5 +60,17 @@ namespace Pharmacy.Implement.Utils.Definitions
         NotMeetLenght = 3,
         [StringValue("Mật khẩu phải có ít nhất 1 trong các ký tự !#$%&'()*+,-./:;<=>?@[]^_`{|}~")]
         WrongFormat = 4
+    }
+
+    public enum UserNameAwareMessage
+    {
+        [StringValue("Không được bỏ trống trường này!")]
+        Empty = 1,
+        [StringValue("Tên người dùng không được chứa khoảng trắng!")]
+        WhiteSpaceAware = 2,
+        [StringValue("Tên người dùng đã tồn tại!")]
+        UserExisted = 3,
+        [StringValue("Tên người dùng không được chứa các ký tự !#$%&'()*+,-/:;<=>?@[]^_`{|}~")]
+        SpecialCharacter = 4
     }
 }

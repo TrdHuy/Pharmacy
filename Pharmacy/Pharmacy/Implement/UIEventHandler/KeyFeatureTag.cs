@@ -34,5 +34,8 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_UMP_DELETE_BUTTON = "msw_ump_delete_button";
         public const string KEY_TAG_MSW_UMP_ADD_BUTTON = "msw_ump_add_button";
 
+        //User modification page key string
+        public const string KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON = "msw_ump_umop_save_button";
+        public const string KEY_TAG_MSW_UMP_UMoP_CANCLE_BUTTON = "msw_ump_umop_cancle_button";
     }
 }

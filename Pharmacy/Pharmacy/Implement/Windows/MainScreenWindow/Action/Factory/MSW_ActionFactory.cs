@@ -4,6 +4,7 @@ using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_UMP_ADD_BUTTON:
                     action = new MSW_UMP_AddNewUserButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON:
+                    action = new MSW_UMP_UMoP_SaveButtonAction();
                     break;
                 default:
                     action = null;

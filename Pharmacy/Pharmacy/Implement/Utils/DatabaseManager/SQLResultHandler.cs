@@ -70,10 +70,31 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_NON_ADMIN_USER_DATA_CMD_KEY:
                     _result = GetAllNonAdminUserData(paramaters);
                     break;
+                case SQLCommandKey.CHECK_USER_NAME_EXISTED_CMD_KEY:
+                    _result = CheckUserNameExisted(paramaters);
+                    break;
                 default:
                     break;
             }
             NotifyChange(_result);
+        }
+
+        private SQLQueryResult CheckUserNameExisted(object[] paramaters)
+        {
+            string name = paramaters[0].ToString();
+            try
+            {
+                var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
+                    ToList();
+                bool IsExisted = x.Count > 0; 
+                SQLQueryResult result = new SQLQueryResult(IsExisted, "");
+                return result;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return null;
         }
 
         private SQLQueryResult GetAllNonAdminUserData(object[] paramaters)
@@ -113,12 +134,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         private SQLQueryResult UpdateUserInfo(object[] paramaters)
         {
             tblUser modifiedUser = paramaters[0] as tblUser;
-            tblUser curUser = paramaters[1] as tblUser;
+            string userNameBeforeChanged = paramaters[1] as string;
             SQLQueryResult result = new SQLQueryResult(null, "");
 
             try
             {
-                var x = _appDBContext.tblUsers.Where<tblUser>(user => user.Username.Equals(curUser.Username)).First();
+                var x = _appDBContext.tblUsers.Where<tblUser>(user => user.Username.Equals(userNameBeforeChanged)).First();
                 x.FullName = modifiedUser.FullName;
                 x.Address = modifiedUser.Address;
                 x.Phone = modifiedUser.Phone;
@@ -130,7 +151,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
 
 
@@ -176,6 +197,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         //Key for getting info of all non admin user in database
         public const string GET_ALL_NON_ADMIN_USER_DATA_CMD_KEY = "get_all_non_admin_data";
 
+        //Key for checking a user name is existed or not
+        public const string CHECK_USER_NAME_EXISTED_CMD_KEY = "check_username_existed";
     }
 
     public class SQLQueryResult

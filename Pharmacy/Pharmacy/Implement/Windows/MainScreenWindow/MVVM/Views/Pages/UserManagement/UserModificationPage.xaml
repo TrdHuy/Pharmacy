@@ -16,7 +16,7 @@
         <vm:UserModificationPageViewModel />
     </Page.DataContext>
     
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.25*" />
             <RowDefinition Height="3.1875*" />
@@ -141,21 +141,21 @@
                                  Stretch="Uniform"
                                  Grid.Row="0">
                             <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding FullNameText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                       Text="{Binding FullNameText, Mode=TwoWay}" />
                         </Viewbox>
 
                         <Viewbox HorizontalAlignment="Left"
                                  Stretch="Uniform"
                                  Grid.Row="1">
                             <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding CurrentUser.Username}" />
+                                       Text="{Binding UserNameText, Mode=TwoWay}" />
                         </Viewbox>
 
                         <Viewbox HorizontalAlignment="Left"
                                  Stretch="Uniform"
                                  Grid.Row="2">
                             <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding CurrentUser.Job}" />
+                                       Text="{Binding CurrentModifiedUser.Job, Mode=TwoWay}" />
                         </Viewbox>
                     </Grid>
 
@@ -313,9 +313,10 @@
                     <TextBox x:Name="UserNameTextBox"
                              Margin="0,2.5,0,2.5"
                              Grid.Column="2"
+                             IsReadOnly="True"
                              Grid.Row="0"
                              VerticalContentAlignment="Center"
-                             Text="{Binding UserNameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding UserNameText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                              TextWrapping="Wrap"
                              Style="{DynamicResource LoginTextBox}"
                              BorderThickness="2"
@@ -330,7 +331,17 @@
                                FontSize="{StaticResource FontSizeXXSmall}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
-                               Text="Không được bỏ trống trường này" />
+                               Text="{Binding UserNameAwareTextBlockContent}" />
+                    <TextBlock x:Name="UserNameVerifiedTextBlock"
+                               Visibility="{Binding UserNameVerifiedTextBlockVisibility}"
+                               IsHitTestVisible="False"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               Foreground="Green"
+                               FontSize="{StaticResource FontSizeXXSmall}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="Có thể dùng tên này!" />
 
                     <TextBox x:Name="FullNameTextBox"
                              Margin="0,2.5,0,2.5"
