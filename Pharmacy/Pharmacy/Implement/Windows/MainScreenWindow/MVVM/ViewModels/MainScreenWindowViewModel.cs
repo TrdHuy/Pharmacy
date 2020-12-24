@@ -29,7 +29,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
             set
             {
                 _pageHost.UpdatePageOVUri(value);
-                InvalidateOwn();
             }
         }
 

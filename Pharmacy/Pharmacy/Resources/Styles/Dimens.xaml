@@ -21,5 +21,8 @@
     <system:Double x:Key="DefaultHomePage_UserImageBorderWidth">175</system:Double>
     <system:Double x:Key="DefaultHomePage_UserImageBoderHeight">175</system:Double>
     <!-- = (DefaultWindowWidth - DefaultMenuTabWidth)-->
+    
+    <system:Double x:Key="DefaultDataGrid_ColumnHeaderHeight">95</system:Double>
+    <system:Double x:Key="DefaultDataGrid_RowHeight">75</system:Double>
 
 </ResourceDictionary>
