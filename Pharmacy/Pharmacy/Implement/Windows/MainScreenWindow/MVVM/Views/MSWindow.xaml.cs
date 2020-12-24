@@ -24,7 +24,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views
         public MSWindow()
         {
             InitializeComponent();
-            DataContext = new MainScreenWindowViewModel(this);
         }
     }
 }

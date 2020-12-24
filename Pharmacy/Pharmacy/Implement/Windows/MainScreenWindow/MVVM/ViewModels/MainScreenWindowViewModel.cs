@@ -2,6 +2,7 @@ using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Config;
 using Pharmacy.Implement.Utils.CustomControls;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -17,19 +18,29 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
     public class MainScreenWindowViewModel : AbstractViewModel
     {
         private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private DashboardWindow _mainScreenWindow;
-        private Uri _currenPageHost;
         private PageSourceWatcher _pageSourceWatcher;
 
         public Uri CurrentPageSource
         {
-            get { return _currenPageHost; }
+            get
+            {
+                return _pageHost.CurrentPageOV.PageUri;
+            }
             set
             {
-                _currenPageHost = value;
+                _pageHost.UpdatePageOVUri(value);
                 InvalidateOwn();
             }
         }
+
+        public long PageLoadingDelayTime
+        {
+            get
+            {
+                return _pageHost.CurrentPageOV.LoadingDelayTime;
+            }
+        }
+
         public DashboardWindowContentType ContentType
         {
             get
@@ -41,20 +52,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
 
         protected override void InitPropertiesRegistry()
         {
+            PropRegister("PageLoadingDelayTime");
+            PropRegister("CurrentPageSource");
         }
 
-        public MainScreenWindowViewModel(DashboardWindow mainScreenWindow)
+        public MainScreenWindowViewModel()
         {
-            _mainScreenWindow = mainScreenWindow;
             _pageSourceWatcher = new PageSourceWatcher(OnPageSourceChange);
-            CurrentPageSource = _pageHost.CurrentPageSource;
             _pageHost.Subcribe(_pageSourceWatcher);
-
         }
 
-        private void OnPageSourceChange(Uri newSource)
+        private void OnPageSourceChange(PageOV newSource)
         {
-            CurrentPageSource = newSource;
+            Invalidate("PageLoadingDelayTime");
+            Invalidate("CurrentPageSource");
 
             //Rollback the manipulation to the entity data
             DbManager.Instance.RollBack();
@@ -65,15 +76,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
 
     }
 
-    internal class PageSourceWatcher : Base.Observable.ObserverPattern.IObserver<Uri>
+    internal class PageSourceWatcher : Base.Observable.ObserverPattern.IObserver<PageOV>
     {
-        private Action<Uri> OnPageSourceChange;
+        private Action<PageOV> OnPageSourceChange;
 
-        internal PageSourceWatcher(Action<Uri> onSourceChange)
+        internal PageSourceWatcher(Action<PageOV> onSourceChange)
         {
             OnPageSourceChange = onSourceChange;
         }
-        public void Update(Uri value)
+        public void Update(PageOV value)
         {
             OnPageSourceChange?.Invoke(value);
         }

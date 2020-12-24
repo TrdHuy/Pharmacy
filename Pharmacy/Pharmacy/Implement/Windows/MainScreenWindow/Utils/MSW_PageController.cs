@@ -1,4 +1,6 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
+using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using System;
 using System.Collections;
@@ -10,48 +12,71 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 {
-    public class MSW_PageController : BaseObservable<Uri>
+    public class MSW_PageController : BaseObservable<PageOV>
     {
         private static MSW_PageController _instance;
 
-        public Lazy<Uri> HomePage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml", UriKind.Relative));
+        public Lazy<PageOV> HomePage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.HOME_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.HOME_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<Uri> PersonalInfoPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/PersonalInfo/PersonalInfoPage.xaml", UriKind.Relative));
+        public Lazy<PageOV> PersonalInfoPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.PERSONAL_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.PERSONAL_INFO_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<Uri> SellingPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml", UriKind.Relative));
-        
-        public Lazy<Uri> UserManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserManagementPage.xaml", UriKind.Relative));
-        
-        public Lazy<Uri> CustomerManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerManagementPage.xaml", UriKind.Relative));
-        
-        public Lazy<Uri> SupplierManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierManagementPage.xaml", UriKind.Relative));
-        
-        public Lazy<Uri> InvoiceManagementPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/InvoiceManagement/InvoiceManagementPage.xaml", UriKind.Relative));
+        public Lazy<PageOV> SellingPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.SELLING_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.SELLING_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<Uri> MedicineManagementPage = new Lazy<Uri>(() =>
-         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagement/MedicineManagementPage.xaml", UriKind.Relative));
+        public Lazy<PageOV> UserManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.USER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.USER_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<Uri> OtherPaymentsManagementPage = new Lazy<Uri>(() =>
-         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/OtherPaymentsManagementPage.xaml", UriKind.Relative));
+        public Lazy<PageOV> CustomerManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.CUSTOMER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.CUSTOMER_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<Uri> WarehouseManagementPage = new Lazy<Uri>(() =>
-         new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/WarehouseManagementPage.xaml", UriKind.Relative));
+        public Lazy<PageOV> SupplierManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.SUPPLIER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.SUPPLIER_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<Uri> ReportPage = new Lazy<Uri>(() =>
-            new Uri("/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Report/ReportPage.xaml", UriKind.Relative));
+        public Lazy<PageOV> InvoiceManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.INVOICE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.INVOICE_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Uri CurrentPageSource;
+        public Lazy<PageOV> MedicineManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.MEDICINE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
+
+        public Lazy<PageOV> OtherPaymentsManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.OTHER_PAYMENT_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
+
+        public Lazy<PageOV> WarehouseManagementPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
+
+        public Lazy<PageOV> ReportPage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.REPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.REPORT_PAGE_LOADING_DELAY_TIME));
+
+        public PageOV CurrentPageOV;
 
         private MSW_PageController()
         {
-            CurrentPageSource = HomePage.Value;
+            CurrentPageOV = new PageOV(HomePage.Value.PageUri,
+                HomePage.Value.LoadingDelayTime);
         }
 
         public void UpdateCurrentPageSource(PageSource pageNum)
@@ -59,43 +84,116 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
             switch (pageNum)
             {
                 case PageSource.HomePage:
-                    CurrentPageSource = HomePage.Value;
+                    CurrentPageOV.PageUri = HomePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
                     break;
                 case PageSource.PersonalInfoPage:
-                    CurrentPageSource = PersonalInfoPage.Value;
+                    CurrentPageOV.PageUri = PersonalInfoPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = PersonalInfoPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.CustomerManagementPage:
-                    CurrentPageSource = CustomerManagementPage.Value;
+                    CurrentPageOV.PageUri = CustomerManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = CustomerManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.SupplierManagementPage:
-                    CurrentPageSource = SupplierManagementPage.Value;
+                    CurrentPageOV.PageUri = SupplierManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = SupplierManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.UserManagementPage:
-                    CurrentPageSource = UserManagementPage.Value;
+                    CurrentPageOV.PageUri = UserManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = UserManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.InvoiceManagementPage:
-                    CurrentPageSource = InvoiceManagementPage.Value;
+                    CurrentPageOV.PageUri = InvoiceManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = InvoiceManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.ReportPage:
-                    CurrentPageSource = ReportPage.Value;
+                    CurrentPageOV.PageUri = ReportPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ReportPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.SellingPage:
-                    CurrentPageSource = SellingPage.Value;
+                    CurrentPageOV.PageUri = SellingPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = SellingPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.MedicineManagementPage:
-                    CurrentPageSource = MedicineManagementPage.Value;
+                    CurrentPageOV.PageUri = MedicineManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = MedicineManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.OtherPaymentsManagementPage:
-                    CurrentPageSource = OtherPaymentsManagementPage.Value;
+                    CurrentPageOV.PageUri = OtherPaymentsManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = OtherPaymentsManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.WarehouseManagementPage:
-                    CurrentPageSource = WarehouseManagementPage.Value;
+                    CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
                     break;
                 default:
-                    CurrentPageSource = HomePage.Value;
+                    CurrentPageOV.PageUri = HomePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
                     break;
             }
-            NotifyChange(CurrentPageSource);
+            NotifyChange(CurrentPageOV);
+        }
+
+        // This method use for navigating behavior, when source was update from view,
+        // it will call this method to update current uri, and loading delay time
+        public void UpdatePageOVUri(Uri uri)
+        {
+            var x = uri.OriginalString;
+
+            switch (x)
+            {
+                case PharmacyDefinitions.HOME_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = HomePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.PERSONAL_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = PersonalInfoPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = PersonalInfoPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.CUSTOMER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = CustomerManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = CustomerManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.SUPPLIER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = SupplierManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = SupplierManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.USER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = UserManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = UserManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.INVOICE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = InvoiceManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = InvoiceManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.REPORT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = ReportPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ReportPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.SELLING_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = SellingPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = SellingPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.MEDICINE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = MedicineManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = MedicineManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.OTHER_PAYMENT_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = OtherPaymentsManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = OtherPaymentsManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
+                    break;
+                default:
+                    CurrentPageOV.PageUri = HomePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
+                    break;
+            }
+
+            NotifyChange(CurrentPageOV);
         }
 
         public static MSW_PageController Instance
@@ -126,5 +224,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         WarehouseManagementPage = 9,
         ReportPage = 10
     }
+
 
 }

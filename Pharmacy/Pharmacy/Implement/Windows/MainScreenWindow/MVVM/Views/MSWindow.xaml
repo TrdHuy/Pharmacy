@@ -8,11 +8,11 @@
                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                        xmlns:pages="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages"
                        xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels"
                        mc:Ignorable="d"
                        WindowStyle="None"
                        MinHeight="{StaticResource DefaultWindowHeight}"
                        MinWidth="{StaticResource DefaultWindowWidth}"
-                       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels"
                        Width="{StaticResource DefaultWindowWidth}"
                        Height="{StaticResource DefaultWindowHeight}"
                        Style="{StaticResource DefaultDashboardStyle}"
@@ -23,8 +23,12 @@
                        MenuTabWidth="70"
                        MenuTabExpandedWidth="200"
                        WaitingIconSource="{StaticResource AppIconNoCrop}"
-                       PageLoadingDelayTime="2000">
+                       PageLoadingDelayTime="{Binding PageLoadingDelayTime}">
 
+    <cctrl:DashboardWindow.DataContext>
+        <vm:MainScreenWindowViewModel />
+    </cctrl:DashboardWindow.DataContext>
+    
     <cctrl:DashboardWindow.MenuTabContent>
         <uc:MainMenuControl />
     </cctrl:DashboardWindow.MenuTabContent>
