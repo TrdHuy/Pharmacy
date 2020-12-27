@@ -1,4 +1,5 @@
-﻿using Pharmacy.Base.Observable.ObserverPattern;
+﻿using HPSolutionCCDevPackage.netFramework;
+using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Config;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
@@ -53,7 +54,7 @@ namespace Pharmacy
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            _winDirector = WindowDirector.Current;
+            _winDirector = new WindowDirector();
             _applicationDataContext = new ApplicationDataContext();
             _winDirector.DisplayStatus = WindowDisplayStatus.OnLoginScreen;
         }
@@ -81,6 +82,16 @@ namespace Pharmacy
         public void ClearSessionID()
         {
             _applicationDataContext.UpdateSessionInfo("", "", null);
+        }
+
+        public AnubisMessgaeResult ShowApplicationMessageBox(
+            string message,
+            AnubisMessageBoxType mesType = AnubisMessageBoxType.Default,
+            AnubisMessageImage mesIcon = AnubisMessageImage.Non,
+            OwnerWindow owner = OwnerWindow.Default,
+            string caption = "Cảnh báo!!!")
+        {
+            return _winDirector.ShowMessageBox(message, owner, mesType, mesIcon, caption);
         }
 
         /// <summary>
@@ -130,8 +141,5 @@ namespace Pharmacy
             }
         }
 
-
     }
-
-
 }

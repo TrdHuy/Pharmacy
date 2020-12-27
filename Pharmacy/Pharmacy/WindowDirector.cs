@@ -1,4 +1,5 @@
-﻿using Pharmacy.Config;
+﻿using HPSolutionCCDevPackage.netFramework;
+using Pharmacy.Config;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
@@ -18,11 +19,15 @@ namespace Pharmacy
         OnMainScreen = 2,
         AppExit = 10
     }
+    public enum OwnerWindow
+    {
+        Default = 0,
+        LoginScreen = 1,
+        MainScreen = 2
+    }
 
     public class WindowDirector
     {
-        private static WindowDirector _instance;
-
         private bool _notityIconEnable = RUNE.IS_SUPPORT_NOTIFY_ICON;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private LoginScreenWindow _loginWindow;
@@ -79,23 +84,13 @@ namespace Pharmacy
                 WindowDisplayStatusChanged();
             }
         }
-        public static WindowDirector Current
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new WindowDirector();
-                }
-                return _instance;
-            }
-        }
         #endregion
 
-        private WindowDirector()
+        public WindowDirector()
         {
             SetupFeatures();
         }
+
 
         private void SetupFeatures()
         {
@@ -151,11 +146,13 @@ namespace Pharmacy
             MainScreenWindow.ForceClose();
             _mainScreenWindow = null;
         }
+
         private void ExitApplication(object sender, EventArgs e)
         {
             DisplayStatus = WindowDisplayStatus.AppExit;
             App.Current.ClearSessionID();
         }
+
         private void WindowDisplayStatusChanged()
         {
             if (DisplayStatus == WindowDisplayStatus.AppExit)
@@ -168,6 +165,7 @@ namespace Pharmacy
                 ShowCurrentWindow();
             }
         }
+
         private void ClosePreviousWindow()
         {
 
@@ -193,6 +191,7 @@ namespace Pharmacy
                 }
             }
         }
+
         private void ShowCurrentWindow()
         {
             switch (DisplayStatus)
@@ -207,6 +206,7 @@ namespace Pharmacy
                     break;
             }
         }
+
         private void ExitApplication()
         {
             if (!_isLoginWindowExited)
@@ -226,5 +226,31 @@ namespace Pharmacy
             }
         }
 
+        public AnubisMessgaeResult ShowMessageBox(
+            string message,
+            OwnerWindow owner = OwnerWindow.Default,
+            AnubisMessageBoxType messageType = AnubisMessageBoxType.Default,
+            AnubisMessageImage messageIcon = AnubisMessageImage.Non,
+            string caption = "Cảnh báo!!!")
+        {
+            AnubisMessageBox messageBox;
+            switch (owner)
+            {
+                case OwnerWindow.Default:
+                    messageBox = new AnubisMessageBox(message);
+                    break;
+                case OwnerWindow.LoginScreen:
+                    messageBox = new AnubisMessageBox(LoginScreenWindow, message, messageType, messageIcon);
+                    break;
+                case OwnerWindow.MainScreen:
+                    messageBox = new AnubisMessageBox(MainScreenWindow, message, messageType, messageIcon);
+                    break;
+                default:
+                    messageBox = new AnubisMessageBox(message);
+                    break;
+            }
+            messageBox.CaptionContent = caption;
+            return messageBox.Show();
+        }
     }
 }
