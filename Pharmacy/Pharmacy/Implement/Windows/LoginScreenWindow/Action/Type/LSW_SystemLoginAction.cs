@@ -62,16 +62,21 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 {
                     App.Current.SessionIDInstansiation(result[0]);
                     SaveUserName(result[0].Username);
-                    MessageBox.Show("Đăng nhập thành công!");
                 }
                 else
                 {
-                    MessageBox.Show("Thông tin đăng nhập không chính xác!");
+                    App.Current.ShowApplicationMessageBox("Thông tin đăng nhập không chính xác!",
+                        HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                        HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                        OwnerWindow.LoginScreen);
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                App.Current.ShowApplicationMessageBox(e.Message,
+                       HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                       HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                       OwnerWindow.LoginScreen);
             }
             finally
             {
