@@ -234,6 +234,7 @@ namespace Pharmacy
             string caption = "Cảnh báo!!!")
         {
             AnubisMessageBox messageBox;
+            ResourceDictionary res = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Buttons.xaml", UriKind.Relative));
             switch (owner)
             {
                 case OwnerWindow.Default:
@@ -250,6 +251,10 @@ namespace Pharmacy
                     break;
             }
             messageBox.CaptionContent = caption;
+            messageBox.OKButtonStyle = (Style)res["OkMessageBoxButton"];
+            messageBox.YesButtonStyle = (Style)res["YesMessageBoxButton"];
+            messageBox.NoButtonStyle = (Style)res["NoMessageBoxButton"];
+            messageBox.CancleButtonStyle = (Style)res["CancleMessageBoxButton"];
             return messageBox.Show();
         }
     }

@@ -7,7 +7,76 @@
 
     <!--Base Button-->
     <Style TargetType="{x:Type hps:IconButton}"
-           x:Key="{x:Type  hps:IconButton}">
+           x:Key="{x:Type hps:IconButton}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Cursor"
+                        Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Yes Messagebox Button-->
+    <Style TargetType="{x:Type hps:IconButton}"
+           x:Key="YesMessageBoxButton">
+        <Setter Property="TextContent"
+                Value="Có" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Cursor"
+                        Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--No Messagebox Button-->
+    <Style TargetType="{x:Type hps:IconButton}"
+           x:Key="NoMessageBoxButton">
+        <Setter Property="TextContent"
+                Value="Không" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Cursor"
+                        Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Cancle Messagebox Button-->
+    <Style TargetType="{x:Type hps:IconButton}"
+           x:Key="CancleMessageBoxButton">
+        <Setter Property="TextContent"
+                Value="Hủy" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Cursor"
+                        Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--OK Messagebox Button-->
+    <Style TargetType="{x:Type hps:IconButton}"
+           x:Key="OkMessageBoxButton">
+        <Setter Property="TextContent"
+                Value="Xác nhận" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver"
                      Value="True">
