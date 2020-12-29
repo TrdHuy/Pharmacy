@@ -71,6 +71,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 new Uri(PharmacyDefinitions.REPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.REPORT_PAGE_LOADING_DELAY_TIME));
 
+        public Lazy<PageOV> AddMedicinePage = new Lazy<PageOV>(() =>
+            new PageOV(
+                new Uri(PharmacyDefinitions.ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+                PharmacyDefinitions.REPORT_PAGE_LOADING_DELAY_TIME));
+
         public PageOV CurrentPageOV;
 
         private MSW_PageController()
@@ -126,6 +131,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.WarehouseManagementPage:
                     CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.AddMedicinePage:
+                    CurrentPageOV.PageUri = AddMedicinePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = AddMedicinePage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -187,6 +196,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = AddMedicinePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = AddMedicinePage.Value.LoadingDelayTime;
+                    break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
@@ -222,7 +235,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         MedicineManagementPage = 7,
         OtherPaymentsManagementPage = 8,
         WarehouseManagementPage = 9,
-        ReportPage = 10
+        ReportPage = 10,
+        AddMedicinePage = 11
     }
 
 

@@ -15,6 +15,8 @@
     <system:Double x:Key="FontSizeLarge">18</system:Double>
     <system:Double x:Key="FontSizeXLarge">20</system:Double>
     <system:Double x:Key="FontSizeLarge_Float">22</system:Double>
+    <system:Double x:Key="FontSizeXXLarge">24</system:Double>
+    <system:Double x:Key="FontSizeXXXLarge">28</system:Double>
     <system:Double x:Key="FontSizeXXXXLarge">30</system:Double>
     <system:Double x:Key="HeaderFontSize">30</system:Double>
     
