@@ -27,6 +27,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string OTHER_PAYMENT_MANAGEMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/OtherPaymentsManagementPage.xaml";
         public const string WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/WarehouseManagementPage.xaml";
         public const string REPORT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Report/ReportPage.xaml";
+        public const string ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagement/AddMedicinePage.xaml";
 
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 2000;
@@ -40,7 +41,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 2000;
         public static readonly long WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 2000;
         public static readonly long REPORT_PAGE_LOADING_DELAY_TIME = 2000;
-
+        public static readonly long ADD_MEDICINE_PAGE_LOADING_DELAY_TIME = 500;
 
 
     }

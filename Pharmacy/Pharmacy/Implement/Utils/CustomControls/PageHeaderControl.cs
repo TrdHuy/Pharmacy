@@ -9,13 +9,18 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Utils.CustomControls
 {
-    public class PageHeaderControl : Grid
+    public class PageHeaderControl : UserControl
     {
         public static readonly DependencyProperty HeaderIconProperty =
             DependencyProperty.Register("HeaderIcon", typeof(ImageSource), typeof(PageHeaderControl));
 
         public static readonly DependencyProperty HeaderTextProperty =
            DependencyProperty.Register("HeaderText", typeof(string), typeof(PageHeaderControl));
+
+        public PageHeaderControl()
+        {
+
+        }
 
         public ImageSource HeaderIcon
         {
