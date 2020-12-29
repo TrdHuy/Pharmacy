@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.UserManagement
 {
     /// <summary>
     /// Interaction logic for UserManagementPage.xaml
