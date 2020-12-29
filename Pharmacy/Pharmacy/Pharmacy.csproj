@@ -83,9 +83,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.5\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.7\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -345,6 +345,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Styles\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\Dimens.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -484,6 +488,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Icons\drop_down_icon.png" />
     <Resource Include="Resources\Icons\HomePageIcon\personal_info.png" />
     <Resource Include="Resources\Images\default_user_image.png" />
     <Resource Include="Resources\Icons\PersonalInfoPageIcons\camera.png" />
