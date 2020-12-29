@@ -4,11 +4,97 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:usercontrols="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      mc:Ignorable="d" Background="White"
+      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+      FontSize="{StaticResource FontSizeLarge_Float}"
       Title="MedicineManagementPage">
 
-    <Grid Background="Azure">
-        <TextBlock FontSize="50">this is medicine page</TextBlock>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.84*" MaxHeight="{StaticResource PageHeaderMaxHeight}"/>
+            <RowDefinition Height="0.37*"/>
+            <RowDefinition Height="4.84*"/>
+            <RowDefinition Height="0.70*" MaxHeight="100"/>
+        </Grid.RowDefinitions>
+        <usercontrols:PageHeader Grid.Row="0" HeaderText="Quản lý thuốc" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
+        <Grid Grid.Row="1" Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Tìm kiếm:" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Tag="Nhập mã hoặc tên thuốc" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
+            <CheckBox Content="Dược liệu" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <CheckBox Content="Cao đơn" Grid.Column="3" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        </Grid>
+        <DataGrid Grid.Row="2" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Hình ảnh" Width="100"/>
+                <DataGridTextColumn Header="Tên thuốc" Width="*"/>
+                <DataGridTextColumn Header="Loại thuốc" Width="auto"/>
+                <DataGridTextColumn Header="Đơn vị tính" Width="auto"/>
+                <DataGridTextColumn Header="Giá mua vào" Width="auto"/>
+                <DataGridTextColumn Header="Giá bán ra" Width="auto"/>
+                <DataGridTemplateColumn Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3" Margin="10,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <hps:IconButton Margin="0,0,10,0"
+                            Grid.Column="0"
+                            TextContent="Nhập từ Excel"
+                            IsUsingDropShadowEffect="True"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            IBContentOrientation="Horizontal" 
+                            IBTextVerticalAlignment="Center" 
+                            FontSize="{StaticResource FontSizeXLarge}"
+                            Command="{Binding CancleButtonCommand}"
+                            BorderThickness="0"
+                            MaxHeight="100"
+                            IconSource="{StaticResource ExcelImport}"
+                            IconStretch="Uniform"
+                            IconWidth="30"
+                            IconHeight="30"
+                            IconTextGapWidth="5"
+                            Padding="5"
+                            Foreground="White"
+                            Background="{StaticResource ForegroundMainBrush}"/>
+            <hps:IconButton IBContentOrientation="Horizontal" 
+                            IBTextVerticalAlignment="Center" 
+                            IsUsingDropShadowEffect="True"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            TextContent="In danh sách thuốc" 
+                            Grid.Column="2" 
+                            Background="{StaticResource WordBlueBrush}"
+                            Foreground="White"
+                            IconSource="{StaticResource Print}"
+                            IconStretch="Uniform"
+                            IconWidth="30"
+                            IconHeight="30"
+                            IconTextGapWidth="5"
+                            Padding="5"/>
+            <hps:IconButton IBTextVerticalAlignment="Center" 
+                            IsUsingDropShadowEffect="True"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            TextContent="+ Thêm mới" 
+                            Grid.Column="3" 
+                            Background="{StaticResource WordGreenBrush}"
+                            Foreground="White"
+                            Margin="10,0"
+                            Padding="5"/>
+        </Grid>
     </Grid>
 </Page>

@@ -179,14 +179,16 @@
                                  Tag="Tên đăng nhập"
                                  Style="{StaticResource LoginTextBox}"
                                  x:Name="loginUserNameTextEdit"
+                                 Foreground="White"
                                  Margin="25,60,25,54" />
                         <PasswordBox Tag="Mật khẩu"
                                      Style="{StaticResource LoginPasswordBox}"
                                      x:Name="loginUserPasswordTextEdit"
+                                     Foreground="White"
                                      Margin="25,109,25,5" />
 
                         <CheckBox IsChecked="{Binding IsUserRemember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Margin="67,0,0,27"
+                                  Margin="59,0,0,26.857"
                                   HorizontalAlignment="Left"
                                   VerticalAlignment="Bottom"
                                   Content="Lưu tên đăng nhập"
@@ -198,7 +200,7 @@
                                         ProgressSpinnerSize="30"
                                         Width="148"
                                         Height="40"
-                                        Margin="215,0,25,20"
+                                        Margin="216,0,24,19.857"
                                         VerticalAlignment="Bottom"
                                         HorizontalContentAlignment="Center"
                                         VerticalContentAlignment="Center"

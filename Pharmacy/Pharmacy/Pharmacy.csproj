@@ -168,6 +168,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml.cs">
       <DependentUpon>CustomerManagementPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\AddMedicinePage.xaml.cs">
+      <DependentUpon>AddMedicinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\OtherPaymentsManagementPage.xaml.cs">
       <DependentUpon>OtherPaymentsManagementPage.xaml</DependentUpon>
     </Compile>
@@ -284,6 +287,10 @@
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\AddMedicinePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\OtherPaymentsManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>
