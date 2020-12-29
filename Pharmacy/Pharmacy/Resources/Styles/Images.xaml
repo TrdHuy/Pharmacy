@@ -11,6 +11,7 @@
     <BitmapImage x:Key="BugIcon" UriSource="/Pharmacy;component/Resources/Icons/bug rp.png"></BitmapImage>
     <BitmapImage x:Key="CSIcon" UriSource="/Pharmacy;component/Resources/Icons/customer support.png"></BitmapImage>
     <BitmapImage x:Key="AppInfoIcon" UriSource="/Pharmacy;component/Resources/Icons/app info.png"></BitmapImage>
+    <BitmapImage x:Key="DropDownIcon" UriSource="/Pharmacy;component/Resources/Icons/drop_down_icon.png"></BitmapImage>
 
     <BitmapImage x:Key="HomePage_PhoneIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/phone_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_PersonalLinkIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/personal_link_icon.png"></BitmapImage>
