@@ -2,6 +2,7 @@
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
 {
     public class MSW_ActionFactory : KeyActionFactory
     {
-        public override IAction CreateActionFromCurrentWindow(string keyTag)
+        protected override IAction CreateActionFromCurrentWindow(string keyTag)
         {
             IAction action;
 
@@ -67,5 +68,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
             }
             return action;
         }
+
+        protected override IAction CreateAlternativeActionFromCurrentWindow(string keyTag)
+        {
+            IAction action;
+            switch (keyTag)
+            {
+                default:
+                    action = new MSW_AlternativeAction();
+                    break;
+            }
+            return action;
+        }
+
     }
+
+
 }
