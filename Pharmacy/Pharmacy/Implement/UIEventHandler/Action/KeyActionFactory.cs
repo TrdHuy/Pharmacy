@@ -9,17 +9,35 @@ namespace Pharmacy.Implement.UIEventHandler.Action
 {
     public abstract class KeyActionFactory : IActionFactory
     {
+        protected FactoryLocker _locker = new FactoryLocker(LockReason.Unlock,false);
+
+        public virtual FactoryLocker Locker { get => _locker; set => _locker = value; }
+
         public IAction CreateAction(object obj)
         {
-            IAction action;
+            IAction action = null;
             string keyTag = (string)obj;
 
-            action = CreateActionFromCurrentWindow(keyTag);
-
+            if (!Locker.IsLock)
+            {
+                action = CreateActionFromCurrentWindow(keyTag);
+            }
+            else
+            {
+                action = CreateAlternativeActionFromCurrentWindow(keyTag);
+            }
             return action;
         }
 
-        public abstract IAction CreateActionFromCurrentWindow(string keyTag);
+        protected abstract IAction CreateAlternativeActionFromCurrentWindow(string keyTag);
+
+        protected abstract IAction CreateActionFromCurrentWindow(string keyTag);
+
+        public virtual void LockFactory(bool key, LockReason reason)
+        {
+            Locker.IsLock = key;
+            Locker.Reason = reason;
+        }
 
     }
 }

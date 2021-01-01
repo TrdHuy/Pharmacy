@@ -12,7 +12,8 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
 {
     public class LSW_ActionFactory : KeyActionFactory
     {
-        public override IAction CreateActionFromCurrentWindow(string keyTag)
+
+        protected override IAction CreateActionFromCurrentWindow(string keyTag)
         {
             IAction action;
 
@@ -32,6 +33,11 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
                     break;
             }
             return action;
+        }
+
+        protected override IAction CreateAlternativeActionFromCurrentWindow(string keyTag)
+        {
+            return null;
         }
     }
 }

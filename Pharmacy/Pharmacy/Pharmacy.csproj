@@ -146,6 +146,7 @@
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
     <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_AlternativeAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_MedicineManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_OtherPaymentsManagementAction.cs" />
