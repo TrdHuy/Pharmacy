@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
@@ -19,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
 {
     public class UserModificationPageViewModel : AbstractViewModel
     {
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         private tblUser _currentModifiedUser;
         private Visibility _userNameAwareTextBlockVisibility = Visibility.Visible;
@@ -28,7 +29,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _newPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _verifiedPasswordAwareTextBlockVisibility = Visibility.Collapsed;
-        private string _userNameTextBeforeChanged = "";
+        private Visibility _jobTitleAwareTextBlockVisibility = Visibility.Collapsed;
+
         private string _newPassword = "";
         private string _verifiedPassword = "";
         private string _newPasswordAwareTextBlockContent = "";
@@ -56,7 +58,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 CurrentModifiedUser.Username = value;
-                OnUserNameTextBoxLostFocus();
                 InvalidateOwn();
             }
         }
@@ -101,7 +102,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
                 InvalidateOwn();
             }
         }
-        public string AdressText
+        public string AddressText
         {
             get
             {
@@ -134,6 +135,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 CurrentModifiedUser.Link = value;
+                InvalidateOwn();
+            }
+        }
+        public string JobText
+        {
+            get
+            {
+                return CurrentModifiedUser.Job;
+            }
+            set
+            {
+                CurrentModifiedUser.Job = value;
+                JobTitleAwareTextBlockVisibility = String.IsNullOrEmpty(value) ?
+                    Visibility.Visible : Visibility.Collapsed;
                 InvalidateOwn();
             }
         }
@@ -198,6 +213,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
                 InvalidateOwn();
             }
         }
+        public Visibility JobTitleAwareTextBlockVisibility
+        {
+            get
+            {
+                return _jobTitleAwareTextBlockVisibility;
+            }
+            set
+            {
+                _jobTitleAwareTextBlockVisibility = value;
+                InvalidateOwn();
+            }
+        }
         public Visibility VerifiedPasswordAwareTextBlockVisibility
         {
             get
@@ -249,7 +276,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
                     FullNameAwareTextBlockVisibility != Visibility.Visible &&
                     PhoneAwareTextBlockVisibility != Visibility.Visible &&
                     NewPasswordAwareTextBlockVisibility != Visibility.Visible &&
-                    VerifiedPasswordAwareTextBlockVisibility != Visibility.Visible;
+                    VerifiedPasswordAwareTextBlockVisibility != Visibility.Visible &&
+                    JobTitleAwareTextBlockVisibility != Visibility.Visible;
             }
         }
         public bool IsSaveButtonRunning
@@ -261,21 +289,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 _isSaveButtonRunning = value;
+                if (!value)
+                {
+                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                }
                 InvalidateOwn();
             }
         }
-        public string UserNameTextBeforeChanged
-        {
-            get
-            {
-                return _userNameTextBeforeChanged;
-            }
-        }
-        public RunInputCommand SaveButtonCommand { get; set; }
 
-        public EventHandleCommand GridSizeChangedCommand;
-        public EventHandleCommand NewPasswordChangedCommand;
-        public EventHandleCommand VerifiedPasswordChangedCommand;
+        public RunInputCommand SaveButtonCommand { get; set; }
+        public RunInputCommand CancleButtonCommand { get; set; }
+
+        public EventHandleCommand GridSizeChangedCommand { get; set; }
+        public EventHandleCommand NewPasswordChangedCommand { get; set; }
+        public EventHandleCommand VerifiedPasswordChangedCommand { get; set; }
 
         protected override void InitPropertiesRegistry()
         {
@@ -285,8 +312,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         {
             CurrentModifiedUser = MSW_DataFlowHost.Current.CurrentModifiedUser;
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-
-            _userNameTextBeforeChanged = CurrentModifiedUser.Username;
+            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent); 
 
             UserNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Username) ?
                     Visibility.Visible : Visibility.Collapsed;
@@ -294,6 +320,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             FullNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.FullName) ?
                  Visibility.Visible : Visibility.Collapsed;
             PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Phone) ?
+                Visibility.Visible : Visibility.Collapsed;
+            JobTitleAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Job) ?
                 Visibility.Visible : Visibility.Collapsed;
 
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
@@ -338,68 +366,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON
+                , dataTransfer
+                , new FactoryLocker(LockReason.TaskHandling, true));
+        }
+
+        private void CancleButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CANCLE_BUTTON
                 , dataTransfer);
         }
 
-        private void OnUserNameTextBoxLostFocus()
-        {
-            UserNameAwareMessage mes = UserNameAwareMessage.Empty;
-            UserNameVerifiedTextBlockVisibility = Visibility.Collapsed;
-
-            if (String.IsNullOrEmpty(UserNameText))
-            {
-                UserNameAwareTextBlockVisibility = Visibility.Visible;
-                mes = UserNameAwareMessage.Empty;
-            }
-            else if (UserNameText.Contains(" "))
-            {
-                UserNameAwareTextBlockVisibility = Visibility.Visible;
-                mes = UserNameAwareMessage.WhiteSpaceAware;
-            }
-            else if (UserNameText.IndexOfAny(PharmacyDefinitions.SPECIAL_CHARS_OF_USERNAME) != -1)
-            {
-                UserNameAwareTextBlockVisibility = Visibility.Visible;
-                mes = UserNameAwareMessage.SpecialCharacter;
-            }
-            else if (IsUserNameExisted())
-            {
-                UserNameAwareTextBlockVisibility = Visibility.Visible;
-                mes = UserNameAwareMessage.UserExisted;
-            }
-            else
-            {
-                UserNameAwareTextBlockVisibility = Visibility.Collapsed;
-                UserNameVerifiedTextBlockVisibility = UserNameText.Equals(_userNameTextBeforeChanged) ?
-                    Visibility.Collapsed : Visibility.Visible;
-            }
-
-            UserNameAwareTextBlockContent = mes.GetStringValue();
-        }
-
-
-
-        private bool IsUserNameExisted()
-        {
-            bool isExisted = false;
-
-            SQLQueryCustodian observer = new SQLQueryCustodian((sqlResult) =>
-            {
-                try
-                {
-                    isExisted = Convert.ToBoolean(sqlResult.Result);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
-            });
-
-            DbManager.Instance.ExecuteQuery(SQLCommandKey.CHECK_USER_NAME_EXISTED_CMD_KEY,
-                observer,
-                UserNameText);
-
-            return isExisted && !UserNameText.Equals(_userNameTextBeforeChanged);
-        }
 
         private void UpdatePasswordAwareTextBlock()
         {

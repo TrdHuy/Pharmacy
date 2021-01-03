@@ -18,30 +18,29 @@ namespace Pharmacy.Implement.Utils
 
         public static Bitmap GetBitmapFromName(string imageName, string folderName)
         {
-            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + folderName;
-            if (!Directory.Exists(directory))
+            try
             {
-                Directory.CreateDirectory(directory);
-            }
-            string fileName = imageName + ".jpg";
-            string filePath = directory + @"\" + fileName;
-
-            if (File.Exists(filePath))
-            {
-                Bitmap bit = (Bitmap)Image.FromFile(filePath);
-                return bit;
-            }
-            else
-            {
-                switch (folderName)
+                var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + folderName;
+                if (!Directory.Exists(directory))
                 {
-                    case USER_IMAGE_FOLDER_NAME:
-                        return Pharmacy.Properties.Resources.default_user_image;
-                    case MEDICINE_IMAGE_FOLDER_NAME:
-                        return Pharmacy.Properties.Resources.default_medicine_image;
-                    default: return null;
-
+                    Directory.CreateDirectory(directory);
                 }
+                string fileName = imageName + ".jpg";
+                string filePath = directory + @"\" + fileName;
+
+                if (File.Exists(filePath))
+                {
+                    Bitmap bit = (Bitmap)Image.FromFile(filePath);
+                    return bit;
+                }
+                else
+                {
+                    return GetDefaultIconBitmap(folderName);
+                }
+            }
+            catch
+            {
+                return GetDefaultIconBitmap(folderName);
             }
         }
 
@@ -95,5 +94,17 @@ namespace Pharmacy.Implement.Utils
             return null;
         }
 
+        private static Bitmap GetDefaultIconBitmap(string folderName)
+        {
+            switch (folderName)
+            {
+                case USER_IMAGE_FOLDER_NAME:
+                    return Pharmacy.Properties.Resources.default_user_image;
+                case MEDICINE_IMAGE_FOLDER_NAME:
+                    return Pharmacy.Properties.Resources.default_medicine_image;
+                default: return null;
+
+            }
+        }
     }
 }

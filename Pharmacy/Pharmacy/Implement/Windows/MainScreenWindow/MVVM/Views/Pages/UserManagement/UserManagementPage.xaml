@@ -263,6 +263,8 @@
                                                             Background="White"
                                                             VerticalAlignment="Center"
                                                             IconStretch="Uniform"
+                                                            Command="{Binding DeleteUserButtonCommand,ElementName=UserManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=UserDataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
 
                                         </Grid>

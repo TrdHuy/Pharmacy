@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Pharmacy
 {
@@ -235,6 +236,7 @@ namespace Pharmacy
         {
             AnubisMessageBox messageBox;
             ResourceDictionary res = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Buttons.xaml", UriKind.Relative));
+            ResourceDictionary resColor = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Colors.xaml", UriKind.Relative));
             switch (owner)
             {
                 case OwnerWindow.Default:
@@ -255,6 +257,43 @@ namespace Pharmacy
             messageBox.YesButtonStyle = (Style)res["YesMessageBoxButton"];
             messageBox.NoButtonStyle = (Style)res["NoMessageBoxButton"];
             messageBox.CancleButtonStyle = (Style)res["CancleMessageBoxButton"];
+            messageBox.BorderThickness = new Thickness(1);
+            messageBox.BorderBrush = (SolidColorBrush)resColor["NormalTheme_MessageBox_Border_Brush"];
+            return messageBox.Show();
+        }
+
+        public AnubisMessgaeResult ShowMessageBox(
+            object message,
+            OwnerWindow owner = OwnerWindow.Default,
+            AnubisMessageBoxType messageType = AnubisMessageBoxType.Default,
+            AnubisMessageImage messageIcon = AnubisMessageImage.Non,
+            string caption = "Cảnh báo!!!")
+        {
+            AnubisMessageBox messageBox;
+            ResourceDictionary resButton = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Buttons.xaml", UriKind.Relative));
+            ResourceDictionary resColor = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Colors.xaml", UriKind.Relative));
+            switch (owner)
+            {
+                case OwnerWindow.Default:
+                    messageBox = new AnubisMessageBox(null, message, messageType);
+                    break;
+                case OwnerWindow.LoginScreen:
+                    messageBox = new AnubisMessageBox(LoginScreenWindow, message, messageType, messageIcon);
+                    break;
+                case OwnerWindow.MainScreen:
+                    messageBox = new AnubisMessageBox(MainScreenWindow, message, messageType, messageIcon);
+                    break;
+                default:
+                    messageBox = new AnubisMessageBox(null, message, messageType);
+                    break;
+            }
+            messageBox.CaptionContent = caption;
+            messageBox.OKButtonStyle = (Style)resButton["OkMessageBoxButton"];
+            messageBox.YesButtonStyle = (Style)resButton["YesMessageBoxButton"];
+            messageBox.NoButtonStyle = (Style)resButton["NoMessageBoxButton"];
+            messageBox.CancleButtonStyle = (Style)resButton["CancleMessageBoxButton"];
+            messageBox.BorderThickness = new Thickness(1);
+            messageBox.BorderBrush = (SolidColorBrush)resColor["NormalTheme_MessageBox_Border_Brush"];
             return messageBox.Show();
         }
     }

@@ -94,6 +94,16 @@ namespace Pharmacy
             return _winDirector.ShowMessageBox(message, owner, mesType, mesIcon, caption);
         }
 
+        public AnubisMessgaeResult ShowApplicationMessageBox(
+            object message,
+            AnubisMessageBoxType mesType = AnubisMessageBoxType.Default,
+            AnubisMessageImage mesIcon = AnubisMessageImage.Non,
+            OwnerWindow owner = OwnerWindow.Default,
+            string caption = "Cảnh báo!!!")
+        {
+            return _winDirector.ShowMessageBox(message, owner, mesType, mesIcon, caption);
+        }
+
         /// <summary>
         /// Global data container, used to store shared data between all class of project
         /// </summary>

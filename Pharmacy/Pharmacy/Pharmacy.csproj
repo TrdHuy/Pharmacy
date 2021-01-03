@@ -161,6 +161,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\PageOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />

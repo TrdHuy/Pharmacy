@@ -15,6 +15,7 @@ namespace Pharmacy.Implement.Utils.Definitions
 
         public static readonly int LOGIN_BUTTON_PERFORM_DELAY_TIME = 500;
         public static readonly int SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
+        public static readonly int ADD_NEW_USER_DELAY_TIME = 1000;
 
 
         public const string HOME_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml";

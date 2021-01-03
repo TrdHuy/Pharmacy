@@ -17,7 +17,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             _provider = new SQLResultHandler();
         }
 
-        public async Task ExecuteQueryAsync(string cmdKey, int delayTime, SQLQueryCustodian observer, params object[] paramaters)
+        public async void ExecuteQueryAsync(string cmdKey, int delayTime, SQLQueryCustodian observer, params object[] paramaters)
         {
             _provider.Subcribe(observer);
 

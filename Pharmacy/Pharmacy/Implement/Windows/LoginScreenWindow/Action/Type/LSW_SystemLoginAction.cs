@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels;
+using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             _viewModel = (LoginScreenWindowViewModel)dataTransfer[0];
 
             //_viewModel.IsLoginButtonRunning = true;
-
             object[] dataFromView = (object[])dataTransfer[1];
             TextBox userNameTextEdit = (TextBox)dataFromView[0];
             PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
@@ -60,8 +60,19 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 int count = result.Count();
                 if (count == 1)
                 {
-                    App.Current.SessionIDInstansiation(result[0]);
-                    SaveUserName(result[0].Username);
+                    if (result[0].IsActive)
+                    {
+                        App.Current.SessionIDInstansiation(result[0]);
+                        SaveUserName(result[0].Username);
+                    }
+                    else
+                    {
+                        App.Current.ShowApplicationMessageBox("Tài khoản này hiện tại đã bị xóa, vui lòng liên hệ admin để khôi phục!",
+                        HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                        HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                        OwnerWindow.LoginScreen);
+                    }
+
                 }
                 else
                 {
