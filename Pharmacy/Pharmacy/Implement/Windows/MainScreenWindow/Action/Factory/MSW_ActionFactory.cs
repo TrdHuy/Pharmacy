@@ -5,6 +5,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON:
                     action = new MSW_UMP_UMoP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CANCLE_BUTTON:
+                    action = new MSW_UMP_UMoP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_SAVE_BUTTON:
+                    action = new MSW_UMP_UIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_CANCLE_BUTTON:
+                    action = new MSW_UMP_UIP_CancleButtonAction();
                     break;
                 default:
                     action = null;

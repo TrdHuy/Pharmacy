@@ -23,17 +23,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
             _viewModel = dataTransfer[0] as UserModificationPageViewModel;
             if (!_viewModel.IsSaveButtonCanPerform)
             {
-                MessageBox.Show("Kiểm tra lại các trường bị sai trên!");
+                App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
                 _viewModel.IsSaveButtonRunning = false;
                 return false;
             }
 
             modifiedInfo = new tblUser();
             modifiedInfo.FullName = _viewModel.FullNameText;
-            modifiedInfo.Address = _viewModel.AdressText;
+            modifiedInfo.Address = _viewModel.AddressText;
             modifiedInfo.Phone = _viewModel.PhoneText;
             modifiedInfo.Email = _viewModel.EmailText;
             modifiedInfo.Link = _viewModel.LinkText;
+            modifiedInfo.Job = _viewModel.JobText;
             modifiedInfo.Password = String.IsNullOrEmpty(_viewModel.NewPassword) ?
                 App.Current.CurrentUser.Password : _viewModel.NewPassword;
 
@@ -41,13 +46,30 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_USER_INFO_CMD_KEY
                     , PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME
                     , _sqlCmdObserver
-                    , modifiedInfo, _viewModel.UserNameTextBeforeChanged);
+                    , modifiedInfo, _viewModel.UserNameText);
             return true;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
+            if (queryResult.MesResult == MessageQueryResult.Finished)
+            {
+                App.Current.ShowApplicationMessageBox("Thay đổi thông tin thành công",
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                   OwnerWindow.MainScreen,
+                   "Thông báo!");
+            }
+            else
+            {
+                App.Current.ShowApplicationMessageBox("Lỗi! Không thể thay đổi thông tin. Vui lòng liên hệ CSKH để biết thêm thông tin!",
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                   OwnerWindow.MainScreen,
+                   "Thông báo!");
+            }
             _viewModel.IsSaveButtonRunning = false;
+            _pageHost.UpdateCurrentPageSource(PageSource.UserManagementPage);
         }
     }
 }

@@ -23,8 +23,12 @@
     <!--Theme normal-->
     <Color x:Key="Transparent">#00000000</Color>
     <Color x:Key="NormalTheme_LightBlue">#FF4BBF60</Color>
+    <Color x:Key="NormalTheme_1st_B_Color">#FF686868</Color>
+    <Color x:Key="NormalTheme_2nd_B_Color">#FF9A9A9A</Color>
     <Color x:Key="NormalTheme_1st_Color">#FF28B6F6</Color>
-
+    <Color x:Key="NormalTheme_2nd_Color">#FF81D5FA</Color>
+    <Color x:Key="NormalTheme_3rd_Color">#FFB3E5FC</Color>
+    
     <Color x:Key="NormalTheme_TitleBarColor">#FFE7E7E7</Color>
     <SolidColorBrush x:Key="NormalTheme_TitleBarColorBrush" Color="{StaticResource NormalTheme_TitleBarColor}" />
 
@@ -49,5 +53,14 @@
                      Color="{StaticResource NormalTheme_DataGridCellBgColor}" />
     <SolidColorBrush x:Key="NormalTheme_1st_Background_Brush"
                      Color="{StaticResource NormalTheme_1st_Color}" />
-
+    <SolidColorBrush x:Key="NormalTheme_SelectedItem_Border_Brush"
+                     Color="{StaticResource NormalTheme_2nd_Color}" />
+    <SolidColorBrush x:Key="NormalTheme_SelectedItem_Background_Brush"
+                     Color="{StaticResource NormalTheme_3rd_Color}" />
+    <SolidColorBrush x:Key="NormalTheme_Unable_Border_Brush"
+                     Color="{StaticResource NormalTheme_2nd_B_Color}" />
+    <SolidColorBrush x:Key="NormalTheme_Unable_Foreground_Brush"
+                     Color="{StaticResource NormalTheme_2nd_B_Color}" />
+    <SolidColorBrush x:Key="NormalTheme_MessageBox_Border_Brush"
+                     Color="{StaticResource NormalTheme_1st_B_Color}" />
 </ResourceDictionary>

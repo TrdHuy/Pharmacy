@@ -126,6 +126,14 @@
                                     </ControlTemplate>
                                 </Setter.Value>
                             </Setter>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                                </Trigger>
+                            </Style.Triggers>
                         </Style>
                     </DataGrid.Resources>
 
@@ -133,6 +141,13 @@
                         <Style TargetType="DataGridCell">
                             <Setter Property="Background"
                                     Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                                </Trigger>
+                            </Style.Triggers>
                         </Style>
                     </DataGrid.CellStyle>
                     <DataGrid.ColumnHeaderStyle>
@@ -165,7 +180,11 @@
 
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
-
+                            <Style.Resources>
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                  Color="{StaticResource NormalTheme_3rd_Color}" />
+                            </Style.Resources>
+                            
                             <Setter Property="Height"
                                     Value="{StaticResource DefaultDataGrid_RowHeight}" />
                         </Style>
@@ -263,6 +282,8 @@
                                                             Background="White"
                                                             VerticalAlignment="Center"
                                                             IconStretch="Uniform"
+                                                            Command="{Binding DeleteUserButtonCommand,ElementName=UserManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=UserDataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
 
                                         </Grid>

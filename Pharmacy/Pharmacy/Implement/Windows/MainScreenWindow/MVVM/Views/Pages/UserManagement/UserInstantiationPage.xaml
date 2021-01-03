@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages"
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
@@ -14,7 +13,7 @@
     <Page.DataContext>
         <vm:UserInstantiationPageViewModel />
     </Page.DataContext>
-    
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.25*" />
@@ -54,7 +53,7 @@
                            FontFamily="{StaticResource FontAwesome}"
                            FontSize="{StaticResource HeaderFontSize}"
                            Grid.Column="3"
-                           Text="Thay đổi thông tin nhân viên" />
+                           Text="Thêm nhân viên mới" />
             </Grid>
 
             <!--Image and user info area-->
@@ -291,7 +290,14 @@
                                    Text="*"
                                    Foreground="Red" />
                     </Viewbox>
-
+                    <Viewbox Grid.Column="1"
+                             Grid.Row="0"
+                             Stretch="Uniform"
+                             Visibility="{Binding UserNameVerifingTextBlockVisibility}">
+                        <TextBlock Style="{StaticResource SpinningText}"
+                                   Foreground="Green" 
+                                   Background="White"/>
+                    </Viewbox>
                     <Viewbox HorizontalAlignment="Center"
                              Grid.Column="1"
                              Grid.Row="2">
@@ -313,10 +319,10 @@
                              Margin="0,2.5,0,2.5"
                              Grid.Column="2"
                              Grid.Row="0"
+                             IsEnabled="{Binding IsUsernameTextBoxEnable}"
                              VerticalContentAlignment="Center"
                              Text="{Binding UserNameText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                              TextWrapping="Wrap"
-                             Style="{DynamicResource LoginTextBox}"
                              BorderThickness="2"
                              BorderBrush="Black"
                              FontSize="{StaticResource FontSizeXLarge}" />
@@ -340,6 +346,18 @@
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Text="Có thể dùng tên này!" />
+                    <TextBlock x:Name="UserNameVerifingTextBlock"
+                               Visibility="{Binding UserNameVerifingTextBlockVisibility}"
+                               IsHitTestVisible="False"
+                               Style="{StaticResource CheckingText}"
+                               Grid.Column="2"
+                               Grid.Row="1"
+                               Foreground="Green"
+                               FontSize="{StaticResource FontSizeXXSmall}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center" />
+
+
 
                     <TextBox x:Name="FullNameTextBox"
                              Margin="0,2.5,0,2.5"
@@ -348,7 +366,6 @@
                              VerticalContentAlignment="Center"
                              Text="{Binding FullNameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              TextWrapping="Wrap"
-                             Style="{DynamicResource LoginTextBox}"
                              BorderThickness="2"
                              BorderBrush="Black"
                              FontSize="{StaticResource FontSizeXLarge}" />
@@ -498,17 +515,36 @@
                                VerticalAlignment="Center"
                                Text="Mật khẩu xác nhận không khớp!" />
 
-                    <ComboBox Grid.Column="2"
-                              Grid.Row="4"
-                              BorderBrush="Black"
-                              BorderThickness="2">
-
+                    <hps:HorusBox Grid.Column="2"
+                                  Grid.Row="4"
+                                  IconHeight="20"
+                                  Text="{Binding JobText, UpdateSourceTrigger=PropertyChanged}"
+                                  FontSize="{StaticResource FontSizeXLarge}"
+                                  Style="{StaticResource HorusBoxCustomNormalTheme}"
+                                  HorizontalAlignment="Left"
+                                  Width="311">
                         <ComboBoxItem Name="NhanVien"
                                       Content="Nhân viên" />
-
                         <ComboBoxItem Name="QuanLy"
                                       Content="Quản lý" />
-                    </ComboBox>
+                    </hps:HorusBox>
+                    <Viewbox HorizontalAlignment="Center"
+                             Grid.Column="1"
+                             Grid.Row="4">
+                        <TextBlock FontFamily="{StaticResource VNFOswald}"
+                                   Text="*"
+                                   Foreground="Red" />
+                    </Viewbox>
+                    <TextBlock x:Name="JobTitleAwareTextBlock"
+                               Visibility="{Binding JobTitleAwareTextBlockVisibility}"
+                               IsHitTestVisible="False"
+                               Grid.Column="2"
+                               Grid.Row="5"
+                               Foreground="Red"
+                               FontSize="{StaticResource FontSizeXXSmall}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="Vui lòng chọn một chức vụ cho người dùng!" />
 
                 </Grid>
 

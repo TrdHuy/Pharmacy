@@ -34,6 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             modifiedInfo.Phone = _viewModel.PhoneText;
             modifiedInfo.Email = _viewModel.EmailText;
             modifiedInfo.Link = _viewModel.LinkText;
+            modifiedInfo.Job = _viewModel.CurrentUser.Job;
             modifiedInfo.Password = String.IsNullOrEmpty(_viewModel.NewPassword) ?
                 App.Current.CurrentUser.Password : _viewModel.NewPassword;
 

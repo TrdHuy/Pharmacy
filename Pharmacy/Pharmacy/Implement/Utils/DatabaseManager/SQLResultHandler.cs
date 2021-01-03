@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -73,10 +74,63 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.CHECK_USER_NAME_EXISTED_CMD_KEY:
                     _result = CheckUserNameExisted(paramaters);
                     break;
+                case SQLCommandKey.SET_USER_DEACTIVE_CMD_KEY:
+                    _result = SetUserDeactive(paramaters);
+                    break;
+                case SQLCommandKey.ADD_NEW_USER_CMD_KEY:
+                    _result = AddNewUser(paramaters);
+                    break;
                 default:
                     break;
             }
             NotifyChange(_result);
+        }
+
+        private SQLQueryResult AddNewUser(object[] paramaters)
+        {
+            tblUser newUser = paramaters[0] as tblUser;
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+
+            try
+            {
+                _appDBContext.tblUsers.Add(newUser);
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+            }
+            catch (DbEntityValidationException e)
+            {
+                HandleDbEntityValidationException(e);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+
+            return result;
+        }
+
+        private SQLQueryResult SetUserDeactive(object[] paramaters)
+        {
+            string name = paramaters[0].ToString();
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
+                    First();
+                x.IsActive = false;
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+                return result;
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message);
+            }
+            finally
+            {
+            }
+            return result;
         }
 
         private SQLQueryResult CheckUserNameExisted(object[] paramaters)
@@ -86,8 +140,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             {
                 var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
                     ToList();
-                bool IsExisted = x.Count > 0; 
-                SQLQueryResult result = new SQLQueryResult(IsExisted, "");
+                bool IsExisted = x.Count > 0;
+                SQLQueryResult result = new SQLQueryResult(IsExisted, MessageQueryResult.Existed);
                 return result;
             }
             catch (Exception e)
@@ -99,13 +153,13 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         private SQLQueryResult GetAllNonAdminUserData(object[] paramaters)
         {
-            SQLQueryResult result = new SQLQueryResult(null, "");
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
             try
             {
                 var x = _appDBContext.tblUsers.
                     Where<tblUser>(user => !user.IsAdmin).
                     ToList();
-                result = new SQLQueryResult(x, "");
+                result = new SQLQueryResult(x, MessageQueryResult.Finished);
             }
             catch (Exception e)
             {
@@ -116,13 +170,13 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         private SQLQueryResult GetAllActiveUserData(object[] paramaters)
         {
-            SQLQueryResult result = new SQLQueryResult(null, "");
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
             try
             {
                 var x = _appDBContext.tblUsers.
                     Where<tblUser>(user => user.IsActive).
                     ToList();
-                result = new SQLQueryResult(x, "");
+                result = new SQLQueryResult(x, MessageQueryResult.Finished);
             }
             catch (Exception e)
             {
@@ -135,7 +189,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         {
             tblUser modifiedUser = paramaters[0] as tblUser;
             string userNameBeforeChanged = paramaters[1] as string;
-            SQLQueryResult result = new SQLQueryResult(null, "");
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
 
             try
             {
@@ -145,9 +199,14 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 x.Phone = modifiedUser.Phone;
                 x.Email = modifiedUser.Email;
                 x.Link = modifiedUser.Link;
+                x.Job = modifiedUser.Job;
                 x.Password = modifiedUser.Password;
                 _appDBContext.SaveChanges();
-                result = new SQLQueryResult(x, "");
+                result = new SQLQueryResult(x, MessageQueryResult.Finished);
+            }
+            catch (DbEntityValidationException e)
+            {
+                HandleDbEntityValidationException(e);
             }
             catch (Exception e)
             {
@@ -168,7 +227,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)
                 && user.Password.Equals(pass)).ToList();
 
-                SQLQueryResult result = new SQLQueryResult(x, "");
+                SQLQueryResult result = new SQLQueryResult(x, MessageQueryResult.Finished);
                 return result;
             }
             catch (Exception e)
@@ -178,10 +237,26 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             return null;
         }
 
+        private void HandleDbEntityValidationException(DbEntityValidationException e)
+        {
+            foreach (var eve in e.EntityValidationErrors)
+            {
+                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                foreach (var ve in eve.ValidationErrors)
+                {
+                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                        ve.PropertyName, ve.ErrorMessage);
+                }
+            }
+        }
+
+
     }
 
     internal class SQLCommandKey
     {
+
         // Key for checking a user avail or not
         public const string CHECK_USER_AVAIL_CMD_KEY = "check_user_avail";
 
@@ -199,17 +274,23 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for checking a user name is existed or not
         public const string CHECK_USER_NAME_EXISTED_CMD_KEY = "check_username_existed";
+
+        //Key for set a user deactive
+        public const string SET_USER_DEACTIVE_CMD_KEY = "set_user_deactive";
+
+        //Key for add new user
+        public const string ADD_NEW_USER_CMD_KEY = "add_new_user";
     }
 
     public class SQLQueryResult
     {
         private object _result;
-        private string _sqlCmd;
+        private MessageQueryResult _mesResult;
 
-        public SQLQueryResult(object result, string cmd)
+        public SQLQueryResult(object result, MessageQueryResult mesResult)
         {
             _result = result;
-            _sqlCmd = cmd;
+            _mesResult = mesResult;
         }
 
         public object Result
@@ -217,9 +298,20 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             get { return _result; }
         }
 
-        public string SQLCommand
+        public MessageQueryResult MesResult
         {
-            get { return _sqlCmd; }
+            get { return _mesResult; }
         }
+    }
+
+    public enum MessageQueryResult
+    {
+        Non = 0,
+        OK = 1,
+        Finished = 2,
+        Existed = 3,
+        Done = 4,
+        Aborted = 5,
+        Cancled = 6
     }
 }
