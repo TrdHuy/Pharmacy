@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d6c6303_e9d8e181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-01-03T17:18:31Z",
+      "side": 1,
+      "message": "- Lúc select user trong datagrid thì highlight cả dòng luôn. Hiện tại cái highlight nó bị che mất r nên thấy mỗi viền.\n- Thêm/Sửa user không thay được hình.\n- Thêm user nút Quay lại không hoạt động.\n- Xóa user không cần nút Hủy.",
+      "revId": "d690c9065a1919b917641203f1dffbc114c97243",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
