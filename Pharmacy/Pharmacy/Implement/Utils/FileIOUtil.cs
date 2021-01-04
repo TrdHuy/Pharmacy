@@ -30,8 +30,12 @@ namespace Pharmacy.Implement.Utils
 
                 if (File.Exists(filePath))
                 {
-                    Bitmap bit = (Bitmap)Image.FromFile(filePath);
-                    return bit;
+                    using (var origin = Image.FromFile(filePath))
+                    {
+                        Bitmap bit = new Bitmap(origin);
+                        origin.Dispose();
+                        return bit;
+                    }
                 }
                 else
                 {
