@@ -11,9 +11,11 @@ namespace Pharmacy.Implement.Utils.Definitions
     {
         public static readonly int MINIMUM_PASSWORD_LENGHT = 8;
         public static readonly char[] SPECIAL_CHARS_OF_PASSWORD = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~".ToCharArray();
+        public static readonly char[] SPECIAL_CHARS_OF_USERNAME = "!#$%&'()*+,-/:;<=>?@[]^`{|}~".ToCharArray();
 
         public static readonly int LOGIN_BUTTON_PERFORM_DELAY_TIME = 500;
         public static readonly int SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
+        public static readonly int ADD_NEW_USER_DELAY_TIME = 1000;
 
 
         public const string HOME_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml";
@@ -28,6 +30,8 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/WarehouseManagementPage.xaml";
         public const string REPORT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Report/ReportPage.xaml";
         public const string ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagement/AddMedicinePage.xaml";
+        public const string USER_MODIFICATION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserModificationPage.xaml";
+        public const string USER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserInstantiationPage.xaml";
 
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 2000;
@@ -41,6 +45,9 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 2000;
         public static readonly long WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 2000;
         public static readonly long REPORT_PAGE_LOADING_DELAY_TIME = 2000;
+        public static readonly long USER_MODIFICATION_PAGE_LOADING_DELAY_TIME = 2000;
+        public static readonly long USER_INSTANTIATION_PAGE_LOADING_DELAY_TIME = 100;
+
         public static readonly long ADD_MEDICINE_PAGE_LOADING_DELAY_TIME = 500;
 
 
@@ -56,5 +63,17 @@ namespace Pharmacy.Implement.Utils.Definitions
         NotMeetLenght = 3,
         [StringValue("Mật khẩu phải có ít nhất 1 trong các ký tự !#$%&'()*+,-./:;<=>?@[]^_`{|}~")]
         WrongFormat = 4
+    }
+
+    public enum UserNameAwareMessage
+    {
+        [StringValue("Không được bỏ trống trường này!")]
+        Empty = 1,
+        [StringValue("Tên người dùng không được chứa khoảng trắng!")]
+        WhiteSpaceAware = 2,
+        [StringValue("Tên người dùng đã tồn tại!")]
+        UserExisted = 3,
+        [StringValue("Tên người dùng không được chứa các ký tự !#$%&'()*+,-/:;<=>?@[]^_`{|}~")]
+        SpecialCharacter = 4
     }
 }

@@ -28,11 +28,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             }
 
             modifiedInfo = new tblUser();
+            modifiedInfo.Username = _viewModel.CurrentUser.Username;
             modifiedInfo.FullName = _viewModel.FullNameText;
             modifiedInfo.Address = _viewModel.AdressText;
             modifiedInfo.Phone = _viewModel.PhoneText;
             modifiedInfo.Email = _viewModel.EmailText;
             modifiedInfo.Link = _viewModel.LinkText;
+            modifiedInfo.Job = _viewModel.CurrentUser.Job;
             modifiedInfo.Password = String.IsNullOrEmpty(_viewModel.NewPassword) ?
                 App.Current.CurrentUser.Password : _viewModel.NewPassword;
 
@@ -40,7 +42,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_USER_INFO_CMD_KEY
                     , PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME
                     , _sqlCmdObserver
-                    , modifiedInfo, App.Current.CurrentUser);
+                    , modifiedInfo, App.Current.CurrentUser.Username);
             return true;
         }
 

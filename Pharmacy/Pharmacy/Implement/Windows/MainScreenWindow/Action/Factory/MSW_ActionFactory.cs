@@ -4,6 +4,9 @@ using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +64,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_PIP_CAMERA_BUTTON:
                     action = new MSW_PIP_CameraButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_EDIT_BUTTON:
+                    action = new MSW_UMP_EditButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_DELETE_BUTTON:
+                    action = new MSW_UMP_DeleteUserButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_ADD_BUTTON:
+                    action = new MSW_UMP_AddNewUserButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON:
+                    action = new MSW_UMP_UMoP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CANCLE_BUTTON:
+                    action = new MSW_UMP_UMoP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_SAVE_BUTTON:
+                    action = new MSW_UMP_UIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_CANCLE_BUTTON:
+                    action = new MSW_UMP_UIP_CancleButtonAction();
                     break;
                 default:
                     action = null;

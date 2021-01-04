@@ -7,16 +7,28 @@
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="UserManagementPage">
 
+    <Page.DataContext>
+        <vm:UserManagementPageViewModel x:Name="UserManagementPageVM" />
+    </Page.DataContext>
+
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.71*" />
-            <RowDefinition Height="8.57*" />
+            <!--Header area-->
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.2*" />
+
+            <!--Body area-->
+            <RowDefinition Height="3.8*" />
+
+            <!--Footer area-->
+            <RowDefinition Height="0.6*" />
         </Grid.RowDefinitions>
+
         <!--Header area-->
         <Grid x:Name="HeaderGrid"
               Grid.Row="0"
@@ -40,6 +52,277 @@
                        FontSize="{StaticResource HeaderFontSize}"
                        Grid.Column="3"
                        Text="Quản lý nhân viên" />
+        </Grid>
+
+        <!--Body area-->
+        <Grid Grid.Row="2">
+
+            <!--Data area-->
+            <Grid x:Name="MainDataGridPanel"
+                  Grid.Row="0">
+                <DataGrid x:Name="UserDataGrid"
+                          VerticalAlignment="Top"
+                          CanUserAddRows="False"
+                          CanUserDeleteRows="False"
+                          AutoGenerateColumns="False"
+                          ItemsSource="{Binding UserItemSource}"
+                          Margin="20"
+                          MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
+                          HorizontalGridLinesBrush="White"
+                          VerticalGridLinesBrush="White"
+                          HeadersVisibility="Column">
+                    <DataGrid.Resources>
+                        <!--<Style TargetType="{x:Type DataGridRow}">
+                            <Style.Resources>
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                  Color="Aqua" />
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.ControlBrushKey}"
+                                                  Color="Violet" />
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                                  Color="Yellow" />
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.ControlTextBrushKey}"
+                                                  Color="Red" />
+                            </Style.Resources>
+                        </Style>-->
+
+                        <Style TargetType="DataGridCell"
+                               x:Key="DGTextCell">
+                            <Setter Property="IsTabStop"
+                                    Value="False" />
+
+                            <Setter Property="TextBox.IsReadOnly"
+                                    Value="True" />
+
+                            <Setter Property="FontSize"
+                                    Value="{StaticResource FontSizeLarge}" />
+
+                            <Setter Property="Foreground"
+                                    Value="Black" />
+
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridCell">
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <ContentPresenter Focusable="False"
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  Content="{TemplateBinding Content}">
+
+                                                </ContentPresenter>
+                                            </Grid>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+
+                            <Setter Property="BorderThickness"
+                                    Value="1" />
+
+                            <Setter Property="BorderBrush"
+                                    Value="White" />
+
+                            <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_ColumnHeaderHeight}" />
+
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DefaultDataGrid_ColumnHeaderBackgroundBrush}" />
+
+                            <Setter Property="Foreground"
+                                    Value="White" />
+
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+
+                            <Setter Property="FontSize"
+                                    Value="{StaticResource FontSizeXLarge}" />
+
+                        </Style>
+
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Resources>
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                  Color="{StaticResource NormalTheme_3rd_Color}" />
+                            </Style.Resources>
+                            
+                            <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                        </Style>
+
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <!--Avatar column-->
+                        <DataGridTemplateColumn Width="*"
+                                                Header="Ảnh">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Border.OpacityMask>
+                                            <ImageBrush Stretch="Uniform"
+                                                        ImageSource="{StaticResource AvatarImageOpacityMask}">
+                                            </ImageBrush>
+                                        </Border.OpacityMask>
+
+                                        <Image Stretch="Uniform"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Source="{Binding Username,Converter={conv:StringToImageSourceConverter},ConverterParameter=UserImages}" />
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!--Full name column-->
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Họ tên">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="FullName" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <!--User name column-->
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Tên đăng nhập">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Username" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <!--Job column-->
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Chức vụ">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Job" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <!--Phone column-->
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Số điện thoại">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Phone" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <!--Edit column-->
+                        <DataGridTemplateColumn CanUserResize="False"
+                                                Width="0.5*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.2*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="0.2*" />
+                                                <ColumnDefinition Width="0.5*" />
+                                                <ColumnDefinition Width="0.2*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <hps:IconButton Grid.Column="1"
+                                                            IconStretch="Uniform"
+                                                            Background="White"
+                                                            IsUsingDropShadowEffect="True"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            BorderThickness="0"
+                                                            Command="{Binding EditButtonCommand,ElementName=UserManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=UserDataGrid}"
+                                                            IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+
+                                            <hps:IconButton Grid.Column="3"
+                                                            BorderThickness="0"
+                                                            HorizontalAlignment="Center"
+                                                            IsUsingDropShadowEffect="True"
+                                                            Background="White"
+                                                            VerticalAlignment="Center"
+                                                            IconStretch="Uniform"
+                                                            Command="{Binding DeleteUserButtonCommand,ElementName=UserManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=UserDataGrid}"
+                                                            IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+
+        </Grid>
+
+        <!--Footer area-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6.27*" />
+                <ColumnDefinition Width="1.015*" />
+                <ColumnDefinition Width="0.13*" />
+                <ColumnDefinition Width="1.015*" />
+                <ColumnDefinition Width="0.13*" />
+            </Grid.ColumnDefinitions>
+
+            <hps:IconButton Margin="0,5,0,20"
+                            Grid.Column="3"
+                            TextContent="+ Thêm mới"
+                            ProgressSpinnerSize="30"
+                            ProgressSpinnerBackground="Black"
+                            FontSize="{StaticResource FontSizeXLarge}"
+                            BorderThickness="0"
+                            Command="{Binding AddNewUserButtonCommand}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            IsUsingDropShadowEffect="True"
+                            Foreground="White"
+                            Background="{StaticResource NormalTheme_LightGreenBrush}" />
+
         </Grid>
     </Grid>
 </Page>
