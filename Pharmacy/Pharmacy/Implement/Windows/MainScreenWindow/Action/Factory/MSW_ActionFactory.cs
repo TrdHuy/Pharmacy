@@ -83,8 +83,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_SAVE_BUTTON:
                     action = new MSW_UMP_UIP_SaveButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CAMERA_BUTTON:
+                    action = new MSW_UMP_UMoP_CameraButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_CANCLE_BUTTON:
                     action = new MSW_UMP_UIP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_CAMERA_BUTTON:
+                    action = new MSW_UMP_UIP_CameraButtonAction();
                     break;
                 default:
                     action = null;

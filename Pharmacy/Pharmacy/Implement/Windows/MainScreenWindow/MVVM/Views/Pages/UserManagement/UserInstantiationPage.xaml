@@ -77,7 +77,7 @@
                     </Grid.RowDefinitions>
                     <Border Grid.Column="0"
                             Grid.Row="1"
-                            Background="{StaticResource NormalTheme_LightGreenBrush}">
+                            Background="{StaticResource NormalTheme_1st_Background_Brush}">
                         <Border.OpacityMask>
                             <ImageBrush Stretch="UniformToFill"
                                         ImageSource="{StaticResource AvatarBGImageOpacityMask}" />
@@ -122,6 +122,19 @@
                             </Grid>
                         </Border>
 
+                        <hps:IconButton Grid.Column="2"
+                                        ToolTip="Đổi ảnh đại diện của nhân viên"
+                                        Background="Transparent"
+                                        Visibility="{Binding CameraButtonVisibility}"
+                                        IBContentOrientation="Vertical"
+                                        IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
+                                        IconStretch="UniformToFill"
+                                        IconHeight="15"
+                                        IconWidth="15"
+                                        Command="{Binding CameraButtonCommand}"
+                                        BorderThickness="0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top" />
                     </Grid>
                 </Grid>
 
@@ -586,7 +599,7 @@
                             IsUsingDropShadowEffect="True"
                             Command="{Binding SaveButtonCommand}"
                             Foreground="White"
-                            Background="{StaticResource NormalTheme_LightGreenBrush}" />
+                            Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
 
     </Grid>

@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.UIEventHandler.Listener;
+using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.DatabaseManager;
@@ -30,6 +31,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         private Visibility _newPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _verifiedPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _jobTitleAwareTextBlockVisibility = Visibility.Collapsed;
+        private Visibility _cameraButtonVisibility = Visibility.Visible;
 
         private string _newPassword = "";
         private string _verifiedPassword = "";
@@ -152,7 +154,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
                 InvalidateOwn();
             }
         }
-
+        public Visibility CameraButtonVisibility
+        {
+            get
+            {
+                return _cameraButtonVisibility;
+            }
+            set
+            {
+                _cameraButtonVisibility = value;
+                InvalidateOwn();
+            }
+        }
         public Visibility UserNameAwareTextBlockVisibility
         {
             get
@@ -299,6 +312,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
 
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand CancleButtonCommand { get; set; }
+        public RunInputCommand CameraButtonCommand { get; set; }
 
         public EventHandleCommand GridSizeChangedCommand { get; set; }
         public EventHandleCommand NewPasswordChangedCommand { get; set; }
@@ -310,9 +324,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
 
         public UserModificationPageViewModel()
         {
+            SetupFeatures();
             CurrentModifiedUser = MSW_DataFlowHost.Current.CurrentModifiedUser;
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent); 
+            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
 
             UserNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Username) ?
                     Visibility.Visible : Visibility.Collapsed;
@@ -327,6 +342,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
             VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+        }
+
+        private void SetupFeatures()
+        {
+            CameraButtonVisibility = Visibility.Collapsed;
+            bool isUsingCameraButton = RUNE.IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE;
+            if (isUsingCameraButton)
+            {
+                CameraButtonVisibility = Visibility.Visible;
+                CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
+            }
+        }
+
+        private void CameraButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CAMERA_BUTTON
+                , dataTransfer);
         }
 
         private void OnVerifiedPasswordChagedEvent(object sender, EventArgs e, object paramater)

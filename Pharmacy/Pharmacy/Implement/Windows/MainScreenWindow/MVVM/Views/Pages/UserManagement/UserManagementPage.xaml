@@ -321,7 +321,7 @@
                             VerticalContentAlignment="Center"
                             IsUsingDropShadowEffect="True"
                             Foreground="White"
-                            Background="{StaticResource NormalTheme_LightGreenBrush}" />
+                            Background="{StaticResource NormalTheme_1st_Background_Brush}" />
 
         </Grid>
     </Grid>

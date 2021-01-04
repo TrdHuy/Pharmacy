@@ -16,6 +16,9 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL = FeaturesParser
             .FeatureOrders["HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL"];
 
+        public static readonly bool IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE"];
+        
 
         private sealed class FeaturesParser
         {
