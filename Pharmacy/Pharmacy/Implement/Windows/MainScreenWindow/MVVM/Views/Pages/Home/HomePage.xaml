@@ -319,7 +319,7 @@
                                 </TextBlock.Effect>
                             </TextBlock>
                             <TextBlock Grid.Row="1"
-                                       Text="{Binding CurrentUser.NickName}"
+                                       Text="{Binding CurrentUser.Username}"
                                        HorizontalAlignment="Left"
                                        VerticalAlignment="Bottom"
                                        FontFamily="{StaticResource VNFOswald}"

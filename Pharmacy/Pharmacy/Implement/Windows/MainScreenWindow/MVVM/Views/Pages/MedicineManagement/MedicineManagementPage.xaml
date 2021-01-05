@@ -4,14 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement"
+      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:usercontrols="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage"
       mc:Ignorable="d" Background="White"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       FontSize="{StaticResource FontSizeLarge_Float}"
       Title="MedicineManagementPage">
-
+    <Page.DataContext>
+        <vm:MedicineManagementPageViewModel x:Name="MedicineManagementPageVM"/>
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.84*" MaxHeight="{StaticResource PageHeaderMaxHeight}"/>
@@ -28,19 +32,238 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Tìm kiếm:" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Tag="Nhập mã hoặc tên thuốc" Margin="5,0,0,0" VerticalContentAlignment="Center"/>
-            <CheckBox Content="Dược liệu" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            <CheckBox Content="Cao đơn" Grid.Column="3" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Grid.Column="1" ToolTip="Nhập mã hoặc tên thuốc" Margin="5,0,0,0" VerticalContentAlignment="Center"
+                     Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding FilterMedicineCommand}"/>
+                </TextBox.InputBindings>
+            </TextBox>
+            <CheckBox Content="Dược liệu" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="True"
+                      Command="{Binding FilterMedicineTypeCommand}" CommandParameter="{Binding ElementName=cbxDuocLieu}" x:Name="cbxDuocLieu"/>
+            <CheckBox Content="Cao đơn" Grid.Column="3" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="True"
+                      Command="{Binding FilterMedicineTypeCommand}" CommandParameter="{Binding ElementName=cbxCaoDon}" x:Name="cbxCaoDon"/>
         </Grid>
-        <DataGrid Grid.Row="2" Margin="10">
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="2"
+                  VerticalAlignment="Top"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding MedicineItemSource}"
+                  Margin="10"
+                  MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
+                  HorizontalGridLinesBrush="White"
+                  VerticalGridLinesBrush="White"
+                  HeadersVisibility="Column">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell"
+                               x:Key="DGTextCell">
+                    <Setter Property="IsTabStop"
+                                    Value="False" />
+
+                    <Setter Property="TextBox.IsReadOnly"
+                                    Value="True" />
+
+                    <Setter Property="FontSize"
+                                    Value="{StaticResource FontSizeLarge}" />
+
+                    <Setter Property="Foreground"
+                                    Value="Black" />
+
+                    <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+
+                    <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+
+                    <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter Focusable="False"
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  Content="{TemplateBinding Content}">
+
+                                        </ContentPresenter>
+                                    </Grid>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                         Value="True">
+                            <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                         Value="True">
+                            <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+
+                    <Setter Property="BorderThickness"
+                                    Value="1" />
+
+                    <Setter Property="BorderBrush"
+                                    Value="White" />
+
+                    <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_ColumnHeaderHeight}" />
+
+                    <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DefaultDataGrid_ColumnHeaderBackgroundBrush}" />
+
+                    <Setter Property="Foreground"
+                                    Value="White" />
+
+                    <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+
+                    <Setter Property="FontSize"
+                                    Value="{StaticResource FontSizeXLarge}" />
+
+                </Style>
+
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Resources>
+                        <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                  Color="{StaticResource NormalTheme_3rd_Color}" />
+                    </Style.Resources>
+
+                    <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                </Style>
+
+            </DataGrid.RowStyle>
+
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Hình ảnh" Width="100"/>
-                <DataGridTextColumn Header="Tên thuốc" Width="*"/>
-                <DataGridTextColumn Header="Loại thuốc" Width="auto"/>
-                <DataGridTextColumn Header="Đơn vị tính" Width="auto"/>
-                <DataGridTextColumn Header="Giá mua vào" Width="auto"/>
-                <DataGridTextColumn Header="Giá bán ra" Width="auto"/>
-                <DataGridTemplateColumn Width="auto"/>
+                <!--Avatar column-->
+                <DataGridTemplateColumn Width="*"
+                                                Header="Ảnh">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Border.OpacityMask>
+                                    <ImageBrush Stretch="Uniform"
+                                                        ImageSource="{StaticResource AvatarImageOpacityMask}">
+                                    </ImageBrush>
+                                </Border.OpacityMask>
+
+                                <Image Stretch="Uniform"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Source="{Binding MedicineID,Converter={conv:StringToImageSourceConverter},ConverterParameter=MedicineImages}" />
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!--Name column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Tên thuốc"
+                                    Binding="{Binding MedicineName}"/>
+
+                <!--Type column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Loại thuốc"
+                                    Binding="{Binding tblMedicineType.MedicineTypeName}"/>
+
+                <!--BidPrice column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Giá mua vào"
+                                    Binding="{Binding BidPrice}"/>
+
+                <!--AskingPrice column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Giá bán ra"
+                                    Binding="{Binding AskingPrice}"/>
+
+                <!--Edit column-->
+                <DataGridTemplateColumn CanUserResize="False"
+                                                Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <hps:IconButton Grid.Column="1"
+                                                            IconStretch="Uniform"
+                                                            Background="White"
+                                                            IsUsingDropShadowEffect="True"
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            BorderThickness="0"
+                                                            Command="{Binding EditMedicineButtonCommand,ElementName=MedicineManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=DataGrid}"
+                                                            IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+
+                                    <hps:IconButton Grid.Column="3"
+                                                            BorderThickness="0"
+                                                            HorizontalAlignment="Center"
+                                                            IsUsingDropShadowEffect="True"
+                                                            Background="White"
+                                                            VerticalAlignment="Center"
+                                                            IconStretch="Uniform"
+                                                            Command="{Binding DeleteMedicineButtonCommand,ElementName=MedicineManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=DataGrid}"
+                                                            IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+
+                                    <hps:IconButton Grid.Column="5"
+                                                            BorderThickness="0"
+                                                            HorizontalAlignment="Center"
+                                                            IsUsingDropShadowEffect="True"
+                                                            Background="White"
+                                                            VerticalAlignment="Center"
+                                                            IconStretch="Uniform"
+                                                            Command="{Binding PromoMedicineButtonCommand,ElementName=MedicineManagementPageVM}"
+                                                            CommandParameter="{Binding ElementName=DataGrid}"
+                                                            IconSource="{StaticResource PromoIcon}" />
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="3" Margin="10,0,0,20">
@@ -59,7 +282,7 @@
                             IBContentOrientation="Horizontal" 
                             IBTextVerticalAlignment="Center" 
                             FontSize="{StaticResource FontSizeXLarge}"
-                            Command="{Binding CancleButtonCommand}"
+                            Command="{Binding ExcelImportButtonCommand}"
                             BorderThickness="0"
                             MaxHeight="100"
                             IconSource="{StaticResource ExcelImport}"
@@ -84,7 +307,8 @@
                             IconWidth="30"
                             IconHeight="30"
                             IconTextGapWidth="5"
-                            Padding="5"/>
+                            Padding="5"
+                            Command="{Binding PrintMedicineListButtonCommand}"/>
             <hps:IconButton IBTextVerticalAlignment="Center" 
                             IsUsingDropShadowEffect="True"
                             HorizontalContentAlignment="Center"
@@ -94,7 +318,8 @@
                             Background="{StaticResource WordGreenBrush}"
                             Foreground="White"
                             Margin="10,0"
-                            Padding="5"/>
+                            Padding="5"
+                            Command="{Binding AddNewMedicineButtonCommand}"/>
         </Grid>
     </Grid>
 </Page>

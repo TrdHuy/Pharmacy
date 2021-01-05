@@ -10,9 +10,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="1.11*"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="9.21*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.Column="1" 
                Source="{Binding (customcontrols:PageHeaderControl.HeaderIcon),RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=customcontrols:PageHeaderControl}}" 

@@ -55,7 +55,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         public void ExecuteQuery(string SQLCmdKey, params object[] paramaters)
         {
-
             _result = null;
             switch (SQLCmdKey)
             {
@@ -79,6 +78,15 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                     break;
                 case SQLCommandKey.ADD_NEW_USER_CMD_KEY:
                     _result = AddNewUser(paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY:
+                    _result = GetAllActiveMedicineDataByKeyword(paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_TYPE_DATA_CMD_KEY:
+                    _result = GetAllActiveMedicineTypeData(paramaters);
+                    break;
+                case SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY:
+                    _result = SetMedicineDeactive(paramaters);
                     break;
                 default:
                     break;
@@ -252,12 +260,88 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
         }
 
+        #region Medicine Management
+        private SQLQueryResult GetAllActiveMedicineDataByKeyword(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                string content = paramaters[0] as string;
+                List<int> lstMedicineType = paramaters[1] as List<int>;
+                List<tblMedicine> lstOutput;
 
+                if (content.Length == 0)
+                {
+                    lstOutput = _appDBContext.tblMedicines
+                        .Where(o => o.IsActive && lstMedicineType.Contains(o.MedicineTypeID))
+                        .ToList();
+                }
+                else
+                {
+                    lstOutput = _appDBContext.tblMedicines
+                        .Where(o => o.IsActive
+                        && (o.MedicineName.Contains(content) || o.MedicineID.Contains(content))
+                        && lstMedicineType.Contains(o.MedicineTypeID))
+                        .ToList();
+                }
+                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                    OwnerWindow.MainScreen);
+            }
+            return result;
+        }
+
+        private SQLQueryResult GetAllActiveMedicineTypeData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                List<tblMedicineType> lstOutput;
+
+                lstOutput = _appDBContext.tblMedicineTypes.ToList();
+                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                    OwnerWindow.MainScreen);
+            }
+            return result;
+        }
+        private SQLQueryResult SetMedicineDeactive(object[] paramaters)
+        {
+            string id = paramaters[0].ToString();
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                var x = _appDBContext.tblMedicines.Where(user => user.MedicineID.Equals(id)).
+                    First();
+                x.IsActive = false;
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+                return result;
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message);
+            }
+            finally
+            {
+            }
+            return result;
+        }
+        #endregion
     }
 
     internal class SQLCommandKey
     {
-
         // Key for checking a user avail or not
         public const string CHECK_USER_AVAIL_CMD_KEY = "check_user_avail";
 
@@ -281,6 +365,15 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for add new user
         public const string ADD_NEW_USER_CMD_KEY = "add_new_user";
+
+        #region Medicine Management
+        //Key for getting info of all medicine in database
+        public const string GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY = "get_all_active_medicine_data";
+        //Key for getting info of all medicine type in database
+        public const string GET_ALL_ACTIVE_MEDICINE_TYPE_DATA_CMD_KEY = "get_all_active_medicine_type_data";
+        //Key for set a medicine deactive
+        public const string SET_MEDICINE_DEACTIVE_CMD_KEY = "set_medicine_deactive";
+        #endregion
     }
 
     public class SQLQueryResult

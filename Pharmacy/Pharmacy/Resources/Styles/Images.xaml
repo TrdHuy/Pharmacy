@@ -42,6 +42,9 @@
     <BitmapImage x:Key="PersonalInfoPage_CameraIcon"
                  UriSource="/Pharmacy;component/Resources/Icons/PersonalInfoPageIcons/camera.png"></BitmapImage>
 
+    <BitmapImage x:Key="PromoIcon"
+                 UriSource="/Pharmacy;component/Resources/Icons/coupon.png"></BitmapImage>
+
 
     <system:Double x:Key="ImageSizeRegular">34</system:Double>
     <system:Double x:Key="ImageSizeRegular_Float">40</system:Double>

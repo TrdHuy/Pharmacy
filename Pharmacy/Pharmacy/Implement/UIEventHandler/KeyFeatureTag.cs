@@ -44,5 +44,12 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_UMP_UIP_CAMERA_BUTTON = "msw_ump_uip_camera_button";
         public const string KEY_TAG_MSW_UMP_UIP_CANCLE_BUTTON = "msw_ump_uip_cancle_button";
 
+        //Medicine management page key string
+        public const string KEY_TAG_MSW_MMP_EDIT_BUTTON = "msw_mmp_edit_button";
+        public const string KEY_TAG_MSW_MMP_DELETE_BUTTON = "msw_mmp_delete_button";
+        public const string KEY_TAG_MSW_MMP_ADD_BUTTON = "msw_mmp_add_button";
+        public const string KEY_TAG_MSW_MMP_PROMO_BUTTON = "msw_mmp_promo_button";
+        public const string KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON = "msw_mmp_print_medicine_button";
+        public const string KEY_TAG_MSW_MMP_EXCEL_IMPORT_BUTTON = "msw_mmp_excel_import_button";
     }
 }

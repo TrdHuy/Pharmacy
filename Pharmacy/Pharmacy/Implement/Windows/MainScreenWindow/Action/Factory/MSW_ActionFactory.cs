@@ -3,6 +3,7 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
@@ -91,6 +92,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_UMP_UIP_CAMERA_BUTTON:
                     action = new MSW_UMP_UIP_CameraButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON:
+                    action = new MSW_MMP_DeleteMedicineButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON:
+                    action = new MSW_MMP_AddNewMedicineButtonAction();
                     break;
                 default:
                     action = null;
