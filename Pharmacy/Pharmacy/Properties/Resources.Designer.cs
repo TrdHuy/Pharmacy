@@ -68,7 +68,10 @@ namespace Pharmacy.Properties {
         ///HPS_FT_IS_SUPPORT_NOTIFY_ICON=TRUE
         ///
         ///#Navigation button switch
-        ///HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE.
+        ///HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE
+        ///
+        ///#Adminstrator change user image
+        ///HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE=TRUE.
         /// </summary>
         internal static string AppRunConfig {
             get {
@@ -92,6 +95,16 @@ namespace Pharmacy.Properties {
         internal static System.Drawing.Bitmap avatar_image_opacity_mask1 {
             get {
                 object obj = ResourceManager.GetObject("avatar_image_opacity_mask1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap customer_default_icon {
+            get {
+                object obj = ResourceManager.GetObject("customer_default_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

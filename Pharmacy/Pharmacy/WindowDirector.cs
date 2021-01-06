@@ -1,5 +1,6 @@
 ﻿using HPSolutionCCDevPackage.netFramework;
 using Pharmacy.Config;
+using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
@@ -225,6 +226,7 @@ namespace Pharmacy
                 _notifyIcon?.Dispose();
                 _notifyIcon = null;
             }
+            DbManager.Instance.Dispose();
         }
 
         public AnubisMessgaeResult ShowMessageBox(

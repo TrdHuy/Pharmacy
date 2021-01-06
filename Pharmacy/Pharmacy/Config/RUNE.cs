@@ -18,7 +18,18 @@ namespace Pharmacy.Config
 
         public static readonly bool IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE"];
-        
+
+        public static readonly bool IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_CUSTOMER_BY_EMAIL = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_EMAIL"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_CUSTOMER_BY_ADDRESS = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_ADRESS"];
 
         private sealed class FeaturesParser
         {

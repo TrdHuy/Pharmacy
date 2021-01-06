@@ -14,6 +14,7 @@ namespace Pharmacy.Implement.Utils
     {
         public const string USER_IMAGE_FOLDER_NAME = "UserImages";
         public const string MEDICINE_IMAGE_FOLDER_NAME = "MedicineImages";
+        public const string CUSTOMER_IMAGE_FOLDER_NAME = "CustomerImages";
         private const long USER_IMAGE_QUALITY = 1000;
 
         public static Bitmap GetBitmapFromName(string imageName, string folderName)
@@ -48,15 +49,42 @@ namespace Pharmacy.Implement.Utils
             }
         }
 
-        public static void SaveUserImageFile(string userName, Bitmap userImage)
+        public static void DeleteImageFile(string fileName, string folderName)
         {
-            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + USER_IMAGE_FOLDER_NAME;
+            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + folderName;
+
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
-            string fileName = userName + ".jpg";
-            string filePath = directory + @"\" + fileName;
+            string fName = fileName + ".jpg";
+            string filePath = directory + @"\" + fName;
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+        }
+        public static void SaveUserImageFile(string userName, Bitmap userImage)
+        {
+            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + USER_IMAGE_FOLDER_NAME;
+            SaveImageToFile(userName, directory, userImage);
+        }
+
+        public static void SaveCustomerImageFile(string customerID, Bitmap cusBit)
+        {
+            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + CUSTOMER_IMAGE_FOLDER_NAME;
+            SaveImageToFile(customerID, directory, cusBit);
+        }
+
+        private static void SaveImageToFile(string _filename, string _directory, Bitmap _bit)
+        {
+            if (!Directory.Exists(_directory))
+            {
+                Directory.CreateDirectory(_directory);
+            }
+            string fileName = _filename + ".jpg";
+            string filePath = _directory + @"\" + fileName;
 
             // Get an ImageCodecInfo object that represents the JPEG codec.
             ImageCodecInfo myImageCodecInfo = GetEncoderInfo("image/jpeg");
@@ -82,7 +110,7 @@ namespace Pharmacy.Implement.Utils
             {
                 File.Delete(filePath);
             }
-            userImage.Save(filePath, myImageCodecInfo, myEncoderParameters);
+            _bit.Save(filePath, myImageCodecInfo, myEncoderParameters);
         }
 
         private static ImageCodecInfo GetEncoderInfo(String mimeType)
@@ -98,6 +126,7 @@ namespace Pharmacy.Implement.Utils
             return null;
         }
 
+
         private static Bitmap GetDefaultIconBitmap(string folderName)
         {
             switch (folderName)
@@ -106,6 +135,8 @@ namespace Pharmacy.Implement.Utils
                     return Pharmacy.Properties.Resources.default_user_image;
                 case MEDICINE_IMAGE_FOLDER_NAME:
                     return Pharmacy.Properties.Resources.default_medicine_image;
+                case CUSTOMER_IMAGE_FOLDER_NAME:
+                    return Pharmacy.Properties.Resources.customer_default_icon;
                 default: return null;
 
             }

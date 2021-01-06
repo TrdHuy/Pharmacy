@@ -51,6 +51,11 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             _provider?.RollBack();
         }
 
+        public void Dispose()
+        {
+            _provider?.Dispose();
+        }
+
         public static DbManager Instance
         {
             get

@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,11 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
         }
 
+        internal void Dispose()
+        {
+            _appDBContext.Dispose();
+        }
+
         public void ExecuteQuery(string SQLCmdKey, params object[] paramaters)
         {
 
@@ -80,10 +86,140 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.ADD_NEW_USER_CMD_KEY:
                     _result = AddNewUser(paramaters);
                     break;
+                case SQLCommandKey.ADD_NEW_CUSTOMER_CMD_KEY:
+                    _result = AddNewCustomer(paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_CMD_KEY:
+                    _result = GetAllActiveCustomerData(paramaters);
+                    break;
+                case SQLCommandKey.UPDATE_CUSTOMER_INFO_CMD_KEY:
+                    _result = UpdateCustomerInfo(paramaters);
+                    break;
+                case SQLCommandKey.SET_CUSTOMER_DEACTIVE_CMD_KEY:
+                    _result = SetCustomerDeactive(paramaters);
+                    break;
                 default:
                     break;
             }
             NotifyChange(_result);
+        }
+
+        private SQLQueryResult SetCustomerDeactive(object[] paramaters)
+        {
+            int cusID = Convert.ToInt32(paramaters[0]);
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                var x = _appDBContext.tblCustomers.Where(cus => cus.CustomerID == cusID).
+                    First();
+                x.IsActive = false;
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
+                return result;
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message);
+            }
+            finally
+            {
+            }
+            return result;
+        }
+
+        private SQLQueryResult UpdateCustomerInfo(object[] paramaters)
+        {
+            tblCustomer modifiedCustomer = paramaters[0] as tblCustomer;
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+
+            try
+            {
+                var x = _appDBContext.tblCustomers.Where<tblCustomer>(cus => cus.CustomerID == modifiedCustomer.CustomerID).First();
+                x.CustomerName = modifiedCustomer.CustomerName;
+                x.Address = modifiedCustomer.Address;
+                x.Phone = modifiedCustomer.Phone;
+                x.Email = modifiedCustomer.Email;
+                x.CustomerDescription = modifiedCustomer.CustomerDescription;
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(x, MessageQueryResult.Done);
+            }
+            catch (DbEntityValidationException e)
+            {
+                HandleDbEntityValidationException(e);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return result;
+        }
+
+        private SQLQueryResult GetAllActiveCustomerData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                var x = _appDBContext.tblCustomers.
+                    Where<tblCustomer>(cus => cus.IsActive).
+                    ToList();
+                result = new SQLQueryResult(x, MessageQueryResult.Done);
+            }
+            catch (Exception e)
+            {
+                //Print debug and user log here
+            }
+            return result;
+        }
+
+        private SQLQueryResult AddNewCustomer(object[] paramaters)
+        {
+            tblCustomer newCustomer = paramaters[0] as tblCustomer;
+            string imageFolder = paramaters[1] as string;
+
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+
+            try
+            {
+                _appDBContext.tblCustomers.Add(newCustomer);
+
+                if (!String.IsNullOrEmpty(imageFolder))
+                {
+                    try
+                    {
+                        string file = (_appDBContext.tblCustomers.
+                            ToList().
+                            Count + 1).ToString();
+                        Bitmap cusBit = (Bitmap)Image.FromFile(imageFolder);
+                        FileIOUtil.SaveCustomerImageFile(file, cusBit);
+                    }
+                    catch
+                    {
+                        App.Current.ShowApplicationMessageBox("Lỗi thêm ảnh đại diện của khách hàng, vui lòng kiểm tra lại!",
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                            OwnerWindow.MainScreen,
+                            "Lỗi!");
+                        RollBack();
+                        return result;
+                    }
+
+                }
+
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
+            }
+            catch (DbEntityValidationException e)
+            {
+                HandleDbEntityValidationException(e);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+
+            return result;
         }
 
         private SQLQueryResult AddNewUser(object[] paramaters)
@@ -95,7 +231,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             {
                 _appDBContext.tblUsers.Add(newUser);
                 _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
             }
             catch (DbEntityValidationException e)
             {
@@ -120,7 +256,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                     First();
                 x.IsActive = false;
                 _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)
@@ -141,7 +277,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
                     ToList();
                 bool IsExisted = x.Count > 0;
-                SQLQueryResult result = new SQLQueryResult(IsExisted, MessageQueryResult.Existed);
+                SQLQueryResult result = new SQLQueryResult(IsExisted, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)
@@ -159,7 +295,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 var x = _appDBContext.tblUsers.
                     Where<tblUser>(user => !user.IsAdmin).
                     ToList();
-                result = new SQLQueryResult(x, MessageQueryResult.Finished);
+                result = new SQLQueryResult(x, MessageQueryResult.Done);
             }
             catch (Exception e)
             {
@@ -176,7 +312,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 var x = _appDBContext.tblUsers.
                     Where<tblUser>(user => user.IsActive).
                     ToList();
-                result = new SQLQueryResult(x, MessageQueryResult.Finished);
+                result = new SQLQueryResult(x, MessageQueryResult.Done);
             }
             catch (Exception e)
             {
@@ -202,7 +338,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 x.Job = modifiedUser.Job;
                 x.Password = modifiedUser.Password;
                 _appDBContext.SaveChanges();
-                result = new SQLQueryResult(x, MessageQueryResult.Finished);
+                result = new SQLQueryResult(x, MessageQueryResult.Done);
             }
             catch (DbEntityValidationException e)
             {
@@ -227,7 +363,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)
                 && user.Password.Equals(pass)).ToList();
 
-                SQLQueryResult result = new SQLQueryResult(x, MessageQueryResult.Finished);
+                SQLQueryResult result = new SQLQueryResult(x, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)
@@ -281,6 +417,19 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for add new user
         public const string ADD_NEW_USER_CMD_KEY = "add_new_user";
+
+        //Key for add new customer
+        public const string ADD_NEW_CUSTOMER_CMD_KEY = "add_new_customer";
+
+        //Key for get all active customer
+        public const string GET_ALL_ACTIVE_CUSTOMER_CMD_KEY = "get_all_active_customer";
+
+        //Key for updating a customer info in database
+        public const string UPDATE_CUSTOMER_INFO_CMD_KEY = "update_customer_info";
+
+        //Key for set a customer deactive
+        public const string SET_CUSTOMER_DEACTIVE_CMD_KEY = "set_customer_deactive";
+
     }
 
     public class SQLQueryResult
@@ -308,11 +457,20 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
     public enum MessageQueryResult
     {
         Non = 0,
+
+        // The task has done, but there is no result return
         OK = 1,
-        Finished = 2,
-        Existed = 3,
-        Done = 4,
+
+        // Done the task, and return the result
+        Done = 2,
+
+        // Finished the task, but return the null
+        Finished = 4,
+
+        // The task was aborted
         Aborted = 5,
+
+        // The task was cancled
         Cancled = 6
     }
 }

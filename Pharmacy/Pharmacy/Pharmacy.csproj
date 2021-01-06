@@ -139,6 +139,7 @@
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
     <Compile Include="Implement\Utils\Converter\StringToImageSourceConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\SystemDateTimeToStringConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
     <Compile Include="Implement\Utils\CustomControls\PageHeaderControl.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
@@ -158,6 +159,16 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SellingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerInstantiationPage\MSW_CMP_CIP_CameraButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerInstantiationPage\MSW_CMP_CIP_CancleButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerInstantiationPage\MSW_CMP_CIP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerModificationPage\MSW_CMP_CMoP_CameraButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerModificationPage\MSW_CMP_CMoP_CancleButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerModificationPage\MSW_CMP_CMoP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_AddButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_DeleteButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_EditButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_HistoryButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
@@ -172,14 +183,27 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerModificationPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagementPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerInstantiationPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransactionHistoryPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserModificationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerModificationPage.xaml.cs">
+      <DependentUpon>CustomerModificationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml.cs">
       <DependentUpon>CustomerManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerInstantiationPage.xaml.cs">
+      <DependentUpon>CustomerInstantiationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransactionHistoryPage.xaml.cs">
+      <DependentUpon>CustomerTransactionHistoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\AddMedicinePage.xaml.cs">
       <DependentUpon>AddMedicinePage.xaml</DependentUpon>
@@ -304,7 +328,19 @@
     <Compile Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml.cs">
       <DependentUpon>LoginScreenWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerModificationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerInstantiationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransactionHistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -436,6 +472,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <EntityDeploy Include="PharmacyDBModel.edmx">
@@ -522,6 +559,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Images\customer_default_icon.png" />
+    <Resource Include="Resources\Icons\CustomerManagementPageIcons\customner_history_icon.png" />
     <Resource Include="Resources\Icons\drop_down_icon.png" />
     <Resource Include="Resources\Icons\UserManagementPageIcons\delete_user_row.png" />
     <Resource Include="Resources\Icons\UserManagementPageIcons\edit_pencil.png" />
