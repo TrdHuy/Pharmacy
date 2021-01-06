@@ -15,7 +15,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         private MSW_PageController _pageHost = MSW_PageController.Instance;
         private UserManagementPageViewModel _viewModel;
 
-
         public bool Execute(object[] dataTransfer)
         {
             _viewModel = dataTransfer[0] as UserManagementPageViewModel;

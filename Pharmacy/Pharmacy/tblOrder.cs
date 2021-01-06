@@ -30,9 +30,9 @@ namespace Pharmacy
         public string OrderDescription { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual tblCustomer tblCustomer { get; set; }
         public virtual tblUser tblUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrderDetail> tblOrderDetails { get; set; }
+        public virtual tblCustomer tblCustomer { get; set; }
     }
 }

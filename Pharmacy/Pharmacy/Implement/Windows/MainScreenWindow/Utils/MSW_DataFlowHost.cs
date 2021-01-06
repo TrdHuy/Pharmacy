@@ -22,6 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
             }
         }
         public tblUser CurrentModifiedUser { get; set; }
+        public tblCustomer CurrentModifiedCustomer { get; set; }
 
         private MSW_DataFlowHost()
         {

@@ -44,6 +44,22 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_UMP_UIP_CAMERA_BUTTON = "msw_ump_uip_camera_button";
         public const string KEY_TAG_MSW_UMP_UIP_CANCLE_BUTTON = "msw_ump_uip_cancle_button";
 
+        //Customer management page key string
+        public const string KEY_TAG_MSW_CMP_EDIT_BUTTON = "msw_cmp_edit_button";
+        public const string KEY_TAG_MSW_CMP_DELETE_BUTTON = "msw_cmp_delete_button";
+        public const string KEY_TAG_MSW_CMP_HISTORY_BUTTON = "msw_cmp_history_button";
+        public const string KEY_TAG_MSW_CMP_ADD_BUTTON = "msw_cmp_add_button";
+
+        //Customer instantiation page key string
+        public const string KEY_TAG_MSW_CMP_CIP_SAVE_BUTTON = "msw_cmp_cip_save_button";
+        public const string KEY_TAG_MSW_CMP_CIP_CAMERA_BUTTON = "msw_cmp_cip_camera_button";
+        public const string KEY_TAG_MSW_CMP_CIP_CANCLE_BUTTON = "msw_cmp_cip_cancle_button";
+
+        //Customer modification page key string
+        public const string KEY_TAG_MSW_CMP_CMoP_SAVE_BUTTON = "msw_cmp_cmop_save_button";
+        public const string KEY_TAG_MSW_CMP_CMoP_CAMERA_BUTTON = "msw_cmp_cmop_camera_button";
+        public const string KEY_TAG_MSW_CMP_CMoP_CANCLE_BUTTON = "msw_cmp_cmop_cancle_button";
+
         //Medicine management page key string
         public const string KEY_TAG_MSW_MMP_EDIT_BUTTON = "msw_mmp_edit_button";
         public const string KEY_TAG_MSW_MMP_DELETE_BUTTON = "msw_mmp_delete_button";

@@ -36,7 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
 
                 SQLQueryCustodian sqlQueryObserver = new SQLQueryCustodian((queryResult) =>
                 {
-                    if (queryResult.MesResult == MessageQueryResult.Finished)
+                    if (queryResult.MesResult == MessageQueryResult.Done)
                     {
                         App.Current.ShowApplicationMessageBox("Xóa tài khoản thành công!",
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

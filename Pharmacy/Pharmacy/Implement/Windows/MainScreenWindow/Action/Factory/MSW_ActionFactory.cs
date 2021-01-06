@@ -3,6 +3,9 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerInstantiationPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
@@ -98,6 +101,36 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON:
                     action = new MSW_MMP_AddNewMedicineButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON:
+                    action = new MSW_CMP_AddButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_SAVE_BUTTON:
+                    action = new MSW_CMP_CIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CAMERA_BUTTON:
+                    action = new MSW_CMP_CIP_CameraButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CANCLE_BUTTON:
+                    action = new MSW_CMP_CIP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_EDIT_BUTTON:
+                    action = new MSW_CMP_EditButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_DELETE_BUTTON:
+                    action = new MSW_CMP_DeleteButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_HISTORY_BUTTON:
+                    action = new MSW_CMP_HistoryButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_SAVE_BUTTON:
+                    action = new MSW_CMP_CMoP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CANCLE_BUTTON:
+                    action = new MSW_CMP_CMoP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CAMERA_BUTTON:
+                    action = new MSW_CMP_CMoP_CameraButtonAction();
                     break;
                 default:
                     action = null;

@@ -25,6 +25,8 @@
     <Color x:Key="NormalTheme_LightBlue">#FF4BBF60</Color>
     <Color x:Key="NormalTheme_1st_B_Color">#FF686868</Color>
     <Color x:Key="NormalTheme_2nd_B_Color">#FF9A9A9A</Color>
+    <Color x:Key="NormalTheme_3rd_B_Color">#FFA6A6A6</Color>
+    
     <Color x:Key="NormalTheme_1st_Color">#FF28B6F6</Color>
     <Color x:Key="NormalTheme_2nd_Color">#FF81D5FA</Color>
     <Color x:Key="NormalTheme_3rd_Color">#FFB3E5FC</Color>
@@ -63,4 +65,6 @@
                      Color="{StaticResource NormalTheme_2nd_B_Color}" />
     <SolidColorBrush x:Key="NormalTheme_MessageBox_Border_Brush"
                      Color="{StaticResource NormalTheme_1st_B_Color}" />
+    <SolidColorBrush x:Key="NormalTheme_ReturnButton_Bg_Brush"
+                     Color="{StaticResource NormalTheme_3rd_B_Color}" />
 </ResourceDictionary>

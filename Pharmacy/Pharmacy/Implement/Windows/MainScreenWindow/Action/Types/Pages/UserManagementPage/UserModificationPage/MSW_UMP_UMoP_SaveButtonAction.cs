@@ -52,7 +52,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
-            if (queryResult.MesResult == MessageQueryResult.Finished)
+            if (queryResult.MesResult == MessageQueryResult.Done)
             {
                 App.Current.ShowApplicationMessageBox("Thay đổi thông tin thành công",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

@@ -354,6 +354,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         public UserInstantiationPageViewModel()
         {
             SetupFeatures();
+
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
             NewUser = new tblUser();
