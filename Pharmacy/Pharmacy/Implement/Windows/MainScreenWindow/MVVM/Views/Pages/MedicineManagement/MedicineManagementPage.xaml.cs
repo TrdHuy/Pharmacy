@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
         public MedicineManagementPage()
         {
             InitializeComponent();
+            DataContext = new MedicineManagementPageViewModel();
         }
     }
 }
