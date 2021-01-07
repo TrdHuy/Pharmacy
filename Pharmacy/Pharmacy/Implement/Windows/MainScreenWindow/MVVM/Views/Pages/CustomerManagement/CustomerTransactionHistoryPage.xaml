@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement"
       mc:Ignorable="d"
       Title="CustomerTransactionHistoryPage"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage"
@@ -33,7 +34,7 @@
             </Grid.RowDefinitions>
 
             <!--Page title-->
-            <Grid x:Name="PageTitleGridArea"
+            <!--<Grid x:Name="PageTitleGridArea"
                   Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*" />
@@ -55,8 +56,11 @@
                            FontSize="{StaticResource HeaderFontSize}"
                            Grid.Column="3"
                            Text="Lịch sử mua hàng" />
-            </Grid>
-
+            </Grid>-->
+            <uc:PageHeader Grid.Row="0"
+                           MaxHeight="{StaticResource PageHeaderMaxHeight}"
+                           HeaderText="Lịch sử mua hàng"
+                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"/>
             <!--Image and user info area-->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -165,7 +169,6 @@
                 </Grid>
             </Grid>
         </Grid>
-
         <!--Body area-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

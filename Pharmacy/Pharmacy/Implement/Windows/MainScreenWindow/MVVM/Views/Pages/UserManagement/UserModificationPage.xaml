@@ -6,6 +6,7 @@
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
@@ -33,30 +34,9 @@
             </Grid.RowDefinitions>
 
             <!--Page title-->
-            <Grid x:Name="PageTitleGridArea"
-                  Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.61*" />
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="7.71*" />
-                    <ColumnDefinition Width="1.8*" />
-                </Grid.ColumnDefinitions>
-
-                <Image Grid.Column="1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Stretch="UniformToFill"
-                       Source="{StaticResource HomePage_UserManageIcon}" />
-                <TextBlock TextWrapping="Wrap"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           FontFamily="{StaticResource FontAwesome}"
-                           FontSize="{StaticResource HeaderFontSize}"
-                           Grid.Column="3"
-                           Text="Thay đổi thông tin nhân viên" />
-            </Grid>
-
+            <uc:PageHeader HeaderText="Thay đổi thông tin nhân viên"
+                           Grid.Row="0"
+                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"/>
             <!--Image and user info area-->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

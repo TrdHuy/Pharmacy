@@ -71,7 +71,18 @@ namespace Pharmacy.Properties {
         ///HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE
         ///
         ///#Adminstrator change user image
-        ///HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE=TRUE.
+        ///HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE=TRUE
+        ///
+        ///#Search customer by name
+        ///HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME=TRUE
+        ///
+        ///#Search customer by phone
+        ///HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE=TRUE
+        ///
+        ///#Search customer by email
+        ///HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_EMAIL=FALSE
+        ///
+        ///#Search customer by [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string AppRunConfig {
             get {
@@ -105,6 +116,16 @@ namespace Pharmacy.Properties {
         internal static System.Drawing.Bitmap customer_default_icon {
             get {
                 object obj = ResourceManager.GetObject("customer_default_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap default_app_icon {
+            get {
+                object obj = ResourceManager.GetObject("default_app_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

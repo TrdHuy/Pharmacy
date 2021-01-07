@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Utils.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,12 @@ namespace Pharmacy.Implement.Utils.CustomControls
     public class PageHeaderControl : UserControl
     {
         public static readonly DependencyProperty HeaderIconProperty =
-            DependencyProperty.Register("HeaderIcon", typeof(ImageSource), typeof(PageHeaderControl));
+            DependencyProperty.Register("HeaderIcon", typeof(ImageSource), typeof(PageHeaderControl),
+                new PropertyMetadata(Properties.Resources.default_app_icon.ToImageSource()));
 
         public static readonly DependencyProperty HeaderTextProperty =
-           DependencyProperty.Register("HeaderText", typeof(string), typeof(PageHeaderControl));
+           DependencyProperty.Register("HeaderText", typeof(string), typeof(PageHeaderControl)
+               ,new PropertyMetadata("This is header text"));
 
         public PageHeaderControl()
         {

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.UserManagement"
       mc:Ignorable="d"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage"
@@ -30,30 +31,10 @@
         </Grid.RowDefinitions>
 
         <!--Header area-->
-        <Grid x:Name="HeaderGrid"
-              Grid.Row="0"
-              Background="White">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.2*" />
-                <ColumnDefinition Width="0.61*" />
-                <ColumnDefinition Width="0.2*" />
-                <ColumnDefinition Width="7.71*" />
-                <ColumnDefinition Width="1.8*" />
-            </Grid.ColumnDefinitions>
-            <Image Grid.Column="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Stretch="UniformToFill"
-                   Source="{StaticResource HomePage_UserManageIcon}" />
-            <TextBlock TextWrapping="Wrap"
-                       FontWeight="Bold"
-                       VerticalAlignment="Center"
-                       FontFamily="{StaticResource FontAwesome}"
-                       FontSize="{StaticResource HeaderFontSize}"
-                       Grid.Column="3"
-                       Text="Quản lý nhân viên" />
-        </Grid>
-
+        <uc:PageHeader HeaderText="Quản lý nhân viên"
+                       HeaderIcon="{StaticResource HomePage_UserManageIcon}"
+                       Grid.Row="0" />
+        
         <!--Body area-->
         <Grid Grid.Row="2">
 
