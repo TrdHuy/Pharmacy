@@ -147,7 +147,7 @@
                                  Stretch="Uniform"
                                  Grid.Row="2">
                             <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding CurrentModifiedUser.Job, Mode=TwoWay}" />
+                                       Text="{Binding JobText, Mode=TwoWay}" />
                         </Viewbox>
                     </Grid>
 
