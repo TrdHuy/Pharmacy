@@ -47,7 +47,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             {
                 App.Current.ShowApplicationMessageBox("Cập nhật thông tin khách hàng thành công",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
