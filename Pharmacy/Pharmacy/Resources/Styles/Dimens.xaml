@@ -22,6 +22,7 @@
     <system:Double x:Key="DefaultHomePage_UserImageBoderHeight">175</system:Double>
 
     <system:Double x:Key="PageHeaderMaxHeight">100</system:Double>
+    <system:Double x:Key="PageOverviewInfoMaxHeight">150</system:Double>
 
     <system:Double x:Key="DefaultDataGrid_ColumnHeaderHeight">75</system:Double>
     <system:Double x:Key="DefaultDataGrid_RowHeight">55</system:Double>

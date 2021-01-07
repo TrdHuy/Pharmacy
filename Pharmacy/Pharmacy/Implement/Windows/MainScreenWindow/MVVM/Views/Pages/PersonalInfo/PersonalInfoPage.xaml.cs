@@ -28,7 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.PersonalI
 
         private void ImageGridContainerSizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ((PersonalInfoPageViewModel)DataContext).GridSizeChangedCommand.Execute(sender, e, AvatarBoder, this);
+           // ((PersonalInfoPageViewModel)DataContext).GridSizeChangedCommand.Execute(sender, e, AvatarBoder, this);
         }
 
         private void CurrentPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

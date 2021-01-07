@@ -27,10 +27,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerM
             InitializeComponent();
         }
 
-        private void ImageGridContainerSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ((CustomerModificationPageViewModel)DataContext).GridSizeChangedCommand.Execute(sender, e, AvatarBoder, this);
-        }
-
     }
 }

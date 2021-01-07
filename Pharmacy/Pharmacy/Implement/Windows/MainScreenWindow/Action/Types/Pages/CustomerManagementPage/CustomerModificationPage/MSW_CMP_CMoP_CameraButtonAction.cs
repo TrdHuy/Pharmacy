@@ -30,7 +30,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         var file = openDialog.FileName;
                         Bitmap customerBit = (Bitmap)Image.FromFile(file);
                         FileIOUtil.SaveCustomerImageFile(_viewModel.CustomerID, customerBit);
-                        _viewModel.Invalidate("CustomerID");
+                        _viewModel.Invalidate("CurrentModifiedCustomer");
                         customerBit.Dispose();
                         break;
                     default:
