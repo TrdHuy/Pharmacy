@@ -81,7 +81,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void AddAllMedicineTypeToFilterList()
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian(GetActiveMedicineTypeCallback);
-            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_TYPE_DATA_CMD_KEY
+            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY
                     , _sqlCmdObserver);
         }
 
@@ -194,8 +194,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private void _timerUpdateFilter_Tick(object sender, EventArgs e)
         {
-            _timerUpdateFilter.Stop();
-            GetMedicineList(FilterText);
+            try
+            {
+                _timerUpdateFilter.Stop();
+                GetMedicineList(FilterText);
+            }
+            catch(Exception ex) { }
         }
     }
 
