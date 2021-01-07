@@ -30,8 +30,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     case DialogResult.OK:
                         var file = openDialog.FileName;
                         Bitmap userBit = (Bitmap)Image.FromFile(file);
-                        _viewModel.UserAvatarSource = userBit.ToImageSource();
-                        FileIOUtil.SaveUserImageFile(App.Current.CurrentUser.Username, userBit);
+                        FileIOUtil.SaveUserImageFile(_viewModel.CurrentUser.Username, userBit);
+                        _viewModel.Invalidate("CurrentUser");
+                        userBit.Dispose();
                         break;
                     default:
                         break;

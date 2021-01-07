@@ -247,6 +247,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageOverviewInfo.xaml.cs">
+      <DependentUpon>PageOverviewInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
@@ -408,6 +411,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageOverviewInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
