@@ -278,7 +278,7 @@
                                                 <ColumnDefinition Width="0.2*" />
                                             </Grid.ColumnDefinitions>
 
-                                            <hps:IconButton Grid.Column="1"
+                                            <hps:OsirisButton Grid.Column="1"
                                                             IconStretch="Uniform"
                                                             Background="White"
                                                             IsUsingDropShadowEffect="True"
@@ -289,7 +289,7 @@
                                                             CommandParameter="{Binding ElementName=CustomerDataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_EditUserRow}" />
 
-                                            <hps:IconButton Grid.Column="3"
+                                            <hps:OsirisButton Grid.Column="3"
                                                             BorderThickness="0"
                                                             HorizontalAlignment="Center"
                                                             IsUsingDropShadowEffect="True"
@@ -300,7 +300,7 @@
                                                             CommandParameter="{Binding ElementName=CustomerDataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
 
-                                            <hps:IconButton Grid.Column="5"
+                                            <hps:OsirisButton Grid.Column="5"
                                                             BorderThickness="0"
                                                             HorizontalAlignment="Center"
                                                             IsUsingDropShadowEffect="True"
@@ -334,7 +334,7 @@
                 <ColumnDefinition Width="0.13*" />
             </Grid.ColumnDefinitions>
 
-            <hps:IconButton Margin="0,5,0,20"
+            <hps:OsirisButton Margin="0,5,0,20"
                             Grid.Column="3"
                             TextContent="+ Thêm mới"
                             ProgressSpinnerSize="30"

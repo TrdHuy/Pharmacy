@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:Pharmacy">
 
     <!--Base Button-->
-    <Style TargetType="{x:Type hps:IconButton}"
-           x:Key="{x:Type hps:IconButton}">
+    <Style TargetType="{x:Type hps:OsirisButton}"
+           x:Key="{x:Type hps:OsirisButton}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver"
                      Value="True">
@@ -18,7 +18,7 @@
     </Style>
 
     <!--Yes Messagebox Button-->
-    <Style TargetType="{x:Type hps:IconButton}"
+    <Style TargetType="{x:Type hps:OsirisButton}"
            x:Key="YesMessageBoxButton">
         <Setter Property="TextContent"
                 Value="Có" />
@@ -35,7 +35,7 @@
         </Style.Triggers>
     </Style>
     <!--No Messagebox Button-->
-    <Style TargetType="{x:Type hps:IconButton}"
+    <Style TargetType="{x:Type hps:OsirisButton}"
            x:Key="NoMessageBoxButton">
         <Setter Property="TextContent"
                 Value="Không" />
@@ -52,7 +52,7 @@
         </Style.Triggers>
     </Style>
     <!--Cancle Messagebox Button-->
-    <Style TargetType="{x:Type hps:IconButton}"
+    <Style TargetType="{x:Type hps:OsirisButton}"
            x:Key="CancleMessageBoxButton">
         <Setter Property="TextContent"
                 Value="Hủy" />
@@ -69,7 +69,7 @@
         </Style.Triggers>
     </Style>
     <!--OK Messagebox Button-->
-    <Style TargetType="{x:Type hps:IconButton}"
+    <Style TargetType="{x:Type hps:OsirisButton}"
            x:Key="OkMessageBoxButton">
         <Setter Property="TextContent"
                 Value="Xác nhận" />

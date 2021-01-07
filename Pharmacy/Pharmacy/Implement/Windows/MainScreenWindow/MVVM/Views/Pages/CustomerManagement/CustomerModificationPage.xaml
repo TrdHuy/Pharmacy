@@ -123,10 +123,10 @@
                             </Grid>
                         </Border>
 
-                        <hps:IconButton Grid.Column="2"
+                        <hps:OsirisButton Grid.Column="2"
                                         ToolTip="Đổi ảnh đại diện của khách hàng"
                                         Background="Transparent"
-                                        IBContentOrientation="Vertical"
+                                        OBContentOrientation="Vertical"
                                         IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
                                         IconStretch="UniformToFill"
                                         IconHeight="15"
@@ -342,7 +342,7 @@
                 <ColumnDefinition Width="0.13*" />
             </Grid.ColumnDefinitions>
 
-            <hps:IconButton Margin="0,5,0,20"
+            <hps:OsirisButton Margin="0,5,0,20"
                             Grid.Column="1"
                             TextContent="Quay lại"
                             IsUsingDropShadowEffect="True"
@@ -352,7 +352,7 @@
                             Command="{Binding CancleButtonCommand}"
                             BorderThickness="0"
                             Foreground="White" />
-            <hps:IconButton Margin="0,5,0,20"
+            <hps:OsirisButton Margin="0,5,0,20"
                             Grid.Column="3"
                             TextContent="Lưu"
                             IsBusy="{Binding IsSaveButtonRunning}"

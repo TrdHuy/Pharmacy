@@ -121,18 +121,18 @@
                             </Grid>
                         </Border>
 
-                        <hps:IconButton Grid.Column="2"
-                                        ToolTip="Đổi ảnh đại diện của khách hàng"
-                                        Background="Transparent"
-                                        IBContentOrientation="Vertical"
-                                        IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
-                                        IconStretch="UniformToFill"
-                                        IconHeight="15"
-                                        IconWidth="15"
-                                        Command="{Binding CameraButtonCommand}"
-                                        BorderThickness="0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top" />
+                        <hps:OsirisButton Grid.Column="2"
+                                          ToolTip="Đổi ảnh đại diện của khách hàng"
+                                          Background="Transparent"
+                                          OBContentOrientation="Vertical"
+                                          IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
+                                          IconStretch="UniformToFill"
+                                          IconHeight="15"
+                                          IconWidth="15"
+                                          Command="{Binding CameraButtonCommand}"
+                                          BorderThickness="0"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Top" />
                     </Grid>
                 </Grid>
 
@@ -431,7 +431,7 @@
                     <Grid Grid.Row="10"
                           Grid.Column="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="0.4*" />
                             <RowDefinition Height="0.6*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -439,44 +439,46 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <hps:IconButton Grid.Column="1"
-                                        Margin="5,0,0,0"
-                                        Background="Transparent"
-                                        BorderThickness="0"
-                                        HorizontalAlignment="Left"
-                                        Foreground="#008AE0"
-                                        FontSize="{StaticResource FontSizeXLarge}"
-                                        TextContent="Xem hóa đơn"
-                                        FontFamily="Segoe UI Historic"
-                                        FontStyle="Italic"/>
+                        <hps:OsirisButton Grid.Column="1"
+                                          Margin="5,0,0,0"
+                                          Background="Transparent"
+                                          BorderThickness="0"
+                                          HorizontalAlignment="Left"
+                                          VerticalContentAlignment="Center"
+                                          TextDecor="Underline"
+                                          Foreground="#008AE0"
+                                          VerticalAlignment="Center"
+                                          FontSize="{StaticResource FontSizeXLarge}"
+                                          TextContent="Xem hóa đơn"
+                                          FontStyle="Italic" />
 
-                        <hps:IconButton BorderThickness="0"
-                                        Grid.Row="1"
-                                        IsUsingDropShadowEffect="true"
-                                        Margin="5,0,5,15"
-                                        Background="#FFC00000"
-                                        TextContent="Xem công nợ"
-                                        Foreground="White"
-                                        FontSize="{StaticResource FontSizeXXLarge}"
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center" />
+                        <hps:OsirisButton BorderThickness="0"
+                                          Grid.Row="1"
+                                          IsUsingDropShadowEffect="true"
+                                          Margin="5,0,5,20"
+                                          Background="#FFC00000"
+                                          TextContent="Xem công nợ"
+                                          Foreground="White"
+                                          FontSize="{StaticResource FontSizeXXLarge}"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center" />
 
-                        <hps:IconButton BorderThickness="0"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        IsUsingDropShadowEffect="true"
-                                        Margin="5,0,5,15"
-                                        TextContent="Trở lại"
-                                        Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
-                                        Foreground="White"
-                                        FontSize="{StaticResource FontSizeXXLarge}"
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center" />
+                        <hps:OsirisButton BorderThickness="0"
+                                          Grid.Row="1"
+                                          Grid.Column="1"
+                                          IsUsingDropShadowEffect="true"
+                                          Margin="5,0,5,20"
+                                          TextContent="Trở lại"
+                                          Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
+                                          Foreground="White"
+                                          FontSize="{StaticResource FontSizeXXLarge}"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center" />
 
                     </Grid>
                 </Grid>
 
-                
+
             </Grid>
         </Grid>
 

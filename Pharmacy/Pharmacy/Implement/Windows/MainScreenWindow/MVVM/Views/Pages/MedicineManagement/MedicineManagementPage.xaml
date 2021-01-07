@@ -225,7 +225,7 @@
                                         <ColumnDefinition Width="0.1*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <hps:IconButton Grid.Column="1"
+                                    <hps:OsirisButton Grid.Column="1"
                                                             IconStretch="Uniform"
                                                             Background="White"
                                                             IsUsingDropShadowEffect="True"
@@ -236,7 +236,7 @@
                                                             CommandParameter="{Binding ElementName=DataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_EditUserRow}" />
 
-                                    <hps:IconButton Grid.Column="3"
+                                    <hps:OsirisButton Grid.Column="3"
                                                             BorderThickness="0"
                                                             HorizontalAlignment="Center"
                                                             IsUsingDropShadowEffect="True"
@@ -247,7 +247,7 @@
                                                             CommandParameter="{Binding ElementName=DataGrid}"
                                                             IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
 
-                                    <hps:IconButton Grid.Column="5"
+                                    <hps:OsirisButton Grid.Column="5"
                                                             BorderThickness="0"
                                                             HorizontalAlignment="Center"
                                                             IsUsingDropShadowEffect="True"
@@ -273,14 +273,14 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <hps:IconButton Margin="0,0,10,0"
+            <hps:OsirisButton Margin="0,0,10,0"
                             Grid.Column="0"
                             TextContent="Nhập từ Excel"
                             IsUsingDropShadowEffect="True"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
-                            IBContentOrientation="Horizontal" 
-                            IBTextVerticalAlignment="Center" 
+                            OBContentOrientation="Horizontal" 
+                            OBTextVerticalAlignment="Center"
                             FontSize="{StaticResource FontSizeXLarge}"
                             Command="{Binding ExcelImportButtonCommand}"
                             BorderThickness="0"
@@ -293,8 +293,8 @@
                             Padding="5"
                             Foreground="White"
                             Background="{StaticResource ForegroundMainBrush}"/>
-            <hps:IconButton IBContentOrientation="Horizontal" 
-                            IBTextVerticalAlignment="Center" 
+            <hps:OsirisButton OBContentOrientation="Horizontal" 
+                            OBTextVerticalAlignment="Center" 
                             IsUsingDropShadowEffect="True"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"
@@ -309,7 +309,7 @@
                             IconTextGapWidth="5"
                             Padding="5"
                             Command="{Binding PrintMedicineListButtonCommand}"/>
-            <hps:IconButton IBTextVerticalAlignment="Center" 
+            <hps:OsirisButton OBTextVerticalAlignment="Center" 
                             IsUsingDropShadowEffect="True"
                             HorizontalContentAlignment="Center"
                             VerticalContentAlignment="Center"

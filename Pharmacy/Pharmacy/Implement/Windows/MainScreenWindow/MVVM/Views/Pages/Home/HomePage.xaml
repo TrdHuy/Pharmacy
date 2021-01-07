@@ -48,7 +48,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding SellingCommand}"
                                     Grid.Row="0"
                                     Grid.Column="1"
@@ -59,15 +59,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Bán thuốc"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding UserManagementCommand}"
                                     Grid.Row="2"
                                     Grid.Column="2"
@@ -78,15 +78,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Quản lý nhân viên"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding CustomerManagementCommand}"
                                     Grid.Row="0"
                                     Grid.Column="3"
@@ -97,15 +97,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Quản lý khách hàng"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding MedicineManagementCommand}"
                                     Grid.Row="0"
                                     Grid.Column="0"
@@ -116,15 +116,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Quản lý thuốc"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding SupplierManagementCommand}"
                                     Grid.Row="3"
                                     Grid.Column="0"
@@ -135,15 +135,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Quản lý nhà cung cấp"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding WarehouseManagementCommand}"
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -154,15 +154,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Quản lý nhập kho"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding InvoiceManagementCommand}"
                                     Grid.Row="2"
                                     Grid.Column="1"
@@ -173,15 +173,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Quản lý hóa đơn"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding OtherPaymentsManagementCommand}"
                                     Grid.Row="1"
                                     Grid.Column="1"
@@ -192,15 +192,15 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="Thanh toán khác"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
-                    <hps:IconButton IconStretch="UniformToFill"
+                    <hps:OsirisButton IconStretch="UniformToFill"
                                     Command="{Binding ReportCommand}"
                                     Grid.Row="1"
                                     Grid.Column="2"
@@ -211,13 +211,13 @@
                                     FontFamily="{StaticResource VNFOswald}"
                                     TextContent="   Báo cáo"
                                     FontSize="20"
-                                    IBContentOrientation="Vertical"
+                                    OBContentOrientation="Vertical"
                                     IconHeight="100"
                                     IconWidth="100"
                                     Background="White"
                                     Margin="15"
                                     BorderBrush="{x:Null}">
-                    </hps:IconButton>
+                    </hps:OsirisButton>
 
                 </Grid>
 
@@ -269,7 +269,7 @@
                                 </VisualBrush>
                             </Border.OpacityMask>
                         
-                            <hps:IconButton 
+                            <hps:OsirisButton 
                                             IconStretch="UniformToFill"
                                             Width="{StaticResource DefaultHomePage_UserImageWidth}"
                                             Height="{StaticResource DefaultHomePage_UserImageHeight}"

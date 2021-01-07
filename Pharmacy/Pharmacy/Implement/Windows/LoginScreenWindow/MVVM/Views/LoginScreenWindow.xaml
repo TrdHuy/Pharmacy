@@ -83,45 +83,43 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Top"
                                Source="/Pharmacy;component/Resources/Icons/company logo x2.png" />
-                        <hps:IconButton 
-                            IconStretch="UniformToFill"
-                            Width="166"
-                                        Height="40"
-                                        Margin="0,0,0,125"
-                                        VerticalAlignment="Bottom"
-                                        HorizontalContentAlignment="Center"
-                                        Background="{x:Null}"
-                                        BorderBrush="Black"
-                                        FontFamily="Century Gothic"
-                                        FontSize="15"
-                                        Foreground="#FF7CB4CD"
-                                        IBTextVerticalAlignment="Center"
-                                        IconHeight="40"
-                                        IconSource="/Pharmacy;component/Resources/Icons/bug rp blue.png"
-                                        IconTextGapWidth="10"
-                                        IconWidth="40"
-                                        Padding="0,0,50,0"
-                                        RenderTransformOrigin="0.5,0.5"
-                                        TextContent="Báo lỗi" />
-                        <hps:IconButton IconStretch="UniformToFill"
-                                        Width="164"
-                                        Height="40"
-                                        Margin="40,0,46,70"
-                                        VerticalAlignment="Bottom"
-                                        HorizontalContentAlignment="Center"
-                                        Background="{x:Null}"
-                                        BorderBrush="Black"
-                                        FontFamily="Century Gothic"
-                                        FontSize="15"
-                                        Foreground="#FF7CB4CD"
-                                        IBTextVerticalAlignment="Center"
-                                        IconHeight="40"
-                                        IconSource="/Pharmacy;component/Resources/Icons/CSKH blue.png"
-                                        IconTextGapWidth="10"
-                                        IconWidth="40"
-                                        Padding="0,0,50,0"
-                                        RenderTransformOrigin="0.5,0.5"
-                                        TextContent="CSKH" />
+                        <hps:OsirisButton IconStretch="UniformToFill"
+                                          Width="166"
+                                          Height="40"
+                                          Margin="0,0,0,125"
+                                          VerticalAlignment="Bottom"
+                                          HorizontalContentAlignment="Center"
+                                          Background="Transparent"
+                                          BorderBrush="Black"
+                                          FontFamily="Century Gothic"
+                                          FontSize="15"
+                                          Foreground="#FF7CB4CD"
+                                          OBTextVerticalAlignment="Center"
+                                          IconHeight="40"
+                                          IconSource="/Pharmacy;component/Resources/Icons/bug rp blue.png"
+                                          IconTextGapWidth="10"
+                                          IconWidth="40"
+                                          Padding="0,0,50,0"
+                                          RenderTransformOrigin="0.5,0.5"
+                                          TextContent="Báo lỗi" />
+                        <hps:OsirisButton IconStretch="UniformToFill"
+                                          Height="40"
+                                          Margin="42,0,42,70"
+                                          VerticalAlignment="Bottom"
+                                          HorizontalContentAlignment="Center"
+                                          Background="Transparent"
+                                          BorderBrush="Black"
+                                          FontFamily="Century Gothic"
+                                          FontSize="15"
+                                          Foreground="#FF7CB4CD"
+                                          OBTextVerticalAlignment="Center"
+                                          IconHeight="40"
+                                          IconSource="/Pharmacy;component/Resources/Icons/CSKH blue.png"
+                                          IconTextGapWidth="10"
+                                          IconWidth="40"
+                                          Padding="0,0,50,0"
+                                          RenderTransformOrigin="0.5,0.5"
+                                          TextContent="CSKH" />
                     </Grid>
                 </Border>
 
@@ -194,31 +192,31 @@
                                   Content="Lưu tên đăng nhập"
                                   Foreground="#FFC6C6C6"
                                   Grid.Row="1" />
-                        <hps:IconButton IsUsingDropShadowEffect="True"
-                                        IsBusy="{Binding IsLoginButtonRunning}"
-                                        ProgressSpinnerBackground="Black"
-                                        ProgressSpinnerSize="30"
-                                        Width="148"
-                                        Height="40"
-                                        Margin="216,0,24,19.857"
-                                        VerticalAlignment="Bottom"
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center"
-                                        Background="Transparent"
-                                        BorderBrush="Black"
-                                        Command="{Binding SystemLoginButton}"
-                                        Foreground="{StaticResource ForegroundLightBrush}"
-                                        RenderTransformOrigin="0.5,0.5"
-                                        TextContent="Đăng nhập"
-                                        Grid.Row="1">
-                            <hps:IconButton.CommandParameter>
+                        <hps:OsirisButton IsUsingDropShadowEffect="True"
+                                          IsBusy="{Binding IsLoginButtonRunning}"
+                                          ProgressSpinnerBackground="Black"
+                                          ProgressSpinnerSize="30"
+                                          Width="148"
+                                          Height="40"
+                                          Margin="216,0,24,19.857"
+                                          VerticalAlignment="Bottom"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center"
+                                          Background="Transparent"
+                                          BorderBrush="Black"
+                                          Command="{Binding SystemLoginButton}"
+                                          Foreground="{StaticResource ForegroundLightBrush}"
+                                          RenderTransformOrigin="0.5,0.5"
+                                          TextContent="Đăng nhập"
+                                          Grid.Row="1">
+                            <hps:OsirisButton.CommandParameter>
                                 <MultiBinding Converter="{StaticResource MultiBinding}">
                                     <Binding ElementName="loginUserNameTextEdit" />
                                     <Binding ElementName="loginUserPasswordTextEdit" />
                                     <Binding ElementName="loginWindow" />
                                 </MultiBinding>
-                            </hps:IconButton.CommandParameter>
-                        </hps:IconButton>
+                            </hps:OsirisButton.CommandParameter>
+                        </hps:OsirisButton>
                     </Grid>
                 </Border>
 
