@@ -159,6 +159,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SellingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_CameraButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_AddNewMedicineButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_DeleteMedicineButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerInstantiationPage\MSW_CMP_CIP_CameraButtonAction.cs" />
@@ -190,6 +193,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransactionHistoryPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserInstantiationPageViewModel.cs" />
@@ -562,6 +566,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\default_medicine_image.png" />
     <Resource Include="Resources\Images\customer_default_icon.png" />
     <Resource Include="Resources\Icons\CustomerManagementPageIcons\customner_history_icon.png" />
     <Resource Include="Resources\Icons\drop_down_icon.png" />

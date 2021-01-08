@@ -18,7 +18,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly int ADD_NEW_USER_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_CUSTOMER_DELAY_TIME = 1000;
         public static readonly int SAVE_CUSTOMER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
-
+        public static readonly int ADD_NEW_MEDICINE_DELAY_TIME = 1000;
 
         public const string HOME_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml";
         public const string SELLING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml";
@@ -83,5 +83,17 @@ namespace Pharmacy.Implement.Utils.Definitions
         UserExisted = 3,
         [StringValue("Tên người dùng không được chứa các ký tự !#$%&'()*+,-/:;<=>?@[]^_`{|}~")]
         SpecialCharacter = 4
+    }
+
+    public enum MedicineIDCheckingStatusMessage
+    {
+        [StringValue("Hãy nhập mã thuốc")]
+        Empty = 1,
+        [StringValue("Mã thuốc không được chứa khoảng trắng")]
+        WhiteSpaceAware = 2,
+        [StringValue("Mã thuốc đã tồn tại")]
+        MedicineIDExisted = 3,
+        [StringValue("Có thể sử dụng mã thuốc này")]
+        MedicineIDAccepted = 4
     }
 }

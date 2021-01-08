@@ -274,12 +274,9 @@
                                Text="Facebook:" />
 
 
-                    <Viewbox HorizontalAlignment="
-                             Center"
-                             Grid.Column="
-                             1"
-                             Grid.Row="
-                             0">
+                    <Viewbox HorizontalAlignment="Center"
+                             Grid.Column="1"
+                             Grid.Row="0">
                         <TextBlock FontFamily="{StaticResource VNFOswald}"
                                    Text="*"
                                    Foreground="Red" />
