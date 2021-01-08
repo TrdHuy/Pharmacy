@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -22,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 return false;
             }
 
-            OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh đại diện của bạn!");
+            OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh thuốc!");
             var result = openDialog.ShowDialog();
 
             try
@@ -31,10 +32,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 {
                     case DialogResult.OK:
                         var file = openDialog.FileName;
-                        Bitmap userBit = (Bitmap)Image.FromFile(file);
-                        FileIOUtil.SaveMedicineImageFile(_viewModel.MedicineID, userBit);
-                        _viewModel.Invalidate("MedicineID");
-                        userBit.Dispose();
+                        Bitmap medicineBit = (Bitmap)Image.FromFile(file);
+                        _viewModel.MedicineImageFileName = file;
+                        _viewModel.MedicineImageSource = medicineBit.ToImageSource();
+                        _viewModel.Invalidate("MedicineImageSource");
+                        medicineBit.Dispose();
                         break;
                     default:
                         break;

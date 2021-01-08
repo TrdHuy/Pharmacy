@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
@@ -145,7 +146,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             }
         }
         public string MedicineDescription { get; set; } = "";
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
+        public ImageSource MedicineImageSource { get; set; }
+        public string MedicineImageFileName { get; set; }
 
         private string _medicineID = "";
         private string _medicineName = "";
@@ -166,23 +168,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             InitData();
-        }
-
-        private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
-        {
-            Grid ctrl = (Grid)sender;
-            Border avaBorder = (Border)((object[])paramaters)[0];
-
-            if (avaBorder.RenderSize.Width >= avaBorder.RenderSize.Height)
-            {
-                ctrl.Width = avaBorder.RenderSize.Height;
-            }
-            else
-            {
-                ctrl.Width = avaBorder.RenderSize.Width;
-            }
         }
 
         private void CameraButtonClickEvent(object paramaters)

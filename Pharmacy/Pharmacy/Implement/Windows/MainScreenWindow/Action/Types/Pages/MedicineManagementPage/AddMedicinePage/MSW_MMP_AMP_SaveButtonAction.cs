@@ -46,7 +46,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.ADD_NEW_MEDICINE_CMD_KEY,
                 PharmacyDefinitions.ADD_NEW_MEDICINE_DELAY_TIME,
                 _sqlCmdObserver,
-                medicine);
+                medicine,
+                _viewModel.MedicineImageFileName);
 
             return true;
         }
@@ -56,7 +57,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             {
                 App.Current.ShowApplicationMessageBox("Thêm thuốc mới thành công",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }

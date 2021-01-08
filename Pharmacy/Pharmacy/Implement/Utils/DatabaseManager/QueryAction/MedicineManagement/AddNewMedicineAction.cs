@@ -1,38 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement
+namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement
 {
-    public class AddNewCustomerAction : AbstractQueryAction
+    public class AddNewMedicineAction : AbstractQueryAction
     {
-        public AddNewCustomerAction()
+        public AddNewMedicineAction()
         {
-            _action = AddNewCustomer;
+            _action = AddNewMedicine;
         }
 
-        private SQLQueryResult AddNewCustomer(PharmacyDBContext appDBContext, object[] paramaters)
+        private SQLQueryResult AddNewMedicine(PharmacyDBContext appDBContext, object[] paramaters)
         {
-            tblCustomer newCustomer = paramaters[0] as tblCustomer;
+            tblMedicine medicine = paramaters[0] as tblMedicine;
             string imageFolder = paramaters[1] as string;
-
             SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
 
             try
             {
-                appDBContext.tblCustomers.Add(newCustomer);
-
-
-                if(!SaveImageToFile((appDBContext.tblCustomers.ToList().Count + 1).ToString(), imageFolder, ImageType.Customer))
+                appDBContext.tblMedicines.Add(medicine);
+                if (!SaveImageToFile(medicine.MedicineID, imageFolder, ImageType.Medicine))
                 {
                     result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                     return result;
                 }
-
                 appDBContext.SaveChanges();
                 result = new SQLQueryResult(null, MessageQueryResult.Done);
             }
@@ -42,7 +38,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagemen
             }
             catch (Exception e)
             {
-                ShowErrorMessageBox(e);
+                MessageBox.Show(e.Message);
             }
 
             return result;

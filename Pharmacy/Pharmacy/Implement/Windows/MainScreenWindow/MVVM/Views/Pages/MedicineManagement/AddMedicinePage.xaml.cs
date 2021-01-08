@@ -26,10 +26,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
             InitializeComponent();
             DataContext = new AddMedicinePageViewModel();
         }
-
-        private void ImageGridContainer_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ((AddMedicinePageViewModel)DataContext).GridSizeChangedCommand.Execute(sender, e, AvatarBoder, this);
-        }
     }
 }

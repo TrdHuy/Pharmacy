@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction
+namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement
 {
     public class SetMedicineDeactiveAction : AbstractQueryAction
     {

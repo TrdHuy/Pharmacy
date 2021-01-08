@@ -145,7 +145,11 @@
     <Compile Include="Implement\Utils\DatabaseManager\AbstractQueryAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\AddNewCustomerAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActiveMedicineDataByKeywordAction.cs" />
-    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActiveMedicineTypeDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllMedicineTypeDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllMedicineUnitDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActiveSupplierDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\IsMedicineIDExistedAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\AddNewMedicineAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetMedicineDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\AddNewUserAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\CheckUserAvailAction.cs" />

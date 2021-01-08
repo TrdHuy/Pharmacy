@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction
+namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement
 {
-    public class GetAllActiveMedicineTypeDataAction: AbstractQueryAction
+    public class GetAllMedicineTypeDataAction : AbstractQueryAction
     {
-        public GetAllActiveMedicineTypeDataAction()
+        public GetAllMedicineTypeDataAction()
         {
-            _action = GetAllActiveMedicineTypeData;
+            _action = GetAllMedicineTypeData;
         }
 
-        private SQLQueryResult GetAllActiveMedicineTypeData(PharmacyDBContext appDBContext, object[] paramaters)
+        private SQLQueryResult GetAllMedicineTypeData(PharmacyDBContext appDBContext, object[] paramaters)
         {
             SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
             try
