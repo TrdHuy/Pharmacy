@@ -21,7 +21,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
                 string id = paramaters[0] as string;
                 tblMedicine medicine = appDBContext.tblMedicines.Where(o => o.MedicineID == id).FirstOrDefault();
 
-                result = new SQLQueryResult(medicine == null ? false : true, MessageQueryResult.Finished);
+                result = new SQLQueryResult(medicine == null ? false : true, MessageQueryResult.Done);
             }
             catch (Exception e)
             {

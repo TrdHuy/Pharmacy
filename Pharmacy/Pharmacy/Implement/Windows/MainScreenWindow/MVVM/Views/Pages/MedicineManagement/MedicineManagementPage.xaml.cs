@@ -26,5 +26,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
             InitializeComponent();
             DataContext = new MedicineManagementPageViewModel();
         }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((MedicineManagementPageViewModel)DataContext).SearchTextChangedCommand.Execute(sender, e, DataGrid, this);
+        }
     }
 }

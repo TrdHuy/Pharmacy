@@ -97,7 +97,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                     _result = new SetCustomerDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY:
-                    _result = new GetAllActiveMedicineDataByKeywordAction().Execute(_appDBContext, paramaters);
+                    _result = new GetAllActiveMedicineDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY:
                     _result = new GetAllMedicineTypeDataAction().Execute(_appDBContext, paramaters);
@@ -116,6 +116,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                     break;
                 case SQLCommandKey.ADD_NEW_MEDICINE_CMD_KEY:
                     _result = new AddNewMedicineAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.MODIFY_MEDICINE_CMD_KEY:
+                    _result = new ModifyMedicineAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY:
+                    _result = new GetAllActivteMedicineStockInWarehouseDataAction().Execute(_appDBContext, paramaters);
                     break;
                 default:
                     break;
@@ -204,6 +210,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for add new medicine
         public const string ADD_NEW_MEDICINE_CMD_KEY = "add_new_medicine";
+
+        //Key for modify medicine
+        public const string MODIFY_MEDICINE_CMD_KEY = "modify_medicine";
+
+        //Key for getting info of all active stocks in warehouse in database
+        public const string GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY = "get_all_active_medicine_stock_in_warehouse_data";
     }
 
     public class SQLQueryResult

@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Utils.Converter
 {
- 
-
     public class IsGreaterOrEqualThanConverter : BaseMultiValueConverter<IsGreaterOrEqualThanConverter>
     {
         public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:customcontrols="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement.AddMedicinePage"
       mc:Ignorable="d" Background="White"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -19,9 +19,9 @@
             <RowDefinition Height="4.44*"/>
             <RowDefinition Height="0.70*" MaxHeight="100"/>
         </Grid.RowDefinitions>
-        <customcontrols:PageHeader Grid.Row="0" HeaderText="Thêm thuốc mới" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
+        <uc:PageHeader Grid.Row="0" HeaderText="Thêm thuốc mới" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
         <Grid Grid.Row="1">
-            <customcontrols:PageOverviewInfo Grid.Row="1"
+            <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding MedicineImageSource}"
                                  CamTip="Thay đổi ảnh thuốc"
                                  CamButCmd="{Binding CameraButtonCommand}"

@@ -10,6 +10,8 @@ using System.Linq;
 using System;
 using Pharmacy.Implement.UIEventHandler;
 using System.Windows.Threading;
+using Pharmacy.Config;
+using System.Globalization;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
@@ -23,26 +25,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public RunInputCommand DeleteMedicineButtonCommand { get; set; }
         public RunInputCommand PromoMedicineButtonCommand { get; set; }
         public RunInputCommand FilterMedicineTypeCommand { get; set; }
-        public RunInputCommand FilterMedicineCommand { get; set; }
-        public string FilterText
-        {
-            get
-            {
-                return _filterText;
-            }
-            set
-            {
-                _filterText = value;
-                UpdateFilter();
-            }
-        }
+        public EventHandleCommand SearchTextChangedCommand { get; set; }
+        public string FilterText { get; set; } = "";
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
-        private string _filterText;
+        private DispatcherTimer _timerUpdateFilter;
         private IActionListener _keyActionListener = KeyActionListener.Instance;
         private List<int> _lstMedicineTypeFilter = new List<int>();
         private List<tblMedicineType> _lstMedicineType = new List<tblMedicineType>();
-        private DispatcherTimer _timerUpdateFilter;
 
         protected override void InitPropertiesRegistry()
         {
@@ -58,46 +48,107 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             DeleteMedicineButtonCommand = new RunInputCommand(DeleteMedicineButtonClickEvent);
             PromoMedicineButtonCommand = new RunInputCommand(PromoMedicineButtonClickEvent);
             FilterMedicineTypeCommand = new RunInputCommand(FilterMedicineTypeClickEvent);
-            FilterMedicineCommand = new RunInputCommand(FilterMedicineClickEvent);
-            FilterText = "";
+            SearchTextChangedCommand = new EventHandleCommand(SearchTextChangedEvent);
             InstantiateItems();
         }
 
         private void InstantiateItems()
         {
             AddAllMedicineTypeToFilterList();
-            GetMedicineList("");
+            GetMedicineList();
         }
 
-        private void GetMedicineList(string keyword)
+        private void GetMedicineList()
         {
-            SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian(GetActiveMedicineCallback);
-            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY
-                    , _sqlCmdObserver
-                    , keyword
-                    , _lstMedicineTypeFilter);
-        }
-
-        private void AddAllMedicineTypeToFilterList()
-        {
-            SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian(GetActiveMedicineTypeCallback);
+            SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
+            {
+                if (queryResult.MesResult == MessageQueryResult.Done)
+                {
+                    foreach (var type in queryResult.Result as List<tblMedicineType>)
+                    {
+                        _lstMedicineTypeFilter.Add(type.MedicineTypeID);
+                        _lstMedicineType.Add(type);
+                    }
+                }
+            });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY
                     , _sqlCmdObserver);
         }
 
-        private void GetActiveMedicineTypeCallback(SQLQueryResult queryResult)
+        private void AddAllMedicineTypeToFilterList()
         {
-            foreach (var type in queryResult.Result as List<tblMedicineType>)
+            SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
-                _lstMedicineTypeFilter.Add(type.MedicineTypeID);
-                _lstMedicineType.Add(type);
-            }
+                if (queryResult.MesResult == MessageQueryResult.Done)
+                {
+                    MedicineItemSource = new ObservableCollection<tblMedicine>(queryResult.Result as List<tblMedicine>);
+                    Invalidate("MedicineItemSource");
+                }
+            });
+            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY
+                    , _sqlCmdObserver);
         }
 
-        private void GetActiveMedicineCallback(SQLQueryResult queryResult)
+        private void SearchTextChangedEvent(object sender, EventArgs e, object paramaters)
         {
-            MedicineItemSource = new ObservableCollection<tblMedicine>(queryResult.Result as List<tblMedicine>);
-            Invalidate("MedicineItemSource");
+            DataGrid dg = (DataGrid)((object[])paramaters)[0];
+
+            DoFilter(dg);
+        }
+        private void FilterMedicineTypeClickEvent(object obj)
+        {
+            object[] param = obj as object[];
+            CheckBox cbx = param[0] as CheckBox;
+            DataGrid dataGrid = param[1] as DataGrid;
+
+            if (cbx.IsChecked == false)
+            {
+                _lstMedicineTypeFilter.Remove(_lstMedicineType.Where(o => o.MedicineTypeName == (string)cbx.Content).FirstOrDefault().MedicineTypeID);
+            }
+            else
+            {
+                _lstMedicineTypeFilter.Add(_lstMedicineType.Where(o => o.MedicineTypeName == (string)cbx.Content).FirstOrDefault().MedicineTypeID);
+            }
+
+            DoFilter(dataGrid);
+        }
+
+        private void DoFilter(DataGrid dataGrid)
+        {
+            if (_timerUpdateFilter != null && _timerUpdateFilter.IsEnabled)
+            {
+                _timerUpdateFilter.Stop();
+            }
+
+            _timerUpdateFilter = new DispatcherTimer();
+            _timerUpdateFilter.Interval = DELAY_TIME_TO_UPDATE_FILTER;
+            _timerUpdateFilter.Tick += (sender,e)=>
+            {
+                _timerUpdateFilter.Stop();
+                dataGrid.Items.Filter = new Predicate<object>(medicine => FilterMedicineList(medicine as tblMedicine, FilterText));
+            };
+
+            _timerUpdateFilter.Start();
+        }
+
+        private bool FilterMedicineList(tblMedicine medicine, string filterText)
+        {
+            return (SearchByID(medicine, filterText) || SearchByName(medicine, filterText)) && FilterByType(medicine, filterText);
+        }
+
+        private bool SearchByID(tblMedicine medicine, string filterText)
+        {
+            return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_ID ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.MedicineID, filterText, CompareOptions.IgnoreCase) >= 0) : false;
+        }
+
+        private bool SearchByName(tblMedicine medicine, string filterText)
+        {
+            return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.MedicineName, filterText, CompareOptions.IgnoreCase) >= 0) : false;
+        }
+
+        private bool FilterByType(tblMedicine medicine, string filterText)
+        {
+            return RUNE.IS_SUPPORT_FILTER_MEDICINE_BY_TYPE ? (_lstMedicineTypeFilter.Contains(medicine.MedicineTypeID)) : false;
         }
 
         private void ExcelImportButtonClickEvent(object paramaters)
@@ -129,20 +180,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 , KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
                 , dataTransfer);
         }
-        private void FilterMedicineTypeClickEvent(object obj)
-        {
-            CheckBox cbx = obj as CheckBox;
-            if (cbx.IsChecked == false)
-            {
-                _lstMedicineTypeFilter.Remove(_lstMedicineType.Where(o => o.MedicineTypeName == (string)cbx.Content).FirstOrDefault().MedicineTypeID);
-            }
-            else
-            {
-                _lstMedicineTypeFilter.Add(_lstMedicineType.Where(o => o.MedicineTypeName == (string)cbx.Content).FirstOrDefault().MedicineTypeID);
-            }
-
-            GetMedicineList(FilterText);
-        }
 
         private void PromoMedicineButtonClickEvent(object paramaters)
         {
@@ -173,34 +210,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 , KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON
                 , dataTransfer);
         }
-
-        private void FilterMedicineClickEvent(object paramaters)
-        {
-            UpdateFilter();
-        }
-
-        private void UpdateFilter()
-        {
-            if (_timerUpdateFilter != null && _timerUpdateFilter.IsEnabled)
-            {
-                _timerUpdateFilter.Stop();
-            }
-            _timerUpdateFilter = new DispatcherTimer();
-            _timerUpdateFilter.Interval = DELAY_TIME_TO_UPDATE_FILTER;
-            _timerUpdateFilter.Tick += _timerUpdateFilter_Tick;
-
-            _timerUpdateFilter.Start();
-        }
-
-        private void _timerUpdateFilter_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                _timerUpdateFilter.Stop();
-                GetMedicineList(FilterText);
-            }
-            catch(Exception ex) { }
-        }
     }
-
 }

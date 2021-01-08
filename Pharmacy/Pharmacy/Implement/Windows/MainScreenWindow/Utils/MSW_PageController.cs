@@ -84,7 +84,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         public Lazy<PageOV> AddMedicinePage = new Lazy<PageOV>(() =>
             new PageOV(
                 new Uri(PharmacyDefinitions.ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
-                PharmacyDefinitions.REPORT_PAGE_LOADING_DELAY_TIME));
+                PharmacyDefinitions.ADD_MEDICINE_PAGE_LOADING_DELAY_TIME));
+
+        public Lazy<PageOV> ModifyMedicinePage = new Lazy<PageOV>(() =>
+         new PageOV(
+             new Uri(PharmacyDefinitions.MODIFY_MEDICINE_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+             PharmacyDefinitions.MODIFY_MEDICINE_PAGE_LOADING_DELAY_TIME));
 
         public Lazy<PageOV> CustomerInstantiationPage = new Lazy<PageOV>(() =>
             new PageOV(
@@ -100,7 +105,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
          new PageOV(
              new Uri(PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_LOADING_DELAY_TIME));
-        
+
         public PageOV CurrentPageOV;
         public Uri CurrentPageSource;
 
@@ -161,6 +166,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.AddMedicinePage:
                     CurrentPageOV.PageUri = AddMedicinePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddMedicinePage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.ModifyMedicinePage:
+                    CurrentPageOV.PageUri = ModifyMedicinePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifyMedicinePage.Value.LoadingDelayTime;
                     break;
                 case PageSource.UserInstantiationPage:
                     CurrentPageOV.PageUri = UserInstantiationPage.Value.PageUri;
@@ -254,6 +263,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = AddMedicinePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddMedicinePage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.MODIFY_MEDICINE_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = ModifyMedicinePage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifyMedicinePage.Value.LoadingDelayTime;
+                    break;
                 case PharmacyDefinitions.CUSTOMER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING:
                     CurrentPageOV.PageUri = CustomerInstantiationPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = CustomerInstantiationPage.Value.LoadingDelayTime;
@@ -303,6 +316,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         WarehouseManagementPage = 9,
         ReportPage = 10,
         AddMedicinePage = 11,
+        ModifyMedicinePage = 12,
 
         UserModificationPage = 31,
         UserInstantiationPage = 32,

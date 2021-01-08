@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
                     First();
                 x.IsActive = false;
                 appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)
