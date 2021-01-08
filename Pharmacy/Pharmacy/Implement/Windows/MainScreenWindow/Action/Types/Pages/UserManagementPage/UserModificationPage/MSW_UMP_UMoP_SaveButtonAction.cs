@@ -46,7 +46,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_USER_INFO_CMD_KEY
                     , PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME
                     , _sqlCmdObserver
-                    , modifiedInfo, _viewModel.UserNameText);
+                    , modifiedInfo
+                    , _viewModel.UserNameText
+                    ,_viewModel.UserImageFileName);
             return true;
         }
 

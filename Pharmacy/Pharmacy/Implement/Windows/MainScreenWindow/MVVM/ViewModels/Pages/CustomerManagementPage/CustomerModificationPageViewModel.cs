@@ -4,6 +4,7 @@ using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
@@ -16,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
 {
@@ -25,12 +27,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
+        private ImageSource _customerImageSource;
 
         private bool _isSaveButtonRunning = false;
 
         #region Public properties
         public tblCustomer CurrentModifiedCustomer { get; set; }
-
+        public string CustomerImageFileName { get; set; }
         public string CustomerID
         {
             get
@@ -38,6 +41,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 return CurrentModifiedCustomer.CustomerID.ToString();
             }
         }
+
+        public ImageSource CustomerImageSource
+        {
+            get
+            {
+                return _customerImageSource;
+            }
+            set
+            {
+                _customerImageSource = value;
+                InvalidateOwn();
+            }
+        }
+
         public string CustomerNameText
         {
             get
@@ -166,6 +183,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public CustomerModificationPageViewModel()
         {
+
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
@@ -176,6 +194,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 Visibility.Visible : Visibility.Collapsed;
             PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.Phone) ?
                 Visibility.Visible : Visibility.Collapsed;
+
+            CustomerImageSource = FileIOUtil.
+                GetBitmapFromName(CurrentModifiedCustomer.CustomerID.ToString(), FileIOUtil.CUSTOMER_IMAGE_FOLDER_NAME).
+                ToImageSource();
 
         }
 

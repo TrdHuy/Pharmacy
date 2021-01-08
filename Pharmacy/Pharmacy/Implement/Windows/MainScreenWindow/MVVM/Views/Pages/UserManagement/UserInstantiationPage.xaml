@@ -38,121 +38,14 @@
                            Grid.Row="0"/>
             
             <!--Image and user info area-->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.37*" />
-                    <ColumnDefinition Width="7.14*" />
-                </Grid.ColumnDefinitions>
-
-                <!--Background area behind User Image-->
-                <Grid Grid.Column="0"
-                      Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.71*" />
-                        <ColumnDefinition Width="0.66*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.05*" />
-                        <RowDefinition Height="0.75*" />
-                        <RowDefinition Height="0.05*" />
-                    </Grid.RowDefinitions>
-                    <Border Grid.Column="0"
-                            Grid.Row="1"
-                            Background="{StaticResource NormalTheme_1st_Background_Brush}">
-                        <Border.OpacityMask>
-                            <ImageBrush Stretch="UniformToFill"
-                                        ImageSource="{StaticResource AvatarBGImageOpacityMask}" />
-                        </Border.OpacityMask>
-                    </Border>
-
-                </Grid>
-
-                <!--Avatar-->
-                <Grid Grid.Column="0"
-                      Grid.Row="1">
-                    <Grid x:Name="AvatarGridArea"
-                          Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.05*" />
-                            <ColumnDefinition Width="0.2*" />
-                            <ColumnDefinition Width="0.93*" />
-                            <ColumnDefinition Width="0.2*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Border Grid.Column="2"
-                                x:Name="AvatarBoder"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                Background="Wheat"
-                                CornerRadius="0150">
-
-                            <Border.OpacityMask>
-                                <ImageBrush Stretch="Uniform"
-                                            ImageSource="{StaticResource AvatarImageOpacityMask}">
-                                </ImageBrush>
-                            </Border.OpacityMask>
-
-                            <Grid x:Name="ImageGridContainer"
-                                  SizeChanged="ImageGridContainerSizeChanged">
-                                <Image Stretch="UniformToFill"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Source="{Binding NewUser.Username,
-                                            Converter={conv:StringToImageSourceConverter},
-                                            ConverterParameter=UserImages}" />
-                            </Grid>
-                        </Border>
-
-                        <hps:OsirisButton Grid.Column="2"
-                                        ToolTip="Đổi ảnh đại diện của nhân viên"
-                                        Background="Transparent"
-                                        Visibility="{Binding CameraButtonVisibility}"
-                                        OBContentOrientation="Vertical"
-                                        IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
-                                        IconStretch="UniformToFill"
-                                        IconHeight="15"
-                                        IconWidth="15"
-                                        Command="{Binding CameraButtonCommand}"
-                                        BorderThickness="0"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top" />
-                    </Grid>
-                </Grid>
-
-                <!--User info area-->
-                <Grid Grid.Column="1">
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1.2*" />
-                            <RowDefinition Height="0.55*" />
-                            <RowDefinition Height="0.55*" />
-                            <RowDefinition Height="0.3*" />
-                        </Grid.RowDefinitions>
-
-                        <Viewbox HorizontalAlignment="Left"
-                                 Stretch="Uniform"
-                                 Grid.Row="0">
-                            <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding FullNameText, Mode=TwoWay}" />
-                        </Viewbox>
-
-                        <Viewbox HorizontalAlignment="Left"
-                                 Stretch="Uniform"
-                                 Grid.Row="1">
-                            <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding UserNameText, Mode=TwoWay}" />
-                        </Viewbox>
-
-                        <Viewbox HorizontalAlignment="Left"
-                                 Stretch="Uniform"
-                                 Grid.Row="2">
-                            <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                       Text="{Binding JobText, Mode=TwoWay}" />
-                        </Viewbox>
-                    </Grid>
-
-                </Grid>
-            </Grid>
+             <uc:PageOverviewInfo Grid.Row="1"
+                                 AvatarSource="{Binding UserImageSource}"
+                                 CamTip="Thay đổi ảnh đại diện của nhân viên"
+                                 CamButCmd="{Binding CameraButtonCommand}"
+                                 CamButVisibility="Visible"
+                                 MainTiltle="{Binding FullNameText}"
+                                 SubTiltle="{Binding NewUser.Username}"
+                                 SubTiltle2nd="{Binding NewUser.Job}" />
         </Grid>
 
         <!--Body area-->

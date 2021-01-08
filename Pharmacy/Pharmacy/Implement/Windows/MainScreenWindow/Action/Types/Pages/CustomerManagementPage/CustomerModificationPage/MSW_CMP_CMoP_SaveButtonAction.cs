@@ -36,7 +36,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_CUSTOMER_INFO_CMD_KEY,
                 PharmacyDefinitions.SAVE_CUSTOMER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME,
                 _sqlCmdObserver,
-                _viewModel.CurrentModifiedCustomer);
+                _viewModel.CurrentModifiedCustomer,
+                _viewModel.CustomerImageFileName);
 
             return true;
         }

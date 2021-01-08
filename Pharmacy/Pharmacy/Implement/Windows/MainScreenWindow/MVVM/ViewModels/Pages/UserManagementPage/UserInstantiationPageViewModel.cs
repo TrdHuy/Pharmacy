@@ -4,6 +4,7 @@ using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
@@ -15,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
 {
@@ -39,9 +41,24 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         private bool _isSaveButtonRunning = false;
         private bool _isDoneEvaluateUserName = false;
         private bool _isUsernameTextBoxEnable = true;
+        private ImageSource _userImageSource;
 
         #region Public properties
         public tblUser NewUser { get; set; }
+        public string UserImageFileName { get; set; }
+
+        public ImageSource UserImageSource
+        {
+            get
+            {
+                return _userImageSource;
+            }
+            set
+            {
+                _userImageSource = value;
+                InvalidateOwn();
+            }
+        }
 
         public string UserNameText
         {
@@ -355,8 +372,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         {
             SetupFeatures();
 
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
             NewUser = new tblUser();
             NewUser.Username = "";
 
@@ -373,9 +388,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             JobTitleAwareTextBlockVisibility = String.IsNullOrEmpty(NewUser.Job) ?
                 Visibility.Visible : Visibility.Collapsed;
 
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
+            UserImageSource = FileIOUtil.
+                GetBitmapFromName(NewUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
+                ToImageSource();
+
             NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
             VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+
+            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
+            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
         }
         private void SetupFeatures()
         {
@@ -432,22 +453,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             NewPassword = ctrl.Password;
             UpdatePasswordAwareTextBlock();
         }
-
-        private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
-        {
-            Grid ctrl = (Grid)sender;
-            Border avaBorder = (Border)((object[])paramaters)[0];
-
-            if (avaBorder.RenderSize.Width >= avaBorder.RenderSize.Height)
-            {
-                ctrl.Width = avaBorder.RenderSize.Height;
-            }
-            else
-            {
-                ctrl.Width = avaBorder.RenderSize.Width;
-            }
-        }
-
 
         private void UsernameAssessFeasibility()
         {

@@ -40,7 +40,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.ADD_NEW_USER_CMD_KEY,
                 PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME,
                 _sqlCmdObserver,
-                _newUserInfo);
+                _newUserInfo,
+                _viewModel.UserImageFileName);
 
             return true;
         }

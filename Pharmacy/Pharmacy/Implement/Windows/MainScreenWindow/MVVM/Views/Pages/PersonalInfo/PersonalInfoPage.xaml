@@ -46,9 +46,9 @@
 
             <!--Page title-->
             <uc:PageOverviewInfo Grid.Row="1"
-                                 FileName="{Binding CurrentUser.Username}"
-                                 FolderName="UserImages"
+                                 AvatarSource="{Binding UserImageSource}"
                                  CamButCmd="{Binding CameraButtonCommand}"
+                                 CamTip="Thay đổi ảnh đại diện cá nhân"
                                  CamButVisibility="Visible"
                                  MainTiltle="{Binding FullNameText}"
                                  SubTiltle="{Binding CurrentUser.Username}"

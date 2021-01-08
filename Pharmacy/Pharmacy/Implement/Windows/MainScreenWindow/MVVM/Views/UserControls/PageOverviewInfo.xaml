@@ -76,7 +76,7 @@
                 </Border>
 
                 <hps:OsirisButton Grid.Column="2"
-                                  ToolTip="Đổi ảnh đại diện của nhân viên"
+                                  ToolTip="{Binding CamTip,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PageOverviewInfo}}"
                                   Background="Transparent"
                                   OBContentOrientation="Vertical"
                                   Visibility="{Binding CamButVisibility,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PageOverviewInfo}}"

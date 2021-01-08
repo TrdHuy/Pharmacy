@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
 {
@@ -38,7 +39,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         private string _newPasswordAwareTextBlockContent = "";
         private string _userNameAwareTextBlockContent = "";
         private bool _isSaveButtonRunning = false;
+        private ImageSource _userImageSource;
 
+
+        public string UserImageFileName { get; set; }
         public tblUser CurrentModifiedUser
         {
             get
@@ -48,6 +52,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 _currentModifiedUser = value;
+            }
+        }
+        public ImageSource UserImageSource
+        {
+            get
+            {
+                return _userImageSource;
+            }
+            set
+            {
+                _userImageSource = value;
             }
         }
 

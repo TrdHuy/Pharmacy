@@ -35,7 +35,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private ImageSource _userAvatarSource = null;
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
-        
+        public string UserImageFileName { get; set; }
+
+        public ImageSource UserImageSource
+        {
+            get
+            {
+                return _userAvatarSource;
+            }
+            set
+            {
+                _userAvatarSource = value;
+                InvalidateOwn();
+            }
+        }
+
         public string FullNameText
         {
             get
@@ -226,24 +240,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
-        public ImageSource UserAvatarSource
-        {
-            get
-            {
-                if (_userAvatarSource == null)
-                {
-                    _userAvatarSource =
-                        FileIOUtil.GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
-                        ToImageSource();
-                }
-                return _userAvatarSource;
-            }
-            set
-            {
-                _userAvatarSource = value;
-                InvalidateOwn();
-            }
-        }
 
         public EventHandleCommand GridSizeChangedCommand;
         public EventHandleCommand CurrentPasswordChangedCommand;
@@ -260,6 +256,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         public PersonalInfoPageViewModel()
         {
+            UserImageSource = FileIOUtil.
+                GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
+                ToImageSource();
+
             SaveButtonCommand = new RunInputCommand(OnSaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(OnCameraButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(OnCancleButtonClickEvent);
