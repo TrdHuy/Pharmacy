@@ -33,10 +33,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 {
                     case DialogResult.OK:
                         var file = openDialog.FileName;
-                        Bitmap userBit = (Bitmap)Image.FromFile(file);
+                        Bitmap cusBit = (Bitmap)Image.FromFile(file);
                         _viewModel.CustomerImageFileName = file;
-                        _viewModel.CustomerImageSource = userBit.ToImageSource();
-                        userBit.Dispose();
+                        _viewModel.CustomerImageSource = cusBit.ToImageSource();
+                        cusBit.Dispose();
                         break;
                     default:
                         break;

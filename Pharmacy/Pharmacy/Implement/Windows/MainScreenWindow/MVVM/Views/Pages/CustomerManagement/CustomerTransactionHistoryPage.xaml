@@ -34,37 +34,12 @@
             </Grid.RowDefinitions>
 
             <!--Page title-->
-            <!--<Grid x:Name="PageTitleGridArea"
-                  Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.61*" />
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="7.71*" />
-                    <ColumnDefinition Width="1.8*" />
-                </Grid.ColumnDefinitions>
-
-                <Image Grid.Column="1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Stretch="Uniform"
-                       Source="{StaticResource HomePage_CustomerManageIcon}" />
-                <TextBlock TextWrapping="Wrap"
-                           FontWeight="Bold"
-                           VerticalAlignment="Center"
-                           FontFamily="{StaticResource FontAwesome}"
-                           FontSize="{StaticResource HeaderFontSize}"
-                           Grid.Column="3"
-                           Text="Lịch sử mua hàng" />
-            </Grid>-->
             <uc:PageHeader Grid.Row="0"
                            MaxHeight="{StaticResource PageHeaderMaxHeight}"
                            HeaderText="Lịch sử mua hàng"
                            HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"/>
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
-                                 FileName="{Binding CurrentModidifiedCustomer.CustomerID}"
-                                 FolderName="CustomerImages"
                                  CamButCmd="{Binding CameraButtonCommand}"
                                  CamButVisibility="Collapsed"
                                  MainTiltle="{Binding CurrentModifiedCustomer.CustomerName}"

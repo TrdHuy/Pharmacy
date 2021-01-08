@@ -26,11 +26,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.UserManag
             InitializeComponent();
         }
 
-        private void ImageGridContainerSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            ((UserInstantiationPageViewModel)DataContext).GridSizeChangedCommand.Execute(sender, e, AvatarBoder, this);
-        }
-
         private void NewPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             ((UserInstantiationPageViewModel)DataContext).NewPasswordChangedCommand.Execute(sender, e, this);

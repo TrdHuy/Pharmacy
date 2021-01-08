@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using System;
@@ -28,10 +29,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 {
                     case DialogResult.OK:
                         var file = openDialog.FileName;
-                        Bitmap customerBit = (Bitmap)Image.FromFile(file);
-                        FileIOUtil.SaveCustomerImageFile(_viewModel.CustomerID, customerBit);
-                        _viewModel.Invalidate("CurrentModifiedCustomer");
-                        customerBit.Dispose();
+                        Bitmap cusBit = (Bitmap)Image.FromFile(file);
+                        _viewModel.CustomerImageFileName = file;
+                        _viewModel.CustomerImageSource = cusBit.ToImageSource();
+                        cusBit.Dispose();
                         break;
                     default:
                         break;

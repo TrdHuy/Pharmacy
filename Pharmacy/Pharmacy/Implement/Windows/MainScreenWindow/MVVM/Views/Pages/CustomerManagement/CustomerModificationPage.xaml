@@ -39,8 +39,8 @@
                            Grid.Row="0"/>
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
-                                 FileName="{Binding CurrentModifiedCustomer.CustomerID}"
-                                 FolderName="CustomerImages"
+                                 AvatarSource="{Binding CustomerImageSource}"
+                                 CamTip="Đổi ảnh đại diện của khách hàng"
                                  CamButCmd="{Binding CameraButtonCommand}"
                                  CamButVisibility="Visible"
                                  MainTiltle="{Binding CurrentModifiedCustomer.CustomerName}"

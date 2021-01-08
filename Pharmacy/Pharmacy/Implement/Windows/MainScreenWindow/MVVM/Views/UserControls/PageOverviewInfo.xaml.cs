@@ -24,54 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls
     /// </summary>
     public partial class PageOverviewInfo : UserControl
     {
-        #region FileName
-        public static readonly DependencyProperty FileNameProperty =
-                DependencyProperty.Register(
-                        "FileName",
-                        typeof(string),
-                        typeof(PageOverviewInfo),
-                        new FrameworkPropertyMetadata(
-                                "",
-                                null,
-                                new CoerceValueCallback(FileNameCoreceValueCallBack)),
-                        null);
-
-        private static object FileNameCoreceValueCallBack(DependencyObject d, object baseValue)
-        {
-            PageOverviewInfo ctrl = d as PageOverviewInfo;
-            string imageName = baseValue.ToString();
-            ctrl.AvatarSource = 
-                FileIOUtil.GetBitmapFromName(imageName, ctrl.FolderName).
-                ToImageSource();
-            return baseValue;
-        }
-
-        public string FileName
-        {
-            get { return (string)GetValue(FileNameProperty); }
-            set { SetValue(FileNameProperty, value); }
-        }
-        #endregion
-
-        #region FolderName
-        public static readonly DependencyProperty FolderNameProperty =
-                DependencyProperty.Register(
-                        "FolderName",
-                        typeof(string),
-                        typeof(PageOverviewInfo),
-                        new FrameworkPropertyMetadata(
-                                "",
-                                FrameworkPropertyMetadataOptions.AffectsMeasure,
-                                null),
-                        null);
-
-        public string FolderName
-        {
-            get { return (string)GetValue(FolderNameProperty); }
-            set { SetValue(FolderNameProperty, value); }
-        }
-        #endregion
-
+       
         #region CameraButtonVisibility
         public static readonly DependencyProperty CamButVisibilityProperty =
                 DependencyProperty.Register(
@@ -110,6 +63,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls
         {
             get { return (ICommand)GetValue(CamButCmdProperty); }
             set { SetValue(CamButCmdProperty, value); }
+        }
+        #endregion
+
+        #region CamTip
+        public static readonly DependencyProperty CamTipProperty =
+                DependencyProperty.Register(
+                        "CamTip",
+                        typeof(string),
+                        typeof(PageOverviewInfo),
+                        new FrameworkPropertyMetadata(
+                                "",
+                                null,
+                                null),
+                        null);
+
+
+        public string CamTip
+        {
+            get { return (string)GetValue(CamTipProperty); }
+            set { SetValue(CamTipProperty, value); }
         }
         #endregion
 

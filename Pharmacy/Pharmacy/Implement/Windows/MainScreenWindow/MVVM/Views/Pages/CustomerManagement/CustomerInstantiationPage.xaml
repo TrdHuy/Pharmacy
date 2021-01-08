@@ -40,6 +40,7 @@
             <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding CustomerImageSource}"
                                  CamButCmd="{Binding CameraButtonCommand}"
+                                 CamTip="Đổi ảnh đại diện của khách hàng"
                                  CamButVisibility="Visible"
                                  MainTiltle="{Binding CustomerNameText}"
                                  SubTiltle="{Binding EmailText}"

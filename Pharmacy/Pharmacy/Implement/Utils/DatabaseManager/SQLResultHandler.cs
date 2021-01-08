@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.Extensions;
 using System;
 using System.Collections.Generic;
@@ -65,415 +66,59 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             switch (SQLCmdKey)
             {
                 case SQLCommandKey.CHECK_USER_AVAIL_CMD_KEY:
-                    _result = CheckUserAvail(paramaters);
+                    _result = new CheckUserAvailAction().Execute(_appDBContext,paramaters);
                     break;
                 case SQLCommandKey.UPDATE_USER_INFO_CMD_KEY:
-                    _result = UpdateUserInfo(paramaters);
+                    _result = new UpdateUserInfoAction().Execute(_appDBContext,paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_USER_DATA_CMD_KEY:
-                    _result = GetAllActiveUserData(paramaters);
+                    _result = new GetAllActiveUserDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_NON_ADMIN_USER_DATA_CMD_KEY:
-                    _result = GetAllNonAdminUserData(paramaters);
+                    _result = new GetAllNonAdminUserDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.CHECK_USER_NAME_EXISTED_CMD_KEY:
-                    _result = CheckUserNameExisted(paramaters);
+                    _result = new CheckUserNameExistedAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.SET_USER_DEACTIVE_CMD_KEY:
-                    _result = SetUserDeactive(paramaters);
+                    _result = new SetUserDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.ADD_NEW_USER_CMD_KEY:
-                    _result = AddNewUser(paramaters);
+                    _result = new AddNewUserAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.ADD_NEW_CUSTOMER_CMD_KEY:
-                    _result = AddNewCustomer(paramaters);
+                    _result = new AddNewCustomerAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_CMD_KEY:
-                    _result = GetAllActiveCustomerData(paramaters);
+                    _result = new GetAllActiveCustomerDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.UPDATE_CUSTOMER_INFO_CMD_KEY:
-                    _result = UpdateCustomerInfo(paramaters);
+                    _result = new UpdateCustomerInfoAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.SET_CUSTOMER_DEACTIVE_CMD_KEY:
-                    _result = SetCustomerDeactive(paramaters);
+                    _result = new SetCustomerDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY:
-                    _result = GetAllActiveMedicineDataByKeyword(paramaters);
+                    _result = new GetAllActiveMedicineDataByKeywordAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_TYPE_DATA_CMD_KEY:
-                    _result = GetAllActiveMedicineTypeData(paramaters);
+                    _result = new GetAllActiveMedicineTypeDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY:
-                    _result = SetMedicineDeactive(paramaters);
+                    _result = new SetMedicineDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
                 default:
                     break;
             }
+
+            if(_result.MesResult == MessageQueryResult.Aborted ||
+                _result.MesResult == MessageQueryResult.Cancled)
+            {
+                RollBack();
+            }
+
             NotifyChange(_result);
         }
-
-        private SQLQueryResult SetCustomerDeactive(object[] paramaters)
-        {
-            int cusID = Convert.ToInt32(paramaters[0]);
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                var x = _appDBContext.tblCustomers.Where(cus => cus.CustomerID == cusID).
-                    First();
-                x.IsActive = false;
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Done);
-                return result;
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message);
-            }
-            finally
-            {
-            }
-            return result;
-        }
-
-        private SQLQueryResult UpdateCustomerInfo(object[] paramaters)
-        {
-            tblCustomer modifiedCustomer = paramaters[0] as tblCustomer;
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-
-            try
-            {
-                var x = _appDBContext.tblCustomers.Where<tblCustomer>(cus => cus.CustomerID == modifiedCustomer.CustomerID).First();
-                x.CustomerName = modifiedCustomer.CustomerName;
-                x.Address = modifiedCustomer.Address;
-                x.Phone = modifiedCustomer.Phone;
-                x.Email = modifiedCustomer.Email;
-                x.CustomerDescription = modifiedCustomer.CustomerDescription;
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(x, MessageQueryResult.Done);
-            }
-            catch (DbEntityValidationException e)
-            {
-                HandleDbEntityValidationException(e);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-            return result;
-        }
-
-        private SQLQueryResult GetAllActiveCustomerData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                var x = _appDBContext.tblCustomers.
-                    Where<tblCustomer>(cus => cus.IsActive).
-                    ToList();
-                result = new SQLQueryResult(x, MessageQueryResult.Done);
-            }
-            catch (Exception e)
-            {
-                //Print debug and user log here
-            }
-            return result;
-        }
-
-        private SQLQueryResult AddNewCustomer(object[] paramaters)
-        {
-            tblCustomer newCustomer = paramaters[0] as tblCustomer;
-            string imageFolder = paramaters[1] as string;
-
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-
-            try
-            {
-                _appDBContext.tblCustomers.Add(newCustomer);
-
-                if (!String.IsNullOrEmpty(imageFolder))
-                {
-                    try
-                    {
-                        string file = (_appDBContext.tblCustomers.
-                            ToList().
-                            Count + 1).ToString();
-                        Bitmap cusBit = (Bitmap)Image.FromFile(imageFolder);
-                        FileIOUtil.SaveCustomerImageFile(file, cusBit);
-                    }
-                    catch
-                    {
-                        App.Current.ShowApplicationMessageBox("Lỗi thêm ảnh đại diện của khách hàng, vui lòng kiểm tra lại!",
-                            HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                            HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                            OwnerWindow.MainScreen,
-                            "Lỗi!");
-                        RollBack();
-                        return result;
-                    }
-
-                }
-
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Done);
-            }
-            catch (DbEntityValidationException e)
-            {
-                HandleDbEntityValidationException(e);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-
-            return result;
-        }
-
-        private SQLQueryResult AddNewUser(object[] paramaters)
-        {
-            tblUser newUser = paramaters[0] as tblUser;
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-
-            try
-            {
-                _appDBContext.tblUsers.Add(newUser);
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Done);
-            }
-            catch (DbEntityValidationException e)
-            {
-                HandleDbEntityValidationException(e);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-
-            return result;
-        }
-
-        private SQLQueryResult SetUserDeactive(object[] paramaters)
-        {
-            string name = paramaters[0].ToString();
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
-                    First();
-                x.IsActive = false;
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Done);
-                return result;
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message);
-            }
-            finally
-            {
-            }
-            return result;
-        }
-
-        private SQLQueryResult CheckUserNameExisted(object[] paramaters)
-        {
-            string name = paramaters[0].ToString();
-            try
-            {
-                var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
-                    ToList();
-                bool IsExisted = x.Count > 0;
-                SQLQueryResult result = new SQLQueryResult(IsExisted, MessageQueryResult.Done);
-                return result;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            return null;
-        }
-
-        private SQLQueryResult GetAllNonAdminUserData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                var x = _appDBContext.tblUsers.
-                    Where<tblUser>(user => !user.IsAdmin).
-                    ToList();
-                result = new SQLQueryResult(x, MessageQueryResult.Done);
-            }
-            catch (Exception e)
-            {
-                //Print debug and user log here
-            }
-            return result;
-        }
-
-        private SQLQueryResult GetAllActiveUserData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                var x = _appDBContext.tblUsers.
-                    Where<tblUser>(user => user.IsActive).
-                    ToList();
-                result = new SQLQueryResult(x, MessageQueryResult.Done);
-            }
-            catch (Exception e)
-            {
-                //Print debug and user log here
-            }
-            return result;
-        }
-
-        private SQLQueryResult UpdateUserInfo(object[] paramaters)
-        {
-            tblUser modifiedUser = paramaters[0] as tblUser;
-            string userNameBeforeChanged = paramaters[1] as string;
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-
-            try
-            {
-                var x = _appDBContext.tblUsers.Where<tblUser>(user => user.Username.Equals(userNameBeforeChanged)).First();
-                x.FullName = modifiedUser.FullName;
-                x.Address = modifiedUser.Address;
-                x.Phone = modifiedUser.Phone;
-                x.Email = modifiedUser.Email;
-                x.Link = modifiedUser.Link;
-                x.Job = modifiedUser.Job;
-                x.Password = modifiedUser.Password;
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(x, MessageQueryResult.Done);
-            }
-            catch (DbEntityValidationException e)
-            {
-                HandleDbEntityValidationException(e);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-
-            return result;
-        }
-
-        private SQLQueryResult CheckUserAvail(object[] paramaters)
-        {
-            string name = paramaters[0].ToString();
-            string pass = paramaters[1].ToString();
-
-            try
-            {
-                var x = _appDBContext.tblUsers.Where(user => user.Username.Equals(name)
-                && user.Password.Equals(pass)).ToList();
-
-                SQLQueryResult result = new SQLQueryResult(x, MessageQueryResult.Done);
-                return result;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            return null;
-        }
-
-        private void HandleDbEntityValidationException(DbEntityValidationException e)
-        {
-            //Should implement log writer here for debug purpose
-            foreach (var eve in e.EntityValidationErrors)
-            {
-                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                foreach (var ve in eve.ValidationErrors)
-                {
-                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                        ve.PropertyName, ve.ErrorMessage);
-                }
-            }
-        }
-
-        #region Medicine Management
-        private SQLQueryResult GetAllActiveMedicineDataByKeyword(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                string content = paramaters[0] as string;
-                List<int> lstMedicineType = paramaters[1] as List<int>;
-                List<tblMedicine> lstOutput;
-
-                if (content.Length == 0)
-                {
-                    lstOutput = _appDBContext.tblMedicines
-                        .Where(o => o.IsActive && lstMedicineType.Contains(o.MedicineTypeID))
-                        .ToList();
-                }
-                else
-                {
-                    lstOutput = _appDBContext.tblMedicines
-                        .Where(o => o.IsActive
-                        && (o.MedicineName.Contains(content) || o.MedicineID.Contains(content))
-                        && lstMedicineType.Contains(o.MedicineTypeID))
-                        .ToList();
-                }
-                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
-            }
-            return result;
-        }
-
-        private SQLQueryResult GetAllActiveMedicineTypeData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                List<tblMedicineType> lstOutput;
-
-                lstOutput = _appDBContext.tblMedicineTypes.ToList();
-                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
-            }
-            return result;
-        }
-        private SQLQueryResult SetMedicineDeactive(object[] paramaters)
-        {
-            string id = paramaters[0].ToString();
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                var x = _appDBContext.tblMedicines.Where(user => user.MedicineID.Equals(id)).
-                    First();
-                x.IsActive = false;
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Finished);
-                return result;
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message);
-            }
-            finally
-            {
-            }
-            return result;
-        }
-        #endregion
     }
 
     internal class SQLCommandKey
