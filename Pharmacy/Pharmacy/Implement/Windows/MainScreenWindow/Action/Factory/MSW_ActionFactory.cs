@@ -7,6 +7,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
@@ -131,6 +132,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CAMERA_BUTTON:
                     action = new MSW_CMP_CMoP_CameraButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_CAMERA_BUTTON:
+                    action = new MSW_MMP_AMP_CameraButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_CANCEL_BUTTON:
+                    action = new MSW_MMP_AMP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_SAVE_BUTTON:
+                    action = new MSW_MMP_AMP_SaveButtonAction();
                     break;
                 default:
                     action = null;

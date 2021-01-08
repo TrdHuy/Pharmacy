@@ -5,14 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Pharmacy.Implement.Utils.DatabaseManager
@@ -101,11 +96,23 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY:
                     _result = new GetAllActiveMedicineDataByKeywordAction().Execute(_appDBContext, paramaters);
                     break;
-                case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_TYPE_DATA_CMD_KEY:
-                    _result = new GetAllActiveMedicineTypeDataAction().Execute(_appDBContext, paramaters);
+                case SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY:
+                    _result = GetAllMedicineTypeData(paramaters);
                     break;
                 case SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY:
                     _result = new SetMedicineDeactiveAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_MEDICINE_UNIT_DATA_CMD_KEY:
+                    _result = GetAllMedicineUnitData(paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_SUPPLIER_DATA_CMD_KEY:
+                    _result = GetAllActiveSupplierData(paramaters);
+                    break;
+                case SQLCommandKey.CHECK_MEDICINEID_EXISTED_CMD_KEY:
+                    _result = IsMedicineIDExisted(paramaters);
+                    break;
+                case SQLCommandKey.ADD_NEW_MEDICINE_CMD_KEY:
+                    _result = AddNewMedicine(paramaters);
                     break;
                 default:
                     break;
@@ -118,6 +125,127 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             }
 
             NotifyChange(_result);
+        }
+
+       
+     
+    
+        private void HandleDbEntityValidationException(DbEntityValidationException e)
+        {
+            //Should implement log writer here for debug purpose
+            foreach (var eve in e.EntityValidationErrors)
+            {
+                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                foreach (var ve in eve.ValidationErrors)
+                {
+                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                        ve.PropertyName, ve.ErrorMessage);
+                }
+            }
+        }
+        #region Medicine Management
+        private SQLQueryResult GetAllMedicineTypeData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                List<tblMedicineType> lstOutput;
+
+                lstOutput = _appDBContext.tblMedicineTypes.ToList();
+                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                    OwnerWindow.MainScreen);
+            }
+            return result;
+        }
+
+        private SQLQueryResult GetAllMedicineUnitData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                List<tblMedicineUnit> lstOutput;
+
+                lstOutput = _appDBContext.tblMedicineUnits.ToList();
+                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                    OwnerWindow.MainScreen);
+            }
+            return result;
+        }
+        private SQLQueryResult IsMedicineIDExisted(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                string id = paramaters[0] as string;
+                tblMedicine medicine = _appDBContext.tblMedicines.Where(o => o.MedicineID == id).FirstOrDefault();
+
+                result = new SQLQueryResult(medicine == null ? false : true, MessageQueryResult.Finished);
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                    OwnerWindow.MainScreen);
+            }
+            return result;
+        }
+        private SQLQueryResult AddNewMedicine(object[] paramaters)
+        {
+            tblMedicine medicine = paramaters[0] as tblMedicine;
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+
+            try
+            {
+                _appDBContext.tblMedicines.Add(medicine);
+                _appDBContext.SaveChanges();
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
+            }
+            catch (DbEntityValidationException e)
+            {
+                HandleDbEntityValidationException(e);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+
+            return result;
+        }
+        #endregion
+
+        private SQLQueryResult GetAllActiveSupplierData(object[] paramaters)
+        {
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+            try
+            {
+                List<tblSupplier> lstOutput;
+
+                lstOutput = _appDBContext.tblSuppliers.Where(o => o.IsActive).ToList();
+                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox(e.Message,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                    OwnerWindow.MainScreen);
+            }
+            return result;
         }
     }
 
@@ -159,15 +287,26 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         //Key for set a customer deactive
         public const string SET_CUSTOMER_DEACTIVE_CMD_KEY = "set_customer_deactive";
 
-
-        #region Medicine Management
         //Key for getting info of all medicine in database
         public const string GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY = "get_all_active_medicine_data";
-        //Key for getting info of all medicine type in database
-        public const string GET_ALL_ACTIVE_MEDICINE_TYPE_DATA_CMD_KEY = "get_all_active_medicine_type_data";
+
         //Key for set a medicine deactive
         public const string SET_MEDICINE_DEACTIVE_CMD_KEY = "set_medicine_deactive";
-        #endregion
+
+        //Key for getting info of all medicine type in database
+        public const string GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY = "get_all_medicine_type_data";
+
+        //Key for getting info of all medicine unit in database
+        public const string GET_ALL_MEDICINE_UNIT_DATA_CMD_KEY = "get_all_medicine_unit_data";
+
+        //Key for getting info of all supplier in database
+        public const string GET_ALL_ACTIVE_SUPPLIER_DATA_CMD_KEY = "get_all_active_supplier_data";
+
+        //Key for checking does MedicineID exist in database
+        public const string CHECK_MEDICINEID_EXISTED_CMD_KEY = "check_medicineid_existed";
+
+        //Key for add new medicine
+        public const string ADD_NEW_MEDICINE_CMD_KEY = "add_new_medicine";
     }
 
     public class SQLQueryResult
