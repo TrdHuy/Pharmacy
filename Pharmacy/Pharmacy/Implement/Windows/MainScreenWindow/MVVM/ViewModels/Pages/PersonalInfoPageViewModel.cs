@@ -28,6 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private Visibility _currentPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _newPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _verifiedPasswordAwareTextBlockVisibility = Visibility.Collapsed;
+        private string _currentPassword = "";
         private string _newPassword = "";
         private string _verifiedPassword = "";
         private string _newPasswordAwareTextBlockContent = "";
@@ -35,7 +36,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private ImageSource _userAvatarSource = null;
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
-        
         public string FullNameText
         {
             get
@@ -233,7 +233,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 if (_userAvatarSource == null)
                 {
                     _userAvatarSource =
-                        FileIOUtil.GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
+                        FileIOUtil.GetBitmapFromName(CurrentUser.Username,FileIOUtil.USER_IMAGE_FOLDER_NAME).
                         ToImageSource();
                 }
                 return _userAvatarSource;

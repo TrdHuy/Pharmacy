@@ -7,7 +7,6 @@
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.PersonalInfo"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       mc:Ignorable="d"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -24,9 +23,8 @@
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.25*" />
-            <RowDefinition Height="3.5*" />
-            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
         <!--Header area-->
@@ -34,26 +32,161 @@
               Grid.Row="0"
               Background="White">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*" />
-                <RowDefinition Height="0.85*" />
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.37*" />
+                <ColumnDefinition Width="7.14*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Background area behind User Image-->
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.71*" />
+                    <ColumnDefinition Width="0.66*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.71*" />
+                    <RowDefinition Height="0.14*" />
+                    <RowDefinition Height="1.33*" />
+                    <RowDefinition Height="0.14*" />
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0"
+                        Grid.Row="2"
+                        Background="{StaticResource NormalTheme_1st_Background_Brush}">
+                    <Border.OpacityMask>
+                        <ImageBrush Stretch="UniformToFill"
+                                    ImageSource="{StaticResource AvatarBGImageOpacityMask}" />
+                    </Border.OpacityMask>
+                </Border>
+
+            </Grid>
 
             <!--Page title-->
-            <uc:PageHeader HeaderIcon="{StaticResource HomePage_PersonalInfoIcon}"
-                           HeaderText="Thông tin cá nhân"
-                           Grid.Row="0"/>
+            <Grid x:Name="PageTitleGridArea"
+                  Grid.Row="0"
+                  Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.71*" />
+                    <RowDefinition Height="1.61*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.61*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="7.71*" />
+                    <ColumnDefinition Width="1.8*" />
+                </Grid.ColumnDefinitions>
 
-            <!--Page title-->
-            <uc:PageOverviewInfo Grid.Row="1"
-                                 FileName="{Binding CurrentUser.Username}"
-                                 FolderName="UserImages"
-                                 CamButCmd="{Binding CameraButtonCommand}"
-                                 CamButVisibility="Visible"
-                                 MainTiltle="{Binding FullNameText}"
-                                 SubTiltle="{Binding CurrentUser.Username}"
-                                 SubTiltle2nd="{Binding CurrentUser.Job}" />
-            
+                <Image Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Stretch="UniformToFill"
+                       Source="{StaticResource HomePage_PersonalInfoIcon}" />
+                <TextBlock TextWrapping="Wrap"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           FontFamily="{StaticResource FontAwesome}"
+                           FontSize="{StaticResource HeaderFontSize}"
+                           Grid.Column="3"
+                           Text="Thông tin cá nhân" />
+            </Grid>
+
+            <!--Avatar-->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.71*" />
+                    <RowDefinition Height="1.61*" />
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="AvatarGridArea"
+                      Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.05*" />
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.93*" />
+                        <ColumnDefinition Width="0.2*" />
+
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="2"
+                            x:Name="AvatarBoder"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Wheat"
+                            CornerRadius="0150">
+
+                        <Border.OpacityMask>
+                            <ImageBrush Stretch="Uniform"
+                                        ImageSource="{StaticResource AvatarImageOpacityMask}">
+                            </ImageBrush>
+                        </Border.OpacityMask>
+
+                        <Grid x:Name="ImageGridContainer"
+                              SizeChanged="ImageGridContainerSizeChanged">
+                            <Image Stretch="UniformToFill"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Source="{Binding UserAvatarSource}" />
+                        </Grid>
+                    </Border>
+
+                    <hps:OsirisButton Grid.Column="2"
+                                    ToolTip="Đổi ảnh đại diện của bạn"
+                                    Background="Transparent"
+                                    OBContentOrientation="Vertical"
+                                    IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
+                                    IconStretch="UniformToFill"
+                                    IconHeight="15"
+                                    IconWidth="15"
+                                    Command="{Binding CameraButtonCommand}"
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top">
+
+                    </hps:OsirisButton>
+                </Grid>
+            </Grid>
+
+            <!--User info area-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.85*" />
+                    <RowDefinition Height="1.19*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*" />
+                        <RowDefinition Height="0.55*" />
+                        <RowDefinition Height="0.55*" />
+                        <RowDefinition Height="0.3*" />
+                    </Grid.RowDefinitions>
+
+                    <Viewbox HorizontalAlignment="Left"
+                             Stretch="Uniform"
+                             Grid.Row="0">
+                        <TextBlock FontFamily="{StaticResource VNFOswald}"
+                                   Text="{Binding FullNameText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    </Viewbox>
+
+                    <Viewbox HorizontalAlignment="Left"
+                             Stretch="Uniform"
+                             Grid.Row="1">
+                        <TextBlock FontFamily="{StaticResource VNFOswald}"
+                                   Text="{Binding CurrentUser.Username}" />
+                    </Viewbox>
+
+                    <Viewbox HorizontalAlignment="Left"
+                             Stretch="Uniform"
+                             Grid.Row="2">
+                        <TextBlock FontFamily="{StaticResource VNFOswald}"
+                                   Text="{Binding CurrentUser.Job}" />
+                    </Viewbox>
+                </Grid>
+
+
+
+            </Grid>
+
         </Grid>
 
 
