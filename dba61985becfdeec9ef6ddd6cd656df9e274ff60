@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb706875_f8d86e0b",
+        "filename": "Pharmacy/Pharmacy/Implement/Utils/DatabaseManager/AbstractQueryAction.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-01-08T07:36:30Z",
+      "side": 1,
+      "message": "Sửa lại nội dung lỗi, cái này đang dùng chung",
+      "range": {
+        "startLine": 92,
+        "startChar": 20,
+        "endLine": 92,
+        "endChar": 121
+      },
+      "revId": "dba61985becfdeec9ef6ddd6cd656df9e274ff60",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
