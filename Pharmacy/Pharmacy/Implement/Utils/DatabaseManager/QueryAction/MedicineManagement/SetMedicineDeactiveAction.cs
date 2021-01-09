@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction
+namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement
 {
     public class SetMedicineDeactiveAction : AbstractQueryAction
     {
@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction
                     First();
                 x.IsActive = false;
                 appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Finished);
+                result = new SQLQueryResult(null, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)

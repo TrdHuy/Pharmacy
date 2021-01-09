@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Base.Converter;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -8,14 +9,14 @@ using System.Windows.Data;
 
 namespace Pharmacy.Implement.Utils.Converter
 {
-    class MultiBindingConverter : IMultiValueConverter
+    class MultiBindingConverter : BaseMultiValueConverter<MultiBindingConverter>
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public override object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             return values.Clone();
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public override object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

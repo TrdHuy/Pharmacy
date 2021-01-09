@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
@@ -145,7 +146,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             }
         }
         public string MedicineDescription { get; set; } = "";
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
+        public ImageSource MedicineImageSource { get; set; }
+        public string MedicineImageFileName { get; set; }
 
         private string _medicineID = "";
         private string _medicineName = "";
@@ -166,23 +168,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             InitData();
-        }
-
-        private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
-        {
-            Grid ctrl = (Grid)sender;
-            Border avaBorder = (Border)((object[])paramaters)[0];
-
-            if (avaBorder.RenderSize.Width >= avaBorder.RenderSize.Height)
-            {
-                ctrl.Width = avaBorder.RenderSize.Height;
-            }
-            else
-            {
-                ctrl.Width = avaBorder.RenderSize.Width;
-            }
         }
 
         private void CameraButtonClickEvent(object paramaters)
@@ -332,7 +318,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
-                LstSupplier = new ObservableCollection<tblSupplier>(queryResult.Result as List<tblSupplier>);
+                if (queryResult.MesResult == MessageQueryResult.Done)
+                {
+                    LstSupplier = new ObservableCollection<tblSupplier>(queryResult.Result as List<tblSupplier>);
+                }
+                else
+                {
+                    LstSupplier = new ObservableCollection<tblSupplier>();
+                }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_SUPPLIER_DATA_CMD_KEY
                     , _sqlCmdObserver);
@@ -342,7 +335,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
-                LstMedicineUnit = new ObservableCollection<tblMedicineUnit>(queryResult.Result as List<tblMedicineUnit>);
+                if (queryResult.MesResult == MessageQueryResult.Done)
+                {
+                    LstMedicineUnit = new ObservableCollection<tblMedicineUnit>(queryResult.Result as List<tblMedicineUnit>);
+                }
+                else
+                {
+                    LstMedicineUnit = new ObservableCollection<tblMedicineUnit>();
+                }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_UNIT_DATA_CMD_KEY
                     , _sqlCmdObserver);
@@ -352,7 +352,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
-                LstMedicineType = new ObservableCollection<tblMedicineType>(queryResult.Result as List<tblMedicineType>);
+                if (queryResult.MesResult == MessageQueryResult.Done)
+                {
+                    LstMedicineType = new ObservableCollection<tblMedicineType>(queryResult.Result as List<tblMedicineType>);
+                }
+                else
+                {
+                    LstMedicineType = new ObservableCollection<tblMedicineType>();
+                }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY
                     , _sqlCmdObserver);

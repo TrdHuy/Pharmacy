@@ -31,6 +31,15 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_SEARCH_CUSTOMER_BY_ADDRESS = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_CUSTOMER_BY_ADRESS"];
 
+        public static readonly bool IS_SUPPORT_SEARCH_MEDICINE_BY_ID = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_MEDICINE_BY_ID"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_MEDICINE_BY_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_MEDICINE_BY_NAME"];
+
+        public static readonly bool IS_SUPPORT_FILTER_MEDICINE_BY_TYPE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_MEDICINE_BY_TYPE"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";

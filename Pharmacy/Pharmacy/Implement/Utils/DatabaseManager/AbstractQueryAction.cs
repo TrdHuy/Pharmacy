@@ -84,6 +84,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                             FileIOUtil.SaveCustomerImageFile(imageName, bit);
                             break;
                         case ImageType.Medicine:
+                            FileIOUtil.SaveMedicineImageFile(imageName, bit);
                             break;
                     }
                 }

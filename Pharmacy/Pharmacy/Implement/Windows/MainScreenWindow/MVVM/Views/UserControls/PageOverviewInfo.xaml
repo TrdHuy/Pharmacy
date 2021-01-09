@@ -120,7 +120,8 @@
                 <Viewbox HorizontalAlignment="Left"
                          Stretch="Uniform"
                          Grid.Row="2">
-                    <TextBlock FontFamily="{StaticResource VNFOswald}"
+                    <TextBlock MaxWidth="700"
+                               TextTrimming="WordEllipsis" 
                                Text="{Binding SubTiltle2nd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PageOverviewInfo}}" />
                 </Viewbox>
             </Grid>

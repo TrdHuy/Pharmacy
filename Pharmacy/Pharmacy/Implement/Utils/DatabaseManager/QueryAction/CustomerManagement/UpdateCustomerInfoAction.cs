@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction
+namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement
 {
     public class UpdateCustomerInfoAction : AbstractQueryAction
     {

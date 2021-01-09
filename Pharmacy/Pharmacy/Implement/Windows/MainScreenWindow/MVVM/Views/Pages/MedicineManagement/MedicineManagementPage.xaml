@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:usercontrols="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage"
       mc:Ignorable="d" Background="White" x:Name="PageMedicineManagement"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -19,7 +19,7 @@
             <RowDefinition Height="4.64*"/>
             <RowDefinition Height="0.70*" MaxHeight="100"/>
         </Grid.RowDefinitions>
-        <usercontrols:PageHeader Grid.Row="0" HeaderText="Quản lý thuốc" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
+        <uc:PageHeader Grid.Row="0" HeaderText="Quản lý thuốc" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
         <Grid Grid.Row="1" Margin="10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -29,15 +29,26 @@
             </Grid.ColumnDefinitions>
             <TextBlock Text="Tìm kiếm:" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" ToolTip="Nhập mã hoặc tên thuốc" Margin="5,0,0,0" VerticalContentAlignment="Center"
-                     Text="{Binding FilterText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
-                <TextBox.InputBindings>
-                    <KeyBinding Key="Return" Command="{Binding FilterMedicineCommand}"/>
-                </TextBox.InputBindings>
+                     TextChanged="SearchTextBox_TextChanged" Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </TextBox>
             <CheckBox Content="Dược liệu" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="True"
-                      Command="{Binding FilterMedicineTypeCommand}" CommandParameter="{Binding ElementName=cbxDuocLieu}" x:Name="cbxDuocLieu"/>
+                      Command="{Binding FilterMedicineTypeCommand}" x:Name="cbxDuocLieu">
+                <CheckBox.CommandParameter>
+                    <MultiBinding Converter="{conv:MultiBindingConverter}">
+                        <Binding ElementName="cbxDuocLieu"/>
+                        <Binding ElementName="DataGrid"/>
+                    </MultiBinding>
+                </CheckBox.CommandParameter>
+            </CheckBox>
             <CheckBox Content="Cao đơn" Grid.Column="3" Margin="10,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center" IsChecked="True"
-                      Command="{Binding FilterMedicineTypeCommand}" CommandParameter="{Binding ElementName=cbxCaoDon}" x:Name="cbxCaoDon"/>
+                      Command="{Binding FilterMedicineTypeCommand}" x:Name="cbxCaoDon">
+                <CheckBox.CommandParameter>
+                    <MultiBinding Converter="{conv:MultiBindingConverter}">
+                        <Binding ElementName="cbxCaoDon"/>
+                        <Binding ElementName="DataGrid"/>
+                    </MultiBinding>
+                </CheckBox.CommandParameter>
+            </CheckBox>
         </Grid>
         <DataGrid x:Name="DataGrid"
                   Grid.Row="2"

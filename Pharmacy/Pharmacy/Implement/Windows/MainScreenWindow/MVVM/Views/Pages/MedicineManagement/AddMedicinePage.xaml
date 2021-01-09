@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:customcontrols="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement.AddMedicinePage"
       mc:Ignorable="d" Background="White"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -19,103 +19,16 @@
             <RowDefinition Height="4.44*"/>
             <RowDefinition Height="0.70*" MaxHeight="100"/>
         </Grid.RowDefinitions>
-        <customcontrols:PageHeader Grid.Row="0" HeaderText="Thêm thuốc mới" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
+        <uc:PageHeader Grid.Row="0" HeaderText="Thêm thuốc mới" HeaderIcon="{StaticResource HomePage_MedicineManageIcon}"/>
         <Grid Grid.Row="1">
-            <Grid x:Name="HeaderGrid"
-              Grid.Row="0"
-              Background="White">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2.65*" />
-                    <ColumnDefinition Width="9.87*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.27*"/>
-                        <RowDefinition Height="0.75*"/>
-                        <RowDefinition Height="0.27*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.36*"/>
-                        <ColumnDefinition Width="0.645*"/>
-                        <ColumnDefinition Width="0.645*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Border Grid.Column="0" 
-                            Grid.ColumnSpan="2"
-                            Grid.Row="1"
-                            Background="{StaticResource NormalTheme_LightGreenBrush}"/>
-
-                    <Border x:Name="AvatarBoder"
-                            Grid.Column="1"
-                            Grid.ColumnSpan="2"
-                            Grid.Row="0"
-                            Grid.RowSpan="3"                            
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="Wheat"
-                            CornerRadius="0150">
-                        <Border.OpacityMask>
-                            <ImageBrush Stretch="Uniform"
-                                        ImageSource="{StaticResource AvatarImageOpacityMask}"/>
-                        </Border.OpacityMask>
-
-                        <Grid x:Name="ImageGridContainer"
-                                  SizeChanged="ImageGridContainer_SizeChanged">
-                            <Image Stretch="UniformToFill"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Source="{Binding MedicineID,Converter={conv:StringToImageSourceConverter},ConverterParameter=MedicineImages}"/>
-                        </Grid>
-                    </Border>
-
-                    <hps:OsirisButton Grid.Column="2"
-                                      ToolTip="Đổi ảnh thuốc"
-                                      Background="Transparent"
-                                      OBContentOrientation="Vertical"
-                                      IconSource="{StaticResource PersonalInfoPage_CameraIcon}"
-                                      IconStretch="UniformToFill"
-                                      IconHeight="15"
-                                      IconWidth="15"
-                                      BorderThickness="0"
-                                      HorizontalAlignment="Right"
-                                      Command="{Binding CameraButtonCommand}"
-                                      VerticalAlignment="Top"/>
-                </Grid>
-
-                <Grid Grid.Column="1" Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Viewbox Grid.Row="0" 
-                             HorizontalAlignment="Left" 
-                             VerticalAlignment="Top"
-                             Stretch="Uniform">
-                        <TextBlock FontFamily="{StaticResource VNFOswald}" 
-                                   FontSize="{StaticResource FontSizeXXLarge}"
-                                   Text="{Binding ElementName=txtMedicineName, Path=Text, Mode=OneWay}"/>
-                    </Viewbox>
-                    <Viewbox Grid.Row="1" 
-                             HorizontalAlignment="Left" 
-                             VerticalAlignment="Center"
-                             Stretch="Uniform">
-                        <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                   Text="{Binding ElementName=cbxMedicineType, Path=Text, Mode=OneWay}"/>
-                    </Viewbox>
-                    <Viewbox Grid.Row="2" 
-                             HorizontalAlignment="Left" 
-                             VerticalAlignment="Bottom"
-                             Stretch="Uniform">
-                        <TextBlock  MaxWidth="500"
-                                    TextTrimming="WordEllipsis" 
-                                    Text="{Binding ElementName=txtMedicineDescription, Path=Text, Mode=OneWay}"/>
-                    </Viewbox>
-                </Grid>
-            </Grid>
+            <uc:PageOverviewInfo Grid.Row="1"
+                                 AvatarSource="{Binding MedicineImageSource}"
+                                 CamTip="Thay đổi ảnh thuốc"
+                                 CamButCmd="{Binding CameraButtonCommand}"
+                                 CamButVisibility="Visible"
+                                 MainTiltle="{Binding ElementName=txtMedicineName, Path=Text}"
+                                 SubTiltle="{Binding ElementName=cbxMedicineType, Path=Text}"
+                                 SubTiltle2nd="{Binding ElementName=txtMedicineDescription, Path=Text}" />
         </Grid>
         <Grid Grid.Row="2" Margin="10"
               VerticalAlignment="Stretch">

@@ -19,6 +19,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly int ADD_NEW_CUSTOMER_DELAY_TIME = 1000;
         public static readonly int SAVE_CUSTOMER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_MEDICINE_DELAY_TIME = 1000;
+        public static readonly int MODIFY_MEDICINE_DELAY_TIME = 1000;
 
         public const string HOME_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml";
         public const string SELLING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml";
@@ -32,12 +33,13 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/WarehouseManagementPage.xaml";
         public const string REPORT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Report/ReportPage.xaml";
         public const string ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagement/AddMedicinePage.xaml";
+        public const string MODIFY_MEDICINE_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/MedicineManagement/ModifyMedicinePage.xaml";
         public const string USER_MODIFICATION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserModificationPage.xaml";
         public const string USER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/UserManagement/UserInstantiationPage.xaml";
         public const string CUSTOMER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerInstantiationPage.xaml";
         public const string CUSTOMER_MODIFICATION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerModificationPage.xaml";
         public const string CUSTOMER_TRANSACTION_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerTransactionHistoryPage.xaml";
-        
+
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long SELLING_PAGE_LOADING_DELAY_TIME = 100;
@@ -57,6 +59,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long CUSTOMER_TRANSACTION_PAGE_LOADING_DELAY_TIME = 1000;
 
         public static readonly long ADD_MEDICINE_PAGE_LOADING_DELAY_TIME = 500;
+        public static readonly long MODIFY_MEDICINE_PAGE_LOADING_DELAY_TIME = 1000;
 
 
     }

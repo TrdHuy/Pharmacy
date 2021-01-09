@@ -1,5 +1,8 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement;
 using Pharmacy.Implement.Utils.Extensions;
 using System;
 using System.Collections.Generic;
@@ -61,10 +64,10 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             switch (SQLCmdKey)
             {
                 case SQLCommandKey.CHECK_USER_AVAIL_CMD_KEY:
-                    _result = new CheckUserAvailAction().Execute(_appDBContext,paramaters);
+                    _result = new CheckUserAvailAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.UPDATE_USER_INFO_CMD_KEY:
-                    _result = new UpdateUserInfoAction().Execute(_appDBContext,paramaters);
+                    _result = new UpdateUserInfoAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_USER_DATA_CMD_KEY:
                     _result = new GetAllActiveUserDataAction().Execute(_appDBContext, paramaters);
@@ -94,31 +97,37 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                     _result = new SetCustomerDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY:
-                    _result = new GetAllActiveMedicineDataByKeywordAction().Execute(_appDBContext, paramaters);
+                    _result = new GetAllActiveMedicineDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY:
-                    _result = GetAllMedicineTypeData(paramaters);
+                    _result = new GetAllMedicineTypeDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY:
                     _result = new SetMedicineDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_MEDICINE_UNIT_DATA_CMD_KEY:
-                    _result = GetAllMedicineUnitData(paramaters);
+                    _result = new GetAllMedicineUnitDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.GET_ALL_ACTIVE_SUPPLIER_DATA_CMD_KEY:
-                    _result = GetAllActiveSupplierData(paramaters);
+                    _result = new GetAllActiveSupplierDataAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.CHECK_MEDICINEID_EXISTED_CMD_KEY:
-                    _result = IsMedicineIDExisted(paramaters);
+                    _result = new IsMedicineIDExistedAction().Execute(_appDBContext, paramaters);
                     break;
                 case SQLCommandKey.ADD_NEW_MEDICINE_CMD_KEY:
-                    _result = AddNewMedicine(paramaters);
+                    _result = new AddNewMedicineAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.MODIFY_MEDICINE_CMD_KEY:
+                    _result = new ModifyMedicineAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY:
+                    _result = new GetAllActivteMedicineStockInWarehouseDataAction().Execute(_appDBContext, paramaters);
                     break;
                 default:
                     break;
             }
 
-            if(_result.MesResult == MessageQueryResult.Aborted ||
+            if (_result.MesResult == MessageQueryResult.Aborted ||
                 _result.MesResult == MessageQueryResult.Cancled)
             {
                 RollBack();
@@ -127,9 +136,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             NotifyChange(_result);
         }
 
-       
-     
-    
         private void HandleDbEntityValidationException(DbEntityValidationException e)
         {
             //Should implement log writer here for debug purpose
@@ -143,109 +149,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                         ve.PropertyName, ve.ErrorMessage);
                 }
             }
-        }
-        #region Medicine Management
-        private SQLQueryResult GetAllMedicineTypeData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                List<tblMedicineType> lstOutput;
-
-                lstOutput = _appDBContext.tblMedicineTypes.ToList();
-                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
-            }
-            return result;
-        }
-
-        private SQLQueryResult GetAllMedicineUnitData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                List<tblMedicineUnit> lstOutput;
-
-                lstOutput = _appDBContext.tblMedicineUnits.ToList();
-                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
-            }
-            return result;
-        }
-        private SQLQueryResult IsMedicineIDExisted(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                string id = paramaters[0] as string;
-                tblMedicine medicine = _appDBContext.tblMedicines.Where(o => o.MedicineID == id).FirstOrDefault();
-
-                result = new SQLQueryResult(medicine == null ? false : true, MessageQueryResult.Finished);
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
-            }
-            return result;
-        }
-        private SQLQueryResult AddNewMedicine(object[] paramaters)
-        {
-            tblMedicine medicine = paramaters[0] as tblMedicine;
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-
-            try
-            {
-                _appDBContext.tblMedicines.Add(medicine);
-                _appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Done);
-            }
-            catch (DbEntityValidationException e)
-            {
-                HandleDbEntityValidationException(e);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-
-            return result;
-        }
-        #endregion
-
-        private SQLQueryResult GetAllActiveSupplierData(object[] paramaters)
-        {
-            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
-            try
-            {
-                List<tblSupplier> lstOutput;
-
-                lstOutput = _appDBContext.tblSuppliers.Where(o => o.IsActive).ToList();
-                result = new SQLQueryResult(lstOutput, MessageQueryResult.Finished);
-            }
-            catch (Exception e)
-            {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
-            }
-            return result;
         }
     }
 
@@ -307,6 +210,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for add new medicine
         public const string ADD_NEW_MEDICINE_CMD_KEY = "add_new_medicine";
+
+        //Key for modify medicine
+        public const string MODIFY_MEDICINE_CMD_KEY = "modify_medicine";
+
+        //Key for getting info of all active stocks in warehouse in database
+        public const string GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY = "get_all_active_medicine_stock_in_warehouse_data";
     }
 
     public class SQLQueryResult
