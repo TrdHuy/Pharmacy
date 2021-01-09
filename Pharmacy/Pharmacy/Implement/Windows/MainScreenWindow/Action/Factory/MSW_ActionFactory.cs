@@ -9,6 +9,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ModifyMedicinePage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ShowMedicineInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
@@ -107,6 +108,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON:
                     action = new MSW_MMP_ModifyMedicineButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON:
+                    action = new MSW_MMP_ShowMedicineInfoButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON:
                     action = new MSW_CMP_AddButtonAction();
                     break;
@@ -154,6 +158,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON:
                     action = new MSW_MMP_MMP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_SMIP_CANCEL_BUTTON:
+                    action = new MSW_MMP_SMIP_CancelButtonAction();
                     break;
                 default:
                     action = null;

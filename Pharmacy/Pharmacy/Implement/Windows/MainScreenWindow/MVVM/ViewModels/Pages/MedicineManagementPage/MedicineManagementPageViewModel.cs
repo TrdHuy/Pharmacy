@@ -25,6 +25,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public RunInputCommand DeleteMedicineButtonCommand { get; set; }
         public RunInputCommand PromoMedicineButtonCommand { get; set; }
         public RunInputCommand FilterMedicineTypeCommand { get; set; }
+        public EventHandleCommand ShowMedicineInfoCommand { get; set; }
         public EventHandleCommand SearchTextChangedCommand { get; set; }
         public string FilterText { get; set; } = "";
 
@@ -49,6 +50,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             PromoMedicineButtonCommand = new RunInputCommand(PromoMedicineButtonClickEvent);
             FilterMedicineTypeCommand = new RunInputCommand(FilterMedicineTypeClickEvent);
             SearchTextChangedCommand = new EventHandleCommand(SearchTextChangedEvent);
+            ShowMedicineInfoCommand = new EventHandleCommand(ShowMedicineInfoEvent);
             InstantiateItems();
         }
 
@@ -149,6 +151,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private bool FilterByType(tblMedicine medicine, string filterText)
         {
             return RUNE.IS_SUPPORT_FILTER_MEDICINE_BY_TYPE ? (_lstMedicineTypeFilter.Contains(medicine.MedicineTypeID)) : false;
+        }
+
+        private void ShowMedicineInfoEvent(object sender, EventArgs e, object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON
+                , dataTransfer);
         }
 
         private void ExcelImportButtonClickEvent(object paramaters)

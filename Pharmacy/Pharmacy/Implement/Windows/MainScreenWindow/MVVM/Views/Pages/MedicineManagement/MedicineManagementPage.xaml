@@ -167,6 +167,7 @@
 
                     <Setter Property="Height"
                                     Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
                 </Style>
 
             </DataGrid.RowStyle>

@@ -17,24 +17,14 @@ using System.Windows.Shapes;
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement
 {
     /// <summary>
-    /// Interaction logic for MedicineManagementPage.xaml
+    /// Interaction logic for ShowMedicineInfoPage.xaml
     /// </summary>
-    public partial class MedicineManagementPage : Page
+    public partial class ShowMedicineInfoPage : Page
     {
-        public MedicineManagementPage()
+        public ShowMedicineInfoPage()
         {
             InitializeComponent();
-            DataContext = new MedicineManagementPageViewModel();
-        }
-
-        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ((MedicineManagementPageViewModel)DataContext).SearchTextChangedCommand.Execute(sender, e, DataGrid, this);
-        }
-
-        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            ((MedicineManagementPageViewModel)DataContext).ShowMedicineInfoCommand.Execute(sender, e, DataGrid, this);
+            DataContext = new ShowMedicineInfoPageViewModel();
         }
     }
 }

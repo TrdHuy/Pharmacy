@@ -186,6 +186,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ModifyMedicinePage\MSW_MMP_MMP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ModifyMedicinePage\MSW_MMP_MMP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ModifyMedicinePage\MSW_MMP_MMP_CameraButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_ShowMedicineInfoButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_ModifyMedicineButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_AddNewMedicineButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_DeleteMedicineButtonAction.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_DeleteButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_HistoryButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ShowMedicineInfoPage\MSW_MMP_SMIP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
@@ -218,6 +220,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransactionHistoryPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ModifyMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagementPageViewModel.cs" />
@@ -237,6 +240,9 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransactionHistoryPage.xaml.cs">
       <DependentUpon>CustomerTransactionHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ShowMedicineInfoPage.xaml.cs">
+      <DependentUpon>ShowMedicineInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ModifyMedicinePage.xaml.cs">
       <DependentUpon>ModifyMedicinePage.xaml</DependentUpon>
@@ -382,6 +388,10 @@
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransactionHistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ShowMedicineInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ModifyMedicinePage.xaml">
       <Generator>MSBuild:Compile</Generator>
