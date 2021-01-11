@@ -11,7 +11,7 @@ namespace Pharmacy
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tblCustomer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace Pharmacy
             this.tblOrders = new HashSet<tblOrder>();
             this.tblPromoes = new HashSet<tblPromo>();
         }
-    
+
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
         public string Email { get; set; }
@@ -29,10 +29,15 @@ namespace Pharmacy
         public string CustomerDescription { get; set; }
         public bool IsActive { get; set; }
         public string Link { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPromo> tblPromoes { get; set; }
+
+        public override string ToString()
+        {
+            return CustomerName + " " + Phone;
+        }
     }
 }

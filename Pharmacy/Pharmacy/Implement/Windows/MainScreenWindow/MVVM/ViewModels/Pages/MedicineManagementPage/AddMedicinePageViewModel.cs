@@ -3,6 +3,7 @@ using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
@@ -282,7 +283,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void CheckBidPrice()
         {
             if (BidPrice.Trim().Length > 0
-                && IsHavingOnlyNumber(BidPrice.Trim())
+                && UtilMethods.IsHavingOnlyNumber(BidPrice.Trim())
                 && decimal.Parse(BidPrice.Trim()) >= 0)
                 BidPriceCheckingStatus = 1;
             else
@@ -293,18 +294,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void CheckAskingPrice()
         {
             if (AskingPrice.Trim().Length > 0
-                && IsHavingOnlyNumber(AskingPrice.Trim())
+                && UtilMethods.IsHavingOnlyNumber(AskingPrice.Trim())
                 && decimal.Parse(AskingPrice.Trim()) >= 0)
                 AskingPriceCheckingStatus = 1;
             else
                 AskingPriceCheckingStatus = -1;
             Invalidate("AskingPriceCheckingStatus");
-        }
-
-        private bool IsHavingOnlyNumber(string text)
-        {
-            Regex regex = new Regex("^[0-9]*$");
-            return regex.IsMatch(text);
         }
 
         private void InitData()
