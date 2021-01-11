@@ -16,7 +16,6 @@
           <Property Name="Address" Type="nvarchar" MaxLength="1000" />
           <Property Name="CustomerDescription" Type="nvarchar" MaxLength="1000" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="Link" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblMedicine">
           <Key>
@@ -143,8 +142,6 @@
           <Property Name="ImportDetailID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MedicineID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
-          <Property Name="QuantityUsed" Type="float" Nullable="false" />
-          <Property Name="ExpiredDate" Type="datetime" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ImportID" Type="bigint" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -360,6 +357,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="PharmacyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PharmacyDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCustomers" EntityType="PharmacyDBModel.tblCustomer" />
           <EntitySet Name="tblMedicines" EntityType="PharmacyDBModel.tblMedicine" />
           <EntitySet Name="tblMedicineTypes" EntityType="PharmacyDBModel.tblMedicineType" />
           <EntitySet Name="tblMedicineUnits" EntityType="PharmacyDBModel.tblMedicineUnit" />
@@ -371,6 +369,14 @@
           <EntitySet Name="tblUsers" EntityType="PharmacyDBModel.tblUser" />
           <EntitySet Name="tblWarehouseImports" EntityType="PharmacyDBModel.tblWarehouseImport" />
           <EntitySet Name="tblWarehouseImportDetails" EntityType="PharmacyDBModel.tblWarehouseImportDetail" />
+          <AssociationSet Name="FK__tblOrder__Custom__336AA144" Association="PharmacyDBModel.FK__tblOrder__Custom__336AA144">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPromo__Custom__373B3228" Association="PharmacyDBModel.FK__tblPromo__Custom__373B3228">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblPromo" EntitySet="tblPromoes" />
+          </AssociationSet>
           <AssociationSet Name="FK__tblMedici__Medic__308E3499" Association="PharmacyDBModel.FK__tblMedici__Medic__308E3499">
             <End Role="tblMedicineType" EntitySet="tblMedicineTypes" />
             <End Role="tblMedicine" EntitySet="tblMedicines" />
@@ -411,16 +417,21 @@
             <End Role="tblWarehouseImport" EntitySet="tblWarehouseImports" />
             <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetails" />
           </AssociationSet>
-          <EntitySet Name="tblCustomers" EntityType="PharmacyDBModel.tblCustomer" />
-          <AssociationSet Name="FK__tblOrder__Custom__336AA144" Association="PharmacyDBModel.FK__tblOrder__Custom__336AA144">
-            <End Role="tblCustomer" EntitySet="tblCustomers" />
-            <End Role="tblOrder" EntitySet="tblOrders" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblPromo__Custom__373B3228" Association="PharmacyDBModel.FK__tblPromo__Custom__373B3228">
-            <End Role="tblCustomer" EntitySet="tblCustomers" />
-            <End Role="tblPromo" EntitySet="tblPromoes" />
-          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblOrders" Relationship="PharmacyDBModel.FK__tblOrder__Custom__336AA144" FromRole="tblCustomer" ToRole="tblOrder" />
+          <NavigationProperty Name="tblPromoes" Relationship="PharmacyDBModel.FK__tblPromo__Custom__373B3228" FromRole="tblCustomer" ToRole="tblPromo" />
+        </EntityType>
         <EntityType Name="tblMedicine">
           <Key>
             <PropertyRef Name="MedicineID" />
@@ -472,9 +483,9 @@
           <Property Name="IncludeVAT" Type="Boolean" Nullable="false" />
           <Property Name="OrderDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblCustomer" Relationship="PharmacyDBModel.FK__tblOrder__Custom__336AA144" FromRole="tblOrder" ToRole="tblCustomer" />
           <NavigationProperty Name="tblUser" Relationship="PharmacyDBModel.FK__tblOrder__UserID__345EC57D" FromRole="tblOrder" ToRole="tblUser" />
           <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Order__36470DEF" FromRole="tblOrder" ToRole="tblOrderDetail" />
-          <NavigationProperty Name="tblCustomer" Relationship="PharmacyDBModel.FK__tblOrder__Custom__336AA144" FromRole="tblOrder" ToRole="tblCustomer" />
         </EntityType>
         <EntityType Name="tblOrderDetail">
           <Key>
@@ -511,8 +522,8 @@
           <Property Name="PromoPercent" Type="Double" Nullable="false" />
           <Property Name="PromoDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblPromo__Medici__382F5661" FromRole="tblPromo" ToRole="tblMedicine" />
           <NavigationProperty Name="tblCustomer" Relationship="PharmacyDBModel.FK__tblPromo__Custom__373B3228" FromRole="tblPromo" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblPromo__Medici__382F5661" FromRole="tblPromo" ToRole="tblMedicine" />
         </EntityType>
         <EntityType Name="tblSupplier">
           <Key>
@@ -565,8 +576,6 @@
           <Property Name="ImportDetailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MedicineID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
-          <Property Name="QuantityUsed" Type="Double" Nullable="false" />
-          <Property Name="ExpiredDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="ImportID" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
@@ -574,6 +583,30 @@
           <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Impor__3552E9B6" FromRole="tblWarehouseImportDetail" ToRole="tblOrderDetail" />
           <NavigationProperty Name="tblWarehouseImport" Relationship="PharmacyDBModel.FK__tblWareho__Impor__3A179ED3" FromRole="tblWarehouseImportDetail" ToRole="tblWarehouseImport" />
         </EntityType>
+        <Association Name="FK__tblOrder__Custom__336AA144">
+          <End Type="PharmacyDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPromo__Custom__373B3228">
+          <End Type="PharmacyDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblPromo" Role="tblPromo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblPromo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tblMedici__Medic__308E3499">
           <End Type="PharmacyDBModel.tblMedicineType" Role="tblMedicineType" Multiplicity="1" />
           <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="*" />
@@ -694,51 +727,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tblCustomer">
-          <Key>
-            <PropertyRef Name="CustomerID" />
-          </Key>
-          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblOrders" Relationship="PharmacyDBModel.FK__tblOrder__Custom__336AA144" FromRole="tblCustomer" ToRole="tblOrder" />
-          <NavigationProperty Name="tblPromoes" Relationship="PharmacyDBModel.FK__tblPromo__Custom__373B3228" FromRole="tblCustomer" ToRole="tblPromo" />
-        </EntityType>
-        <Association Name="FK__tblOrder__Custom__336AA144">
-          <End Type="PharmacyDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1" />
-          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCustomer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="tblOrder">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblPromo__Custom__373B3228">
-          <End Type="PharmacyDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1" />
-          <End Type="PharmacyDBModel.tblPromo" Role="tblPromo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCustomer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="tblPromo">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PharmacyDBModelStoreContainer" CdmEntityContainer="PharmacyDBContext">
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CustomerDescription" ColumnName="CustomerDescription" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblMedicines">
             <EntityTypeMapping TypeName="PharmacyDBModel.tblMedicine">
               <MappingFragment StoreEntitySet="tblMedicine">
@@ -873,25 +880,9 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ImportID" ColumnName="ImportID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-                <ScalarProperty Name="QuantityUsed" ColumnName="QuantityUsed" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
                 <ScalarProperty Name="ImportDetailID" ColumnName="ImportDetailID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblCustomers">
-            <EntityTypeMapping TypeName="PharmacyDBModel.tblCustomer">
-              <MappingFragment StoreEntitySet="tblCustomer">
-                <ScalarProperty Name="Link" ColumnName="Link" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CustomerDescription" ColumnName="CustomerDescription" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
