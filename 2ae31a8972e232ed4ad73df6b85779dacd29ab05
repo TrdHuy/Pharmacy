@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d0febe_c3809352",
+        "filename": "Pharmacy/Pharmacy/tblCustomer.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018457
+      },
+      "writtenOn": "2021-01-12T03:38:46Z",
+      "side": 0,
+      "message": "update lại cả bên Customer page đang binding đến Link nhé\nBuild đang bị lỗi",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "2ae31a8972e232ed4ad73df6b85779dacd29ab05",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
