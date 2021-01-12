@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d92f85_2d78dc78",
+        "filename": "Pharmacy/Pharmacy/Implement/Utils/UtilMethods.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1018457
+      },
+      "writtenOn": "2021-01-12T03:38:24Z",
+      "side": 1,
+      "message": "Cho đống này vào PharmacyExtension nhé\n\nví dụ như này:\n public static bool IsHavingOnlyNumber(this string text)\n        {\n            Regex re \u003d new Regex(...biểu thức..);\n            return re.IsMatch(text);\n        }\n\nlúc dùng thì:\n bool b \u003d text.IsHavingOnlyNumber();",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "2ae31a8972e232ed4ad73df6b85779dacd29ab05",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
