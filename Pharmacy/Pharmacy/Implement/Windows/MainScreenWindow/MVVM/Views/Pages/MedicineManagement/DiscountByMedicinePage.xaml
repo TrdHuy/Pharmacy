@@ -67,13 +67,21 @@
 
             <hps:HorusBox Grid.Column="1" x:Name="cbxCustomer"
                           Grid.Row="0"
-                          IconHeight="20"
                           ItemsSource="{Binding LstCustomer,UpdateSourceTrigger=PropertyChanged}"
-                          Style="{StaticResource HorusBoxCustomNormalTheme}"
                           SelectedIndex="{Binding SelectedCustomer,UpdateSourceTrigger=PropertyChanged}"
-                          IsTextSearchEnabled="False"
                           IsUsingListFilter="False"
-                          Margin="3" KeyUp="cbxCustomer_KeyUp">
+                          IsTextSearchEnabled="False"
+                          Style="{StaticResource SearchingBoxTheme}"
+                          Margin="3" 
+                          KeyUp="cbxCustomer_KeyUp"
+                          PreviewTextInput="cbxCustomer_PreviewTextInput"
+                          GotFocus="cbxCustomer_GotFocus">
+                <hps:HorusBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
+                                                VirtualizingPanel.CacheLengthUnit="Item" />
+                    </ItemsPanelTemplate>
+                </hps:HorusBox.ItemsPanel>
                 <hps:HorusBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

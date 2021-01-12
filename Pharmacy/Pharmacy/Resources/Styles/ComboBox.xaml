@@ -49,5 +49,31 @@
         </Style.Triggers>
 
     </Style>
+
+    <Style TargetType="{x:Type hps:HorusBox}"
+           x:Key="SearchingBoxTheme">
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Visible" />
+        <Setter Property="ScrollViewer.CanContentScroll"
+                Value="True" />
+        <Setter Property="IsEditable"
+                Value="True" />
+        <Setter Property="IsReadOnly"
+                Value="False" />
+        <Setter Property="DropDownBorderThickness"
+                Value="0,2,2,2" />
+        <Setter Property="DropDownBorderBrush"
+                Value="Black" />
+        <Setter Property="BorderBrush"
+                Value="Black" />
+        <Setter Property="BorderThickness"
+                Value="2,2,0,2" />
+        <Setter Property="DropDownButtonBackground"
+                Value="White" />
+        <Setter Property="IsUsingHorusPopupShadow"
+                Value="False" />
+        <Setter Property="Background"
+                Value="White" />
+    </Style>
 </ResourceDictionary>
 

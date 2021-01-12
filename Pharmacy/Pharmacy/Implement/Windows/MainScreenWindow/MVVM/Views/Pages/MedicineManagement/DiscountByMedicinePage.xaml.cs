@@ -27,9 +27,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
             DataContext = new DiscountByMedicinePageViewModel();
         }
 
+        private void cbxCustomer_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            comboBox.IsDropDownOpen = true;
+        }
+
+        private void cbxCustomer_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            comboBox.IsDropDownOpen = true;
+            (DataContext as DiscountByMedicinePageViewModel).SelectedCustomerChangedCommand.Execute(sender, e, cbxCustomer);
+        }
+
         private void cbxCustomer_KeyUp(object sender, KeyEventArgs e)
         {
-            (DataContext as DiscountByMedicinePageViewModel).SelectedCustomerChangedCommand.Execute(sender, e, cbxCustomer);
+            if(e.Key==Key.Back || e.Key == Key.Delete)
+            {
+                (DataContext as DiscountByMedicinePageViewModel).SelectedCustomer = -1;
+                (DataContext as DiscountByMedicinePageViewModel).SelectedCustomerChangedCommand.Execute(sender, e, cbxCustomer);
+            }
         }
     }
 }
