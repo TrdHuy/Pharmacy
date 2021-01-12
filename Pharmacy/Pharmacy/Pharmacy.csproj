@@ -170,7 +170,6 @@
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
     <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
-    <Compile Include="Implement\Utils\UtilMethods.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_AlternativeAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />

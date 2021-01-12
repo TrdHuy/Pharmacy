@@ -248,7 +248,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void CheckPromoPercent()
         {
             if (PromoPercent.Trim().Length > 0
-              && UtilMethods.IsHavingOnlyNumber(PromoPercent.Trim())
+              && PharmacyExtension.IsHavingOnlyNumber(PromoPercent.Trim())
               && int.Parse(PromoPercent.Trim()) >= 0)
                 PromoPercentCheckingStatus = 1;
             else

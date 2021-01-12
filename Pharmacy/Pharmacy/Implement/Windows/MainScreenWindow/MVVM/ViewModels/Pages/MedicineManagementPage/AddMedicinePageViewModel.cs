@@ -283,7 +283,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void CheckBidPrice()
         {
             if (BidPrice.Trim().Length > 0
-                && UtilMethods.IsHavingOnlyNumber(BidPrice.Trim())
+                && PharmacyExtension.IsHavingOnlyNumber(BidPrice.Trim())
                 && decimal.Parse(BidPrice.Trim()) >= 0)
                 BidPriceCheckingStatus = 1;
             else
@@ -294,7 +294,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void CheckAskingPrice()
         {
             if (AskingPrice.Trim().Length > 0
-                && UtilMethods.IsHavingOnlyNumber(AskingPrice.Trim())
+                && PharmacyExtension.IsHavingOnlyNumber(AskingPrice.Trim())
                 && decimal.Parse(AskingPrice.Trim()) >= 0)
                 AskingPriceCheckingStatus = 1;
             else
