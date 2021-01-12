@@ -22,6 +22,30 @@
       },
       "revId": "2ae31a8972e232ed4ad73df6b85779dacd29ab05",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ac48701_1239468a",
+        "filename": "Pharmacy/Pharmacy/tblCustomer.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-01-12T15:56:17Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "36d0febe_c3809352",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 40
+      },
+      "revId": "2ae31a8972e232ed4ad73df6b85779dacd29ab05",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
