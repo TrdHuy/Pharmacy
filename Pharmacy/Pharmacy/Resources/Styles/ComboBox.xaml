@@ -52,6 +52,12 @@
 
     <Style TargetType="{x:Type hps:HorusBox}"
            x:Key="SearchingBoxTheme">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="RemoveDropDownIcon"
+                Value="True" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
                 Value="Visible" />
         <Setter Property="ScrollViewer.CanContentScroll"
@@ -60,18 +66,26 @@
                 Value="True" />
         <Setter Property="IsReadOnly"
                 Value="False" />
-        <Setter Property="DropDownBorderThickness"
-                Value="0,2,2,2" />
-        <Setter Property="DropDownBorderBrush"
-                Value="Black" />
         <Setter Property="BorderBrush"
                 Value="Black" />
         <Setter Property="BorderThickness"
-                Value="2,2,0,2" />
+                Value="2" />
+        <Setter Property="TextElement.Foreground"
+                Value="Black" />
         <Setter Property="DropDownButtonBackground"
                 Value="White" />
-        <Setter Property="IsUsingHorusPopupShadow"
+        <Setter Property="PopupBackground"
+                Value="White" />
+        <Setter Property="PopupBorderThickness"
+                Value="2" />
+        <Setter Property="PopupBorderBrush"
+                Value="Black" />
+        <Setter Property="IsUsingListFilter"
+                Value="True" />
+        <Setter Property="IsTextSearchEnabled"
                 Value="False" />
+        <Setter Property="IsUsingIgnoreLowerUpperCase"
+                Value="True" />
         <Setter Property="Background"
                 Value="White" />
     </Style>

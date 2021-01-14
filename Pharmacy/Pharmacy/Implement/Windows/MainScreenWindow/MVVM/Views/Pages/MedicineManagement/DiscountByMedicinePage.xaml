@@ -67,15 +67,12 @@
 
             <hps:HorusBox Grid.Column="1" x:Name="cbxCustomer"
                           Grid.Row="0"
-                          ItemsSource="{Binding LstCustomer,UpdateSourceTrigger=PropertyChanged}"
-                          SelectedIndex="{Binding SelectedCustomer,UpdateSourceTrigger=PropertyChanged}"
-                          IsUsingListFilter="False"
-                          IsTextSearchEnabled="False"
+                          Tag="Nhập tên hoặc số điện thoại để tìm kiếm"
+                          ItemsSource="{Binding LstCustomer, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedIndex="{Binding SelectedCustomer, UpdateSourceTrigger=PropertyChanged}"
+                          FilterPathItems="{Binding LstCustomerFilterPathList}"
                           Style="{StaticResource SearchingBoxTheme}"
-                          Margin="3" 
-                          KeyUp="cbxCustomer_KeyUp"
-                          PreviewTextInput="cbxCustomer_PreviewTextInput"
-                          GotFocus="cbxCustomer_GotFocus">
+                          Margin="3">
                 <hps:HorusBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
@@ -110,6 +107,7 @@
                             <TextBlock Grid.Column="1" 
                                        Text="{Binding CustomerName}" 
                                        VerticalAlignment="Center"
+                                       Margin="5,0"
                                        HorizontalAlignment="Stretch"/>
                             <TextBlock Grid.Column="2" 
                                        Text="{Binding Phone}" 

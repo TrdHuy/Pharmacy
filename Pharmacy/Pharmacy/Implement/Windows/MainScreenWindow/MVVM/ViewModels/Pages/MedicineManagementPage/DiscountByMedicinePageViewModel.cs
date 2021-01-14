@@ -29,11 +29,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public RunInputCommand CreateNewPromoButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand DeleteButtonCommand { get; set; }
-        public EventHandleCommand SelectedCustomerChangedCommand { get; set; }
         public ImageSource MedicineImageSource { get; set; }
         public tblMedicine MedicineInfo { get; set; }
         public ObservableCollection<tblPromo> LstPromo { get; set; }
         public List<tblCustomer> LstCustomer { get; set; }
+        public string[] LstCustomerFilterPathList { get; set; } = new string[] { "CustomerName", "Phone" };
         public int SelectedCustomerCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int PromoPercentCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public bool IsSaveButtonCanPerform
@@ -102,7 +102,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             CreateNewPromoButtonCommand = new RunInputCommand(CreateNewPromoButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             DeleteButtonCommand = new RunInputCommand(DeleteButtonClickEvent);
-            SelectedCustomerChangedCommand = new EventHandleCommand(SelectedCustomerChangedEvent);
             UpdateMedicineData();
             GetCustomerList();
         }
@@ -111,25 +110,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
             GetPromoListByMedicine();
             CreateNewPromoButtonClickEvent(null);
-        }
-
-        private void SelectedCustomerChangedEvent(object sender, EventArgs e, object paramater)
-        {
-            HorusBox combobox = (paramater as object[])[0] as HorusBox;
-
-            if (_timerToUpdateCustomerList != null)
-                _timerToUpdateCustomerList.Stop();
-
-            _timerToUpdateCustomerList = new DispatcherTimer();
-            _timerToUpdateCustomerList.Interval = DELAY_TIME_TO_UPDATE_FILTER;
-            _timerToUpdateCustomerList.Tick += (sender, e) =>
-             {
-                 _timerToUpdateCustomerList.Stop();
-                 LstCustomer = _lstCustomerFull.Where(o => (CultureInfo.CurrentCulture.CompareInfo.IndexOf(o.CustomerName, combobox.Text, CompareOptions.IgnoreCase) >= 0 && RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME)
-                 || (CultureInfo.CurrentCulture.CompareInfo.IndexOf(o.Phone, combobox.Text, CompareOptions.IgnoreCase) >= 0 && RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE)).ToList();
-                 Invalidate("LstCustomer");
-             };
-            _timerToUpdateCustomerList.Start();
         }
 
         private void GetCustomerList()
