@@ -86,5 +86,8 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON = "msw_mmp_dbmp_cancel_button";
         public const string KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON = "msw_mmp_dbmp_save_button";
         public const string KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON = "msw_mmp_dbmp_delete_button";
+
+        //Warehouse management page key string
+        public const string KEY_TAG_MSW_WHMP_DELETE_BUTTON = "msw_whmp_delete_button";
     }
 }

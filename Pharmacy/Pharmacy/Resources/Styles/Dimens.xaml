@@ -26,5 +26,7 @@
 
     <system:Double x:Key="DefaultDataGrid_ColumnHeaderHeight">75</system:Double>
     <system:Double x:Key="DefaultDataGrid_RowHeight">55</system:Double>
+    <system:Double x:Key="DefaultDataGrid_HavingListBox_RowHeight">100</system:Double>
+    <system:Double x:Key="DefaultDataGrid_MaxWidthEditColumn">300</system:Double>
 
 </ResourceDictionary>

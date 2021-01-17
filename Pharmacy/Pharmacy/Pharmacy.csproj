@@ -141,6 +141,7 @@
     <Compile Include="Implement\Utils\Converter\StringToImageSourceConverter.cs" />
     <Compile Include="Implement\Utils\Converter\SystemDateTimeToStringConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
+    <Compile Include="Implement\Utils\CustomControls\DatePickerCustom.cs" />
     <Compile Include="Implement\Utils\CustomControls\PageHeaderControl.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\AbstractQueryAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\AddNewCustomerAction.cs" />
@@ -166,6 +167,8 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\SetUserDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\UpdateCustomerInfoAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\UpdateUserInfoAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\GetAllActiveWarehouseImportDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\SetWarehouseImportDeactiveAction.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_DeleteWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\PageOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
@@ -236,6 +240,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserModificationPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\WarehouseManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerModificationPage.xaml.cs">
       <DependentUpon>CustomerModificationPage.xaml</DependentUpon>
@@ -489,6 +494,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Styles\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\DatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

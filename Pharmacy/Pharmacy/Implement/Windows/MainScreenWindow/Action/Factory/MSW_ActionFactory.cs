@@ -15,6 +15,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInf
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -174,6 +175,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON:
                     action = new MSW_MMP_DBMP_DeleteButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_DELETE_BUTTON:
+                    action = new MSW_WHMP_DeleteWarehouseImportButtonAction();
                     break;
                 default:
                     action = null;

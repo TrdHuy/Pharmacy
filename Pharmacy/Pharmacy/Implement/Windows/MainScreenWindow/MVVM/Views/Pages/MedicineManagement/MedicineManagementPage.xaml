@@ -52,6 +52,7 @@
         </Grid>
         <DataGrid x:Name="DataGrid"
                   Grid.Row="2"
+                  IsReadOnly="True"
                   VerticalAlignment="Top"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
@@ -226,7 +227,8 @@
 
                 <!--Edit column-->
                 <DataGridTemplateColumn CanUserResize="False"
-                                                Width="0.5*">
+                                        Width="0.5*"
+                                        MaxWidth="{StaticResource DefaultDataGrid_MaxWidthEditColumn}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border>

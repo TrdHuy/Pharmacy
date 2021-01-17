@@ -60,7 +60,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             GetMedicineList();
         }
 
-        private void GetMedicineList()
+        private void AddAllMedicineTypeToFilterList()
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
@@ -77,7 +77,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                     , _sqlCmdObserver);
         }
 
-        private void AddAllMedicineTypeToFilterList()
+        private void GetMedicineList()
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
