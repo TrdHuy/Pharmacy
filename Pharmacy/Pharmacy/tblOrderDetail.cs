@@ -15,7 +15,6 @@ namespace Pharmacy
     public partial class tblOrderDetail
     {
         public long OrderDetailID { get; set; }
-        public long ImportDetailID { get; set; }
         public double Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
@@ -23,6 +22,5 @@ namespace Pharmacy
         public bool IsActive { get; set; }
     
         public virtual tblOrder tblOrder { get; set; }
-        public virtual tblWarehouseImportDetail tblWarehouseImportDetail { get; set; }
     }
 }
