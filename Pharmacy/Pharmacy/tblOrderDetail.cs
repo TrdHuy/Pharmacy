@@ -15,12 +15,14 @@ namespace Pharmacy
     public partial class tblOrderDetail
     {
         public long OrderDetailID { get; set; }
+        public string MedicineID { get; set; }
         public double Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public long OrderID { get; set; }
         public bool IsActive { get; set; }
     
+        public virtual tblMedicine tblMedicine { get; set; }
         public virtual tblOrder tblOrder { get; set; }
     }
 }
