@@ -4,21 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0041a8bfaba46de8de8b602721c51c6" Name="Diagram1" ZoomLevel="97">
-        <EntityTypeShape EntityType="PharmacyDBModel.tblCustomer" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblMedicine" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblMedicineType" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblMedicineUnit" Width="1.5" PointX="0.75" PointY="8.375" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblOrder" Width="1.5" PointX="5.25" PointY="13.5" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblOrderDetail" Width="1.5" PointX="7.5" PointY="8.75" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblOtherPayment" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblPromo" Width="1.5" PointX="5.25" PointY="4.875" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblSupplier" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblUser" Width="1.5" PointX="3" PointY="13.5" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblWarehouseImport" Width="1.5" PointX="3" PointY="9.25" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblWarehouseImportDetail" Width="1.5" PointX="5.25" PointY="8.75" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblOrder__Custom__336AA144" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblPromo__Custom__373B3228" />
+      <Diagram DiagramId="d0041a8bfaba46de8de8b602721c51c6" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="PharmacyDBModel.tblMedicine" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblMedicineType" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblMedicineUnit" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblOrder" Width="1.5" PointX="5.25" PointY="14.625" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblOrderDetail" Width="1.5" PointX="8.125" PointY="10.25" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblOtherPayment" Width="1.5" PointX="5.75" PointY="1.75" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblPromo" Width="1.5" PointX="5.25" PointY="6" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblSupplier" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblUser" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblWarehouseImport" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblWarehouseImportDetail" Width="1.5" PointX="5.25" PointY="9.75" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblMedici__Medic__308E3499" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblMedici__Medic__318258D2" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblMedici__Suppl__32767D0B" />
@@ -26,9 +23,11 @@
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Medic__3B0BC30C" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblOrder__UserID__345EC57D" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Order__36470DEF" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Impor__3552E9B6" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Suppl__39237A9A" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Impor__3A179ED3" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblCustomer" Width="1.5" PointX="0.75" PointY="12.5" />
+        <AssociationConnector Association="PharmacyDBModel.FK__tblOrder__Custom__336AA144" />
+        <AssociationConnector Association="PharmacyDBModel.FK__tblPromo__Custom__373B3228" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
