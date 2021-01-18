@@ -13,7 +13,7 @@ namespace Pharmacy.Base.Observable
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void onChanged(object viewModel, string propertyName)
+        public void OnChanged(object viewModel, string propertyName)
         {
             VerifyPropertyName(propertyName);
             PropertyChanged?.Invoke(viewModel, new PropertyChangedEventArgs(propertyName));

@@ -28,12 +28,12 @@ namespace Pharmacy.Base.MVVM.ViewModels
 
         public void Invalidate(string property)
         {
-            onChanged(this, property);
+            OnChanged(this, property);
         }
 
         public void InvalidateOwn([CallerMemberName()] string name = null)
         {
-            onChanged(this, name);
+            OnChanged(this, name);
         }
 
         public void AddOnPropertyChange(string properties)

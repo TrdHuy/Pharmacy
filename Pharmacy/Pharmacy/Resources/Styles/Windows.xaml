@@ -266,6 +266,8 @@
                     </ControlTemplate.Resources>
 
                     <Border x:Name="MainBorderContainer"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}">
 

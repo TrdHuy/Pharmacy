@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement;
 using Pharmacy.Implement.Utils.Extensions;
 using System;
@@ -24,10 +25,10 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         private PharmacyDBContext _appDBContext;
         private SQLQueryResult _result;
 
-        public SQLResultHandler()
+        public SQLResultHandler(PharmacyDBContext dBContext)
         {
             _observers = new List<Pharmacy.Base.Observable.ObserverPattern.IObserver<SQLQueryResult>>();
-            _appDBContext = new PharmacyDBContext();
+            _appDBContext = dBContext;
         }
 
         public void RollBack()
@@ -58,7 +59,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
             _appDBContext.Dispose();
         }
 
-        public void ExecuteQuery(string SQLCmdKey, params object[] paramaters)
+        public SQLQueryResult ExecuteQuery(string SQLCmdKey, params object[] paramaters)
         {
             _result = null;
             switch (SQLCmdKey)
@@ -123,6 +124,15 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY:
                     _result = new GetAllActivteMedicineStockInWarehouseDataAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.ADD_NEW_CUSTOMER_ORDER_CMD_KEY:
+                    _result = new AddNewCustomerOrderAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.ADD_NEW_CUSTOMER_ORDER_DEATAIL_CMD_KEY:
+                    _result = new AddNewCustomerOrderDetailAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.UPDATE_CUSTOMER_ORDER_DEATAIL_CMD_KEY:
+                    _result = new UpdateCustomerOrderAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -133,7 +143,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 RollBack();
             }
 
-            NotifyChange(_result);
+            return _result;
         }
 
         private void HandleDbEntityValidationException(DbEntityValidationException e)
@@ -216,17 +226,29 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for getting info of all active stocks in warehouse in database
         public const string GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY = "get_all_active_medicine_stock_in_warehouse_data";
+
+        //Key for adding new customer order to database
+        public const string ADD_NEW_CUSTOMER_ORDER_CMD_KEY = "add_new_customer_order";
+
+        //Key for adding new customer order detail to database
+        public const string ADD_NEW_CUSTOMER_ORDER_DEATAIL_CMD_KEY = "add_new_customer_order_detail";
+
+        //Key for updating customer order detail to database
+        public const string UPDATE_CUSTOMER_ORDER_DEATAIL_CMD_KEY = "update_customer_order_detail";
+
     }
 
     public class SQLQueryResult
     {
         private object _result;
         private MessageQueryResult _mesResult;
+        private string _messageToString;
 
-        public SQLQueryResult(object result, MessageQueryResult mesResult)
+        public SQLQueryResult(object result, MessageQueryResult mesResult, string messageToString = "")
         {
             _result = result;
             _mesResult = mesResult;
+            _messageToString = messageToString;
         }
 
         public object Result
@@ -238,25 +260,30 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         {
             get { return _mesResult; }
         }
+
+        public string Messsage
+        {
+            get { return _messageToString; }
+        }
     }
 
     public enum MessageQueryResult
     {
-        Non = 0,
+        Non = 0x000000,
 
         // The task has done, but there is no result return
-        OK = 1,
+        OK = 0x000001,
 
         // Done the task, and return the result
-        Done = 2,
+        Done = 0x000010,
 
         // Finished the task, but return the null
-        Finished = 4,
+        Finished = 0x000100,
 
         // The task was aborted
-        Aborted = 5,
+        Aborted = 0x001000,
 
         // The task was cancled
-        Cancled = 6
+        Cancled = 0x010000
     }
 }

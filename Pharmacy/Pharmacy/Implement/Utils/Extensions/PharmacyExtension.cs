@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
@@ -53,6 +54,12 @@ namespace Pharmacy.Implement.Utils.Extensions
             {
                 DeleteObject(handle);
             }
+        }
+
+        public static bool IsHavingOnlyNumber(this string text)
+        {
+            Regex re = new Regex("^[0-9]*$");
+            return re.IsMatch(text);
         }
     }
 }

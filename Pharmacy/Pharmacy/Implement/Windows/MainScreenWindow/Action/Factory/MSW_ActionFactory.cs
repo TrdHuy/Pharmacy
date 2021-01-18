@@ -10,6 +10,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ModifyMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
@@ -154,6 +155,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON:
                     action = new MSW_MMP_MMP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON:
+                    action = new MSW_SP_AddOrderDetailAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SP_REMOVE_BUTTON:
+                    action = new MSW_SP_RemoveOrderDetailAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON:
+                    action = new MSW_SP_InstantiateNewOrderAction();
                     break;
                 default:
                     action = null;

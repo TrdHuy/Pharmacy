@@ -27,7 +27,7 @@ namespace Pharmacy.Base.Observable.ObserverPattern
         public void OnPropUpdate(object value)
         {
             Value = ((ObservableProperty)value).Value;
-            ViewModel.onChanged(ViewModel, PropName);
+            ViewModel.OnChanged(ViewModel, PropName);
         }
     }
 }
