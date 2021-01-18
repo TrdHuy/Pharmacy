@@ -68,7 +68,6 @@
             <PropertyRef Name="OrderDetailID" />
           </Key>
           <Property Name="OrderDetailID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ImportDetailID" Type="bigint" Nullable="false" />
           <Property Name="Quantity" Type="float" Nullable="false" />
           <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
@@ -209,18 +208,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblOrderD__Impor__3552E9B6">
-          <End Role="tblWarehouseImportDetail" Type="Self.tblWarehouseImportDetail" Multiplicity="1" />
-          <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblWarehouseImportDetail">
-              <PropertyRef Name="ImportDetailID" />
-            </Principal>
-            <Dependent Role="tblOrderDetail">
-              <PropertyRef Name="ImportDetailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblOrderD__Order__36470DEF">
           <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1" />
           <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
@@ -326,10 +313,6 @@
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblOrder" EntitySet="tblOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblOrderD__Impor__3552E9B6" Association="Self.FK__tblOrderD__Impor__3552E9B6">
-            <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetail" />
-            <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblOrderD__Order__36470DEF" Association="Self.FK__tblOrderD__Order__36470DEF">
             <End Role="tblOrder" EntitySet="tblOrder" />
             <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
@@ -397,10 +380,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__tblOrderD__Order__36470DEF" Association="PharmacyDBModel.FK__tblOrderD__Order__36470DEF">
             <End Role="tblOrder" EntitySet="tblOrders" />
-            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblOrderD__Impor__3552E9B6" Association="PharmacyDBModel.FK__tblOrderD__Impor__3552E9B6">
-            <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetails" />
             <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__tblWareho__Suppl__39237A9A" Association="PharmacyDBModel.FK__tblWareho__Suppl__39237A9A">
@@ -481,14 +460,12 @@
             <PropertyRef Name="OrderDetailID" />
           </Key>
           <Property Name="OrderDetailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ImportDetailID" Type="Int64" Nullable="false" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
           <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="OrderID" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblOrder" Relationship="PharmacyDBModel.FK__tblOrderD__Order__36470DEF" FromRole="tblOrderDetail" ToRole="tblOrder" />
-          <NavigationProperty Name="tblWarehouseImportDetail" Relationship="PharmacyDBModel.FK__tblOrderD__Impor__3552E9B6" FromRole="tblOrderDetail" ToRole="tblWarehouseImportDetail" />
         </EntityType>
         <EntityType Name="tblOtherPayment">
           <Key>
@@ -571,7 +548,6 @@
           <Property Name="ImportID" Type="Int64" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblWareho__Medic__3B0BC30C" FromRole="tblWarehouseImportDetail" ToRole="tblMedicine" />
-          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Impor__3552E9B6" FromRole="tblWarehouseImportDetail" ToRole="tblOrderDetail" />
           <NavigationProperty Name="tblWarehouseImport" Relationship="PharmacyDBModel.FK__tblWareho__Impor__3A179ED3" FromRole="tblWarehouseImportDetail" ToRole="tblWarehouseImport" />
         </EntityType>
         <Association Name="FK__tblMedici__Medic__308E3499">
@@ -655,18 +631,6 @@
             </Principal>
             <Dependent Role="tblOrderDetail">
               <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblOrderD__Impor__3552E9B6">
-          <End Type="PharmacyDBModel.tblWarehouseImportDetail" Role="tblWarehouseImportDetail" Multiplicity="1" />
-          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblWarehouseImportDetail">
-              <PropertyRef Name="ImportDetailID" />
-            </Principal>
-            <Dependent Role="tblOrderDetail">
-              <PropertyRef Name="ImportDetailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -796,7 +760,6 @@
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ImportDetailID" ColumnName="ImportDetailID" />
                 <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
