@@ -41,7 +41,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
        
         private void ShouldCreateNewCustomer()
         {
-            if (_viewModel.CurrentSelectedCustomer == null)
+            if (_viewModel.CustomerOV.CurrentSelectedCustomer == null)
             {
                 var x = App.Current.ShowApplicationMessageBox("Khách hàng hiện chưa trong cơ sở dữ liệu, bạn có muốn thêm mới?",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -57,9 +57,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 {
                     tblCustomer newCustomer = new tblCustomer()
                     {
-                        CustomerName = _viewModel.CustomerName,
-                        Phone = _viewModel.CustomerPhone,
-                        Address = _viewModel.CustomerAddress,
+                        CustomerName = _viewModel.CustomerOV.CustomerName,
+                        Phone = _viewModel.CustomerOV.CustomerPhone,
+                        Address = _viewModel.CustomerOV.CustomerAddress,
                         IsActive = true
                     };
 
@@ -82,10 +82,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
                 tblCustomer newCustomer = queryResult.Result as tblCustomer;
-                _viewModel.ForceAssignCurentSelectedUser = true;
                 _viewModel.CustomerItemSource.Add(newCustomer);
-                _viewModel.CurrentSelectedCustomer = newCustomer;
-                _viewModel.ForceAssignCurentSelectedUser = false;
+                _viewModel.CustomerOV.CurrentSelectedCustomer = newCustomer;
 
                 App.Current.ShowApplicationMessageBox("Thêm khách hàng mới thành công!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -108,11 +106,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         private void GetPromo(OrderDetailVO orderDetailVO)
         {
             tblPromo appliedPromo = new tblPromo();
-            if (_viewModel.CurrentSelectedCustomer != null)
+            if (_viewModel.CustomerOV.CurrentSelectedCustomer != null)
             {
-                foreach (tblPromo promo in _viewModel.CurrentSelectedCustomer.tblPromoes)
+                foreach (tblPromo promo in _viewModel.CustomerOV.CurrentSelectedCustomer.tblPromoes)
                 {
-                    if (promo.MedicineID == _viewModel.CurrentSelectedMedicine.MedicineID)
+                    if (promo.MedicineID == _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineID)
                     {
                         appliedPromo = promo;
                         break;
@@ -128,14 +126,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             try
             {
                 OrderDetailVO orderDetailVO = new OrderDetailVO();
-                orderDetailVO.MedicineName = _viewModel.CurrentSelectedMedicine.MedicineName;
-                orderDetailVO.MedicineID = _viewModel.CurrentSelectedMedicine.MedicineID;
-                orderDetailVO.MedicineUnitName = _viewModel.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.Quantity = Convert.ToDouble(_viewModel.Quantity);
-                orderDetailVO.UnitPrice = _viewModel.CurrentSelectedMedicine.AskingPrice;
+                orderDetailVO.MedicineName = _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
+                orderDetailVO.MedicineID = _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
+                orderDetailVO.MedicineUnitName = _viewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
+                orderDetailVO.Quantity = Convert.ToDouble(_viewModel.MedicineOV.Quantity);
+                orderDetailVO.UnitPrice = _viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
                 GetPromo(orderDetailVO);
-                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(_viewModel.Quantity) *
-                   Convert.ToDouble(_viewModel.CurrentSelectedMedicine.AskingPrice) *
+                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(_viewModel.MedicineOV.Quantity) *
+                   Convert.ToDouble(_viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
                    (100 - orderDetailVO.PromoPercent) / 100);
 
                 OrderDetailVO checkExistedVO = null;
@@ -157,9 +155,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     checkExistedVO.Quantity += orderDetailVO.Quantity;
                     checkExistedVO.TotalPrice += orderDetailVO.TotalPrice;
                     ctrl.Items.Refresh();
-                    _viewModel.Invalidate("MedicineCost");
-                    _viewModel.Invalidate("TotalCost");
-                    _viewModel.Invalidate("RestAmount");
+                    _viewModel.Invalidate(_viewModel.MedicineOV,"MedicineCost");
+                    _viewModel.Invalidate(_viewModel.MedicineOV,"TotalCost");
+                    _viewModel.Invalidate(_viewModel.MedicineOV,"RestAmount");
 
                 }
                 else

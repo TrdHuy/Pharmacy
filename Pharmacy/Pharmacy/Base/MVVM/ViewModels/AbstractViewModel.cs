@@ -31,6 +31,11 @@ namespace Pharmacy.Base.MVVM.ViewModels
             OnChanged(this, property);
         }
 
+        public void Invalidate(AbstractViewModel vm, string property)
+        {
+            OnChanged(vm, property);
+        }
+
         public void InvalidateOwn([CallerMemberName()] string name = null)
         {
             OnChanged(this, name);

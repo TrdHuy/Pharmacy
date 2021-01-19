@@ -100,7 +100,8 @@
                                           HorizontalContentAlignment="Left"
                                           VerticalContentAlignment="Center"
                                           RemoveDropDownIcon="True"
-                                          FilterText="{Binding CustomerName,Mode=TwoWay}"
+                                          IsEnabled="{Binding CustomerOV.IsCustomerChooserEnable}"
+                                          FilterText="{Binding CustomerOV.CustomerName,Mode=TwoWay}"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                                           ScrollViewer.CanContentScroll="True"
                                           IsEditable="True"
@@ -115,7 +116,7 @@
                                           PopupBorderThickness="1"
                                           PopupBorderBrush="Black"
                                           Background="White"
-                                          SelectedItem="{Binding CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
+                                          SelectedItem="{Binding CustomerOV.CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
                                           ItemsSource="{Binding CustomerItemSource}"
                                           IsUsingListFilter="True"
                                           IsTextSearchEnabled="False"
@@ -195,8 +196,8 @@
 
                             <hps:AkerTextBox Grid.Column="2"
                                              Tag="Nhập địa chỉ khách hàng"
-                                             IsEnabled="{Binding IsAdressTextBoxEnable}"
-                                             Text="{Binding CustomerAddress}"
+                                             IsEnabled="{Binding CustomerOV.IsAdressTextBoxEnable}"
+                                             Text="{Binding CustomerOV.CustomerAddress}"
                                              FontSize="{StaticResource FontSizeXLarge}"
                                              BorderBrush="Black"/>
 
@@ -227,11 +228,12 @@
                                            Tag="Nhập số điện thoại khách hàng"
                                            HorizontalContentAlignment="Left"
                                            VerticalContentAlignment="Center"
+                                           IsEnabled="{Binding CustomerOV.IsCustomerChooserEnable}"
                                            RemoveDropDownIcon="True"
                                            ScrollViewer.VerticalScrollBarVisibility="Visible"
                                            ScrollViewer.CanContentScroll="True"
                                            IsEditable="True"
-                                           FilterText="{Binding CustomerPhone,Mode=TwoWay}"
+                                           FilterText="{Binding CustomerOV.CustomerPhone,Mode=TwoWay}"
                                            IsReadOnly="False"
                                            FontSize="{StaticResource FontSizeXLarge}"
                                            Foreground="Black"
@@ -243,7 +245,7 @@
                                            PopupBorderThickness="1"
                                            PopupBorderBrush="Black"
                                            Background="White"
-                                           SelectedItem="{Binding CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
+                                           SelectedItem="{Binding CustomerOV.CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
                                            ItemsSource="{Binding CustomerItemSource}"
                                            IsUsingListFilter="True"
                                            IsTextSearchEnabled="False"
@@ -342,11 +344,11 @@
                                           PopupBorderThickness="1"
                                           PopupBorderBrush="Black"
                                           Background="White"
-                                          SelectedItem="{Binding CurrentSelectedMedicine}"
+                                          SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine}"
                                           ItemsSource="{Binding MedicineItemSource}"
                                           IsUsingListFilter="True"
                                           IsTextSearchEnabled="False"
-                                          FilterPathItems="{Binding MedicineFilterPathList}"
+                                          FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}"
                                           IsUsingIgnoreLowerUpperCase="True">
                                 <hps:HorusBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ComboBoxItem}">
@@ -413,7 +415,7 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
                             <hps:AkerTextBox Grid.Column="5"
                                              AkerTextBoxType="Decimal"
-                                             Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding MedicineOV.Quantity, UpdateSourceTrigger=PropertyChanged}"
                                              Tag="0"
                                              ToolTip="{Binding QunatityToolTipContent}"
                                              FontSize="{StaticResource FontSizeXLarge}" />
@@ -640,6 +642,7 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
                             <hps:AkerTextBox Grid.Column="2"
                                              AkerTextBoxType="Normal"
+                                             Text="{Binding OrderDescription}"
                                              VerticalContentAlignment="Top"
                                              Tag="Thêm ghi chú tại đây"
                                              FontSize="{StaticResource FontSizeXLarge}" />
@@ -671,21 +674,21 @@
                                            VerticalAlignment="Center" />
 
                                 <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
-                                                 AkerExpense="{Binding MedicineCost, Mode=TwoWay}"
+                                                 AkerExpense="{Binding MedicineOV.MedicineCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  AkerExpenseUnit="VND"
                                                  BorderThickness="0"
                                                  Grid.Row="0"
                                                  Grid.Column="2" />
                                 <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
-                                                 AkerExpense="{Binding DebtCost, Mode=TwoWay}"
+                                                 AkerExpense="{Binding MedicineOV.DebtCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  AkerExpenseUnit="VND"
                                                  BorderThickness="0"
                                                  Grid.Row="1"
                                                  Grid.Column="2" />
                                 <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
-                                                 AkerExpense="{Binding TotalCost, Mode=TwoWay}"
+                                                 AkerExpense="{Binding MedicineOV.TotalCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  AkerExpenseUnit="VND"
                                                  BorderThickness="0"
@@ -726,14 +729,14 @@
                                            VerticalAlignment="Center" />
 
                                 <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
-                                                 AkerExpense="{Binding PaidAmount,Mode=TwoWay}"
+                                                 AkerExpense="{Binding MedicineOV.PaidAmount,Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  AkerExpenseUnit="VND"
                                                  Grid.Row="0"
                                                  Grid.Column="2" />
 
                                 <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
-                                                 AkerExpense="{Binding RestAmount,Mode=TwoWay}"
+                                                 AkerExpense="{Binding MedicineOV.RestAmount,Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  AkerExpenseUnit="VND"
                                                  BorderThickness="0"

@@ -243,6 +243,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_CustomerOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\SellingPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserManagementPageViewModel.cs" />

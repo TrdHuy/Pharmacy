@@ -15,14 +15,14 @@ namespace Pharmacy.Base.Observable
 
         public void OnChanged(object viewModel, string propertyName)
         {
-            VerifyPropertyName(propertyName);
+            VerifyPropertyName(viewModel, propertyName);
             PropertyChanged?.Invoke(viewModel, new PropertyChangedEventArgs(propertyName));
         }
 
         [Conditional("DEBUG")]
-        private void VerifyPropertyName(string propertyName)
+        private void VerifyPropertyName(object viewModel, string propertyName)
         {
-            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+            if (TypeDescriptor.GetProperties(viewModel)[propertyName] == null)
                 throw new ArgumentNullException(GetType().Name + " does not contain property: " + propertyName);
         }
     }

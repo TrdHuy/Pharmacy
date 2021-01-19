@@ -32,7 +32,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
         private bool CanExecute()
         {
-            if (_viewModel.CurrentSelectedCustomer == null)
+            if (_viewModel.CustomerOV.CurrentSelectedCustomer == null)
             {
                 var x = App.Current.ShowApplicationMessageBox("Vui lòng chọn khách hàng!",
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -60,8 +60,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             _newOrder.IsActive = true;
             _newOrder.OrderTime = DateTime.Now;
             _newOrder.UserID = App.Current.CurrentUser.Username;
-            _newOrder.CustomerID = _viewModel.CurrentSelectedCustomer.CustomerID;
-
+            _newOrder.CustomerID = _viewModel.CustomerOV.CurrentSelectedCustomer.CustomerID;
+            _newOrder.OrderDescription = _viewModel.OrderDescription;
             foreach (OrderDetailVO vo in _viewModel.CustomerOrderDetailItemSource)
             {
                 tblOrderDetail oD = new tblOrderDetail()
@@ -74,6 +74,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 };
                 _newOrder.tblOrderDetails.Add(oD);
             }
+
 
             _createNewOrderQueryObserver = new SQLQueryCustodian(GenerateOrderCallback);
             DbManager.Instance.ExecuteQuery(SQLCommandKey.ADD_NEW_CUSTOMER_ORDER_CMD_KEY,

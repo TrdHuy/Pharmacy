@@ -5,6 +5,7 @@ using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,23 +21,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
     public class SellingPageViewModel : AbstractViewModel
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private string _customerName;
-        private string _customerPhone;
-        private tblCustomer _curSelectedCustomer;
-        private tblMedicine _curSelectedMedicine;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
-        private string _customerAddress;
-        private double _paidAmount;
         private bool _isAddOrderDeatailButtonRunning = false;
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
         public ObservableCollection<OrderDetailVO> CustomerOrderDetailItemSource { get; set; }
+
         public RunInputCommand AddOrderDetailCommand { get; set; }
         public RunInputCommand RemoveOrderDetailCommand { get; set; }
         public RunInputCommand InstantiateOrderCommand { get; set; }
-        public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
-        public bool ForceAssignCurentSelectedUser { get; set; }
+
+        public MSW_SP_CustomerOV CustomerOV { get; set; }
+        public MSW_SP_MedicineOV MedicineOV { get; set; }
 
         public bool IsAddOrderDeatailButtonRunning
         {
@@ -55,175 +52,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 InvalidateOwn();
             }
         }
-        public string Quantity { get; set; }
-        public double MedicineCost
-        {
-            get
-            {
-                if (CustomerOrderDetailItemSource.Count > 0)
-                {
-                    var cost = CustomerOrderDetailItemSource.Sum(o => o.TotalPrice);
-                    return Convert.ToDouble(cost);
-                }
-                return 0;
-            }
-            set
-            {
-
-            }
-        }
-        public double DebtCost
-        {
-            get
-            {
-                if (CurrentSelectedCustomer != null)
-                {
-                    var totalCost = CurrentSelectedCustomer.tblOrders.Sum(o => o.TotalPrice);
-                    var purchaseCost = CurrentSelectedCustomer.tblOrders.Sum(o => o.PurchasePrice);
-                    var debt = totalCost - purchaseCost;
-                    return Convert.ToDouble(debt);
-                }
-
-                return 0;
-            }
-            set
-            {
-            }
-        }
-        public double TotalCost
-        {
-            get
-            {
-                return DebtCost + MedicineCost;
-            }
-            set
-            {
-
-            }
-        }
-        public double PaidAmount
-        {
-            get
-            {
-                return _paidAmount;
-            }
-            set
-            {
-                _paidAmount = value;
-                InvalidateOwn();
-                Invalidate("RestAmount");
-            }
-        }
-        public double RestAmount
-        {
-            get
-            {
-                return TotalCost - PaidAmount;
-            }
-            set
-            {
-
-            }
-        }
-
-        public bool IsCustomerChooserEnable
-        {
-            get
-            {
-                return CustomerOrderDetailItemSource.Count <= 0;
-            }
-        }
-        public tblCustomer CurrentSelectedCustomer
-        {
-            get
-            {
-                return _curSelectedCustomer;
-            }
-            set
-            {
-                _curSelectedCustomer = value;
-
-                InvalidateOwn();
-                Invalidate("CustomerAddress");
-                Invalidate("DebtCost");
-                Invalidate("IsAdressTextBoxEnable");
-            }
-        }
-        public tblMedicine CurrentSelectedMedicine
-        {
-            get
-            {
-                return _curSelectedMedicine;
-            }
-            set
-            {
-                _curSelectedMedicine = value;
-                InvalidateOwn();
-            }
-        }
-        public bool IsAdressTextBoxEnable
-        {
-            get
-            {
-                return CurrentSelectedCustomer == null && IsCustomerChooserEnable;
-            }
-        }
-
-        public string CustomerName
-        {
-            get
-            {
-                return _customerName;
-            }
-            set
-            {
-                _customerName = value;
-                InvalidateOwn();
-                Invalidate("IsAdressTextBoxEnable");
-
-            }
-        }
-        public string CustomerAddress
-        {
-            get
-            {
-                if (CurrentSelectedCustomer != null)
-                {
-                    return CurrentSelectedCustomer.Address;
-                }
-                else
-                {
-                    return _customerAddress;
-                }
-            }
-            set
-            {
-                _customerAddress = value;
-                InvalidateOwn();
-            }
-        }
-        public string CustomerPhone
-        {
-            get
-            {
-                return _customerPhone;
-            }
-            set
-            {
-                _customerPhone = value;
-                InvalidateOwn();
-                Invalidate("IsAdressTextBoxEnable");
-
-            }
-        }
-
+        public string OrderDescription { get; set; }
         public bool IsAddOrderDetailCanPerform
         {
             get
             {
-                return CurrentSelectedMedicine != null
-                    && !String.IsNullOrEmpty(CustomerPhone)
-                    && !String.IsNullOrEmpty(CustomerName);
+                return MedicineOV.CurrentSelectedMedicine != null
+                    && !String.IsNullOrEmpty(CustomerOV.CustomerPhone)
+                    && !String.IsNullOrEmpty(CustomerOV.CustomerName);
             }
         }
 
@@ -233,6 +69,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public SellingPageViewModel()
         {
+            CustomerOV = new MSW_SP_CustomerOV(this);
+            MedicineOV = new MSW_SP_MedicineOV(this);
+
             InstantiateItems();
             AddOrderDetailCommand = new RunInputCommand(AddOrderDetailButtonClickEvent);
             RemoveOrderDetailCommand = new RunInputCommand(RemoveOrderDetailButtonClickEvent);
@@ -241,30 +80,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public void RefreshViewModel(bool re_Customer = true, bool re_Medicine = true)
         {
-            MedicineCost = 0;
-            PaidAmount = 0;
+            CustomerOrderDetailItemSource.Clear();
 
             if (re_Medicine)
             {
-                CurrentSelectedMedicine = null;
-                CustomerOrderDetailItemSource.Clear();
-                Quantity = "";
-
+                MedicineOV.RefreshViewModel();
             }
 
             if (re_Customer)
             {
-                CurrentSelectedCustomer = null;
-                CustomerName = "";
-                CustomerPhone = "";
-                CustomerAddress = "";
+                CustomerOV.RefreshViewModel();
             }
-
-            Invalidate("DebtCost");
-            Invalidate("TotalCost");
-            Invalidate("RestAmount");
-            Invalidate("IsCustomerChooserEnable");
-            Invalidate("IsAdressTextBoxEnable");
 
         }
 
@@ -317,10 +143,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         private void CustomerOrderList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Invalidate("IsCustomerChooserEnable");
-            Invalidate("MedicineCost");
-            Invalidate("TotalCost");
-            Invalidate("RestAmount");
+            Invalidate(CustomerOV,"IsCustomerChooserEnable");
+            Invalidate(MedicineOV,"MedicineCost");
+            Invalidate(MedicineOV,"TotalCost");
+            Invalidate(MedicineOV,"RestAmount");
         }
 
         private void InstantiateMedicineItems()
