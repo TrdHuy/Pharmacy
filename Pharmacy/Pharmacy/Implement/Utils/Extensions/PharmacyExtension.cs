@@ -58,8 +58,8 @@ namespace Pharmacy.Implement.Utils.Extensions
 
         public static bool IsHavingOnlyNumber(this string text)
         {
-            Regex re = new Regex("^[0-9]*$");
-            return re.IsMatch(text);
+            Regex regex = new Regex("^[0-9]*$");
+            return regex.IsMatch(text);
         }
     }
 }

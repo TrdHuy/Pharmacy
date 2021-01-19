@@ -28,11 +28,15 @@ namespace Pharmacy
         public string Address { get; set; }
         public string CustomerDescription { get; set; }
         public bool IsActive { get; set; }
-        public string Link { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPromo> tblPromoes { get; set; }
+
+        public override string ToString()
+        {
+            return CustomerName + " " + Phone;
+        }
     }
 }

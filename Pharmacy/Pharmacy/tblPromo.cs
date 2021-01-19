@@ -21,7 +21,7 @@ namespace Pharmacy
         public string PromoDescription { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual tblMedicine tblMedicine { get; set; }
         public virtual tblCustomer tblCustomer { get; set; }
+        public virtual tblMedicine tblMedicine { get; set; }
     }
 }

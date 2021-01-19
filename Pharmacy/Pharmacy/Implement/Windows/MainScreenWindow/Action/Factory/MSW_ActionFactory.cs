@@ -8,12 +8,15 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.DiscountByMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ModifyMedicinePage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ShowMedicineInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,6 +111,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON:
                     action = new MSW_MMP_ModifyMedicineButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON:
+                    action = new MSW_MMP_ShowMedicineInfoButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON:
+                    action = new MSW_MMP_DiscountByMedicineButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON:
                     action = new MSW_CMP_AddButtonAction();
                     break;
@@ -155,6 +164,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON:
                     action = new MSW_MMP_MMP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_SMIP_CANCEL_BUTTON:
+                    action = new MSW_MMP_SMIP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON:
+                    action = new MSW_MMP_DBMP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON:
+                    action = new MSW_MMP_DBMP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON:
+                    action = new MSW_MMP_DBMP_DeleteButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_DELETE_BUTTON:
+                    action = new MSW_WHMP_DeleteWarehouseImportButtonAction();
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON:
                     action = new MSW_SP_AddOrderDetailAction();

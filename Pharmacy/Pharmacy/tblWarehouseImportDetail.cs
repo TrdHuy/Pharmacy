@@ -17,8 +17,6 @@ namespace Pharmacy
         public long ImportDetailID { get; set; }
         public string MedicineID { get; set; }
         public double Quantity { get; set; }
-        public double QuantityUsed { get; set; }
-        public System.DateTime ExpiredDate { get; set; }
         public decimal Price { get; set; }
         public long ImportID { get; set; }
         public bool IsActive { get; set; }

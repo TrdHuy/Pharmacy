@@ -18,9 +18,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
             SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
             try
             {
-                List<tblSupplier> lstOutput;
-
-                lstOutput = appDBContext.tblSuppliers.Where(o => o.IsActive).ToList();
+                List<tblSupplier> lstOutput = appDBContext.tblSuppliers.Where(o => o.IsActive).ToList();
                 result = new SQLQueryResult(lstOutput, MessageQueryResult.Done);
             }
             catch (Exception e)

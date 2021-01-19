@@ -40,6 +40,21 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_FILTER_MEDICINE_BY_TYPE = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_MEDICINE_BY_TYPE"];
 
+        public static readonly bool IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_ID = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_ID"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_NAME"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_SUPPLIER_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_SUPPLIER_NAME"];
+
+        public static readonly bool IS_SUPPORT_FILTER_WAREHOUSE_IMPORT_BY_START_DATE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_WAREHOUSE_IMPORT_BY_START_DATE"];
+
+        public static readonly bool IS_SUPPORT_FILTER_WAREHOUSE_IMPORT_BY_END_DATE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_WAREHOUSE_IMPORT_BY_END_DATE"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";

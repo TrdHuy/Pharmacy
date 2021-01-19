@@ -32,7 +32,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 
                 SQLQueryCustodian sqlQueryObserver = new SQLQueryCustodian((queryResult) =>
                 {
-                    if (queryResult.MesResult == MessageQueryResult.Finished)
+                    if (queryResult.MesResult == MessageQueryResult.Done)
                     {
                         App.Current.ShowApplicationMessageBox("Xóa thuốc thành công!",
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

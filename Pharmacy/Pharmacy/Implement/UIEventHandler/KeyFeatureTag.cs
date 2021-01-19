@@ -61,6 +61,7 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_CMP_CMoP_CANCLE_BUTTON = "msw_cmp_cmop_cancle_button";
 
         //Medicine management page key string
+        public const string KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON = "msw_mmp_show_info_button";
         public const string KEY_TAG_MSW_MMP_EDIT_BUTTON = "msw_mmp_edit_button";
         public const string KEY_TAG_MSW_MMP_DELETE_BUTTON = "msw_mmp_delete_button";
         public const string KEY_TAG_MSW_MMP_ADD_BUTTON = "msw_mmp_add_button";
@@ -77,6 +78,17 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_MMP_MMP_CANCEL_BUTTON = "msw_mmp_mmp_cancel_button";
         public const string KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON = "msw_mmp_mmp_save_button";
         public const string KEY_TAG_MSW_MMP_MMP_CAMERA_BUTTON = "msw_mmp_mmp_camera_button";
+
+        //Show Medicine Info page key string
+        public const string KEY_TAG_MSW_MMP_SMIP_CANCEL_BUTTON = "msw_mmp_smip_cancel_button";
+
+        //Discount by Medicine page key string
+        public const string KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON = "msw_mmp_dbmp_cancel_button";
+        public const string KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON = "msw_mmp_dbmp_save_button";
+        public const string KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON = "msw_mmp_dbmp_delete_button";
+
+        //Warehouse management page key string
+        public const string KEY_TAG_MSW_WHMP_DELETE_BUTTON = "msw_whmp_delete_button";
 
         //Selling page key string#
         public const string KEY_TAG_MSW_SP_ADD_BUTTON = "msw_sp_add_button";
