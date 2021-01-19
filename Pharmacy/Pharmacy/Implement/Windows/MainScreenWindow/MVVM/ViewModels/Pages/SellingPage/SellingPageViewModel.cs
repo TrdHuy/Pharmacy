@@ -122,7 +122,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             }
             set
             {
-                _curSelectedCustomer = value;
+                if (_curSelectedCustomer == null)
+                {
+                    if (String.IsNullOrEmpty(CustomerName) && 
+                        String.IsNullOrEmpty(CustomerPhone))
+                    {
+                        _curSelectedCustomer = value;
+                    }
+                }
+                else
+                {
+                    _curSelectedCustomer = value;
+                }
                 InvalidateOwn();
                 Invalidate("DebtCost");
                 Invalidate("IsAdressTextBoxEnable");

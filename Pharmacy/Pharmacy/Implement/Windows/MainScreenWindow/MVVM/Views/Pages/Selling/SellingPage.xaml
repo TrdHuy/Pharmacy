@@ -35,7 +35,7 @@
                 <RowDefinition Height="3.9*" />
                 <RowDefinition Height="0.74*" />
             </Grid.RowDefinitions>
-            
+
             <!--Customer area-->
             <Grid Grid.Row="0"
                   Margin="10,0">
@@ -95,32 +95,36 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
 
 
-                            <hps:HorusBox Tag="Nhập tên khách hàng"
-                                          Grid.Column="2"
+                            <hps:HorusBox Grid.Column="2"
+                                          Tag="Nhập tên khách hàng"
+                                          HorizontalContentAlignment="Left"
+                                          VerticalContentAlignment="Center"
                                           RemoveDropDownIcon="True"
-                                          IsEnabled="{Binding IsCustomerChooserEnable}"
-                                          ItemsSource="{Binding CustomerItemSource}"
-                                          SelectedItem="{Binding CurrentSelectedCustomer, UpdateSourceTrigger=LostFocus}"
                                           FilterText="{Binding CustomerName, Mode=TwoWay}"
-                                          IsDropDownOpen="False"
-                                          IsUsingIgnoreLowerUpperCase="True"
+                                          ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                          ScrollViewer.CanContentScroll="True"
                                           IsEditable="True"
                                           IsReadOnly="False"
-                                          IsUsingListFilter="True"
                                           FontSize="{StaticResource FontSizeXLarge}"
+                                          Foreground="Black"
+                                          MaxDropDownHeight="100"
                                           BorderBrush="Black"
                                           BorderThickness="1"
-                                          MaxDropDownHeight="100"
+                                          DropDownButtonBackground="White"
                                           PopupBackground="White"
                                           PopupBorderThickness="1"
-                                          Foreground="Black"
+                                          PopupBorderBrush="Black"
+                                          Background="White"
+                                          SelectedItem="{Binding CurrentSelectedCustomer}"
+                                          ItemsSource="{Binding CustomerItemSource}"
+                                          IsUsingListFilter="True"
+                                          IsTextSearchEnabled="False"
                                           DisplayMemberPath="CustomerName"
-                                          DropDownButtonBackground="White"
-                                          Background="White">
+                                          IsUsingIgnoreLowerUpperCase="True">
 
                                 <hps:HorusBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="3"
+                                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
                                                                 VirtualizingPanel.CacheLengthUnit="Item" />
                                     </ItemsPanelTemplate>
                                 </hps:HorusBox.ItemsPanel>
@@ -137,7 +141,8 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
-                                            <Border Grid.Column="1">
+                                            -->
+                                <!--<Border Grid.Column="1">
                                                 <Border.OpacityMask>
                                                     <ImageBrush Stretch="Uniform"
                                                                 ImageSource="{StaticResource AvatarImageOpacityMask}">
@@ -148,7 +153,8 @@
                                                        HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        Source="{Binding CustomerID,Converter={conv:StringToImageSourceConverter},ConverterParameter=CustomerImages}" />
-                                            </Border>
+                                            </Border>-->
+                                <!--
                                             <TextBlock Grid.Column="3"
                                                        Foreground="Black"
                                                        Text="{Binding Phone}"
@@ -218,24 +224,31 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
 
                             <hps:HorusBox  Grid.Column="2"
+                                           Tag="Nhập số điện thoại khách hàng"
+                                           HorizontalContentAlignment="Left"
+                                           VerticalContentAlignment="Center"
                                            RemoveDropDownIcon="True"
-                                           IsEnabled="{Binding IsCustomerChooserEnable}"
-                                           ItemsSource="{Binding CustomerItemSource}"
-                                           DisplayMemberPath="Phone"
-                                           Tag="Nhập số điện thoại"
-                                           SelectedItem="{Binding CurrentSelectedCustomer, UpdateSourceTrigger=LostFocus}"
-                                           FilterText="{Binding CustomerPhone, Mode=TwoWay}"
+                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                           ScrollViewer.CanContentScroll="True"
                                            IsEditable="True"
+                                           FilterText="{Binding CustomerPhone, Mode=TwoWay}"
                                            IsReadOnly="False"
-                                           IsUsingListFilter="True"
-                                           IsTextSearchEnabled="True"
                                            FontSize="{StaticResource FontSizeXLarge}"
+                                           Foreground="Black"
+                                           MaxDropDownHeight="100"
                                            BorderBrush="Black"
                                            BorderThickness="1"
+                                           DropDownButtonBackground="White"
                                            PopupBackground="White"
                                            PopupBorderThickness="1"
-                                           DropDownButtonBackground="White"
-                                           Background="White">
+                                           PopupBorderBrush="Black"
+                                           Background="White"
+                                           SelectedItem="{Binding CurrentSelectedCustomer}"
+                                           ItemsSource="{Binding CustomerItemSource}"
+                                           IsUsingListFilter="True"
+                                           IsTextSearchEnabled="False"
+                                           DisplayMemberPath="Phone"
+                                           IsUsingIgnoreLowerUpperCase="True">
                                 <hps:HorusBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
