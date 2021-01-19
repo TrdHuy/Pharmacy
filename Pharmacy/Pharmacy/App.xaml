@@ -14,7 +14,7 @@
                 <ResourceDictionary Source="Resources/Styles/Texts.xaml" />
                 <ResourceDictionary Source="Resources/Styles/ComboBox.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Windows.xaml" />
-
+                <ResourceDictionary Source="Resources/Styles/DatePicker.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

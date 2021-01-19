@@ -16,7 +16,7 @@ namespace Pharmacy
     {
         public long PaymentID { get; set; }
         public System.DateTime PaymentTime { get; set; }
-        public int PaymentType { get; set; }
+        public int PaymentType { get; set; } //1:Thu, 2:Chi
         public string PaymentContent { get; set; }
         public decimal TotalPrice { get; set; }
         public bool IsActive { get; set; }

@@ -3,6 +3,7 @@ using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManagement;
 using Pharmacy.Implement.Utils.Extensions;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,21 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY:
                     _result = new GetAllActivteMedicineStockInWarehouseDataAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.ADD_MODIFY_PROMO_CMD_KEY:
+                    _result = new AddAndModifyPromoAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_PROMO_BY_MEDICINE_CMD_KEY:
+                    _result = new GetAllActivePromoByMedicineDataAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.SET_PROMO_DEACTIVE_CMD_KEY:
+                    _result = new SetPromoDeactiveAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.GET_ALL_ACTIVE_WAREHOUSE_IMPORT_DATA_CMD_KEY:
+                    _result = new GetAllActiveWarehouseImportDataAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY:
+                    _result = new SetWarehouseImportDeactiveAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -214,8 +230,23 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         //Key for modify medicine
         public const string MODIFY_MEDICINE_CMD_KEY = "modify_medicine";
 
+        //Key for getting active Promo list of medicine
+        public const string GET_ALL_ACTIVE_PROMO_BY_MEDICINE_CMD_KEY = "get_all_active_promo_by_medicine_data";
+
+        //Key for add and modify promo
+        public const string ADD_MODIFY_PROMO_CMD_KEY = "add_modify_promo";
+
+        //Key for set a promo deactive
+        public const string SET_PROMO_DEACTIVE_CMD_KEY = "set_promo_deactive";
+
         //Key for getting info of all active stocks in warehouse in database
         public const string GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY = "get_all_active_medicine_stock_in_warehouse_data";
+
+        //Key for getting info of all active warehouse import data in database
+        public const string GET_ALL_ACTIVE_WAREHOUSE_IMPORT_DATA_CMD_KEY = "get_all_active_warehouse_import_data";
+
+        //Key for set a warehouse import deactive
+        public const string SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY = "set_warehouse_import_deactive";
     }
 
     public class SQLQueryResult

@@ -52,6 +52,7 @@
         </Grid>
         <DataGrid x:Name="DataGrid"
                   Grid.Row="2"
+                  IsReadOnly="True"
                   VerticalAlignment="Top"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
@@ -167,6 +168,7 @@
 
                     <Setter Property="Height"
                                     Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
                 </Style>
 
             </DataGrid.RowStyle>
@@ -225,7 +227,8 @@
 
                 <!--Edit column-->
                 <DataGridTemplateColumn CanUserResize="False"
-                                                Width="0.5*">
+                                        Width="0.5*"
+                                        MaxWidth="{StaticResource DefaultDataGrid_MaxWidthEditColumn}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border>
