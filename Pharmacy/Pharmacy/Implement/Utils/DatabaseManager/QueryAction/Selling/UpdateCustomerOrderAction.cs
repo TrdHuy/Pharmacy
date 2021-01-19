@@ -32,6 +32,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling
                     orderDB.TotalPrice = customerOrder.TotalPrice;
                     orderDB.UserID = customerOrder.UserID;
                     orderDB.CustomerID = customerOrder.CustomerID;
+                    orderDB.tblOrderDetails = customerOrder.tblOrderDetails;
                     appDBContext.SaveChanges();
                     result = new SQLQueryResult(orderDB, MessageQueryResult.Done, "Cập nhật thông tin hóa đơn thành công!");
                 }

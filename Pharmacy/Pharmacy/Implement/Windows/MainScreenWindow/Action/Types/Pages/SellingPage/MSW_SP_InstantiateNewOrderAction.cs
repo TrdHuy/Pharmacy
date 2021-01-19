@@ -69,7 +69,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     IsActive = true,
                     Quantity = Convert.ToDouble(vo.Quantity),
                     TotalPrice = vo.TotalPrice,
-                    UnitPrice = vo.UnitPrice
+                    UnitPrice = vo.UnitPrice,
+                    MedicineID = vo.MedicineID
                 };
                 _newOrder.tblOrderDetails.Add(oD);
             }

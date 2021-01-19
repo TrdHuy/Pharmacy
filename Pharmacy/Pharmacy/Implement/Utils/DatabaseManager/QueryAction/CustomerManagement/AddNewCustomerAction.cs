@@ -26,7 +26,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagemen
             {
                 appDBContext.tblCustomers.Add(newCustomer);
 
-
                 if(!SaveImageToFile((appDBContext.tblCustomers.ToList().Count + 1).ToString(), imageFolder, ImageType.Customer))
                 {
                     result = new SQLQueryResult(null, MessageQueryResult.Aborted);
@@ -34,15 +33,17 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagemen
                 }
 
                 appDBContext.SaveChanges();
-                result = new SQLQueryResult(null, MessageQueryResult.Done);
+                result = new SQLQueryResult(newCustomer, MessageQueryResult.Done);
             }
             catch (DbEntityValidationException e)
             {
                 HandleDbEntityValidationException(e);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
             catch (Exception e)
             {
                 ShowErrorMessageBox(e);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
 
             return result;

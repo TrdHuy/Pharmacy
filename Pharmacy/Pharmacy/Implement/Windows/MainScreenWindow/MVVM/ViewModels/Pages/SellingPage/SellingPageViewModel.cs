@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.DatabaseManager;
@@ -26,6 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private string _customerAddress;
         private double _paidAmount;
+        private bool _isAddOrderDeatailButtonRunning = false;
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
@@ -34,8 +36,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         public RunInputCommand RemoveOrderDetailCommand { get; set; }
         public RunInputCommand InstantiateOrderCommand { get; set; }
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
+        public bool ForceAssignCurentSelectedUser { get; set; }
 
+        public bool IsAddOrderDeatailButtonRunning
+        {
+            get
+            {
 
+                return _isAddOrderDeatailButtonRunning;
+            }
+            set
+            {
+                _isAddOrderDeatailButtonRunning = value;
+                if (!value)
+                {
+                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                }
+                InvalidateOwn();
+            }
+        }
         public string Quantity { get; set; }
         public double MedicineCost
         {
@@ -122,19 +141,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             }
             set
             {
-                if (_curSelectedCustomer == null)
-                {
-                    if (String.IsNullOrEmpty(CustomerName) && 
-                        String.IsNullOrEmpty(CustomerPhone))
-                    {
-                        _curSelectedCustomer = value;
-                    }
-                }
-                else
-                {
-                    _curSelectedCustomer = value;
-                }
+                _curSelectedCustomer = value;
+
                 InvalidateOwn();
+                Invalidate("CustomerAddress");
                 Invalidate("DebtCost");
                 Invalidate("IsAdressTextBoxEnable");
             }
@@ -280,12 +290,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         private void AddOrderDetailButtonClickEvent(object paramaters)
         {
+            IsAddOrderDeatailButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON
-                , dataTransfer);
+                , dataTransfer
+                , new FactoryLocker(LockReason.TaskHandling, true));
         }
 
         private void InstantiateItems()

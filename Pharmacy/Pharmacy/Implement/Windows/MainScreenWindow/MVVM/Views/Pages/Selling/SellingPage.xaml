@@ -100,7 +100,7 @@
                                           HorizontalContentAlignment="Left"
                                           VerticalContentAlignment="Center"
                                           RemoveDropDownIcon="True"
-                                          FilterText="{Binding CustomerName, Mode=TwoWay}"
+                                          FilterText="{Binding CustomerName,Mode=TwoWay}"
                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
                                           ScrollViewer.CanContentScroll="True"
                                           IsEditable="True"
@@ -115,7 +115,7 @@
                                           PopupBorderThickness="1"
                                           PopupBorderBrush="Black"
                                           Background="White"
-                                          SelectedItem="{Binding CurrentSelectedCustomer}"
+                                          SelectedItem="{Binding CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
                                           ItemsSource="{Binding CustomerItemSource}"
                                           IsUsingListFilter="True"
                                           IsTextSearchEnabled="False"
@@ -191,14 +191,14 @@
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{StaticResource FontSizeXLarge}"/>
 
                             <hps:AkerTextBox Grid.Column="2"
                                              Tag="Nhập địa chỉ khách hàng"
                                              IsEnabled="{Binding IsAdressTextBoxEnable}"
                                              Text="{Binding CustomerAddress}"
                                              FontSize="{StaticResource FontSizeXLarge}"
-                                             BorderBrush="Black" />
+                                             BorderBrush="Black"/>
 
                         </Grid>
 
@@ -231,7 +231,7 @@
                                            ScrollViewer.VerticalScrollBarVisibility="Visible"
                                            ScrollViewer.CanContentScroll="True"
                                            IsEditable="True"
-                                           FilterText="{Binding CustomerPhone, Mode=TwoWay}"
+                                           FilterText="{Binding CustomerPhone,Mode=TwoWay}"
                                            IsReadOnly="False"
                                            FontSize="{StaticResource FontSizeXLarge}"
                                            Foreground="Black"
@@ -243,7 +243,7 @@
                                            PopupBorderThickness="1"
                                            PopupBorderBrush="Black"
                                            Background="White"
-                                           SelectedItem="{Binding CurrentSelectedCustomer}"
+                                           SelectedItem="{Binding CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
                                            ItemsSource="{Binding CustomerItemSource}"
                                            IsUsingListFilter="True"
                                            IsTextSearchEnabled="False"
@@ -419,16 +419,19 @@
                                              FontSize="{StaticResource FontSizeXLarge}" />
                             <hps:OsirisButton Margin="10,2,10,2"
                                               BorderThickness="0"
+                                              IsBusy="{Binding IsAddOrderDeatailButtonRunning}"
+                                              ProgressSpinnerSize="30"
+                                              ProgressSpinnerBackground="Black"
                                               Command="{Binding AddOrderDetailCommand}"
                                               CommandParameter="{Binding ElementName=OrderDetailDataGrid}"
                                               OBCornerRadius="10"
-                                              IconSource="{StaticResource AppIcon}"
-                                              IconStretch="Uniform"
                                               HorizontalContentAlignment="Center"
                                               VerticalContentAlignment="Center"
                                               OBTextVerticalAlignment="Center"
                                               FontSize="20"
                                               FontWeight="Bold"
+                                              FontFamily="{StaticResource FontAwesome}"
+                                              TextContent="&#xf067;"
                                               IsUsingDropShadowEffect="True"
                                               Grid.Column="6" />
                         </Grid>
