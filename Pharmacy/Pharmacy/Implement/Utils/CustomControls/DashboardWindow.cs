@@ -288,6 +288,20 @@ namespace Pharmacy.Implement.Utils.CustomControls
             set { SetValue(PageLoadingDelayTimeProperty, value); }
         }
         #endregion
+
+        #region PreviewPageNavigateEvent
+        public static readonly RoutedEvent PreviewPageNavigateEvent =
+            EventManager.RegisterRoutedEvent("PreviewPageNavigate", RoutingStrategy.Direct,
+                          typeof(PreviewPageNavigateHandler), typeof(DashboardWindow));
+
+        public event PreviewPageNavigateHandler PreviewPageNavigate
+        {
+            add { AddHandler(PreviewPageNavigateEvent, value); }
+            remove { RemoveHandler(PreviewPageNavigateEvent, value); }
+        }
+
+        #endregion
+
         #endregion
 
         private static Brush defaultTitleBarBackground = new SolidColorBrush(Color.FromArgb(40, 26, 195, 237));
@@ -509,17 +523,33 @@ namespace Pharmacy.Implement.Utils.CustomControls
             {
                 if (DWPageHostFrameElement.NavigationService.CanGoBack)
                 {
-                    DWPageHostFrameElement.NavigationService.GoBack();
+                    var ex = new PreviewPageNavigateArgs(DashboardWindow.PreviewPageNavigateEvent);
+                    OnPreviewPageNavigate(ex);
+                    if (!ex.Handled)
+                    {
+                        DWPageHostFrameElement.NavigationService.GoBack();
+                    }
                 }
             }
         }
+
+        protected virtual void OnPreviewPageNavigate(PreviewPageNavigateArgs previewPageNavigateArgs)
+        {
+            RaiseEvent(previewPageNavigateArgs);
+        }
+
         private void NextNavigationButtonElement_Click(object sender, RoutedEventArgs e)
         {
             if (DWPageHostFrameElement != null)
             {
                 if (DWPageHostFrameElement.NavigationService.CanGoForward)
                 {
-                    DWPageHostFrameElement.NavigationService.GoForward();
+                    var ex = new PreviewPageNavigateArgs(DashboardWindow.PreviewPageNavigateEvent);
+                    OnPreviewPageNavigate(ex);
+                    if (!ex.Handled)
+                    {
+                        DWPageHostFrameElement.NavigationService.GoForward();
+                    }
                 }
             }
         }
@@ -584,7 +614,12 @@ namespace Pharmacy.Implement.Utils.CustomControls
         {
             if (DWPageHostFrameElement != null)
             {
-                DWPageHostFrameElement.NavigationService.Navigate(destinationPage);
+                var ex = new PreviewPageNavigateArgs(DashboardWindow.PreviewPageNavigateEvent);
+                OnPreviewPageNavigate(ex);
+                if (!ex.Handled)
+                {
+                    DWPageHostFrameElement.NavigationService.Navigate(destinationPage);
+                }
             }
         }
 
@@ -622,6 +657,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
 
     public delegate void PageSourceEventHandler(object sender, PageSourceEventArgs e);
     public delegate void WindowShownEventHandler(object sender, WindowShownEventArgs e);
+    public delegate void PreviewPageNavigateHandler(object sender, PreviewPageNavigateArgs e);
 
     public class PageSourceEventArgs : RoutedEventArgs
     {
@@ -646,4 +682,16 @@ namespace Pharmacy.Implement.Utils.CustomControls
             RoutedEvent = id;
         }
     }
+
+    public class PreviewPageNavigateArgs : RoutedEventArgs
+    {
+        public bool Handled { get; set; } = false;
+
+        public PreviewPageNavigateArgs(RoutedEvent id)
+        {
+            RoutedEvent = id;
+            Handled = false;
+        }
+    }
+
 }
