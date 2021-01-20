@@ -1,8 +1,12 @@
-using Pharmacy.Base.MVVM.ViewModels;
+﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Config;
 using Pharmacy.Implement.Utils.CustomControls;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -19,6 +23,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
     {
         private MSW_PageController _pageHost = MSW_PageController.Instance;
         private PageSourceWatcher _pageSourceWatcher;
+
+        public EventHandleCommand PagePreviewNavigateEventCommand { get; set; }
 
         public Uri CurrentPageSource
         {
@@ -59,6 +65,53 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
         {
             _pageSourceWatcher = new PageSourceWatcher(OnPageSourceChange);
             _pageHost.Subcribe(_pageSourceWatcher);
+            PagePreviewNavigateEventCommand = new EventHandleCommand(OnPagePreviewNavigate);
+        }
+
+        private void OnPagePreviewNavigate(object sender, EventArgs e, object paramater)
+        {
+            var x = CurrentPageSource.OriginalString;
+
+            switch (x)
+            {
+                case PharmacyDefinitions.SELLING_PAGE_URI_ORIGINAL_STRING:
+
+                    if (RUNE.IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL)
+                    {
+                        SQLQueryCustodian.DeactiveAllRegistrationsOfType(typeof(MSW_SP_AddOrderDetailAction));
+                    }
+
+                    // Disable navigate when the call back from this action be not executed
+                    if (!SQLQueryCustodian.IsAllCallbackHandled(typeof(MSW_SP_InstantiateNewOrderAction)) &&
+                        RUNE.IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL)
+                    {
+                        // Stop navigating
+                        (e as PreviewPageNavigateArgs).Handled = true;
+
+                        App.Current.ShowApplicationMessageBox("Vui lòng chờ hoàn tất thao tác!",
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                            OwnerWindow.MainScreen,
+                            "Thông báo!!");
+                    }
+                    break;
+                default:
+
+                    // Disable navigate when the call back from this action be not executed
+                    if (!SQLQueryCustodian.IsAllCallbackHandled(typeof(SQLQueryCustodian)) &&
+                        RUNE.IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL)
+                    {
+                        // Stop navigating
+                        (e as PreviewPageNavigateArgs).Handled = true;
+
+                        App.Current.ShowApplicationMessageBox("Vui lòng chờ hoàn tất thao tác!",
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                            OwnerWindow.MainScreen,
+                            "Thông báo!!");
+                    }
+                    break;
+            }
         }
 
         private void OnPageSourceChange(PageOV newSource)

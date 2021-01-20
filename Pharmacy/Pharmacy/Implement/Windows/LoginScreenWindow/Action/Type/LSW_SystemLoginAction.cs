@@ -91,7 +91,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             }
             finally
             {
-                _observer.Updated = true;
                 if (_viewModel != null)
                 {
                     _viewModel.IsLoginButtonRunning = false;
