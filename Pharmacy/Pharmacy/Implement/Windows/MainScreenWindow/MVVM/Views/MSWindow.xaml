@@ -9,6 +9,7 @@
                        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels"
                        mc:Ignorable="d"
                        WindowStyle="None"
+                       PreviewPageNavigate="DashboardWindow_PreviewPageNavigate"
                        BorderBrush="{StaticResource NormalTheme_MessageBox_Border_Brush}"
                        BorderThickness="1"
                        MinHeight="{StaticResource DefaultWindowHeight}"

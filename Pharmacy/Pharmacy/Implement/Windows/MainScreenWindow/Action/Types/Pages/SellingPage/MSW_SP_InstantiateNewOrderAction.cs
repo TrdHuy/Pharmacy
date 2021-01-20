@@ -91,9 +91,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 _viewModel.IsInstantiateNewOrderButtonRunning = false;
             }
 
-            _createNewOrderQueryObserver = new SQLQueryCustodian(GenerateOrderCallback);
+            _createNewOrderQueryObserver = new SQLQueryCustodian(GenerateOrderCallback,
+                null,
+                typeof(MSW_SP_InstantiateNewOrderAction));
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.ADD_NEW_CUSTOMER_ORDER_CMD_KEY,
-                PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
+                PharmacyDefinitions.ADD_NEW_CUSTOMER_ORDER_DELAY_TIME,
                 _createNewOrderQueryObserver,
                 _newOrder);
         }
