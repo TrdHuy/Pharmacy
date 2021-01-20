@@ -26,21 +26,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             {
                 if (String.IsNullOrEmpty(_viewModel.MedicineOV.Quantity) || _viewModel.MedicineOV.Quantity.Equals("0"))
                 {
-                   App.Current.ShowApplicationMessageBox("Kiểm tra lại số lượng!",
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
-                   OwnerWindow.MainScreen,
-                   "Thông báo!!");
+                    App.Current.ShowApplicationMessageBox("Kiểm tra lại số lượng!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!!");
                     _viewModel.IsAddOrderDeatailButtonRunning = false;
                     return false;
                 }
                 else
                 {
-                   App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường đang bỏ trống!",
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
-                   OwnerWindow.MainScreen,
-                   "Thông báo!!");
+                    App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường đang bỏ trống!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!!");
                     _viewModel.IsAddOrderDeatailButtonRunning = false;
                 }
 
@@ -77,7 +77,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                         IsActive = true
                     };
 
-                    _queryObserver = new SQLQueryCustodian(AddNewCustomerToDataBaseCallBack);
+                    _queryObserver = new SQLQueryCustodian(AddNewCustomerToDataBaseCallBack,
+                        AddNewCustomerToDataBaseForceCallBack,
+                        typeof(MSW_SP_AddOrderDetailAction));
                     DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.ADD_NEW_CUSTOMER_CMD_KEY,
                         PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
                         _queryObserver,
@@ -89,6 +91,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             {
                 CreateNewOrderDetail();
             }
+        }
+
+        private void AddNewCustomerToDataBaseForceCallBack(SQLQueryResult queryResult)
+        {
+            // Handle something here 
         }
 
         private void AddNewCustomerToDataBaseCallBack(SQLQueryResult queryResult)

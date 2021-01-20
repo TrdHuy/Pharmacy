@@ -1,5 +1,7 @@
 ﻿using Pharmacy.Implement.Utils.CustomControls;
+using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels;
+using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views
         public MSWindow()
         {
             InitializeComponent();
+        }
+
+        private void DashboardWindow_PreviewPageNavigate(object sender, PreviewPageNavigateArgs e)
+        {
+            (DataContext as MainScreenWindowViewModel).PagePreviewNavigateEventCommand.Execute(sender, e, this);
         }
     }
 }
