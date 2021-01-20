@@ -23,6 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         private SQLQueryCustodian _sqlCmdObserver;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private bool _isAddOrderDeatailButtonRunning = false;
+        private bool _isInstantiateNewOrderButtonRunning = false;
         private string _orderDescription;
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
@@ -37,6 +38,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         public MSW_SP_CustomerOV CustomerOV { get; set; }
         public MSW_SP_MedicineOV MedicineOV { get; set; }
 
+        public bool IsInstantiateNewOrderButtonRunning
+        {
+            get
+            {
+
+                return _isInstantiateNewOrderButtonRunning;
+            }
+            set
+            {
+                _isInstantiateNewOrderButtonRunning = value;
+                if (!value)
+                {
+                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                }
+                InvalidateOwn();
+            }
+        }
         public bool IsAddOrderDeatailButtonRunning
         {
             get
@@ -72,7 +90,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             {
                 return MedicineOV.CurrentSelectedMedicine != null
                     && !String.IsNullOrEmpty(CustomerOV.CustomerPhone)
-                    && !String.IsNullOrEmpty(CustomerOV.CustomerName);
+                    && !String.IsNullOrEmpty(CustomerOV.CustomerName)
+                    && !String.IsNullOrEmpty(MedicineOV.Quantity) 
+                    && !MedicineOV.Quantity.Equals("0");
             }
         }
 
@@ -122,12 +142,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         private void InstantiateOrderButtonClickEvent(object paramaters)
         {
+            IsInstantiateNewOrderButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON
-                , dataTransfer);
+                , dataTransfer
+                , new FactoryLocker(LockReason.TaskHandling, true));
         }
 
         private void RemoveOrderDetailButtonClickEvent(object paramaters)

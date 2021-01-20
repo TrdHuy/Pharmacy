@@ -17,6 +17,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly int SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_USER_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_CUSTOMER_DELAY_TIME = 1000;
+        public static readonly int ADD_NEW_CUSTOMER_ORDER_DELAY_TIME = 1000;
         public static readonly int SAVE_CUSTOMER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_MEDICINE_DELAY_TIME = 1000;
         public static readonly int MODIFY_MEDICINE_DELAY_TIME = 1000;

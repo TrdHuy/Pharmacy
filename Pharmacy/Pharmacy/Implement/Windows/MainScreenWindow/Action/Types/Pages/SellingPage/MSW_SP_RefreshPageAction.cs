@@ -15,9 +15,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         {
             _viewModel = dataTransfer[0] as SellingPageViewModel;
 
+            if(_viewModel.CustomerOrderDetailItemSource.Count > 0)
+            {
+                var x = App.Current.ShowApplicationMessageBox("Bạn có chắc tạo mới!",
+                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
+                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                 OwnerWindow.MainScreen,
+                 "Thông báo!!");
+                if(x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
+                {
+                    return false;
+                }
+            }
+            
             bool refreshCustomer = true;
             bool refreshBill = true;
             _viewModel.RefreshViewModel(refreshCustomer,refreshBill);
+
             return true;
         }
     }

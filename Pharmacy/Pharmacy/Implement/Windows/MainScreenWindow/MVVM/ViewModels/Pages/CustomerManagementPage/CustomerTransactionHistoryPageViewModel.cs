@@ -16,8 +16,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
         public tblCustomer CurrentModidifiedCustomer { get; set; }
 
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
-
         protected override void InitPropertiesRegistry()
         {
         }
@@ -25,7 +23,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public CustomerTransactionHistoryPageViewModel()
         {
             CurrentModidifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
 
             InstantiateItems();
         }
@@ -38,38 +35,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 OrderItemSource.Add(order);
             }
 
-            FakeData();
-        }
-
-        private void FakeData()
-        {
-            tblOrder fakeOrder = new tblOrder();
-            fakeOrder.CustomerID = 1;
-            fakeOrder.IncludeVAT = true;
-            fakeOrder.IsActive = true;
-            fakeOrder.OrderDescription = "Notification";
-            fakeOrder.OrderID = 0;
-            fakeOrder.OrderTime = DateTime.Now;
-            fakeOrder.PurchasePrice = 300000;
-            fakeOrder.TotalPrice = 300000;
-            fakeOrder.UserID = "admin";
-
-            OrderItemSource.Add(fakeOrder);
-        }
-
-        private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
-        {
-            Grid ctrl = (Grid)sender;
-            Border avaBorder = (Border)((object[])paramaters)[0];
-
-            if (avaBorder.RenderSize.Width >= avaBorder.RenderSize.Height)
-            {
-                ctrl.Width = avaBorder.RenderSize.Height;
-            }
-            else
-            {
-                ctrl.Width = avaBorder.RenderSize.Width;
-            }
         }
 
     }

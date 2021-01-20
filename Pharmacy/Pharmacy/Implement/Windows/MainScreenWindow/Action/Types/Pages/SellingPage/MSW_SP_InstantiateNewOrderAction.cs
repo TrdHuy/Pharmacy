@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
             if (!CanExecute())
             {
+                _viewModel.IsInstantiateNewOrderButtonRunning = false;
                 return false;
             }
             GenerateOrder();
@@ -56,28 +58,42 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
         private void GenerateOrder()
         {
-            _newOrder = new tblOrder();
-            _newOrder.IsActive = true;
-            _newOrder.OrderTime = DateTime.Now;
-            _newOrder.UserID = App.Current.CurrentUser.Username;
-            _newOrder.CustomerID = _viewModel.CustomerOV.CurrentSelectedCustomer.CustomerID;
-            _newOrder.OrderDescription = _viewModel.OrderDescription;
-            foreach (OrderDetailVO vo in _viewModel.CustomerOrderDetailItemSource)
+            try
             {
-                tblOrderDetail oD = new tblOrderDetail()
+                _newOrder = new tblOrder();
+                _newOrder.IsActive = true;
+                _newOrder.OrderTime = DateTime.Now;
+                _newOrder.UserID = App.Current.CurrentUser.Username;
+                _newOrder.CustomerID = _viewModel.CustomerOV.CurrentSelectedCustomer.CustomerID;
+                _newOrder.OrderDescription = _viewModel.OrderDescription;
+                _newOrder.TotalPrice = _viewModel.MedicineOV.MedicineCost;
+                _newOrder.PurchasePrice = _viewModel.MedicineOV.PaidAmount;
+                foreach (OrderDetailVO vo in _viewModel.CustomerOrderDetailItemSource)
                 {
-                    IsActive = true,
-                    Quantity = Convert.ToDouble(vo.Quantity),
-                    TotalPrice = vo.TotalPrice,
-                    UnitPrice = vo.UnitPrice,
-                    MedicineID = vo.MedicineID
-                };
-                _newOrder.tblOrderDetails.Add(oD);
+                    tblOrderDetail oD = new tblOrderDetail()
+                    {
+                        IsActive = true,
+                        Quantity = Convert.ToDouble(vo.Quantity),
+                        TotalPrice = vo.TotalPrice,
+                        UnitPrice = vo.UnitPrice,
+                        MedicineID = vo.MedicineID
+                    };
+                    _newOrder.tblOrderDetails.Add(oD);
+                }
+            }
+            catch (Exception e)
+            {
+                App.Current.ShowApplicationMessageBox("Không thể tạo hóa đơn mới, vui lòng liên hệ CSKH!",
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                   OwnerWindow.MainScreen,
+                   "Lỗi!!");
+                _viewModel.IsInstantiateNewOrderButtonRunning = false;
             }
 
-
             _createNewOrderQueryObserver = new SQLQueryCustodian(GenerateOrderCallback);
-            DbManager.Instance.ExecuteQuery(SQLCommandKey.ADD_NEW_CUSTOMER_ORDER_CMD_KEY,
+            DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.ADD_NEW_CUSTOMER_ORDER_CMD_KEY,
+                PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
                 _createNewOrderQueryObserver,
                 _newOrder);
         }
@@ -105,6 +121,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   OwnerWindow.MainScreen,
                   "Lỗi!!");
             }
+
+            _viewModel.IsInstantiateNewOrderButtonRunning = false;
         }
 
     }

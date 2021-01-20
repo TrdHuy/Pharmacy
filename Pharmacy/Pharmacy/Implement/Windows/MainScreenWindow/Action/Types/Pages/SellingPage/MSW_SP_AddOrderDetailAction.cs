@@ -24,12 +24,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
             if (!_viewModel.IsAddOrderDetailCanPerform)
             {
-                App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường đang bỏ trống!",
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
-                    OwnerWindow.MainScreen,
-                    "Thông báo!!");
-                _viewModel.IsAddOrderDeatailButtonRunning = false;
+                if (String.IsNullOrEmpty(_viewModel.MedicineOV.Quantity) || _viewModel.MedicineOV.Quantity.Equals("0"))
+                {
+                   App.Current.ShowApplicationMessageBox("Kiểm tra lại số lượng!",
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                   OwnerWindow.MainScreen,
+                   "Thông báo!!");
+                    _viewModel.IsAddOrderDeatailButtonRunning = false;
+                    return false;
+                }
+                else
+                {
+                   App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường đang bỏ trống!",
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                   OwnerWindow.MainScreen,
+                   "Thông báo!!");
+                    _viewModel.IsAddOrderDeatailButtonRunning = false;
+                }
+
                 return false;
             }
 
@@ -38,7 +52,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             return true;
         }
 
-       
+
         private void ShouldCreateNewCustomer()
         {
             if (_viewModel.CustomerOV.CurrentSelectedCustomer == null)
@@ -155,9 +169,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     checkExistedVO.Quantity += orderDetailVO.Quantity;
                     checkExistedVO.TotalPrice += orderDetailVO.TotalPrice;
                     ctrl.Items.Refresh();
-                    _viewModel.Invalidate(_viewModel.MedicineOV,"MedicineCost");
-                    _viewModel.Invalidate(_viewModel.MedicineOV,"TotalCost");
-                    _viewModel.Invalidate(_viewModel.MedicineOV,"RestAmount");
+                    _viewModel.Invalidate(_viewModel.MedicineOV, "MedicineCost");
+                    _viewModel.Invalidate(_viewModel.MedicineOV, "TotalCost");
+                    _viewModel.Invalidate(_viewModel.MedicineOV, "RestAmount");
 
                 }
                 else
@@ -165,7 +179,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     _viewModel.CustomerOrderDetailItemSource.Add(orderDetailVO);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }

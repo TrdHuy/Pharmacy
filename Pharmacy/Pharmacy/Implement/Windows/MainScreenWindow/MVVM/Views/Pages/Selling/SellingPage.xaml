@@ -789,10 +789,13 @@
 
                 <hps:OsirisButton TextContent="Lưu và xuất hóa đơn"
                                   Margin="0,10"
+                                  IsBusy="{Binding IsInstantiateNewOrderButtonRunning}"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   BorderThickness="0"
                                   Foreground="White"
+                                  ProgressSpinnerBackground="Black"
+                                  ProgressSpinnerSize="30"
                                   Command="{Binding InstantiateOrderCommand}"
                                   Background="{StaticResource NormalTheme_1st_Background_Brush}"
                                   FontSize="{StaticResource FontSizeXXLarge}"
