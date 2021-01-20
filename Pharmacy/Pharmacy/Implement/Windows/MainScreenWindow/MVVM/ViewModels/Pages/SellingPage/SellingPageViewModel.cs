@@ -23,6 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         private SQLQueryCustodian _sqlCmdObserver;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private bool _isAddOrderDeatailButtonRunning = false;
+        private string _orderDescription;
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
@@ -31,7 +32,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         public RunInputCommand AddOrderDetailCommand { get; set; }
         public RunInputCommand RemoveOrderDetailCommand { get; set; }
         public RunInputCommand InstantiateOrderCommand { get; set; }
-
+        public RunInputCommand RefreshSellingPageCommand { get; set; }
+        
         public MSW_SP_CustomerOV CustomerOV { get; set; }
         public MSW_SP_MedicineOV MedicineOV { get; set; }
 
@@ -52,7 +54,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 InvalidateOwn();
             }
         }
-        public string OrderDescription { get; set; }
+        public string OrderDescription
+        {
+            get
+            {
+                return _orderDescription;
+            }
+            set
+            {
+                _orderDescription = value;
+                InvalidateOwn();
+            }
+        }
         public bool IsAddOrderDetailCanPerform
         {
             get
@@ -76,12 +89,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             AddOrderDetailCommand = new RunInputCommand(AddOrderDetailButtonClickEvent);
             RemoveOrderDetailCommand = new RunInputCommand(RemoveOrderDetailButtonClickEvent);
             InstantiateOrderCommand = new RunInputCommand(InstantiateOrderButtonClickEvent);
+            RefreshSellingPageCommand = new RunInputCommand(RefreshSellingPagClickEvent);
         }
+
 
         public void RefreshViewModel(bool re_Customer = true, bool re_Medicine = true)
         {
             CustomerOrderDetailItemSource.Clear();
 
+            OrderDescription = "";
             if (re_Medicine)
             {
                 MedicineOV.RefreshViewModel();
@@ -92,6 +108,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 CustomerOV.RefreshViewModel();
             }
 
+        }
+
+        private void RefreshSellingPagClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_SP_REFRESH_BUTTON
+                , dataTransfer);
         }
 
         private void InstantiateOrderButtonClickEvent(object paramaters)

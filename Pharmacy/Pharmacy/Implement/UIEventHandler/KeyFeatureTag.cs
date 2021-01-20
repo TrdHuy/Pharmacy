@@ -94,6 +94,7 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_SP_ADD_BUTTON = "msw_sp_add_button";
         public const string KEY_TAG_MSW_SP_REMOVE_BUTTON = "msw_sp_remove_button";
         public const string KEY_TAG_MSW_SP_INSTANTIATE_BUTTON = "msw_sp_instantiate_button";
-
+        public const string KEY_TAG_MSW_SP_REFRESH_BUTTON = "msw_sp_refresh_button";
+        
     }
 }

@@ -12,9 +12,34 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         private AbstractViewModel _parentModel;
         private tblMedicine _curSelectedMedicine;
         private decimal _paidAmount;
+        private string _quantity;
+        private string _medicineTextSearch;
 
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
-        public string Quantity { get; set; }
+        public string Quantity 
+        {
+            get
+            {
+                return _quantity;
+            }
+            set
+            {
+                _quantity = value;
+                InvalidateOwn();
+            }
+        }
+        public string MedicineTextSearch
+        {
+            get
+            {
+                return _medicineTextSearch;
+            }
+            set
+            {
+                _medicineTextSearch = value;
+                InvalidateOwn();
+            }
+        }
         public decimal MedicineCost
         {
             get
@@ -109,11 +134,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public void RefreshViewModel()
         {
+            MedicineTextSearch = "";
             MedicineCost = 0;
             PaidAmount = 0;
             CurrentSelectedMedicine = null;
             Quantity = "";
-
+            
             Invalidate("DebtCost");
             Invalidate("TotalCost");
             Invalidate("RestAmount");

@@ -192,14 +192,14 @@
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
-                                       FontSize="{StaticResource FontSizeXLarge}"/>
+                                       FontSize="{StaticResource FontSizeXLarge}" />
 
                             <hps:AkerTextBox Grid.Column="2"
                                              Tag="Nhập địa chỉ khách hàng"
                                              IsEnabled="{Binding CustomerOV.IsAdressTextBoxEnable}"
                                              Text="{Binding CustomerOV.CustomerAddress}"
                                              FontSize="{StaticResource FontSizeXLarge}"
-                                             BorderBrush="Black"/>
+                                             BorderBrush="Black" />
 
                         </Grid>
 
@@ -344,6 +344,7 @@
                                           PopupBorderThickness="1"
                                           PopupBorderBrush="Black"
                                           Background="White"
+                                          FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
                                           SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine}"
                                           ItemsSource="{Binding MedicineItemSource}"
                                           IsUsingListFilter="True"
@@ -415,7 +416,9 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
                             <hps:AkerTextBox Grid.Column="5"
                                              AkerTextBoxType="Decimal"
-                                             Text="{Binding MedicineOV.Quantity, UpdateSourceTrigger=PropertyChanged}"
+                                             Text="{Binding MedicineOV.Quantity,
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
                                              Tag="0"
                                              ToolTip="{Binding QunatityToolTipContent}"
                                              FontSize="{StaticResource FontSizeXLarge}" />
@@ -774,11 +777,11 @@
 
                 <hps:OsirisButton TextContent="Tạo mới"
                                   Margin="0,10"
-                                  Command="{Binding InstantiateOrderCommand}"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   BorderThickness="0"
                                   Foreground="White"
+                                  Command="{Binding RefreshSellingPageCommand}"
                                   Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                   FontSize="{StaticResource FontSizeXXLarge}"
                                   IsUsingDropShadowEffect="True"
@@ -790,6 +793,7 @@
                                   VerticalContentAlignment="Center"
                                   BorderThickness="0"
                                   Foreground="White"
+                                  Command="{Binding InstantiateOrderCommand}"
                                   Background="{StaticResource NormalTheme_1st_Background_Brush}"
                                   FontSize="{StaticResource FontSizeXXLarge}"
                                   IsUsingDropShadowEffect="True"

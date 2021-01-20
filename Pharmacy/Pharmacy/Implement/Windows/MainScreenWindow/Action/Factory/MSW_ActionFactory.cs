@@ -189,6 +189,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON:
                     action = new MSW_SP_InstantiateNewOrderAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_SP_REFRESH_BUTTON:
+                    action = new MSW_SP_RefreshPageAction();
+                    break;
                 default:
                     action = null;
                     break;
