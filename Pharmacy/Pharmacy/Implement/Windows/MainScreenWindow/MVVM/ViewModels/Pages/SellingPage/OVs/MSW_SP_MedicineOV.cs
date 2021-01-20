@@ -11,18 +11,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
     {
         private AbstractViewModel _parentModel;
         private tblMedicine _curSelectedMedicine;
-        private double _paidAmount;
+        private decimal _paidAmount;
 
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
         public string Quantity { get; set; }
-        public double MedicineCost
+        public decimal MedicineCost
         {
             get
             {
                 if ((_parentModel as SellingPageViewModel).CustomerOrderDetailItemSource.Count > 0)
                 {
                     var cost = (_parentModel as SellingPageViewModel).CustomerOrderDetailItemSource.Sum(o => o.TotalPrice);
-                    return Convert.ToDouble(cost);
+                    return Convert.ToDecimal(cost);
                 }
                 return 0;
             }
@@ -31,7 +31,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
             }
         }
-        public double DebtCost
+        public decimal DebtCost
         {
             get
             {
@@ -40,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                     var totalCost = (_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer.tblOrders.Sum(o => o.TotalPrice);
                     var purchaseCost = (_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer.tblOrders.Sum(o => o.PurchasePrice);
                     var debt = totalCost - purchaseCost;
-                    return Convert.ToDouble(debt);
+                    return Convert.ToDecimal(debt);
                 }
 
                 return 0;
@@ -49,7 +49,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             {
             }
         }
-        public double TotalCost
+        public decimal TotalCost
         {
             get
             {
@@ -60,7 +60,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
             }
         }
-        public double PaidAmount
+        public decimal PaidAmount
         {
             get
             {
@@ -73,7 +73,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 Invalidate("RestAmount");
             }
         }
-        public double RestAmount
+        public decimal RestAmount
         {
             get
             {
