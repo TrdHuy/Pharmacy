@@ -55,11 +55,5 @@ namespace Pharmacy.Implement.Utils.Extensions
                 DeleteObject(handle);
             }
         }
-
-        public static bool IsHavingOnlyNumber(string text)
-        {
-            Regex regex = new Regex("^[0-9]*$");
-            return regex.IsMatch(text);
-        }
     }
 }

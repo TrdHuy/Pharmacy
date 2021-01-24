@@ -23,10 +23,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
             }
             catch (Exception e)
             {
-                App.Current.ShowApplicationMessageBox(e.Message,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
-                    OwnerWindow.MainScreen);
+                App.Current.ShowApplicationMessageBox(e.Message);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
             return result;
         }

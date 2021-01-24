@@ -37,8 +37,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             medicine.MedicineTypeID = _viewModel.LstMedicineType[_viewModel.MedicineTypeID].MedicineTypeID;
             medicine.MedicineUnitID = _viewModel.LstMedicineUnit[_viewModel.MedicineUnitID].MedicineUnitID;
             medicine.SupplierID = _viewModel.LstSupplier[_viewModel.SupplierID].SupplierID;
-            medicine.BidPrice = decimal.Parse(_viewModel.BidPrice.Trim());
-            medicine.AskingPrice = decimal.Parse(_viewModel.AskingPrice.Trim());
+            medicine.BidPrice = _viewModel.BidPrice;
+            medicine.AskingPrice = _viewModel.AskingPrice;
             medicine.MedicineDescription = _viewModel.MedicineDescription;
             medicine.IsActive = true;
 

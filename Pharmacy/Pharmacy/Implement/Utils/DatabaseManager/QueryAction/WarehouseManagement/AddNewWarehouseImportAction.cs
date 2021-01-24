@@ -6,26 +6,28 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManagement
 {
-    public class SetWarehouseImportDeactiveAction : AbstractQueryAction
+    public class AddNewWarehouseImportAction : AbstractQueryAction
     {
-        public SetWarehouseImportDeactiveAction()
+        public AddNewWarehouseImportAction()
         {
-            _action = SetWarehouseImportDeactive;
+            _action = AddNewWarehouseImport;
         }
 
-        private SQLQueryResult SetWarehouseImportDeactive(PharmacyDBContext appDBContext, object[] paramaters)
+        private SQLQueryResult AddNewWarehouseImport(PharmacyDBContext appDBContext, object[] paramaters)
         {
-            long id = (long)paramaters[0];
+            tblWarehouseImport import = paramaters[0] as tblWarehouseImport;
+            string imageFolder = paramaters[1] as string;
+
             SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
             try
             {
-                var x = appDBContext.tblWarehouseImports.Where(o => o.ImportID == id).FirstOrDefault();
-                x.IsActive = false;
-                foreach (var item in x.tblWarehouseImportDetails)
-                {
-                    item.IsActive = false;
-                }
+                appDBContext.tblWarehouseImports.Add(import);
                 appDBContext.SaveChanges();
+                if (imageFolder.Length > 0 && !SaveImageToFile(import.ImportID.ToString(), imageFolder, ImageType.WarehouseImport))
+                {
+                    result = new SQLQueryResult(null, MessageQueryResult.Aborted);
+                    return result;
+                }
                 result = new SQLQueryResult(null, MessageQueryResult.Done);
                 return result;
             }

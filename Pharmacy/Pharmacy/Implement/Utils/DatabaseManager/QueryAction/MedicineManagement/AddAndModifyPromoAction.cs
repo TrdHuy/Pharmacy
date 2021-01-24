@@ -40,10 +40,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
             catch (DbEntityValidationException e)
             {
                 HandleDbEntityValidationException(e);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                App.Current.ShowApplicationMessageBox(e.Message);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
 
             return result;
