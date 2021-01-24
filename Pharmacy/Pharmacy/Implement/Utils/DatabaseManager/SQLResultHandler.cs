@@ -139,6 +139,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY:
                     _result = new SetWarehouseImportDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.ADD_WAREHOUSE_IMPORT_CMD_KEY:
+                    _result = new AddNewWarehouseImportAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -247,6 +250,10 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for set a warehouse import deactive
         public const string SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY = "set_warehouse_import_deactive";
+
+        //Key for add new warehouse import
+        public const string ADD_WAREHOUSE_IMPORT_CMD_KEY = "add_warehouse_import";
+
     }
 
     public class SQLQueryResult

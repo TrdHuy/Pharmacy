@@ -35,7 +35,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             }
 
             tblPromo promo = new tblPromo();
-            promo.PromoPercent = int.Parse(_viewModel.PromoPercent.Trim());
+            promo.PromoPercent = _viewModel.PromoPercent;
             promo.PromoDescription = _viewModel.PromoDescription;
             promo.MedicineID = _viewModel.MedicineInfo.MedicineID;
             promo.CustomerID = _viewModel.LstCustomer[_viewModel.SelectedCustomer].CustomerID;

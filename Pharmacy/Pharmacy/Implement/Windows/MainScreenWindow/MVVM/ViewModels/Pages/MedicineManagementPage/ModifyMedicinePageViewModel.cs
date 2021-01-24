@@ -124,7 +124,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 InvalidateOwn();
             }
         }
-        public string BidPrice
+        public decimal BidPrice
         {
             get
             {
@@ -137,7 +137,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 InvalidateOwn();
             }
         }
-        public string AskingPrice
+        public decimal AskingPrice
         {
             get
             {
@@ -160,8 +160,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private int _medicineTypeID = -1;
         private int _medicineUnitID = -1;
         private int _supplierID = -1;
-        private string _bidPrice = "";
-        private string _askingPrice = "";
+        private decimal _bidPrice = 0;
+        private decimal _askingPrice = 0;
         private bool _isSaveButtonRunning;
         private tblMedicine _modifiedMedicine;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
@@ -187,9 +187,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             MedicineTypeID = LstMedicineType.IndexOf(_modifiedMedicine.tblMedicineType);
             MedicineUnitID = LstMedicineUnit.IndexOf(_modifiedMedicine.tblMedicineUnit);
             SupplierID = LstSupplier.IndexOf(_modifiedMedicine.tblSupplier);
-            BidPrice = _modifiedMedicine.BidPrice.ToString();
-            AskingPrice = _modifiedMedicine.AskingPrice.ToString();
+            BidPrice = _modifiedMedicine.BidPrice;
+            AskingPrice = _modifiedMedicine.AskingPrice;
             MedicineDescription = _modifiedMedicine.MedicineDescription;
+            
             GetWarehouseImportDetail();
             MedicineImageSource = FileIOUtil.
                 GetBitmapFromName(_modifiedMedicine.MedicineID.ToString(), FileIOUtil.MEDICINE_IMAGE_FOLDER_NAME).
@@ -284,9 +285,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private void CheckBidPrice()
         {
-            if (BidPrice.Trim().Length > 0
-                && IsHavingOnlyNumber(BidPrice.Trim())
-                && decimal.Parse(BidPrice.Trim()) >= 0)
+            if (BidPrice >= 0)
                 BidPriceCheckingStatus = 1;
             else
                 BidPriceCheckingStatus = -1;
@@ -295,19 +294,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private void CheckAskingPrice()
         {
-            if (AskingPrice.Trim().Length > 0
-                && IsHavingOnlyNumber(AskingPrice.Trim())
-                && decimal.Parse(AskingPrice.Trim()) >= 0)
+            if (AskingPrice >= 0)
                 AskingPriceCheckingStatus = 1;
             else
                 AskingPriceCheckingStatus = -1;
             Invalidate("AskingPriceCheckingStatus");
-        }
-
-        private bool IsHavingOnlyNumber(string text)
-        {
-            Regex regex = new Regex("^[0-9]*$");
-            return regex.IsMatch(text);
         }
 
         private void InitData()

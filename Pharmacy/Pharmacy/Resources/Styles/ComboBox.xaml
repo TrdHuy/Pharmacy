@@ -40,18 +40,14 @@
                 Value="False" />
         <Setter Property="IsEditable"
                 Value="True" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver"
-                     Value="True">
-                <Setter Property="Cursor"
-                        Value="Hand" />
-            </Trigger>
-        </Style.Triggers>
-
+        <Setter Property="IconHeight"
+                Value="20"/>
     </Style>
 
     <Style TargetType="{x:Type hps:HorusBox}"
            x:Key="SearchingBoxTheme">
+        <Setter Property="MaxDropDownHeight"
+                Value="100" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="VerticalContentAlignment"

@@ -89,5 +89,14 @@ namespace Pharmacy.Implement.UIEventHandler
 
         //Warehouse management page key string
         public const string KEY_TAG_MSW_WHMP_DELETE_BUTTON = "msw_whmp_delete_button";
+        public const string KEY_TAG_MSW_WHMP_ADD_BUTTON = "msw_whmp_add_button";
+
+
+        //Add WarehouseImport page key string
+        public const string KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON = "msw_whmp_awip_cancel_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON = "msw_whmp_awip_save_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON = "msw_whmp_awip_browse_image_button_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON = "msw_whmp_awip_add_medicine_to_import_list_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON = "msw_whmp_awip_delete_medicine_to_import_list_button";
     }
 }
