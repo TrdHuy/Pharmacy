@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26e76b8f_c5d46e53",
+        "filename": "Pharmacy/Pharmacy/Implement/Utils/DatabaseManager/QueryAction/WarehouseManagement/AddNewWarehouseImportAction.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1018457
+      },
+      "writtenOn": "2021-01-25T04:36:28Z",
+      "side": 1,
+      "message": "Set cái result vs MessageQueryResult là Aborted ở đây nhé.\nĐể ra kia nó còn check và Rollback\nMấy cái catch exception thì set hết luôn nhé",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 36,
+        "endChar": 65
+      },
+      "revId": "6391ed6207bb9a322194fcab344f51e33fdb33ca",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
