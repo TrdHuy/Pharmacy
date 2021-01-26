@@ -22,6 +22,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
                         .Where(o => o.IsActive)
                         .OrderByDescending(o=>o.ImportTime)
                         .ToList();
+
                 result = new SQLQueryResult(lstOutput, MessageQueryResult.Done);
             }
             catch (Exception e)

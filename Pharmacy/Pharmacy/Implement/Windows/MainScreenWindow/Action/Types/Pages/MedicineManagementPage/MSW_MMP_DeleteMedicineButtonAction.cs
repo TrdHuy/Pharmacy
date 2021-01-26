@@ -29,7 +29,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 
             if (mesResult == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
-
                 SQLQueryCustodian sqlQueryObserver = new SQLQueryCustodian((queryResult) =>
                 {
                     if (queryResult.MesResult == MessageQueryResult.Done)

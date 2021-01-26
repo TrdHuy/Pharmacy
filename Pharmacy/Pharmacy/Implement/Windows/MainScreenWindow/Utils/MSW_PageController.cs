@@ -121,6 +121,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
              new Uri(PharmacyDefinitions.ADD_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.ADD_WAREHOUSE_IMPORT_PAGE_LOADING_DELAY_TIME));
 
+        public Lazy<PageOV> ModifyWarehouseImportPage = new Lazy<PageOV>(() =>
+         new PageOV(
+             new Uri(PharmacyDefinitions.MODIFY_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+             PharmacyDefinitions.MODIFY_WAREHOUSE_IMPORT_PAGE_LOADING_DELAY_TIME));
+
         public PageOV CurrentPageOV;
         public Uri CurrentPageSource;
 
@@ -217,6 +222,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.AddWarehouseImportPage:
                     CurrentPageOV.PageUri = AddWarehouseImportPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddWarehouseImportPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.ModifyWarehouseImportPage:
+                    CurrentPageOV.PageUri = ModifyWarehouseImportPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifyWarehouseImportPage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -318,6 +327,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = AddWarehouseImportPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddWarehouseImportPage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.MODIFY_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = ModifyWarehouseImportPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifyWarehouseImportPage.Value.LoadingDelayTime;
+                    break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
@@ -359,6 +372,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         ShowMedicineInfoPage = 13,
         DiscountByMedicinePage = 14,
         AddWarehouseImportPage = 15,
+        ModifyWarehouseImportPage = 16,
 
         UserModificationPage = 31,
         UserInstantiationPage = 32,

@@ -195,7 +195,7 @@
                 <DataGridTextColumn Width="auto"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Nhà cung cấp"
-                                    Binding="{Binding tblSupplier.SupplierName}" />
+                                    Binding="{Binding SupplierName}" />
 
                 <DataGridTemplateColumn CanUserResize="False"
                                         Width="*"

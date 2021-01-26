@@ -142,6 +142,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.ADD_WAREHOUSE_IMPORT_CMD_KEY:
                     _result = new AddNewWarehouseImportAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.MODIFY_WAREHOUSE_IMPORT_CMD_KEY:
+                    _result = new ModifyWarehouseImportAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -253,6 +256,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for add new warehouse import
         public const string ADD_WAREHOUSE_IMPORT_CMD_KEY = "add_warehouse_import";
+
+        //Key for modify warehouse import
+        public const string MODIFY_WAREHOUSE_IMPORT_CMD_KEY = "modify_warehouse_import";
 
     }
 

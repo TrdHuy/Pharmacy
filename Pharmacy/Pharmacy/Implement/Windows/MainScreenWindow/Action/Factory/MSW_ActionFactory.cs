@@ -17,6 +17,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagem
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.AddWarehouseImportPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ModifyWarehouseImportPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -183,6 +184,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_ADD_BUTTON:
                     action = new MSW_WHMP_AddWarehouseImportButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON:
+                    action = new MSW_WHMP_ModifyWarehouseImportButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON:
                     action = new MSW_WHMP_AWIP_BrowseInvoiceImageButtonAction();
                     break;
@@ -197,6 +201,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON:
                     action = new MSW_WHMP_AWIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_BROWSE_INVOICE_IMAGE_BUTTON:
+                    action = new MSW_WHMP_MWIP_BrowseInvoiceImageButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON:
+                    action = new MSW_WHMP_MWIP_AddMedicineToListButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON:
+                    action = new MSW_WHMP_MWIP_DeleteWarehouseImportDetailButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_CANCEL_BUTTON:
+                    action = new MSW_WHMP_MWIP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_SAVE_BUTTON:
+                    action = new MSW_WHMP_MWIP_SaveButtonAction();
                     break;
                 default:
                     action = null;

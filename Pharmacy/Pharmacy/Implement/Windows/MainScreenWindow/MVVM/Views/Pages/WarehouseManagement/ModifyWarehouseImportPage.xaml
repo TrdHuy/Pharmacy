@@ -5,14 +5,14 @@
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.WarehouseManagement.AddWarehouseImportPage"
+      x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.WarehouseManagement.ModifyWarehouseImportPage"
       mc:Ignorable="d"
       Background="White"
-      x:Name="AddWarehouseImport"
+      x:Name="ModifyWarehouseImport"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       FontSize="{StaticResource FontSizeXLarge}"
-      Title="AddWarehouseImportPage">
+      Title="ModifyWarehouseImportPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
@@ -22,7 +22,7 @@
             <RowDefinition Height="1.7*" />
         </Grid.RowDefinitions>
         <uc:PageHeader Grid.Row="0"
-                       HeaderText="Nhập kho"
+                       HeaderText="Chỉnh sửa thông tin nhập kho"
                        HeaderIcon="{StaticResource HomePage_WarehouseManageIcon}" />
         <Grid Grid.Row="1"
               Margin="10"
@@ -45,7 +45,7 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        Margin="10,0"
-                       Text="Nhà cung cấp:*" />
+                       Text="Thời gian:" />
 
             <TextBlock Grid.Column="2"
                        Grid.Row="0"
@@ -59,52 +59,20 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
                        Margin="10,0"
+                       Text="Nhà cung cấp:" />
+
+            <TextBlock Grid.Column="2"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Margin="10,0"
                        Text="Ghi chú:" />
 
-            <hps:HorusBox Grid.Column="1"
-                          x:Name="cbxSupplier"
-                          Grid.Row="0"
-                          Tag="Nhập tên để tìm kiếm"
-                          ItemsSource="{Binding LstSupplier, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedSupplier, Delay=10, UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="SupplierName"
-                          Style="{StaticResource SearchingBoxTheme}"
-                          Margin="3">
-                <hps:HorusBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                VirtualizingPanel.CacheLengthUnit="Item" />
-                    </ItemsPanelTemplate>
-                </hps:HorusBox.ItemsPanel>
-            </hps:HorusBox>
-
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       FontSize="{StaticResource FontSizeXSmall}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Margin="3,0,0,0">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SelectedSupplierCheckingStatus}"
-                                         Value="-1">
-                                <Setter Property="Visibility"
-                                        Value="Visible" />
-                                <Setter Property="Foreground"
-                                        Value="Red" />
-                                <Setter Property="Text"
-                                        Value="Hãy chọn nhà cung cấp" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding SelectedSupplierCheckingStatus}"
-                                         Value="1">
-                                <Setter Property="Visibility"
-                                        Value="Hidden" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <TextBlock Grid.Column="1"
+                       Grid.Row="0"
+                       VerticalAlignment="Center"
+                       Text="{Binding ImportInfo.ImportTime, UpdateSourceTrigger=PropertyChanged, Converter={conv:SystemDateTimeToStringConverter}, ConverterParameter=DATETIME}"
+                       Margin="3" />
 
             <TextBox VerticalContentAlignment="Center"
                      Grid.Column="3"
@@ -124,7 +92,13 @@
                               BorderThickness="2"
                               OBCornerRadius="10" />
 
-            <TextBox Grid.Column="1"
+            <TextBlock Grid.Column="1"
+                       Grid.Row="2"
+                       VerticalAlignment="Center"
+                       Text="{Binding ImportInfo.tblSupplier.SupplierName, UpdateSourceTrigger=PropertyChanged}"
+                       Margin="3" />
+
+            <TextBox Grid.Column="3"
                      Grid.Row="2"
                      Grid.RowSpan="2"
                      BorderThickness="2"
@@ -393,7 +367,7 @@
                                                       Background="White"
                                                       VerticalAlignment="Center"
                                                       IconStretch="Uniform"
-                                                      Command="{Binding DataContext.DeleteMedicineFromListButtonCommand,ElementName=AddWarehouseImport}"
+                                                      Command="{Binding DataContext.DeleteMedicineFromListButtonCommand,ElementName=ModifyWarehouseImport}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
                                 </Border>
