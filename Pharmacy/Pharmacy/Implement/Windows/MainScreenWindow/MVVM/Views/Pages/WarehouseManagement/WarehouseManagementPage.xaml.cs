@@ -44,5 +44,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Warehouse
                 eventArgs,
                 new object[] { txtFilterText, dprStartDateFilter, dprEndDateFilter, DataGrid });
         }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as WarehouseManagementPageViewModel).ShowWarehouseImportInfoCommand.Execute(sender, e, DataGrid, this);
+        }
     }
 }

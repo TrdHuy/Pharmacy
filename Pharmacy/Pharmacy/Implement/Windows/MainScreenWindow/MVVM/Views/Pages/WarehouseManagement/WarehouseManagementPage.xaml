@@ -181,7 +181,8 @@
 
                     <Setter Property="Height"
                             Value="{StaticResource DefaultDataGrid_HavingListBox_RowHeight}" />
-                    <!--<EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>-->
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="DataGridRow_MouseDoubleClick" />
                 </Style>
 
             </DataGrid.RowStyle>
@@ -278,7 +279,9 @@
 
                                     <TextBlock Grid.Column="5"
                                                VerticalAlignment="Center">
-                                        <Hyperlink>
+                                        <Hyperlink FontStyle="Italic"
+                                                   Command="{Binding DataContext.ShowInvoiceButtonCommand,ElementName=WarehouseManagement}"
+                                                   CommandParameter="{Binding ElementName=DataGrid}">
                                             Xem hóa đơn
                                         </Hyperlink>
                                     </TextBlock>

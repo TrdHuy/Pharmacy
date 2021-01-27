@@ -187,6 +187,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON:
                     action = new MSW_WHMP_ModifyWarehouseImportButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON:
+                    action = new MSW_WHMP_ShowWarehouseImportInfoButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_WHMP_ShowInvoiceButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON:
                     action = new MSW_WHMP_AWIP_BrowseInvoiceImageButtonAction();
                     break;
@@ -216,6 +222,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_SAVE_BUTTON:
                     action = new MSW_WHMP_MWIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON:
+                    action = new MSW_WHMP_SWIIP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_WHMP_SWIIP_ShowInvoiceButtonAction();
                     break;
                 default:
                     action = null;

@@ -160,12 +160,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         private void ShowWarehouseImportInfoEvent(object sender, EventArgs e, object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON
+                , dataTransfer);
         }
 
         private void AddNewWarehouseImportButtonClickEvent(object paramaters)
@@ -200,12 +200,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         private void ShowInvoiceButtonClickEvent(object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON
+                , dataTransfer);
         }
     }
 

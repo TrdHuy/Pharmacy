@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Base.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -48,6 +49,37 @@ namespace Pharmacy.Implement.Utils
             catch
             {
                 return GetDefaultIconBitmap(folderName);
+            }
+        }
+
+        public static void ShowBitmapFromName(string imageName, string folderName)
+        {
+            try
+            {
+                var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + folderName;
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                string fileName = imageName + ".jpg";
+                string filePath = directory + @"\" + fileName;
+
+                if (File.Exists(filePath))
+                {
+                    Process.Start(filePath);
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch
+            {
+                App.Current.ShowApplicationMessageBox("Không tìm thấy hóa đơn!",
+                        HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                        HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                        OwnerWindow.MainScreen,
+                        "Thông báo!");
             }
         }
 
