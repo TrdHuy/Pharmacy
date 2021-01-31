@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Utils.Extensions.Entities;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -35,6 +36,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             modifiedInfo.Email = _viewModel.EmailText;
             modifiedInfo.Link = _viewModel.LinkText;
             modifiedInfo.Job = _viewModel.CurrentUser.Job;
+            modifiedInfo.UserDataJSON = _viewModel.CurrentUser.GetUserDataJSON();
+
             modifiedInfo.Password = String.IsNullOrEmpty(_viewModel.NewPassword) ?
                 App.Current.CurrentUser.Password : _viewModel.NewPassword;
 

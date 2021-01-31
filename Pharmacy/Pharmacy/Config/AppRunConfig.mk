@@ -1,11 +1,33 @@
 ﻿#HP Soultion Features Turner
 
 
+############################################################
+#Only enable locator window and zoom when support change image location
+#Change personal avatar location
+#Feature price: 4,500,000 vnd
+HPS_FT_IS_SUPPORT_CHANGE_PERSONAL_AVATAR_LOCATION=FALSE
+
+#Change personal avatar zoom
+HPS_FT_IS_SUPPORT_CHANGE_PERSONAL_AVATAR_ZOOM=FALSE
+
+#Change personal avatar location
+HPS_FT_IS_SUPPORT_LOCATOR_WINDOW_FOR_PERSONAL_AVATAR=FALSE
+
+############################################################
+
+
+############################################################
+#Feature price: 2,000,000 vnd
 #Notify icon switch
 HPS_FT_IS_SUPPORT_NOTIFY_ICON=TRUE
+############################################################
 
+
+############################################################
+#Feature price: 2,000,000 vnd
 #Navigation button switch
 HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE
+############################################################
 
 #Adminstrator change user image
 HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE=TRUE

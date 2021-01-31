@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Home
         public HomePage()
         {
             InitializeComponent();
+        }
+
+        private void AtumImageView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ((HomePageViewModel)DataContext).AvatarCommand.Execute(sender, e, this);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using System;
 using System.Collections;
@@ -12,116 +13,116 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 {
-    public class MSW_PageController : BaseObservable<PageOV>
+    public class MSW_PageController : BaseObservable<PageVO>
     {
         private static MSW_PageController _instance;
 
-        public Lazy<PageOV> HomePage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> HomePage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.HOME_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.HOME_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> PersonalInfoPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> PersonalInfoPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.PERSONAL_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.PERSONAL_INFO_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> SellingPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> SellingPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.SELLING_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.SELLING_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> UserManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> UserManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.USER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.USER_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> CustomerManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> CustomerManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.CUSTOMER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.CUSTOMER_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> SupplierManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> SupplierManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.SUPPLIER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.SUPPLIER_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> InvoiceManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> InvoiceManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.INVOICE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.INVOICE_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> MedicineManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> MedicineManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.MEDICINE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> OtherPaymentsManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> OtherPaymentsManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.OTHER_PAYMENT_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> WarehouseManagementPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> WarehouseManagementPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> ReportPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> ReportPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.REPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.REPORT_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> UserModificationPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> UserModificationPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.USER_MODIFICATION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.USER_MODIFICATION_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> UserInstantiationPage = new Lazy<PageOV>(() =>
-           new PageOV(
+        public Lazy<PageVO> UserInstantiationPage = new Lazy<PageVO>(() =>
+           new PageVO(
                 new Uri(PharmacyDefinitions.USER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.USER_INSTANTIATION_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> AddMedicinePage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> AddMedicinePage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.ADD_MEDICINE_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> ModifyMedicinePage = new Lazy<PageOV>(() =>
-         new PageOV(
+        public Lazy<PageVO> ModifyMedicinePage = new Lazy<PageVO>(() =>
+         new PageVO(
              new Uri(PharmacyDefinitions.MODIFY_MEDICINE_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.MODIFY_MEDICINE_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> CustomerInstantiationPage = new Lazy<PageOV>(() =>
-            new PageOV(
+        public Lazy<PageVO> CustomerInstantiationPage = new Lazy<PageVO>(() =>
+            new PageVO(
                 new Uri(PharmacyDefinitions.CUSTOMER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.CUSTOMER_INSTANTIATION_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> CustomerModificationPage = new Lazy<PageOV>(() =>
-           new PageOV(
+        public Lazy<PageVO> CustomerModificationPage = new Lazy<PageVO>(() =>
+           new PageVO(
                new Uri(PharmacyDefinitions.CUSTOMER_MODIFICATION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                PharmacyDefinitions.CUSTOMER_MODIFICATION_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> CustomerTransactionHistoryPage = new Lazy<PageOV>(() =>
-         new PageOV(
+        public Lazy<PageVO> CustomerTransactionHistoryPage = new Lazy<PageVO>(() =>
+         new PageVO(
              new Uri(PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> ShowMedicineInfoPage = new Lazy<PageOV>(() =>
-         new PageOV(
+        public Lazy<PageVO> ShowMedicineInfoPage = new Lazy<PageVO>(() =>
+         new PageVO(
              new Uri(PharmacyDefinitions.SHOW_MEDICINE_INFO_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.SHOW_MEDICINE_INFO_PAGE_LOADING_DELAY_TIME));
 
-        public Lazy<PageOV> DiscountByMedicinePage = new Lazy<PageOV>(() =>
-         new PageOV(
+        public Lazy<PageVO> DiscountByMedicinePage = new Lazy<PageVO>(() =>
+         new PageVO(
              new Uri(PharmacyDefinitions.DISCOUNT_BY_MEDICINE_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.DISCOUNT_BY_MEDICINE_PAGE_LOADING_DELAY_TIME));
 
-        public PageOV CurrentPageOV;
+        public PageVO CurrentPageOV;
         public Uri CurrentPageSource;
 
         private MSW_PageController()
         {
-            CurrentPageOV = new PageOV(HomePage.Value.PageUri,
+            CurrentPageOV = new PageVO(HomePage.Value.PageUri,
                 HomePage.Value.LoadingDelayTime);
         }
 
