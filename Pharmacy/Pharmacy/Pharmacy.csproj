@@ -83,9 +83,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.21.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.22\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.23\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -173,6 +173,7 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\GetAllActiveWarehouseImportDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\SetWarehouseImportDeactiveAction.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
+    <Compile Include="Implement\Utils\Extensions\Entities\UserEntityExtension.cs" />
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
     <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
@@ -228,7 +229,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_DeleteWarehouseImportButtonAction.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\PageOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\PageVO.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
@@ -317,6 +318,7 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -682,7 +684,9 @@
     <Resource Include="Resources\Icons\HomePageIcon\phone_icon.png" />
     <Resource Include="Resources\DebugResource\_test3x4potrait.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\ModelImpl\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

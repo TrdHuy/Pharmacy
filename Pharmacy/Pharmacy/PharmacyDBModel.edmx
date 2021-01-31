@@ -122,6 +122,7 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Job" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="UserDataJSON" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblWarehouseImport">
           <Key>
@@ -555,6 +556,7 @@
           <Property Name="Job" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblOrders" Relationship="PharmacyDBModel.FK__tblOrder__UserID__345EC57D" FromRole="tblUser" ToRole="tblOrder" />
+          <Property Name="UserDataJSON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblWarehouseImport">
           <Key>
@@ -848,6 +850,7 @@
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="PharmacyDBModel.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserDataJSON" ColumnName="UserDataJSON" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="Job" ColumnName="Job" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

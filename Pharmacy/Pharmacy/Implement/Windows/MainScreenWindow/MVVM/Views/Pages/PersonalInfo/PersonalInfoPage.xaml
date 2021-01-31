@@ -45,6 +45,10 @@
 
             <!--Page title-->
             <uc:PageOverviewInfo Grid.Row="1"
+                                 AtumImageData="{Binding AvatarInfoData, Mode=TwoWay}"
+                                 IsSupportChangeImageLocation="{Binding IsSupportChangePersonalAvatarLocation}"
+                                 IsSupportChangeImageZoom="{Binding IsSupportChangePersonalAvatarZoom}"
+                                 IsSupportLocatorWindow="{Binding IsSupportLocatorPersonalAvatarWindow}"
                                  AvatarSource="{Binding UserImageSource}"
                                  CamButCmd="{Binding CameraButtonCommand}"
                                  CamTip="Thay đổi ảnh đại diện cá nhân"
