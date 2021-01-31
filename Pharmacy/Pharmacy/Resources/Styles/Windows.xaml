@@ -580,8 +580,6 @@
                         <!--Page loading trigger-->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="ContentType"
-                                           Value="PageType" />
                                 <Condition Property="IsPageLoading"
                                            Value="True" />
                             </MultiTrigger.Conditions>

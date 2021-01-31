@@ -599,11 +599,11 @@ namespace Pharmacy.Implement.Utils.CustomControls
         {
             if (ContentType == DashboardWindowContentType.PageType)
             {
-                DWPageHostFrameElement = GetTemplateChild("DWPageHostFrame") as Frame;
                 PreviousNavigationButtonElement = GetTemplateChild("PreviousNavigateButton") as Button;
                 NextNavigationButtonElement = GetTemplateChild("NextNavigateButton") as Button;
 
             }
+            DWPageHostFrameElement = GetTemplateChild("DWPageHostFrame") as Frame;
             MaximizeButtonElement = GetTemplateChild("MaximizeButton") as Button;
             MinimizeButtonElement = GetTemplateChild("MinimizeButton") as Button;
             CloseButtonElement = GetTemplateChild("CloseButton") as Button;
