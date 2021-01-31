@@ -32,6 +32,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
                 x.Link = modifiedUser.Link;
                 x.Job = modifiedUser.Job;
                 x.Password = modifiedUser.Password;
+                x.UserDataJSON = modifiedUser.UserDataJSON;
 
                 if (!SaveImageToFile(modifiedUser.Username, imageFolder, ImageType.User))
                 {
@@ -44,10 +45,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
             }
             catch (DbEntityValidationException e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 HandleDbEntityValidationException(e);
             }
             catch (Exception e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 ShowErrorMessageBox(e);
             }
 

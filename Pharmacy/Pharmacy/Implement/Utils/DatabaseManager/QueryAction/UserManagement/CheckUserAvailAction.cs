@@ -17,17 +17,19 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
         {
             string name = paramaters[0].ToString();
             string pass = paramaters[1].ToString();
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
 
             try
             {
                 var x = appDBContext.tblUsers.Where(user => user.Username.Equals(name)
                 && user.Password.Equals(pass)).ToList();
 
-                SQLQueryResult result = new SQLQueryResult(x, MessageQueryResult.Done);
+                result = new SQLQueryResult(x, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 ShowErrorMessageBox(e);
             }
             return null;

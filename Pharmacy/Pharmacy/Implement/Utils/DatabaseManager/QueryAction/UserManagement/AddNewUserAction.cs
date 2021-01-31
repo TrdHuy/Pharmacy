@@ -37,10 +37,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
             }
             catch (DbEntityValidationException e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 HandleDbEntityValidationException(e);
             }
             catch (Exception e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 ShowErrorMessageBox(e);
             }
 

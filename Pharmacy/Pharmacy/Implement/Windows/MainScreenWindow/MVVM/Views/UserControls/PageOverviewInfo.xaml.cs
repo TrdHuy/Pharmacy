@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls
 {
@@ -24,7 +25,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls
     /// </summary>
     public partial class PageOverviewInfo : UserControl
     {
-       
+
         #region CameraButtonVisibility
         public static readonly DependencyProperty CamButVisibilityProperty =
                 DependencyProperty.Register(
@@ -162,21 +163,93 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls
         }
         #endregion
 
+        #region IsSupportChangeImageLocation
+        public static readonly DependencyProperty IsSupportChangeImageLocationProperty =
+                DependencyProperty.Register(
+                        "IsSupportChangeImageLocation",
+                        typeof(bool),
+                        typeof(PageOverviewInfo),
+                        new PropertyMetadata(default(bool)));
+
+        public bool IsSupportChangeImageLocation
+        {
+            get { return (bool)GetValue(IsSupportChangeImageLocationProperty); }
+            set { SetValue(IsSupportChangeImageLocationProperty, value); }
+        }
+        #endregion
+
+        #region IsSupportChangeImageZoom
+        public static readonly DependencyProperty IsSupportChangeImageZoomProperty =
+                DependencyProperty.Register(
+                        "IsSupportChangeImageZoom",
+                        typeof(bool),
+                        typeof(PageOverviewInfo),
+                        new PropertyMetadata(default(bool)));
+
+        public bool IsSupportChangeImageZoom
+        {
+            get { return (bool)GetValue(IsSupportChangeImageZoomProperty); }
+            set { SetValue(IsSupportChangeImageZoomProperty, value); }
+        }
+        #endregion
+
+        #region IsSupportLocatorWindow
+        public static readonly DependencyProperty IsSupportLocatorWindowProperty =
+                DependencyProperty.Register(
+                        "IsSupportLocatorWindow",
+                        typeof(bool),
+                        typeof(PageOverviewInfo),
+                        new PropertyMetadata(default(bool)));
+
+        public bool IsSupportLocatorWindow
+        {
+            get
+            {
+                return (bool)GetValue(IsSupportLocatorWindowProperty);
+            }
+            set
+            {
+                SetValue(IsSupportLocatorWindowProperty, value);
+            }
+        }
+        #endregion
+
+        #region AtumImageData
+        public static readonly DependencyProperty AtumImageDataProperty =
+                DependencyProperty.Register(
+                        "AtumImageData",
+                        typeof(AtumUserData),
+                        typeof(PageOverviewInfo),
+                        new PropertyMetadata(default(AtumUserData)));
+
+        public AtumUserData AtumImageData
+        {
+            get
+            {
+                return (AtumUserData)GetValue(AtumImageDataProperty);
+            }
+            set
+            {
+                SetValue(AtumImageDataProperty, value);
+            }
+        }
+        #endregion
+
         public PageOverviewInfo()
         {
             InitializeComponent();
+            SizeChanged += PageOverViewInfoSizeChange;
         }
 
-        private void ImageGridContainerSizeChanged(object sender, SizeChangedEventArgs e)
+        private void PageOverViewInfoSizeChange(object sender, SizeChangedEventArgs e)
         {
-            Grid ctrl = (Grid)sender;
-            if (AvatarBoder.RenderSize.Width >= AvatarBoder.RenderSize.Height)
+            if (AvatarGrid.RenderSize.Width >= AvatarGrid.RenderSize.Height)
             {
-                ctrl.Width = AvatarBoder.RenderSize.Height;
+                Avatar.Width = AvatarGrid.ActualHeight;
             }
             else
             {
-                ctrl.Width = AvatarBoder.RenderSize.Width;
+                Avatar.Width = AvatarGrid.ActualWidth;
             }
         }
     }

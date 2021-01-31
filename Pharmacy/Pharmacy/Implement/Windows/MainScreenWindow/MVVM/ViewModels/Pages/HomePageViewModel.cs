@@ -2,19 +2,23 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Base.UIEventHandler.Listener;
+using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Extensions;
+using Pharmacy.Implement.Utils.Extensions.Entities;
 using Pharmacy.Implement.Utils.InputCommand;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
@@ -37,13 +41,31 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public RunInputCommand OtherPaymentsManagementCommand { get; set; }
         public RunInputCommand ReportCommand { get; set; }
         public RunInputCommand PersonalInfoCommand { get; set; }
-        
+        public EventHandleCommand AvatarCommand { get; set; }
+
+
+        public bool IsSupportChangePersonalAvatarLocation { get { return RUNE.IS_SUPPORT_CHANGE_PERSONAL_AVATAR_LOCATION; } }
+        public bool IsSupportChangePersonalAvatarZoom { get { return RUNE.IS_SUPPORT_CHANGE_PERSONAL_AVATAR_ZOOM; } }
+
         public string CurrentTime
         {
             get { return _currentTime; }
             set
             {
                 _currentTime = value;
+                InvalidateOwn();
+            }
+        }
+
+        public AtumUserData AvatarInfoData
+        {
+            get
+            {
+                return CurrentUser.GetUserData().PersonalAvatarInfo;
+            }
+            set
+            {
+                CurrentUser.GetUserData().PersonalAvatarInfo = value;
                 InvalidateOwn();
             }
         }
@@ -64,9 +86,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             OtherPaymentsManagementCommand = new RunInputCommand(OtherPaymentsManagementButtonClickEvent);
             ReportCommand = new RunInputCommand(ReportButtonClickEvent);
             PersonalInfoCommand = new RunInputCommand(PersonalInfoImageClickEvent);
-
+            AvatarCommand = new EventHandleCommand(AvatarClickEvent);
         }
-
 
         protected override void InitPropertiesRegistry()
         {
@@ -87,6 +108,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         }
 
         #region PageSourceClickEvent
+
+        private void AvatarClickEvent(object sender, EventArgs e, object paramater)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramater;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
+                , dataTransfer);
+        }
+
 
         private void PersonalInfoImageClickEvent(object obj)
         {

@@ -6,6 +6,7 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
@@ -114,7 +115,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
             }
         }
 
-        private void OnPageSourceChange(PageOV newSource)
+        private void OnPageSourceChange(PageVO newSource)
         {
             Invalidate("PageLoadingDelayTime");
             Invalidate("CurrentPageSource");
@@ -128,15 +129,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
 
     }
 
-    internal class PageSourceWatcher : Base.Observable.ObserverPattern.IObserver<PageOV>
+    internal class PageSourceWatcher : Base.Observable.ObserverPattern.IObserver<PageVO>
     {
-        private Action<PageOV> OnPageSourceChange;
+        private Action<PageVO> OnPageSourceChange;
 
-        internal PageSourceWatcher(Action<PageOV> onSourceChange)
+        internal PageSourceWatcher(Action<PageVO> onSourceChange)
         {
             OnPageSourceChange = onSourceChange;
         }
-        public void Update(PageOV value)
+        public void Update(PageVO value)
         {
             OnPageSourceChange?.Invoke(value);
         }

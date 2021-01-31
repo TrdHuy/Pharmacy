@@ -30,6 +30,7 @@ namespace Pharmacy
         public bool IsActive { get; set; }
         public string Job { get; set; }
         public string Link { get; set; }
+        public string UserDataJSON { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }

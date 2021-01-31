@@ -16,16 +16,19 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
         private SQLQueryResult CheckUserNameExisted(PharmacyDBContext appDBContext, object[] paramaters)
         {
             string name = paramaters[0].ToString();
+            SQLQueryResult result = new SQLQueryResult(null, MessageQueryResult.Non);
+
             try
             {
                 var x = appDBContext.tblUsers.Where(user => user.Username.Equals(name)).
                     ToList();
                 bool IsExisted = x.Count > 0;
-                SQLQueryResult result = new SQLQueryResult(IsExisted, MessageQueryResult.Done);
+                result = new SQLQueryResult(IsExisted, MessageQueryResult.Done);
                 return result;
             }
             catch (Exception e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 ShowErrorMessageBox(e);
             }
             return null;

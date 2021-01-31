@@ -25,17 +25,13 @@
                 <ColumnDefinition Width="0.66*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.05*" />
-                <RowDefinition Height="0.75*" />
-                <RowDefinition Height="0.05*" />
+                <RowDefinition Height="0.025*" />
+                <RowDefinition Height="0.95*" />
+                <RowDefinition Height="0.025*" />
             </Grid.RowDefinitions>
             <Border Grid.Column="0"
                     Grid.Row="1"
                     Background="{StaticResource NormalTheme_1st_Background_Brush}">
-                <Border.OpacityMask>
-                    <ImageBrush Stretch="UniformToFill"
-                                ImageSource="{StaticResource AvatarBGImageOpacityMask}" />
-                </Border.OpacityMask>
             </Border>
 
         </Grid>
@@ -51,31 +47,40 @@
                     <ColumnDefinition Width="0.93*" />
                     <ColumnDefinition Width="0.2*" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.025*" />
+                    <RowDefinition Height="0.95*" />
+                    <RowDefinition Height="0.025*" />
+                </Grid.RowDefinitions>
 
-                <Border Grid.Column="2"
-                        x:Name="AvatarBoder"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Background="Wheat"
-                        CornerRadius="0150">
 
-                    <Border.OpacityMask>
-                        <ImageBrush Stretch="Uniform"
-                                    ImageSource="{StaticResource AvatarImageOpacityMask}">
-                        </ImageBrush>
-                    </Border.OpacityMask>
 
-                    <Grid x:Name="ImageGridContainer"
-                          SizeChanged="ImageGridContainerSizeChanged">
-                        <Image Stretch="UniformToFill"
-                               HorizontalAlignment="Center"
-                               Source="{Binding AvatarSource, RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}"
-                               VerticalAlignment="Center">
-                        </Image>
-                    </Grid>
-                </Border>
+                <Grid x:Name="AvatarGrid"
+                        Grid.Column="2"
+                        Grid.Row="1">
+                    <hps:AtumImageView x:Name="Avatar"
+                                       BorderThickness="0"
+                                       Background="Black"
+                                       CornerRadius="1000"
+                                       Stretch="UniformToFill"
+                                       VerticalContentAlignment="Center"
+                                       HorizontalContentAlignment="Center"
+                                       IsUsingAtumClippingBorder="True"
+                                       IsEnableAtumTransformer="True"
+                                       AtumImageData="{Binding AtumImageData,Mode=TwoWay,
+                        RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}"
+                                       IsSupportAtumLocator="{Binding IsSupportChangeImageLocation,
+                        RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}"
+                                       IsSupportAtumZoomer="{Binding IsSupportChangeImageZoom,
+                        RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}"
+                                       IsSupportImageLocateHelper="{Binding IsSupportLocatorWindow,
+                        RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}"
+                                       Source="{Binding AvatarSource,
+                        RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}" />
+                </Grid>
 
                 <hps:OsirisButton Grid.Column="2"
+                                  Grid.Row="1"
                                   ToolTip="{Binding CamTip,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PageOverviewInfo}}"
                                   Background="Transparent"
                                   OBContentOrientation="Vertical"
@@ -121,7 +126,7 @@
                          Stretch="Uniform"
                          Grid.Row="2">
                     <TextBlock MaxWidth="700"
-                               TextTrimming="WordEllipsis" 
+                               TextTrimming="WordEllipsis"
                                Text="{Binding SubTiltle2nd,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:PageOverviewInfo}}" />
                 </Viewbox>
             </Grid>

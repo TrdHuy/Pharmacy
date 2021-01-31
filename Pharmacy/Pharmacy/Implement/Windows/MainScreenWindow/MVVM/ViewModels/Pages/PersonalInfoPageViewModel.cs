@@ -16,6 +16,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Config;
+using static HPSolutionCCDevPackage.netFramework.AtumImageView;
+using Pharmacy.Implement.Utils.Extensions.Entities;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
@@ -37,6 +40,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
         public string UserImageFileName { get; set; }
 
+        public bool IsSupportChangePersonalAvatarLocation { get { return RUNE.IS_SUPPORT_CHANGE_PERSONAL_AVATAR_LOCATION; } }
+        public bool IsSupportChangePersonalAvatarZoom { get { return RUNE.IS_SUPPORT_CHANGE_PERSONAL_AVATAR_ZOOM; } }
+        public bool IsSupportLocatorPersonalAvatarWindow { get { return RUNE.IS_SUPPORT_LOCATOR_WINDOW_FOR_PERSONAL_AVATAR; } }
+
         public ImageSource UserImageSource
         {
             get
@@ -50,6 +57,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             }
         }
 
+        public AtumUserData AvatarInfoData 
+        {
+            get
+            {
+                return CurrentUser.GetUserData().PersonalAvatarInfo;
+            }
+            set
+            {
+                CurrentUser.GetUserData().PersonalAvatarInfo = value;
+                InvalidateOwn();
+            }
+        }
         public string FullNameText
         {
             get
