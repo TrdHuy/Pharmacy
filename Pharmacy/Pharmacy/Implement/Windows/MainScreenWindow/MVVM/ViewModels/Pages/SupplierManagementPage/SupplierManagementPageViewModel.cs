@@ -113,12 +113,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         private void ShowSupplierInfoEvent(object sender, EventArgs e, object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = (paramaters as object[])[0];
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON
+                , dataTransfer);
         }
 
         private void AddNewSupplierButtonClickEvent(object paramaters)
@@ -143,12 +143,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         private void EditSupplierButtonClickEvent(object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON
+                , dataTransfer);
         }
 
         private void ShowImportHistoryButtonClickEvent(object paramaters)

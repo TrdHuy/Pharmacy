@@ -128,5 +128,9 @@ namespace Pharmacy.Implement.UIEventHandler
         //Add Supplier page key string
         public const string KEY_TAG_MSW_SMP_ASP_CANCEL_BUTTON = "msw_smp_asp_cancel_button";
         public const string KEY_TAG_MSW_SMP_ASP_SAVE_BUTTON = "msw_smp_asp_save_button";
+
+        //Modify Supplier page key string
+        public const string KEY_TAG_MSW_SMP_MSP_CANCEL_BUTTON = "msw_smp_msp_cancel_button";
+        public const string KEY_TAG_MSW_SMP_MSP_SAVE_BUTTON = "msw_smp_msp_save_button";
     }
 }

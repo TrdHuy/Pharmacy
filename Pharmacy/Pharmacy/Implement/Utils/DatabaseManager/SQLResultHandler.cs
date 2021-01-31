@@ -162,6 +162,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.ADD_SUPPLIER_CMD_KEY:
                     _result = new AddNewSupplierAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.MODIFY_SUPPLIER_CMD_KEY:
+                    _result = new ModifySupplierAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -290,7 +293,10 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
         public const string SET_SUPPLIER_DEACTIVE_CMD_KEY = "set_supplier_deactive";
 
         //Key for add new supplier
-        public const string ADD_SUPPLIER_CMD_KEY = "add_supplier";
+        public const string ADD_SUPPLIER_CMD_KEY = "add_new_supplier";
+
+        //Key for modify supplier
+        public const string MODIFY_SUPPLIER_CMD_KEY = "modify_supplier";
     }
 
     public class SQLQueryResult

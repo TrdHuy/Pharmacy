@@ -137,6 +137,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
              new Uri(PharmacyDefinitions.ADD_SUPPLIER_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.ADD_SUPPLIER_PAGE_LOADING_DELAY_TIME));
 
+        public Lazy<PageVO> ModifySupplierPage = new Lazy<PageVO>(() =>
+         new PageVO(
+             new Uri(PharmacyDefinitions.MODIFY_SUPPLIER_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+             PharmacyDefinitions.MODIFY_SUPPLIER_PAGE_LOADING_DELAY_TIME));
+
         public PageVO CurrentPageOV;
 
 
@@ -247,6 +252,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.AddSupplierPage:
                     CurrentPageOV.PageUri = AddSupplierPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddSupplierPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.ModifySupplierPage:
+                    CurrentPageOV.PageUri = ModifySupplierPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifySupplierPage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -360,6 +369,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = AddSupplierPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddSupplierPage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.MODIFY_SUPPLIER_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = ModifySupplierPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifySupplierPage.Value.LoadingDelayTime;
+                    break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
@@ -404,6 +417,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         ModifyWarehouseImportPage = 16,
         ShowWarehouseImportInfoPage = 17,
         AddSupplierPage = 18,
+        ModifySupplierPage = 19,
 
         UserModificationPage = 31,
         UserInstantiationPage = 32,
