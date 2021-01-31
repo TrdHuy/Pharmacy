@@ -111,5 +111,12 @@ namespace Pharmacy.Implement.UIEventHandler
         //Show WarehouseImport Info page key string
         public const string KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON = "msw_whmp_swiip_cancel_button";
         public const string KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON = "msw_whmp_swiip_show_invoice_button";
+
+        //Supplier management page key string
+        public const string KEY_TAG_MSW_SMP_DELETE_BUTTON = "msw_smp_delete_button";
+        public const string KEY_TAG_MSW_SMP_ADD_BUTTON = "msw_smp_add_button";
+        public const string KEY_TAG_MSW_SMP_EDIT_BUTTON = "msw_smp_edit_button";
+        public const string KEY_TAG_MSW_SMP_SHOW_INFO_BUTTON = "msw_smp_show_info_button";
+        public const string KEY_TAG_MSW_SMP_SHOW_INVOICE_BUTTON = "msw_smp_show_invoice_button";
     }
 }

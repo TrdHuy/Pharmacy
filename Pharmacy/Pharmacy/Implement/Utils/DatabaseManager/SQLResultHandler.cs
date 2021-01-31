@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.SupplierManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManagement;
 using Pharmacy.Implement.Utils.Extensions;
@@ -145,6 +146,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.MODIFY_WAREHOUSE_IMPORT_CMD_KEY:
                     _result = new ModifyWarehouseImportAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.SET_SUPPLIER_DEACTIVE_CMD_KEY:
+                    _result = new SetSupplierDeactiveAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -259,6 +263,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for modify warehouse import
         public const string MODIFY_WAREHOUSE_IMPORT_CMD_KEY = "modify_warehouse_import";
+
+        //Key for set a supplier deactive
+        public const string SET_SUPPLIER_DEACTIVE_CMD_KEY = "set_supplier_deactive";
 
     }
 

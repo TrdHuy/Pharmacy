@@ -12,6 +12,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ModifyMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ShowMedicineInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
@@ -228,6 +229,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON:
                     action = new MSW_WHMP_SWIIP_ShowInvoiceButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_DELETE_BUTTON:
+                    action = new MSW_SMP_DeleteSupplierButtonAction();
                     break;
                 default:
                     action = null;

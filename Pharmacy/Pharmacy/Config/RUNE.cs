@@ -55,6 +55,12 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_FILTER_WAREHOUSE_IMPORT_BY_END_DATE = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_WAREHOUSE_IMPORT_BY_END_DATE"];
 
+        public static readonly bool IS_SUPPORT_FILTER_SUPPLIER_BY_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_SUPPLIER_BY_NAME"];
+
+        public static readonly bool IS_SUPPORT_FILTER_SUPPLIER_BY_PHONE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_SUPPLIER_BY_PHONE"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";
