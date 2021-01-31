@@ -2,13 +2,276 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d"
+      Background="White"
+      x:Name="PageSupplierManagement"
+      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+      FontSize="{StaticResource FontSizeLarge_Float}"
       Title="SupplierManagementPage">
 
-    <Grid Background="Blue">
-        <TextBlock FontSize="50">this is supplier page</TextBlock>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"
+                           MaxHeight="{StaticResource PageHeaderMaxHeight}" />
+            <RowDefinition Height="0.37*" />
+            <RowDefinition Height="4.64*" />
+            <RowDefinition Height="0.70*"
+                           MaxHeight="100" />
+        </Grid.RowDefinitions>
+        <uc:PageHeader Grid.Row="0"
+                       HeaderText="Quản lý nhà cung cấp"
+                       HeaderIcon="{StaticResource HomePage_SupplierManageIcon}" />
+        <Grid Grid.Row="1"
+              Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Tìm kiếm:"
+                       VerticalAlignment="Center" />
+            <TextBox Grid.Column="1"
+                     ToolTip="Hỗ trợ tìm kiếm theo: mã hoặc tên thuốc"
+                     Margin="5,0,0,0"
+                     TextChanged="SearchTextBox_TextChanged"
+                     Style="{StaticResource DefaultTextBox}"
+                     x:Name="txtFilterText">
+            </TextBox>
+        </Grid>
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="2"
+                  IsReadOnly="True"
+                  VerticalAlignment="Top"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding SupplierItemSource}"
+                  Margin="10"
+                  MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
+                  HorizontalGridLinesBrush="White"
+                  VerticalGridLinesBrush="White"
+                  HeadersVisibility="Column">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell"
+                       x:Key="DGTextCell">
+                    <Setter Property="IsTabStop"
+                            Value="False" />
+
+                    <Setter Property="TextBox.IsReadOnly"
+                            Value="True" />
+
+                    <Setter Property="FontSize"
+                            Value="{StaticResource FontSizeLarge}" />
+
+                    <Setter Property="Foreground"
+                            Value="Black" />
+
+                    <Setter Property="Background"
+                            Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Stretch" />
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter Focusable="False"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          Content="{TemplateBinding Content}">
+
+                                        </ContentPresenter>
+                                    </Grid>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background"
+                            Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Padding"
+                            Value="3" />
+
+                    <Setter Property="BorderThickness"
+                            Value="1" />
+
+                    <Setter Property="BorderBrush"
+                            Value="White" />
+
+                    <Setter Property="Height"
+                            Value="{StaticResource DefaultDataGrid_ColumnHeaderHeight}" />
+
+                    <Setter Property="Background"
+                            Value="{StaticResource NormalTheme_DefaultDataGrid_ColumnHeaderBackgroundBrush}" />
+
+                    <Setter Property="Foreground"
+                            Value="White" />
+
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Center" />
+
+                    <Setter Property="FontSize"
+                            Value="{StaticResource FontSizeXLarge}" />
+
+                </Style>
+
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Resources>
+                        <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                          Color="{StaticResource NormalTheme_3rd_Color}" />
+                    </Style.Resources>
+
+                    <Setter Property="Height"
+                            Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="DataGridRow_MouseDoubleClick" />
+                </Style>
+
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <!--Name column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Tên nhà cung cấp"
+                                    Binding="{Binding SupplierName}" />
+
+                <!--Phone column-->
+                <DataGridTextColumn Width="auto"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Số điện thoại"
+                                    Binding="{Binding Phone}" />
+
+                <!--Email column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Email"
+                                    Binding="{Binding Email}" />
+
+                <!--Address column-->
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Địa chỉ"
+                                    Binding="{Binding Address}" />
+
+                <!--Edit column-->
+                <DataGridTemplateColumn CanUserResize="False"
+                                        Width="0.5*"
+                                        MaxWidth="{StaticResource DefaultDataGrid_MaxWidthEditColumn}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <hps:OsirisButton Grid.Column="1"
+                                                      IconStretch="Uniform"
+                                                      Background="White"
+                                                      IsUsingDropShadowEffect="True"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      BorderThickness="0"
+                                                      Command="{Binding DataContext.EditSupplierButtonCommand,ElementName=PageSupplierManagement}"
+                                                      CommandParameter="{Binding ElementName=DataGrid}"
+                                                      IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+
+                                    <hps:OsirisButton Grid.Column="3"
+                                                      BorderThickness="0"
+                                                      HorizontalAlignment="Center"
+                                                      IsUsingDropShadowEffect="True"
+                                                      Background="White"
+                                                      VerticalAlignment="Center"
+                                                      IconStretch="Uniform"
+                                                      Command="{Binding DataContext.DeleteSupplierButtonCommand,ElementName=PageSupplierManagement}"
+                                                      CommandParameter="{Binding ElementName=DataGrid}"
+                                                      IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+
+                                    <hps:OsirisButton Grid.Column="5"
+                                                      BorderThickness="0"
+                                                      HorizontalAlignment="Center"
+                                                      IsUsingDropShadowEffect="True"
+                                                      Background="White"
+                                                      VerticalAlignment="Center"
+                                                      IconStretch="Uniform"
+                                                      Command="{Binding DataContext.ShowImportHistoryButtonCommand,ElementName=PageSupplierManagement}"
+                                                      CommandParameter="{Binding ElementName=DataGrid}"
+                                                      IconSource="{StaticResource HomePage_InvoiceManageIcon}" />
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3"
+              Margin="10,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <hps:OsirisButton OBTextVerticalAlignment="Center"
+                              IsUsingDropShadowEffect="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              TextContent="+ Thêm mới"
+                              Grid.Column="3"
+                              BorderThickness="0"
+                              Background="{StaticResource NormalTheme_1st_Background_Brush}"
+                              Foreground="White"
+                              Margin="10,0"
+                              Padding="5"
+                              Command="{Binding AddNewSupplierButtonCommand}" />
+        </Grid>
     </Grid>
 </Page>

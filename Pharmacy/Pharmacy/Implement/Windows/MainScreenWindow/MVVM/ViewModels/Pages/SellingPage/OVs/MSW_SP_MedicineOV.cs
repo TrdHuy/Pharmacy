@@ -139,7 +139,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             PaidAmount = 0;
             CurrentSelectedMedicine = null;
             Quantity = "";
-            
+
             Invalidate("DebtCost");
             Invalidate("TotalCost");
             Invalidate("RestAmount");

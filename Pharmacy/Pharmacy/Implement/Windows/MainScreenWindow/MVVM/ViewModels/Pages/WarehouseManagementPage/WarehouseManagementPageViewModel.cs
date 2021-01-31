@@ -17,13 +17,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 {
     public class WarehouseManagementPageViewModel : AbstractViewModel
     {
-        public ObservableCollection<tblWarehouseImport> WarehouseImportItemSource { get; set; }
+        public ObservableCollection<WarehouseImportVO> WarehouseImportItemSource { get; set; }
         public RunInputCommand AddNewWarehouseImportButtonCommand { get; set; }
         public RunInputCommand EditWarehouseImportButtonCommand { get; set; }
         public RunInputCommand DeleteWarehouseImportButtonCommand { get; set; }
         public RunInputCommand ShowInvoiceButtonCommand { get; set; }
         public EventHandleCommand FilterChangedCommand { get; set; }
         public EventHandleCommand ShowWarehouseImportInfoCommand { get; set; }
+        public List<tblWarehouseImport> LstWarehouseImport { get; set; }
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
         private DispatcherTimer _timerUpdateFilter;
@@ -35,7 +36,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         public WarehouseManagementPageViewModel()
         {
-            WarehouseImportItemSource = new ObservableCollection<tblWarehouseImport>();
             AddNewWarehouseImportButtonCommand = new RunInputCommand(AddNewWarehouseImportButtonClickEvent);
             DeleteWarehouseImportButtonCommand = new RunInputCommand(DeleteWarehouseImportButtonClickEvent);
             EditWarehouseImportButtonCommand = new RunInputCommand(EditWarehouseImportButtonClickEvent);
@@ -54,11 +54,28 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
+                WarehouseImportItemSource = new ObservableCollection<WarehouseImportVO>();
+                LstWarehouseImport = queryResult.Result as List<tblWarehouseImport>;
+
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
-                    WarehouseImportItemSource = new ObservableCollection<tblWarehouseImport>(queryResult.Result as List<tblWarehouseImport>);
-                    Invalidate("WarehouseImportItemSource");
+                    foreach (var item in queryResult.Result as List<tblWarehouseImport>)
+                    {
+                        var detail = new WarehouseImportVO();
+                        detail.ImportID = item.ImportID;
+                        detail.ImportTime = item.ImportTime;
+                        detail.ImportDescription = item.ImportDescription;
+                        detail.IsActive = item.IsActive;
+                        detail.PurchasePrice = item.PurchasePrice;
+                        detail.TotalPrice = item.TotalPrice;
+                        detail.SupplierID = item.SupplierID;
+                        detail.SupplierName = item.tblSupplier.SupplierName;
+                        detail.tblWarehouseImportDetails = item.tblWarehouseImportDetails.Where(o => o.IsActive).ToList();
+
+                        WarehouseImportItemSource.Add(detail);
+                    }
                 }
+                Invalidate("WarehouseImportItemSource");
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_WAREHOUSE_IMPORT_DATA_CMD_KEY
                     , _sqlCmdObserver);
@@ -85,20 +102,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             _timerUpdateFilter.Tick += (sender, e) =>
             {
                 _timerUpdateFilter.Stop();
-                dataGrid.Items.Filter = new Predicate<object>(item => FilterWarehouseImportInfoList(item as tblWarehouseImport, filterText, startDate, endDate));
+                dataGrid.Items.Filter = new Predicate<object>(item => FilterWarehouseImportInfoList(item as WarehouseImportVO, filterText, startDate, endDate));
             };
 
             _timerUpdateFilter.Start();
         }
 
-        private bool FilterWarehouseImportInfoList(tblWarehouseImport item, string filterText, DateTime? startDate, DateTime? endDate)
+        private bool FilterWarehouseImportInfoList(WarehouseImportVO item, string filterText, DateTime? startDate, DateTime? endDate)
         {
             return (SearchByMedicineID(item, filterText) || SearchByMedicineName(item, filterText) || SearchBySupplierName(item, filterText))
                 && FilterByStartDate(item, startDate)
                 && FilterByEndDate(item, endDate);
         }
 
-        private bool FilterByEndDate(tblWarehouseImport item, DateTime? endDate)
+        private bool FilterByEndDate(WarehouseImportVO item, DateTime? endDate)
         {
             if (endDate == null) return true;
             else
@@ -109,7 +126,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             }
         }
 
-        private bool FilterByStartDate(tblWarehouseImport item, DateTime? startDate)
+        private bool FilterByStartDate(WarehouseImportVO item, DateTime? startDate)
         {
             if (startDate == null) return true;
             else
@@ -120,21 +137,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             }
         }
 
-        private bool SearchBySupplierName(tblWarehouseImport item, string filterText)
+        private bool SearchBySupplierName(WarehouseImportVO item, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_SUPPLIER_NAME
-                ? CultureInfo.CurrentCulture.CompareInfo.IndexOf(item.tblSupplier.SupplierName, filterText, CompareOptions.IgnoreCase) >= 0
+                ? CultureInfo.CurrentCulture.CompareInfo.IndexOf(item.SupplierName, filterText, CompareOptions.IgnoreCase) >= 0
                 : false;
         }
 
-        private bool SearchByMedicineID(tblWarehouseImport item, string filterText)
+        private bool SearchByMedicineID(WarehouseImportVO item, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_ID
                 ? item.tblWarehouseImportDetails.Where(o => CultureInfo.CurrentCulture.CompareInfo.IndexOf(o.MedicineID, filterText, CompareOptions.IgnoreCase) >= 0).FirstOrDefault() != null
                 : false;
         }
 
-        private bool SearchByMedicineName(tblWarehouseImport item, string filterText)
+        private bool SearchByMedicineName(WarehouseImportVO item, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_NAME
                 ? item.tblWarehouseImportDetails.Where(o => CultureInfo.CurrentCulture.CompareInfo.IndexOf(o.tblMedicine.MedicineName, filterText, CompareOptions.IgnoreCase) >= 0).FirstOrDefault() != null
@@ -143,22 +160,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         private void ShowWarehouseImportInfoEvent(object sender, EventArgs e, object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON
+                , dataTransfer);
         }
 
         private void AddNewWarehouseImportButtonClickEvent(object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_MMP_EXCEL_IMPORT_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_WHMP_ADD_BUTTON
+                , dataTransfer);
         }
 
         private void DeleteWarehouseImportButtonClickEvent(object paramaters)
@@ -173,22 +190,39 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         private void EditWarehouseImportButtonClickEvent(object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON
+                , dataTransfer);
         }
 
         private void ShowInvoiceButtonClickEvent(object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON
+                , dataTransfer);
+        }
+    }
+
+    public class WarehouseImportVO : AbstractViewModel
+    {
+        public long ImportID { get; set; }
+        public DateTime ImportTime { get; set; }
+        public bool IsActive { get; set; }
+        public int SupplierID { get; set; }
+        public string SupplierName { get; set; }
+        public decimal PurchasePrice { get; set; }
+        public decimal TotalPrice { get; set; }
+        public string ImportDescription { get; set; }
+        public List<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
+
+        protected override void InitPropertiesRegistry()
+        {
         }
     }
 }

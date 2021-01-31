@@ -33,7 +33,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public tblMedicine MedicineInfo { get; set; }
         public ObservableCollection<tblPromo> LstPromo { get; set; }
         public List<tblCustomer> LstCustomer { get; set; }
-        public string[] LstCustomerFilterPathList { get; set; } = new string[] { "CustomerName", "Phone" };
+        public string[] LstCustomerFilterPathList { get; set; }
         public int SelectedCustomerCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int PromoPercentCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public bool IsSaveButtonCanPerform
@@ -63,7 +63,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 InvalidateOwn();
             }
         }
-        public string PromoPercent
+        public double PromoPercent
         {
             get { return _promoPercent; }
             set
@@ -83,14 +83,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             }
         }
 
-        private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
-        private DispatcherTimer _timerToUpdateCustomerList;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private int _selectedCustomer;
-        private string _promoPercent = "";
-        private string _promoDescription = "";
+        private double _promoPercent;
+        private string _promoDescription;
         private bool _isSaveButtonRunning;
-        private List<tblCustomer> _lstCustomerFull;
 
         protected override void InitPropertiesRegistry()
         {
@@ -104,6 +101,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             DeleteButtonCommand = new RunInputCommand(DeleteButtonClickEvent);
             UpdateMedicineData();
             GetCustomerList();
+            GetFilterList();
+            PromoDescription = "";
+            PromoPercent = 0;
+        }
+
+        private void GetFilterList()
+        {
+            LstCustomerFilterPathList = new string[]
+            {
+                RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME?"CustomerName":"",
+                RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE?"Phone":""
+            };
         }
 
         public void RefreshPage()
@@ -119,12 +128,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
                     LstCustomer = queryResult.Result as List<tblCustomer>;
-                    _lstCustomerFull = queryResult.Result as List<tblCustomer>;
                 }
                 else
                 {
                     LstCustomer = new List<tblCustomer>();
-                    _lstCustomerFull = new List<tblCustomer>();
                 }
                 SelectedCustomer = -1;
             });
@@ -135,7 +142,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private void CreateNewPromoButtonClickEvent(object paramaters)
         {
             PromoDescription = "";
-            PromoPercent = "";
+            PromoPercent = 0;
             SelectedCustomer = -1;
         }
 
@@ -208,13 +215,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                     var existedPromo = LstPromo.Where(o => o.CustomerID == LstCustomer[SelectedCustomer].CustomerID).FirstOrDefault();
                     if (existedPromo != null)
                     {
-                        PromoPercent = existedPromo.PromoPercent.ToString();
+                        PromoPercent = existedPromo.PromoPercent;
                         PromoDescription = existedPromo.PromoDescription;
                     }
                 }
                 else
                 {
-                    PromoPercent = "";
+                    PromoPercent = 0;
                     PromoDescription = "";
                 }
             }
@@ -227,9 +234,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private void CheckPromoPercent()
         {
-            if (PromoPercent.Trim().Length > 0
-              && PromoPercent.Trim().IsHavingOnlyNumber()
-              && int.Parse(PromoPercent.Trim()) >= 0)
+            if (PromoPercent >= 0)
                 PromoPercentCheckingStatus = 1;
             else
                 PromoPercentCheckingStatus = -1;

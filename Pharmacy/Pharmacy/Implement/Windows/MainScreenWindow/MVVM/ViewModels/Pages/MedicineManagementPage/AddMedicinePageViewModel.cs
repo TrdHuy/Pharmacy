@@ -122,7 +122,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 CheckSupplier();
             }
         }
-        public string BidPrice
+        public decimal BidPrice
         {
             get
             {
@@ -134,7 +134,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 CheckBidPrice();
             }
         }
-        public string AskingPrice
+        public decimal AskingPrice
         {
             get
             {
@@ -155,8 +155,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private int _medicineTypeID = -1;
         private int _medicineUnitID = -1;
         private int _supplierID = -1;
-        private string _bidPrice = "";
-        private string _askingPrice = "";
+        private decimal _bidPrice;
+        private decimal _askingPrice;
         private bool _isSaveButtonRunning;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
@@ -169,6 +169,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
+            BidPrice = 0;
+            AskingPrice = 0;
             InitData();
         }
 
@@ -282,9 +284,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private void CheckBidPrice()
         {
-            if (BidPrice.Trim().Length > 0
-                && BidPrice.Trim().IsHavingOnlyNumber()
-                && decimal.Parse(BidPrice.Trim()) >= 0)
+            if (BidPrice >= 0)
                 BidPriceCheckingStatus = 1;
             else
                 BidPriceCheckingStatus = -1;
@@ -293,9 +293,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private void CheckAskingPrice()
         {
-            if (AskingPrice.Trim().Length > 0
-                && AskingPrice.Trim().IsHavingOnlyNumber()
-                && decimal.Parse(AskingPrice.Trim()) >= 0)
+            if (AskingPrice >= 0)
                 AskingPriceCheckingStatus = 1;
             else
                 AskingPriceCheckingStatus = -1;

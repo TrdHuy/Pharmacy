@@ -64,6 +64,12 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_LOCATOR_WINDOW_FOR_PERSONAL_AVATAR = FeaturesParser
                    .FeatureOrders["HPS_FT_IS_SUPPORT_LOCATOR_WINDOW_FOR_PERSONAL_AVATAR"];
 
+        public static readonly bool IS_SUPPORT_FILTER_SUPPLIER_BY_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_SUPPLIER_BY_NAME"];
+
+        public static readonly bool IS_SUPPORT_FILTER_SUPPLIER_BY_PHONE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_SUPPLIER_BY_PHONE"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";

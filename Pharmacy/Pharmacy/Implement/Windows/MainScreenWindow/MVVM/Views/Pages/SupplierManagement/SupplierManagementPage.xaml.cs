@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierM
         public SupplierManagementPage()
         {
             InitializeComponent();
+            DataContext = new SupplierManagementPageViewModel();
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            (DataContext as SupplierManagementPageViewModel).FilterChangedCommand.Execute(sender,
+                e,
+                new object[] { txtFilterText, DataGrid });
+        }
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //((MedicineManagementPageViewModel)DataContext).ShowMedicineInfoCommand.Execute(sender, e, DataGrid, this);
         }
     }
 }

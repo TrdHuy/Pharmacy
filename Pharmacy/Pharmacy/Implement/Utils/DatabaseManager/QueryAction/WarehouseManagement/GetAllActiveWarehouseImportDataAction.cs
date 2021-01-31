@@ -22,11 +22,13 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
                         .Where(o => o.IsActive)
                         .OrderByDescending(o=>o.ImportTime)
                         .ToList();
+
                 result = new SQLQueryResult(lstOutput, MessageQueryResult.Done);
             }
             catch (Exception e)
             {
-                ShowErrorMessageBox(e);
+                App.Current.ShowApplicationMessageBox(e.Message);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
             return result;
         }

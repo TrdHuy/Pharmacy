@@ -13,10 +13,13 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ShowMedicineInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.AddWarehouseImportPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ModifyWarehouseImportPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -191,6 +194,57 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SP_REFRESH_BUTTON:
                     action = new MSW_SP_RefreshPageAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_ADD_BUTTON:
+                    action = new MSW_WHMP_AddWarehouseImportButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON:
+                    action = new MSW_WHMP_ModifyWarehouseImportButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON:
+                    action = new MSW_WHMP_ShowWarehouseImportInfoButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_WHMP_ShowInvoiceButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON:
+                    action = new MSW_WHMP_AWIP_BrowseInvoiceImageButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON:
+                    action = new MSW_WHMP_AWIP_AddMedicineToListButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON:
+                    action = new MSW_WHMP_AWIP_DeleteWarehouseImportDetailButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON:
+                    action = new MSW_WHMP_AWIP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON:
+                    action = new MSW_WHMP_AWIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_BROWSE_INVOICE_IMAGE_BUTTON:
+                    action = new MSW_WHMP_MWIP_BrowseInvoiceImageButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON:
+                    action = new MSW_WHMP_MWIP_AddMedicineToListButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON:
+                    action = new MSW_WHMP_MWIP_DeleteWarehouseImportDetailButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_CANCEL_BUTTON:
+                    action = new MSW_WHMP_MWIP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_SAVE_BUTTON:
+                    action = new MSW_WHMP_MWIP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON:
+                    action = new MSW_WHMP_SWIIP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_WHMP_SWIIP_ShowInvoiceButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_DELETE_BUTTON:
+                    action = new MSW_SMP_DeleteSupplierButtonAction();
                     break;
                 default:
                     action = null;

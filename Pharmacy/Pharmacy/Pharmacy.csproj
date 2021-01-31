@@ -160,6 +160,7 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\AddNewCustomerOrderAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\AddNewCustomerOrderDetailAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\UpdateCustomerOrderAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\SupplierManagement\SetSupplierDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\AddNewUserAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\CheckUserAvailAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\CheckUserNameExistedAction.cs" />
@@ -170,7 +171,9 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\SetUserDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\UpdateCustomerInfoAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\UpdateUserInfoAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\ModifyWarehouseImportAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\GetAllActiveWarehouseImportDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\AddNewWarehouseImportAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\SetWarehouseImportDeactiveAction.cs" />
     <Compile Include="Implement\Utils\Definitions\PharmacyDefinitions.cs" />
     <Compile Include="Implement\Utils\Extensions\Entities\UserEntityExtension.cs" />
@@ -222,14 +225,31 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_InstantiateNewOrderAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_RefreshPageAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_RemoveOrderDetailAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_DeleteSupplierButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserModificationPage\MSW_UMP_UMoP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ModifyWarehouseImportPage\MSW_WHMP_MWIP_AddMedicineToListButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ModifyWarehouseImportPage\MSW_WHMP_MWIP_BrowseInvoiceImageButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ModifyWarehouseImportPage\MSW_WHMP_MWIP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ModifyWarehouseImportPage\MSW_WHMP_MWIP_DeleteWarehouseImportDetailButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ModifyWarehouseImportPage\MSW_WHMP_MWIP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\AddWarehouseImportPage\MSW_WHMP_AWIP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\AddWarehouseImportPage\MSW_WHMP_AWIP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\AddWarehouseImportPage\MSW_WHMP_AWIP_AddMedicineToListButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\AddWarehouseImportPage\MSW_WHMP_AWIP_BrowseInvoiceImageButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\AddWarehouseImportPage\MSW_WHMP_AWIP_DeleteWarehouseImportDetailButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ShowWarehouseImportInfoButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ModifyWarehouseImportButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_AddWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_DeleteWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\PageVO.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ShowInvoiceButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPage\MSW_WHMP_SWIIP_ShowInvoiceButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPage\MSW_WHMP_SWIIP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
@@ -248,9 +268,13 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_CustomerOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\SellingPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserModificationPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\ModifyWarehouseImportPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\AddWarehouseImportPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\WarehouseManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerModificationPage.xaml.cs">
@@ -285,6 +309,15 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserModificationPage.xaml.cs">
       <DependentUpon>UserModificationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\ShowWarehouseImportInfoPage.xaml.cs">
+      <DependentUpon>ShowWarehouseImportInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\ModifyWarehouseImportPage.xaml.cs">
+      <DependentUpon>ModifyWarehouseImportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\AddWarehouseImportPage.xaml.cs">
+      <DependentUpon>AddWarehouseImportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\WarehouseManagementPage.xaml.cs">
       <DependentUpon>WarehouseManagementPage.xaml</DependentUpon>
@@ -444,6 +477,18 @@
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserModificationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\ShowWarehouseImportInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\ModifyWarehouseImportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\AddWarehouseImportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\WarehouseManagementPage.xaml">
       <Generator>MSBuild:Compile</Generator>

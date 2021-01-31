@@ -32,9 +32,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
             catch (Exception e)
             {
                 App.Current.ShowApplicationMessageBox(e.Message);
-            }
-            finally
-            {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
             return result;
         }

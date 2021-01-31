@@ -12,7 +12,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
     {
         User = 1,
         Customer = 2,
-        Medicine = 3
+        Medicine = 3,
+        WarehouseImport = 4
     }
     public class AbstractQueryAction
     {
@@ -85,6 +86,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                             break;
                         case ImageType.Medicine:
                             FileIOUtil.SaveMedicineImageFile(imageName, bit);
+                            break;
+                        case ImageType.WarehouseImport:
+                            FileIOUtil.SaveWarehouseImportImageFile(imageName, bit);
                             break;
                     }
                 }

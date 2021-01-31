@@ -89,12 +89,40 @@ namespace Pharmacy.Implement.UIEventHandler
 
         //Warehouse management page key string
         public const string KEY_TAG_MSW_WHMP_DELETE_BUTTON = "msw_whmp_delete_button";
+        public const string KEY_TAG_MSW_WHMP_ADD_BUTTON = "msw_whmp_add_button";
+        public const string KEY_TAG_MSW_WHMP_EDIT_BUTTON = "msw_whmp_edit_button";
+        public const string KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON = "msw_whmp_show_info_button";
+        public const string KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON = "msw_whmp_show_invoice_button";
 
         //Selling page key string#
         public const string KEY_TAG_MSW_SP_ADD_BUTTON = "msw_sp_add_button";
         public const string KEY_TAG_MSW_SP_REMOVE_BUTTON = "msw_sp_remove_button";
         public const string KEY_TAG_MSW_SP_INSTANTIATE_BUTTON = "msw_sp_instantiate_button";
         public const string KEY_TAG_MSW_SP_REFRESH_BUTTON = "msw_sp_refresh_button";
-        
+       
+        //Add WarehouseImport page key string
+        public const string KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON = "msw_whmp_awip_cancel_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON = "msw_whmp_awip_save_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON = "msw_whmp_awip_browse_image_button_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON = "msw_whmp_awip_add_medicine_to_import_list_button";
+        public const string KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON = "msw_whmp_awip_delete_medicine_to_import_list_button";
+
+        //Modify WarehouseImport page key string
+        public const string KEY_TAG_MSW_WHMP_MWIP_CANCEL_BUTTON = "msw_whmp_mwip_cancel_button";
+        public const string KEY_TAG_MSW_WHMP_MWIP_SAVE_BUTTON = "msw_whmp_mwip_save_button";
+        public const string KEY_TAG_MSW_WHMP_MWIP_BROWSE_INVOICE_IMAGE_BUTTON = "msw_whmp_mwip_browse_image_button_button";
+        public const string KEY_TAG_MSW_WHMP_MWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON = "msw_whmp_mwip_add_medicine_to_import_list_button";
+        public const string KEY_TAG_MSW_WHMP_MWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON = "msw_whmp_mwip_delete_medicine_to_import_list_button";
+
+        //Show WarehouseImport Info page key string
+        public const string KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON = "msw_whmp_swiip_cancel_button";
+        public const string KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON = "msw_whmp_swiip_show_invoice_button";
+
+        //Supplier management page key string
+        public const string KEY_TAG_MSW_SMP_DELETE_BUTTON = "msw_smp_delete_button";
+        public const string KEY_TAG_MSW_SMP_ADD_BUTTON = "msw_smp_add_button";
+        public const string KEY_TAG_MSW_SMP_EDIT_BUTTON = "msw_smp_edit_button";
+        public const string KEY_TAG_MSW_SMP_SHOW_INFO_BUTTON = "msw_smp_show_info_button";
+        public const string KEY_TAG_MSW_SMP_SHOW_INVOICE_BUTTON = "msw_smp_show_invoice_button";
     }
 }

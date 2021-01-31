@@ -24,7 +24,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
             }
             catch (Exception e)
             {
-                ShowErrorMessageBox(e);
+                App.Current.ShowApplicationMessageBox(e.Message);
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
             }
             return result;
         }
