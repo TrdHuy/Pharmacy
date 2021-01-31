@@ -41,6 +41,7 @@
                      Margin="5,0,0,0"
                      VerticalContentAlignment="Center"
                      TextChanged="SearchTextBox_TextChanged"
+                     BorderThickness="2"
                      Text="{Binding FilterText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </TextBox>
             <CheckBox Content="Dược liệu"

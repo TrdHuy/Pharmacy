@@ -124,5 +124,9 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_SMP_EDIT_BUTTON = "msw_smp_edit_button";
         public const string KEY_TAG_MSW_SMP_SHOW_INFO_BUTTON = "msw_smp_show_info_button";
         public const string KEY_TAG_MSW_SMP_SHOW_INVOICE_BUTTON = "msw_smp_show_invoice_button";
+
+        //Add Supplier page key string
+        public const string KEY_TAG_MSW_SMP_ASP_CANCEL_BUTTON = "msw_smp_asp_cancel_button";
+        public const string KEY_TAG_MSW_SMP_ASP_SAVE_BUTTON = "msw_smp_asp_save_button";
     }
 }
