@@ -16,6 +16,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.AddSupplierPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.ModifySupplierPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.SupplierImportHistoryPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage;
@@ -254,6 +255,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON:
                     action = new MSW_SMP_ModifySupplierButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_SHOW_IMPORT_HISTORY_BUTTON:
+                    action = new MSW_SMP_ShowImportHistoryButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_SMP_ASP_CANCEL_BUTTON:
                     action = new MSW_SMP_ASP_CancelButtonAction();
                     break;
@@ -265,6 +269,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SMP_MSP_SAVE_BUTTON:
                     action = new MSW_SMP_MSP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_CANCEL_BUTTON:
+                    action = new MSW_SMP_SIHP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_SMP_SIHP_ShowInvoiceButtonAction();
                     break;
                 default:
                     action = null;

@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Drawing;
@@ -43,10 +44,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                     throw new Exception(error.ToString());
                 }
 
-                WarehouseImportDetailVO item;
+                MSW_WHMP_WarehouseImportDetailOV item;
                 if ((item = _viewModel.LstWarehouseImportDetail.Where(o => o.MedicineID == _viewModel.SelectedMedicine.MedicineID).FirstOrDefault()) == null)
                 {
-                    item = new WarehouseImportDetailVO();
+                    item = new MSW_WHMP_WarehouseImportDetailOV();
                     item.MedicineID = _viewModel.SelectedMedicine.MedicineID;
                     item.MedicineName = _viewModel.SelectedMedicine.MedicineName;
                     item.MedicineUnitName = _viewModel.SelectedMedicine.tblMedicineUnit.MedicineUnitName;

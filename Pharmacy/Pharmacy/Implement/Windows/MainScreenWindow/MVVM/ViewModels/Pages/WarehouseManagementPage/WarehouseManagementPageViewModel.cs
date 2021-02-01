@@ -12,12 +12,13 @@ using Pharmacy.Implement.UIEventHandler;
 using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
     public class WarehouseManagementPageViewModel : AbstractViewModel
     {
-        public ObservableCollection<WarehouseImportVO> WarehouseImportItemSource { get; set; }
+        public ObservableCollection<MSW_WHMP_WarehouseImportOV> WarehouseImportItemSource { get; set; }
         public RunInputCommand AddNewWarehouseImportButtonCommand { get; set; }
         public RunInputCommand EditWarehouseImportButtonCommand { get; set; }
         public RunInputCommand DeleteWarehouseImportButtonCommand { get; set; }
@@ -54,14 +55,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         {
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
-                WarehouseImportItemSource = new ObservableCollection<WarehouseImportVO>();
+                WarehouseImportItemSource = new ObservableCollection<MSW_WHMP_WarehouseImportOV>();
                 LstWarehouseImport = queryResult.Result as List<tblWarehouseImport>;
 
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
                     foreach (var item in queryResult.Result as List<tblWarehouseImport>)
                     {
-                        var detail = new WarehouseImportVO();
+                        var detail = new MSW_WHMP_WarehouseImportOV();
                         detail.ImportID = item.ImportID;
                         detail.ImportTime = item.ImportTime;
                         detail.ImportDescription = item.ImportDescription;
@@ -102,20 +103,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             _timerUpdateFilter.Tick += (sender, e) =>
             {
                 _timerUpdateFilter.Stop();
-                dataGrid.Items.Filter = new Predicate<object>(item => FilterWarehouseImportInfoList(item as WarehouseImportVO, filterText, startDate, endDate));
+                dataGrid.Items.Filter = new Predicate<object>(item => FilterWarehouseImportInfoList(item as MSW_WHMP_WarehouseImportOV, filterText, startDate, endDate));
             };
 
             _timerUpdateFilter.Start();
         }
 
-        private bool FilterWarehouseImportInfoList(WarehouseImportVO item, string filterText, DateTime? startDate, DateTime? endDate)
+        private bool FilterWarehouseImportInfoList(MSW_WHMP_WarehouseImportOV item, string filterText, DateTime? startDate, DateTime? endDate)
         {
             return (SearchByMedicineID(item, filterText) || SearchByMedicineName(item, filterText) || SearchBySupplierName(item, filterText))
                 && FilterByStartDate(item, startDate)
                 && FilterByEndDate(item, endDate);
         }
 
-        private bool FilterByEndDate(WarehouseImportVO item, DateTime? endDate)
+        private bool FilterByEndDate(MSW_WHMP_WarehouseImportOV item, DateTime? endDate)
         {
             if (endDate == null) return true;
             else
@@ -126,7 +127,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             }
         }
 
-        private bool FilterByStartDate(WarehouseImportVO item, DateTime? startDate)
+        private bool FilterByStartDate(MSW_WHMP_WarehouseImportOV item, DateTime? startDate)
         {
             if (startDate == null) return true;
             else
@@ -137,21 +138,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             }
         }
 
-        private bool SearchBySupplierName(WarehouseImportVO item, string filterText)
+        private bool SearchBySupplierName(MSW_WHMP_WarehouseImportOV item, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_SUPPLIER_NAME
                 ? CultureInfo.CurrentCulture.CompareInfo.IndexOf(item.SupplierName, filterText, CompareOptions.IgnoreCase) >= 0
                 : false;
         }
 
-        private bool SearchByMedicineID(WarehouseImportVO item, string filterText)
+        private bool SearchByMedicineID(MSW_WHMP_WarehouseImportOV item, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_ID
                 ? item.tblWarehouseImportDetails.Where(o => CultureInfo.CurrentCulture.CompareInfo.IndexOf(o.MedicineID, filterText, CompareOptions.IgnoreCase) >= 0).FirstOrDefault() != null
                 : false;
         }
 
-        private bool SearchByMedicineName(WarehouseImportVO item, string filterText)
+        private bool SearchByMedicineName(MSW_WHMP_WarehouseImportOV item, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_WAREHOUSE_IMPORT_BY_MEDICINE_NAME
                 ? item.tblWarehouseImportDetails.Where(o => CultureInfo.CurrentCulture.CompareInfo.IndexOf(o.tblMedicine.MedicineName, filterText, CompareOptions.IgnoreCase) >= 0).FirstOrDefault() != null
@@ -206,23 +207,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON
                 , dataTransfer);
-        }
-    }
-
-    public class WarehouseImportVO : AbstractViewModel
-    {
-        public long ImportID { get; set; }
-        public DateTime ImportTime { get; set; }
-        public bool IsActive { get; set; }
-        public int SupplierID { get; set; }
-        public string SupplierName { get; set; }
-        public decimal PurchasePrice { get; set; }
-        public decimal TotalPrice { get; set; }
-        public string ImportDescription { get; set; }
-        public List<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
-
-        protected override void InitPropertiesRegistry()
-        {
         }
     }
 }
