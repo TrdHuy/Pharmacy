@@ -52,6 +52,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string SHOW_WAREHOUSE_IMPORT_INFO_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/ShowWarehouseImportInfoPage.xaml";
         public const string ADD_SUPPLIER_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/AddSupplierPage.xaml";
         public const string MODIFY_SUPPLIER_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/ModifySupplierPage.xaml";
+        public const string SUPPLIER_IMPORT_HISTORY_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierImportHistoryPage.xaml";
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long SELLING_PAGE_LOADING_DELAY_TIME = 100;
@@ -78,6 +79,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long SHOW_WAREHOUSE_IMPORT_INFO_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long ADD_SUPPLIER_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long MODIFY_SUPPLIER_PAGE_LOADING_DELAY_TIME = 1000;
+        public static readonly long SUPPLIER_IMPORT_HISTORY_PAGE_LOADING_DELAY_TIME = 1000;
     }
 
     public enum NewPasswordAwareMessage

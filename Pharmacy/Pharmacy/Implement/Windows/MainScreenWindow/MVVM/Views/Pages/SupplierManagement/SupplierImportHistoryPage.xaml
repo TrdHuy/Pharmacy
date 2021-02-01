@@ -1,53 +1,64 @@
-﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerTransactionHistoryPage"
+﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement.SupplierImportHistoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement"
-      mc:Ignorable="d"
-      Title="CustomerTransactionHistoryPage"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement"
+      mc:Ignorable="d"
+      Background="White"
+      x:Name="SupplierImportHistory"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}">
+      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+      FontSize="{StaticResource FontSizeLarge_Float}"
+      Title="SupplierImportHistoryPage">
 
-    <Page.DataContext>
-        <vm:CustomerTransactionHistoryPageViewModel />
-    </Page.DataContext>
-
-    <Grid Background="White">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.25*" />
-            <RowDefinition Height="3.75*" />
+            <RowDefinition Height="0.6*"
+                           MaxHeight="{StaticResource PageHeaderMaxHeight}" />
+            <RowDefinition Height="1.29*" />
+            <RowDefinition Height="5.14*" />
         </Grid.RowDefinitions>
-
-        <!--Header area-->
-        <Grid x:Name="HeaderGrid"
-              Grid.Row="0"
-              Background="White">
-
+        <uc:PageHeader Grid.Row="0"
+                       HeaderText="Lịch sử nhập kho"
+                       HeaderIcon="{StaticResource HomePage_SupplierManageIcon}" />
+        <Grid Grid.Row="1"
+              Margin="0,10"
+              Background="{StaticResource NormalTheme_1st_Background_Brush}"
+              HorizontalAlignment="Left"
+              MinWidth="200"
+              MaxWidth="800">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*" />
-                <RowDefinition Height="0.85*" />
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height="1.1*" />
+                <RowDefinition Height="0.3*" />
             </Grid.RowDefinitions>
 
-            <!--Page title-->
-            <uc:PageHeader Grid.Row="0"
-                           MaxHeight="{StaticResource PageHeaderMaxHeight}"
-                           HeaderText="Lịch sử mua hàng"
-                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"/>
-            <!--Image and user info area-->
-            <uc:PageOverviewInfo Grid.Row="1"
-                                 CamButCmd="{Binding CameraButtonCommand}"
-                                 CamButVisibility="Collapsed"
-                                 MainTiltle="{Binding CurrentModifiedCustomer.CustomerName}"
-                                 SubTiltle="{Binding CurrentModifiedCustomer.Email}"
-                                 SubTiltle2nd="{Binding CurrentModifiedCustomer.Phone}" />
+            <Viewbox Margin="20,0,10,0"
+                     HorizontalAlignment="Left"
+                     Stretch="Uniform"
+                     Grid.Row="0">
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           MaxWidth="700"
+                           TextTrimming="WordEllipsis"
+                           Text="{Binding SupplierInfo.SupplierName}" />
+            </Viewbox>
+
+            <Viewbox Margin="20,0,10,0"
+                     HorizontalAlignment="Left"
+                     Stretch="Uniform"
+                     Grid.Row="1">
+                <TextBlock MaxWidth="1000"
+                           MaxHeight="100"
+                           TextWrapping="Wrap"
+                           TextTrimming="WordEllipsis"
+                           Text="{Binding SupplierInfo.SupplierDescription}" />
+            </Viewbox>
         </Grid>
-        <!--Body area-->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4.22*" />
                 <ColumnDefinition Width="5.29*" />
@@ -65,11 +76,12 @@
                 <Viewbox Grid.Row="1"
                          MaxHeight="{StaticResource FontSizeXXLarge}"
                          HorizontalAlignment="Left">
-                    <TextBlock Text="Lịch sử mua hàng:" />
+                    <TextBlock Text="Lịch sử nhập kho:" />
                 </Viewbox>
                 <ListView BorderThickness="2"
                           BorderBrush="Black"
-                          ItemsSource="{Binding OrderItemSource}"
+                          ItemsSource="{Binding LstWarehouseImport}"
+                          SelectedItem="{Binding ImportInfo, UpdateSourceTrigger=PropertyChanged}"
                           Grid.Row="2">
 
                     <ListView.Resources>
@@ -94,11 +106,11 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Viewbox Grid.Column="0">
                                                     <TextBlock FontSize="{StaticResource FontSizeXLarge}"
-                                                               Text="{Binding OrderTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=DATE}" />
+                                                               Text="{Binding ImportTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=DATE}" />
                                                 </Viewbox>
                                                 <Viewbox Grid.Column="2">
                                                     <TextBlock FontSize="{StaticResource FontSizeXLarge}"
-                                                               Text="{Binding OrderTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=TIME}" />
+                                                               Text="{Binding ImportTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=TIME}" />
                                                 </Viewbox>
                                                 <Grid Grid.Column="4">
                                                     <Grid.ColumnDefinitions>
@@ -113,7 +125,7 @@
                                                     <Viewbox Grid.Column="1"
                                                              HorizontalAlignment="Left">
                                                         <TextBlock FontSize="{StaticResource FontSizeXLarge}"
-                                                                   Text="{Binding TotalPrice}" />
+                                                                   Text="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
                                                     </Viewbox>
                                                 </Grid>
 
@@ -286,25 +298,35 @@
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
                              BorderThickness="2"
-                             Grid.Column="2" />
-                    <TextBox Grid.Row="2"
-                             BorderThickness="2"
-                             FontSize="{StaticResource FontSizeXLarge}"
-                             BorderBrush="Black"
-                             Grid.Column="2" />
-                    <TextBox Grid.Row="4"
-                             BorderThickness="2"
-                             FontSize="{StaticResource FontSizeXLarge}"
-                             BorderBrush="Black"
-                             Grid.Column="2" />
+                             Grid.Column="2"
+                             Text="{Binding ImportInfo.ImportTime, UpdateSourceTrigger=PropertyChanged,
+                        Converter={conv:SystemDateTimeToStringConverter}, ConverterParameter=DATETIME}" />
+                    <hps:AkerTextBox Grid.Row="2"
+                                     AkerTextBoxType="Expense"
+                                     AkerExpenseUnit="VND"
+                                     BorderThickness="2"
+                                     FontSize="{StaticResource FontSizeXLarge}"
+                                     BorderBrush="Black"
+                                     Grid.Column="2"
+                                     AkerExpense="{Binding ImportInfo.TotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <hps:AkerTextBox Grid.Row="4"
+                                     AkerTextBoxType="Expense"
+                                     AkerExpenseUnit="VND"
+                                     BorderThickness="2"
+                                     FontSize="{StaticResource FontSizeXLarge}"
+                                     BorderBrush="Black"
+                                     Grid.Column="2"
+                                     AkerExpense="{Binding ImportInfo.PurchasePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Grid.Row="6"
                              BorderThickness="2"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
-                             Grid.Column="2" />
-                    <TextBox Grid.Row="8"
+                             Grid.Column="2"
+                             Text="{Binding ImportInfo.ImportDescription, UpdateSourceTrigger=PropertyChanged}" />
+                    <ListBox Grid.Row="8"
                              BorderThickness="2"
                              FontSize="{StaticResource FontSizeXLarge}"
+                             ItemsSource="{Binding LstWarehouseImportDetail, UpdateSourceTrigger=PropertyChanged}"
                              BorderBrush="Black"
                              Grid.Column="2" />
 
@@ -323,14 +345,15 @@
                                           Margin="5,0,0,0"
                                           Background="Transparent"
                                           BorderThickness="0"
-                                          HorizontalAlignment="Right"
                                           VerticalContentAlignment="Center"
                                           TextDecor="Underline"
                                           Foreground="#008AE0"
                                           VerticalAlignment="Center"
                                           FontSize="{StaticResource FontSizeXLarge}"
                                           TextContent="Xem hóa đơn"
-                                          FontStyle="Italic" />
+                                          FontStyle="Italic"
+                                          HorizontalAlignment="Right"
+                                          Command="{Binding ShowInvoiceButtonCommand}"/>
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
@@ -341,7 +364,8 @@
                                           Foreground="White"
                                           FontSize="{StaticResource FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center" />
+                                          VerticalContentAlignment="Center"
+                                          Command="{Binding ShowDebtButtonCommand}"/>
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
@@ -353,7 +377,8 @@
                                           Foreground="White"
                                           FontSize="{StaticResource FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center" />
+                                          VerticalContentAlignment="Center"
+                                          Command="{Binding CancelButtonCommand}"/>
 
                     </Grid>
                 </Grid>
@@ -361,6 +386,5 @@
 
             </Grid>
         </Grid>
-
     </Grid>
 </Page>

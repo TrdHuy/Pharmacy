@@ -12,6 +12,7 @@ using Pharmacy.Implement.UIEventHandler;
 using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
@@ -206,23 +207,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON
                 , dataTransfer);
-        }
-    }
-
-    public class WarehouseImportVO : AbstractViewModel
-    {
-        public long ImportID { get; set; }
-        public DateTime ImportTime { get; set; }
-        public bool IsActive { get; set; }
-        public int SupplierID { get; set; }
-        public string SupplierName { get; set; }
-        public decimal PurchasePrice { get; set; }
-        public decimal TotalPrice { get; set; }
-        public string ImportDescription { get; set; }
-        public List<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
-
-        protected override void InitPropertiesRegistry()
-        {
         }
     }
 }

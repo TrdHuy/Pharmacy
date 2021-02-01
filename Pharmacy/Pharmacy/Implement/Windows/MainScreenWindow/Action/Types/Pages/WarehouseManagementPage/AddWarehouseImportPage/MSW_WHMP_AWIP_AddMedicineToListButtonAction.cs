@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;

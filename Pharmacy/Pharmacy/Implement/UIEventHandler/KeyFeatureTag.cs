@@ -123,7 +123,7 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_SMP_ADD_BUTTON = "msw_smp_add_button";
         public const string KEY_TAG_MSW_SMP_EDIT_BUTTON = "msw_smp_edit_button";
         public const string KEY_TAG_MSW_SMP_SHOW_INFO_BUTTON = "msw_smp_show_info_button";
-        public const string KEY_TAG_MSW_SMP_SHOW_INVOICE_BUTTON = "msw_smp_show_invoice_button";
+        public const string KEY_TAG_MSW_SMP_SHOW_IMPORT_HISTORY_BUTTON = "msw_smp_show_import_history_button";
 
         //Add Supplier page key string
         public const string KEY_TAG_MSW_SMP_ASP_CANCEL_BUTTON = "msw_smp_asp_cancel_button";
@@ -132,5 +132,10 @@ namespace Pharmacy.Implement.UIEventHandler
         //Modify Supplier page key string
         public const string KEY_TAG_MSW_SMP_MSP_CANCEL_BUTTON = "msw_smp_msp_cancel_button";
         public const string KEY_TAG_MSW_SMP_MSP_SAVE_BUTTON = "msw_smp_msp_save_button";
+
+        //Supplier import history page key string
+        public const string KEY_TAG_MSW_SMP_SIHP_CANCEL_BUTTON = "msw_smp_sihp_cancel_button";
+        public const string KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON = "msw_smp_sihp_invoice_button";
+
     }
 }

@@ -14,6 +14,7 @@ using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {

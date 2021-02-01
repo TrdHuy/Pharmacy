@@ -233,7 +233,10 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\ModifySupplierPage\MSW_SMP_MSP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_DeleteSupplierButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_AddSupplierButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_ShowImportHistoryButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_ModifySupplierButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierImportHistoryPage\MSW_SMP_SIHP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierImportHistoryPage\MSW_SMP_SIHP_ShowInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_SaveButtonAction.cs" />
@@ -261,6 +264,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\WarehouseImportDetailVO.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\WarehouseImportVO.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerModificationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagementPageViewModel.cs" />
@@ -276,6 +281,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_CustomerOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\SellingPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierImportHistoryPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\ModifySupplierPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\AddSupplierPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierManagementPageViewModel.cs" />
@@ -319,6 +325,9 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\AddSupplierPage.xaml.cs">
       <DependentUpon>AddSupplierPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierImportHistoryPage.xaml.cs">
+      <DependentUpon>SupplierImportHistoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserInstantiationPage.xaml.cs">
       <DependentUpon>UserInstantiationPage.xaml</DependentUpon>
@@ -491,6 +500,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\AddSupplierPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierImportHistoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

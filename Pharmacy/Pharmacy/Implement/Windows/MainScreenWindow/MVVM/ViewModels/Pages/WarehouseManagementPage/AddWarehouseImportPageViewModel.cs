@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
@@ -292,20 +293,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             Invalidate("MedicineQuantity");
             Invalidate("TotalPrice");
             Invalidate("NetPrice");
-        }
-    }
-
-    public class WarehouseImportDetailVO : AbstractViewModel
-    {
-        public string MedicineName { get; set; }
-        public string MedicineID { get; set; }
-        public string MedicineUnitName { get; set; }
-        public double Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal TotalPrice { get; set; }
-
-        protected override void InitPropertiesRegistry()
-        {
         }
     }
 }
