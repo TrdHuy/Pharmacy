@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -19,36 +20,27 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage
 {
-    public class SupplierImportHistoryPageViewModel : AbstractViewModel
+    public class SupplierDebtPageViewModel : AbstractViewModel
     {
         public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand ShowDebtButtonCommand { get; set; }
+        public RunInputCommand PrintDebtButtonCommand { get; set; }
         public RunInputCommand ShowInvoiceButtonCommand { get; set; }
         public tblSupplier SupplierInfo { get; set; }
-        public tblWarehouseImport ImportInfo
-        {
-            get { return _importInfo; }
-            set
-            {
-                _importInfo = value;
-                InvalidateOwn();
-                UpdateWarehouseImportDetail();
-            }
-        }
-        public ObservableCollection<tblWarehouseImport> LstWarehouseImport { get; set; }
-        public ObservableCollection<string> LstWarehouseImportDetail { get; set; }
+        public ObservableCollection<MSW_SMP_SupplierDebtOV> LstDebt { get; set; }
+        public decimal TotalDebt { get; set; }
+        public decimal PurchasedDebt { get; set; }
+        public decimal GrossDebt { get; set; }
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
-        private tblWarehouseImport _importInfo;
 
         protected override void InitPropertiesRegistry()
         {
         }
 
-        public SupplierImportHistoryPageViewModel()
+        public SupplierDebtPageViewModel()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            ShowDebtButtonCommand = new RunInputCommand(ShowDebtButtonClickEvent);
+            PrintDebtButtonCommand = new RunInputCommand(PrintDebtButtonClickEvent);
             ShowInvoiceButtonCommand = new RunInputCommand(ShowInvoiceButtonClickEvent);
             UpdateData();
         }
@@ -56,17 +48,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         private void UpdateData()
         {
             SupplierInfo = MSW_DataFlowHost.Current.CurrentModifiedSupplier;
-            LstWarehouseImport = new ObservableCollection<tblWarehouseImport>(SupplierInfo.tblWarehouseImports.Where(o => o.IsActive));
-        }
-        private void UpdateWarehouseImportDetail()
-        {
-            LstWarehouseImportDetail = new ObservableCollection<string>();
-            foreach (var item in ImportInfo.tblWarehouseImportDetails.Where(o=>o.IsActive))
+
+            LstDebt = new ObservableCollection<MSW_SMP_SupplierDebtOV>();
+            foreach (var item in SupplierInfo.tblWarehouseImports.Where(o => o.IsActive))
             {
-                LstWarehouseImportDetail.Add(item.tblMedicine.MedicineName + " - " + item.Quantity
-                    + " " + item.tblMedicine.tblMedicineUnit.MedicineUnitName + ": " + ((decimal)item.Quantity * item.Price).ToString(@"#\,##0 VND"));
+                if (item.PurchasePrice - item.TotalPrice != 0)
+                {
+                    MSW_SMP_SupplierDebtOV debt = new MSW_SMP_SupplierDebtOV();
+                    debt.ImportID = item.ImportID;
+                    debt.ImportTime = item.ImportTime;
+                    debt.PurchasedDebt = item.PurchasePrice - item.TotalPrice;
+                    debt.DebtType = debt.PurchasedDebt > 0 ? "Trả" : "Nợ";
+                    debt.Description = debt.Description;
+                    LstDebt.Add(debt);
+                }
             }
-            Invalidate("LstWarehouseImportDetail");
+
+            TotalDebt = LstDebt.Where(o => o.DebtType == "Nợ").Sum(o => o.PurchasedDebt);
+            PurchasedDebt = LstDebt.Where(o => o.DebtType == "Trả").Sum(o => o.PurchasedDebt);
+            GrossDebt = TotalDebt - PurchasedDebt;
         }
 
         private void ShowInvoiceButtonClickEvent(object paramaters)
@@ -75,18 +75,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON
+                , KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_SHOW_INVOICE_BUTTON
                 , dataTransfer);
         }
 
-        private void ShowDebtButtonClickEvent(object paramaters)
+        private void PrintDebtButtonClickEvent(object paramaters)
         {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_DEBT_BUTTON
-                , dataTransfer);
+            //object[] dataTransfer = new object[2];
+            //dataTransfer[0] = this;
+            //dataTransfer[1] = paramaters;
+            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+            //    , KeyFeatureTag.KEY_TAG_MSW_SMP_MSP_CANCEL_BUTTON
+            //    , dataTransfer);
         }
 
         private void CancelButtonClickEvent(object paramaters)
@@ -95,7 +95,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_CANCEL_BUTTON
+                , KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_CANCEL_BUTTON
                 , dataTransfer);
         }
     }

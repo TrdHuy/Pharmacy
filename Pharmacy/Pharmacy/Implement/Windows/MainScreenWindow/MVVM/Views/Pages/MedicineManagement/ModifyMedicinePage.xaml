@@ -373,6 +373,7 @@
                        Text="Thông tin kho:" />
 
             <DataGrid x:Name="DataGrid"
+                      IsReadOnly="True"
                       Grid.Row="11"
                       Grid.Column="0"
                       Grid.ColumnSpan="5"

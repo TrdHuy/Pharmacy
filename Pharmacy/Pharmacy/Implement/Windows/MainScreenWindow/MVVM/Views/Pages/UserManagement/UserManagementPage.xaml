@@ -42,6 +42,7 @@
             <Grid x:Name="MainDataGridPanel"
                   Grid.Row="0">
                 <DataGrid x:Name="UserDataGrid"
+                          IsReadOnly="True"
                           VerticalAlignment="Top"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"

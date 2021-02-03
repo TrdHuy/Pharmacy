@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pharmacy.Implement.UIEventHandler
+﻿namespace Pharmacy.Implement.UIEventHandler
 {
     class KeyFeatureTag
     {
@@ -136,6 +130,12 @@ namespace Pharmacy.Implement.UIEventHandler
         //Supplier import history page key string
         public const string KEY_TAG_MSW_SMP_SIHP_CANCEL_BUTTON = "msw_smp_sihp_cancel_button";
         public const string KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON = "msw_smp_sihp_invoice_button";
+        public const string KEY_TAG_MSW_SMP_SIHP_SHOW_DEBT_BUTTON = "msw_smp_show_debt_button";
+
+        //Supplier Debt page key string
+        public const string KEY_TAG_MSW_SMP_SDP_CANCEL_BUTTON = "msw_smp_sdp_cancel_button";
+        public const string KEY_TAG_MSW_SMP_SDP_PRINT_DEBT_BUTTON = "msw_smp_sdp_print_debt_button";
+        public const string KEY_TAG_MSW_SMP_SDP_SHOW_INVOICE_BUTTON = "msw_smp_sdp_invoice_button";
 
     }
 }

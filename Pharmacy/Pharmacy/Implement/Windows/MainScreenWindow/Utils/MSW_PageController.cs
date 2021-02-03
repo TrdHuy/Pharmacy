@@ -147,6 +147,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
              new Uri(PharmacyDefinitions.SUPPLIER_IMPORT_HISTORY_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.SUPPLIER_IMPORT_HISTORY_PAGE_LOADING_DELAY_TIME));
 
+        public Lazy<PageVO> SupplierDebtPage = new Lazy<PageVO>(() =>
+         new PageVO(
+             new Uri(PharmacyDefinitions.SUPPLIER_DEBT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+             PharmacyDefinitions.SUPPLIER_DEBT_PAGE_LOADING_DELAY_TIME));
+
         public PageVO CurrentPageOV;
 
 
@@ -265,6 +270,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.SupplierImportHistoryPage:
                     CurrentPageOV.PageUri = SupplierImportHistoryPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SupplierImportHistoryPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.SupplierDebtPage:
+                    CurrentPageOV.PageUri = SupplierDebtPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = SupplierDebtPage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -386,6 +395,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = SupplierImportHistoryPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SupplierImportHistoryPage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.SUPPLIER_DEBT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageOV.PageUri = SupplierDebtPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = SupplierDebtPage.Value.LoadingDelayTime;
+                    break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
@@ -432,6 +445,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         AddSupplierPage = 18,
         ModifySupplierPage = 19,
         SupplierImportHistoryPage = 20,
+        SupplierDebtPage = 21,
 
         UserModificationPage = 31,
         UserInstantiationPage = 32,

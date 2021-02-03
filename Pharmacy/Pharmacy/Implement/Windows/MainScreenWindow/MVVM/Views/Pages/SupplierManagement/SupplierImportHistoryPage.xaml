@@ -295,6 +295,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Grid.Row="0"
+                             IsReadOnly="True"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
                              BorderThickness="2"
@@ -302,6 +303,7 @@
                              Text="{Binding ImportInfo.ImportTime, UpdateSourceTrigger=PropertyChanged,
                         Converter={conv:SystemDateTimeToStringConverter}, ConverterParameter=DATETIME}" />
                     <hps:AkerTextBox Grid.Row="2"
+                                     IsReadOnly="True"
                                      AkerTextBoxType="Expense"
                                      AkerExpenseUnit="VND"
                                      BorderThickness="2"
@@ -310,6 +312,7 @@
                                      Grid.Column="2"
                                      AkerExpense="{Binding ImportInfo.TotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <hps:AkerTextBox Grid.Row="4"
+                                     IsReadOnly="True"
                                      AkerTextBoxType="Expense"
                                      AkerExpenseUnit="VND"
                                      BorderThickness="2"
@@ -318,6 +321,7 @@
                                      Grid.Column="2"
                                      AkerExpense="{Binding ImportInfo.PurchasePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBox Grid.Row="6"
+                             IsReadOnly="True"
                              BorderThickness="2"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"

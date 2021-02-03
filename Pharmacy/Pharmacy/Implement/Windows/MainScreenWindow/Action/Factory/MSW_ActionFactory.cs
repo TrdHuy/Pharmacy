@@ -16,6 +16,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.AddSupplierPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.ModifySupplierPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.SupplierDebtPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.SupplierImportHistoryPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage;
@@ -275,6 +276,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON:
                     action = new MSW_SMP_SIHP_ShowInvoiceButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_DEBT_BUTTON:
+                    action = new MSW_SMP_SIHP_ShowSupplierDebButtonAction();
+                    break; 
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_CANCEL_BUTTON:
+                    action = new MSW_SMP_SDP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_SMP_SDP_ShowInvoiceButtonAction();
                     break;
                 default:
                     action = null;
