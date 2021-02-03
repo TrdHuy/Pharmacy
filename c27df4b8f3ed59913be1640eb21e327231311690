@@ -22,6 +22,29 @@
       },
       "revId": "c27df4b8f3ed59913be1640eb21e327231311690",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a134423_ecea4ad0",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/MainScreenWindow/MVVM/Model/VOs/WarehouseImportVO.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1018457
+      },
+      "writtenOn": "2021-02-03T06:29:10Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 10,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "c27df4b8f3ed59913be1640eb21e327231311690",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
