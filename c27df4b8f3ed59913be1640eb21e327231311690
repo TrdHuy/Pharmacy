@@ -48,6 +48,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cca992b3_8300b837",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/MainScreenWindow/MVVM/Model/VOs/WarehouseImportDetailVO.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-02-03T16:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "137a71ee_2ccb4f74",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 5
+      },
+      "revId": "c27df4b8f3ed59913be1640eb21e327231311690",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a134423_ecea4ad0",
@@ -61,6 +85,30 @@
       "writtenOn": "2021-02-03T06:29:10Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 10,
+        "startChar": 3,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "c27df4b8f3ed59913be1640eb21e327231311690",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09602453_72e39fc4",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/MainScreenWindow/MVVM/Model/VOs/WarehouseImportVO.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-02-03T16:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a134423_ecea4ad0",
       "range": {
         "startLine": 10,
         "startChar": 3,
