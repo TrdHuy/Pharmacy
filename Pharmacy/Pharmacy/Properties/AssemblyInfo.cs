@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Pharmacy")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("HPSoftwareSolution")]
 [assembly: AssemblyProduct("Pharmacy")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]

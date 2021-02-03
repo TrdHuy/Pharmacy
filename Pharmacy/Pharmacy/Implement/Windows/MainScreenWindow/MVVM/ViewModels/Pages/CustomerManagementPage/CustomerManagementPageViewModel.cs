@@ -2,6 +2,7 @@
 using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.InputCommand;
 using System;
@@ -16,6 +17,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 {
     public class CustomerManagementPageViewModel : AbstractViewModel
     {
+        private static Logger logger = new Logger("CustomerManagementPageViewModel");
+
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private SQLQueryCustodian _sqlCmdObserver;
         private string _searchText;
@@ -58,6 +61,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public CustomerManagementPageViewModel()
         {
+            logger.I("Instantinating CustomerManagementPageViewModel");
+            
             InstantiateTipText();
 
             CustomerItemSource = new ObservableCollection<tblCustomer>();
@@ -67,6 +72,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             AddNewCustomerButtonCommand = new RunInputCommand(AddNewUserButtonClickEvent);
             SearchTextChangedCommand = new EventHandleCommand(OnSearchTextChangedEvent);
             InstantiateItems();
+
+            logger.I("Instantinated CustomerManagementPageViewModel");
         }
 
         private void InstantiateTipText()

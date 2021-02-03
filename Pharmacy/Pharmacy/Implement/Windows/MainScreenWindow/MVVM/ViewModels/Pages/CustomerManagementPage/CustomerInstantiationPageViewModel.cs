@@ -4,6 +4,7 @@ using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
@@ -21,6 +22,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 {
     public class CustomerInstantiationPageViewModel : AbstractViewModel
     {
+        private static Logger logger = new Logger("CustomerInstantiationPageViewModel");
+
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
@@ -184,6 +187,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public CustomerInstantiationPageViewModel()
         {
+            logger.I("Instantinating CustomerInstantiationPageViewModel");
+
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
@@ -197,10 +202,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 Visibility.Visible : Visibility.Collapsed;
 
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
+
+            logger.I("Instantinated CustomerInstantiationPageViewModel");
         }
 
         private void CameraButtonClickEvent(object paramaters)
         {
+            logger.V("OnCameraButtonClick");
+
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
@@ -210,6 +219,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         }
         private void CancleButtonClickEvent(object paramaters)
         {
+            logger.V("OnCancleButtonClickEvent");
+
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
@@ -220,6 +231,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         private void SaveButtonClickEvent(object paramaters)
         {
+            logger.V("OnSaveButtonClickEvent");
+
             IsSaveButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;

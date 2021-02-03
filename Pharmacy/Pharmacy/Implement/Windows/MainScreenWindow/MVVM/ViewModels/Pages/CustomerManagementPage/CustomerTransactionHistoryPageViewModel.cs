@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -13,6 +14,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 {
     public class CustomerTransactionHistoryPageViewModel : AbstractViewModel
     {
+        private static Logger logger = new Logger("CustomerTransactionHistoryPageViewModel");
+
         private tblOrder _currentSelectedOrder;
 
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
@@ -51,8 +54,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                         , content.tblMedicine.MedicineName
                         , content.Quantity
                         , content.tblMedicine.tblMedicineUnit.MedicineUnitName
-                        , content.TotalPrice)
-                   ));
+                        , content.TotalPrice)));
+
+                    logger.D("Order detail format: " + orderDetails);
                 }
 
                 return orderDetails;
@@ -87,6 +91,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
             var resPos = new int[] { pos1 ?? 0, pos2 ?? 0, pos3 ?? 0 };
 
+            logger.V("space lenght: pos1 = " + pos1 + " pos2 = " + pos2 + " pos3 = " + pos3);
+
             return resPos;
         }
 
@@ -108,8 +114,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public CustomerTransactionHistoryPageViewModel()
         {
+            logger.I("Instantinating CustomerTransactionHistoryPageViewModel");
+
             CurrentModidifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             InstantiateItems();
+
+            logger.I("Instantinated CustomerTransactionHistoryPageViewModel");
         }
 
         private void InstantiateItems()

@@ -85,7 +85,7 @@
     </Reference>
     <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.24\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.25\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -180,6 +180,7 @@
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
     <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
+    <Compile Include="Implement\Utils\Logger.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_AlternativeAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />

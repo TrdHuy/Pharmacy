@@ -23,6 +23,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 {
     public class CustomerModificationPageViewModel : AbstractViewModel
     {
+        private static Logger logger = new Logger("CustomerModificationPageViewModel");
+
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
@@ -183,6 +185,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public CustomerModificationPageViewModel()
         {
+            logger.I("Instantinating CustomerModificationPageViewModel");
 
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
@@ -199,6 +202,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 GetBitmapFromName(CurrentModifiedCustomer.CustomerID.ToString(), FileIOUtil.CUSTOMER_IMAGE_FOLDER_NAME).
                 ToImageSource();
 
+            logger.I("Instantinated CustomerModificationPageViewModel");
         }
 
         private void CameraButtonClickEvent(object paramaters)
