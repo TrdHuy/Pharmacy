@@ -37,11 +37,14 @@
             <uc:PageHeader Grid.Row="0"
                            MaxHeight="{StaticResource PageHeaderMaxHeight}"
                            HeaderText="Lịch sử mua hàng"
-                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"/>
+                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}" />
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
                                  CamButCmd="{Binding CameraButtonCommand}"
                                  CamButVisibility="Collapsed"
+                                 AvatarSource="{Binding CurrentModidifiedCustomer.CustomerID,
+                Converter={conv:StringToImageSourceConverter},
+                ConverterParameter=CustomerImages}"
                                  MainTiltle="{Binding CurrentModifiedCustomer.CustomerName}"
                                  SubTiltle="{Binding CurrentModifiedCustomer.Email}"
                                  SubTiltle2nd="{Binding CurrentModifiedCustomer.Phone}" />
@@ -70,6 +73,7 @@
                 <ListView BorderThickness="2"
                           BorderBrush="Black"
                           ItemsSource="{Binding OrderItemSource}"
+                          SelectedItem="{Binding CurrentSelectedOrder}"
                           Grid.Row="2">
 
                     <ListView.Resources>
@@ -283,31 +287,45 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Grid.Row="0"
+                             IsReadOnly="True"
+                             Text="{Binding CurrentSelectedOrder.OrderTime}"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
                              BorderThickness="2"
                              Grid.Column="2" />
                     <TextBox Grid.Row="2"
                              BorderThickness="2"
+                             IsReadOnly="True"
+                             Text="{Binding CurrentSelectedOrder.TotalPrice}"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
                     <TextBox Grid.Row="4"
                              BorderThickness="2"
+                             IsReadOnly="True"
+                             Text="{Binding CurrentSelectedOrder.PurchasePrice}"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
                     <TextBox Grid.Row="6"
                              BorderThickness="2"
+                             IsReadOnly="True"
+                             Text="{Binding CurrentSelectedOrder.OrderDescription}"
                              FontSize="{StaticResource FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
+                    
+                    <!--Font issue: formating form alignment not correct
+                    Must change normal font to mono font-->
                     <TextBox Grid.Row="8"
                              BorderThickness="2"
-                             FontSize="{StaticResource FontSizeXLarge}"
+                             IsReadOnly="True"
+                             Text="{Binding CurrentSelectedOrderDetails, Mode=OneWay}"
+                             FontSize="{StaticResource FontSizeRegular}"
                              BorderBrush="Black"
-                             Grid.Column="2" />
-
+                             Grid.Column="2"
+                             FontFamily="{StaticResource RobotoMono}" />
+                    
                     <Grid Grid.Row="10"
                           Grid.Column="2">
                         <Grid.RowDefinitions>

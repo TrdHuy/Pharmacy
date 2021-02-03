@@ -8,6 +8,19 @@
     <FontFamily x:Key="LibelSuit">/Pharmacy;component/Resources/Fonts/#Libel Suit Rg</FontFamily>
     <FontFamily x:Key="VNFOswald">/Pharmacy;component/Resources/Fonts/#VNF-Oswald</FontFamily>
 
+    <FontFamily x:Key="RobotoBlack">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto Black</FontFamily>
+    <FontFamily x:Key="Roboto">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto</FontFamily>
+    <FontFamily x:Key="RobotoLight">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto Light</FontFamily>
+    <FontFamily x:Key="RobotoMedium">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto Medium</FontFamily>
+    <FontFamily x:Key="RobotoThin">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto Thin</FontFamily>
+
+    <FontFamily x:Key="RobotoMono">/Pharmacy;component/Resources/Fonts/Roboto/RobotoMono/#Roboto Mono</FontFamily>
+    <FontFamily x:Key="RobotoMonoExtraLight">/Pharmacy;component/Resources/Fonts/Roboto/RobotoMono/#Roboto Mono ExtraLight</FontFamily>
+    <FontFamily x:Key="RobotoMonoLight">/Pharmacy;component/Resources/Fonts/Roboto/RobotoMono/#Roboto Mono Light</FontFamily>
+    <FontFamily x:Key="RobotoMonoMedium">/Pharmacy;component/Resources/Fonts/Roboto/RobotoMono/#Roboto Mono Medium</FontFamily>
+    <FontFamily x:Key="RobotoMonoSemiBold">/Pharmacy;component/Resources/Fonts/Roboto/RobotoMono/#Roboto Mono SemiBold</FontFamily>
+    <FontFamily x:Key="RobotoMonoThin">/Pharmacy;component/Resources/Fonts/Roboto/RobotoMono/#Roboto Mono Thin</FontFamily>
+
     <system:Double x:Key="FontSizeXXSmall">8</system:Double>
     <system:Double x:Key="FontSizeXSmall">10</system:Double>
     <system:Double x:Key="FontSizeSmall">12</system:Double>

@@ -83,9 +83,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.23\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.24\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -625,6 +625,32 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-Light.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-Thin.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\RobotoMono\RobotoMono-ThinItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Black.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-BlackItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Italic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Light.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-Thin.ttf" />
+    <Resource Include="Resources\Fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Resource Include="Resources\Fonts\fontawesome-webfont.ttf" />
     <Resource Include="Resources\Fonts\VNF-LeagueGothic Regular.ttf" />
     <Resource Include="Resources\Fonts\VNF-Futura Regular.ttf" />

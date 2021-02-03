@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Utils.Converter
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string imageName = value.ToString();
-            string folderName = parameter.ToString();
+            string folderName = parameter?.ToString();
 
             return FileIOUtil.
                 GetBitmapFromName(imageName, folderName).
