@@ -68,17 +68,17 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling
                 throw new InvalidOperationException("AddNewCustomerOrderDetailAction: need a paramater as tblOderDetail or IEnumerable<tblOderDetail>");
             }
 
-            if (!paramaters[0].GetType().GetInterfaces().Any(o => o.Name.Equals(typeof(IEnumerable<tblOrderDetail>).Name)) &&
-                 !paramaters[0].GetType().Name.Equals(typeof(tblOrderDetail).Name))
+            if (!paramaters[0].GetType().GetInterfaces().Any(o => o.Name.Contains(typeof(IEnumerable<tblOrderDetail>).Name)) &&
+                 !paramaters[0].GetType().Name.Contains(typeof(tblOrderDetail).Name))
             {
                 throw new InvalidOperationException("AddNewCustomerOrderDetailAction: paramater must be type of tblOderDetail or IEnumerable<tblOderDetail>");
             }
 
-            if (paramaters[0].GetType().GetInterfaces().Any(o => o.Name.Equals(typeof(IEnumerable<tblOrderDetail>).Name)))
+            if (paramaters[0].GetType().GetInterfaces().Any(o => o.Name.Contains(typeof(IEnumerable<tblOrderDetail>).Name)))
             {
                 handle = MULTI_HANDLER;
             }
-            else if (paramaters[0].GetType().Name.Equals(typeof(tblOrderDetail).Name))
+            else if (paramaters[0].GetType().Name.Contains(typeof(tblOrderDetail).Name))
             {
                 handle = SINGLE_HANDLER;
             }

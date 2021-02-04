@@ -1,4 +1,4 @@
-﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerTransactionHistoryPage"
+﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerTransaction.CustomerTransactionHistoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -42,7 +42,7 @@
             <uc:PageOverviewInfo Grid.Row="1"
                                  CamButCmd="{Binding CameraButtonCommand}"
                                  CamButVisibility="Collapsed"
-                                 AvatarSource="{Binding CurrentModidifiedCustomer.CustomerID,
+                                 AvatarSource="{Binding CurrentModifiedCustomer.CustomerID,
                 Converter={conv:StringToImageSourceConverter},
                 ConverterParameter=CustomerImages}"
                                  MainTiltle="{Binding CurrentModifiedCustomer.CustomerName}"
@@ -348,6 +348,7 @@
                                           VerticalAlignment="Center"
                                           FontSize="{StaticResource FontSizeXLarge}"
                                           TextContent="Xem hóa đơn"
+                                          Command="{Binding BillDisplayButtonCommand}"
                                           FontStyle="Italic" />
 
                         <hps:OsirisButton BorderThickness="0"
@@ -359,14 +360,15 @@
                                           Foreground="White"
                                           FontSize="{StaticResource FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center" />
+                                          VerticalContentAlignment="Center" 
+                                          Command="{Binding DebtsDisplayButtonCommand}"/>
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
                                           Grid.Column="1"
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
-                                          TextContent="Trở lại"
+                                          TextContent="Quay lại"
                                           Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                           Foreground="White"
                                           FontSize="{StaticResource FontSizeXXLarge}"

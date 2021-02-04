@@ -54,7 +54,10 @@ namespace Pharmacy.Base.MVVM.ViewModels
             }
         }
 
-        protected abstract void InitPropertiesRegistry();
+        protected virtual void InitPropertiesRegistry()
+        {
+
+        }
 
         protected void PropRegister(string propName)
         {

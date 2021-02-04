@@ -13,7 +13,7 @@ namespace Pharmacy.Implement.Utils.Converter
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             DateTime dateTime = (DateTime)value;
-            string type = parameter.ToString();
+            string type = parameter?.ToString();
 
             switch (type)
             {

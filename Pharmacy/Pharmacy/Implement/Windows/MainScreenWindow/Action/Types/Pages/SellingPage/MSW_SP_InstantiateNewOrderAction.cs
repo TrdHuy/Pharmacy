@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 _newOrder.OrderDescription = _viewModel.OrderDescription;
                 _newOrder.TotalPrice = _viewModel.MedicineOV.MedicineCost;
                 _newOrder.PurchasePrice = _viewModel.MedicineOV.PaidAmount;
-                foreach (OrderDetailVO vo in _viewModel.CustomerOrderDetailItemSource)
+                foreach (OrderDetailOV vo in _viewModel.CustomerOrderDetailItemSource)
                 {
                     tblOrderDetail oD = new tblOrderDetail()
                     {

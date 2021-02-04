@@ -24,6 +24,9 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_WAREHOUSE_MANAGEMENT = "msw_warehouse_management";
         public const string KEY_TAG_MSW_REPORT = "msw_report";
 
+        public const string KEY_TAG_MSW_NOT_SUPPORTED_BUTTON = "msw_not_supported_button";
+        public const string KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON = "msw_not_implemented_button";
+
         //Personal info page key string
         public const string KEY_TAG_MSW_PIP_SAVE_BUTTON = "msw_pip_save_button";
         public const string KEY_TAG_MSW_PIP_CANCLE_BUTTON = "msw_pip_cancle_button";
@@ -49,6 +52,22 @@ namespace Pharmacy.Implement.UIEventHandler
         public const string KEY_TAG_MSW_CMP_DELETE_BUTTON = "msw_cmp_delete_button";
         public const string KEY_TAG_MSW_CMP_HISTORY_BUTTON = "msw_cmp_history_button";
         public const string KEY_TAG_MSW_CMP_ADD_BUTTON = "msw_cmp_add_button";
+
+        //Customer transaction page key string
+        public const string KEY_TAG_MSW_CMP_CTP_DEBTS_BUTTON = "msw_cmp_ctp_debts_button";
+        public const string KEY_TAG_MSW_CMP_CTP_RETURN_BUTTON = "msw_cmp_ctp_return_button";
+        public const string KEY_TAG_MSW_CMP_CTP_BILL_BUTTON = "msw_cmp_ctp_bill_button";
+
+        //Customer debts page key string
+        public const string KEY_TAG_MSW_CMP_CTP_CDP_PRINT_DEBTS_BUTTON = "msw_cmp_ctp_cdp_print_debts_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CDP_RETURN_BUTTON = "msw_cmp_ctp_cdp_return_button";
+
+        //Customer bill page key string
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON = "msw_cmp_ctp_cbp_edit_enabler_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON = "msw_cmp_ctp_cbp_add_order_detail_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON = "msw_cmp_ctp_cbp_save_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON = "msw_cmp_ctp_cbp_refresh_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON = "msw_cmp_ctp_cbp_delete_order_detail_button";
 
         //Customer instantiation page key string
         public const string KEY_TAG_MSW_CMP_CIP_SAVE_BUTTON = "msw_cmp_cip_save_button";

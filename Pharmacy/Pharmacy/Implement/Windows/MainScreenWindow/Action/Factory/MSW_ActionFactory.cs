@@ -6,6 +6,9 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerDebtsPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.DiscountByMedicinePage;
@@ -36,6 +39,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
 
             switch (keyTag)
             {
+                case KeyFeatureTag.KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON:
+                    action = new MSW_NotImplementedAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_NOT_SUPPORTED_BUTTON:
+                    action = new MSW_NotSupportedAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE:
                     action = new MSW_HomePageButtonAction();
                     break;
@@ -131,6 +140,36 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CANCLE_BUTTON:
                     action = new MSW_CMP_CIP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_DEBTS_BUTTON:
+                    action = new MSW_CMP_CTP_DebtsButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_BILL_BUTTON:
+                    action = new MSW_CMP_CTP_BillButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_RETURN_BUTTON:
+                    action = new MSW_CMP_CTP_ReturnButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_RETURN_BUTTON:
+                    action = new MSW_CMP_CTP_CDP_ReturnButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_PRINT_DEBTS_BUTTON:
+                    action = new MSW_CMP_CTP_CDP_PrintDebtsButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_EditEnablerButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_AddOrderDetailButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_RefreshButtonAction();
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_EDIT_BUTTON:
                     action = new MSW_CMP_EditButtonAction();

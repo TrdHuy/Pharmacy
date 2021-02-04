@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement.CustomerBill;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.SupplierManagement;
@@ -159,6 +160,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.SET_SUPPLIER_DEACTIVE_CMD_KEY:
                     _result = new SetSupplierDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY:
+                    _result = new SetCustomerOrderDeactiveAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -285,6 +289,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for set a supplier deactive
         public const string SET_SUPPLIER_DEACTIVE_CMD_KEY = "set_supplier_deactive";
+
+        //Key for set a customer's order deactive
+        public const string SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY = "set_customer_order_deactive";
 
     }
 
