@@ -81,10 +81,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 // Công nợ phải được tính theo các hóa đơn trước hóa đơn hiện tại
                 if ((_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder != null)
                 {
-                   
+
                     var currentOrder = (_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder;
 
                     var totalCost = (_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder.tblCustomer.tblOrders
+                        .Where((od) => od.IsActive)
                         .Sum(x =>
                         {
                             if (DateTime.Compare(x.OrderTime, currentOrder.OrderTime) < 0)
@@ -95,6 +96,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                         });
 
                     var purchaseCost = (_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder.tblCustomer.tblOrders
+                        .Where((od) => od.IsActive)
                         .Sum(x =>
                     {
                         if (DateTime.Compare(x.OrderTime, currentOrder.OrderTime) < 0)
