@@ -54,13 +54,13 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string SHOW_WAREHOUSE_IMPORT_INFO_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/ShowWarehouseImportInfoPage.xaml";
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 500;
-        public static readonly long SELLING_PAGE_LOADING_DELAY_TIME = 100;
+        public static readonly long SELLING_PAGE_LOADING_DELAY_TIME = 1300;
         public static readonly long PERSONAL_INFO_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long USER_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long CUSTOMER_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long SUPPLIER_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long INVOICE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
-        public static readonly long MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
+        public static readonly long MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1300;
         public static readonly long OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long REPORT_PAGE_LOADING_DELAY_TIME = 1000;

@@ -20,6 +20,34 @@ namespace Pharmacy.Implement.Utils
         private const long LOW_IMAGE_QUALITY = 30;
         private const long MEDIUM_IMAGE_QUALITY = 50;
 
+        public static string GetImagePathFromName(string imageName,string folderName)
+        {
+            try
+            {
+                var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + folderName;
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                string fileName = imageName + ".jpg";
+                string filePath = directory + @"\" + fileName;
+
+                if (File.Exists(filePath))
+                {
+                    return filePath;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
         public static Bitmap GetBitmapFromName(string imageName, string folderName)
         {
             try

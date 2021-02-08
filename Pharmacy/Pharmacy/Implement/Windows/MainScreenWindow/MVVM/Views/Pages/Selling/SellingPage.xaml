@@ -94,42 +94,19 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
 
 
+
                             <hps:HorusBox Grid.Column="2"
+                                          Style="{StaticResource SearchingBoxTheme}"
                                           Tag="Nhập tên khách hàng"
-                                          HorizontalContentAlignment="Left"
-                                          VerticalContentAlignment="Center"
-                                          RemoveDropDownIcon="True"
+                                          BorderThickness="1"
+                                          IsUsingHorusShadow="False"
                                           IsEnabled="{Binding CustomerOV.IsCustomerChooserEnable}"
                                           FilterText="{Binding CustomerOV.CustomerName,Mode=TwoWay}"
-                                          ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                          ScrollViewer.CanContentScroll="True"
-                                          IsEditable="True"
-                                          IsReadOnly="False"
                                           FontSize="{StaticResource FontSizeXLarge}"
-                                          Foreground="Black"
-                                          MaxDropDownHeight="100"
-                                          BorderBrush="Black"
-                                          BorderThickness="1"
-                                          DropDownButtonBackground="White"
-                                          PopupBackground="White"
-                                          PopupBorderThickness="1"
-                                          PopupBorderBrush="Black"
-                                          Background="White"
                                           SelectedItem="{Binding CustomerOV.CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
-                                          ItemsSource="{Binding CustomerItemSource}"
-                                          IsUsingListFilter="True"
-                                          IsTextSearchEnabled="False"
-                                          DisplayMemberPath="CustomerName"
-                                          IsUsingIgnoreLowerUpperCase="True">
+                                          ItemsSource="{Binding CustomerItemSource}">
 
-                                <hps:HorusBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                                VirtualizingPanel.CacheLengthUnit="Item" />
-                                    </ItemsPanelTemplate>
-                                </hps:HorusBox.ItemsPanel>
-
-                                <!--<hps:HorusBox.ItemTemplate>
+                                <hps:HorusBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Background="Transparent">
                                             <Grid.ColumnDefinitions>
@@ -141,26 +118,32 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
-                                            -->
-                                <!--<Border Grid.Column="1">
-                                                <Border.OpacityMask>
-                                                    <ImageBrush Stretch="Uniform"
-                                                                ImageSource="{StaticResource AvatarImageOpacityMask}">
-                                                    </ImageBrush>
-                                                </Border.OpacityMask>
-
-                                                <Image Stretch="Uniform"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       Source="{Binding CustomerID,Converter={conv:StringToImageSourceConverter},ConverterParameter=CustomerImages}" />
-                                            </Border>-->
-                                <!--
-                                            <TextBlock Grid.Column="3"
-                                                       Foreground="Black"
-                                                       Text="{Binding Phone}"
-                                                       VerticalAlignment="Center"
-                                                       HorizontalAlignment="Stretch"
-                                                       FontSize="{StaticResource FontSizeRegular}" />
+                                            <hps:AtumImageView CornerRadius="100"
+                                                               BorderThickness="0"
+                                                               IsUsingAtumClippingBorder="True"
+                                                               Grid.Column="1"
+                                                               Height="30"
+                                                               Width="30"
+                                                               IsSupportLoadingAnimation="True"
+                                                               ImageFileLoadingDelayTime="2000"
+                                                               HorizontalContentAlignment="Center"
+                                                               VerticalContentAlignment="Center"
+                                                               Stretch="UniformToFill"
+                                                               ImagePath="{Binding CustomerID,
+                                                Converter={conv:FileNameToImagePathConverter},
+                                                ConverterParameter=CustomerImages}">
+                                                <hps:AtumImageView.Resources>
+                                                    <Style TargetType="hps:AtumImageView">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="ImagePath"
+                                                                     Value="{x:Null}">
+                                                                <Setter Property="Source"
+                                                                        Value="{StaticResource DefaultCustomerImage}" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </hps:AtumImageView.Resources>
+                                            </hps:AtumImageView>
 
                                             <TextBlock Grid.Column="5"
                                                        Foreground="Black"
@@ -172,8 +155,45 @@
 
 
                                     </DataTemplate>
-                                </hps:HorusBox.ItemTemplate>-->
+                                </hps:HorusBox.ItemTemplate>
 
+                                <hps:HorusBox.SelectedItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Background="Transparent">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="10" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="20" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="10" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <hps:AtumImageView CornerRadius="100"
+                                                               BorderThickness="0"
+                                                               IsUsingAtumClippingBorder="True"
+                                                               Grid.Column="1"
+                                                               Height="30"
+                                                               Width="30"
+                                                               HorizontalContentAlignment="Center"
+                                                               VerticalContentAlignment="Center"
+                                                               Stretch="UniformToFill"
+                                                               Source="{Binding CustomerID,
+                                                Converter={conv:StringToImageSourceConverter},
+                                                ConverterParameter=CustomerImages}">
+                                            </hps:AtumImageView>
+
+                                            <TextBlock Grid.Column="5"
+                                                       Foreground="Black"
+                                                       Text="{Binding CustomerName}"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Right"
+                                                       FontSize="{StaticResource FontSizeRegular}" />
+                                        </Grid>
+
+
+                                    </DataTemplate>
+                                </hps:HorusBox.SelectedItemTemplate>
                             </hps:HorusBox>
 
                         </Grid>
@@ -224,38 +244,15 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
 
                             <hps:HorusBox  Grid.Column="2"
+                                           Style="{StaticResource SearchingBoxTheme}"
                                            Tag="Nhập số điện thoại khách hàng"
-                                           HorizontalContentAlignment="Left"
-                                           VerticalContentAlignment="Center"
                                            IsEnabled="{Binding CustomerOV.IsCustomerChooserEnable}"
-                                           RemoveDropDownIcon="True"
-                                           ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                           ScrollViewer.CanContentScroll="True"
-                                           IsEditable="True"
                                            FilterText="{Binding CustomerOV.CustomerPhone,Mode=TwoWay}"
-                                           IsReadOnly="False"
                                            FontSize="{StaticResource FontSizeXLarge}"
-                                           Foreground="Black"
-                                           MaxDropDownHeight="100"
-                                           BorderBrush="Black"
                                            BorderThickness="1"
-                                           DropDownButtonBackground="White"
-                                           PopupBackground="White"
-                                           PopupBorderThickness="1"
-                                           PopupBorderBrush="Black"
-                                           Background="White"
                                            SelectedItem="{Binding CustomerOV.CurrentSelectedCustomer,UpdateSourceTrigger=LostFocus}"
                                            ItemsSource="{Binding CustomerItemSource}"
-                                           IsUsingListFilter="True"
-                                           IsTextSearchEnabled="False"
-                                           DisplayMemberPath="Phone"
-                                           IsUsingIgnoreLowerUpperCase="True">
-                                <hps:HorusBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                                VirtualizingPanel.CacheLengthUnit="Item" />
-                                    </ItemsPanelTemplate>
-                                </hps:HorusBox.ItemsPanel>
+                                           DisplayMemberPath="Phone">
                             </hps:HorusBox>
 
                         </Grid>
@@ -333,42 +330,13 @@
 
                             <hps:HorusBox Grid.Column="2"
                                           Tag="Nhập thuốc tại đây"
-                                          HorizontalContentAlignment="Left"
-                                          VerticalContentAlignment="Center"
-                                          RemoveDropDownIcon="True"
-                                          ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                          ScrollViewer.CanContentScroll="True"
-                                          IsEditable="True"
-                                          IsReadOnly="False"
+                                          Style="{StaticResource SearchingBoxTheme}"
                                           FontSize="{StaticResource FontSizeXLarge}"
-                                          BorderBrush="Black"
                                           BorderThickness="1"
-                                          DropDownButtonBackground="White"
-                                          PopupBackground="White"
-                                          PopupBorderThickness="1"
-                                          PopupBorderBrush="Black"
-                                          Background="White"
                                           FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
                                           SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine}"
                                           ItemsSource="{Binding MedicineItemSource}"
-                                          IsUsingListFilter="True"
-                                          IsTextSearchEnabled="False"
-                                          FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}"
-                                          IsUsingIgnoreLowerUpperCase="True">
-                                <hps:HorusBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ComboBoxItem}">
-                                        <Setter Property="HorizontalContentAlignment"
-                                                Value="Stretch" />
-                                    </Style>
-                                </hps:HorusBox.ItemContainerStyle>
-
-                                <hps:HorusBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                                VirtualizingPanel.CacheLengthUnit="Item" />
-                                    </ItemsPanelTemplate>
-                                </hps:HorusBox.ItemsPanel>
-
+                                          FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}">
                                 <hps:HorusBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Background="Transparent">

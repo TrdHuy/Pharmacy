@@ -32,8 +32,8 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
-                <RowDefinition Height="1.27*" />
-                <RowDefinition Height="4.64*" />
+                <RowDefinition Height="1.47*" />
+                <RowDefinition Height="4.44*" />
             </Grid.RowDefinitions>
 
             <!--Time area-->
@@ -111,7 +111,7 @@
 
                 <!--Customer content area-->
                 <Grid Grid.Row="2"
-                      Margin="2,0,2,2"
+                      Margin="5,0,5,5"
                       Grid.RowSpan="4">
                     <Grid Margin="0"
                           Background="White">
@@ -244,14 +244,9 @@
                 </Border>
 
                 <Grid Grid.Row="2"
-                      Margin="2,0,2,2"
                       Grid.RowSpan="4">
                     <Grid Margin="5,0,5,5"
                           Background="White">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="23*" />
-                            <ColumnDefinition Width="1073*" />
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1.5*" />
                             <RowDefinition Height="6.8*" />
@@ -260,8 +255,7 @@
                         </Grid.RowDefinitions>
 
                         <!--input area-->
-                        <Grid Grid.Row="0"
-                              Grid.ColumnSpan="2">
+                        <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.6*" />
                                 <ColumnDefinition Width="0.4*" />
@@ -282,43 +276,15 @@
                                        FontSize="{StaticResource FontSizeXLarge}" />
 
                             <hps:HorusBox Grid.Column="2"
+                                          Style="{StaticResource SearchingBoxTheme}"
                                           Tag="Nhập thuốc tại đây"
-                                          HorizontalContentAlignment="Left"
-                                          VerticalContentAlignment="Center"
-                                          RemoveDropDownIcon="True"
-                                          ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                          ScrollViewer.CanContentScroll="True"
-                                          IsEditable="True"
-                                          IsReadOnly="False"
                                           IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                           FontSize="{StaticResource FontSizeXLarge}"
-                                          BorderBrush="Black"
                                           BorderThickness="1"
-                                          DropDownButtonBackground="White"
-                                          PopupBackground="White"
-                                          PopupBorderThickness="1"
-                                          PopupBorderBrush="Black"
-                                          Background="White"
                                           FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
                                           SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine,Mode=TwoWay}"
                                           ItemsSource="{Binding MedicineItemSource}"
-                                          IsUsingListFilter="True"
-                                          IsTextSearchEnabled="False"
-                                          FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}"
-                                          IsUsingIgnoreLowerUpperCase="True">
-                                <hps:HorusBox.ItemContainerStyle>
-                                    <Style TargetType="{x:Type ComboBoxItem}">
-                                        <Setter Property="HorizontalContentAlignment"
-                                                Value="Stretch" />
-                                    </Style>
-                                </hps:HorusBox.ItemContainerStyle>
-
-                                <hps:HorusBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                                VirtualizingPanel.CacheLengthUnit="Item" />
-                                    </ItemsPanelTemplate>
-                                </hps:HorusBox.ItemsPanel>
+                                          FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}">
 
                                 <hps:HorusBox.ItemTemplate>
                                     <DataTemplate>
@@ -626,7 +592,7 @@
                                                                       Command="{Binding ButtonCommandOV.DeleteOrderDetailButtonCommand, ElementName=CustomerBillPageDataContext}"
                                                                       CommandParameter="{Binding ElementName=OrderDetailDataGrid}"
                                                                       FontFamily="{StaticResource FontAwesome}"
-                                                                      TextContent="&#xf00d;"/>
+                                                                      TextContent="&#xf00d;" />
 
                                                 </Grid>
                                             </Border>
@@ -779,7 +745,7 @@
                            Background="White"
                            FontSize="{StaticResource FontSizeXXLarge}" />
             </Grid>
-          
+
         </Grid>
     </Grid>
 </Page>

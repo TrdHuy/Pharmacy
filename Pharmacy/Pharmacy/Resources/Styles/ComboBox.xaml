@@ -3,7 +3,13 @@
                     xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
                     xmlns:local="clr-namespace:Pharmacy">
-    <!--Base Button-->
+
+    <Style TargetType="{x:Type ComboBoxItem}"
+           x:Key="SearchBoxItemContainerStyle">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+    </Style>
+
     <Style TargetType="{x:Type hps:HorusBox}"
            x:Key="HorusBoxCustomNormalTheme">
         <Setter Property="IsUsingHorusPopupShadow"
@@ -41,7 +47,7 @@
         <Setter Property="IsEditable"
                 Value="True" />
         <Setter Property="IconHeight"
-                Value="20"/>
+                Value="20" />
     </Style>
 
     <Style TargetType="{x:Type hps:HorusBox}"
@@ -73,7 +79,7 @@
         <Setter Property="PopupBackground"
                 Value="White" />
         <Setter Property="PopupBorderThickness"
-                Value="2" />
+                Value="1" />
         <Setter Property="PopupBorderBrush"
                 Value="Black" />
         <Setter Property="IsUsingListFilter"
@@ -84,6 +90,19 @@
                 Value="True" />
         <Setter Property="Background"
                 Value="White" />
+
+        <Setter Property="ItemContainerStyle"
+                Value="{StaticResource SearchBoxItemContainerStyle}" />
+
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
+                                            VirtualizingPanel.CacheLengthUnit="Item" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+
     </Style>
 </ResourceDictionary>
 
