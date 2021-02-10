@@ -137,5 +137,11 @@
         public const string KEY_TAG_MSW_SMP_SDP_PRINT_DEBT_BUTTON = "msw_smp_sdp_print_debt_button";
         public const string KEY_TAG_MSW_SMP_SDP_SHOW_INVOICE_BUTTON = "msw_smp_sdp_invoice_button";
 
+        //Other payment management page key string
+        public const string KEY_TAG_MSW_OPMP_DELETE_BUTTON = "msw_opmp_delete_button";
+        public const string KEY_TAG_MSW_OPMP_ADD_BUTTON = "msw_opmp_add_button";
+        public const string KEY_TAG_MSW_OPMP_EDIT_BUTTON = "msw_opmp_edit_button";
+        public const string KEY_TAG_MSW_OPMP_SHOW_INFO_BUTTON = "msw_opmp_show_info_button";
+        public const string KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON = "msw_opmp_show_invoice_button";
     }
 }

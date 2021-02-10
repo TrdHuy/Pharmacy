@@ -139,6 +139,7 @@
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
     <Compile Include="Implement\Utils\Converter\StringToImageSourceConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\OtherPaymentTypeToStringConverter.cs" />
     <Compile Include="Implement\Utils\Converter\SystemDateTimeToStringConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
     <Compile Include="Implement\Utils\CustomControls\DatePickerCustom.cs" />
@@ -157,6 +158,8 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActivteMedicineStockInWarehouseDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetPromoDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetMedicineDeactiveAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\GetAllActiveOtherPaymentDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\SetOtherPaymentDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\AddNewCustomerOrderAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\AddNewCustomerOrderDetailAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\UpdateCustomerOrderAction.cs" />
@@ -220,6 +223,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_HistoryButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ShowMedicineInfoPage\MSW_MMP_SMIP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\MSW_OPMP_DeleteOtherPaymentButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
@@ -267,6 +271,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\OtherPaymentsManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\OVs\MSW_SMP_SupplierDebtOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierDebtPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\OVs\MSW_WHMP_WarehouseImportDetailOV.cs" />

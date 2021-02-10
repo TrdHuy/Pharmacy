@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.OtherPaymentsManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.SupplierManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement;
@@ -165,6 +166,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.MODIFY_SUPPLIER_CMD_KEY:
                     _result = new ModifySupplierAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_ALL_ACTIVE_OTHER_PAYMENT_DATA_CMD_KEY:
+                    _result = new GetAllActiveOtherPaymentDataAction().Execute(_appDBContext, paramaters);
+                    break;
+                case SQLCommandKey.SET_OTHER_PAYMENT_DEACTIVE_CMD_KEY:
+                    _result = new SetOtherPaymentDeactiveAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -297,6 +304,12 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for modify supplier
         public const string MODIFY_SUPPLIER_CMD_KEY = "modify_supplier";
+
+        //Key for getting info of all active other payment data in database
+        public const string GET_ALL_ACTIVE_OTHER_PAYMENT_DATA_CMD_KEY = "get_all_active_other_payment_data";
+
+        //Key for set a other payment deactive
+        public const string SET_OTHER_PAYMENT_DEACTIVE_CMD_KEY = "set_other_payment_deactive";
     }
 
     public class SQLQueryResult

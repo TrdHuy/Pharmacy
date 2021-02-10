@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,32 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaym
         public OtherPaymentsManagementPage()
         {
             InitializeComponent();
+            DataContext = new OtherPaymentsManagementPageViewModel();
+        }
+
+        private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateFilter(sender, e);
+        }
+
+        private void UpdateFilter(object sender, EventArgs eventArgs)
+        {
+            if (DataContext != null)
+            {
+                (DataContext as OtherPaymentsManagementPageViewModel).FilterChangedCommand.Execute(sender,
+                    eventArgs,
+                    new object[] { cbxFilterText, dprStartDateFilter, dprEndDateFilter, DataGrid });
+            }
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //(DataContext as WarehouseManagementPageViewModel).ShowWarehouseImportInfoCommand.Execute(sender, e, DataGrid, this);
+        }
+
+        private void cbxFilterText_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateFilter(sender, e);
         }
     }
 }
