@@ -13,6 +13,7 @@ using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
@@ -20,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
     {
         public ObservableCollection<tblSupplier> LstSupplier { get; set; }
         public ObservableCollection<tblMedicine> LstMedicine { get; set; }
-        public ObservableCollection<WarehouseImportDetailVO> LstWarehouseImportDetail { get; set; }
+        public ObservableCollection<MSW_WHMP_WarehouseImportDetailOV> LstWarehouseImportDetail { get; set; }
         public tblSupplier SelectedSupplier
         {
             get { return _selectedSupplier; }
@@ -278,7 +279,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         private void InitImportDetail()
         {
-            LstWarehouseImportDetail = new ObservableCollection<WarehouseImportDetailVO>();
+            LstWarehouseImportDetail = new ObservableCollection<MSW_WHMP_WarehouseImportDetailOV>();
             LstMedicine = new ObservableCollection<tblMedicine>();
             MedicinePrice = 0;
             MedicineQuantity = 0;
@@ -292,20 +293,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             Invalidate("MedicineQuantity");
             Invalidate("TotalPrice");
             Invalidate("NetPrice");
-        }
-    }
-
-    public class WarehouseImportDetailVO : AbstractViewModel
-    {
-        public string MedicineName { get; set; }
-        public string MedicineID { get; set; }
-        public string MedicineUnitName { get; set; }
-        public double Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal TotalPrice { get; set; }
-
-        protected override void InitPropertiesRegistry()
-        {
         }
     }
 }

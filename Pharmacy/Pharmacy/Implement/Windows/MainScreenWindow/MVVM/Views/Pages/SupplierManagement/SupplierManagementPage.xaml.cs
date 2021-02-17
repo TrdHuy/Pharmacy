@@ -34,7 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierM
         }
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //((MedicineManagementPageViewModel)DataContext).ShowMedicineInfoCommand.Execute(sender, e, DataGrid, this);
+            ((SupplierManagementPageViewModel)DataContext).ShowSupplierInfoCommand.Execute(sender, e, DataGrid, this);
         }
     }
 }

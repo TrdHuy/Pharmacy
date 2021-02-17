@@ -1,14 +1,297 @@
 ﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaymentManagement.OtherPaymentsManagementPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaymentManagement"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+      mc:Ignorable="d"
+      Background="White"
+      x:Name="OtherPaymentManagement"
+      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+      FontSize="{StaticResource FontSizeLarge_Float}"
       Title="OtherPaymentsManagementPage">
 
-    <Grid Background="Azure">
-        <TextBlock FontSize="50">this is other payments page</TextBlock>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.6*"
+                           MaxHeight="{StaticResource PageHeaderMaxHeight}" />
+            <RowDefinition Height="0.37*" />
+            <RowDefinition Height="4.64*" />
+            <RowDefinition Height="0.70*"
+                           MaxHeight="100" />
+        </Grid.RowDefinitions>
+        <uc:PageHeader Grid.Row="0"
+                       HeaderText="Thanh toán khác"
+                       HeaderIcon="{StaticResource HomePage_OtherPaymentsManageIcon}" />
+        <Grid Grid.Row="1"
+              Margin="10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Loại thanh toán:"
+                       VerticalAlignment="Center" />
+            <hps:HorusBox x:Name="cbxFilterText"
+                          Grid.Column="1"
+                          Margin="5,0,0,0"
+                          VerticalContentAlignment="Center"
+                          SelectedIndex="0"
+                          Style="{StaticResource HorusBoxCustomNormalTheme}"
+                          SelectionChanged="cbxFilterText_SelectionChanged"
+                          IsUsingListFilter="False"
+                          IsEditable="False">
+                <ComboBoxItem Content="Tất cả" />
+                <ComboBoxItem Content="Thu" />
+                <ComboBoxItem Content="Chi" />
+            </hps:HorusBox>
+            <TextBlock Grid.Column="2"
+                       Text="Từ:"
+                       Margin="20,0,5,0"
+                       VerticalAlignment="Center" />
+            <cc:DatePickerCustom x:Name="dprStartDateFilter"
+                                 Grid.Column="3"
+                                 SelectedDateChanged="datePicker_SelectedDateChanged" />
+            <TextBlock Grid.Column="4"
+                       Text="Đến:"
+                       Margin="10,0,5,0"
+                       VerticalAlignment="Center" />
+            <cc:DatePickerCustom x:Name="dprEndDateFilter"
+                                 Grid.Column="5"
+                                 SelectedDateChanged="datePicker_SelectedDateChanged">
+            </cc:DatePickerCustom>
+        </Grid>
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="2"
+                  IsReadOnly="True"
+                  VerticalAlignment="Top"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding OtherPaymentItemSource}"
+                  Margin="10"
+                  MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
+                  HorizontalGridLinesBrush="White"
+                  VerticalGridLinesBrush="White"
+                  HeadersVisibility="Column">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell"
+                       x:Key="DGTextCell">
+                    <Setter Property="IsTabStop"
+                            Value="False" />
+
+                    <Setter Property="TextBox.IsReadOnly"
+                            Value="True" />
+
+                    <Setter Property="FontSize"
+                            Value="{StaticResource FontSizeLarge}" />
+
+                    <Setter Property="Foreground"
+                            Value="Black" />
+
+                    <Setter Property="Background"
+                            Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Stretch" />
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter Focusable="False"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          Content="{TemplateBinding Content}">
+
+                                        </ContentPresenter>
+                                    </Grid>
+                                </Border>
+
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Background"
+                            Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Padding"
+                            Value="3" />
+
+                    <Setter Property="BorderThickness"
+                            Value="1" />
+
+                    <Setter Property="BorderBrush"
+                            Value="White" />
+
+                    <Setter Property="Height"
+                            Value="{StaticResource DefaultDataGrid_ColumnHeaderHeight}" />
+
+                    <Setter Property="Background"
+                            Value="{StaticResource NormalTheme_DefaultDataGrid_ColumnHeaderBackgroundBrush}" />
+
+                    <Setter Property="Foreground"
+                            Value="White" />
+
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Center" />
+
+                    <Setter Property="FontSize"
+                            Value="{StaticResource FontSizeXLarge}" />
+
+                </Style>
+
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Resources>
+                        <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                          Color="{StaticResource NormalTheme_3rd_Color}" />
+                    </Style.Resources>
+
+                    <Setter Property="Height"
+                            Value="{StaticResource DefaultDataGrid_HavingListBox_RowHeight}" />
+                    <EventSetter Event="MouseDoubleClick"
+                                 Handler="DataGridRow_MouseDoubleClick" />
+                </Style>
+
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Thời gian"
+                                    Binding="{Binding PaymentTime, Converter={conv:SystemDateTimeToStringConverter}, ConverterParameter=DATETIME}" />
+
+                <DataGridTextColumn Width="100"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Loại"
+                                    Binding="{Binding PaymentType, Converter={conv:OtherPaymentTypeToStringConverter}}" />
+
+                <DataGridTextColumn Width="*"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Nội dung"
+                                    Binding="{Binding PaymentContent}">
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="auto"
+                                    CellStyle="{StaticResource DGTextCell}"
+                                    Header="Tổng tiền"
+                                    Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
+
+                <!--Edit column-->
+                <DataGridTemplateColumn CanUserResize="False"
+                                        Width="0.5*"
+                                        MaxWidth="{StaticResource DefaultDataGrid_MaxWidthEditColumn}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                        <ColumnDefinition Width="0.1*" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="0.1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <hps:OsirisButton Grid.Column="1"
+                                                      IconStretch="Uniform"
+                                                      Background="White"
+                                                      IsUsingDropShadowEffect="True"
+                                                      HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      BorderThickness="0"
+                                                      Command="{Binding DataContext.EditOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
+                                                      CommandParameter="{Binding ElementName=DataGrid}"
+                                                      IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+
+                                    <hps:OsirisButton Grid.Column="3"
+                                                      BorderThickness="0"
+                                                      HorizontalAlignment="Center"
+                                                      IsUsingDropShadowEffect="True"
+                                                      Background="White"
+                                                      VerticalAlignment="Center"
+                                                      IconStretch="Uniform"
+                                                      Command="{Binding DataContext.DeleteOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
+                                                      CommandParameter="{Binding ElementName=DataGrid}"
+                                                      IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+
+                                    <TextBlock Grid.Column="5"
+                                               VerticalAlignment="Center">
+                                        <Hyperlink FontStyle="Italic"
+                                                   Command="{Binding DataContext.ShowInvoiceButtonCommand,ElementName=OtherPaymentManagement}"
+                                                   CommandParameter="{Binding ElementName=DataGrid}">
+                                            Xem hóa đơn
+                                        </Hyperlink>
+                                    </TextBlock>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3"
+              Margin="10,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <hps:OsirisButton OBTextVerticalAlignment="Center"
+                              IsUsingDropShadowEffect="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              TextContent="+ Thêm mới"
+                              Grid.Column="3"
+                              BorderThickness="0"
+                              Background="{StaticResource NormalTheme_1st_Background_Brush}"
+                              Foreground="White"
+                              Margin="10,0"
+                              Padding="5"
+                              Command="{Binding AddNewOtherPaymentButtonCommand}" />
+        </Grid>
     </Grid>
 </Page>

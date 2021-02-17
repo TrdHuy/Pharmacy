@@ -70,6 +70,15 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_FILTER_SUPPLIER_BY_PHONE = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_SUPPLIER_BY_PHONE"];
 
+        public static readonly bool IS_SUPPORT_SEARCH_OTHER_PAYMENT_BY_TYPE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_OTHER_PAYMENT_BY_TYPE"];
+
+        public static readonly bool IS_SUPPORT_FILTER_OTHER_PAYMENT_BY_START_DATE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_OTHER_PAYMENT_BY_START_DATE"];
+
+        public static readonly bool IS_SUPPORT_FILTER_OTHER_PAYMENT_BY_END_DATE = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_OTHER_PAYMENT_BY_END_DATE"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";

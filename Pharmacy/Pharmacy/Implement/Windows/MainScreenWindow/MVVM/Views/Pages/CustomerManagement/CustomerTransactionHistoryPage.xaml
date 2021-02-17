@@ -341,7 +341,7 @@
                                           Margin="5,0,0,0"
                                           Background="Transparent"
                                           BorderThickness="0"
-                                          HorizontalAlignment="Left"
+                                          HorizontalAlignment="Right"
                                           VerticalContentAlignment="Center"
                                           TextDecor="Underline"
                                           Foreground="#008AE0"

@@ -46,6 +46,7 @@
                      Margin="5,0,0,0"
                      VerticalContentAlignment="Center"
                      Text=""
+                     BorderThickness="2"
                      TextChanged="txtFilterText_TextChanged" />
             <TextBlock Grid.Column="2"
                        Text="Từ:"

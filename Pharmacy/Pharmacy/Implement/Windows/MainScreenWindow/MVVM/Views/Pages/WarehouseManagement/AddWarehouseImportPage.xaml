@@ -451,6 +451,7 @@
 
                 <hps:AkerTextBox Grid.Column="1"
                                  Grid.Row="0"
+                                 IsReadOnly="True"
                                  VerticalAlignment="Center"
                                  FontWeight="Bold"
                                  FontSize="{StaticResource FontSizeXXLarge}"
@@ -471,6 +472,7 @@
 
                 <hps:AkerTextBox Grid.Column="1"
                                  Grid.Row="2"
+                                 IsReadOnly="True"
                                  VerticalAlignment="Center"
                                  Foreground="Red"
                                  FontWeight="Bold"

@@ -14,12 +14,13 @@ using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
     public class ShowWarehouseImportInfoPageViewModel : AbstractViewModel
     {
-        public ObservableCollection<WarehouseImportDetailVO> LstWarehouseImportDetail { get; set; }
+        public ObservableCollection<MSW_WHMP_WarehouseImportDetailOV> LstWarehouseImportDetail { get; set; }
         public tblWarehouseImport ImportInfo { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal PurchasedPrice { get; set; }
@@ -66,10 +67,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             TotalPrice = ImportInfo.TotalPrice;
             PurchasedPrice = ImportInfo.PurchasePrice;
             NetPrice = TotalPrice - PurchasedPrice;
-            LstWarehouseImportDetail = new ObservableCollection<WarehouseImportDetailVO>();
+            LstWarehouseImportDetail = new ObservableCollection<MSW_WHMP_WarehouseImportDetailOV>();
             foreach (var item in ImportInfo.tblWarehouseImportDetails.Where(o=>o.IsActive))
             {
-                var detail = new WarehouseImportDetailVO();
+                var detail = new MSW_WHMP_WarehouseImportDetailOV();
                 detail.MedicineID = item.MedicineID;
                 detail.MedicineName = item.tblMedicine.MedicineName;
                 detail.MedicineUnitName = item.tblMedicine.tblMedicineUnit.MedicineUnitName;

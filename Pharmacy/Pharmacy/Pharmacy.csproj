@@ -139,6 +139,7 @@
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
     <Compile Include="Implement\Utils\Converter\StringToImageSourceConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\OtherPaymentTypeToStringConverter.cs" />
     <Compile Include="Implement\Utils\Converter\SystemDateTimeToStringConverter.cs" />
     <Compile Include="Implement\Utils\CustomControls\DashboardWindow.cs" />
     <Compile Include="Implement\Utils\CustomControls\DatePickerCustom.cs" />
@@ -157,9 +158,13 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActivteMedicineStockInWarehouseDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetPromoDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetMedicineDeactiveAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\GetAllActiveOtherPaymentDataAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\SetOtherPaymentDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\AddNewCustomerOrderAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\AddNewCustomerOrderDetailAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\UpdateCustomerOrderAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\SupplierManagement\ModifySupplierAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\SupplierManagement\AddNewSupplierAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\SupplierManagement\SetSupplierDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\AddNewUserAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\UserManagement\CheckUserAvailAction.cs" />
@@ -219,14 +224,27 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_HistoryButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ShowMedicineInfoPage\MSW_MMP_SMIP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\MSW_OPMP_DeleteOtherPaymentButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\PersonalInfoPage\MSW_PIP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\AddSupplierPage\MSW_SMP_ASP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_AddOrderDetailAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_InstantiateNewOrderAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_RefreshPageAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_RemoveOrderDetailAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\AddSupplierPage\MSW_SMP_ASP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\ModifySupplierPage\MSW_SMP_MSP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\ModifySupplierPage\MSW_SMP_MSP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_DeleteSupplierButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_AddSupplierButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierDebtPage\MSW_SMP_SDP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierDebtPage\MSW_SMP_SDP_ShowInvoiceButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierImportHistoryPage\MSW_SMP_SIHP_ShowSupplierDebButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_ShowImportHistoryButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\MSW_SMP_ModifySupplierButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierImportHistoryPage\MSW_SMP_SIHP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\SupplierImportHistoryPage\MSW_SMP_SIHP_ShowInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\UserInstantiationPage\MSW_UMP_UIP_SaveButtonAction.cs" />
@@ -254,6 +272,11 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\OtherPaymentsManagementPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\OVs\MSW_SMP_SupplierDebtOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierDebtPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\OVs\MSW_WHMP_WarehouseImportDetailOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\OVs\MSW_WHMP_WarehouseImportOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerModificationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagementPageViewModel.cs" />
@@ -269,6 +292,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_CustomerOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\SellingPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierImportHistoryPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\ModifySupplierPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\AddSupplierPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\UserManagementPage\UserManagementPageViewModel.cs" />
@@ -304,6 +330,18 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\OtherPaymentsManagementPage.xaml.cs">
       <DependentUpon>OtherPaymentsManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\ModifySupplierPage.xaml.cs">
+      <DependentUpon>ModifySupplierPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\AddSupplierPage.xaml.cs">
+      <DependentUpon>AddSupplierPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierImportHistoryPage.xaml.cs">
+      <DependentUpon>SupplierImportHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierDebtPage.xaml.cs">
+      <DependentUpon>SupplierDebtPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserInstantiationPage.xaml.cs">
       <DependentUpon>UserInstantiationPage.xaml</DependentUpon>
@@ -468,6 +506,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\OtherPaymentsManagementPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\ModifySupplierPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\AddSupplierPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierImportHistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\SupplierManagement\SupplierDebtPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
