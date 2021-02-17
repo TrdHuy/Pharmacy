@@ -83,9 +83,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.24.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.25.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.25\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.26\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -128,6 +128,7 @@
     </ApplicationDefinition>
     <Compile Include="Base\Converter\BaseMultiValueConverter.cs" />
     <Compile Include="Base\Converter\BaseValueConverter.cs" />
+    <Compile Include="Base\Observable\ObservablePropertiesCollection.cs" />
     <Compile Include="Base\Observable\ObserverPattern\BaseObserver.cs" />
     <Compile Include="Base\Observable\ObserverPattern\ObservableProperty.cs" />
     <Compile Include="Base\Observable\ObserverPattern\PropertyObserver.cs" />
@@ -137,7 +138,9 @@
     <Compile Include="Implement\UIEventHandler\AttachedProperty\PasswordBoxAttachedProp.cs" />
     <Compile Include="Implement\Utils\Attributes\StringValueAttribute.cs" />
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\FileNameToImagePathConverter.cs" />
     <Compile Include="Implement\Utils\Converter\IsGreaterOrEqualThanConverter.cs" />
+    <Compile Include="Implement\Utils\Converter\PaymentClassificationConverter.cs" />
     <Compile Include="Implement\Utils\Converter\StringToImageSourceConverter.cs" />
     <Compile Include="Implement\Utils\Converter\OtherPaymentTypeToStringConverter.cs" />
     <Compile Include="Implement\Utils\Converter\SystemDateTimeToStringConverter.cs" />
@@ -146,6 +149,7 @@
     <Compile Include="Implement\Utils\CustomControls\PageHeaderControl.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\AbstractQueryAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\AddNewCustomerAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\CustomerBill\SetCustomerOrderDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\AddAndModifyPromoAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActivePromoByMedicineDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\ModifyMedicineAction.cs" />
@@ -188,6 +192,8 @@
     <Compile Include="Implement\Utils\Logger.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_ActionFactory.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_AlternativeAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NotImplementedAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NotSupportedAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_MedicineManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_OtherPaymentsManagementAction.cs" />
@@ -199,6 +205,16 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ReportAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SellingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_PersonalInfoAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_AddOrderDetailButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_EditEnablerButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_RefreshButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerDebtsPage\MSW_CMP_CTP_CDP_PrintDebtsButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerDebtsPage\MSW_CMP_CTP_CDP_ReturnButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_BillButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_DebtsButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_ReturnButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_CancelButtonAction.cs" />
@@ -265,6 +281,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ModifyWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_AddWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_DeleteWarehouseImportButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\OVs\OrderDetailOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\PageVO.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ShowInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPage\MSW_WHMP_SWIIP_ShowInvoiceButtonAction.cs" />
@@ -282,6 +299,10 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransactionHistoryPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\CustomerBillPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\OVs\MSW_CMP_CTP_CBP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\OVs\MSW_CMP_CTP_CBP_MedicineOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfoPageViewModel.cs" />
@@ -313,7 +334,13 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerInstantiationPage.xaml.cs">
       <DependentUpon>CustomerInstantiationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransactionHistoryPage.xaml.cs">
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransaction\CustomerBillPage.xaml.cs">
+      <DependentUpon>CustomerBillPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransaction\CustomerDebtsPage.xaml.cs">
+      <DependentUpon>CustomerDebtsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransaction\CustomerTransactionHistoryPage.xaml.cs">
       <DependentUpon>CustomerTransactionHistoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\DiscountByMedicinePage.xaml.cs">
@@ -485,7 +512,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransactionHistoryPage.xaml">
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransaction\CustomerBillPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransaction\CustomerDebtsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerTransaction\CustomerTransactionHistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -778,6 +813,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Images\app_icon.png" />
+    <Resource Include="Resources\Icons\bill_icon.png" />
     <None Include="Resources\default_medicine_image.png" />
     <Resource Include="Resources\Images\customer_default_icon.png" />
     <Resource Include="Resources\Icons\CustomerManagementPageIcons\customner_history_icon.png" />

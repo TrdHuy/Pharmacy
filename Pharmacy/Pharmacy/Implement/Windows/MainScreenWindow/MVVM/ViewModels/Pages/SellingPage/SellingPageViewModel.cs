@@ -5,6 +5,7 @@ using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
-        public ObservableCollection<OrderDetailVO> CustomerOrderDetailItemSource { get; set; }
+        public ObservableCollection<OrderDetailOV> CustomerOrderDetailItemSource { get; set; }
 
         public RunInputCommand AddOrderDetailCommand { get; set; }
         public RunInputCommand RemoveOrderDetailCommand { get; set; }
@@ -179,12 +180,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             InstantiateCustomerItems();
             InstantiateMedicineItems();
             InstantiateCustomerOrderDetailItems();
-
         }
 
         private void InstantiateCustomerOrderDetailItems()
         {
-            CustomerOrderDetailItemSource = new ObservableCollection<OrderDetailVO>();
+            CustomerOrderDetailItemSource = new ObservableCollection<OrderDetailOV>();
             CustomerOrderDetailItemSource.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(CustomerOrderList_CollectionChanged);
 
         }
@@ -249,19 +249,4 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
     }
 
-    public class OrderDetailVO : AbstractViewModel
-    {
-
-        public string MedicineName { get; set; }
-        public string MedicineID { get; set; }
-        public string MedicineUnitName { get; set; }
-        public double Quantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal TotalPrice { get; set; }
-        public double PromoPercent { get; set; }
-
-        protected override void InitPropertiesRegistry()
-        {
-        }
-    }
 }

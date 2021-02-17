@@ -67,7 +67,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling
                 throw new InvalidOperationException("UpdateCustomerOrderAction: need a paramater as " + typeof(tblOrder).Name);
             }
 
-            if (!paramaters[0].GetType().Name.Equals(typeof(tblOrder).Name))
+            if (!paramaters[0].GetType().Name.Contains(typeof(tblOrder).Name))
             {
                 throw new InvalidOperationException("UpdateCustomerOrderAction: paramater must be type of tblOrder");
             }

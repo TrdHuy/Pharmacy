@@ -107,6 +107,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 new Uri(PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
                 PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_LOADING_DELAY_TIME));
 
+        public Lazy<PageVO> CustomerDebtsPage = new Lazy<PageVO>(() =>
+           new PageVO(
+               new Uri(PharmacyDefinitions.CUSTOMER_DEBTS_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+               PharmacyDefinitions.CUSTOMER_DEBTS_PAGE_LOADING_DELAY_TIME));
+
+        public Lazy<PageVO> CustomerBillPage = new Lazy<PageVO>(() =>
+           new PageVO(
+               new Uri(PharmacyDefinitions.CUSTOMER_BILL_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+               PharmacyDefinitions.CUSTOMER_BILL_PAGE_LOADING_DELAY_TIME));
+
         public Lazy<PageVO> ShowMedicineInfoPage = new Lazy<PageVO>(() =>
             new PageVO(
                 new Uri(PharmacyDefinitions.SHOW_MEDICINE_INFO_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
@@ -152,10 +162,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
              new Uri(PharmacyDefinitions.SUPPLIER_DEBT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.SUPPLIER_DEBT_PAGE_LOADING_DELAY_TIME));
 
-        public PageVO CurrentPageOV;
+        public PageVO CurrentPageOV { get; set; }
+        public PageSource CurrentPageSource { get; private set; } = PageSource.None;
+        public PageSource PreviousePageSource { get; private set; } = PageSource.None;
 
-
-        public Uri CurrentPageSource;
 
         private MSW_PageController()
         {
@@ -165,6 +175,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 
         public void UpdateCurrentPageSource(PageSource pageNum)
         {
+            PreviousePageSource = CurrentPageSource;
+            CurrentPageSource = pageNum;
+
             switch (pageNum)
             {
                 case PageSource.HomePage:
@@ -247,6 +260,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = CustomerTransactionHistoryPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = CustomerTransactionHistoryPage.Value.LoadingDelayTime;
                     break;
+                case PageSource.CustomerDebtsPage:
+                    CurrentPageOV.PageUri = CustomerDebtsPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = CustomerDebtsPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.CustomerBillPage:
+                    CurrentPageOV.PageUri = CustomerBillPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = CustomerBillPage.Value.LoadingDelayTime;
+                    break;
                 case PageSource.AddWarehouseImportPage:
                     CurrentPageOV.PageUri = AddWarehouseImportPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddWarehouseImportPage.Value.LoadingDelayTime;
@@ -288,118 +309,156 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         public void UpdatePageOVUri(Uri uri)
         {
             var x = "/" + uri.OriginalString;
-
+            PreviousePageSource = CurrentPageSource;
             switch (x)
             {
                 case PharmacyDefinitions.HOME_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.HomePage;
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.PERSONAL_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.PersonalInfoPage;
                     CurrentPageOV.PageUri = PersonalInfoPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = PersonalInfoPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.CUSTOMER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.CustomerManagementPage;
                     CurrentPageOV.PageUri = CustomerManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = CustomerManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.SUPPLIER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.SupplierManagementPage;
                     CurrentPageOV.PageUri = SupplierManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SupplierManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.USER_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.UserManagementPage;
                     CurrentPageOV.PageUri = UserManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = UserManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.INVOICE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.InvoiceManagementPage;
                     CurrentPageOV.PageUri = InvoiceManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = InvoiceManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.REPORT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ReportPage;
                     CurrentPageOV.PageUri = ReportPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = ReportPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.SELLING_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.SellingPage;
                     CurrentPageOV.PageUri = SellingPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SellingPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.MEDICINE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.MedicineManagementPage;
                     CurrentPageOV.PageUri = MedicineManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = MedicineManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.OTHER_PAYMENT_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.OtherPaymentsManagementPage;
                     CurrentPageOV.PageUri = OtherPaymentsManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = OtherPaymentsManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.WAREHOUSE_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.WarehouseManagementPage;
                     CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.USER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.UserInstantiationPage;
                     CurrentPageOV.PageUri = UserInstantiationPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = UserInstantiationPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.USER_MODIFICATION_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.UserModificationPage;
                     CurrentPageOV.PageUri = UserModificationPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = UserModificationPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.ADD_MEDICINE_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.AddMedicinePage;
                     CurrentPageOV.PageUri = AddMedicinePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddMedicinePage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.MODIFY_MEDICINE_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ModifyMedicinePage;
                     CurrentPageOV.PageUri = ModifyMedicinePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = ModifyMedicinePage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.SHOW_MEDICINE_INFO_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ShowMedicineInfoPage;
                     CurrentPageOV.PageUri = ShowMedicineInfoPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = ShowMedicineInfoPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.DISCOUNT_BY_MEDICINE_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.DiscountByMedicinePage;
                     CurrentPageOV.PageUri = DiscountByMedicinePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = DiscountByMedicinePage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.CUSTOMER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.CustomerInstantiationPage;
                     CurrentPageOV.PageUri = CustomerInstantiationPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = CustomerInstantiationPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.CUSTOMER_MODIFICATION_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.CustomerModificationPage;
                     CurrentPageOV.PageUri = CustomerModificationPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = CustomerModificationPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.CUSTOMER_TRANSACTION_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.CustomerTransactionHistoryPage;
                     CurrentPageOV.PageUri = CustomerTransactionHistoryPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = CustomerTransactionHistoryPage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.CUSTOMER_DEBTS_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.CustomerDebtsPage;
+                    CurrentPageOV.PageUri = CustomerDebtsPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = CustomerDebtsPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.CUSTOMER_BILL_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.CustomerBillPage;
+                    CurrentPageOV.PageUri = CustomerBillPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = CustomerBillPage.Value.LoadingDelayTime;
+                    break;
                 case PharmacyDefinitions.ADD_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.AddWarehouseImportPage;
                     CurrentPageOV.PageUri = AddWarehouseImportPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddWarehouseImportPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.MODIFY_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ModifyWarehouseImportPage;
                     CurrentPageOV.PageUri = ModifyWarehouseImportPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = ModifyWarehouseImportPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.SHOW_WAREHOUSE_IMPORT_INFO_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ShowWarehouseImportInfoPage;
                     CurrentPageOV.PageUri = ShowWarehouseImportInfoPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = ShowWarehouseImportInfoPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.ADD_SUPPLIER_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.AddSupplierPage;
                     CurrentPageOV.PageUri = AddSupplierPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddSupplierPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.MODIFY_SUPPLIER_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ModifySupplierPage;
                     CurrentPageOV.PageUri = ModifySupplierPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = ModifySupplierPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.SUPPLIER_IMPORT_HISTORY_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.SupplierImportHistoryPage;
                     CurrentPageOV.PageUri = SupplierImportHistoryPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SupplierImportHistoryPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.SUPPLIER_DEBT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.SupplierDebtPage;
                     CurrentPageOV.PageUri = SupplierDebtPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SupplierDebtPage.Value.LoadingDelayTime;
                     break;
                 default:
+                    CurrentPageSource = PageSource.HomePage;
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = HomePage.Value.LoadingDelayTime;
                     break;
@@ -424,6 +483,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 
     public enum PageSource
     {
+        None = -1,
         HomePage = 0,
         PersonalInfoPage = 1,
         SellingPage = 2,
@@ -452,7 +512,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
 
         CustomerModificationPage = 41,
         CustomerInstantiationPage = 42,
-        CustomerTransactionHistoryPage = 43
+        CustomerTransactionHistoryPage = 43,
+        CustomerDebtsPage = 431,
+        CustomerBillPage = 432,
+
     }
 
 

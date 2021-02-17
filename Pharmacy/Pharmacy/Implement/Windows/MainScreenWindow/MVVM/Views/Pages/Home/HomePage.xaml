@@ -266,6 +266,7 @@
                                                HorizontalContentAlignment="Center"
                                                IsUsingAtumClippingBorder="True"
                                                IsEnableAtumTransformer="False"
+                                               IsSupportLoadingAnimation="False"
                                                MouseLeftButtonDown="AtumImageView_MouseLeftButtonDown"
                                                AtumImageData="{Binding AvatarInfoData,Mode=TwoWay}"
                                                IsSupportAtumLocator="{Binding IsSupportChangePersonalAvatarLocation}"

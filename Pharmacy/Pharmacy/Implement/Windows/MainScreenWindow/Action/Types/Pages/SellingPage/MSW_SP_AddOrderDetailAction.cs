@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using System;
 using System.Collections.Generic;
@@ -124,7 +125,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             }
         }
 
-        private void GetPromo(OrderDetailVO orderDetailVO)
+        private void GetPromo(OrderDetailOV orderDetailVO)
         {
             tblPromo appliedPromo = new tblPromo();
             if (_viewModel.CustomerOV.CurrentSelectedCustomer != null)
@@ -146,7 +147,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         {
             try
             {
-                OrderDetailVO orderDetailVO = new OrderDetailVO();
+                OrderDetailOV orderDetailVO = new OrderDetailOV();
                 orderDetailVO.MedicineName = _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
                 orderDetailVO.MedicineID = _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
                 orderDetailVO.MedicineUnitName = _viewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
@@ -157,7 +158,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                    Convert.ToDouble(_viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
                    (100 - orderDetailVO.PromoPercent) / 100);
 
-                OrderDetailVO checkExistedVO = null;
+                OrderDetailOV checkExistedVO = null;
                 try
                 {
                     if (_viewModel.CustomerOrderDetailItemSource.Count > 0)

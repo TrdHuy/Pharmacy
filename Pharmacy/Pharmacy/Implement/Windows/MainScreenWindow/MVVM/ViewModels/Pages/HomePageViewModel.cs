@@ -96,6 +96,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         private void ClockIntansiation()
         {
+            // Critical issue: DispatcherTimer initalized to many time when open HomePage,
+            // must change it to instance only
             DispatcherTimer clock = new DispatcherTimer();
             clock.Interval = TimeSpan.FromMilliseconds(500);
             clock.Tick += new EventHandler(UpdateClock);

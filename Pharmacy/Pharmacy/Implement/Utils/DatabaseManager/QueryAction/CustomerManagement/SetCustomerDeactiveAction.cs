@@ -28,10 +28,8 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagemen
             }
             catch (Exception e)
             {
+                result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                 App.Current.ShowApplicationMessageBox(e.Message);
-            }
-            finally
-            {
             }
             return result;
         }

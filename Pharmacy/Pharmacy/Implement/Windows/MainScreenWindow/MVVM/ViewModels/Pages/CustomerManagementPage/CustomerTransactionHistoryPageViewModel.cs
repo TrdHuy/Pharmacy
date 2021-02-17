@@ -1,4 +1,6 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Implement.UIEventHandler;
+using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
@@ -16,11 +18,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger logger = new Logger("CustomerTransactionHistoryPageViewModel");
 
+        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private tblOrder _currentSelectedOrder;
 
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
+        public RunInputCommand DebtsDisplayButtonCommand { get; set; }
+        public RunInputCommand BillDisplayButtonCommand { get; set; }
+        public RunInputCommand ReturnButtonCommand { get; set; }
 
-        public tblCustomer CurrentModidifiedCustomer { get; set; }
+        public tblCustomer CurrentModifiedCustomer { get; set; }
         public tblOrder CurrentSelectedOrder
         {
             get
@@ -49,12 +55,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                         "{2," + tabPos[2] + "} " +
                         "{3}";
 
-                    orderDetails += String.Join("\n", listDetails.Select((content, a) =>
-                        String.Format(stringFormat
-                        , content.tblMedicine.MedicineName
-                        , content.Quantity
-                        , content.tblMedicine.tblMedicineUnit.MedicineUnitName
-                        , content.TotalPrice)));
+                    orderDetails += String.Join("\n", listDetails.Where((content) => content.IsActive).
+                        Select((content, a) =>
+                            String.Format(stringFormat
+                            , content.tblMedicine.MedicineName
+                            , content.Quantity
+                            , content.tblMedicine.tblMedicineUnit.MedicineUnitName
+                            , content.TotalPrice)
+                        ));
 
                     logger.D("Order detail format: " + orderDetails);
                 }
@@ -116,8 +124,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             logger.I("Instantinating CustomerTransactionHistoryPageViewModel");
 
-            CurrentModidifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
+            CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             InstantiateItems();
+            DebtsDisplayButtonCommand = new RunInputCommand(OnDebtsDisplayButtonClickEvent);
+            ReturnButtonCommand = new RunInputCommand(OnReturnButtonClickEvent);
+            BillDisplayButtonCommand = new RunInputCommand(OnBillDisplayButtonClickEvent);
 
             logger.I("Instantinated CustomerTransactionHistoryPageViewModel");
         }
@@ -125,12 +136,48 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private void InstantiateItems()
         {
             OrderItemSource = new ObservableCollection<tblOrder>();
-            foreach (tblOrder order in CurrentModidifiedCustomer.tblOrders)
+            foreach (tblOrder order in CurrentModifiedCustomer.tblOrders)
             {
-                OrderItemSource.Add(order);
+                if (order.IsActive)
+                {
+                    OrderItemSource.Add(order);
+                }
             }
 
         }
+
+        private void OnDebtsDisplayButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_DEBTS_BUTTON
+                , dataTransfer);
+        }
+
+
+        private void OnReturnButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_RETURN_BUTTON
+                , dataTransfer);
+        }
+
+        private void OnBillDisplayButtonClickEvent(object paramaters)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_BILL_BUTTON
+                , dataTransfer);
+        }
+
+
 
     }
 }

@@ -8,22 +8,15 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Utils.Converter
 {
-    public class SystemDateTimeToStringConverter : BaseValueConverter<SystemDateTimeToStringConverter>
+    public class FileNameToImagePathConverter : BaseValueConverter<FileNameToImagePathConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            DateTime dateTime = (DateTime)value;
-            string type = parameter?.ToString();
+            string imageName = value.ToString();
+            string folderName = parameter?.ToString();
 
-            switch (type)
-            {
-                case "DATE":
-                    return dateTime.ToString("dd/MM/yyyy");
-                case "TIME":
-                    return dateTime.ToString("HH:mm");
-                default:
-                    return dateTime.ToString("dd/MM/yyyy HH:mm");
-            }
+            return FileIOUtil.
+                GetImagePathFromName(imageName, folderName);
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerTransaction
 {
     /// <summary>
     /// Interaction logic for CustomerTransactionHistoryPage.xaml
