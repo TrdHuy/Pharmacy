@@ -14,6 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         private string _customerAddress;
         private string _customerPhone;
         private tblCustomer _curSelectedCustomer;
+        public string[] CustomerFilterPathList { get; set; } = new string[] { "CustomerName", "Phone" };
 
         public tblCustomer CurrentSelectedCustomer
         {
