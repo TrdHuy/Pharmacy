@@ -12,12 +12,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
     {
         private CustomerBillPageViewModel _viewModel;
 
-
         public bool Execute(object[] dataTransfer)
         {
             _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
 
-            if (_viewModel.IsOrderDetailsModified)
+            if (_viewModel.IsOrderModified)
             {
                 var x = App.Current.ShowApplicationMessageBox("Bạn có muốn hoàn lại (các) tác vụ?",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,

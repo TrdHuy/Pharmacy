@@ -55,6 +55,7 @@
         //Customer debts page key string
         public const string KEY_TAG_MSW_CMP_CTP_CDP_PRINT_DEBTS_BUTTON = "msw_cmp_ctp_cdp_print_debts_button";
         public const string KEY_TAG_MSW_CMP_CTP_CDP_RETURN_BUTTON = "msw_cmp_ctp_cdp_return_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CDP_BILL_DISPLAY_BUTTON = "msw_cmp_ctp_cdp_bill_display_button";
 
         //Customer bill page key string
         public const string KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON = "msw_cmp_ctp_cbp_edit_enabler_button";

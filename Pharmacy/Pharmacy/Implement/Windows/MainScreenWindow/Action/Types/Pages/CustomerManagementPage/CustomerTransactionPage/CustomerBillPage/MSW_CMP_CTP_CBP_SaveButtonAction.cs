@@ -34,7 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
 
         private void SaveCurrentCustomerOrder()
         {
-            if (_viewModel.IsOrderDetailsModified)
+            if (_viewModel.IsOrderModified)
             {
                 var mbRes = App.Current.ShowApplicationMessageBox("Bạn có đồng ý lưu hóa đơn này?",
                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -55,10 +55,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         );
                 }
             }
+            else
+            {
+                _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+            }
         }
 
         private void UpdateCustomerOderDetails()
         {
+            // Cập nhật lại order detail trong order của customer dựa theo thay đổi (OrderDetailOV)
+            // từ phía người dùng
             foreach (tblOrderDetail orderDetail in _viewModel.CurrentCustomerOrder.tblOrderDetails)
             {
                 var tempList = _viewModel.CurrentOrderDetails.Where(ov => ov.OrderDetailID == orderDetail.OrderDetailID).ToList();
@@ -73,6 +79,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 }
             }
 
+            // Thêm mới order detail trong OrderDetailOV vào trong order của customer
             foreach (OrderDetailOV ov in _viewModel.CurrentOrderDetails)
             {
                 if (ov.OrderDetailID == -1)
@@ -86,8 +93,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         MedicineID = ov.MedicineID
                     };
                     _viewModel.CurrentCustomerOrder.tblOrderDetails.Add(newOD);
+                    _viewModel.CurrentCustomerOrder.TotalPrice += newOD.TotalPrice;
                 }
             }
+
+            _viewModel.CurrentCustomerOrder.PurchasePrice = _viewModel.MedicineOV.PaidAmount;
         }
 
         private void UpdateCustomerOrderDetailQueryCallback(SQLQueryResult queryResult)

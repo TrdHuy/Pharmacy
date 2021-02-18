@@ -16,7 +16,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private bool _isAddOrderDeatailButtonRunning;
         private bool _isSaveButtonRunning;
-        private AbstractViewModel _parentVM;
 
         public bool IsAddOrderDeatailButtonRunning
         {
@@ -52,16 +51,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
-        
+
         public RunInputCommand AddNewOrderDetailButtonCommand { get; set; }
         public RunInputCommand DeleteOrderDetailButtonCommand { get; set; }
         public RunInputCommand EditEnablerButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand RefreshOrderDetaisButtonCommand { get; set; }
 
-        public MSW_CMP_CTP_CBP_ButtonCommandOV(AbstractViewModel parentVM)
+        public MSW_CMP_CTP_CBP_ButtonCommandOV(AbstractViewModel parentVM) : base(parentVM)
         {
-            _parentVM = parentVM;
             EditEnablerButtonCommand = new RunInputCommand(EditEnablerButtonClickEvent);
             AddNewOrderDetailButtonCommand = new RunInputCommand(AddNewOrderDetailButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
@@ -72,7 +70,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private void RefreshOrderDetaisButtonClickEvent(object paramaters)
         {
             object[] dataTransfer = new object[2];
-            dataTransfer[0] = _parentVM;
+            dataTransfer[0] = ParentsModel;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
@@ -82,7 +80,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private void EditEnablerButtonClickEvent(object paramaters)
         {
             object[] dataTransfer = new object[2];
-            dataTransfer[0] = _parentVM;
+            dataTransfer[0] = ParentsModel;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
@@ -94,7 +92,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             IsAddOrderDeatailButtonRunning = true;
             object[] dataTransfer = new object[2];
-            dataTransfer[0] = _parentVM;
+            dataTransfer[0] = ParentsModel;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
@@ -107,7 +105,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             IsSaveButtonRunning = true;
             object[] dataTransfer = new object[2];
-            dataTransfer[0] = _parentVM;
+            dataTransfer[0] = ParentsModel;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
@@ -119,7 +117,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private void DeleteOrderDetailButtonClickEvent(object paramaters)
         {
             object[] dataTransfer = new object[2];
-            dataTransfer[0] = _parentVM;
+            dataTransfer[0] = ParentsModel;
             dataTransfer[1] = paramaters;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON

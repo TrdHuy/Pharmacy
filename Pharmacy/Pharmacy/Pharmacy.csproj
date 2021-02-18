@@ -210,6 +210,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_EditEnablerButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_RefreshButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerDebtsPage\MSW_CMP_CTP_CDP_BillDisplayButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerDebtsPage\MSW_CMP_CTP_CDP_PrintDebtsButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerDebtsPage\MSW_CMP_CTP_CDP_ReturnButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_BillButtonAction.cs" />
@@ -289,6 +290,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_AddNewUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\OVs\MSW_CMP_CTP_CDP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\OtherPaymentsManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\OVs\MSW_SMP_SupplierDebtOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierDebtPageViewModel.cs" />
@@ -302,7 +304,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\CustomerBillPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\OVs\MSW_CMP_CTP_CBP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\OVs\MSW_CMP_CTP_CBP_MedicineOV.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\CustomerDebtsPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfoPageViewModel.cs" />

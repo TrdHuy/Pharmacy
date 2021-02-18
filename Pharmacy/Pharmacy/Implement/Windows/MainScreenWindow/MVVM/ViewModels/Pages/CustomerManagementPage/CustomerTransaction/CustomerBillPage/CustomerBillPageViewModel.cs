@@ -35,6 +35,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public MSW_CMP_CTP_CBP_ButtonCommandOV ButtonCommandOV { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
         public bool IsOrderDetailsModified { get; private set; }
+        public bool IsOrderModified
+        {
+            get
+            {
+                return IsOrderDetailsModified || 
+                    CurrentCustomerOrder.PurchasePrice != MedicineOV?.PaidAmount;
+            }
+        }
 
         public ObservablePropertiesCollection<OrderDetailOV> CurrentOrderDetails
         {

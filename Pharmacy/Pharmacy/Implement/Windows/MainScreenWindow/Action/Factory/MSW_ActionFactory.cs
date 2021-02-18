@@ -161,6 +161,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_PRINT_DEBTS_BUTTON:
                     action = new MSW_CMP_CTP_CDP_PrintDebtsButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_BILL_DISPLAY_BUTTON:
+                    action = new MSW_CMP_CTP_CDP_BillDisplayButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON:
                     action = new MSW_CMP_CTP_CBP_EditEnablerButtonAction();
                     break;
@@ -319,7 +322,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_DEBT_BUTTON:
                     action = new MSW_SMP_SIHP_ShowSupplierDebButtonAction();
-                    break; 
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_CANCEL_BUTTON:
                     action = new MSW_SMP_SDP_CancelButtonAction();
                     break;

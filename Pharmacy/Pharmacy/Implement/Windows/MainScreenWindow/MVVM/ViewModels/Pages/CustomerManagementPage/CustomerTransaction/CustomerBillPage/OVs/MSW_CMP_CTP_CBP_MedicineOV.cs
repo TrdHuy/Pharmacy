@@ -12,14 +12,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private tblMedicine _currentSelectedMedicine;
         private string _medicineTextSearch;
         private string _quantity;
-        private AbstractViewModel _parentVM;
         private decimal _paidAmount;
 
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
 
-        public MSW_CMP_CTP_CBP_MedicineOV(AbstractViewModel parentVM)
+        public MSW_CMP_CTP_CBP_MedicineOV(AbstractViewModel parentVM) : base(parentVM)
         {
-            _parentVM = parentVM;
         }
         public string MedicineTextSearch
         {
@@ -62,9 +60,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                if ((_parentVM as CustomerBillPageViewModel).CurrentOrderDetails.Count > 0)
+                if ((ParentsModel as CustomerBillPageViewModel).CurrentOrderDetails.Count > 0)
                 {
-                    var cost = (_parentVM as CustomerBillPageViewModel).CurrentOrderDetails.Sum(o => o.TotalPrice);
+                    var cost = (ParentsModel as CustomerBillPageViewModel).CurrentOrderDetails.Sum(o => o.TotalPrice);
                     return Convert.ToDecimal(cost);
                 }
                 return 0;
@@ -79,12 +77,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             get
             {
                 // Công nợ phải được tính theo các hóa đơn trước hóa đơn hiện tại
-                if ((_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder != null)
+                if ((ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder != null)
                 {
 
-                    var currentOrder = (_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder;
+                    var currentOrder = (ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder;
 
-                    var totalCost = (_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder.tblCustomer.tblOrders
+                    var totalCost = (ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder.tblCustomer.tblOrders
                         .Where((od) => od.IsActive)
                         .Sum(x =>
                         {
@@ -95,7 +93,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                             return 0;
                         });
 
-                    var purchaseCost = (_parentVM as CustomerBillPageViewModel).CurrentCustomerOrder.tblCustomer.tblOrders
+                    var purchaseCost = (ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder.tblCustomer.tblOrders
                         .Where((od) => od.IsActive)
                         .Sum(x =>
                     {
