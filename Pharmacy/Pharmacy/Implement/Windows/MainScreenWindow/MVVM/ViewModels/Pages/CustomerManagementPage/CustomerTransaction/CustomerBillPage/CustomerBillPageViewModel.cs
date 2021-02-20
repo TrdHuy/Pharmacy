@@ -111,6 +111,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public void RefreshListOrder()
         {
             InstantinateOrderDetailItems();
+            Invalidate("MedicineOV");
         }
 
         private void InstantiateItems()
