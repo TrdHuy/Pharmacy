@@ -479,6 +479,9 @@
                               Command="{Binding SaveButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
+                              IsBusy="{Binding IsAddWarehouseImportButtonRunning, UpdateSourceTrigger=PropertyChanged}"
+                              ProgressSpinnerBackground="Black"
+                              ProgressSpinnerSize="30"
                               Foreground="White"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>

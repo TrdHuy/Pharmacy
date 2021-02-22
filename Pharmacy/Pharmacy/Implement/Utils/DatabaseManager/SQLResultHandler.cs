@@ -176,6 +176,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY:
                     _result = new SetCustomerOrderDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.ADD_OTHER_PAYMENT_CMD_KEY:
+                    _result = new AddNewOtherPaymentAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -317,6 +320,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for set a other payment deactive
         public const string SET_OTHER_PAYMENT_DEACTIVE_CMD_KEY = "set_other_payment_deactive";
+
+        //Key for add new other payment
+        public const string ADD_OTHER_PAYMENT_CMD_KEY = "add_new_other_payment";
     }
 
     public class SQLQueryResult

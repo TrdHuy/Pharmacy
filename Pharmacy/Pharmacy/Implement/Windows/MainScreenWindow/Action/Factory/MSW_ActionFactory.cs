@@ -15,6 +15,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ModifyMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ShowMedicineInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.AddOtherPaymentPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
@@ -331,6 +332,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_OPMP_DELETE_BUTTON:
                     action = new MSW_OPMP_DeleteOtherPaymentButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_ADD_BUTTON:
+                    action = new MSW_OPMP_AddOtherPaymentButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON:
+                    action = new MSW_OPMP_ShowInvoiceButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_BROWSE_INVOICE_IMAGE_BUTTON:
+                    action = new MSW_OPMP_AOPP_BrowseInvoiceImageButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_CANCEL_BUTTON:
+                    action = new MSW_OPMP_AOPP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_SAVE_BUTTON:
+                    action = new MSW_OPMP_AOPP_SaveButtonAction();
                     break;
                 default:
                     action = null;

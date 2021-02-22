@@ -17,6 +17,7 @@ namespace Pharmacy.Implement.Utils
         public const string MEDICINE_IMAGE_FOLDER_NAME = "MedicineImages";
         public const string CUSTOMER_IMAGE_FOLDER_NAME = "CustomerImages";
         public const string WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME = "WarehouseImportImages";
+        public const string OTHER_PAYMENT_IMAGE_FOLDER_NAME = "OtherPaymentImages";
         private const long LOW_IMAGE_QUALITY = 30;
         private const long MEDIUM_IMAGE_QUALITY = 50;
 
@@ -148,6 +149,12 @@ namespace Pharmacy.Implement.Utils
         public static void SaveWarehouseImportImageFile(string importID, Bitmap importImage)
         {
             var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME;
+            SaveImageToFile(importID, directory, importImage, MEDIUM_IMAGE_QUALITY);
+        }
+
+        public static void SaveOtherPaymentImageFile(string importID, Bitmap importImage)
+        {
+            var directory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + @"\" + "Data" + @"\" + OTHER_PAYMENT_IMAGE_FOLDER_NAME;
             SaveImageToFile(importID, directory, importImage, MEDIUM_IMAGE_QUALITY);
         }
 

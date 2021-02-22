@@ -506,6 +506,9 @@
                               BorderThickness="0"
                               MaxHeight="100"
                               Foreground="White"
+                              IsBusy="{Binding IsAddWarehouseImportButtonRunning, UpdateSourceTrigger=PropertyChanged}"
+                              ProgressSpinnerBackground="Black"
+                              ProgressSpinnerSize="30"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
     </Grid>
