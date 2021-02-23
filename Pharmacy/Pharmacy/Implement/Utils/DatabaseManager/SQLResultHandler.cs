@@ -179,6 +179,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.ADD_OTHER_PAYMENT_CMD_KEY:
                     _result = new AddNewOtherPaymentAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.MODIFY_OTHER_PAYMENT_CMD_KEY:
+                    _result = new ModifyOtherPaymentAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -323,6 +326,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for add new other payment
         public const string ADD_OTHER_PAYMENT_CMD_KEY = "add_new_other_payment";
+
+        //Key for modify other payment
+        public const string MODIFY_OTHER_PAYMENT_CMD_KEY = "modify_other_payment";
     }
 
     public class SQLQueryResult

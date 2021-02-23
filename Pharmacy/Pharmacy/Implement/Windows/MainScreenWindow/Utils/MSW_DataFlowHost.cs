@@ -27,6 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         public tblWarehouseImport CurrentModifiedWarehouseImport { get; set; }
         public tblSupplier CurrentModifiedSupplier { get; set; }
         public tblOrder CurrentSelectedCustomerOrder { get; set; }
+        public tblOtherPayment CurrentSelectedOtherPayment { get; set; }
 
         private MSW_DataFlowHost()
         {

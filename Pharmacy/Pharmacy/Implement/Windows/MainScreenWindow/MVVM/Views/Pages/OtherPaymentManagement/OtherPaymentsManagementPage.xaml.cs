@@ -44,7 +44,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaym
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //(DataContext as WarehouseManagementPageViewModel).ShowWarehouseImportInfoCommand.Execute(sender, e, DataGrid, this);
+            (DataContext as OtherPaymentsManagementPageViewModel).ShowOtherPaymentInfoCommand.Execute(sender, e, DataGrid, this);
         }
 
         private void cbxFilterText_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -177,6 +177,7 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActivteMedicineStockInWarehouseDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetPromoDeactiveAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\SetMedicineDeactiveAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\ModifyOtherPaymentAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\AddNewOtherPaymentAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\GetAllActiveOtherPaymentDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\OtherPaymentsManagement\SetOtherPaymentDeactiveAction.cs" />
@@ -259,6 +260,10 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ShowMedicineInfoPage\MSW_MMP_SMIP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\AddOtherPaymentPage\MSW_OPMP_AOPP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\AddOtherPaymentPage\MSW_OPMP_AOPP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\ModifyOtherPaymentPage\MSW_OPMP_MOPP_BrowseInvoiceImageButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\ModifyOtherPaymentPage\MSW_OPMP_MOPP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\ModifyOtherPaymentPage\MSW_OPMP_MOPP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\MSW_OPMP_ModifyOtherPaymentButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\MSW_OPMP_AddOtherPaymentButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\MSW_OPMP_DeleteOtherPaymentButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\OtherPaymentsManagementPage\AddOtherPaymentPage\MSW_OPMP_AOPP_BrowseInvoiceImageButtonAction.cs" />
@@ -312,6 +317,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\OVs\MSW_CMP_CTP_CDP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\ModifyOtherPaymentPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\AddOtherPaymentPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\OtherPaymentsManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\OVs\MSW_SMP_SupplierDebtOV.cs" />
@@ -378,6 +384,9 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\AddMedicinePage.xaml.cs">
       <DependentUpon>AddMedicinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\ModifyOtherPaymentPage.xaml.cs">
+      <DependentUpon>ModifyOtherPaymentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\AddOtherPaymentPage.xaml.cs">
       <DependentUpon>AddOtherPaymentPage.xaml</DependentUpon>
@@ -564,6 +573,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\AddMedicinePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\OtherPaymentManagement\ModifyOtherPaymentPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

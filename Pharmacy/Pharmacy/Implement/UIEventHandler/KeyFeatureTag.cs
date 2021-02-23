@@ -168,5 +168,10 @@
         public const string KEY_TAG_MSW_OPMP_AOPP_SAVE_BUTTON = "msw_opmp_aopp_save_button";
         public const string KEY_TAG_MSW_OPMP_AOPP_CANCEL_BUTTON = "msw_opmp_aopp_cancel_button";
         public const string KEY_TAG_MSW_OPMP_AOPP_BROWSE_INVOICE_IMAGE_BUTTON = "msw_opmp_aopp_browse_invoice_image_button";
+
+        //Modify Other payment page key string
+        public const string KEY_TAG_MSW_OPMP_MOPP_SAVE_BUTTON = "msw_opmp_mopp_save_button";
+        public const string KEY_TAG_MSW_OPMP_MOPP_CANCEL_BUTTON = "msw_opmp_mopp_cancel_button";
+        public const string KEY_TAG_MSW_OPMP_MOPP_BROWSE_INVOICE_IMAGE_BUTTON = "msw_opmp_mopp_browse_invoice_image_button";
     }
 }

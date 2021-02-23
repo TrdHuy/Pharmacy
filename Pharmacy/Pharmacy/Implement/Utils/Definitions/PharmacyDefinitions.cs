@@ -29,6 +29,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly int SET_CUSTOMER_ORDER_DEACTIVE_DELAY_TIME = 1000;
         public static readonly int UPDATE_CUSTOMER_ORDER_DEATAIL_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_OTHER_PAYMENT_DELAY_TIME = 1000;
+        public static readonly int MODIFY_OTHER_PAYMENT_DELAY_TIME = 1000;
 
         public const string HOME_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml";
         public const string SELLING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml";
@@ -60,6 +61,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string SUPPLIER_IMPORT_HISTORY_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierImportHistoryPage.xaml";
         public const string SUPPLIER_DEBT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierDebtPage.xaml";
         public const string ADD_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/AddOtherPaymentPage.xaml";
+        public const string MODIFY_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/ModifyOtherPaymentPage.xaml";
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long SELLING_PAGE_LOADING_DELAY_TIME = 1300;
@@ -91,6 +93,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long SUPPLIER_IMPORT_HISTORY_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long SUPPLIER_DEBT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long ADD_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 500;
+        public static readonly long MODIFY_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 1000;
     }
 
     public enum NewPasswordAwareMessage

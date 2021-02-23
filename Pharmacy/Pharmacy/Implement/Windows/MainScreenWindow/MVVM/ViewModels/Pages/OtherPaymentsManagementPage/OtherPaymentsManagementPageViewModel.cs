@@ -119,12 +119,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         private void ShowOtherPaymentInfoEvent(object sender, EventArgs e, object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = (paramaters as object[])[0];
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
+                , dataTransfer);
         }
 
         private void AddNewAddNewOtherPaymentButtonClickEvent(object paramaters)
@@ -149,12 +149,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         private void EditEditOtherPaymentButtonClickEvent(object paramaters)
         {
-            //object[] dataTransfer = new object[2];
-            //dataTransfer[0] = this;
-            //dataTransfer[1] = paramaters;
-            //_keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-            //    , KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON
-            //    , dataTransfer);
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
+                , dataTransfer);
         }
 
         private void ShowInvoiceButtonClickEvent(object paramaters)

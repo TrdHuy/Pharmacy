@@ -16,6 +16,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ShowMedicineInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.AddOtherPaymentPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.ModifyOtherPaymentPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
@@ -336,6 +337,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_OPMP_ADD_BUTTON:
                     action = new MSW_OPMP_AddOtherPaymentButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON:
+                    action = new MSW_OPMP_ModifyOtherPaymentButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON:
                     action = new MSW_OPMP_ShowInvoiceButtonAction();
                     break;
@@ -347,6 +351,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_SAVE_BUTTON:
                     action = new MSW_OPMP_AOPP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_BROWSE_INVOICE_IMAGE_BUTTON:
+                    action = new MSW_OPMP_MOPP_BrowseInvoiceImageButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_CANCEL_BUTTON:
+                    action = new MSW_OPMP_MOPP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_SAVE_BUTTON:
+                    action = new MSW_OPMP_MOPP_SaveButtonAction();
                     break;
                 default:
                     action = null;

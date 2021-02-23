@@ -166,6 +166,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
          new PageVO(
              new Uri(PharmacyDefinitions.ADD_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.ADD_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME));
+        
+        public Lazy<PageVO> ModifyOtherPaymentPage = new Lazy<PageVO>(() =>
+         new PageVO(
+             new Uri(PharmacyDefinitions.MODIFY_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+             PharmacyDefinitions.MODIFY_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME));
 
         public PageVO CurrentPageOV { get; set; }
         public PageSource CurrentPageSource { get; private set; } = PageSource.None;
@@ -304,6 +309,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.AddOtherPaymentPage:
                     CurrentPageOV.PageUri = AddOtherPaymentPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddOtherPaymentPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.ModifyOtherPaymentPage:
+                    CurrentPageOV.PageUri = ModifyOtherPaymentPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifyOtherPaymentPage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -471,6 +480,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageOV.PageUri = AddOtherPaymentPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = AddOtherPaymentPage.Value.LoadingDelayTime;
                     break;
+                case PharmacyDefinitions.MODIFY_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.ModifyOtherPaymentPage;
+                    CurrentPageOV.PageUri = ModifyOtherPaymentPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = ModifyOtherPaymentPage.Value.LoadingDelayTime;
+                    break;
                 default:
                     CurrentPageSource = PageSource.HomePage;
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -521,6 +535,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
         SupplierImportHistoryPage = 20,
         SupplierDebtPage = 21,
         AddOtherPaymentPage = 22,
+        ModifyOtherPaymentPage = 23,
 
         UserModificationPage = 31,
         UserInstantiationPage = 32,
