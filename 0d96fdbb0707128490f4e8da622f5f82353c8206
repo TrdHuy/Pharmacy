@@ -22,6 +22,29 @@
       },
       "revId": "0d96fdbb0707128490f4e8da622f5f82353c8206",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598ea4a9_3a28e8ca",
+        "filename": "Pharmacy/Pharmacy/packages.config",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1018457
+      },
+      "writtenOn": "2021-02-23T10:43:08Z",
+      "side": 1,
+      "message": "thêm package gì thế?",
+      "range": {
+        "startLine": 4,
+        "startChar": 3,
+        "endLine": 4,
+        "endChar": 80
+      },
+      "revId": "0d96fdbb0707128490f4e8da622f5f82353c8206",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
