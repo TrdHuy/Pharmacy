@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f303a0e4_7a935510",
+        "filename": "Pharmacy/Pharmacy/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/AddOtherPaymentPage.xaml.cs",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018457
+      },
+      "writtenOn": "2021-02-23T10:39:40Z",
+      "side": 1,
+      "message": "Sao lại set data context như thế này?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 60
+      },
+      "revId": "0d96fdbb0707128490f4e8da622f5f82353c8206",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
