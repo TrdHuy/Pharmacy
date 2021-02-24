@@ -150,6 +150,7 @@
     <Compile Include="Implement\Utils\DatabaseManager\AbstractQueryAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\AddNewCustomerAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\CustomerBill\SetCustomerOrderDeactiveAction.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\InvoiceManagement\GetAllActiveCustomerOrdersAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\AddAndModifyPromoAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActivePromoByMedicineDataAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\ModifyMedicineAction.cs" />
@@ -216,6 +217,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_BillButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_DebtsButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_ReturnButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InvoiceManagementPage\MSW_IMP_DeleteButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InvoiceManagementPage\MSW_IMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_CancelButtonAction.cs" />
@@ -283,6 +286,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_AddWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_DeleteWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\OVs\OrderDetailOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\OVs\CustomerOrderOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\PageVO.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ShowInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPage\MSW_WHMP_SWIIP_ShowInvoiceButtonAction.cs" />
@@ -291,6 +295,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_DeleteUserButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\UserManagementPage\MSW_UMP_EditButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\OVs\MSW_CMP_CTP_CDP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InvoiceManagementPage\InvoiceManagementPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InvoiceManagementPage\OVs\MSW_IMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\OtherPaymentsManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\OVs\MSW_SMP_SupplierDebtOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SupplierManagementPage\SupplierDebtPageViewModel.cs" />
