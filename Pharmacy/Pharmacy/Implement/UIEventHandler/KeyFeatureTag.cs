@@ -163,5 +163,10 @@
         public const string KEY_TAG_MSW_OPMP_EDIT_BUTTON = "msw_opmp_edit_button";
         public const string KEY_TAG_MSW_OPMP_SHOW_INFO_BUTTON = "msw_opmp_show_info_button";
         public const string KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON = "msw_opmp_show_invoice_button";
+
+        //Invoice management page key string
+        public const string KEY_TAG_MSW_IMP_DELETE_BUTTON = "msw_imp_delete_button";
+        public const string KEY_TAG_MSW_IMP_EDIT_BUTTON = "msw_imp_edit_button";
+
     }
 }
