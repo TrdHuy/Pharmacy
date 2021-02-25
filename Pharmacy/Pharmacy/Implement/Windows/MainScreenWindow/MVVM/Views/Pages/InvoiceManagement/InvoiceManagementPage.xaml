@@ -65,6 +65,7 @@
                 <TextBox x:Name="SearchTextBox"
                          Grid.Column="1"
                          ToolTip="{Binding SearchTextBoxToolTip}"
+                         TextChanged="SearchTextBox_TextChanged"
                          FontSize="{StaticResource FontSizeXLarge}"
                          Style="{StaticResource DefaultTextBox}">
 

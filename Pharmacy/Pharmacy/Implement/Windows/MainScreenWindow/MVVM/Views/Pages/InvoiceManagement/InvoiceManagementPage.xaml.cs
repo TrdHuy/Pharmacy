@@ -35,5 +35,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.InvoiceMa
         {
             ((InvoiceManagementPageViewModel)DataContext).EventCommandOV.EndDateChangedCommand.Execute(sender, e, OrderDataGrid, this);
         }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((InvoiceManagementPageViewModel)DataContext).EventCommandOV.SearchTextChangedCommand.Execute(sender, e, OrderDataGrid, this);
+        }
     }
 }
