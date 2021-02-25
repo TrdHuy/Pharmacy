@@ -28,8 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
                 if(x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
                 {
                     _sqlQueryObserver = new SQLQueryCustodian(SetDeactiveCustomerOrderQueryCallback);
-                    DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY,
-                        PharmacyDefinitions.SET_CUSTOMER_ORDER_DEACTIVE_DELAY_TIME,
+                    DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY,
                         _sqlQueryObserver,
                         _viewModel.CurrentSelectedOrderOV.Order
                         );
