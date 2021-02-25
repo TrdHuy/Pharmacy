@@ -14,14 +14,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
     public class InvoiceManagementPageViewModel : AbstractViewModel
     {
         private SQLQueryCustodian _sqlCmdObserver;
+       
 
         public ObservableCollection<CustomerOrderOV> CustomerOrdersItemSource { get; set; }
         public MSW_IMP_ButtonCommandOV ButtonCommandOV { get; set; }
+        public MSW_IMP_EventCommandOV EventCommandOV { get; set; }
         public CustomerOrderOV CurrentSelectedOrderOV { get; set; }
 
         public InvoiceManagementPageViewModel()
         {
             ButtonCommandOV = new MSW_IMP_ButtonCommandOV(this);
+            EventCommandOV = new MSW_IMP_EventCommandOV(this);
 
             InstantiateItems();
         }
@@ -53,5 +56,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
                   "Thông báo!");
             }
         }
+
+        
     }
 }

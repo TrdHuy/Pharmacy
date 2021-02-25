@@ -53,7 +53,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
         public tblOrder Order
         {
             get
-            { return _customerOrder; }
+            {
+                return _customerOrder;
+            }
         }
     }
 }

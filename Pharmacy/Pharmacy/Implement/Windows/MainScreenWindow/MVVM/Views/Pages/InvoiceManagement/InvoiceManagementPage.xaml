@@ -78,6 +78,7 @@
                            FontSize="{StaticResource FontSizeXXLarge}" />
                 <cc:DatePickerCustom x:Name="dprStartDateFilter"
                                      Grid.Column="3"
+                                     SelectedDateChanged="StartDateFilter_SelectedDateChanged"
                                      FontSize="{StaticResource FontSizeXLarge}" />
                 
                 <TextBlock Text="Đến: "
@@ -89,6 +90,7 @@
 
                 <cc:DatePickerCustom x:Name="dprEndDateFilter"
                                      Grid.Column="5"
+                                     SelectedDateChanged="EndDateFilter_SelectedDateChanged"
                                      FontSize="{StaticResource FontSizeXLarge}" />
 
             </Grid>
@@ -97,7 +99,7 @@
             <Grid x:Name="MainDataGridPanel"
                   Grid.Row="2">
 
-                <DataGrid x:Name="CustomerDataGrid"
+                <DataGrid x:Name="OrderDataGrid"
                           IsReadOnly="True"
                           VerticalAlignment="Top"
                           CanUserAddRows="False"
