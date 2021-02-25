@@ -9,6 +9,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerDebtsPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.InvoiceManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.DiscountByMedicinePage;
@@ -360,6 +361,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_SAVE_BUTTON:
                     action = new MSW_OPMP_MOPP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_IMP_EDIT_BUTTON:
+                    action = new MSW_IMP_EditButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_IMP_DELETE_BUTTON:
+                    action = new MSW_IMP_DeleteButtonAction();
                     break;
                 default:
                     action = null;

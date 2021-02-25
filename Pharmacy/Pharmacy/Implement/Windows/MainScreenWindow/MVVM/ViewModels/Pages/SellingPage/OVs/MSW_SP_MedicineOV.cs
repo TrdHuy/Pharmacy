@@ -16,7 +16,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         private string _medicineTextSearch;
 
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
-        public string Quantity 
+        public string Quantity
         {
             get
             {
@@ -62,8 +62,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             {
                 if ((_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer != null)
                 {
-                    var totalCost = (_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer.tblOrders.Sum(o => o.TotalPrice);
-                    var purchaseCost = (_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer.tblOrders.Sum(o => o.PurchasePrice);
+                    var totalCost = (_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer.tblOrders
+                        .Where(o => o.IsActive)
+                        .Sum(o => o.TotalPrice);
+                    var purchaseCost = (_parentModel as SellingPageViewModel).CustomerOV.CurrentSelectedCustomer.tblOrders
+                        .Where(o => o.IsActive)
+                        .Sum(o => o.PurchasePrice);
+
                     var debt = totalCost - purchaseCost;
                     return Convert.ToDecimal(debt);
                 }

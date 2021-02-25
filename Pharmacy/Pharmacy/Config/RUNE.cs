@@ -79,6 +79,12 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_FILTER_OTHER_PAYMENT_BY_END_DATE = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_FILTER_OTHER_PAYMENT_BY_END_DATE"];
 
+        public static readonly bool IS_SUPPORT_SEARCH_ORDER_BY_CUSTOMER_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_ORDER_BY_CUSTOMER_NAME"];
+
+        public static readonly bool IS_SUPPORT_SEARCH_ORDER_BY_MEDICINE_NAME = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_ORDER_BY_MEDICINE_NAME"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";

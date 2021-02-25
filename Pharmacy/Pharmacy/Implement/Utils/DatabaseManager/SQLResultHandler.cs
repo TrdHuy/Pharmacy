@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement.CustomerBill;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.InvoiceManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.OtherPaymentsManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling;
@@ -182,6 +183,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.MODIFY_OTHER_PAYMENT_CMD_KEY:
                     _result = new ModifyOtherPaymentAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_ORDERS_CMD_KEY:
+                    _result = new GetAllActiveCustomerOrdersAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -329,6 +333,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for modify other payment
         public const string MODIFY_OTHER_PAYMENT_CMD_KEY = "modify_other_payment";
+
+        //Key for get all active customer order
+        public const string GET_ALL_ACTIVE_CUSTOMER_ORDERS_CMD_KEY = "get_all_active_customer_orders";
     }
 
     public class SQLQueryResult
