@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
-    public class ModifyMedicinePageViewModel : AbstractViewModel
+    public class ModifyMedicinePageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("ModifyMedicinePageViewModel");
+
         public RunInputCommand CancelButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand CameraButtonCommand { get; set; }
@@ -166,17 +169,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private tblMedicine _modifiedMedicine;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public ModifyMedicinePageViewModel()
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
             InitData();
             UpdateModifyData();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void UpdateModifyData()

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 {
-    public class LoginScreenWindowViewModel : AbstractViewModel
+    public class LoginScreenWindowViewModel : BaseViewModel
     {
         private IActionListener _keyActionListener = KeyActionListener.Instance;
         private string _userName;

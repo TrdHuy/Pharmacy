@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage
 {
-    public class ModifySupplierPageViewModel : AbstractViewModel
+    public class ModifySupplierPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("ModifySupplierPageViewModel");
+        
         public RunInputCommand CancelButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public int SupplierNameCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
@@ -85,16 +88,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private List<tblSupplier> _lstActiveSuppliers;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
 
-        public ModifySupplierPageViewModel()
+        protected override Logger logger => L;
+
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             GetActiveSuppliers();
             UpdateModifyData();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void UpdateModifyData()

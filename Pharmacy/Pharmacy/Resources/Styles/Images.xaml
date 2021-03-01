@@ -41,7 +41,9 @@
                  UriSource="/Pharmacy;component/Resources/Images/avatar_bg_opacity_mask.png" />
     <BitmapImage x:Key="PersonalInfoPage_CameraIcon"
                  UriSource="/Pharmacy;component/Resources/Icons/PersonalInfoPageIcons/camera.png" />
-
+    <BitmapImage x:Key="UserConfigIcon"
+                 UriSource="/Pharmacy;component/Resources/Images/config.png" />
+    
     <BitmapImage x:Key="PromoIcon"
                  UriSource="/Pharmacy;component/Resources/Icons/coupon.png"></BitmapImage>
 

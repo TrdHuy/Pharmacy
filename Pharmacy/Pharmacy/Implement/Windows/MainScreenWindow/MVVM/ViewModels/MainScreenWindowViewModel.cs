@@ -20,7 +20,7 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
 {
-    public class MainScreenWindowViewModel : AbstractViewModel
+    public class MainScreenWindowViewModel : BaseViewModel
     {
         private MSW_PageController _pageHost = MSW_PageController.Instance;
         private PageSourceWatcher _pageSourceWatcher;

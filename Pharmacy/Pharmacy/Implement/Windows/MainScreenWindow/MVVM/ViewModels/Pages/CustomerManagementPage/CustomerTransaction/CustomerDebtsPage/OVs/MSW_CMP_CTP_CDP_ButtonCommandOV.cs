@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage.OVs
 {
-    public class MSW_CMP_CTP_CDP_ButtonCommandOV : AbstractViewModel
+    public class MSW_CMP_CTP_CDP_ButtonCommandOV : BaseViewModel
     {
         private static Logger logger = new Logger("MSW_CMP_CTP_CDB_ButtonCommandOV");
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public RunInputCommand ReturnButtonCommand { get; set; }
         public RunInputCommand BillDisplayButtonCommand { get; set; }
 
-        public MSW_CMP_CTP_CDP_ButtonCommandOV(AbstractViewModel parentVM) : base(parentVM)
+        public MSW_CMP_CTP_CDP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
             PrintCustomerDebtButtonCommand = new RunInputCommand(PrintCustomerDebtButtonClickEvent);
             ReturnButtonCommand = new RunInputCommand(ReturnButtonClickEvent);

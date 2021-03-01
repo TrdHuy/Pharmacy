@@ -4,10 +4,12 @@ using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -20,8 +22,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
 {
-    public class UserModificationPageViewModel : AbstractViewModel
+    public class UserModificationPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("UserModificationPageViewModel");
+
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         private tblUser _currentModifiedUser;
@@ -333,11 +337,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         public EventHandleCommand NewPasswordChangedCommand { get; set; }
         public EventHandleCommand VerifiedPasswordChangedCommand { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public UserModificationPageViewModel()
+        protected override void OnInitializing()
+
         {
             SetupFeatures();
             CurrentModifiedUser = MSW_DataFlowHost.Current.CurrentModifiedUser;
@@ -357,6 +360,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
             VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void SetupFeatures()

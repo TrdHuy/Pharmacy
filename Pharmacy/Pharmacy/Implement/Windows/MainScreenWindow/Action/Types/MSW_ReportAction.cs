@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 {
-    public class MSW_Repor : Base.UIEventHandler.Action.IAction
+    public class MSW_ReportAction : Base.UIEventHandler.Action.IAction
     {
         private MSW_PageController _pageHost = MSW_PageController.Instance;
 

@@ -9,6 +9,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
 {
-    public class CustomerInstantiationPageViewModel : AbstractViewModel
+    public class CustomerInstantiationPageViewModel : MSW_BasePageViewModel
     {
-        private static Logger logger = new Logger("CustomerInstantiationPageViewModel");
+        private static Logger L = new Logger("CustomerInstantiationPageViewModel");
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
@@ -179,16 +180,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public RunInputCommand CameraButtonCommand { get; set; }
         public RunInputCommand CancleButtonCommand { get; set; }
         public EventHandleCommand GridSizeChangedCommand { get; set; }
+
         #endregion
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public CustomerInstantiationPageViewModel()
+        protected override void OnInitializing()
         {
-            logger.I("Instantinating CustomerInstantiationPageViewModel");
-
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
@@ -202,8 +200,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 Visibility.Visible : Visibility.Collapsed;
 
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
-
-            logger.I("Instantinated CustomerInstantiationPageViewModel");
+        }
+        
+        protected override void OnInitialized()
+        {
         }
 
         private void CameraButtonClickEvent(object paramaters)

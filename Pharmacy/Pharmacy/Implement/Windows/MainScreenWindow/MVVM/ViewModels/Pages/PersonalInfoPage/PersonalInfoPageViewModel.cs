@@ -19,11 +19,14 @@ using Pharmacy.Implement.Utils;
 using Pharmacy.Config;
 using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 using Pharmacy.Implement.Utils.Extensions.Entities;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
-    public class PersonalInfoPageViewModel : AbstractViewModel
+    public class PersonalInfoPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("PersonalInfoPageViewModel");
+        
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
         private Visibility _fullNameAwareTextBlockVisibility = Visibility.Visible;
@@ -268,16 +271,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public RunInputCommand CancleButtonCommand { get; set; }
         public RunInputCommand CameraButtonCommand { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-            PropRegister("CurrentUser");
-        }
+        protected override Logger logger => L;
 
-        public PersonalInfoPageViewModel()
+        protected override void OnInitializing()
         {
             UserImageSource = FileIOUtil.
-                GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
-                ToImageSource();
+                 GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
+                 ToImageSource();
 
             SaveButtonCommand = new RunInputCommand(OnSaveButtonClickEvent);
             CameraButtonCommand = new RunInputCommand(OnCameraButtonClickEvent);
@@ -288,6 +288,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
             VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
         }
+
+        protected override void OnInitialized()
+        {
+        }
+
 
         #region Button, event field
 

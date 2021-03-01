@@ -4,6 +4,7 @@ using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage.OVs;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage
 {
-    public class CustomerDebtsPageViewModel : AbstractViewModel
+    public class CustomerDebtsPageViewModel : MSW_BasePageViewModel
     {
-        private static Logger logger = new Logger("CustomerDebtsPageViewModel");
+        private static Logger L = new Logger("CustomerDebtsPageViewModel");
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
@@ -55,11 +56,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public string PaymentClassification { get; set; }
 
-        public CustomerDebtsPageViewModel()
+        protected override Logger logger => L;
+
+        protected override void OnInitializing()
         {
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             ButtonCommandOV = new MSW_CMP_CTP_CDP_ButtonCommandOV(this);
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

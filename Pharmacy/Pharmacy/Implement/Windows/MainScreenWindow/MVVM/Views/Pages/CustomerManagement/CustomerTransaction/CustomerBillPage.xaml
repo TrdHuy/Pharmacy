@@ -72,7 +72,7 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Left"
                                Background="White"
-                               FontSize="{StaticResource FontSizeXXLarge}" />
+                               FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
                     <TextBox MinHeight="30"
                              Grid.Column="1"
                              VerticalContentAlignment="Center"
@@ -138,7 +138,7 @@
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                             <TextBox Grid.Column="2"
                                      Tag="Nhập tên khách hàng"
@@ -146,7 +146,7 @@
                                      VerticalContentAlignment="Center"
                                      Text="{Binding CurrentCustomerOrder.tblCustomer.CustomerName}"
                                      IsReadOnly="True"
-                                     FontSize="{StaticResource FontSizeXLarge}"
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                      Foreground="Black"
                                      BorderBrush="Black"
                                      BorderThickness="1"
@@ -168,12 +168,12 @@
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                             <TextBox Grid.Column="2"
                                      IsReadOnly="True"
                                      Text="{Binding CurrentCustomerOrder.tblCustomer.Address}"
-                                     FontSize="{StaticResource FontSizeXLarge}"
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                      BorderBrush="Black" />
 
                         </Grid>
@@ -191,14 +191,14 @@
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                             <TextBox  Grid.Column="2"
                                       HorizontalContentAlignment="Left"
                                       VerticalContentAlignment="Center"
                                       Text="{Binding CurrentCustomerOrder.tblCustomer.Phone}"
                                       IsReadOnly="True"
-                                      FontSize="{StaticResource FontSizeXLarge}"
+                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                       Foreground="Black"
                                       BorderBrush="Black"
                                       BorderThickness="1"
@@ -219,7 +219,7 @@
                            HorizontalAlignment="Left"
                            Margin="2,0,0,0"
                            Background="White"
-                           FontSize="{StaticResource FontSizeXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
             </Grid>
 
             <!--Bill area-->
@@ -273,13 +273,13 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"
                                        Grid.Column="0"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                             <hps:HorusBox Grid.Column="2"
                                           Style="{StaticResource SearchingBoxTheme}"
                                           Tag="Nhập thuốc tại đây"
                                           IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                          FontSize="{StaticResource FontSizeXLarge}"
+                                          FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                           BorderThickness="1"
                                           FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
                                           SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine,Mode=TwoWay}"
@@ -313,14 +313,14 @@
                                                        Text="{Binding MedicineID}"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Stretch"
-                                                       FontSize="{StaticResource FontSizeRegular}" />
+                                                       FontSize="{Binding FontSizeOV.FontSizeRegular}" />
 
                                             <TextBlock Grid.Column="3"
                                                        Foreground="Black"
                                                        Text="{Binding MedicineName}"
                                                        VerticalAlignment="Center"
                                                        HorizontalAlignment="Right"
-                                                       FontSize="{StaticResource FontSizeRegular}" />
+                                                       FontSize="{Binding FontSizeOV.FontSizeRegular}" />
                                         </Grid>
 
 
@@ -334,7 +334,7 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"
                                        Grid.Column="3"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                             <hps:AkerTextBox Grid.Column="5"
                                              AkerTextBoxType="Decimal"
                                              Text="{Binding MedicineOV.Quantity,
@@ -342,7 +342,7 @@
                                              UpdateSourceTrigger=PropertyChanged}"
                                              Tag="0"
                                              IsEnabled="{Binding IsEnableEdittingBill}"
-                                             FontSize="{StaticResource FontSizeXLarge}" />
+                                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                             <hps:OsirisButton Margin="10,2,10,2"
                                               BorderThickness="0"
@@ -356,7 +356,7 @@
                                               HorizontalContentAlignment="Center"
                                               VerticalContentAlignment="Center"
                                               OBTextVerticalAlignment="Center"
-                                              FontSize="{StaticResource FontSizeLarge}"
+                                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                               FontFamily="{StaticResource FontAwesome}"
                                               TextContent="&#xf067;"
                                               IsUsingDropShadowEffect="True"
@@ -370,7 +370,7 @@
                                               HorizontalContentAlignment="Center"
                                               VerticalContentAlignment="Center"
                                               OBTextVerticalAlignment="Center"
-                                              FontSize="{StaticResource FontSizeLarge}"
+                                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                               FontFamily="{StaticResource FontAwesome}"
                                               TextContent="&#xf040;"
                                               IsUsingDropShadowEffect="True"
@@ -384,7 +384,7 @@
                                               HorizontalContentAlignment="Center"
                                               VerticalContentAlignment="Center"
                                               OBTextVerticalAlignment="Center"
-                                              FontSize="{StaticResource FontSizeLarge}"
+                                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                               FontFamily="{StaticResource FontAwesome}"
                                               TextContent="&#xf0e2;"
                                               IsUsingDropShadowEffect="True"
@@ -404,7 +404,7 @@
                                               ProgressSpinnerSize="30"
                                               Command="{Binding ButtonCommandOV.SaveButtonCommand}"
                                               Background="{StaticResource NormalTheme_1st_Background_Brush}"
-                                              FontSize="{StaticResource FontSizeLarge}"
+                                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                               IsUsingDropShadowEffect="True"
                                               Grid.Column="9" />
                         </Grid>
@@ -588,7 +588,7 @@
                                                                       Background="Transparent"
                                                                       Foreground="Red"
                                                                       VerticalAlignment="Center"
-                                                                      FontSize="{StaticResource FontSizeXXLarge}"
+                                                                      FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                                                       Command="{Binding ButtonCommandOV.DeleteOrderDetailButtonCommand, ElementName=CustomerBillPageDataContext}"
                                                                       CommandParameter="{Binding ElementName=OrderDetailDataGrid}"
                                                                       FontFamily="{StaticResource FontAwesome}"
@@ -619,14 +619,14 @@
                                        VerticalAlignment="Top"
                                        HorizontalAlignment="Right"
                                        Grid.Column="0"
-                                       FontSize="{StaticResource FontSizeXLarge}" />
+                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                             <hps:AkerTextBox Grid.Column="2"
                                              IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              AkerTextBoxType="Normal"
                                              Text="{Binding CurrentCustomerOrder.OrderDescription}"
                                              VerticalContentAlignment="Top"
                                              Tag="Thêm ghi chú tại đây"
-                                             FontSize="{StaticResource FontSizeXLarge}" />
+                                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                             <Grid Grid.Column="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -641,20 +641,20 @@
                                 <TextBlock Text="Thành tiền:"
                                            Grid.Row="0"
                                            Grid.Column="0"
-                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="Công nợ:"
                                            Grid.Row="1"
                                            Grid.Column="0"
-                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="Tổng cộng:"
                                            Grid.Row="2"
                                            Grid.Column="0"
-                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                            VerticalAlignment="Center" />
 
-                                <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
+                                <hps:AkerTextBox FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                  AkerExpense="{Binding MedicineOV.MedicineCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsReadOnly="True"
@@ -662,7 +662,7 @@
                                                  BorderThickness="0"
                                                  Grid.Row="0"
                                                  Grid.Column="2" />
-                                <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
+                                <hps:AkerTextBox FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                  AkerExpense="{Binding MedicineOV.DebtCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  AkerExpenseUnit="VND"
@@ -670,7 +670,7 @@
                                                  BorderThickness="0"
                                                  Grid.Row="1"
                                                  Grid.Column="2" />
-                                <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
+                                <hps:AkerTextBox FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                  AkerExpense="{Binding MedicineOV.TotalCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsReadOnly="True"
@@ -696,23 +696,23 @@
                                            Grid.Row="0"
                                            HorizontalAlignment="Right"
                                            Grid.Column="0"
-                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           FontSize="{Binding FontSizeOV. FontSizeXLarge}"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="*"
                                            Foreground="Red"
                                            HorizontalAlignment="Center"
                                            Grid.Row="0"
                                            Grid.Column="1"
-                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="Còn lại:"
                                            Grid.Row="1"
                                            HorizontalAlignment="Right"
                                            Grid.Column="0"
-                                           FontSize="{StaticResource FontSizeXLarge}"
+                                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                            VerticalAlignment="Center" />
 
-                                <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
+                                <hps:AkerTextBox FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                  AkerExpense="{Binding MedicineOV.PaidAmount,Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
@@ -720,7 +720,7 @@
                                                  Grid.Row="0"
                                                  Grid.Column="2" />
 
-                                <hps:AkerTextBox FontSize="{StaticResource FontSizeXLarge}"
+                                <hps:AkerTextBox FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                  AkerExpense="{Binding MedicineOV.RestAmount,Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsReadOnly="True"
@@ -743,7 +743,7 @@
                            HorizontalAlignment="Left"
                            Margin="2,0,0,0"
                            Background="White"
-                           FontSize="{StaticResource FontSizeXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
             </Grid>
 
         </Grid>

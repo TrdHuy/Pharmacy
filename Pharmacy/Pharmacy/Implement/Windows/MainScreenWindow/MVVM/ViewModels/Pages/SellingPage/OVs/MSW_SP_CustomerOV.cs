@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs
 {
-    public class MSW_SP_CustomerOV : AbstractViewModel
+    public class MSW_SP_CustomerOV : BaseViewModel
     {
-        private AbstractViewModel _parentModel;
+        private BaseViewModel _parentModel;
         private string _customerName;
         private string _customerAddress;
         private string _customerPhone;
@@ -94,7 +94,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             }
         }
 
-        public MSW_SP_CustomerOV(AbstractViewModel parentVM)
+        public MSW_SP_CustomerOV(BaseViewModel parentVM)
         {
             _parentModel = parentVM;
         }

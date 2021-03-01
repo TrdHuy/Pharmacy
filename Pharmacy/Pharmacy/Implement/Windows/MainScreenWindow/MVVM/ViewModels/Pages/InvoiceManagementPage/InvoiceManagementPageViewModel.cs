@@ -1,7 +1,9 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage.OVs;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,22 +13,29 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage
 {
-    public class InvoiceManagementPageViewModel : AbstractViewModel
+    public class InvoiceManagementPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("InvoiceManagementPageViewModel");
+
         private SQLQueryCustodian _sqlCmdObserver;
        
-
         public ObservableCollection<CustomerOrderOV> CustomerOrdersItemSource { get; set; }
         public MSW_IMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public MSW_IMP_EventCommandOV EventCommandOV { get; set; }
         public CustomerOrderOV CurrentSelectedOrderOV { get; set; }
 
-        public InvoiceManagementPageViewModel()
+        protected override Logger logger => L;
+
+        protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_IMP_ButtonCommandOV(this);
             EventCommandOV = new MSW_IMP_EventCommandOV(this);
-
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
+
         }
 
         private void InstantiateItems()
@@ -57,6 +66,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
             }
         }
 
-        
     }
 }

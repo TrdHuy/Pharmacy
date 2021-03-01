@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs
 {
-    public class MSW_WHMP_WarehouseImportOV : AbstractViewModel
+    public class MSW_WHMP_WarehouseImportOV : BaseViewModel
     {
         public long ImportID { get; set; }
         public DateTime ImportTime { get; set; }

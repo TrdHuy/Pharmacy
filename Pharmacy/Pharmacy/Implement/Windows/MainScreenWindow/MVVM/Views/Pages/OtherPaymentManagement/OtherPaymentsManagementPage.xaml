@@ -13,7 +13,7 @@
       x:Name="OtherPaymentManagement"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{StaticResource FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
       Title="OtherPaymentsManagementPage">
 
     <Grid>

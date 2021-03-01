@@ -233,7 +233,7 @@
                                                           Foreground="#008AE0"
                                                           Command="{Binding ButtonCommandOV.BillDisplayButtonCommand, ElementName=CustomerDebtsPageDataContext}"
                                                           VerticalAlignment="Center"
-                                                          FontSize="{StaticResource FontSizeRegular}"
+                                                          FontSize="{Binding FontSizeOV.FontSizeRegular}"
                                                           TextContent="Xem hóa đơn"
                                                           FontStyle="Italic" />
                                     </Grid>
@@ -274,7 +274,7 @@
                                    Grid.Row="0"
                                    HorizontalAlignment="Right"
                                    Grid.Column="0"
-                                   FontSize="{StaticResource FontSizeXLarge}"
+                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                    VerticalAlignment="Center" />
                         
                         <hps:AkerTextBox AkerTextBoxType="Expense"
@@ -282,7 +282,7 @@
                                          AkerExpenseUnit="VND"
                                          AkerExpense="{Binding DebtAmount, Mode=OneWay}"
                                          VerticalAlignment="Center"
-                                         FontSize="{StaticResource FontSizeXLarge}"
+                                         FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                          BorderThickness="0"
                                          IsReadOnly="True" />
                     </Grid>
@@ -299,7 +299,7 @@
                                    Grid.Row="0"
                                    HorizontalAlignment="Right"
                                    Grid.Column="0"
-                                   FontSize="{StaticResource FontSizeXLarge}"
+                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                    VerticalAlignment="Center" />
 
                         <hps:AkerTextBox AkerTextBoxType="Expense"
@@ -307,7 +307,7 @@
                                          AkerExpense="{Binding PaidAmount, Mode=OneWay}"
                                          AkerExpenseUnit="VND"
                                          VerticalAlignment="Center"
-                                         FontSize="{StaticResource FontSizeXLarge}"
+                                         FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                          BorderThickness="0"
                                          IsReadOnly="True" />
                     </Grid>
@@ -324,7 +324,7 @@
                                    Grid.Row="0"
                                    HorizontalAlignment="Right"
                                    Grid.Column="0"
-                                   FontSize="{StaticResource FontSizeXLarge}"
+                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                    VerticalAlignment="Center" />
 
                         <hps:AkerTextBox AkerTextBoxType="Expense"
@@ -333,7 +333,7 @@
                                          Foreground="Red"
                                          AkerExpense="{Binding RestAmount, Mode=OneWay}"
                                          VerticalAlignment="Center"
-                                         FontSize="{StaticResource FontSizeXLarge}"
+                                         FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                          BorderThickness="0"
                                          IsReadOnly="True" />
                     </Grid>
@@ -367,7 +367,7 @@
                               IconWidth="30"
                               Command="{Binding ButtonCommandOV.PrintCustomerDebtButtonCommand}"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}"
-                              FontSize="{StaticResource FontSizeXXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                               IsUsingDropShadowEffect="True"
                               Grid.Column="1" />
 
@@ -382,7 +382,7 @@
                               Command="{Binding ButtonCommandOV.ReturnButtonCommand}"
                               ProgressSpinnerSize="30"
                               Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
-                              FontSize="{StaticResource FontSizeXXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                               IsUsingDropShadowEffect="True"
                               Grid.Column="3" />
         </Grid>

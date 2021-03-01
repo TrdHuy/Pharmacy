@@ -14,11 +14,15 @@ using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 using HPSolutionCCDevPackage.netFramework;
+using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage
 {
-    public class OtherPaymentsManagementPageViewModel : AbstractViewModel
+    public class OtherPaymentsManagementPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("OtherPaymentsManagementPageViewModel");
+
         public ObservableCollection<tblOtherPayment> OtherPaymentItemSource { get; set; }
         public RunInputCommand AddNewOtherPaymentButtonCommand { get; set; }
         public RunInputCommand EditOtherPaymentButtonCommand { get; set; }
@@ -29,11 +33,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public OtherPaymentsManagementPageViewModel()
+        protected override void OnInitializing()
         {
             AddNewOtherPaymentButtonCommand = new RunInputCommand(AddNewAddNewOtherPaymentButtonClickEvent);
             DeleteOtherPaymentButtonCommand = new RunInputCommand(DeleteOtherPaymentButtonClickEvent);
@@ -42,6 +44,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
             FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
             ShowOtherPaymentInfoCommand = new EventHandleCommand(ShowOtherPaymentInfoEvent);
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

@@ -13,11 +13,15 @@ using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
+using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
-    public class WarehouseManagementPageViewModel : AbstractViewModel
+    public class WarehouseManagementPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("WarehouseManagementPageViewModel");
+        
         public ObservableCollection<MSW_WHMP_WarehouseImportOV> WarehouseImportItemSource { get; set; }
         public RunInputCommand AddNewWarehouseImportButtonCommand { get; set; }
         public RunInputCommand EditWarehouseImportButtonCommand { get; set; }
@@ -31,11 +35,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         private DispatcherTimer _timerUpdateFilter;
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public WarehouseManagementPageViewModel()
+        protected override void OnInitializing()
         {
             AddNewWarehouseImportButtonCommand = new RunInputCommand(AddNewWarehouseImportButtonClickEvent);
             DeleteWarehouseImportButtonCommand = new RunInputCommand(DeleteWarehouseImportButtonClickEvent);
@@ -44,6 +46,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
             ShowWarehouseImportInfoCommand = new EventHandleCommand(ShowWarehouseImportInfoEvent);
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

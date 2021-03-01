@@ -62,6 +62,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string SUPPLIER_DEBT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/SupplierDebtPage.xaml";
         public const string ADD_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/AddOtherPaymentPage.xaml";
         public const string MODIFY_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/ModifyOtherPaymentPage.xaml";
+        public const string SETTING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Setting/SettingPage.xaml";
 
         public static readonly long HOME_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long SELLING_PAGE_LOADING_DELAY_TIME = 1300;
@@ -94,6 +95,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long SUPPLIER_DEBT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long ADD_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long MODIFY_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 1000;
+        public static readonly long SETTING_PAGE_LOADING_DELAY_TIME = 200;
     }
 
     public enum NewPasswordAwareMessage

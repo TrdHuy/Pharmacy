@@ -14,7 +14,7 @@
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}">
 
     <Page.DataContext>
-        <vm:CustomerTransactionHistoryPageViewModel />
+        <vm:CustomerTransactionHistoryPageViewModel x:Name="CustomerTransactionHistoryPageDataContext"/>
     </Page.DataContext>
 
     <Grid Background="White">
@@ -97,11 +97,11 @@
                                                     <ColumnDefinition Width="2.1*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Viewbox Grid.Column="0">
-                                                    <TextBlock FontSize="{StaticResource FontSizeXLarge}"
+                                                    <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
                                                                Text="{Binding OrderTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=DATE}" />
                                                 </Viewbox>
                                                 <Viewbox Grid.Column="2">
-                                                    <TextBlock FontSize="{StaticResource FontSizeXLarge}"
+                                                    <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
                                                                Text="{Binding OrderTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=TIME}" />
                                                 </Viewbox>
                                                 <Grid Grid.Column="4">
@@ -111,12 +111,12 @@
                                                     </Grid.ColumnDefinitions>
                                                     <Viewbox Grid.Column="0"
                                                              HorizontalAlignment="Right">
-                                                        <TextBlock FontSize="{StaticResource FontSizeXLarge}"
+                                                        <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
                                                                    Text="Thành tiền: " />
                                                     </Viewbox>
                                                     <Viewbox Grid.Column="1"
                                                              HorizontalAlignment="Left">
-                                                        <TextBlock FontSize="{StaticResource FontSizeXLarge}"
+                                                        <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
                                                                    Text="{Binding TotalPrice}" />
                                                     </Viewbox>
                                                 </Grid>
@@ -242,31 +242,31 @@
                            Grid.Row="0"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
-                           FontSize="{StaticResource FontSizeXLarge}"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                            Text="Thời gian:" />
                 <TextBlock Grid.Column="0"
                            Grid.Row="1"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
-                           FontSize="{StaticResource FontSizeXLarge}"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                            Text="Tổng cộng:" />
                 <TextBlock Grid.Column="0"
                            Grid.Row="2"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
-                           FontSize="{StaticResource FontSizeXLarge}"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                            Text="Thanh toán:" />
                 <TextBlock Grid.Column="0"
                            Grid.Row="3"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
-                           FontSize="{StaticResource FontSizeXLarge}"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                            Text="Ghi chú:" />
                 <TextBlock Grid.Column="0"
                            Grid.Row="4"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
-                           FontSize="{StaticResource FontSizeXLarge}"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                            Text="Nội dung:" />
 
                 <Grid Grid.Column="2"
@@ -289,7 +289,7 @@
                     <TextBox Grid.Row="0"
                              IsReadOnly="True"
                              Text="{Binding CurrentSelectedOrder.OrderTime}"
-                             FontSize="{StaticResource FontSizeXLarge}"
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                              BorderBrush="Black"
                              BorderThickness="2"
                              Grid.Column="2" />
@@ -297,21 +297,21 @@
                              BorderThickness="2"
                              IsReadOnly="True"
                              Text="{Binding CurrentSelectedOrder.TotalPrice}"
-                             FontSize="{StaticResource FontSizeXLarge}"
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
                     <TextBox Grid.Row="4"
                              BorderThickness="2"
                              IsReadOnly="True"
                              Text="{Binding CurrentSelectedOrder.PurchasePrice}"
-                             FontSize="{StaticResource FontSizeXLarge}"
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
                     <TextBox Grid.Row="6"
                              BorderThickness="2"
                              IsReadOnly="True"
                              Text="{Binding CurrentSelectedOrder.OrderDescription}"
-                             FontSize="{StaticResource FontSizeXLarge}"
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
                     
@@ -321,7 +321,7 @@
                              BorderThickness="2"
                              IsReadOnly="True"
                              Text="{Binding CurrentSelectedOrderDetails, Mode=OneWay}"
-                             FontSize="{StaticResource FontSizeRegular}"
+                             FontSize="{Binding FontSizeOV.FontSizeRegular}"
                              BorderBrush="Black"
                              Grid.Column="2"
                              FontFamily="{StaticResource RobotoMono}" />
@@ -346,7 +346,7 @@
                                           TextDecor="Underline"
                                           Foreground="#008AE0"
                                           VerticalAlignment="Center"
-                                          FontSize="{StaticResource FontSizeXLarge}"
+                                          FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                           TextContent="Xem hóa đơn"
                                           Command="{Binding BillDisplayButtonCommand}"
                                           FontStyle="Italic" />
@@ -358,7 +358,7 @@
                                           Background="#FFC00000"
                                           TextContent="Xem công nợ"
                                           Foreground="White"
-                                          FontSize="{StaticResource FontSizeXXLarge}"
+                                          FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center" 
                                           Command="{Binding DebtsDisplayButtonCommand}"/>
@@ -371,7 +371,7 @@
                                           TextContent="Quay lại"
                                           Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                           Foreground="White"
-                                          FontSize="{StaticResource FontSizeXXLarge}"
+                                          FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center" />
 

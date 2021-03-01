@@ -20,6 +20,10 @@ namespace Pharmacy.Implement.Utils.CustomControls
            DependencyProperty.Register("HeaderText", typeof(string), typeof(PageHeaderControl)
                ,new PropertyMetadata("This is header text"));
 
+        public static readonly DependencyProperty HeaderFontSizeProperty =
+           DependencyProperty.Register("HeaderFontSize", typeof(double), typeof(PageHeaderControl)
+               , new PropertyMetadata(30d));
+
         public PageHeaderControl()
         {
 
@@ -35,6 +39,12 @@ namespace Pharmacy.Implement.Utils.CustomControls
         {
             get { return (string)GetValue(HeaderTextProperty); }
             set { SetValue(HeaderTextProperty, value); }
+        }
+
+        public double HeaderFontSize
+        {
+            get { return (double)GetValue(HeaderFontSizeProperty); }
+            set { SetValue(HeaderFontSizeProperty, value); }
         }
     }
 }

@@ -140,7 +140,7 @@
                                Grid.Row="0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Margin="3"
                                Text="Họ tên:" />
 
@@ -148,7 +148,7 @@
                                Grid.Row="2"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Margin="3"
                                Text="Địa chỉ:" />
 
@@ -156,21 +156,21 @@
                                Grid.Row="4"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Text="Điện thoại:" />
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="6"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Text="Email:" />
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="8"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Text="Facebook:" />
 
                     <Viewbox HorizontalAlignment="
@@ -202,14 +202,14 @@
                              Style="{DynamicResource LoginTextBox}"
                              BorderThickness="2"
                              BorderBrush="Black"
-                             FontSize="{StaticResource FontSizeXLarge}" />
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                     <TextBlock x:Name="FullNameAwareTextBlock"
                                Visibility="{Binding FullNameAwareTextBlockVisibility}"
                                IsHitTestVisible="False"
                                Grid.Column="2"
                                Grid.Row="1"
                                Foreground="Red"
-                               FontSize="{StaticResource FontSizeXXSmall}"
+                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Text="Không được bỏ trống trường này" />
@@ -221,7 +221,7 @@
                              Text="{Binding AdressText}"
                              BorderThickness="2"
                              BorderBrush="Black"
-                             FontSize="{StaticResource FontSizeXLarge}" />
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                     <TextBox x:Name="PhoneTextBox"
                              Margin="0,2.5,0,2.5"
@@ -231,14 +231,14 @@
                              Text="{Binding PhoneText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              BorderThickness="2"
                              BorderBrush="Black"
-                             FontSize="{StaticResource FontSizeXLarge}" />
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                     <TextBlock x:Name="PhoneAwareTextBlock"
                                IsHitTestVisible="False"
                                Visibility="{Binding PhoneAwareTextBlockVisibility}"
                                Grid.Column="2"
                                Grid.Row="5"
                                Foreground="Red"
-                               FontSize="{StaticResource FontSizeXXSmall}"
+                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Text="Không được bỏ trống trường này" />
@@ -250,7 +250,7 @@
                              Text="{Binding EmailText}"
                              BorderThickness="2"
                              BorderBrush="Black"
-                             FontSize="{StaticResource FontSizeXLarge}" />
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                     <TextBox Margin="0,2.5,0,2.5"
                              Grid.Column="2"
@@ -259,7 +259,7 @@
                              Text="{Binding LinkText}"
                              BorderThickness="2"
                              BorderBrush="Black"
-                             FontSize="{StaticResource FontSizeXLarge}" />
+                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                 </Grid>
 
                 <!--Login info-->
@@ -289,21 +289,21 @@
                                Grid.Row="0"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Text="Mật khẩu hiện tại:" />
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="2"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Text="Mật khẩu mới:" />
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="4"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center"
-                               FontSize="{StaticResource FontSizeXLarge}"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                Text="Xác nhận mật khẩu:" />
 
                     <PasswordBox x:Name="CurrentPasswordBox"
@@ -314,7 +314,7 @@
                                  PasswordChanged="CurrentPasswordBox_PasswordChanged"
                                  BorderThickness="2"
                                  BorderBrush="Black"
-                                 FontSize="{StaticResource FontSizeXLarge}" />
+                                 FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                     <TextBlock x:Name="CurrentPasswordAwareTextBlock"
                                Visibility="{Binding CurrentPasswordAwareTextBlockVisibility}"
@@ -322,7 +322,7 @@
                                Grid.Column="2"
                                Grid.Row="1"
                                Foreground="Red"
-                               FontSize="{StaticResource FontSizeXXSmall}"
+                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Text="Mật khẩu không chính xác!" />
@@ -335,14 +335,14 @@
                                   PasswordChanged="NewPasswordBox_PasswordChanged"
                                   BorderThickness="2"
                                   BorderBrush="Black"
-                                  FontSize="{StaticResource FontSizeXLarge}" />
+                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                     <TextBlock x:Name="NewPasswordAwareTextBlock"
                                Visibility="{Binding NewPasswordAwareTextBlockVisibility}"
                                IsHitTestVisible="False"
                                Grid.Column="2"
                                Grid.Row="3"
                                Foreground="Red"
-                               FontSize="{StaticResource FontSizeXXSmall}"
+                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Text="{Binding NewPasswordAwareTextBlockContent}" />
@@ -362,7 +362,7 @@
                                Grid.Column="2"
                                Grid.Row="5"
                                Foreground="Red"
-                               FontSize="{StaticResource FontSizeXXSmall}"
+                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                Text="Mật khẩu xác nhận không khớp!" />
@@ -387,7 +387,7 @@
                                 IsUsingDropShadowEffect="True"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                FontSize="{StaticResource FontSizeXLarge}"
+                                FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                 Command="{Binding CancleButtonCommand}"
                                 BorderThickness="0"
                                 Foreground="White" />
@@ -397,7 +397,7 @@
                                 IsBusy="{Binding IsSaveButtonRunning}"
                                 ProgressSpinnerSize="30"
                                 ProgressSpinnerBackground="Black"
-                                FontSize="{StaticResource FontSizeXLarge}"
+                                FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage.OVs
 {
-    public class MSW_CMP_CTP_CBP_ButtonCommandOV : AbstractViewModel
+    public class MSW_CMP_CTP_CBP_ButtonCommandOV : BaseViewModel
     {
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private bool _isAddOrderDeatailButtonRunning;
@@ -58,7 +58,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand RefreshOrderDetaisButtonCommand { get; set; }
 
-        public MSW_CMP_CTP_CBP_ButtonCommandOV(AbstractViewModel parentVM) : base(parentVM)
+        public MSW_CMP_CTP_CBP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
             EditEnablerButtonCommand = new RunInputCommand(EditEnablerButtonClickEvent);
             AddNewOrderDetailButtonCommand = new RunInputCommand(AddNewOrderDetailButtonClickEvent);

@@ -13,7 +13,7 @@
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="InvoiceManagementPage">
-    
+
     <Page.DataContext>
         <vm:InvoiceManagementPageViewModel x:Name="InvoiceManagementPageDataContext" />
     </Page.DataContext>
@@ -33,6 +33,7 @@
 
         <!--Titlte area-->
         <uc:PageHeader HeaderIcon="{StaticResource BillIcon}"
+                       HeaderFontSize="{Binding FontSizeOV.HeaderFontSize}"
                        HeaderText="Quản lý hóa đơn" />
 
         <!--Body area-->
@@ -61,12 +62,12 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="20,0,0,0"
-                           FontSize="{StaticResource FontSizeXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
                 <TextBox x:Name="SearchTextBox"
                          Grid.Column="1"
                          ToolTip="{Binding SearchTextBoxToolTip}"
                          TextChanged="SearchTextBox_TextChanged"
-                         FontSize="{StaticResource FontSizeXLarge}"
+                         FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                          Style="{StaticResource DefaultTextBox}">
 
                 </TextBox>
@@ -76,23 +77,23 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="10,0,0,0"
-                           FontSize="{StaticResource FontSizeXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
                 <cc:DatePickerCustom x:Name="dprStartDateFilter"
                                      Grid.Column="3"
                                      SelectedDateChanged="StartDateFilter_SelectedDateChanged"
-                                     FontSize="{StaticResource FontSizeXLarge}" />
-                
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+
                 <TextBlock Text="Đến: "
                            Grid.Column="4"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="10,0,0,0"
-                           FontSize="{StaticResource FontSizeXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
 
                 <cc:DatePickerCustom x:Name="dprEndDateFilter"
                                      Grid.Column="5"
                                      SelectedDateChanged="EndDateFilter_SelectedDateChanged"
-                                     FontSize="{StaticResource FontSizeXLarge}" />
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
             </Grid>
 
@@ -209,27 +210,14 @@
 
                     </DataGrid.ColumnHeaderStyle>
 
-                    <DataGrid.RowStyle>
-                        <Style TargetType="DataGridRow">
-                            <Style.Resources>
-                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
-                                                  Color="{StaticResource NormalTheme_3rd_Color}" />
-                            </Style.Resources>
-
-                            <Setter Property="Height"
-                                    Value="{StaticResource DefaultDataGrid_RowHeight}" />
-                        </Style>
-
-                    </DataGrid.RowStyle>
-
                     <DataGrid.Columns>
-                       
+
                         <!--Time column-->
                         <DataGridTextColumn Width="*"
                                             CellStyle="{StaticResource DGTextCell}"
                                             Header="Thời gian">
                             <DataGridTextColumn.Binding>
-                                <Binding Path="OrderTime"/>
+                                <Binding Path="OrderTime" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
@@ -248,7 +236,7 @@
                                             Header="Danh sách thuốc">
                             <!--Should not use converter here due to performance issue-->
                             <DataGridTextColumn.Binding>
-                                <Binding Path="OrderDetail"/>
+                                <Binding Path="OrderDetail" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
@@ -260,7 +248,7 @@
                                 <Binding Path="TotalPrice" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        
+
                         <!--Edit column-->
                         <DataGridTemplateColumn CanUserResize="False"
                                                 Width="0.75*">
@@ -284,10 +272,10 @@
                                                               Foreground="Black"
                                                               Command="{Binding ButtonCommandOV.EditOrderButtonCommand, ElementName=InvoiceManagementPageDataContext}"
                                                               VerticalAlignment="Center"
-                                                              FontSize="{StaticResource FontSizeXXLarge}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf040;" />
-                                            
+
                                             <hps:OsirisButton Grid.Column="3"
                                                               BorderThickness="0"
                                                               HorizontalAlignment="Center"
@@ -296,7 +284,7 @@
                                                               Foreground="Red"
                                                               Command="{Binding ButtonCommandOV.DeleteOrderButtonCommand, ElementName=InvoiceManagementPageDataContext}"
                                                               VerticalAlignment="Center"
-                                                              FontSize="{StaticResource FontSizeXXLarge}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf00d;" />
                                         </Grid>

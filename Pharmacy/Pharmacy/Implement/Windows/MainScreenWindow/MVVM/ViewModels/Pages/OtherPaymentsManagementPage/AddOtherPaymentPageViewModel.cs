@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,8 +18,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage
 {
-    public class AddOtherPaymentPageViewModel : AbstractViewModel
+    public class AddOtherPaymentPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("AddOtherPaymentPageViewModel");
+
         public RunInputCommand CancelButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand BrowseInvoiceButtonCommand { get; set; }
@@ -95,11 +98,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
         private bool _isSaveButtonRunning;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public AddOtherPaymentPageViewModel()
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
@@ -108,6 +109,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
             PaymentTime = DateTime.Now;
             PaymentType = 0;
             PaymentDetail = "";
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void BrowseInvoiceButtonClickEvent(object paramaters)

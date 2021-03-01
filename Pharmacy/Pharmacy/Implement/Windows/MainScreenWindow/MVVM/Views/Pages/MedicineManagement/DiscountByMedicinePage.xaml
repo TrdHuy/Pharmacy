@@ -11,7 +11,7 @@
       x:Name="MedicineManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{StaticResource FontSizeXLarge}"
+      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
       Title="MedicineManagementPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -128,7 +128,7 @@
 
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
-                       FontSize="{StaticResource FontSizeXSmall}"
+                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="3,0,0,0">
@@ -173,7 +173,7 @@
 
             <TextBlock Grid.Row="1"
                        Grid.Column="3"
-                       FontSize="{StaticResource FontSizeXSmall}"
+                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="3,0,0,0">
@@ -211,7 +211,7 @@
                                   IsUsingDropShadowEffect="True"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
-                                  FontSize="{StaticResource FontSizeXLarge}"
+                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                   Command="{Binding CreateNewPromoButtonCommand}"
                                   BorderThickness="0"
                                   MaxHeight="100"
@@ -222,7 +222,7 @@
                                   IsUsingDropShadowEffect="True"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
-                                  FontSize="{StaticResource FontSizeXLarge}"
+                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                   Command="{Binding SaveButtonCommand}"
                                   BorderThickness="0"
                                   MaxHeight="100"
@@ -439,7 +439,7 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              FontSize="{StaticResource FontSizeXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"

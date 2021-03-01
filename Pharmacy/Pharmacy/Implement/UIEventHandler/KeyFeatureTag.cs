@@ -17,6 +17,7 @@
         public const string KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT = "msw_other_payments_management";
         public const string KEY_TAG_MSW_WAREHOUSE_MANAGEMENT = "msw_warehouse_management";
         public const string KEY_TAG_MSW_REPORT = "msw_report";
+        public const string KEY_TAG_MSW_SETTING = "msw_setting";
 
         public const string KEY_TAG_MSW_NOT_SUPPORTED_BUTTON = "msw_not_supported_button";
         public const string KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON = "msw_not_implemented_button";
@@ -177,6 +178,11 @@
         //Invoice management page key string
         public const string KEY_TAG_MSW_IMP_DELETE_BUTTON = "msw_imp_delete_button";
         public const string KEY_TAG_MSW_IMP_EDIT_BUTTON = "msw_imp_edit_button";
+
+        //Setting page key string
+        public const string KEY_TAG_MSW_SeP_SAVE_BUTTON = "msw_sep_save_button";
+        public const string KEY_TAG_MSW_SeP_CANCLE_BUTTON = "msw_sep_cancle_button";
+
 
     }
 }

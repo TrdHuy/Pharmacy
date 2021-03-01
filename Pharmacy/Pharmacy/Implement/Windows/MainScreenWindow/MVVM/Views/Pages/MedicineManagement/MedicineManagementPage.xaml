@@ -12,7 +12,6 @@
       x:Name="PageMedicineManagement"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{StaticResource FontSizeLarge_Float}"
       Title="MedicineManagementPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -326,7 +325,7 @@
                               VerticalContentAlignment="Center"
                               OBContentOrientation="Horizontal"
                               OBTextVerticalAlignment="Center"
-                              FontSize="{StaticResource FontSizeXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding ExcelImportButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"

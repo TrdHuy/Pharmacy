@@ -15,11 +15,15 @@ using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
+using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
-    public class ModifyWarehouseImportPageViewModel : AbstractViewModel
+    public class ModifyWarehouseImportPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("ModifyWarehouseImportPageViewModel");
+        
         public ObservableCollection<tblMedicine> LstMedicine { get; set; }
         public ObservableCollection<MSW_WHMP_WarehouseImportDetailOV> LstWarehouseImportDetail { get; set; }
         public tblWarehouseImport ImportInfo { get; set; }
@@ -94,11 +98,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         private bool _isAddImportDetailButtonRunning;
         private bool _isAddWarehouseImportButtonRunning;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public ModifyWarehouseImportPageViewModel()
+        protected override void OnInitializing()
         {
             BrowseInvoiceImageButtonCommand = new RunInputCommand(BrowseInvoiceImageButtonClickEvent);
             AddMedicineToListButtonCommand = new RunInputCommand(AddMedicineToListButtonClickEvent);
@@ -107,6 +109,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             InstantiateItems();
             InitImportDetail();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         public void UpdateTotalPriceAndNewPrice()

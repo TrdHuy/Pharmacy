@@ -9,6 +9,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
 {
-    public class UserInstantiationPageViewModel : AbstractViewModel
+    public class UserInstantiationPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("UserInstantiationPageViewModel");
+
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         private Visibility _userNameAwareTextBlockVisibility = Visibility.Visible;
@@ -364,11 +367,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         public EventHandleCommand VerifiedPasswordChangedCommand { get; set; }
         #endregion
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public UserInstantiationPageViewModel()
+        protected override void OnInitializing()
         {
             SetupFeatures();
 
@@ -398,6 +399,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
         }
+
+        protected override void OnInitialized()
+        {
+        }
+
         private void SetupFeatures()
         {
             CameraButtonVisibility = Visibility.Collapsed;

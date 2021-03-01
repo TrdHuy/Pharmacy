@@ -296,7 +296,7 @@
                             TextContent="+ Thêm mới"
                             ProgressSpinnerSize="30"
                             ProgressSpinnerBackground="Black"
-                            FontSize="{StaticResource FontSizeXLarge}"
+                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                             BorderThickness="0"
                             Command="{Binding AddNewUserButtonCommand}"
                             HorizontalContentAlignment="Center"

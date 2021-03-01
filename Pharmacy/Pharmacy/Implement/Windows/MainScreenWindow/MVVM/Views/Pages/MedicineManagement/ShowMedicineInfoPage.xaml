@@ -10,7 +10,7 @@
       Background="White"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{StaticResource FontSizeXLarge}"
+      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
       Title="MedicineManagementPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -356,7 +356,7 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              FontSize="{StaticResource FontSizeXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"

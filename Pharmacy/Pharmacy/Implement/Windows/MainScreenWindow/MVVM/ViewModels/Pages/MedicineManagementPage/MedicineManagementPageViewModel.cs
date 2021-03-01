@@ -12,11 +12,15 @@ using Pharmacy.Implement.UIEventHandler;
 using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
-    public class MedicineManagementPageViewModel : AbstractViewModel
+    public class MedicineManagementPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("MedicineManagementPageViewModel");
+
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
         public RunInputCommand ExcelImportButtonCommand { get; set; }
         public RunInputCommand PrintMedicineListButtonCommand { get; set; }
@@ -35,11 +39,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private List<int> _lstMedicineTypeFilter = new List<int>();
         private List<tblMedicineType> _lstMedicineType = new List<tblMedicineType>();
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public MedicineManagementPageViewModel()
+        protected override void OnInitializing()
         {
             MedicineItemSource = new ObservableCollection<tblMedicine>();
             ExcelImportButtonCommand = new RunInputCommand(ExcelImportButtonClickEvent);
@@ -52,6 +54,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             SearchTextChangedCommand = new EventHandleCommand(SearchTextChangedEvent);
             ShowMedicineInfoCommand = new EventHandleCommand(ShowMedicineInfoEvent);
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

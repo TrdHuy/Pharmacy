@@ -48,6 +48,7 @@
             Grid.Row="3"
             Content="CÀI ĐẶT"
             ImageSource="{DynamicResource SettingIcon}"
+            Command="{Binding SettingPageCommand}"
             Padding="10,0,0,0"
             Style="{DynamicResource MenuTabButton}" />
         <cctrl:HPSL_Button

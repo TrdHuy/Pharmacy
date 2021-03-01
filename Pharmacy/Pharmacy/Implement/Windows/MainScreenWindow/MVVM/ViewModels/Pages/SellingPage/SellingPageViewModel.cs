@@ -2,10 +2,12 @@
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs;
 using System;
 using System.Collections.Generic;
@@ -19,8 +21,10 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage
 {
-    public class SellingPageViewModel : AbstractViewModel
+    public class SellingPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("SellingPageViewModel");
+
         private SQLQueryCustodian _sqlCmdObserver;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private bool _isAddOrderDeatailButtonRunning = false;
@@ -97,11 +101,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             }
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public SellingPageViewModel()
+        protected override void OnInitializing()
         {
             CustomerOV = new MSW_SP_CustomerOV(this);
             MedicineOV = new MSW_SP_MedicineOV(this);
@@ -113,6 +115,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             RefreshSellingPageCommand = new RunInputCommand(RefreshSellingPagClickEvent);
         }
 
+        protected override void OnInitialized()
+        {
+        }
 
         public void RefreshViewModel(bool re_Customer = true, bool re_Medicine = true)
         {

@@ -73,5 +73,6 @@ namespace Pharmacy.Implement.Utils.Extensions.Entities
     {
         public AtumUserData PersonalAvatarInfo { get; set; }
 
+        public double FontZoomRatio { get; set; }
     }
 }

@@ -150,6 +150,14 @@
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_CancleButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\OVs\MSW_SeP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\SettingPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Setting\SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\UIEventHandler\AttachedProperty\PasswordBoxAttachedProp.cs" />
     <Compile Include="Implement\Utils\Attributes\StringValueAttribute.cs" />
     <Compile Include="Implement\Utils\Converter\BooleanToVisiblityConverter.cs" />
@@ -324,6 +332,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InvoiceManagementPage\InvoiceManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InvoiceManagementPage\OVs\MSW_IMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InvoiceManagementPage\OVs\MSW_IMP_EventCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MSW_BasePageVM\MSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MSW_BasePageVM\OVs\MSW_FontSizeOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\ModifyOtherPaymentPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\AddOtherPaymentPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\OtherPaymentsManagementPageViewModel.cs" />
@@ -340,13 +350,13 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\OVs\MSW_CMP_CTP_CBP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerBillPage\OVs\MSW_CMP_CTP_CBP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\CustomerDebtsPageViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePage\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ModifyMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagementPageViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPage\PersonalInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_CustomerOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\OVs\MSW_SP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SellingPage\SellingPageViewModel.cs" />
@@ -508,6 +518,10 @@
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WindowDirector.cs" />
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Setting\SettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\LoginScreenWindow\MVVM\Views\LoginScreenWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -517,7 +531,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Base\MVVM\Model\AbstractBaseModel.cs" />
-    <Compile Include="Base\MVVM\ViewModels\AbstractViewModel.cs" />
+    <Compile Include="Base\MVVM\ViewModels\BaseViewModel.cs" />
     <Compile Include="Base\Observable\ObserverPattern\BaseObservable.cs" />
     <Compile Include="Base\Observable\ObserverPattern\IObserver.cs" />
     <Compile Include="Base\Observable\ObserverPattern\IObservable.cs" />
@@ -864,6 +878,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Images\config.png" />
     <Resource Include="Resources\Images\app_icon.png" />
     <Resource Include="Resources\Icons\bill_icon.png" />
     <None Include="Resources\default_medicine_image.png" />

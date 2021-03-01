@@ -12,11 +12,15 @@ using Pharmacy.Implement.UIEventHandler;
 using System.Windows.Threading;
 using Pharmacy.Config;
 using System.Globalization;
+using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage
 {
-    public class SupplierManagementPageViewModel : AbstractViewModel
+    public class SupplierManagementPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("SupplierManagementPageViewModel");
+
         public ObservableCollection<tblSupplier> SupplierItemSource { get; set; }
         public RunInputCommand AddNewSupplierButtonCommand { get; set; }
         public RunInputCommand EditSupplierButtonCommand { get; set; }
@@ -29,11 +33,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         private DispatcherTimer _timerUpdateFilter;
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public SupplierManagementPageViewModel()
+        protected override void OnInitializing()
         {
             AddNewSupplierButtonCommand = new RunInputCommand(AddNewSupplierButtonClickEvent);
             DeleteSupplierButtonCommand = new RunInputCommand(DeleteSupplierButtonClickEvent);
@@ -42,6 +44,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
             FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
             ShowSupplierInfoCommand = new EventHandleCommand(ShowSupplierInfoEvent);
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

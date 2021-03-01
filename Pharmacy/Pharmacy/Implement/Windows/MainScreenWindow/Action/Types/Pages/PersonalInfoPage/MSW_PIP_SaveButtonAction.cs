@@ -51,24 +51,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             return true;
         }
 
-        private void SQLQueryCallback(SQLQueryResult result)
+        private void SQLQueryCallback(SQLQueryResult queryResult)
         {
-            if (result.Result != null)
+            if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                tblUser x = result.Result as tblUser;
-
-                App.Current.CurrentUser.FullName = x.FullName;
-                App.Current.CurrentUser.Address = x.Address;
-                App.Current.CurrentUser.Password = x.Password;
-                App.Current.CurrentUser.Phone = x.Phone;
-                App.Current.CurrentUser.Email = x.Email;
-                App.Current.CurrentUser.Link = x.Link;
-
+                App.Current.ShowApplicationMessageBox("Cập nhật thông tin thành công!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
                 _pageHost.UpdateCurrentPageSource(PageSource.HomePage);
             }
             else
             {
-                MessageBox.Show("Lỗi cập nhật thông tin!");
+                App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin!");
             }
             _viewModel.IsSaveButtonRunning = false;
         }

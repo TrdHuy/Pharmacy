@@ -15,11 +15,15 @@ using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
+using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
-    public class ShowWarehouseImportInfoPageViewModel : AbstractViewModel
+    public class ShowWarehouseImportInfoPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("ShowWarehouseImportInfoPageViewModel");
+
         public ObservableCollection<MSW_WHMP_WarehouseImportDetailOV> LstWarehouseImportDetail { get; set; }
         public tblWarehouseImport ImportInfo { get; set; }
         public decimal TotalPrice { get; set; }
@@ -30,15 +34,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public ShowWarehouseImportInfoPageViewModel()
+        protected override void OnInitializing()
         {
             BrowseInvoiceImageButtonCommand = new RunInputCommand(BrowseInvoiceImageButtonClickEvent);
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             InitImportDetail();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void CancelButtonClickEvent(object paramaters)

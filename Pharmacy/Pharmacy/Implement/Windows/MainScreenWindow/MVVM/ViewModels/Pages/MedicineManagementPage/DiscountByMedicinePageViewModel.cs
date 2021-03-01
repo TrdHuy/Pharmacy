@@ -20,11 +20,14 @@ using System.Linq;
 using System.Globalization;
 using Pharmacy.Config;
 using System.Windows.Threading;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
-    public class DiscountByMedicinePageViewModel : AbstractViewModel
+    public class DiscountByMedicinePageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("DiscountByMedicinePageViewModel");
+
         public RunInputCommand CancelButtonCommand { get; set; }
         public RunInputCommand CreateNewPromoButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
@@ -89,11 +92,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private string _promoDescription;
         private bool _isSaveButtonRunning;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public DiscountByMedicinePageViewModel()
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             CreateNewPromoButtonCommand = new RunInputCommand(CreateNewPromoButtonClickEvent);
@@ -104,6 +105,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             GetFilterList();
             PromoDescription = "";
             PromoPercent = 0;
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void GetFilterList()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
 {
-    public class CustomerOrderOV : AbstractViewModel
+    public class CustomerOrderOV : BaseViewModel
     {
         private tblOrder _customerOrder;
 

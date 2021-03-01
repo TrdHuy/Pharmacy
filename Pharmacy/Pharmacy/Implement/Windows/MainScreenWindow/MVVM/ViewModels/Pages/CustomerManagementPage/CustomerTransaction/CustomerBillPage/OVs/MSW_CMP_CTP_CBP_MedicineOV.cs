@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage.OVs
 {
-    public class MSW_CMP_CTP_CBP_MedicineOV : AbstractViewModel
+    public class MSW_CMP_CTP_CBP_MedicineOV : BaseViewModel
     {
         private tblMedicine _currentSelectedMedicine;
         private string _medicineTextSearch;
@@ -16,7 +16,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
 
-        public MSW_CMP_CTP_CBP_MedicineOV(AbstractViewModel parentVM) : base(parentVM)
+        public MSW_CMP_CTP_CBP_MedicineOV(BaseViewModel parentVM) : base(parentVM)
         {
         }
         public string MedicineTextSearch

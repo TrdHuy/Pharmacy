@@ -12,7 +12,7 @@
       x:Name="ModifySupplier"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{StaticResource FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
       Title="ModifySupplierPage">
 
     <Grid>
@@ -129,7 +129,7 @@
 
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
-                       FontSize="{StaticResource FontSizeXSmall}"
+                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="3,0,0,0">
@@ -165,7 +165,7 @@
 
             <TextBlock Grid.Row="3"
                        Grid.Column="1"
-                       FontSize="{StaticResource FontSizeXSmall}"
+                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="3,0,0,0">
@@ -230,7 +230,7 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              FontSize="{StaticResource FontSizeXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
@@ -241,7 +241,7 @@
                               IsBusy="{Binding IsSaveButtonRunning}"
                               ProgressSpinnerSize="30"
                               ProgressSpinnerBackground="Black"
-                              FontSize="{StaticResource FontSizeXLarge}"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               BorderThickness="0"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"

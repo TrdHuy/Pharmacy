@@ -55,12 +55,12 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="20,0,0,0"
-                           FontSize="{StaticResource FontSizeXXXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXXXXLarge}" />
                 <TextBox x:Name="SearchTextBox"
                          Grid.Column="1"
                          Margin="20"
                          ToolTip="{Binding SearchTextBoxToolTip}"
-                         FontSize="{StaticResource FontSizeXLarge}"
+                         FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                          TextChanged="SearchTextBox_TextChanged"
                          Style="{StaticResource DefaultTextBox}">
 
@@ -319,7 +319,7 @@
                             TextContent="+ Thêm mới"
                             ProgressSpinnerSize="30"
                             ProgressSpinnerBackground="Black"
-                            FontSize="{StaticResource FontSizeXLarge}"
+                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                             BorderThickness="0"
                             Command="{Binding AddNewCustomerButtonCommand}"
                             HorizontalContentAlignment="Center"

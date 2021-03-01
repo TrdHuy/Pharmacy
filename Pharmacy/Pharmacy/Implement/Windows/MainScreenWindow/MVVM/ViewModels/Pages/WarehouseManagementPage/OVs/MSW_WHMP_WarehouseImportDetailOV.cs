@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs
 {
-    public class MSW_WHMP_WarehouseImportDetailOV : AbstractViewModel
+    public class MSW_WHMP_WarehouseImportDetailOV : BaseViewModel
     {
         public string MedicineName { get; set; }
         public string MedicineID { get; set; }

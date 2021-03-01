@@ -13,8 +13,8 @@ namespace Pharmacy.Base.Observable.ObserverPattern
     {
         public Type PropType { get; }
         public string PropName { get; }
-        public AbstractViewModel ViewModel { get; }
-        public PropertyObserver(AbstractViewModel viewModel, Type propType, string propName, Action<object> onPropUpdate = null) : base()
+        public BaseViewModel ViewModel { get; }
+        public PropertyObserver(BaseViewModel viewModel, Type propType, string propName, Action<object> onPropUpdate = null) : base()
         {
             OnUpdate = onPropUpdate ?? new Action<object>(OnPropUpdate);
             PropType = propType;

@@ -20,6 +20,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymen
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.ModifyOtherPaymentPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SettingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.AddSupplierPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.ModifySupplierPage;
@@ -84,7 +85,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     action = new MSW_WarehouseManagementAction();
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_REPORT:
-                    action = new MSW_Repor();
+                    action = new MSW_ReportAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SETTING:
+                    action = new MSW_SettingAction();
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_PIP_SAVE_BUTTON:
                     action = new MSW_PIP_SaveButtonAction();
@@ -367,6 +371,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_IMP_DELETE_BUTTON:
                     action = new MSW_IMP_DeleteButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON:
+                    action = new MSW_SeP_CancleButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_SeP_SAVE_BUTTON:
+                    action = new MSW_SeP_SaveButtonAction();
                     break;
                 default:
                     action = null;

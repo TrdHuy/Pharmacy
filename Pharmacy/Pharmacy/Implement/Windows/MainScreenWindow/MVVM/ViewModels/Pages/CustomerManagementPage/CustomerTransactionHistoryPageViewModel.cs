@@ -3,6 +3,7 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
 {
-    public class CustomerTransactionHistoryPageViewModel : AbstractViewModel
+    public class CustomerTransactionHistoryPageViewModel : MSW_BasePageViewModel
     {
-        private static Logger logger = new Logger("CustomerTransactionHistoryPageViewModel");
+        private static Logger L = new Logger("CustomerTransactionHistoryPageViewModel");
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private tblOrder _currentSelectedOrder;
@@ -120,17 +121,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
         }
 
-        public CustomerTransactionHistoryPageViewModel()
-        {
-            logger.I("Instantinating CustomerTransactionHistoryPageViewModel");
+        protected override Logger logger => L;
 
+        protected override void OnInitializing()
+        {
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             InstantiateItems();
             DebtsDisplayButtonCommand = new RunInputCommand(OnDebtsDisplayButtonClickEvent);
             ReturnButtonCommand = new RunInputCommand(OnReturnButtonClickEvent);
             BillDisplayButtonCommand = new RunInputCommand(OnBillDisplayButtonClickEvent);
+        }
 
-            logger.I("Instantinated CustomerTransactionHistoryPageViewModel");
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

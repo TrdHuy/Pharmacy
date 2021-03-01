@@ -9,6 +9,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage.OVs;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ using System.Windows;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage
 {
-    public class CustomerBillPageViewModel : AbstractViewModel
+    public class CustomerBillPageViewModel : MSW_BasePageViewModel
     {
-        private static Logger logger = new Logger("CustomerBillPageViewModel");
+        private static Logger L = new Logger("CustomerBillPageViewModel");
 
         private SQLQueryCustodian _sqlCmdObserver;
         private bool _isEnableEdittingBill;
@@ -91,11 +92,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
+        protected override Logger logger => L;
 
-        public CustomerBillPageViewModel()
+        protected override void OnInitializing()
         {
-            logger.I("Instantinating CustomerBillPageViewModel");
-
             MedicineOV = new MSW_CMP_CTP_CBP_MedicineOV(this);
             ButtonCommandOV = new MSW_CMP_CTP_CBP_ButtonCommandOV(this);
 
@@ -104,8 +104,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             DeleteColumnVisibility = IsEnableEdittingBill ? Visibility.Visible : Visibility.Collapsed;
 
             InstantiateItems();
+        }
 
-            logger.I("Instantinated CustomerBillPageViewModel");
+        protected override void OnInitialized()
+        {
         }
 
         public void RefreshListOrder()
@@ -202,6 +204,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     "Thông báo!");
             }
         }
+
 
     }
 }

@@ -10,6 +10,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.Extensions.Entities;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,10 @@ using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
-    public class HomePageViewModel : AbstractViewModel
+    public class HomePageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("HomePageViewModel");
+
         private IActionListener _keyActionListener = KeyActionListener.Instance;
 
         private string _currentTime;
@@ -72,8 +75,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         #endregion
 
+        protected override Logger logger => L;
 
-        public HomePageViewModel()
+        protected override void OnInitializing()
         {
             ClockIntansiation();
             SellingCommand = new RunInputCommand(SellingButtonClickEvent);
@@ -87,6 +91,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             ReportCommand = new RunInputCommand(ReportButtonClickEvent);
             PersonalInfoCommand = new RunInputCommand(PersonalInfoImageClickEvent);
             AvatarCommand = new EventHandleCommand(AvatarClickEvent);
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         protected override void InitPropertiesRegistry()
@@ -212,6 +220,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 , KeyFeatureTag.KEY_TAG_MSW_REPORT
                 , dataTransfer);
         }
+
         #endregion
 
     }

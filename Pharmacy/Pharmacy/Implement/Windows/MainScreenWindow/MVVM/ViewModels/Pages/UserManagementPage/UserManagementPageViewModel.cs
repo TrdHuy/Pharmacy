@@ -15,11 +15,14 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
 {
-    public class UserManagementPageViewModel : AbstractViewModel
+    public class UserManagementPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("UserManagementPageViewModel");
+       
         private IActionListener _keyActionListener = KeyActionListener.Instance;
         private SQLQueryCustodian _sqlCmdObserver;
 
@@ -28,17 +31,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         public RunInputCommand DeleteUserButtonCommand { get; set; }
         public RunInputCommand AddNewUserButtonCommand { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public UserManagementPageViewModel()
+        protected override void OnInitializing()
         {
             UserItemSource = new ObservableCollection<tblUser>();
             EditButtonCommand = new RunInputCommand(EditButtonClickEvent);
             DeleteUserButtonCommand = new RunInputCommand(DeleteUserButtonClickEvent);
             AddNewUserButtonCommand = new RunInputCommand(AddNewUserButtonClickEvent);
             InstantiateItems();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateItems()

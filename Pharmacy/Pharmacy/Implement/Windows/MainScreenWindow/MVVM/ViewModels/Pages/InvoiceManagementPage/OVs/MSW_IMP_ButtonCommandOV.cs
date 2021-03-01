@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage.OVs
 {
-    public class MSW_IMP_ButtonCommandOV : AbstractViewModel
+    public class MSW_IMP_ButtonCommandOV : BaseViewModel
     {
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         public RunInputCommand EditOrderButtonCommand { get; set; }
         public RunInputCommand DeleteOrderButtonCommand { get; set; }
 
-        public MSW_IMP_ButtonCommandOV(AbstractViewModel parentVM) : base(parentVM)
+        public MSW_IMP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
             EditOrderButtonCommand = new RunInputCommand(EditOrderButtonClickEvent);
             DeleteOrderButtonCommand = new RunInputCommand(DeleteOrderButtonClickEvent);

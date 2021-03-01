@@ -5,6 +5,7 @@ using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +16,9 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
 {
-    public class CustomerManagementPageViewModel : AbstractViewModel
+    public class CustomerManagementPageViewModel : MSW_BasePageViewModel
     {
-        private static Logger logger = new Logger("CustomerManagementPageViewModel");
+        private static Logger L = new Logger("CustomerManagementPageViewModel");
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private SQLQueryCustodian _sqlCmdObserver;
@@ -55,14 +56,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public CustomerManagementPageViewModel()
+        protected override void OnInitializing()
         {
-            logger.I("Instantinating CustomerManagementPageViewModel");
-            
             InstantiateTipText();
 
             CustomerItemSource = new ObservableCollection<tblCustomer>();
@@ -72,8 +69,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             AddNewCustomerButtonCommand = new RunInputCommand(AddNewUserButtonClickEvent);
             SearchTextChangedCommand = new EventHandleCommand(OnSearchTextChangedEvent);
             InstantiateItems();
+        }
 
-            logger.I("Instantinated CustomerManagementPageViewModel");
+        protected override void OnInitialized()
+        {
         }
 
         private void InstantiateTipText()

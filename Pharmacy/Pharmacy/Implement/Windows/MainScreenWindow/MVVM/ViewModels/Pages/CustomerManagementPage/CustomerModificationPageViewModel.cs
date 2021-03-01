@@ -9,6 +9,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -21,9 +22,9 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
 {
-    public class CustomerModificationPageViewModel : AbstractViewModel
+    public class CustomerModificationPageViewModel : MSW_BasePageViewModel
     {
-        private static Logger logger = new Logger("CustomerModificationPageViewModel");
+        private static Logger L = new Logger("CustomerModificationPageViewModel");
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
@@ -177,16 +178,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public RunInputCommand CameraButtonCommand { get; set; }
         public RunInputCommand CancleButtonCommand { get; set; }
         public EventHandleCommand GridSizeChangedCommand { get; set; }
+
         #endregion
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public CustomerModificationPageViewModel()
+        protected override void OnInitializing()
         {
-            logger.I("Instantinating CustomerModificationPageViewModel");
-
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
             CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
@@ -201,8 +199,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             CustomerImageSource = FileIOUtil.
                 GetBitmapFromName(CurrentModifiedCustomer.CustomerID.ToString(), FileIOUtil.CUSTOMER_IMAGE_FOLDER_NAME).
                 ToImageSource();
+        }
 
-            logger.I("Instantinated CustomerModificationPageViewModel");
+        protected override void OnInitialized()
+        {
         }
 
         private void CameraButtonClickEvent(object paramaters)
@@ -251,7 +251,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 ctrl.Width = avaBorder.RenderSize.Width;
             }
         }
-
 
     }
 }

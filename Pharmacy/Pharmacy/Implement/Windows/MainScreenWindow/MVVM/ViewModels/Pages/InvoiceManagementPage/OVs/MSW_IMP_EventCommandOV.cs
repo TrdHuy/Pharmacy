@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage.OVs
 {
-    public class MSW_IMP_EventCommandOV : AbstractViewModel
+    public class MSW_IMP_EventCommandOV : BaseViewModel
     {
         private DateTime? _dateStart { get; set; }
         private DateTime? _dateEnd { get; set; }
@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
         public EventHandleCommand EndDateChangedCommand { get; set; }
         public EventHandleCommand SearchTextChangedCommand { get; set; }
 
-        public MSW_IMP_EventCommandOV(AbstractViewModel parentVM) : base(parentVM)
+        public MSW_IMP_EventCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
             StartDateChangedCommand = new EventHandleCommand(OnStartDateChangedEvent);
             EndDateChangedCommand = new EventHandleCommand(OnEndDateChangedEvent);

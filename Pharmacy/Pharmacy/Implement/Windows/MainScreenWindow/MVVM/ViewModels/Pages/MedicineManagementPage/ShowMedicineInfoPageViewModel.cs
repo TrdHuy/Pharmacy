@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
-    public class ShowMedicineInfoPageViewModel : AbstractViewModel
+    public class ShowMedicineInfoPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("ShowMedicineInfoPageViewModel");
+
         public RunInputCommand CancelButtonCommand { get; set; }
         public ObservableCollection<tblWarehouseImportDetail> LstWarehouseImportDetail { get; set; }
         public ImageSource MedicineImageSource { get; set; }
@@ -31,10 +34,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
         }
 
-        public ShowMedicineInfoPageViewModel()
+        protected override Logger logger => L;
+
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             UpdateModifyData();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void UpdateModifyData()

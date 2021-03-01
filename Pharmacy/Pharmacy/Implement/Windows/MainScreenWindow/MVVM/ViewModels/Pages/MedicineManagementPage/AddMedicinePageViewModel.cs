@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,8 +18,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
-    public class AddMedicinePageViewModel : AbstractViewModel
+    public class AddMedicinePageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("AddMedicinePageViewModel");
+
         public RunInputCommand CancelButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand CameraButtonCommand { get; set; }
@@ -160,11 +163,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private bool _isSaveButtonRunning;
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public AddMedicinePageViewModel()
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
@@ -172,6 +173,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             BidPrice = 0;
             AskingPrice = 0;
             InitData();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void CameraButtonClickEvent(object paramaters)

@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -20,8 +21,10 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage
 {
-    public class SupplierDebtPageViewModel : AbstractViewModel
+    public class SupplierDebtPageViewModel : MSW_BasePageViewModel
     {
+        private static Logger L = new Logger("SupplierDebtPageViewModel");
+
         public RunInputCommand CancelButtonCommand { get; set; }
         public RunInputCommand PrintDebtButtonCommand { get; set; }
         public RunInputCommand ShowInvoiceButtonCommand { get; set; }
@@ -33,16 +36,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
+        protected override Logger logger => L;
 
-        public SupplierDebtPageViewModel()
+        protected override void OnInitializing()
         {
             CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
             PrintDebtButtonCommand = new RunInputCommand(PrintDebtButtonClickEvent);
             ShowInvoiceButtonCommand = new RunInputCommand(ShowInvoiceButtonClickEvent);
             UpdateData();
+        }
+
+        protected override void OnInitialized()
+        {
         }
 
         private void UpdateData()

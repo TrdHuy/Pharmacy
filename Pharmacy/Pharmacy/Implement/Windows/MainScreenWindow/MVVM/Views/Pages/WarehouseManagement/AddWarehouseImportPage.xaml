@@ -11,7 +11,7 @@
       x:Name="AddWarehouseImport"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{StaticResource FontSizeXLarge}"
+      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
       Title="AddWarehouseImportPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -80,7 +80,7 @@
 
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
-                       FontSize="{StaticResource FontSizeXSmall}"
+                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="3,0,0,0">
@@ -454,7 +454,7 @@
                                  IsReadOnly="True"
                                  VerticalAlignment="Center"
                                  FontWeight="Bold"
-                                 FontSize="{StaticResource FontSizeXXLarge}"
+                                 FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                  VerticalContentAlignment="Center"
                                  AkerTextBoxType="Expense"
                                  AkerExpenseUnit="VND"
@@ -476,7 +476,7 @@
                                  VerticalAlignment="Center"
                                  Foreground="Red"
                                  FontWeight="Bold"
-                                 FontSize="{StaticResource FontSizeXXXXLarge}"
+                                 FontSize="{Binding FontSizeOV.FontSizeXXXXLarge}"
                                  VerticalContentAlignment="Center"
                                  AkerTextBoxType="Expense"
                                  AkerExpenseUnit="VND"

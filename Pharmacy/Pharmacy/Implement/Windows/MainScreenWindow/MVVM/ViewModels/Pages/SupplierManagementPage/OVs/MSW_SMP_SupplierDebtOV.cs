@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.OVs
 {
-    public class MSW_SMP_SupplierDebtOV : AbstractViewModel
+    public class MSW_SMP_SupplierDebtOV : BaseViewModel
     {
         public long ImportID { get; set; }
         public DateTime ImportTime { get; set; }

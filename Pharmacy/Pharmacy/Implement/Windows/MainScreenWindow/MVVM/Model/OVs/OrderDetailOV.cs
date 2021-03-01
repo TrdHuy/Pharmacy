@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
 {
-    public class OrderDetailOV : AbstractViewModel
+    public class OrderDetailOV : BaseViewModel
     {
         private string _medicineName;
         private string _medicineID;
