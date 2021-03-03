@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cc48d45_652b889b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-03-03T18:20:49Z",
+      "side": 1,
+      "message": "Update theo yêu cầu user",
+      "revId": "c02f389031412e75261b5559d2b95abc306a8c61",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
