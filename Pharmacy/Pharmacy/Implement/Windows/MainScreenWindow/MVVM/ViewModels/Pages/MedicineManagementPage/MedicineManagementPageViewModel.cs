@@ -130,7 +130,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
             _timerUpdateFilter = new DispatcherTimer();
             _timerUpdateFilter.Interval = DELAY_TIME_TO_UPDATE_FILTER;
-            _timerUpdateFilter.Tick += (sender,e)=>
+            _timerUpdateFilter.Tick += (sender, e) =>
             {
                 _timerUpdateFilter.Stop();
                 dataGrid.Items.Filter = new Predicate<object>(medicine => FilterMedicineList(medicine as tblMedicine, FilterText));
@@ -141,7 +141,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private bool FilterMedicineList(tblMedicine medicine, string filterText)
         {
-            return (SearchByID(medicine, filterText) || SearchByName(medicine, filterText)) && FilterByType(medicine, filterText);
+            return (SearchByID(medicine, filterText) || SearchByName(medicine, filterText) || SearchBySupplierName(medicine, filterText)) && FilterByType(medicine, filterText);
         }
 
         private bool SearchByID(tblMedicine medicine, string filterText)
@@ -152,6 +152,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private bool SearchByName(tblMedicine medicine, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.MedicineName, filterText, CompareOptions.IgnoreCase) >= 0) : false;
+        }
+
+        private bool SearchBySupplierName(tblMedicine medicine, string filterText)
+        {
+            return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_SUPPLIER_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.tblSupplier.SupplierName, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
 
         private bool FilterByType(tblMedicine medicine, string filterText)
