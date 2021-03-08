@@ -19,6 +19,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymen
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.AddOtherPaymentPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.ModifyOtherPaymentPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SettingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage;
@@ -377,6 +378,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SeP_SAVE_BUTTON:
                     action = new MSW_SeP_SaveButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_RP_START_STATISTIC_BUTTON:
+                    action = new MSW_RP_StartStatisticButtonAction();
                     break;
                 default:
                     action = null;

@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Utils.CustomControls;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
 using System;
 using System.Collections.Generic;
@@ -15,20 +16,24 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
         protected abstract Logger logger { get; }
 
         public MSW_FontSizeOV FontSizeOV { get; set; }
+        public bool IsInitialized { get;private set; }
 
         public MSW_BasePageViewModel()
         {
             logger.I("Initializing base page view model");
+            IsInitialized = false;
+            
             FontSizeOV = new MSW_FontSizeOV(this);
+            
             OnInitializing();
 
             logger.I("Initialized base page view model");
             OnInitialized();
 
+            IsInitialized = true;
         }
 
         protected abstract void OnInitializing();
         protected abstract void OnInitialized();
-
     }
 }
