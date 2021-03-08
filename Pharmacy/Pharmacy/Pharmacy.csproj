@@ -144,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\AsyncAction\AsyncAction.cs" />
+    <Compile Include="Base\AsyncAction\AsyncActionExecuter.cs" />
+    <Compile Include="Base\AsyncAction\AsyncActionResult.cs" />
+    <Compile Include="Base\AsyncAction\IAsyncAction.cs" />
     <Compile Include="Base\Converter\BaseMultiValueConverter.cs" />
     <Compile Include="Base\Converter\BaseValueConverter.cs" />
     <Compile Include="Base\Observable\ObservablePropertiesCollection.cs" />
@@ -154,8 +158,14 @@
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_BaseButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_StartStatisticButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ChartOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_EventCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\ReportPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\OVs\MSW_SeP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\SettingPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Setting\SettingPage.xaml.cs">
@@ -917,6 +927,7 @@
     <Resource Include="Resources\DebugResource\_test3x4potrait.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Base\Implement\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\ModelImpl\" />
   </ItemGroup>
   <ItemGroup>

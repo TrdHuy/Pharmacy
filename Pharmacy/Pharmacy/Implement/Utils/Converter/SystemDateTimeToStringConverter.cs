@@ -21,6 +21,8 @@ namespace Pharmacy.Implement.Utils.Converter
                     return dateTime.ToString("dd/MM/yyyy");
                 case "TIME":
                     return dateTime.ToString("HH:mm");
+                case "DATE_ONLY":
+                    return dateTime.ToString("dd/MM");
                 default:
                     return dateTime.ToString("dd/MM/yyyy HH:mm");
             }

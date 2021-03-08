@@ -24,5 +24,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Report
         {
             InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ReportPageDataContext?.EventCommandOV?.ReportPageLoaded.Execute(sender, e, mcChart);
+        }
     }
 }

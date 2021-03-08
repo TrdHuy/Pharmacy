@@ -183,6 +183,12 @@
         public const string KEY_TAG_MSW_SeP_SAVE_BUTTON = "msw_sep_save_button";
         public const string KEY_TAG_MSW_SeP_CANCLE_BUTTON = "msw_sep_cancle_button";
 
-
+        //Report page key string
+        public const string KEY_TAG_MSW_RP_START_STATISTIC_BUTTON = "msw_rp_start_statistic_button";
+        public const string KEY_TAG_MSW_RP_SAVE_BUTTON = "msw_rp_save_button";
+        public const string KEY_TAG_MSW_RP_PRINT_BUTTON = "msw_rp_print_button";
+        public const string KEY_TAG_MSW_RP_REPORT_BUTTON = "msw_rp_report_button";
+        public const string KEY_TAG_MSW_RP_CLEAR_BUTTON = "msw_rp_clear_button";
+        public const string KEY_TAG_MSW_RP_BACK_BUTTON = "msw_rp_back_button";
     }
 }
