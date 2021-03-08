@@ -4,13 +4,17 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Pharmacy
@@ -39,6 +43,8 @@ namespace Pharmacy
 
         private bool _isLoginWindowExited = false;
         private bool _isMainWindowExited = false;
+
+        private Collection<PopupScreenWindow> _popupScreenWindows;
 
         #region Private properties
         private MSWindow MainScreenWindow
@@ -73,6 +79,7 @@ namespace Pharmacy
                 _loginWindow = value;
             }
         }
+        
         #endregion
 
         #region Public properties
@@ -86,11 +93,13 @@ namespace Pharmacy
                 WindowDisplayStatusChanged();
             }
         }
+
         #endregion
 
         public WindowDirector()
         {
             SetupFeatures();
+            _popupScreenWindows = new Collection<PopupScreenWindow>();
         }
 
 
@@ -111,6 +120,7 @@ namespace Pharmacy
                 _notifyIcon.ContextMenuStrip.Items.Add("Thoát").Click += ExitApplication;
             }
         }
+        
 
         private void CloseMainScreenWindow(object obj)
         {
@@ -298,5 +308,38 @@ namespace Pharmacy
             messageBox.BorderBrush = (SolidColorBrush)resColor["NormalTheme_MessageBox_Border_Brush"];
             return messageBox.Show();
         }
+
+        public void ShowPopupScreenWindow(PopupScreenWindowViewModel dataContext)
+        {
+            PopupScreenWindow popup = new PopupScreenWindow();
+            popup.DataContext = dataContext;
+            popup.CloseWindowCommand = new RunInputCommand(ClosePopupWindown);
+            _popupScreenWindows.Add(popup);
+            
+            popup.Show();
+        }
+        
+        public void ShowDialogPopupScreenWindow(PopupScreenWindowViewModel dataContext)
+        {
+            PopupScreenWindow popup = new PopupScreenWindow();
+            popup.DataContext = dataContext;
+            popup.CloseWindowCommand = new RunInputCommand(ClosePopupWindown);
+            _popupScreenWindows.Add(popup);
+
+            popup.ShowDialog();
+        }
+
+        private void ClosePopupWindown(object paramater)
+        {
+            var ctrl = paramater as PopupScreenWindow;
+
+            if(ctrl != null)
+            {
+                _popupScreenWindows.Remove(ctrl);
+                ctrl.ForceClose();
+            }
+        }
+
+       
     }
 }

@@ -29,5 +29,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Report
         {
             ReportPageDataContext?.EventCommandOV?.ReportPageLoaded.Execute(sender, e, mcChart);
         }
+
+        private void mcChart_SelectionCategoryAxixLabelChanged(object sender, System.Windows.Controls.DataVisualization.Charting.SelectedItemChangedEventArg e)
+        {
+            ReportPageDataContext?.EventCommandOV?.ChartAxisLabelSelectionChanged.Execute(sender, e);
+        }
     }
 }

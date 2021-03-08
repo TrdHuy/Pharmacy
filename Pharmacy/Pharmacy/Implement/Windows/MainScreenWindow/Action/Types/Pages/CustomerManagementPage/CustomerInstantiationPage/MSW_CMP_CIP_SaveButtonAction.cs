@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
@@ -65,7 +66,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                    "Thông báo!");
             }
             _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.CustomerManagementPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_MANAGEMENT_PAGE);
         }
 
     }

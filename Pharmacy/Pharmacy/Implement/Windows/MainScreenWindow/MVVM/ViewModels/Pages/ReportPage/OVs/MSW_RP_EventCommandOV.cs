@@ -12,9 +12,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
     public class MSW_RP_EventCommandOV : BaseViewModel
     {
         public EventHandleCommand ReportPageLoaded { get; set; }
+        public EventHandleCommand ChartAxisLabelSelectionChanged { get; set; }
+
         public MSW_RP_EventCommandOV(BaseViewModel parentModel) : base(parentModel)
         {
             ReportPageLoaded = new EventHandleCommand(OnReportPageLoaded);
+            ChartAxisLabelSelectionChanged = new EventHandleCommand(OnChartAxisLabelSelectionChanged);
         }
 
         private void OnReportPageLoaded(object sender, EventArgs e, object paramater)
@@ -25,5 +28,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 vm.Chart = ((object[])paramater)[0] as BType_Chart;
             }
         }
+
+        private void OnChartAxisLabelSelectionChanged(object sender, EventArgs e, object paramater)
+        {
+          //  App.Current.ShowPopupScreenWindow();
+        }
+
     }
 }

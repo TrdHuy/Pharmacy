@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 
         public bool Execute(object[] dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.MedicineManagementPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.MEDICINE_MANAGEMENT_PAGE);
 
             return true;
         }

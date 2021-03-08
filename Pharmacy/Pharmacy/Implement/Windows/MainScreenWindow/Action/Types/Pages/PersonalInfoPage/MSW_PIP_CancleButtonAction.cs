@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
         public bool Execute(object[] dataTransfer)
         {
             DbManager.Instance.RollBack();
-            _pageHost.UpdateCurrentPageSource(PageSource.HomePage); 
+            _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE); 
             return true;
         }
     }

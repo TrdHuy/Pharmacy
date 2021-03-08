@@ -2,6 +2,8 @@
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +67,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                    "Thông báo!");
             }
             _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.UserManagementPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
         }
 
         private bool IsUseDefaultPassword()

@@ -3,6 +3,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserMana
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             DataGrid ctrl = dataTransfer[1] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedMedicine = _viewModel.MedicineItemSource[ctrl.SelectedIndex];
-            _pageHost.UpdateCurrentPageSource(PageSource.DiscountByMedicinePage);
+            _pageHost.UpdateCurrentPageSource(PageSource.DISCOUNT_BY_MEDICINE_PAGE);
             return true;
         }
     }

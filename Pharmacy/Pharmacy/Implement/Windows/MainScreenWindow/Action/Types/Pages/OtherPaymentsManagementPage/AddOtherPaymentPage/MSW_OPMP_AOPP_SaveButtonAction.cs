@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
@@ -66,7 +67,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                    "Thông báo!");
             }
             _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.OtherPaymentsManagementPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.OTHER_PAYMENT_MANAGEMENT_PAGE);
         }
     }
 }

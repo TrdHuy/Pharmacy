@@ -2,6 +2,7 @@
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
             DataGrid ctrl = param[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = _viewModel.LstWarehouseImport[ctrl.SelectedIndex];
-            _pageHost.UpdateCurrentPageSource(PageSource.ShowWarehouseImportInfoPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.SHOW_WAREHOUSE_IMPORT_INFO_PAGE);
 
             return true;
         }

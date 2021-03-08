@@ -382,7 +382,9 @@
                                                  Height="300"
                                                  Margin="10"
                                                  IsAxisLabelSelectionEnabled="True"
+                                                 SelectionCategoryAxixLabelChanged="mcChart_SelectionCategoryAxixLabelChanged"
                                                  BorderBrush="Black"
+                                                 BorderThickness="0"
                                                  Background="White">
 
                                     <DVC:BType_Chart.Template>

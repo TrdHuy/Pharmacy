@@ -3,6 +3,7 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,13 +111,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                OwnerWindow.MainScreen,
                "Thông báo!!");
 
-                if (_pageHost.PreviousePageSource != PageSource.None)
+                if (_pageHost.PreviousePageSource != PageSource.NONE)
                 {
                     _pageHost.UpdateCurrentPageSource(_pageHost.PreviousePageSource);
                 }
                 else
                 {
-                    _pageHost.UpdateCurrentPageSource(PageSource.CustomerTransactionHistoryPage);
+                    _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
                 }
             }
             else
@@ -165,13 +166,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 OwnerWindow.MainScreen,
                 "Thông báo!!");
 
-                if (_pageHost.PreviousePageSource != PageSource.None)
+                if (_pageHost.PreviousePageSource != PageSource.NONE)
                 {
                     _pageHost.UpdateCurrentPageSource(_pageHost.PreviousePageSource);
                 }
                 else
                 {
-                    _pageHost.UpdateCurrentPageSource(PageSource.CustomerTransactionHistoryPage);
+                    _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
                 }
             }
             else

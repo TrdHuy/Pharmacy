@@ -3,6 +3,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPay
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
         private MSW_PageController _pageHost = MSW_PageController.Instance;
         public bool Execute(object[] dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.AddOtherPaymentPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.ADD_OTHER_PAYMENT_PAGE);
 
             return true;
         }

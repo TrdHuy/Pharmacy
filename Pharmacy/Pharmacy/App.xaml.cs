@@ -4,6 +4,7 @@ using Pharmacy.Config;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +103,11 @@ namespace Pharmacy
             string caption = "Cảnh báo!!!")
         {
             return _winDirector.ShowMessageBox(message, owner, mesType, mesIcon, caption);
+        }
+
+        public void ShowPopupScreenWindow(PopupScreenWindowViewModel dataContext)
+        {
+            _winDirector.ShowPopupScreenWindow(dataContext);
         }
 
         /// <summary>

@@ -6,6 +6,8 @@
     <!--Normal theme-->
     <system:Double x:Key="DefaultWindowHeight">650</system:Double>
     <system:Double x:Key="DefaultWindowWidth">1200</system:Double>
+    <system:Double x:Key="DefaultPopupWindowHeight">420</system:Double>
+    <system:Double x:Key="DefaultPopupWindowWidth">800</system:Double>
     <system:Double x:Key="DefaultWindowTitleBarHeight">30</system:Double>
     <system:Double x:Key="DefaultMenuTabWidth">70</system:Double>
     <system:Double x:Key="DefaultMenuTabExpandedWidth">170</system:Double>
