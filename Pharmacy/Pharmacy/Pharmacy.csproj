@@ -144,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Base\AsyncAction\AsyncAction.cs" />
+    <Compile Include="Base\AsyncAction\AsyncActionExecuter.cs" />
+    <Compile Include="Base\AsyncAction\AsyncActionResult.cs" />
+    <Compile Include="Base\AsyncAction\IAsyncAction.cs" />
     <Compile Include="Base\Converter\BaseMultiValueConverter.cs" />
     <Compile Include="Base\Converter\BaseValueConverter.cs" />
     <Compile Include="Base\Observable\ObservablePropertiesCollection.cs" />
@@ -153,9 +157,17 @@
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSource.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_BaseButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_StartStatisticButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ChartOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_EventCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\ReportPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\OVs\MSW_SeP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\SettingPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Setting\SettingPage.xaml.cs">
@@ -324,7 +336,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_DeleteWarehouseImportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\OVs\OrderDetailOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\OVs\CustomerOrderOV.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\PageVO.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\MVVM\Models\VOs\PageVO.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\MSW_WHMP_ShowInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPage\MSW_WHMP_SWIIP_ShowInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\WarehouseManagementPage\ShowWarehouseImportInfoPage\MSW_WHMP_SWIIP_CancelButtonAction.cs" />
@@ -474,6 +486,14 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPage.xaml.cs">
+      <DependentUpon>DailyReportDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\PopupScreenWindowViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\PopupScreenWindow.xaml.cs">
+      <DependentUpon>PopupScreenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Implement\Windows\PopupScreenWindow\Utils\PSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -700,6 +720,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\PopupScreenWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -917,7 +945,9 @@
     <Resource Include="Resources\DebugResource\_test3x4potrait.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Base\Implement\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\ModelImpl\" />
+    <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

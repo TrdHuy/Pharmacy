@@ -2,8 +2,10 @@
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
 using System.Collections.Generic;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,7 +68,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                    "Thông báo!");
             }
             _viewModel.IsAddWarehouseImportButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.WarehouseManagementPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
         }
     }
 }

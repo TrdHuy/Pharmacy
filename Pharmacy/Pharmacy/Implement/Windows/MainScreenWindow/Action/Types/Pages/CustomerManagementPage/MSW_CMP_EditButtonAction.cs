@@ -3,6 +3,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -20,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             DataGrid ctrl = dataTransfer[1] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedCustomer = ctrl.SelectedItem as tblCustomer;
-            _pageHost.UpdateCurrentPageSource(PageSource.CustomerModificationPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_MODIFICATION_PAGE);
             return true;
         }
     }

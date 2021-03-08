@@ -1,7 +1,9 @@
 ﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Collections.Generic;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
 
         public bool Execute(object[] dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.WarehouseManagementPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
 
             return true;
         }

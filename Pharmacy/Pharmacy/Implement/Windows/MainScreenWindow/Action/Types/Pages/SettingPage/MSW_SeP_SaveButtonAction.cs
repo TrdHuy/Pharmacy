@@ -3,6 +3,7 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions.Entities;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SettingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Setting
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _pageHost.UpdateCurrentPageSource(PageSource.HomePage);
+                _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
             }
             else
             {

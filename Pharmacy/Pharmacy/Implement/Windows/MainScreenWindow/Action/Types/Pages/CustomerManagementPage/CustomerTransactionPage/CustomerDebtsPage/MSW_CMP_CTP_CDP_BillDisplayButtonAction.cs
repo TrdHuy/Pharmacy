@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -21,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             _viewModel = dataTransfer[0] as CustomerDebtsPageViewModel;
 
             MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = _viewModel.CurrentSelectedOrderDetail;
-            _pageHost.UpdateCurrentPageSource(PageSource.CustomerBillPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);
 
             return true;
         }

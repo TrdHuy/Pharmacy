@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
             DataGrid ctrl = dataTransfer[1] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedSupplier = _viewModel.SupplierItemSource[ctrl.SelectedIndex];
-            _pageHost.UpdateCurrentPageSource(PageSource.ModifySupplierPage);
+            _pageHost.UpdateCurrentPageSource(PageSource.MODIFY_SUPPLIER_PAGE);
 
             return true;
         }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.VOs
+namespace Pharmacy.Implement.Windows.BaseWindow.MVVM.Models.VOs
 {
     public class PageVO
     {
