@@ -25,6 +25,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         private readonly Color INCOME_COLOR = Color.FromArgb(255, 135, 170, 102);
         private readonly Color PROFIT_COLOR = Color.FromArgb(255, 105, 198, 255);
 
+        public BType_Chart Chart { get; set; }
+
         public IEnumerable<tblOrder> CustomerOrder { get; set; }
         public IEnumerable<tblOtherPayment> BusinessPayment { get; set; }
         public RangeObservableCollection<RevenueChartOV> RevenueSource { get; set; }

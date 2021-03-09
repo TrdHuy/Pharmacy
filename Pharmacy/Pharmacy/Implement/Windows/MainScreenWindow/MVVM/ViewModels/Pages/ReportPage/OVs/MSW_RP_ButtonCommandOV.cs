@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.InputCommand;
@@ -64,14 +65,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
 
         private void StartStatisticButtonClickEvent(object paramaters)
         {
-            IsStartStatisticButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = ParentsModel;
             dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_RP_START_STATISTIC_BUTTON
-                , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+
+            if (RUNE.IS_SUPPORT_STATISTICAL_CHART)
+            {
+                IsStartStatisticButtonRunning = true;
+                _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                   , KeyFeatureTag.KEY_TAG_MSW_RP_START_STATISTIC_BUTTON
+                   , dataTransfer
+                   , new FactoryLocker(LockReason.TaskHandling, true));
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Config;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
@@ -35,6 +36,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         private object _selectedStatisticalType;
 
         #region Bindable properties field
+        public Visibility ChartVisibility
+        {
+            get
+            {
+                return RUNE.IS_SUPPORT_STATISTICAL_CHART ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
         public MSW_RP_ButtonCommandOV ButtonCommandOV { get; set; }
         public MSW_RP_ChartOV ChartOV { get; set; }
         public MSW_RP_EventCommandOV EventCommandOV { get; set; }
@@ -93,7 +101,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                     ((StatisticalDataOV)SelectedStatisticalData).Data;
             }
         }
-        public BType_Chart Chart { get; set; }
 
         protected override Logger logger => L;
 
@@ -102,7 +109,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             InstantiateItem();
             ButtonCommandOV = new MSW_RP_ButtonCommandOV(this);
             EventCommandOV = new MSW_RP_EventCommandOV(this);
-            ChartOV = new MSW_RP_ChartOV(this);
+            if (RUNE.IS_SUPPORT_STATISTICAL_CHART)
+            {
+                ChartOV = new MSW_RP_ChartOV(this);
+            }
         }
 
         protected override void OnInitialized()
@@ -128,11 +138,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             {
                 StatisticalTypeSource.Add(new StatisticalTypeOV("Thu", StatisticalType.Income));
                 StatisticalTypeSource.Add(new StatisticalTypeOV("Chi", StatisticalType.Outcome));
-                StatisticalTypeSource.Add(new StatisticalTypeOV("Lợi nhuận",StatisticalType.Profit));
+                StatisticalTypeSource.Add(new StatisticalTypeOV("Lợi nhuận", StatisticalType.Profit));
             }
             else if (((StatisticalDataOV)SelectedStatisticalData).Data == StatisticalData.Medicine)
             {
-                StatisticalTypeSource.Add(new StatisticalTypeOV("Số lượng",StatisticalType.Quantity));
+                StatisticalTypeSource.Add(new StatisticalTypeOV("Số lượng", StatisticalType.Quantity));
             }
 
             SelectedStatisticalType = StatisticalTypeSource[0];
