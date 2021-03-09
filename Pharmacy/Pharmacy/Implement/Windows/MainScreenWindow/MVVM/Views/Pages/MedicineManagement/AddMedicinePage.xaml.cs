@@ -25,6 +25,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
         {
             InitializeComponent();
             DataContext = new AddMedicinePageViewModel();
+
         }
     }
 }

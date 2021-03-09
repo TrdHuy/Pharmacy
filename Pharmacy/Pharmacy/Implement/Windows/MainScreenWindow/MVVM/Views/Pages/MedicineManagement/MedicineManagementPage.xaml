@@ -13,6 +13,9 @@
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="MedicineManagementPage">
+    <Page.DataContext>
+        <vm:MedicineManagementPageViewModel x:Name="MedicineManagementDataContext"/>
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
@@ -23,6 +26,7 @@
                            MaxHeight="100" />
         </Grid.RowDefinitions>
         <uc:PageHeader Grid.Row="0"
+                       FontSize="{Binding FontSizeOV.FontSizeXXXLarge}"
                        HeaderText="Quản lý thuốc"
                        HeaderIcon="{StaticResource HomePage_MedicineManageIcon}" />
         <Grid Grid.Row="1"
@@ -34,10 +38,12 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Text="Tìm kiếm:"
+                       FontSize="{Binding FontSizeOV.FontSizeLarge}"
                        VerticalAlignment="Center" />
             <TextBox Grid.Column="1"
                      ToolTip="Hỗ trợ tìm kiếm theo: mã hoặc tên thuốc, hoặc tên nhà cung cấp"
                      Margin="5,0,0,0"
+                     FontSize="{Binding FontSizeOV.FontSizeRegular}"
                      VerticalContentAlignment="Center"
                      TextChanged="SearchTextBox_TextChanged"
                      BorderThickness="2"
@@ -45,6 +51,7 @@
             </TextBox>
             <CheckBox Content="Dược liệu"
                       Grid.Column="2"
+                      FontSize="{Binding FontSizeOV.FontSizeLarge}"
                       Margin="10,0,0,0"
                       VerticalAlignment="Center"
                       VerticalContentAlignment="Center"
@@ -61,6 +68,7 @@
             <CheckBox Content="Cao đơn"
                       Grid.Column="3"
                       Margin="10,0,0,0"
+                      FontSize="{Binding FontSizeOV.FontSizeLarge}"
                       VerticalAlignment="Center"
                       VerticalContentAlignment="Center"
                       IsChecked="True"
@@ -97,7 +105,7 @@
                             Value="True" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeLarge}" />
+                            Value="{Binding FontSizeOV.FontSizeLarge,ElementName=MedicineManagementDataContext}" />
 
                     <Setter Property="Foreground"
                             Value="Black" />
@@ -117,12 +125,12 @@
                                 <Border BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid Background="{TemplateBinding Background}">
-                                        <ContentPresenter Focusable="False"
-                                                          HorizontalAlignment="Center"
-                                                          VerticalAlignment="Center"
-                                                          Content="{TemplateBinding Content}">
+                                        <ContentControl Focusable="False"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Content="{TemplateBinding Content}">
 
-                                        </ContentPresenter>
+                                        </ContentControl>
                                     </Grid>
                                 </Border>
 
@@ -177,7 +185,7 @@
                             Value="Center" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeXLarge}" />
+                            Value="{Binding FontSizeOV.FontSizeLarge,ElementName=MedicineManagementDataContext}" />
 
                 </Style>
 
@@ -343,6 +351,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               TextContent="In danh sách thuốc"
+                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
                               Grid.Column="2"
                               Background="{StaticResource ForegroundMainBrush}"
                               Foreground="White"
@@ -358,6 +367,7 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
+                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
                               TextContent="+ Thêm mới"
                               Grid.Column="3"
                               BorderThickness="0"
