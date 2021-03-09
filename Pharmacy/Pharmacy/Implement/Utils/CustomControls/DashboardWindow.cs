@@ -420,6 +420,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 if (CloseWindowCommand != null && _closeButtonElement != null)
                 {
                     _closeButtonElement.Command = CloseWindowCommand;
+                    _closeButtonElement.CommandParameter = this;
                 }
                 else if (_closeButtonElement != null)
                 {

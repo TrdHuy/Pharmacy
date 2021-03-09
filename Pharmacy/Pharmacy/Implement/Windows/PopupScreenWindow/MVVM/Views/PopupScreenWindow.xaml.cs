@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils.CustomControls;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,18 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views
         public PopupScreenWindow()
         {
             InitializeComponent();
+        }
+
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var context = DataContext as PopupScreenWindowViewModel;
+            if(context != null)
+            {
+                this.MinHeight = context.WindowHeight;
+                this.MinWidth = context.WindowWidth;
+                this.Height = context.WindowHeight;
+                this.Width = context.WindowWidth;
+            }
         }
     }
 }

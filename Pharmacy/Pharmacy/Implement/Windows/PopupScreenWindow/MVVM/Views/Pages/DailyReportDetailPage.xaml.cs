@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Utils.CustomControls.DestroyablePage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages
+namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.Pages
 {
     /// <summary>
     /// Interaction logic for DailyReportDetailPage.xaml
     /// </summary>
-    public partial class DailyReportDetailPage : Page
+    public partial class DailyReportDetailPage : DestroyablePage
     {
         public DailyReportDetailPage()
         {

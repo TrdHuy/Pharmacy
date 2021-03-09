@@ -157,8 +157,11 @@
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
+    <Compile Include="Implement\Utils\CustomControls\DestroyablePage\DestroyablePage.cs" />
+    <Compile Include="Implement\Utils\CustomControls\DestroyablePage\IDestroyable.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSource.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSourceWatcher.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_BaseButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_StartStatisticButtonAction.cs" />
@@ -486,13 +489,17 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
-    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPage.xaml.cs">
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml.cs">
       <DependentUpon>DailyReportDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\PopupScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\PopupScreenWindow.xaml.cs">
       <DependentUpon>PopupScreenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\PopupScreenWindow\Utils\PSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\Utils\PSW_PageController.cs" />
     <Compile Include="PharmacyDBModel.cs">
       <AutoGen>True</AutoGen>
@@ -720,7 +727,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPage.xaml">
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

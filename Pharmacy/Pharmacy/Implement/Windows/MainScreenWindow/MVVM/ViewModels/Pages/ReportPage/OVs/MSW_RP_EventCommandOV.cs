@@ -1,5 +1,9 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Models.VOs;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +35,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
 
         private void OnChartAxisLabelSelectionChanged(object sender, EventArgs e, object paramater)
         {
-          //  App.Current.ShowPopupScreenWindow();
+            var dataContext = new DailyReportDetailPageViewModel();
+            App.Current.ShowPopupScreenWindow(new PopupScreenWindowViewModel(
+                    new PSW_ContentVO()
+                    {
+                        Content = new DailyReportDetailPage()
+                        {
+                            DataContext = dataContext
+                        },
+                        DesignHeight = dataContext.DesignHeight,
+                        DesignWidth = dataContext.DesignWidth
+                    }
+                    , 1000
+                ));
         }
 
     }
