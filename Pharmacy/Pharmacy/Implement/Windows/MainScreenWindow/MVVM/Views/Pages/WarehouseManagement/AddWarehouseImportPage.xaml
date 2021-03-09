@@ -11,7 +11,7 @@
       x:Name="AddWarehouseImport"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="AddWarehouseImportPage">
     <Grid>
         <Grid.RowDefinitions>

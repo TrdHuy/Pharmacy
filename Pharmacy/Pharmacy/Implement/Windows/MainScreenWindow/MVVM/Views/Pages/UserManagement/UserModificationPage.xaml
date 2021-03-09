@@ -9,6 +9,7 @@
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="UserModificationPage">
 
@@ -36,7 +37,7 @@
             <!--Page title-->
             <uc:PageHeader HeaderText="Thay đổi thông tin nhân viên"
                            Grid.Row="0"
-                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"/>
+                           HeaderIcon="{StaticResource HomePage_CustomerManageIcon}" />
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding UserImageSource}"
@@ -51,8 +52,8 @@
         <!--Body area-->
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.7845*" />
-                <RowDefinition Height="2.328*" />
+                <RowDefinition Height="0.4845*" />
+                <RowDefinition Height="2.628*" />
                 <RowDefinition Height="0.075*" />
             </Grid.RowDefinitions>
 
@@ -95,311 +96,275 @@
 
             <!--Modify info area-->
             <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="0.4*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="0.4*" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0.16*" />
+                    <ColumnDefinition Width="3.2*" />
+                    <ColumnDefinition Width="0.16*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0.16*" />
+                    <ColumnDefinition Width="3.2*" />
+                    <ColumnDefinition Width="0.16*" />
                 </Grid.ColumnDefinitions>
 
                 <!--Basic info area-->
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.22*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="3.2*" />
-                    </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="3"
+                           Text="Tên đăng nhập:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="0"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Margin="3"
-                               Text="Tên đăng nhập:" />
+                <TextBlock Grid.Column="0"
+                           Grid.Row="2"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Margin="3"
+                           Text="Họ tên:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="2"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Margin="3"
-                               Text="Họ tên:" />
+                <TextBlock Grid.Column="0"
+                           Grid.Row="4"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Text="Địa chỉ:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="4"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Địa chỉ:" />
+                <TextBlock Grid.Column="0"
+                           Grid.Row="6"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Text="Điện thoại:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="6"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Điện thoại:" />
+                <TextBlock Grid.Column="0"
+                           Grid.Row="8"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Text="Email:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="8"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Email:" />
-
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="10"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Facebook:" />
+                <TextBlock Grid.Column="0"
+                           Grid.Row="10"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Text="Facebook:" />
 
 
-                    <Viewbox HorizontalAlignment="
-                             Center"
-                             Grid.Column="
-                             1"
-                             Grid.Row="
-                             0">
-                        <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                   Text="*"
-                                   Foreground="Red" />
-                    </Viewbox>
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Center"
+                           Grid.Column=" 1"
+                           Grid.Row="0"
+                           Foreground="Red" />
 
-                    <Viewbox HorizontalAlignment="Center"
-                             Grid.Column="1"
-                             Grid.Row="2">
-                        <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                   Text="*"
-                                   Foreground="Red" />
-                    </Viewbox>
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Center"
+                           Grid.Column="1"
+                           Grid.Row="2"
+                           Foreground="Red" />
 
-                    <Viewbox HorizontalAlignment="Center"
-                             Grid.Column="1"
-                             Grid.Row="6">
-                        <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                   Text="*"
-                                   Foreground="Red" />
-                    </Viewbox>
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Center"
+                           Grid.Column="1"
+                           Grid.Row="6"
+                           Foreground="Red" />
 
 
-                    <TextBox x:Name="UserNameTextBox"
-                             Grid.Column="2"
-                             IsReadOnly="True"
-                             IsEnabled="False"
-                             Grid.Row="0"
-                             Text="{Binding UserNameText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                             Style="{DynamicResource DefaultTextBox}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
-                    <TextBlock x:Name="UserNameAwareTextBlock"
-                               Visibility="{Binding UserNameAwareTextBlockVisibility}"
-                               IsHitTestVisible="False"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               Foreground="Red"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="{Binding UserNameAwareTextBlockContent}" />
-                    <TextBlock x:Name="UserNameVerifiedTextBlock"
-                               Visibility="{Binding UserNameVerifiedTextBlockVisibility}"
-                               IsHitTestVisible="False"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               Foreground="Green"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="Có thể dùng tên này!" />
+                <TextBox x:Name="UserNameTextBox"
+                         Grid.Column="2"
+                         IsReadOnly="True"
+                         Margin="0,2.5,0,2.5"
+                         IsEnabled="False"
+                         Grid.Row="0"
+                         Text="{Binding UserNameText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                         Style="{DynamicResource DefaultTextBox}"
+                         FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                <TextBlock x:Name="UserNameAwareTextBlock"
+                           Visibility="{Binding UserNameAwareTextBlockVisibility}"
+                           IsHitTestVisible="False"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           Foreground="Red"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="{Binding UserNameAwareTextBlockContent}" />
+                <TextBlock x:Name="UserNameVerifiedTextBlock"
+                           Visibility="{Binding UserNameVerifiedTextBlockVisibility}"
+                           IsHitTestVisible="False"
+                           Grid.Column="2"
+                           Grid.Row="1"
+                           Foreground="Green"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="Có thể dùng tên này!" />
 
-                    <TextBox x:Name="FullNameTextBox"
-                             Grid.Column="2"
-                             Grid.Row="2"
-                             Text="{Binding FullNameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{DynamicResource DefaultTextBox}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
-                    <TextBlock x:Name="FullNameAwareTextBlock"
-                               Visibility="{Binding FullNameAwareTextBlockVisibility}"
-                               IsHitTestVisible="False"
-                               Grid.Column="2"
-                               Grid.Row="3"
-                               Foreground="Red"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="Không được bỏ trống trường này" />
+                <TextBox x:Name="FullNameTextBox"
+                         Grid.Column="2"
+                         Margin="0,2.5,0,2.5"
+                         Grid.Row="2"
+                         Text="{Binding FullNameText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{DynamicResource DefaultTextBox}" />
 
-                    <TextBox x:Name="AddressTextBox"
-                             Grid.Column="2"
-                             Grid.Row="4"
-                             Style="{DynamicResource DefaultTextBox}"
-                             Text="{Binding AddressText}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                <TextBlock x:Name="FullNameAwareTextBlock"
+                           Visibility="{Binding FullNameAwareTextBlockVisibility}"
+                           IsHitTestVisible="False"
+                           Grid.Column="2"
+                           Margin="0,2.5,0,2.5"
+                           Grid.Row="3"
+                           Foreground="Red"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="Không được bỏ trống trường này" />
 
-                    <TextBox x:Name="PhoneTextBox"
-                             Grid.Column="2"
-                             Style="{DynamicResource DefaultTextBox}"
-                             Grid.Row="6"
-                             Text="{Binding PhoneText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
-                    <TextBlock x:Name="PhoneAwareTextBlock"
-                               IsHitTestVisible="False"
-                               Visibility="{Binding PhoneAwareTextBlockVisibility}"
-                               Grid.Column="2"
-                               Grid.Row="7"
-                               Foreground="Red"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="Không được bỏ trống trường này" />
+                <TextBox x:Name="AddressTextBox"
+                         Grid.Column="2"
+                         Margin="0,2.5,0,2.5"
+                         Grid.Row="4"
+                         Style="{DynamicResource DefaultTextBox}"
+                         Text="{Binding AddressText}" />
 
-                    <TextBox Grid.Column="2"
-                             Grid.Row="8"
-                             Style="{DynamicResource DefaultTextBox}"
-                             Text="{Binding EmailText}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                <TextBox x:Name="PhoneTextBox"
+                         Grid.Column="2"
+                         Style="{DynamicResource DefaultTextBox}"
+                         Margin="0,2.5,0,2.5"
+                         Grid.Row="6"
+                         Text="{Binding PhoneText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <TextBox Grid.Column="2"
-                             Grid.Row="10"
-                             Text="{Binding LinkText}"
-                             Style="{DynamicResource DefaultTextBox}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                <TextBlock x:Name="PhoneAwareTextBlock"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding PhoneAwareTextBlockVisibility}"
+                           Grid.Column="2"
+                           Grid.Row="7"
+                           Foreground="Red"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="Không được bỏ trống trường này" />
 
-                </Grid>
+                <TextBox Grid.Column="2"
+                         Grid.Row="8"
+                         Margin="0,2.5,0,2.5"
+                         Style="{DynamicResource DefaultTextBox}"
+                         Text="{Binding EmailText}" />
+
+                <TextBox Grid.Column="2"
+                         Grid.Row="10"
+                         Margin="0,2.5,0,2.5"
+                         Text="{Binding LinkText}"
+                         Style="{DynamicResource DefaultTextBox}" />
+
 
                 <!--Login info-->
-                <Grid Grid.Column="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.66*" />
-                        <ColumnDefinition Width="0.16*" />
-                        <ColumnDefinition Width="2.52*" />
-                        <ColumnDefinition Width="0.24*" />
 
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="0.4*" />
-                    </Grid.RowDefinitions>
+                <TextBlock Grid.Column="4"
+                           Grid.Row="0"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                           Text="Mật khẩu mới:" />
 
+                <TextBlock Grid.Column="4"
+                           Grid.Row="2"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                           Text="Xác nhận mật khẩu:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="0"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Mật khẩu mới:" />
+                <TextBlock Grid.Column="4"
+                           Grid.Row="4"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                           Text="Chức vụ:" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="2"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Xác nhận mật khẩu:" />
+                <PasswordBox  x:Name="NewPasswordBox"
+                              Margin="0,2.5,0,2.5"
+                              Grid.Column="6"
+                              Grid.Row="0"
+                              VerticalContentAlignment="Center"
+                              PasswordChanged="NewPasswordBox_PasswordChanged"
+                              BorderThickness="1"
+                              BorderBrush="Black"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                <TextBlock x:Name="NewPasswordAwareTextBlock"
+                           Visibility="{Binding NewPasswordAwareTextBlockVisibility}"
+                           IsHitTestVisible="False"
+                           Grid.Column="6"
+                           Grid.Row="1"
+                           Foreground="Red"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="{Binding NewPasswordAwareTextBlockContent}" />
 
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="4"
-                               HorizontalAlignment="Right"
-                               VerticalAlignment="Center"
-                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                               Text="Chức vụ:" />
+                <PasswordBox  x:Name="VerifiedPasswordBox"
+                              Margin="0,2.5,0,2.5"
+                              Grid.Column="6"
+                              Grid.Row="2"
+                              VerticalContentAlignment="Center"
+                              PasswordChanged="VerifiedPasswordBox_PasswordChanged"
+                              BorderThickness="1"
+                              BorderBrush="Black" />
+                <TextBlock x:Name="VerifiedPasswordAwareTextBlock"
+                           Visibility="{Binding VerifiedPasswordAwareTextBlockVisibility}"
+                           IsHitTestVisible="False"
+                           Grid.Column="6"
+                           Grid.Row="3"
+                           Foreground="Red"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="Mật khẩu xác nhận không khớp!" />
 
-                    <PasswordBox  x:Name="NewPasswordBox"
-                                  Margin="0,2.5,0,2.5"
-                                  Grid.Column="2"
-                                  Grid.Row="0"
-                                  VerticalContentAlignment="Center"
-                                  PasswordChanged="NewPasswordBox_PasswordChanged"
-                                  BorderThickness="2"
-                                  BorderBrush="Black"
-                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
-                    <TextBlock x:Name="NewPasswordAwareTextBlock"
-                               Visibility="{Binding NewPasswordAwareTextBlockVisibility}"
-                               IsHitTestVisible="False"
-                               Grid.Column="2"
-                               Grid.Row="1"
-                               Foreground="Red"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="{Binding NewPasswordAwareTextBlockContent}" />
+                <hps:HorusBox Grid.Column="6"
+                              Grid.Row="4"
+                              Margin="0,2.5,0,2.5"
+                              Text="{Binding JobText, UpdateSourceTrigger=PropertyChanged}"
+                              IsReadOnly="True"
+                              IconHeight="{Binding FontSizeOV.FontSizeLarge}"
+                              IsUsingHorusShadow="False"
+                              Style="{StaticResource HorusBoxCustomNormalTheme}">
+                    <ComboBoxItem Name="NhanVien"
+                                  Content="Nhân viên" />
+                    <ComboBoxItem Name="QuanLy"
+                                  Content="Quản lý" />
+                </hps:HorusBox>
 
-                    <PasswordBox  x:Name="VerifiedPasswordBox"
-                                  Margin="0,2.5,0,2.5"
-                                  Grid.Column="2"
-                                  Grid.Row="2"
-                                  VerticalContentAlignment="Center"
-                                  PasswordChanged="VerifiedPasswordBox_PasswordChanged"
-                                  BorderThickness="2"
-                                  BorderBrush="Black"
-                                  FontSize="20" />
-                    <TextBlock x:Name="VerifiedPasswordAwareTextBlock"
-                               Visibility="{Binding VerifiedPasswordAwareTextBlockVisibility}"
-                               IsHitTestVisible="False"
-                               Grid.Column="2"
-                               Grid.Row="3"
-                               Foreground="Red"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="Mật khẩu xác nhận không khớp!" />
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Center"
+                           Grid.Column="1"
+                           Grid.Row="6"
+                           Foreground="Red" />
 
-                    <hps:HorusBox Grid.Column="2"
-                                  Grid.Row="4"
-                                  Text="{Binding JobText, UpdateSourceTrigger=PropertyChanged}"
-                                  IconHeight="20"
-                                  IsReadOnly="True"
-                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                  Style="{StaticResource HorusBoxCustomNormalTheme}">
-                        <ComboBoxItem Name="NhanVien"
-                                      Content="Nhân viên" />
-                        <ComboBoxItem Name="QuanLy"
-                                      Content="Quản lý" />
-                    </hps:HorusBox>
-                    <Viewbox HorizontalAlignment="Center"
-                             Grid.Column="1"
-                             Grid.Row="4">
-                        <TextBlock FontFamily="{StaticResource VNFOswald}"
-                                   Text="*"
-                                   Foreground="Red" />
-                    </Viewbox>
-                    <TextBlock x:Name="JobTitleAwareTextBlock"
-                               Visibility="{Binding JobTitleAwareTextBlockVisibility}"
-                               IsHitTestVisible="False"
-                               Grid.Column="2"
-                               Grid.Row="5"
-                               Foreground="Red"
-                               FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Center"
-                               Text="Vui lòng chọn một chức vụ cho người dùng!" />
-
-                </Grid>
-
+                <TextBlock x:Name="JobTitleAwareTextBlock"
+                           Visibility="{Binding JobTitleAwareTextBlockVisibility}"
+                           IsHitTestVisible="False"
+                           Grid.Column="6"
+                           Grid.Row="5"
+                           Foreground="Red"
+                           FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           Text="Vui lòng chọn một chức vụ cho người dùng!" />
 
             </Grid>
-
         </Grid>
 
         <!--Footer area-->
@@ -413,29 +378,29 @@
             </Grid.ColumnDefinitions>
 
             <hps:OsirisButton Margin="0,5,0,20"
-                            Grid.Column="1"
-                            TextContent="Quay lại"
-                            IsUsingDropShadowEffect="True"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            Command="{Binding CancleButtonCommand}"
-                            BorderThickness="0"
-                            Foreground="White" />
+                              Grid.Column="1"
+                              TextContent="Quay lại"
+                              IsUsingDropShadowEffect="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              Command="{Binding CancleButtonCommand}"
+                              BorderThickness="0"
+                              Foreground="White" />
             <hps:OsirisButton Margin="0,5,0,20"
-                            Grid.Column="3"
-                            TextContent="Lưu"
-                            IsBusy="{Binding IsSaveButtonRunning}"
-                            ProgressSpinnerSize="30"
-                            ProgressSpinnerBackground="Black"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            BorderThickness="0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            IsUsingDropShadowEffect="True"
-                            Command="{Binding SaveButtonCommand}"
-                            Foreground="White"
-                            Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                              Grid.Column="3"
+                              TextContent="Lưu"
+                              IsBusy="{Binding IsSaveButtonRunning}"
+                              ProgressSpinnerSize="30"
+                              ProgressSpinnerBackground="Black"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              BorderThickness="0"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              IsUsingDropShadowEffect="True"
+                              Command="{Binding SaveButtonCommand}"
+                              Foreground="White"
+                              Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
 
     </Grid>

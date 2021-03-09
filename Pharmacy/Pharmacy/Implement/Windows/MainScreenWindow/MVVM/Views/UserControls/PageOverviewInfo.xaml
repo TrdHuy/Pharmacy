@@ -67,6 +67,7 @@
                                        HorizontalContentAlignment="Center"
                                        IsUsingAtumClippingBorder="True"
                                        IsEnableAtumTransformer="True"
+                                       IsSupportLoadingAnimation="False"
                                        AtumImageData="{Binding AtumImageData,Mode=TwoWay,
                         RelativeSource={RelativeSource AncestorType=local:PageOverviewInfo, Mode=FindAncestor}}"
                                        IsSupportAtumLocator="{Binding IsSupportChangeImageLocation,

@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement.DiscountByMedicinePage"
       mc:Ignorable="d"
@@ -11,7 +12,7 @@
       x:Name="MedicineManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="MedicineManagementPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -42,11 +43,11 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.4*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="5*" />
             </Grid.RowDefinitions>
 
@@ -79,6 +80,7 @@
                           SelectedIndex="{Binding SelectedCustomer, UpdateSourceTrigger=PropertyChanged}"
                           FilterPathItems="{Binding LstCustomerFilterPathList}"
                           Style="{StaticResource SearchingBoxTheme}"
+                          BorderThickness="1"
                           Margin="3">
                 <hps:HorusBox.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -128,7 +130,7 @@
 
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
-                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
+                       FontSize="{Binding FontSizeOV.FontSizeXXSmall}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="3,0,0,0">
@@ -158,7 +160,7 @@
                              VerticalContentAlignment="Center"
                              Grid.Column="3"
                              Grid.Row="0"
-                             BorderThickness="2"
+                             BorderThickness="1"
                              BorderBrush="Black"
                              Text="{Binding PromoPercent, UpdateSourceTrigger=PropertyChanged}"
                              Margin="3" />
@@ -166,7 +168,7 @@
             <TextBox Grid.Column="1"
                      Grid.Row="2"
                      Grid.RowSpan="2"
-                     BorderThickness="2"
+                     BorderThickness="1"
                      BorderBrush="Black"
                      Text="{Binding PromoDescription}"
                      Margin="3" />
@@ -203,35 +205,37 @@
                   Grid.Column="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <hps:OsirisButton Grid.Column="0"
+                <hps:OsirisButton Grid.Column="1"
                                   TextContent="Tạo mới"
+                                  Padding="30,0,30,0"
                                   IsUsingDropShadowEffect="True"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                   Command="{Binding CreateNewPromoButtonCommand}"
                                   BorderThickness="0"
-                                  MaxHeight="100"
                                   Foreground="White" />
 
-                <hps:OsirisButton Grid.Column="2"
+                <hps:OsirisButton Grid.Column="3"
                                   TextContent="Lưu"
+                                  Padding="20,0,20,0"
                                   IsUsingDropShadowEffect="True"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                   Command="{Binding SaveButtonCommand}"
                                   BorderThickness="0"
-                                  MaxHeight="100"
                                   Background="{StaticResource NormalTheme_1st_Background_Brush}"
                                   Foreground="White" />
             </Grid>
 
             <TextBlock Grid.Column="0"
                        Grid.Row="4"
+                       FontSize="{Binding FontSizeOV.FontSizeRegular}"
                        Grid.ColumnSpan="2"
                        VerticalAlignment="Center"
                        Margin="0,3,3,0"
@@ -262,7 +266,8 @@
                                 Value="True" />
 
                         <Setter Property="FontSize"
-                                Value="{StaticResource FontSizeLarge}" />
+                                Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:DiscountByMedicinePage},Mode=FindAncestor}}" />
 
                         <Setter Property="Foreground"
                                 Value="Black" />
@@ -342,7 +347,8 @@
                                 Value="Center" />
 
                         <Setter Property="FontSize"
-                                Value="{StaticResource FontSizeXLarge}" />
+                                Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:DiscountByMedicinePage},Mode=FindAncestor}}" />
 
                     </Style>
 
@@ -431,10 +437,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8.99*" />
                 <ColumnDefinition Width="1.77*" />
-                <ColumnDefinition Width="1.77*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <hps:OsirisButton Margin="0,5,10,0"
                               Grid.Column="2"
+                              Padding="30,0,30,0"
                               TextContent="Quay lại"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"

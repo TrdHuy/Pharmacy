@@ -12,7 +12,7 @@
       x:Name="SupplierImportHistory"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="SupplierImportHistoryPage">
 
     <Grid>
@@ -341,14 +341,16 @@
                             <RowDefinition Height="0.6*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.2*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <hps:OsirisButton Grid.Column="1"
+                        <hps:OsirisButton Grid.Column="2"
                                           Margin="5,0,0,0"
                                           Background="Transparent"
                                           BorderThickness="0"
+                                          Padding="20,0,20,0"
                                           VerticalContentAlignment="Center"
                                           TextDecor="Underline"
                                           Foreground="#008AE0"
@@ -361,6 +363,8 @@
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
+                                          Grid.Column="1"
+                                          Padding="30,0,30,0"
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
                                           Background="#FFC00000"
@@ -373,7 +377,8 @@
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
-                                          Grid.Column="1"
+                                          Grid.Column="2"
+                                          Padding="20,0,20,0"
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
                                           TextContent="Trở lại"

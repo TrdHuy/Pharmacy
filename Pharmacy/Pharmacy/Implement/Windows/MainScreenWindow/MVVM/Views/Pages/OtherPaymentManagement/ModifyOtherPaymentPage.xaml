@@ -13,7 +13,7 @@
       x:Name="ModifyOtherPayment"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="ModifyOtherPaymentPage"
       Loaded="ModifyOtherPayment_Loaded">
 
@@ -90,8 +90,6 @@
             <cc:DateTimePickerCustom VerticalContentAlignment="Center"
                                      Grid.Column="1"
                                      Grid.Row="0"
-                                     BorderThickness="2"
-                                     BorderBrush="Black"                                     
                                      Format="Custom"
                                      FormatString="dd/MM/yyyy HH:mm"
                                      Value="{Binding PaymentTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -105,6 +103,7 @@
                           SelectedIndex="{Binding PaymentType, UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource HorusBoxCustomNormalTheme}"
                           Margin="3"
+                          IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           IsEditable="False"
                           IsUsingListFilter="False">
                 <ComboBoxItem Content="Thu" />
@@ -208,12 +207,13 @@
               Margin="10,0,10,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8.99*" />
-                <ColumnDefinition Width="1.77*" />
-                <ColumnDefinition Width="1.77*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <hps:OsirisButton Margin="0,5,10,0"
                               Grid.Column="1"
                               Grid.Row="2"
+                              Padding="30,0,30,0"
                               TextContent="Quay lại"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
@@ -225,6 +225,7 @@
             <hps:OsirisButton Margin="0,5,10,0"
                               Grid.Column="2"
                               Grid.Row="2"
+                              Padding="20,0,20,0"
                               TextContent="Lưu"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
