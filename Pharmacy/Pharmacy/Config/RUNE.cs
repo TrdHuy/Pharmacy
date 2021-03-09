@@ -88,6 +88,9 @@ namespace Pharmacy.Config
         public static readonly bool IS_SUPPORT_SEARCH_ORDER_BY_MEDICINE_NAME = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_SEARCH_ORDER_BY_MEDICINE_NAME"];
 
+        public static readonly bool IS_SUPPORT_STATISTICAL_CHART = FeaturesParser
+           .FeatureOrders["HPS_FT_IS_SUPPORT_STATISTICAL_CHART"];
+        
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";

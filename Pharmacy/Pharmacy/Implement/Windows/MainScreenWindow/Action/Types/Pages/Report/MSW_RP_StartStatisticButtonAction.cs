@@ -76,7 +76,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                 {
                     foreach (Series s in series)
                     {
-                        ViewModel.Chart.Series.Add(s);
+                        ViewModel.ChartOV.Chart.Series.Add(s);
                     }
                 }
             }
@@ -107,7 +107,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                 return true;
             }
 
-            ViewModel.Chart.Series.Clear();
+            ViewModel.ChartOV.Chart.Series.Clear();
             if (ViewModel.CurrentStatisticalData == StatisticalData.Revenue)
             {
 

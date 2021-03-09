@@ -376,6 +376,7 @@
                                 </Grid.Resources>
                                 
                                 <DVC:BType_Chart x:Name="mcChart"
+                                                 Visibility="{Binding ChartVisibility}"
                                                  HorizontalAlignment="Left"
                                                  PlotAreaStyle="{StaticResource plotSt}"
                                                  Width="800"
@@ -446,7 +447,8 @@
 
                                     
                                 </DVC:BType_Chart>
-                            </Grid>    
+                            </Grid>
+                            
                         </StackPanel>
                     </hps:HathorScrollView>
                 </Border>

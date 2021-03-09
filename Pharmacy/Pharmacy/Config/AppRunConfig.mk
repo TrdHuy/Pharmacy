@@ -29,6 +29,14 @@ HPS_FT_IS_SUPPORT_NOTIFY_ICON=TRUE
 HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE
 ############################################################
 
+
+############################################################
+#Feature price: 3,500,000 vnd
+#Statistical chart
+HPS_FT_IS_SUPPORT_STATISTICAL_CHART=FALSE
+############################################################
+
+
 #Adminstrator change user image
 HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE=TRUE
 

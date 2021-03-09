@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Config;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Models.VOs;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
@@ -21,7 +22,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         public MSW_RP_EventCommandOV(BaseViewModel parentModel) : base(parentModel)
         {
             ReportPageLoaded = new EventHandleCommand(OnReportPageLoaded);
-            ChartAxisLabelSelectionChanged = new EventHandleCommand(OnChartAxisLabelSelectionChanged);
+            if (RUNE.IS_SUPPORT_STATISTICAL_CHART)
+            {
+                ChartAxisLabelSelectionChanged = new EventHandleCommand(OnChartAxisLabelSelectionChanged);
+            }
         }
 
         private void OnReportPageLoaded(object sender, EventArgs e, object paramater)
@@ -29,7 +33,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             var vm = ParentsModel as ReportPageViewModel;
             if (vm != null)
             {
-                vm.Chart = ((object[])paramater)[0] as BType_Chart;
+                if(vm.ChartOV != null)
+                {
+                    vm.ChartOV.Chart = ((object[])paramater)[0] as BType_Chart;
+                }
             }
         }
 
