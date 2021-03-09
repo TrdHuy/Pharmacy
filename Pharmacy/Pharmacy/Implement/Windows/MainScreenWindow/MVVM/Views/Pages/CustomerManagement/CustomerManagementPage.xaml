@@ -94,7 +94,7 @@
                                     Value="True" />
 
                             <Setter Property="FontSize"
-                                    Value="{StaticResource FontSizeLarge}" />
+                                    Value="{Binding FontSizeOV.FontSizeLarge, ElementName=CustomerManagementPageVM}" />
 
                             <Setter Property="Foreground"
                                     Value="Black" />
@@ -173,7 +173,7 @@
                                     Value="Center" />
 
                             <Setter Property="FontSize"
-                                    Value="{StaticResource FontSizeXLarge}" />
+                                    Value="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}" />
 
                         </Style>
 
@@ -259,37 +259,37 @@
                                             </Grid.ColumnDefinitions>
 
                                             <hps:OsirisButton Grid.Column="1"
-                                                            IconStretch="Uniform"
-                                                            Background="White"
-                                                            IsUsingDropShadowEffect="True"
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center"
-                                                            BorderThickness="0"
-                                                            Command="{Binding EditButtonCommand,ElementName=CustomerManagementPageVM}"
-                                                            CommandParameter="{Binding ElementName=CustomerDataGrid}"
-                                                            IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+                                                              IconStretch="Uniform"
+                                                              Background="White"
+                                                              IsUsingDropShadowEffect="True"
+                                                              HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"
+                                                              BorderThickness="0"
+                                                              Command="{Binding EditButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              CommandParameter="{Binding ElementName=CustomerDataGrid}"
+                                                              IconSource="{StaticResource UserManagementPage_EditUserRow}" />
 
                                             <hps:OsirisButton Grid.Column="3"
-                                                            BorderThickness="0"
-                                                            HorizontalAlignment="Center"
-                                                            IsUsingDropShadowEffect="True"
-                                                            Background="White"
-                                                            VerticalAlignment="Center"
-                                                            IconStretch="Uniform"
-                                                            Command="{Binding DeleteButtonCommand,ElementName=CustomerManagementPageVM}"
-                                                            CommandParameter="{Binding ElementName=CustomerDataGrid}"
-                                                            IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+                                                              BorderThickness="0"
+                                                              HorizontalAlignment="Center"
+                                                              IsUsingDropShadowEffect="True"
+                                                              Background="White"
+                                                              VerticalAlignment="Center"
+                                                              IconStretch="Uniform"
+                                                              Command="{Binding DeleteButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              CommandParameter="{Binding ElementName=CustomerDataGrid}"
+                                                              IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
 
                                             <hps:OsirisButton Grid.Column="5"
-                                                            BorderThickness="0"
-                                                            HorizontalAlignment="Center"
-                                                            IsUsingDropShadowEffect="True"
-                                                            Background="White"
-                                                            VerticalAlignment="Center"
-                                                            IconStretch="Uniform"
-                                                            Command="{Binding HistoryButtonCommand,ElementName=CustomerManagementPageVM}"
-                                                            CommandParameter="{Binding ElementName=CustomerDataGrid}"
-                                                            IconSource="{StaticResource CustomerManagementPage_History}" />
+                                                              BorderThickness="0"
+                                                              HorizontalAlignment="Center"
+                                                              IsUsingDropShadowEffect="True"
+                                                              Background="White"
+                                                              VerticalAlignment="Center"
+                                                              IconStretch="Uniform"
+                                                              Command="{Binding HistoryButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              CommandParameter="{Binding ElementName=CustomerDataGrid}"
+                                                              IconSource="{StaticResource CustomerManagementPage_History}" />
 
                                         </Grid>
                                     </Border>
@@ -310,23 +310,24 @@
                 <ColumnDefinition Width="6.27*" />
                 <ColumnDefinition Width="1.015*" />
                 <ColumnDefinition Width="0.13*" />
-                <ColumnDefinition Width="1.015*" />
-                <ColumnDefinition Width="0.13*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0.33*" />
             </Grid.ColumnDefinitions>
 
             <hps:OsirisButton Margin="0,5,0,20"
-                            Grid.Column="3"
-                            TextContent="+ Thêm mới"
-                            ProgressSpinnerSize="30"
-                            ProgressSpinnerBackground="Black"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            BorderThickness="0"
-                            Command="{Binding AddNewCustomerButtonCommand}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            IsUsingDropShadowEffect="True"
-                            Foreground="White"
-                            Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                              Grid.Column="3"
+                              Padding="10,0,10,0"
+                              TextContent="+ Thêm mới"
+                              ProgressSpinnerSize="30"
+                              ProgressSpinnerBackground="Black"
+                              FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                              BorderThickness="0"
+                              Command="{Binding AddNewCustomerButtonCommand}"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              IsUsingDropShadowEffect="True"
+                              Foreground="White"
+                              Background="{StaticResource NormalTheme_1st_Background_Brush}" />
 
         </Grid>
     </Grid>

@@ -24,7 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
         public MedicineManagementPage()
         {
             InitializeComponent();
-            DataContext = new MedicineManagementPageViewModel();
+            //DataContext = new MedicineManagementPageViewModel();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)

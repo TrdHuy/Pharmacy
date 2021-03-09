@@ -34,6 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private Visibility _currentPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _newPasswordAwareTextBlockVisibility = Visibility.Collapsed;
         private Visibility _verifiedPasswordAwareTextBlockVisibility = Visibility.Collapsed;
+        private string _currentInputPassword = "";
         private string _newPassword = "";
         private string _verifiedPassword = "";
         private string _newPasswordAwareTextBlockContent = "";
@@ -202,10 +203,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         }
         public string CurrentPassword
         {
-            get { return CurrentUser.Password; }
+            get { return _currentInputPassword; }
             set
             {
-                CurrentUser.Password = value;
+                _currentInputPassword = value;
                 InvalidateOwn();
             }
         }
