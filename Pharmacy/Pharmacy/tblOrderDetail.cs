@@ -20,6 +20,7 @@ namespace Pharmacy
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public long OrderID { get; set; }
+        public double PromoPercent { get; set; }
         public bool IsActive { get; set; }
     
         public virtual tblMedicine tblMedicine { get; set; }

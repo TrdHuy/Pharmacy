@@ -17,9 +17,9 @@ namespace Pharmacy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblMedicine()
         {
-            this.tblOrderDetails = new HashSet<tblOrderDetail>();
             this.tblPromoes = new HashSet<tblPromo>();
             this.tblWarehouseImportDetails = new HashSet<tblWarehouseImportDetail>();
+            this.tblOrderDetails = new HashSet<tblOrderDetail>();
         }
     
         public string MedicineID { get; set; }
@@ -36,11 +36,11 @@ namespace Pharmacy
         public virtual tblMedicineUnit tblMedicineUnit { get; set; }
         public virtual tblSupplier tblSupplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrderDetail> tblOrderDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPromo> tblPromoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderDetail> tblOrderDetails { get; set; }
 
         public override string ToString()
         {

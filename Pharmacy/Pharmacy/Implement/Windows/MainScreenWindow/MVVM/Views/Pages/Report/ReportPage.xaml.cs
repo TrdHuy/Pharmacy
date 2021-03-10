@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Report
 {
@@ -23,16 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Report
         public ReportPage()
         {
             InitializeComponent();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            ReportPageDataContext?.EventCommandOV?.ReportPageLoaded.Execute(sender, e, mcChart);
-        }
-
-        private void mcChart_SelectionCategoryAxixLabelChanged(object sender, System.Windows.Controls.DataVisualization.Charting.SelectedItemChangedEventArg e)
-        {
-            ReportPageDataContext?.EventCommandOV?.ChartAxisLabelSelectionChanged.Execute(sender, e);
+            DataContext = new ReportPageViewModel();
         }
     }
 }

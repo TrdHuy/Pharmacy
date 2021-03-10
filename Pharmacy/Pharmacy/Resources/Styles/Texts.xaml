@@ -5,7 +5,7 @@
                     xmlns:aprop="clr-namespace:Pharmacy.Implement.UIEventHandler.AttachedProperty"
                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
                     xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls">
-   
+
     <Style TargetType="{x:Type TextBlock}"
            x:Key="SpinningText">
         <Setter Property="HorizontalAlignment"

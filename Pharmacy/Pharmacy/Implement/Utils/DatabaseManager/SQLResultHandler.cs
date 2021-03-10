@@ -5,6 +5,7 @@ using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagement.Cu
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.InvoiceManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.OtherPaymentsManagement;
+using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Report;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.Selling;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.SupplierManagement;
 using Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement;
@@ -186,6 +187,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_ORDERS_CMD_KEY:
                     _result = new GetAllActiveCustomerOrdersAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_ORDERS_BY_DATE_CMD_KEY:
+                    _result = new GetAllActiveCustomerOrdersByDateAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -336,6 +340,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for get all active customer order
         public const string GET_ALL_ACTIVE_CUSTOMER_ORDERS_CMD_KEY = "get_all_active_customer_orders";
+
+        //Key for get all active customer order
+        public const string GET_ALL_ACTIVE_CUSTOMER_ORDERS_BY_DATE_CMD_KEY = "get_all_active_customer_orders_by_date";
     }
 
     public class SQLQueryResult

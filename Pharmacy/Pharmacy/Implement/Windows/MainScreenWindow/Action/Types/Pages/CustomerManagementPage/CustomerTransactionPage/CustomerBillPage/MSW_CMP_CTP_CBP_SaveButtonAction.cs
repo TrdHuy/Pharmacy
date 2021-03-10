@@ -91,7 +91,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         Quantity = Convert.ToDouble(ov.Quantity),
                         TotalPrice = ov.TotalPrice,
                         UnitPrice = ov.UnitPrice,
-                        MedicineID = ov.MedicineID
+                        MedicineID = ov.MedicineID,
+                        PromoPercent = ov.PromoPercent
                     };
                     _viewModel.CurrentCustomerOrder.tblOrderDetails.Add(newOD);
                     _viewModel.CurrentCustomerOrder.TotalPrice += newOD.TotalPrice;

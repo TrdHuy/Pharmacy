@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="PharmacyDBModel.tblMedicineType" Width="1.5" PointX="0.75" PointY="3.625" />
         <EntityTypeShape EntityType="PharmacyDBModel.tblMedicineUnit" Width="1.5" PointX="0.75" PointY="10.125" />
         <EntityTypeShape EntityType="PharmacyDBModel.tblOrder" Width="1.5" PointX="3" PointY="17.25" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblOrderDetail" Width="1.5" PointX="5.25" PointY="6.5" />
         <EntityTypeShape EntityType="PharmacyDBModel.tblOtherPayment" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="PharmacyDBModel.tblPromo" Width="1.5" PointX="8.25" PointY="6.625" />
         <EntityTypeShape EntityType="PharmacyDBModel.tblSupplier" Width="1.5" PointX="0.75" PointY="6.5" />
@@ -22,13 +21,14 @@
         <AssociationConnector Association="PharmacyDBModel.FK__tblMedici__Medic__308E3499" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblMedici__Medic__318258D2" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblMedici__Suppl__32767D0B" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Medic__42ACE4D4" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblPromo__Medici__382F5661" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Medic__3B0BC30C" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblOrder__UserID__345EC57D" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Order__41B8C09B" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Suppl__39237A9A" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Impor__3A179ED3" />
+        <EntityTypeShape EntityType="PharmacyDBModel.tblOrderDetail" Width="1.5" PointX="5.25" PointY="14.875" />
+        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Medic__55BFB948" />
+        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Order__54CB950F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

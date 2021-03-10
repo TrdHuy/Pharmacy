@@ -77,7 +77,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                         Quantity = Convert.ToDouble(vo.Quantity),
                         TotalPrice = vo.TotalPrice,
                         UnitPrice = vo.UnitPrice,
-                        MedicineID = vo.MedicineID
+                        MedicineID = vo.MedicineID,
+                        PromoPercent = vo.PromoPercent
                     };
                     _newOrder.tblOrderDetails.Add(oD);
                 }

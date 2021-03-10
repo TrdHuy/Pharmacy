@@ -72,6 +72,7 @@
           <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="PromoPercent" Type="float" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblOtherPayment">
@@ -207,7 +208,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblOrderD__Medic__42ACE4D4">
+        <Association Name="FK__tblOrderD__Medic__55BFB948">
           <End Role="tblMedicine" Type="Self.tblMedicine" Multiplicity="1" />
           <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,7 +220,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblOrderD__Order__41B8C09B">
+        <Association Name="FK__tblOrderD__Order__54CB950F">
           <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="1" />
           <End Role="tblOrderDetail" Type="Self.tblOrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -324,11 +325,11 @@
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblOrder" EntitySet="tblOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblOrderD__Medic__42ACE4D4" Association="Self.FK__tblOrderD__Medic__42ACE4D4">
+          <AssociationSet Name="FK__tblOrderD__Medic__55BFB948" Association="Self.FK__tblOrderD__Medic__55BFB948">
             <End Role="tblMedicine" EntitySet="tblMedicine" />
             <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblOrderD__Order__41B8C09B" Association="Self.FK__tblOrderD__Order__41B8C09B">
+          <AssociationSet Name="FK__tblOrderD__Order__54CB950F" Association="Self.FK__tblOrderD__Order__54CB950F">
             <End Role="tblOrder" EntitySet="tblOrder" />
             <End Role="tblOrderDetail" EntitySet="tblOrderDetail" />
           </AssociationSet>
@@ -363,7 +364,6 @@
           <EntitySet Name="tblMedicineTypes" EntityType="PharmacyDBModel.tblMedicineType" />
           <EntitySet Name="tblMedicineUnits" EntityType="PharmacyDBModel.tblMedicineUnit" />
           <EntitySet Name="tblOrders" EntityType="PharmacyDBModel.tblOrder" />
-          <EntitySet Name="tblOrderDetails" EntityType="PharmacyDBModel.tblOrderDetail" />
           <EntitySet Name="tblOtherPayments" EntityType="PharmacyDBModel.tblOtherPayment" />
           <EntitySet Name="tblPromoes" EntityType="PharmacyDBModel.tblPromo" />
           <EntitySet Name="tblSuppliers" EntityType="PharmacyDBModel.tblSupplier" />
@@ -390,10 +390,6 @@
             <End Role="tblSupplier" EntitySet="tblSuppliers" />
             <End Role="tblMedicine" EntitySet="tblMedicines" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblOrderD__Medic__42ACE4D4" Association="PharmacyDBModel.FK__tblOrderD__Medic__42ACE4D4">
-            <End Role="tblMedicine" EntitySet="tblMedicines" />
-            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblPromo__Medici__382F5661" Association="PharmacyDBModel.FK__tblPromo__Medici__382F5661">
             <End Role="tblMedicine" EntitySet="tblMedicines" />
             <End Role="tblPromo" EntitySet="tblPromoes" />
@@ -406,10 +402,6 @@
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblOrder" EntitySet="tblOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblOrderD__Order__41B8C09B" Association="PharmacyDBModel.FK__tblOrderD__Order__41B8C09B">
-            <End Role="tblOrder" EntitySet="tblOrders" />
-            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblWareho__Suppl__39237A9A" Association="PharmacyDBModel.FK__tblWareho__Suppl__39237A9A">
             <End Role="tblSupplier" EntitySet="tblSuppliers" />
             <End Role="tblWarehouseImport" EntitySet="tblWarehouseImports" />
@@ -417,6 +409,15 @@
           <AssociationSet Name="FK__tblWareho__Impor__3A179ED3" Association="PharmacyDBModel.FK__tblWareho__Impor__3A179ED3">
             <End Role="tblWarehouseImport" EntitySet="tblWarehouseImports" />
             <End Role="tblWarehouseImportDetail" EntitySet="tblWarehouseImportDetails" />
+          </AssociationSet>
+          <EntitySet Name="tblOrderDetails" EntityType="PharmacyDBModel.tblOrderDetail" />
+          <AssociationSet Name="FK__tblOrderD__Medic__55BFB948" Association="PharmacyDBModel.FK__tblOrderD__Medic__55BFB948">
+            <End Role="tblMedicine" EntitySet="tblMedicines" />
+            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblOrderD__Order__54CB950F" Association="PharmacyDBModel.FK__tblOrderD__Order__54CB950F">
+            <End Role="tblOrder" EntitySet="tblOrders" />
+            <End Role="tblOrderDetail" EntitySet="tblOrderDetails" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblCustomer">
@@ -449,9 +450,9 @@
           <NavigationProperty Name="tblMedicineType" Relationship="PharmacyDBModel.FK__tblMedici__Medic__308E3499" FromRole="tblMedicine" ToRole="tblMedicineType" />
           <NavigationProperty Name="tblMedicineUnit" Relationship="PharmacyDBModel.FK__tblMedici__Medic__318258D2" FromRole="tblMedicine" ToRole="tblMedicineUnit" />
           <NavigationProperty Name="tblSupplier" Relationship="PharmacyDBModel.FK__tblMedici__Suppl__32767D0B" FromRole="tblMedicine" ToRole="tblSupplier" />
-          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Medic__42ACE4D4" FromRole="tblMedicine" ToRole="tblOrderDetail" />
           <NavigationProperty Name="tblPromoes" Relationship="PharmacyDBModel.FK__tblPromo__Medici__382F5661" FromRole="tblMedicine" ToRole="tblPromo" />
           <NavigationProperty Name="tblWarehouseImportDetails" Relationship="PharmacyDBModel.FK__tblWareho__Medic__3B0BC30C" FromRole="tblMedicine" ToRole="tblWarehouseImportDetail" />
+          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Medic__55BFB948" FromRole="tblMedicine" ToRole="tblOrderDetail" />
         </EntityType>
         <EntityType Name="tblMedicineType">
           <Key>
@@ -487,21 +488,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblCustomer" Relationship="PharmacyDBModel.FK__tblOrder__Custom__336AA144" FromRole="tblOrder" ToRole="tblCustomer" />
           <NavigationProperty Name="tblUser" Relationship="PharmacyDBModel.FK__tblOrder__UserID__345EC57D" FromRole="tblOrder" ToRole="tblUser" />
-          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Order__41B8C09B" FromRole="tblOrder" ToRole="tblOrderDetail" />
-        </EntityType>
-        <EntityType Name="tblOrderDetail">
-          <Key>
-            <PropertyRef Name="OrderDetailID" />
-          </Key>
-          <Property Name="OrderDetailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MedicineID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="Double" Nullable="false" />
-          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="OrderID" Type="Int64" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblOrderD__Medic__42ACE4D4" FromRole="tblOrderDetail" ToRole="tblMedicine" />
-          <NavigationProperty Name="tblOrder" Relationship="PharmacyDBModel.FK__tblOrderD__Order__41B8C09B" FromRole="tblOrderDetail" ToRole="tblOrder" />
+          <NavigationProperty Name="tblOrderDetails" Relationship="PharmacyDBModel.FK__tblOrderD__Order__54CB950F" FromRole="tblOrder" ToRole="tblOrderDetail" />
         </EntityType>
         <EntityType Name="tblOtherPayment">
           <Key>
@@ -645,18 +632,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblOrderD__Medic__42ACE4D4">
-          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="1" />
-          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMedicine">
-              <PropertyRef Name="MedicineID" />
-            </Principal>
-            <Dependent Role="tblOrderDetail">
-              <PropertyRef Name="MedicineID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblPromo__Medici__382F5661">
           <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="1" />
           <End Type="PharmacyDBModel.tblPromo" Role="tblPromo" Multiplicity="*" />
@@ -693,18 +668,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblOrderD__Order__41B8C09B">
-          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="1" />
-          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblOrder">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="tblOrderDetail">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblWareho__Suppl__39237A9A">
           <End Type="PharmacyDBModel.tblSupplier" Role="tblSupplier" Multiplicity="1" />
           <End Type="PharmacyDBModel.tblWarehouseImport" Role="tblWarehouseImport" Multiplicity="*" />
@@ -726,6 +689,45 @@
             </Principal>
             <Dependent Role="tblWarehouseImportDetail">
               <PropertyRef Name="ImportID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblOrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MedicineID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <Property Name="PromoPercent" Type="Double" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblMedicine" Relationship="PharmacyDBModel.FK__tblOrderD__Medic__55BFB948" FromRole="tblOrderDetail" ToRole="tblMedicine" />
+          <NavigationProperty Name="tblOrder" Relationship="PharmacyDBModel.FK__tblOrderD__Order__54CB950F" FromRole="tblOrderDetail" ToRole="tblOrder" />
+        </EntityType>
+        <Association Name="FK__tblOrderD__Medic__55BFB948">
+          <End Type="PharmacyDBModel.tblMedicine" Role="tblMedicine" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="tblOrderDetail">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblOrderD__Order__54CB950F">
+          <End Type="PharmacyDBModel.tblOrder" Role="tblOrder" Multiplicity="1" />
+          <End Type="PharmacyDBModel.tblOrderDetail" Role="tblOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrder">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="tblOrderDetail">
+              <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -794,19 +796,6 @@
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="OrderTime" ColumnName="OrderTime" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblOrderDetails">
-            <EntityTypeMapping TypeName="PharmacyDBModel.tblOrderDetail">
-              <MappingFragment StoreEntitySet="tblOrderDetail">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
-                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -886,6 +875,20 @@
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
                 <ScalarProperty Name="ImportDetailID" ColumnName="ImportDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderDetails">
+            <EntityTypeMapping TypeName="PharmacyDBModel.tblOrderDetail">
+              <MappingFragment StoreEntitySet="tblOrderDetail">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PromoPercent" ColumnName="PromoPercent" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -139,7 +139,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                         Quantity = orderDetail.Quantity,
                         UnitPrice = orderDetail.UnitPrice,
                         TotalPrice = orderDetail.TotalPrice,
-                        PromoPercent = GetPromo(orderDetail.tblMedicine)
+                        PromoPercent = orderDetail.PromoPercent
                     };
                     CurrentOrderDetails.Add(oDOV);
                 }
@@ -168,25 +168,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             _sqlCmdObserver = new SQLQueryCustodian(SQLGetMedicineQueryCallback);
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY
                     , _sqlCmdObserver);
-        }
-
-        private double GetPromo(tblMedicine medicine)
-        {
-            tblPromo appliedPromo = new tblPromo();
-            var customer = CurrentCustomerOrder.tblCustomer;
-            if (customer != null)
-            {
-                foreach (tblPromo promo in customer.tblPromoes)
-                {
-                    if (promo.MedicineID == medicine.MedicineID)
-                    {
-                        appliedPromo = promo;
-                        break;
-                    }
-                }
-            }
-
-            return appliedPromo.PromoPercent;
         }
 
         private void SQLGetMedicineQueryCallback(SQLQueryResult queryResult)

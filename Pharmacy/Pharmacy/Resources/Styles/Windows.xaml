@@ -24,9 +24,9 @@
     <Style TargetType="{x:Type cctrl:DashboardWindow}"
            x:Key="DefaultDashboardStyle">
         <Setter Property="AllowsTransparency"
-                Value="True" />
+                Value="False" />
         <Setter Property="Background"
-                Value="Transparent" />
+                Value="White" />
         <Setter Property="TitleBarBackground"
                 Value="{StaticResource default_title_bar_background_dashboard_window}" />
         <Setter Property="WindowStyle"
