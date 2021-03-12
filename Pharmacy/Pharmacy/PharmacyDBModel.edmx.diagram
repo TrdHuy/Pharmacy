@@ -26,10 +26,10 @@
         <AssociationConnector Association="PharmacyDBModel.FK__tblOrder__UserID__345EC57D" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Suppl__39237A9A" />
         <AssociationConnector Association="PharmacyDBModel.FK__tblWareho__Impor__3A179ED3" />
-        <EntityTypeShape EntityType="PharmacyDBModel.tblOrderDetail" Width="1.5" PointX="5.25" PointY="14.875" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Medic__55BFB948" />
-        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Order__54CB950F" />
-      </Diagram>
+        <EntityTypeShape EntityType="PharmacyDBModel.tblOrderDetail" Width="1.5" PointX="5.25" PointY="14.75" />
+        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Medic__68D28DBC" />
+        <AssociationConnector Association="PharmacyDBModel.FK__tblOrderD__Order__67DE6983" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -102,5 +102,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
                 InvalidateOwn();
             }
         }
+        public decimal UnitBidPrice { get; set; }
     }
 }

@@ -190,6 +190,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_ORDERS_BY_DATE_CMD_KEY:
                     _result = new GetAllActiveCustomerOrdersByDateAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_CMD_KEY:
+                    _result = new GetInfoForComprehensiveReportAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -343,6 +346,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for get all active customer order
         public const string GET_ALL_ACTIVE_CUSTOMER_ORDERS_BY_DATE_CMD_KEY = "get_all_active_customer_orders_by_date";
+
+        //Key for get all info for Comprehensive report
+        public const string GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_CMD_KEY = "get_all_active_info_for_comprehensive_report";
     }
 
     public class SQLQueryResult

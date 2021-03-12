@@ -204,7 +204,7 @@
                                     Header="Loại"
                                     Binding="{Binding PaymentType, Converter={conv:OtherPaymentTypeToStringConverter}}" />
 
-                <DataGridTextColumn Width="*"
+                <DataGridTextColumn Width="1.5*"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Nội dung"
                                     Binding="{Binding PaymentContent}">

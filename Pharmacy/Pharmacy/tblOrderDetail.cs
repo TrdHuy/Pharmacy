@@ -18,6 +18,7 @@ namespace Pharmacy
         public string MedicineID { get; set; }
         public double Quantity { get; set; }
         public decimal UnitPrice { get; set; }
+        public decimal UnitBidPrice { get; set; }
         public decimal TotalPrice { get; set; }
         public long OrderID { get; set; }
         public double PromoPercent { get; set; }

@@ -109,6 +109,53 @@
                     <TextBlock Text="Báo cáo tổng hợp"
                                Style="{StaticResource HeaderTextBlockStyle}" />
                 </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1"
+                          HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Text="Từ ngày: " />
+                        <cc:DatePickerCustom Grid.Column="1"
+                                             SelectedDate="{Binding ComprehensiveReportStartDate}" />
+                        <TextBlock Grid.Column="2"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"
+                                   Text="Đến ngày: " />
+                        <cc:DatePickerCustom Grid.Column="3"
+                                             SelectedDate="{Binding ComprehensiveReportEndDate}" />
+                        <hps:OsirisButton Padding="5"
+                                          Margin="10,0"
+                                          Grid.Column="4"
+                                          TextContent="Tạo báo cáo"
+                                          IsBusy="{Binding IsInitComprehensiveReportButtonRunning}"
+                                          ProgressSpinnerSize="30"
+                                          ProgressSpinnerBackground="Black"
+                                          BorderThickness="0"
+                                          HorizontalContentAlignment="Center"
+                                          VerticalContentAlignment="Center"
+                                          IsUsingDropShadowEffect="True"
+                                          Command="{Binding InitComprehensiveReportButtonCommand}"
+                                          CommandParameter="{Binding ElementName=ComprehensiveReport}"
+                                          Foreground="White"
+                                          Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                    </Grid>
+                    <WindowsFormsHost Grid.Row="2"
+                                      Margin="10">
+                        <report:ReportViewer x:Name="ComprehensiveReport" />
+                    </WindowsFormsHost>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

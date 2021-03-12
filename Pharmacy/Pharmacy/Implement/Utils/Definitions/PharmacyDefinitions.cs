@@ -30,6 +30,8 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly int UPDATE_CUSTOMER_ORDER_DEATAIL_DELAY_TIME = 1000;
         public static readonly int ADD_NEW_OTHER_PAYMENT_DELAY_TIME = 1000;
         public static readonly int MODIFY_OTHER_PAYMENT_DELAY_TIME = 1000;
+        public static readonly int GET_ALL_ACTIVE_CUSTOMER_ORDERS_BY_DATE_DELAY_TIME = 1000;
+        public static readonly int GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_DELAY_TIME = 1000;
 
         public const string HOME_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Home/HomePage.xaml";
         public const string SELLING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Selling/SellingPage.xaml";

@@ -78,7 +78,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                         TotalPrice = vo.TotalPrice,
                         UnitPrice = vo.UnitPrice,
                         MedicineID = vo.MedicineID,
-                        PromoPercent = vo.PromoPercent
+                        PromoPercent = vo.PromoPercent,
+                        UnitBidPrice = vo.UnitBidPrice
                     };
                     _newOrder.tblOrderDetails.Add(oD);
                 }

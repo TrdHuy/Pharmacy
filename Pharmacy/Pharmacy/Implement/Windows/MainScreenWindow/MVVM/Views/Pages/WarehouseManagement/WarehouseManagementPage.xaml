@@ -200,13 +200,13 @@
                                     Binding="{Binding SupplierName}" />
 
                 <DataGridTemplateColumn CanUserResize="False"
-                                        Width="*"
+                                        Width="1.5*"
                                         Header="Danh sách thuốc">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border>
                                 <ListBox ItemsSource="{Binding tblWarehouseImportDetails}"
-                                         FontSize="{Binding FontSizeOV.FontSizeSmall}">
+                                         FontSize="{Binding FontSizeOV.FontSizeSmall}" Background="Transparent">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"

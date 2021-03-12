@@ -185,5 +185,6 @@
 
         //Report page key string
         public const string KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON = "msw_rp_init_selling_report_button";
+        public const string KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON = "msw_rp_init_comprehensive_report_button";
     }
 }

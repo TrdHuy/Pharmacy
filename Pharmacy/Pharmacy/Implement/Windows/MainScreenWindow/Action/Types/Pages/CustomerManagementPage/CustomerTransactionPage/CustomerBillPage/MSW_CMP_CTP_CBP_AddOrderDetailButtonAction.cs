@@ -60,6 +60,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 orderDetailVO.MedicineUnitName = _viewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
                 orderDetailVO.Quantity = Convert.ToDouble(_viewModel.MedicineOV.Quantity);
                 orderDetailVO.UnitPrice = _viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
+                orderDetailVO.UnitBidPrice = _viewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
                 GetPromo(orderDetailVO);
                 orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(_viewModel.MedicineOV.Quantity) *
                    Convert.ToDouble(_viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *

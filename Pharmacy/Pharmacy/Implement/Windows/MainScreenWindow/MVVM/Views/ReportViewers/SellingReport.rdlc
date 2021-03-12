@@ -879,7 +879,7 @@
 		</TablixRowHierarchy>
 		<FixedColumnHeaders>true</FixedColumnHeaders>
 		<DataSetName>DataSet1</DataSetName>
-		<Top>0.67708in</Top>
+		<Top>1.17708in</Top>
 		<Left>0.3125in</Left>
 		<Height>0.65625in</Height>
 		<Width>7.41666in</Width>
@@ -980,65 +980,205 @@
 		  <PaddingBottom>2pt</PaddingBottom>
 		</Style>
 	  </Textbox>
+	  <Textbox Name="Textbox2">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>Tổng tiền:</Value>
+				<Style>
+				  <FontWeight>Bold</FontWeight>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style />
+		  </Paragraph>
+		</Paragraphs>
+		<rd:DefaultName>Textbox2</rd:DefaultName>
+		<Top>0.62014in</Top>
+		<Left>4.73958in</Left>
+		<Height>0.25in</Height>
+		<Width>1.20833in</Width>
+		<ZIndex>3</ZIndex>
+		<Style>
+		  <Border>
+			<Style>None</Style>
+		  </Border>
+		  <PaddingLeft>2pt</PaddingLeft>
+		  <PaddingRight>2pt</PaddingRight>
+		  <PaddingTop>2pt</PaddingTop>
+		  <PaddingBottom>2pt</PaddingBottom>
+		</Style>
+	  </Textbox>
+	  <Textbox Name="Textbox3">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>Tổng lợi nhuận:</Value>
+				<Style>
+				  <FontWeight>Bold</FontWeight>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style />
+		  </Paragraph>
+		</Paragraphs>
+		<rd:DefaultName>Textbox3</rd:DefaultName>
+		<Top>0.88403in</Top>
+		<Left>4.73958in</Left>
+		<Height>0.25in</Height>
+		<Width>1.20833in</Width>
+		<ZIndex>4</ZIndex>
+		<Style>
+		  <Border>
+			<Style>None</Style>
+		  </Border>
+		  <PaddingLeft>2pt</PaddingLeft>
+		  <PaddingRight>2pt</PaddingRight>
+		  <PaddingTop>2pt</PaddingTop>
+		  <PaddingBottom>2pt</PaddingBottom>
+		</Style>
+	  </Textbox>
+	  <Textbox Name="Textbox4">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>=Format(CDec(Parameters!TongTien.Value), "#,##0")</Value>
+				<Style>
+				  <Color>Red</Color>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style>
+			  <TextAlign>Right</TextAlign>
+			</Style>
+		  </Paragraph>
+		</Paragraphs>
+		<rd:DefaultName>Textbox2</rd:DefaultName>
+		<Top>0.62014in</Top>
+		<Left>6.01735in</Left>
+		<Height>0.25in</Height>
+		<Width>1.71181in</Width>
+		<ZIndex>5</ZIndex>
+		<Style>
+		  <Border>
+			<Style>None</Style>
+		  </Border>
+		  <PaddingLeft>2pt</PaddingLeft>
+		  <PaddingRight>2pt</PaddingRight>
+		  <PaddingTop>2pt</PaddingTop>
+		  <PaddingBottom>2pt</PaddingBottom>
+		</Style>
+	  </Textbox>
+	  <Textbox Name="Textbox5">
+		<CanGrow>true</CanGrow>
+		<KeepTogether>true</KeepTogether>
+		<Paragraphs>
+		  <Paragraph>
+			<TextRuns>
+			  <TextRun>
+				<Value>=Format(CDec(Parameters!LoiNhuan.Value), "#,##0")</Value>
+				<Style>
+				  <Color>Red</Color>
+				</Style>
+			  </TextRun>
+			</TextRuns>
+			<Style>
+			  <TextAlign>Right</TextAlign>
+			</Style>
+		  </Paragraph>
+		</Paragraphs>
+		<rd:DefaultName>Textbox3</rd:DefaultName>
+		<Top>0.88403in</Top>
+		<Left>6.01735in</Left>
+		<Height>0.25in</Height>
+		<Width>1.71181in</Width>
+		<ZIndex>6</ZIndex>
+		<Style>
+		  <Border>
+			<Style>None</Style>
+		  </Border>
+		  <PaddingLeft>2pt</PaddingLeft>
+		  <PaddingRight>2pt</PaddingRight>
+		  <PaddingTop>2pt</PaddingTop>
+		  <PaddingBottom>2pt</PaddingBottom>
+		</Style>
+	  </Textbox>
 	</ReportItems>
-	<Height>1.33333in</Height>
+	<Height>1.83333in</Height>
 	<Style />
   </Body>
   <Width>8.03958in</Width>
   <Page>
-	<PageFooter>
-	  <Height>0.41542in</Height>
-	  <PrintOnFirstPage>true</PrintOnFirstPage>
-	  <PrintOnLastPage>true</PrintOnLastPage>
-	  <ReportItems>
-		<Textbox Name="Textbox1">
-		  <CanGrow>true</CanGrow>
-		  <KeepTogether>true</KeepTogether>
-		  <Paragraphs>
-			<Paragraph>
-			  <TextRuns>
-				<TextRun>
-				  <Value>=Globals!PageNumber &amp;"/"&amp; Globals!TotalPages</Value>
-				  <Style />
-				</TextRun>
-			  </TextRuns>
-			  <Style>
-				<TextAlign>Right</TextAlign>
-			  </Style>
-			</Paragraph>
-		  </Paragraphs>
-		  <rd:DefaultName>Textbox1</rd:DefaultName>
-		  <Top>0.11334in</Top>
-		  <Left>6.72916in</Left>
-		  <Height>0.25in</Height>
-		  <Width>1in</Width>
-		  <Style>
-			<Border>
-			  <Style>None</Style>
-			</Border>
-			<PaddingLeft>2pt</PaddingLeft>
-			<PaddingRight>2pt</PaddingRight>
-			<PaddingTop>2pt</PaddingTop>
-			<PaddingBottom>2pt</PaddingBottom>
-		  </Style>
-		</Textbox>
-	  </ReportItems>
-	  <Style>
-		<Border>
-		  <Style>None</Style>
-		</Border>
-	  </Style>
-	</PageFooter>
-	<PageHeight>5.83in</PageHeight>
-	<PageWidth>8.27in</PageWidth>
-	<LeftMargin>0.1in</LeftMargin>
-	<RightMargin>0.1in</RightMargin>
-	<TopMargin>0.1in</TopMargin>
-	<BottomMargin>0.1in</BottomMargin>
-	<Style />
-  </Page>
+        <PageFooter>
+          <Height>0.41542in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!PageNumber &amp;"/"&amp; Globals!TotalPages</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.11334in</Top>
+              <Left>6.72916in</Left>
+              <Height>0.25in</Height>
+              <Width>1in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>5.83in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
+        <LeftMargin>0.1in</LeftMargin>
+        <RightMargin>0.1in</RightMargin>
+        <TopMargin>0.1in</TopMargin>
+        <BottomMargin>0.1in</BottomMargin>
+        <Style />
+      </Page>
   <ReportParameters>
     <ReportParameter Name="NgayBaoCao">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TongTien">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="LoiNhuan">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
