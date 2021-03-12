@@ -40,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                return IsOrderDetailsModified || 
+                return IsOrderDetailsModified ||
                     CurrentCustomerOrder.PurchasePrice != MedicineOV?.PaidAmount;
             }
         }
@@ -139,7 +139,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                         Quantity = orderDetail.Quantity,
                         UnitPrice = orderDetail.UnitPrice,
                         TotalPrice = orderDetail.TotalPrice,
-                        PromoPercent = orderDetail.PromoPercent
+                        PromoPercent = orderDetail.PromoPercent,
+                        UnitBidPrice = orderDetail.UnitBidPrice
                     };
                     CurrentOrderDetails.Add(oDOV);
                 }

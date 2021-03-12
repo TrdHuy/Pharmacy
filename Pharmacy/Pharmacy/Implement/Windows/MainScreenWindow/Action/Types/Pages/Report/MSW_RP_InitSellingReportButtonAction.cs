@@ -50,12 +50,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
             {
                 PharmacyDBDataSet.CustomerOrdersDataTable tbl = new PharmacyDBDataSet.CustomerOrdersDataTable();
                 int index = 0;
+                decimal finalIncome = 0;
+                decimal finalProfit = 0;
                 foreach (tblOrder item in queryResult.Result as List<tblOrder>)
                 {
                     foreach (var itemDetail in item.tblOrderDetails)
                     {
-                        decimal totalPrice = ((decimal)itemDetail.Quantity * itemDetail.tblMedicine.AskingPrice * (decimal)(100 - itemDetail.PromoPercent) / 100);
-                        decimal totalProfit = totalPrice - (decimal)itemDetail.Quantity * itemDetail.tblMedicine.BidPrice;
+                        decimal totalPrice = itemDetail.TotalPrice;
+                        decimal totalProfit = totalPrice - (decimal)itemDetail.Quantity * itemDetail.UnitBidPrice;
+
+                        finalIncome += totalPrice;
+                        finalProfit += totalProfit;
 
                         tbl.AddCustomerOrdersRow(item.OrderID + "",
                             item.OrderTime.ToString("dd/MM/yyyy HH:mm"),
@@ -81,9 +86,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
 
                 _reportViewer.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingReport.rdlc");
 
-                ReportParameter[] reportParameters = new ReportParameter[1];
+                ReportParameter[] reportParameters = new ReportParameter[3];
                 reportParameters[0] = new ReportParameter("NgayBaoCao",
                     "Từ " + _viewModel.SellingReportStartDate.ToString("dd/MM/yyyy") + " đến " + _viewModel.SellingReportEndDate.ToString("dd/MM/yyyy"));
+                reportParameters[1] = new ReportParameter("TongTien",finalIncome.ToString());
+                reportParameters[2] = new ReportParameter("LoiNhuan",finalProfit.ToString());
                 _reportViewer.LocalReport.SetParameters(reportParameters);
 
                 _reportViewer.SetDisplayMode(DisplayMode.PrintLayout);

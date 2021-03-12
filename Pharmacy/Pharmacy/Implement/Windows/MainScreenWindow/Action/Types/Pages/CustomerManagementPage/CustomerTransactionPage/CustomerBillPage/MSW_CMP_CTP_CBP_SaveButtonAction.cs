@@ -92,7 +92,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         TotalPrice = ov.TotalPrice,
                         UnitPrice = ov.UnitPrice,
                         MedicineID = ov.MedicineID,
-                        PromoPercent = ov.PromoPercent
+                        PromoPercent = ov.PromoPercent,
+                        UnitBidPrice = ov.UnitBidPrice
                     };
                     _viewModel.CurrentCustomerOrder.tblOrderDetails.Add(newOD);
                     _viewModel.CurrentCustomerOrder.TotalPrice += newOD.TotalPrice;

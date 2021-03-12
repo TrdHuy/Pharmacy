@@ -382,6 +382,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON:
                     action = new MSW_RP_InitSellingReportButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON:
+                    action = new MSW_RP_InitComprehensiveReportButtonAction();
+                    break;
                 default:
                     action = null;
                     break;

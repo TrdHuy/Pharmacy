@@ -71,7 +71,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
             TotalDebt = LstDebt.Where(o => o.DebtType == "Nợ").Sum(o => o.PurchasedDebt);
             PurchasedDebt = LstDebt.Where(o => o.DebtType == "Trả").Sum(o => o.PurchasedDebt);
-            GrossDebt = TotalDebt - PurchasedDebt;
+            GrossDebt = TotalDebt + PurchasedDebt;
         }
 
         private void ShowInvoiceButtonClickEvent(object paramaters)
