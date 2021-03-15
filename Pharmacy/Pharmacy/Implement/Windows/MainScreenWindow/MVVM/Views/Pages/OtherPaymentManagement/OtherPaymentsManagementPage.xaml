@@ -237,26 +237,30 @@
                                     </Grid.ColumnDefinitions>
 
                                     <hps:OsirisButton Grid.Column="1"
-                                                      IconStretch="Uniform"
-                                                      Background="White"
                                                       IsUsingDropShadowEffect="True"
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
                                                       Command="{Binding DataContext.EditOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
-                                                      IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+                                                      Background="Transparent"
+                                                      Foreground="Black"
+                                                      FontFamily="{StaticResource FontAwesome}"
+                                                      FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=OtherPaymentManagement}"
+                                                      TextContent="&#xf040;" />
 
                                     <hps:OsirisButton Grid.Column="3"
                                                       BorderThickness="0"
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
-                                                      Background="White"
                                                       VerticalAlignment="Center"
-                                                      IconStretch="Uniform"
                                                       Command="{Binding DataContext.DeleteOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
-                                                      IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+                                                      Background="Transparent"
+                                                      Foreground="Red"
+                                                      FontFamily="{StaticResource FontAwesome}"
+                                                      FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=OtherPaymentManagement}"
+                                                      TextContent="&#xf00d;" />
 
                                     <TextBlock Grid.Column="5"
                                                VerticalAlignment="Center">

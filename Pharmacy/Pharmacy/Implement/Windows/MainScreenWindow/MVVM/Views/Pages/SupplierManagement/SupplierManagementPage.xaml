@@ -214,37 +214,43 @@
                                     </Grid.ColumnDefinitions>
 
                                     <hps:OsirisButton Grid.Column="1"
-                                                      IconStretch="Uniform"
-                                                      Background="White"
                                                       IsUsingDropShadowEffect="True"
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
                                                       Command="{Binding DataContext.EditSupplierButtonCommand,ElementName=PageSupplierManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
-                                                      IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+                                                      Background="Transparent"
+                                                      Foreground="Black"
+                                                      FontFamily="{StaticResource FontAwesome}"
+                                                      FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=PageSupplierManagement}"
+                                                      TextContent="&#xf040;" />
 
                                     <hps:OsirisButton Grid.Column="3"
                                                       BorderThickness="0"
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
-                                                      Background="White"
                                                       VerticalAlignment="Center"
-                                                      IconStretch="Uniform"
                                                       Command="{Binding DataContext.DeleteSupplierButtonCommand,ElementName=PageSupplierManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
-                                                      IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+                                                      Background="Transparent"
+                                                      Foreground="Red"
+                                                      FontFamily="{StaticResource FontAwesome}"
+                                                      FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=PageSupplierManagement}"
+                                                      TextContent="&#xf00d;" />
 
                                     <hps:OsirisButton Grid.Column="5"
                                                       BorderThickness="0"
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
-                                                      Background="White"
                                                       VerticalAlignment="Center"
-                                                      IconStretch="Uniform"
                                                       Command="{Binding DataContext.ShowImportHistoryButtonCommand,ElementName=PageSupplierManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
-                                                      IconSource="{StaticResource HomePage_InvoiceManageIcon}" />
+                                                      Background="Transparent"
+                                                      Foreground="Blue"
+                                                      FontFamily="{StaticResource FontAwesome}"
+                                                      FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=PageSupplierManagement}"
+                                                      TextContent="&#xf155;" />
 
                                 </Grid>
                             </Border>

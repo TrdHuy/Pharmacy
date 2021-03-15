@@ -262,6 +262,7 @@
                                                 <ColumnDefinition Width="0.2*" />
                                                 <ColumnDefinition Width="0.5*" />
                                                 <ColumnDefinition Width="0.2*" />
+                                                <ColumnDefinition Width="auto" />
                                             </Grid.ColumnDefinitions>
 
                                             <hps:OsirisButton Grid.Column="1"
@@ -272,7 +273,7 @@
                                                               Foreground="Black"
                                                               Command="{Binding ButtonCommandOV.EditOrderButtonCommand, ElementName=InvoiceManagementPageDataContext}"
                                                               VerticalAlignment="Center"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge,ElementName=InvoiceManagementPageDataContext}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=InvoiceManagementPageDataContext}"
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf040;" />
 
@@ -284,9 +285,22 @@
                                                               Foreground="Red"
                                                               Command="{Binding ButtonCommandOV.DeleteOrderButtonCommand, ElementName=InvoiceManagementPageDataContext}"
                                                               VerticalAlignment="Center"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge,ElementName=InvoiceManagementPageDataContext}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=InvoiceManagementPageDataContext}"
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf00d;" />
+
+                                            <hps:OsirisButton Grid.Column="5"
+                                                              Background="Transparent"
+                                                              BorderThickness="0"
+                                                              HorizontalAlignment="Right"
+                                                              VerticalContentAlignment="Center"
+                                                              TextDecor="Underline"
+                                                              Foreground="#008AE0"
+                                                              VerticalAlignment="Center"
+                                                              FontSize="{Binding FontSizeOV.FontSizeRegular,ElementName=InvoiceManagementPageDataContext}"
+                                                              TextContent="Xem hóa đơn"
+                                                              Command="{Binding BillDisplayButtonCommand}"
+                                                              FontStyle="Italic" />
                                         </Grid>
                                     </Border>
                                 </DataTemplate>

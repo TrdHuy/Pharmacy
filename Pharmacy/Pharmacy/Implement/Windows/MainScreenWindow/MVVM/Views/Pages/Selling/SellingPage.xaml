@@ -589,12 +589,14 @@
                                                                       BorderThickness="0"
                                                                       HorizontalAlignment="Center"
                                                                       IsUsingDropShadowEffect="True"
-                                                                      Background="White"
                                                                       VerticalAlignment="Center"
-                                                                      IconStretch="Uniform"
+                                                                      Background="Transparent"
+                                                                      FontFamily="{StaticResource FontAwesome}"
+                                                                      FontSize="{Binding FontSizeOV.FontSizeXXLarge,ElementName=SellingPageDataContext}"
+                                                                      TextContent="&#xf00d;"
+                                                                      Foreground="Red"
                                                                       Command="{Binding RemoveOrderDetailCommand, ElementName=SellingPageDataContext}"
-                                                                      CommandParameter="{Binding ElementName=OrderDetailDataGrid}"
-                                                                      IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+                                                                      CommandParameter="{Binding ElementName=OrderDetailDataGrid}"/>
 
                                                 </Grid>
                                             </Border>

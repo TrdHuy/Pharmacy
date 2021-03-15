@@ -248,26 +248,29 @@
                                             </Grid.ColumnDefinitions>
 
                                             <hps:OsirisButton Grid.Column="1"
-                                                              IconStretch="Uniform"
-                                                              Background="White"
+                                                              Background="Transparent"
                                                               IsUsingDropShadowEffect="True"
                                                               HorizontalAlignment="Center"
                                                               VerticalAlignment="Center"
                                                               BorderThickness="0"
+                                                              FontFamily="{StaticResource FontAwesome}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=UserManagementPageVM}"
+                                                              TextContent="&#xf040;"
                                                               Command="{Binding EditButtonCommand,ElementName=UserManagementPageVM}"
-                                                              CommandParameter="{Binding ElementName=UserDataGrid}"
-                                                              IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+                                                              CommandParameter="{Binding ElementName=UserDataGrid}" />
 
                                             <hps:OsirisButton Grid.Column="3"
                                                               BorderThickness="0"
                                                               HorizontalAlignment="Center"
                                                               IsUsingDropShadowEffect="True"
-                                                              Background="White"
+                                                              Background="Transparent"
+                                                              Foreground="Red"
                                                               VerticalAlignment="Center"
-                                                              IconStretch="Uniform"
+                                                              FontFamily="{StaticResource FontAwesome}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=UserManagementPageVM}"
+                                                              TextContent="&#xf00d;"
                                                               Command="{Binding DeleteUserButtonCommand,ElementName=UserManagementPageVM}"
-                                                              CommandParameter="{Binding ElementName=UserDataGrid}"
-                                                              IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+                                                              CommandParameter="{Binding ElementName=UserDataGrid}"/>
 
                                         </Grid>
                                     </Border>

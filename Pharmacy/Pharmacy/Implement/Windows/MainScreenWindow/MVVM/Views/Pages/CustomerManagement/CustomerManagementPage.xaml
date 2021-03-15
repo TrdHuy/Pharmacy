@@ -260,36 +260,43 @@
 
                                             <hps:OsirisButton Grid.Column="1"
                                                               IconStretch="Uniform"
-                                                              Background="White"
                                                               IsUsingDropShadowEffect="True"
                                                               HorizontalAlignment="Center"
-                                                              VerticalAlignment="Center"
                                                               BorderThickness="0"
                                                               Command="{Binding EditButtonCommand,ElementName=CustomerManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}"
-                                                              IconSource="{StaticResource UserManagementPage_EditUserRow}" />
+                                                              Background="Transparent"
+                                                              FontFamily="{StaticResource FontAwesome}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
+                                                              TextContent="&#xf040;"
+                                                              VerticalAlignment="Center" />
 
                                             <hps:OsirisButton Grid.Column="3"
                                                               BorderThickness="0"
                                                               HorizontalAlignment="Center"
                                                               IsUsingDropShadowEffect="True"
-                                                              Background="White"
                                                               VerticalAlignment="Center"
                                                               IconStretch="Uniform"
                                                               Command="{Binding DeleteButtonCommand,ElementName=CustomerManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}"
-                                                              IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
+                                                              Background="Transparent"
+                                                              Foreground="Red"
+                                                              FontFamily="{StaticResource FontAwesome}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
+                                                              TextContent="&#xf00d;" />
 
                                             <hps:OsirisButton Grid.Column="5"
                                                               BorderThickness="0"
                                                               HorizontalAlignment="Center"
                                                               IsUsingDropShadowEffect="True"
-                                                              Background="White"
+                                                              Background="Transparent"
+                                                              Foreground="Blue"
+                                                              FontFamily="{StaticResource FontAwesome}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
+                                                              TextContent="&#xf155;"
                                                               VerticalAlignment="Center"
-                                                              IconStretch="Uniform"
                                                               Command="{Binding HistoryButtonCommand,ElementName=CustomerManagementPageVM}"
-                                                              CommandParameter="{Binding ElementName=CustomerDataGrid}"
-                                                              IconSource="{StaticResource CustomerManagementPage_History}" />
+                                                              CommandParameter="{Binding ElementName=CustomerDataGrid}" />
 
                                         </Grid>
                                     </Border>
