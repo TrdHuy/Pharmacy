@@ -166,6 +166,7 @@
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
+    <Compile Include="Implement\Utils\Extensions\LocalReportExtensions.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetInfoForComprehensiveReportAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetAllActiveCustomerOrdersByDateAction.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
@@ -811,6 +812,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\ComprehensiveReport.rdlc" />
+    <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingInvoice.rdlc" />
     <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingReport.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

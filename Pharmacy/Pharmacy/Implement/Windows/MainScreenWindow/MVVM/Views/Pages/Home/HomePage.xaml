@@ -57,7 +57,7 @@
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource AppIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
-                                      TextContent="Bán thuốc"
+                                      TextContent="  Bán thuốc"
                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                       OBContentOrientation="Vertical"
                                       IconHeight="100"
