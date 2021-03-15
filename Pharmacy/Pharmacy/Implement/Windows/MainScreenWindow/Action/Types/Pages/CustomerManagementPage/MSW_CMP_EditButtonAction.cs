@@ -7,6 +7,7 @@ using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage
 {

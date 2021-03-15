@@ -7,7 +7,8 @@
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement"
+      xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
       mc:Ignorable="d"
       Title="CustomerManagementPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -71,18 +72,23 @@
             <Grid x:Name="MainDataGridPanel"
                   Grid.Row="1">
 
-                <DataGrid x:Name="CustomerDataGrid"
-                          IsReadOnly="True"
-                          VerticalAlignment="Top"
-                          CanUserAddRows="False"
-                          CanUserDeleteRows="False"
-                          AutoGenerateColumns="False"
-                          ItemsSource="{Binding CustomerItemSource}"
-                          Margin="20,0,20,0"
-                          MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
-                          HorizontalGridLinesBrush="White"
-                          VerticalGridLinesBrush="White"
-                          HeadersVisibility="Column">
+                <cc:BusyDataGrid x:Name="CustomerDataGrid"
+                                 IsReadOnly="True"
+                                 VerticalAlignment="Top"
+                                 CanUserAddRows="False"
+                                 WaitingIconSource="{StaticResource AppIcon}"
+                                 IsBusy="{Binding IsDataGridLoading}"
+                                 CanUserDeleteRows="False"
+                                 AutoGenerateColumns="False"
+                                 Height="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
+                                 ItemsSource="{Binding CustomerItemSource}"
+                                 Margin="20,0,20,0"
+                                 HorizontalGridLinesBrush="White"
+                                 VerticalGridLinesBrush="White"
+                                 HeadersVisibility="Column"
+                                 VerticalScrollBarVisibility="Visible"
+                                 HorizontalScrollBarVisibility="Hidden"
+                                 Style="{StaticResource DefaultBusyDataGridStyle}">
                     <DataGrid.Resources>
 
                         <Style TargetType="DataGridCell"
@@ -263,7 +269,7 @@
                                                               IsUsingDropShadowEffect="True"
                                                               HorizontalAlignment="Center"
                                                               BorderThickness="0"
-                                                              Command="{Binding EditButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              Command="{Binding ButtonCommandOV.EditButtonCommand,ElementName=CustomerManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}"
                                                               Background="Transparent"
                                                               FontFamily="{StaticResource FontAwesome}"
@@ -277,7 +283,7 @@
                                                               IsUsingDropShadowEffect="True"
                                                               VerticalAlignment="Center"
                                                               IconStretch="Uniform"
-                                                              Command="{Binding DeleteButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              Command="{Binding ButtonCommandOV.DeleteButtonCommand,ElementName=CustomerManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}"
                                                               Background="Transparent"
                                                               Foreground="Red"
@@ -295,7 +301,7 @@
                                                               FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
                                                               TextContent="&#xf155;"
                                                               VerticalAlignment="Center"
-                                                              Command="{Binding HistoryButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              Command="{Binding ButtonCommandOV.HistoryButtonCommand,ElementName=CustomerManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}" />
 
                                         </Grid>
@@ -305,7 +311,7 @@
                         </DataGridTemplateColumn>
 
                     </DataGrid.Columns>
-                </DataGrid>
+                </cc:BusyDataGrid>
 
             </Grid>
 
@@ -329,7 +335,7 @@
                               ProgressSpinnerBackground="Black"
                               FontSize="{Binding FontSizeOV.FontSizeLarge}"
                               BorderThickness="0"
-                              Command="{Binding AddNewCustomerButtonCommand}"
+                              Command="{Binding ButtonCommandOV.AddNewCustomerButtonCommand}"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               IsUsingDropShadowEffect="True"

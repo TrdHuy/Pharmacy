@@ -2,7 +2,9 @@
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage.OVs
 {
-    public class MSW_CMP_CTP_CBP_ButtonCommandOV : BaseViewModel
+    public class MSW_CMP_CTP_CBP_ButtonCommandOV : MSW_ButtonCommandOV
     {
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private static Logger L = new Logger("MSW_CMP_CTP_CBP_ButtonCommandOV");
         private bool _isAddOrderDeatailButtonRunning;
         private bool _isSaveButtonRunning;
 
@@ -58,70 +60,43 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand RefreshOrderDetaisButtonCommand { get; set; }
 
+        protected override Logger logger => L;
+
         public MSW_CMP_CTP_CBP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            EditEnablerButtonCommand = new RunInputCommand(EditEnablerButtonClickEvent);
-            AddNewOrderDetailButtonCommand = new RunInputCommand(AddNewOrderDetailButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            DeleteOrderDetailButtonCommand = new RunInputCommand(DeleteOrderDetailButtonClickEvent);
-            RefreshOrderDetaisButtonCommand = new RunInputCommand(RefreshOrderDetaisButtonClickEvent);
-        }
+            EditEnablerButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
+                    , paramaters);
+            });
 
-        private void RefreshOrderDetaisButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
-                , dataTransfer);
-        }
+            AddNewOrderDetailButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                IsAddOrderDeatailButtonRunning = true;
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
+                    , paramaters
+                    , new FactoryLocker(LockReason.TaskHandling, true));
+            });
 
-        private void EditEnablerButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
-                , dataTransfer);
-        }
+            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                IsSaveButtonRunning = true;
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
+                    , paramaters
+                    , new FactoryLocker(LockReason.TaskHandling, true));
+            });
 
+            DeleteOrderDetailButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON
+                    , paramaters);
+            });
 
-        private void AddNewOrderDetailButtonClickEvent(object paramaters)
-        {
-            IsAddOrderDeatailButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
-                , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
-        }
-
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
-        }
-
-
-        private void DeleteOrderDetailButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON
-                , dataTransfer);
+            RefreshOrderDetaisButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
+                    , paramaters);
+            });
         }
 
     }

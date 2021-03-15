@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerM
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ((CustomerManagementPageViewModel)DataContext).SearchTextChangedCommand.Execute(sender, e, CustomerDataGrid, this);
+            ((CustomerManagementPageViewModel)DataContext).EventCommandOV.SearchTextChangedCommand.Execute(sender, e, CustomerDataGrid, this);
         }
     }
 }
