@@ -629,7 +629,8 @@
                                              Text="{Binding OrderDescription}"
                                              VerticalContentAlignment="Top"
                                              Tag="Thêm ghi chú tại đây"
-                                             FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                                             FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                                             TextWrapping="Wrap"/>
                             <Grid Grid.Column="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -781,6 +782,7 @@
                                   ProgressSpinnerBackground="Black"
                                   ProgressSpinnerSize="30"
                                   Command="{Binding InstantiateOrderCommand}"
+                                  CommandParameter="{Binding ElementName=SellingReport}"
                                   Background="{StaticResource NormalTheme_1st_Background_Brush}"
                                   FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                   IsUsingDropShadowEffect="True"
