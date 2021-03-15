@@ -13,14 +13,14 @@
       x:Name="OtherPaymentManagement"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="OtherPaymentsManagementPage">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
                            MaxHeight="{StaticResource PageHeaderMaxHeight}" />
-            <RowDefinition Height="0.37*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="4.64*" />
             <RowDefinition Height="0.70*"
                            MaxHeight="100" />
@@ -45,6 +45,7 @@
                           Margin="5,0,0,0"
                           VerticalContentAlignment="Center"
                           SelectedIndex="0"
+                          IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           Style="{StaticResource HorusBoxCustomNormalTheme}"
                           SelectionChanged="cbxFilterText_SelectionChanged"
                           IsUsingListFilter="False"
@@ -92,7 +93,8 @@
                             Value="True" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeLarge}" />
+                            Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:OtherPaymentsManagementPage},Mode=FindAncestor}}" />
 
                     <Setter Property="Foreground"
                             Value="Black" />
@@ -172,8 +174,9 @@
                             Value="Center" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeXLarge}" />
-
+                            Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:OtherPaymentsManagementPage},Mode=FindAncestor}}" />
+                    
                 </Style>
 
             </DataGrid.ColumnHeaderStyle>
@@ -290,7 +293,7 @@
                               Background="{StaticResource NormalTheme_1st_Background_Brush}"
                               Foreground="White"
                               Margin="10,0"
-                              Padding="5"
+                              Padding="30,0,30,0"
                               Command="{Binding AddNewOtherPaymentButtonCommand}" />
         </Grid>
     </Grid>

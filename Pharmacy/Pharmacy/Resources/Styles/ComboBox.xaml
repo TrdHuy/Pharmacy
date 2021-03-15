@@ -33,7 +33,7 @@
         <Setter Property="BorderBrush"
                 Value="Black" />
         <Setter Property="BorderThickness"
-                Value="0,0,0,2" />
+                Value="0,0,0,1" />
         <Setter Property="DropDownIcon"
                 Value="{StaticResource DropDownIcon}" />
         <Setter Property="Background"
@@ -46,8 +46,6 @@
                 Value="False" />
         <Setter Property="IsEditable"
                 Value="True" />
-        <Setter Property="IconHeight"
-                Value="20" />
     </Style>
 
     <Style TargetType="{x:Type hps:HorusBox}"

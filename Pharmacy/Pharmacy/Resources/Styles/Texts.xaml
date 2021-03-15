@@ -100,8 +100,6 @@
                 Value="#FF000000" />
         <Setter Property="BorderThickness"
                 Value="1" />
-        <Setter Property="TextWrapping"
-                Value="Wrap" />
         <Setter Property="Background"
                 Value="White" />
         <Setter Property="Foreground"

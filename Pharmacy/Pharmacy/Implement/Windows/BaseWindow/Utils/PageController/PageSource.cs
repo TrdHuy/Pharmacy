@@ -43,6 +43,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Utils.PageController
         CUSTOMER_DEBT_PAGE = 431,
         CUSTOMER_BILL_PAGE = 432,
 
-
+        // Page index for PopupScreenWindow
+        DAILY_REPORT_DETAIL_PAGE = 1000
     }
 }

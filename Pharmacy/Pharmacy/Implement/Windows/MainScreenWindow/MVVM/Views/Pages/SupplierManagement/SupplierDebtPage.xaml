@@ -12,7 +12,7 @@
       x:Name="SupplierDebt"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="SupplierDebtPage">
 
     <Grid>
@@ -82,7 +82,8 @@
                             Value="True" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeLarge}" />
+                            Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:SupplierDebtPage},Mode=FindAncestor}}" />
 
                     <Setter Property="Foreground"
                             Value="Black" />
@@ -162,7 +163,8 @@
                             Value="Center" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeXLarge}" />
+                            Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:SupplierDebtPage},Mode=FindAncestor}}" />
 
                 </Style>
 
@@ -229,8 +231,8 @@
               Margin="10,0,10,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8.93*" />
-                <ColumnDefinition Width="1.8*" />
-                <ColumnDefinition Width="1.8*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
@@ -311,6 +313,7 @@
                               TextContent="Quay lại"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
+                              Padding="20,0,20,0"
                               VerticalContentAlignment="Center"
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
@@ -318,7 +321,9 @@
                               Foreground="White" />
             <hps:OsirisButton Margin="0,5,0,0"
                               Grid.Column="1"
+                              Padding="30,0,30,0"
                               Grid.Row="2"
+                              OBTextVerticalAlignment="Center"
                               TextContent="In công nợ"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
@@ -332,8 +337,7 @@
                               IconStretch="Uniform"
                               IconWidth="30"
                               IconHeight="30"
-                              IconTextGapWidth="5"
-                              Padding="5" />
+                              IconTextGapWidth="5" />
         </Grid>
     </Grid>
 </Page>

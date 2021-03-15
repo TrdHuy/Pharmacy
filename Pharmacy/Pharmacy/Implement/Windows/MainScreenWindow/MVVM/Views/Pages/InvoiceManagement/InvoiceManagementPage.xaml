@@ -40,7 +40,7 @@
         <Grid Grid.Row="2">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.09*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.01*" />
                 <RowDefinition Height="0.9*" />
             </Grid.RowDefinitions>
@@ -52,9 +52,9 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="0.6*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.2*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="0.1*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Tìm kiếm: "

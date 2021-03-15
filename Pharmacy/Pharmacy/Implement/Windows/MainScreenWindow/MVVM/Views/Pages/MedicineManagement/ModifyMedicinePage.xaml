@@ -5,12 +5,13 @@
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement"
       x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement.ModifyMedicinePage"
       mc:Ignorable="d"
       Background="White"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="MedicineManagementPage">
     <Grid>
         <Grid.RowDefinitions>
@@ -40,79 +41,74 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="407*" />
+                <ColumnDefinition Width="10*" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="174*" />
                 <ColumnDefinition Width="234*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.4*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.4*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.4*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.4*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.4*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.4*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.4*" />
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,3,7"
                        Text="Mã thuốc:*" />
 
             <TextBlock Grid.Column="0"
                        Grid.Row="2"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,4,7"
                        Text="Tên thuốc:*" />
 
             <TextBlock Grid.Column="0"
                        Grid.Row="4"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,3,7"
                        Text="Loại thuốc:*" />
 
             <TextBlock Grid.Column="0"
                        Grid.Row="6"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,4,7"
                        Text="Đơn vị tính:*" />
 
             <TextBlock Grid.Column="0"
                        Grid.Row="8"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,2,7"
                        Text="Nhà cung cấp:*" />
 
-            <TextBlock Grid.Column="2"
-                       Grid.Row="0"
+            <TextBlock Grid.Column="0"
+                       Grid.Row="10"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,3,7"
                        Text="Giá mua vào:*" />
 
-            <TextBlock Grid.Column="2"
-                       Grid.Row="2"
+            <TextBlock Grid.Column="0"
+                       Grid.Row="12"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
-                       Margin="0,7,2,7"
                        Text="Giá bán ra:*" />
 
-            <TextBlock Grid.Column="2"
-                       Grid.Row="4"
+            <TextBlock Grid.Column="3"
+                       Grid.Row="8"
                        VerticalAlignment="Top"
-                       HorizontalAlignment="Right"
-                       Margin="0,3,3,0"
+                       HorizontalAlignment="Left"
                        Text="Ghi chú:" />
 
             <TextBox VerticalContentAlignment="Center"
@@ -164,7 +160,7 @@
             <hps:HorusBox x:Name="cbxMedicineType"
                           Grid.Column="1"
                           Grid.Row="4"
-                          IconHeight="20"
+                          IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           ItemsSource="{Binding LstMedicineType}"
                           DisplayMemberPath="MedicineTypeName"
                           SelectedIndex="{Binding MedicineTypeID, UpdateSourceTrigger=PropertyChanged}"
@@ -202,7 +198,7 @@
             <hps:HorusBox VerticalContentAlignment="Center"
                           Grid.Column="1"
                           Grid.Row="6"
-                          IconHeight="20"
+                          IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           ItemsSource="{Binding LstMedicineUnit}"
                           DisplayMemberPath="MedicineUnitName"
                           SelectedIndex="{Binding MedicineUnitID, UpdateSourceTrigger=PropertyChanged}"
@@ -240,7 +236,7 @@
             <hps:HorusBox VerticalContentAlignment="Center"
                           Grid.Column="1"
                           Grid.Row="8"
-                          IconHeight="20"
+                          IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           ItemsSource="{Binding LstSupplier}"
                           DisplayMemberPath="SupplierName"
                           SelectedIndex="{Binding SupplierID, UpdateSourceTrigger=PropertyChanged}"
@@ -278,13 +274,12 @@
             <hps:AkerTextBox AkerExpenseUnit="VND"
                              AkerTextBoxType="Expense"
                              VerticalContentAlignment="Center"
-                             Grid.Column="3"
-                             Grid.Row="0"
+                             Grid.Column="1"
+                             Grid.Row="10"
                              BorderThickness="2"
                              BorderBrush="Black"
                              AkerExpense="{Binding BidPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="3"
-                             Grid.ColumnSpan="2" />
+                             Margin="3" />
 
             <TextBlock Grid.Row="1"
                        Grid.Column="3"
@@ -317,13 +312,12 @@
             <hps:AkerTextBox AkerExpenseUnit="VND"
                              AkerTextBoxType="Expense"
                              VerticalContentAlignment="Center"
-                             Grid.Column="3"
-                             Grid.Row="2"
+                             Grid.Column="1"
+                             Grid.Row="12"
                              BorderThickness="2"
                              BorderBrush="Black"
                              AkerExpense="{Binding AskingPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="3"
-                             Grid.ColumnSpan="2" />
+                             Margin="3" />
 
             <TextBlock Grid.Row="3"
                        Grid.Column="3"
@@ -354,10 +348,10 @@
             </TextBlock>
 
             <Grid Grid.Column="3"
-                  Grid.Row="4"
-                  Grid.RowSpan="6"
+                  Grid.Row="09"
+                  Grid.RowSpan="4"
                   Margin="3"
-                  Grid.ColumnSpan="2">
+                  Grid.ColumnSpan="3">
                 <TextBox x:Name="txtMedicineDescription"
                          TextWrapping="Wrap"
                          BorderThickness="2"
@@ -365,8 +359,8 @@
                          BorderBrush="Black" />
             </Grid>
 
-            <TextBlock Grid.Column="0"
-                       Grid.Row="10"
+            <TextBlock Grid.Column="3"
+                       Grid.Row="0"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Right"
                        Margin="0,3,3,0"
@@ -374,9 +368,10 @@
 
             <DataGrid x:Name="DataGrid"
                       IsReadOnly="True"
-                      Grid.Row="11"
-                      Grid.Column="0"
+                      Grid.Row="1"
+                      Grid.Column="3"
                       Grid.ColumnSpan="5"
+                      Grid.RowSpan="5"
                       VerticalAlignment="Top"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
@@ -396,7 +391,9 @@
                                 Value="True" />
 
                         <Setter Property="FontSize"
-                                Value="{StaticResource FontSizeLarge}" />
+                                Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:ModifyMedicinePage},Mode=FindAncestor}}" />
+
 
                         <Setter Property="Foreground"
                                 Value="Black" />
@@ -476,7 +473,8 @@
                                 Value="Center" />
 
                         <Setter Property="FontSize"
-                                Value="{StaticResource FontSizeXLarge}" />
+                                Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:ModifyMedicinePage},Mode=FindAncestor}}" />
 
                     </Style>
 
@@ -517,11 +515,11 @@
               Margin="10,0,10,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8.99*" />
-                <ColumnDefinition Width="1.77*" />
-                <ColumnDefinition Width="1.77*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <hps:OsirisButton Margin="0,5,10,0"
-                              Grid.Column="1"
+            <hps:OsirisButton Grid.Column="1"
                               TextContent="Quay lại"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
@@ -529,10 +527,9 @@
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
-                              MaxHeight="100"
+                              Padding="10,0,10,0"
                               Foreground="White" />
-            <hps:OsirisButton Margin="0,5,10,0"
-                              Grid.Column="3"
+            <hps:OsirisButton Grid.Column="3"
                               TextContent="Lưu"
                               IsBusy="{Binding IsSaveButtonRunning}"
                               ProgressSpinnerSize="30"
@@ -544,7 +541,7 @@
                               IsUsingDropShadowEffect="True"
                               Command="{Binding SaveButtonCommand}"
                               Foreground="White"
-                              MaxHeight="100"
+                              Padding="10,0,10,0"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
     </Grid>

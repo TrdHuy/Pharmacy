@@ -5,6 +5,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.BaseWindow.MVVM.Models.VOs;
+using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
@@ -129,17 +130,4 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
 
     }
 
-    internal class PageSourceWatcher : Base.Observable.ObserverPattern.IObserver<PageVO>
-    {
-        private Action<PageVO> OnPageSourceChange;
-
-        internal PageSourceWatcher(Action<PageVO> onSourceChange)
-        {
-            OnPageSourceChange = onSourceChange;
-        }
-        public void Update(PageVO value)
-        {
-            OnPageSourceChange?.Invoke(value);
-        }
-    }
 }

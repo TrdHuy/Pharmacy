@@ -40,6 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>8.0</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -83,9 +84,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.0.28.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="HPSolutionCCDevPackage.netFramework, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.0.28\HPSolutionCCDevPackage.netFramework.dll</HintPath>
+      <HintPath>..\outsource packages\HPSolutionCCDevPackage.1.1.1\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions">
       <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -171,8 +172,11 @@
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetInfoForComprehensiveReportAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetAllActiveCustomerOrdersByDateAction.cs" />
+    <Compile Include="Implement\Utils\CustomControls\DestroyablePage\DestroyablePage.cs" />
+    <Compile Include="Implement\Utils\CustomControls\DestroyablePage\IDestroyable.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSource.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSourceWatcher.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_InitComprehensiveReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_InitSellingReportButtonAction.cs" />
@@ -498,13 +502,17 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
-    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPage.xaml.cs">
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml.cs">
       <DependentUpon>DailyReportDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\PopupScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\PopupScreenWindow.xaml.cs">
       <DependentUpon>PopupScreenWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\PopupScreenWindow\Utils\PSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\Utils\PSW_PageController.cs" />
     <Compile Include="PharmacyDBDataSet.cs">
       <DependentUpon>PharmacyDBDataSet.xsd</DependentUpon>
@@ -740,7 +748,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPage.xaml">
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

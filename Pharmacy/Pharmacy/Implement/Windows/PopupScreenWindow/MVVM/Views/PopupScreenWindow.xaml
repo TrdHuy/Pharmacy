@@ -12,21 +12,19 @@
                        WindowStyle="None"
                        BorderBrush="{StaticResource NormalTheme_MessageBox_Border_Brush}"
                        BorderThickness="1"
-                       MinHeight="{StaticResource DefaultPopupWindowHeight}"
-                       MinWidth="{StaticResource DefaultPopupWindowWidth}"
-                       Width="{StaticResource DefaultPopupWindowWidth}"
-                       Height="{StaticResource DefaultPopupWindowHeight}"
+                       DataContextChanged="OnDataContextChanged"
+                       MinHeight="{Binding WindowHeight}"
+                       MinWidth="{Binding WindowWidth}"
+                       Height="{Binding WindowHeight}"
+                       Width="{Binding WindowWidth}"
                        Style="{StaticResource DefaultDashboardStyle}"
                        Title="PopupWindow"
-                       PageSource="{Binding CurrentPageSource,Mode=TwoWay}"
+                       Content="{Binding Content,Mode=TwoWay}"
                        ContentType="NormalContentType"
                        IsEnableMenuTab="False"
                        WindowStartupLocation="CenterScreen"
                        WaitingIconSource="{StaticResource AppIconNoCrop}"
                        PageLoadingDelayTime="{Binding PageLoadingDelayTime}">
     
-    <cctrl:DashboardWindow.DataContext>
-        <vm:PopupScreenWindowViewModel />
-    </cctrl:DashboardWindow.DataContext>
 
 </cctrl:DashboardWindow>

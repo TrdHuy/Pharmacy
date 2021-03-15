@@ -54,6 +54,7 @@
                                       Grid.Column="1"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      OBTextHorizontalAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource AppIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
@@ -73,6 +74,7 @@
                                       Grid.Column="2"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      OBTextHorizontalAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource HomePage_UserManageIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
@@ -92,6 +94,7 @@
                                       Grid.Column="3"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      OBTextHorizontalAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource HomePage_CustomerManageIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
@@ -112,6 +115,7 @@
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
+                                      OBTextHorizontalAlignment="Center"
                                       IconSource="{StaticResource HomePage_MedicineManageIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
                                       TextContent="Quản lý thuốc"
@@ -130,6 +134,7 @@
                                       Grid.Column="0"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      OBTextHorizontalAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource HomePage_SupplierManageIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
@@ -149,6 +154,7 @@
                                       Grid.Column="0"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      OBTextHorizontalAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource HomePage_WarehouseManageIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
@@ -170,6 +176,7 @@
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource HomePage_InvoiceManageIcon}"
+                                      OBTextHorizontalAlignment="Center"
                                       FontFamily="{StaticResource VNFOswald}"
                                       TextContent="Quản lý hóa đơn"
                                       FontSize="{Binding FontSizeOV.FontSizeXLarge}"
@@ -185,6 +192,7 @@
                                       Command="{Binding OtherPaymentsManagementCommand}"
                                       Grid.Row="1"
                                       Grid.Column="1"
+                                      OBTextHorizontalAlignment="Center"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
@@ -206,6 +214,7 @@
                                       Grid.Column="2"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
+                                      OBTextHorizontalAlignment="Center"
                                       IsUsingDropShadowEffect="True"
                                       IconSource="{StaticResource HomePage_ReportIcon}"
                                       FontFamily="{StaticResource VNFOswald}"
@@ -299,7 +308,8 @@
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="0.3*" />
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="1">
@@ -376,9 +386,10 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="6*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="0.5*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="0.3*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding CurrentUser.Username}"
                                        Grid.Column="1"

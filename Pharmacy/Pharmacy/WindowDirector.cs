@@ -79,7 +79,7 @@ namespace Pharmacy
                 _loginWindow = value;
             }
         }
-        
+
         #endregion
 
         #region Public properties
@@ -120,7 +120,7 @@ namespace Pharmacy
                 _notifyIcon.ContextMenuStrip.Items.Add("Thoát").Click += ExitApplication;
             }
         }
-        
+
 
         private void CloseMainScreenWindow(object obj)
         {
@@ -311,14 +311,17 @@ namespace Pharmacy
 
         public void ShowPopupScreenWindow(PopupScreenWindowViewModel dataContext)
         {
-            PopupScreenWindow popup = new PopupScreenWindow();
-            popup.DataContext = dataContext;
+            PopupScreenWindow popup = new PopupScreenWindow()
+            {
+                DataContext = dataContext
+            };
+
             popup.CloseWindowCommand = new RunInputCommand(ClosePopupWindown);
             _popupScreenWindows.Add(popup);
-            
+
             popup.Show();
         }
-        
+
         public void ShowDialogPopupScreenWindow(PopupScreenWindowViewModel dataContext)
         {
             PopupScreenWindow popup = new PopupScreenWindow();
@@ -333,13 +336,13 @@ namespace Pharmacy
         {
             var ctrl = paramater as PopupScreenWindow;
 
-            if(ctrl != null)
+            if (ctrl != null)
             {
                 _popupScreenWindows.Remove(ctrl);
                 ctrl.ForceClose();
             }
         }
 
-       
+
     }
 }

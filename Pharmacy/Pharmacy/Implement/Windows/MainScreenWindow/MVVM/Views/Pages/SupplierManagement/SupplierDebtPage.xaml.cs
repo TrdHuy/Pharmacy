@@ -23,8 +23,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierM
     {
         public SupplierDebtPage()
         {
-            InitializeComponent();
             DataContext = new SupplierDebtPageViewModel();
+            InitializeComponent();
         }
     }
 }

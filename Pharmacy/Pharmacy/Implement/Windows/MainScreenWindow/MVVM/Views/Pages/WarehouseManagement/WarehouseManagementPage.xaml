@@ -13,14 +13,14 @@
       x:Name="WarehouseManagement"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge_Float}"
+      FontSize="{Binding FontSizeOV.FontSizeLarge}"
       Title="WarehouseManagementPage">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
                            MaxHeight="{StaticResource PageHeaderMaxHeight}" />
-            <RowDefinition Height="0.37*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="4.64*" />
             <RowDefinition Height="0.70*"
                            MaxHeight="100" />
@@ -87,7 +87,8 @@
                             Value="True" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeLarge}" />
+                            Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:WarehouseManagementPage},Mode=FindAncestor}}" />
 
                     <Setter Property="Foreground"
                             Value="Black" />
@@ -167,8 +168,8 @@
                             Value="Center" />
 
                     <Setter Property="FontSize"
-                            Value="{StaticResource FontSizeXLarge}" />
-
+                            Value="{Binding DataContext.FontSizeOV.FontSizeLarge, 
+                            RelativeSource={RelativeSource AncestorType={x:Type local:WarehouseManagementPage},Mode=FindAncestor}}" />
                 </Style>
 
             </DataGrid.ColumnHeaderStyle>
@@ -281,6 +282,7 @@
                                     <TextBlock Grid.Column="5"
                                                VerticalAlignment="Center">
                                         <Hyperlink FontStyle="Italic"
+                                                   FontSize="{StaticResource FontSizeRegular}"
                                                    Command="{Binding DataContext.ShowInvoiceButtonCommand,ElementName=WarehouseManagement}"
                                                    CommandParameter="{Binding ElementName=DataGrid}">
                                             Xem hóa đơn
@@ -313,7 +315,7 @@
                               Background="{StaticResource NormalTheme_1st_Background_Brush}"
                               Foreground="White"
                               Margin="10,0"
-                              Padding="5"
+                              Padding="30,0,30,0"
                               Command="{Binding AddNewWarehouseImportButtonCommand}" />
         </Grid>
     </Grid>
