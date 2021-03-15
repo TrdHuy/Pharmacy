@@ -125,7 +125,7 @@
                                     Value="True" />
 
                             <Setter Property="FontSize"
-                                    Value="{StaticResource FontSizeLarge}" />
+                                    Value="{Binding FontSizeOV.FontSizeLarge, ElementName=InvoiceManagementPageDataContext}" />
 
                             <Setter Property="Foreground"
                                     Value="Black" />
@@ -204,7 +204,7 @@
                                     Value="Center" />
 
                             <Setter Property="FontSize"
-                                    Value="{StaticResource FontSizeXLarge}" />
+                                    Value="{Binding FontSizeOV.FontSizeLarge, ElementName=InvoiceManagementPageDataContext}" />
 
                         </Style>
 
@@ -213,7 +213,7 @@
                     <DataGrid.Columns>
 
                         <!--Time column-->
-                        <DataGridTextColumn Width="*"
+                        <DataGridTextColumn Width="Auto"
                                             CellStyle="{StaticResource DGTextCell}"
                                             Header="Thời gian">
                             <DataGridTextColumn.Binding>
@@ -272,7 +272,7 @@
                                                               Foreground="Black"
                                                               Command="{Binding ButtonCommandOV.EditOrderButtonCommand, ElementName=InvoiceManagementPageDataContext}"
                                                               VerticalAlignment="Center"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge,ElementName=InvoiceManagementPageDataContext}"
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf040;" />
 
@@ -284,7 +284,7 @@
                                                               Foreground="Red"
                                                               Command="{Binding ButtonCommandOV.DeleteOrderButtonCommand, ElementName=InvoiceManagementPageDataContext}"
                                                               VerticalAlignment="Center"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
+                                                              FontSize="{Binding FontSizeOV.FontSizeXXLarge,ElementName=InvoiceManagementPageDataContext}"
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf00d;" />
                                         </Grid>

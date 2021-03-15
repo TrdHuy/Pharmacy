@@ -14,7 +14,7 @@
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}">
 
     <Page.DataContext>
-        <vm:CustomerTransactionHistoryPageViewModel x:Name="CustomerTransactionHistoryPageDataContext"/>
+        <vm:CustomerTransactionHistoryPageViewModel x:Name="CustomerTransactionHistoryPageDataContext" />
     </Page.DataContext>
 
     <Grid Background="White">
@@ -65,11 +65,10 @@
                     <RowDefinition Height="9.1*" />
                 </Grid.RowDefinitions>
 
-                <Viewbox Grid.Row="1"
-                         MaxHeight="{StaticResource FontSizeXXLarge}"
-                         HorizontalAlignment="Left">
-                    <TextBlock Text="Lịch sử mua hàng:" />
-                </Viewbox>
+                <TextBlock Text="Lịch sử mua hàng:"
+                           Grid.Row="1"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                           HorizontalAlignment="Left" />
                 <ListView BorderThickness="2"
                           BorderBrush="Black"
                           ItemsSource="{Binding OrderItemSource}"
@@ -232,7 +231,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="0.1*" />
                     <ColumnDefinition Width="4*" />
                     <ColumnDefinition Width="0.4*" />
@@ -314,7 +313,7 @@
                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                              BorderBrush="Black"
                              Grid.Column="2" />
-                    
+
                     <!--Font issue: formating form alignment not correct
                     Must change normal font to mono font-->
                     <TextBox Grid.Row="8"
@@ -325,7 +324,7 @@
                              BorderBrush="Black"
                              Grid.Column="2"
                              FontFamily="{StaticResource RobotoMono}" />
-                    
+
                     <Grid Grid.Row="10"
                           Grid.Column="2">
                         <Grid.RowDefinitions>
@@ -360,8 +359,8 @@
                                           Foreground="White"
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center" 
-                                          Command="{Binding DebtsDisplayButtonCommand}"/>
+                                          VerticalContentAlignment="Center"
+                                          Command="{Binding DebtsDisplayButtonCommand}" />
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"

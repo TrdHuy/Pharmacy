@@ -55,7 +55,7 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Margin="20,0,0,0"
-                           FontSize="{Binding FontSizeOV.FontSizeXXXXLarge}" />
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                 <TextBox x:Name="SearchTextBox"
                          Grid.Column="1"
                          Margin="20"
