@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -70,6 +71,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             {
                 CurrentUser.GetUserData().PersonalAvatarInfo = value;
                 InvalidateOwn();
+            }
+        }
+
+        public Visibility AdminToolboxsVisibility
+        {
+            get
+            {
+                return CurrentUser.IsAdmin ?
+                    Visibility.Visible : Visibility.Collapsed;
             }
         }
 
