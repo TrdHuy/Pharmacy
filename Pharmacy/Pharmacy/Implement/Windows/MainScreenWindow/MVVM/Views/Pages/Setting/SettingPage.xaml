@@ -41,6 +41,7 @@
 
             <!--Header area-->
             <Grid Grid.Row="0"
+                  Panel.ZIndex="4"
                   Height="{StaticResource DefaultHomePage_UserInfoBarHeight}"
                   Grid.ColumnSpan="2"
                   Background="{StaticResource NormalTheme_1st_Background_Brush}">
@@ -272,7 +273,8 @@
             </Grid>
 
             <!--Body area-->
-            <ScrollViewer Grid.Row="1">
+            <ScrollViewer Grid.Row="1"
+                          Panel.ZIndex="0">
                 <Grid Height="400">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.5*" />
