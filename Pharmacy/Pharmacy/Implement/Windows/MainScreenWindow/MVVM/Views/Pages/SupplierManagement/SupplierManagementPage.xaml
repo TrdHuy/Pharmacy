@@ -37,7 +37,7 @@
             <TextBlock Text="Tìm kiếm:"
                        VerticalAlignment="Center" />
             <TextBox Grid.Column="1"
-                     ToolTip="Hỗ trợ tìm kiếm theo: mã hoặc tên thuốc"
+                     ToolTip="Hỗ trợ tìm kiếm theo: tên hoặc số điện thoại"
                      Margin="5,0,0,0"
                      TextChanged="SearchTextBox_TextChanged"
                      Style="{StaticResource DefaultTextBox}"

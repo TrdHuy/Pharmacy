@@ -100,7 +100,8 @@
                     </Grid>
                     <WindowsFormsHost Grid.Row="2"
                                       Margin="10">
-                        <report:ReportViewer x:Name="SellingReport" />
+                        <report:ReportViewer x:Name="SellingReport"
+                                             ShowToolBar="False" />
                     </WindowsFormsHost>
                 </Grid>
             </TabItem>
@@ -153,7 +154,8 @@
                     </Grid>
                     <WindowsFormsHost Grid.Row="2"
                                       Margin="10">
-                        <report:ReportViewer x:Name="ComprehensiveReport" />
+                        <report:ReportViewer x:Name="ComprehensiveReport"
+                                             ShowToolBar="False" />
                     </WindowsFormsHost>
                 </Grid>
             </TabItem>

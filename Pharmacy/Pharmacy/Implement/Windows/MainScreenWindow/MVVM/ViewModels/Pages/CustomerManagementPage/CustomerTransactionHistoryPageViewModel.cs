@@ -50,19 +50,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 if (CurrentSelectedOrder != null)
                 {
                     var listDetails = CurrentSelectedOrder.tblOrderDetails;
-                    var tabPos = GetTabPosAsString(ComputeTabPos());
-                    var stringFormat = "{0," + tabPos[0] + "}" +
-                        "{1," + tabPos[1] + "}" +
-                        "{2," + tabPos[2] + "} " +
-                        "{3}";
+                    //var tabPos = GetTabPosAsString(ComputeTabPos());
+                    //var stringFormat = "{0," + tabPos[0] + "}" +
+                    //    "{1," + tabPos[1] + "}" +
+                    //    "{2," + tabPos[2] + "} " +
+                    //    "{3}";
 
                     orderDetails += String.Join("\n", listDetails.Where((content) => content.IsActive).
                         Select((content, a) =>
-                            String.Format(stringFormat
-                            , content.tblMedicine.MedicineName
-                            , content.Quantity
-                            , content.tblMedicine.tblMedicineUnit.MedicineUnitName
-                            , content.TotalPrice)
+                            //String.Format(stringFormat
+                            //, content.tblMedicine.MedicineName
+                            //, content.Quantity
+                            //, content.tblMedicine.tblMedicineUnit.MedicineUnitName
+                            //, content.TotalPrice)
+                            content.tblMedicine.MedicineName + " - " + content.Quantity
+                            + " " + content.tblMedicine.tblMedicineUnit.MedicineUnitName + ": " + ((decimal)content.Quantity * content.UnitPrice).ToString(@"#\,##0 VND")
                         ));
 
                     logger.D("Order detail format: " + orderDetails);

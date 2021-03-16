@@ -23,6 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public tblCustomer CurrentModifiedCustomer { get; set; }
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
+        public ObservableCollection<MSW_CMP_CTP_CDP_CustomerDebtOV> DebtItemSource { get; set; }
         public tblOrder CurrentSelectedOrderDetail { get; set; }
         public MSW_CMP_CTP_CDP_ButtonCommandOV ButtonCommandOV { get; set; }
 
@@ -34,7 +35,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                var pA = OrderItemSource.Sum((oD) => oD.PurchasePrice);
+                var pA = DebtItemSource.Where(o => o.DebtType == "Nợ").Sum(o => o.PurchasedDebt);
                 return pA;
             }
         }
@@ -42,14 +43,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                return DebtAmount - PaidAmount;
+                return DebtAmount + PaidAmount;
             }
         }
         public decimal DebtAmount
         {
             get
             {
-                var dA = OrderItemSource.Sum((oD) => oD.TotalPrice);
+                var dA = DebtItemSource.Where(o => o.DebtType == "Trả").Sum(o => o.PurchasedDebt);
                 return dA;
             }
         }
@@ -75,6 +76,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 CurrentModifiedCustomer
                 .tblOrders
                 .Where((o) => o.IsActive));
+
+            DebtItemSource = new ObservableCollection<MSW_CMP_CTP_CDP_CustomerDebtOV>();
+
+            foreach (var item in OrderItemSource)
+            {
+                MSW_CMP_CTP_CDP_CustomerDebtOV debt = new MSW_CMP_CTP_CDP_CustomerDebtOV();
+                debt.OrderID = item.OrderID;
+                debt.OrderTime = item.OrderTime;
+                debt.PurchasedDebt = item.PurchasePrice - item.TotalPrice;
+                debt.DebtType = debt.PurchasedDebt > 0 ? "Trả" : "Nợ";
+                debt.Description = item.OrderDescription;
+                DebtItemSource.Add(debt);
+            }
         }
 
     }

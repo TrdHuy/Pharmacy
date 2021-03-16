@@ -329,7 +329,8 @@
                              Text="{Binding ImportInfo.ImportDescription, UpdateSourceTrigger=PropertyChanged}" />
                     <ListBox Grid.Row="8"
                              BorderThickness="2"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                             FontSize="{Binding FontSizeOV.FontSizeRegular}"
+                             FontFamily="{StaticResource RobotoMono}"
                              ItemsSource="{Binding LstWarehouseImportDetail, UpdateSourceTrigger=PropertyChanged}"
                              BorderBrush="Black"
                              Grid.Column="2" />
@@ -382,7 +383,6 @@
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
                                           TextContent="Trở lại"
-                                          Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                           Foreground="White"
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"

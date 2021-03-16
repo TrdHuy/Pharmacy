@@ -199,10 +199,18 @@
                                     Header="Thanh toán"
                                     Binding="{Binding PurchasedDebt, StringFormat=#\,##0 VND}" />
 
-                <DataGridTextColumn Width="*"
+                <DataGridTextColumn Width="300"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Ghi chú"
-                                    Binding="{Binding Description}" />
+                                    Binding="{Binding Description}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}"
+                               BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="TextTrimming"
+                                    Value="WordEllipsis" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
                 <!--Edit column-->
                 <DataGridTemplateColumn CanUserResize="False"
@@ -286,6 +294,7 @@
                                  AkerExpense="{Binding TotalDebt, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <hps:AkerTextBox VerticalContentAlignment="Center"
+                                 IsReadOnly="True"
                                  AkerTextBoxType="Expense"
                                  AkerExpenseUnit="VND"
                                  Grid.Column="1"
@@ -319,7 +328,7 @@
                               BorderThickness="0"
                               MaxHeight="100"
                               Foreground="White" />
-            <hps:OsirisButton Margin="0,5,0,0"
+            <!--<hps:OsirisButton Margin="0,5,0,0"
                               Grid.Column="1"
                               Padding="30,0,30,0"
                               Grid.Row="2"
@@ -337,7 +346,7 @@
                               IconStretch="Uniform"
                               IconWidth="30"
                               IconHeight="30"
-                              IconTextGapWidth="5" />
+                              IconTextGapWidth="5" />-->
         </Grid>
     </Grid>
 </Page>

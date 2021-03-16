@@ -753,9 +753,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3.5*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="10" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.2*" />
                 </Grid.ColumnDefinitions>
 
                 <hps:OsirisButton TextContent="Tạo mới"
@@ -772,7 +771,7 @@
                                   Grid.Column="1" />
 
                 <hps:OsirisButton TextContent="Lưu và xuất hóa đơn"
-                                  Margin="0,10"
+                                  Margin="0,10,10,10"
                                   Padding="10,0,10,0"
                                   IsBusy="{Binding IsInstantiateNewOrderButtonRunning}"
                                   HorizontalContentAlignment="Center"

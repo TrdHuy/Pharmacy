@@ -22,6 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         private SellingPageViewModel _viewModel;
         private tblOrder _newOrder;
         private SQLQueryCustodian _createNewOrderQueryObserver;
+        private decimal _previousDebt;
 
         public bool Execute(object[] dataTransfer)
         {
@@ -98,6 +99,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 _viewModel.IsInstantiateNewOrderButtonRunning = false;
             }
 
+            _previousDebt = _viewModel.MedicineOV.DebtCost;
+
             _createNewOrderQueryObserver = new SQLQueryCustodian(GenerateOrderCallback,
                 null,
                 typeof(MSW_SP_InstantiateNewOrderAction));
@@ -149,10 +152,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 reportParameters[2] = new ReportParameter("SDT", _newOrder.tblCustomer.Phone);
                 reportParameters[3] = new ReportParameter("DiaChi", _newOrder.tblCustomer.Address);
                 reportParameters[4] = new ReportParameter("ThanhTien", _viewModel.MedicineOV.MedicineCost.ToString());
-                reportParameters[5] = new ReportParameter("CongNo", _viewModel.MedicineOV.DebtCost.ToString());
-                reportParameters[6] = new ReportParameter("TongCong", _viewModel.MedicineOV.TotalCost.ToString());
+                reportParameters[5] = new ReportParameter("CongNo", _previousDebt.ToString());
+                reportParameters[6] = new ReportParameter("TongCong", (_viewModel.MedicineOV.MedicineCost+_previousDebt).ToString());
                 reportParameters[7] = new ReportParameter("DaTra", _viewModel.MedicineOV.PaidAmount.ToString());
-                reportParameters[8] = new ReportParameter("ConLai", _viewModel.MedicineOV.RestAmount.ToString());
+                reportParameters[8] = new ReportParameter("ConLai", ((_viewModel.MedicineOV.MedicineCost + _previousDebt)-_viewModel.MedicineOV.PaidAmount).ToString());
                 reportParameters[9] = new ReportParameter("GhiChu", _newOrder.OrderDescription);
                 report.LocalReport.SetParameters(reportParameters);
 

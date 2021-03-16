@@ -309,6 +309,7 @@
                     <TextBox Grid.Row="6"
                              BorderThickness="2"
                              IsReadOnly="True"
+                             TextWrapping="Wrap"
                              Text="{Binding CurrentSelectedOrder.OrderDescription}"
                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                              BorderBrush="Black"
@@ -368,11 +369,11 @@
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
                                           TextContent="Quay lại"
-                                          Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                           Foreground="White"
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
-                                          VerticalContentAlignment="Center" />
+                                          VerticalContentAlignment="Center"
+                                          Command="{Binding ReturnButtonCommand}"/>
 
                     </Grid>
                 </Grid>

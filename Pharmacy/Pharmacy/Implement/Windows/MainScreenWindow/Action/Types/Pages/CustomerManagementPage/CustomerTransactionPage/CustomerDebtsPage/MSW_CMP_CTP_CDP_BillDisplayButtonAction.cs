@@ -20,8 +20,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         public bool Execute(object[] dataTransfer)
         {
             _viewModel = dataTransfer[0] as CustomerDebtsPageViewModel;
+            DataGrid ctrl = dataTransfer[1] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = _viewModel.CurrentSelectedOrderDetail;
+            MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = _viewModel.OrderItemSource.Where(o => o.OrderID == _viewModel.DebtItemSource[ctrl.SelectedIndex].OrderID).FirstOrDefault();
             _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);
 
             return true;

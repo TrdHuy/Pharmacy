@@ -20,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             
             if(_viewModel.CurrentSelectedOrder == null)
             {
-                App.Current.ShowApplicationMessageBox("Vui lòng chọn 1 hóa đơn để xem chi tiết!",
+                App.Current.ShowApplicationMessageBox("Vui lòng chọn 1 giao dịch để xem hóa đơn",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,

@@ -19,6 +19,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
         {
             _viewModel = dataTransfer[0] as SupplierImportHistoryPageViewModel;
 
+            if (_viewModel.ImportInfo == null)
+            {
+                App.Current.ShowApplicationMessageBox("Vui lòng chọn 1 giao dịch để xem hóa đơn!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
+                return false;
+            }
+
             FileIOUtil.ShowBitmapFromName(_viewModel.ImportInfo.ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
 
             return true;

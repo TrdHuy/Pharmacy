@@ -625,6 +625,7 @@
                             <hps:AkerTextBox Grid.Column="2"
                                              IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              AkerTextBoxType="Normal"
+                                             TextWrapping="Wrap"
                                              Text="{Binding CurrentCustomerOrder.OrderDescription}"
                                              VerticalContentAlignment="Top"
                                              Tag="Thêm ghi chú tại đây"
