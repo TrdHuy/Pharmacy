@@ -35,7 +35,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                var pA = DebtItemSource.Where(o => o.DebtType == "Nợ").Sum(o => o.PurchasedDebt);
+                var pA = DebtItemSource.Where(o => o.DebtType == "Trả").Sum(o => o.PurchasedDebt);
                 return pA;
             }
         }
@@ -50,7 +50,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                var dA = DebtItemSource.Where(o => o.DebtType == "Trả").Sum(o => o.PurchasedDebt);
+                var dA = DebtItemSource.Where(o => o.DebtType == "Nợ").Sum(o => o.PurchasedDebt);
                 return dA;
             }
         }
