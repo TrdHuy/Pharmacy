@@ -195,6 +195,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             finally
             {
                 _viewModel.IsAddOrderDeatailButtonRunning = false;
+                _viewModel.MedicineOV.CurrentSelectedMedicine = null;
+                _viewModel.MedicineOV.Quantity = null;
+                _viewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");
+                _viewModel.MedicineOV.Invalidate("Quantity");
             }
 
         }

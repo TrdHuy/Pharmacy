@@ -138,8 +138,7 @@
                             <TextBlock Text="Tên:"
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                         />
+                                       VerticalAlignment="Center" />
 
                             <TextBox Grid.Column="2"
                                      Tag="Nhập tên khách hàng"
@@ -147,7 +146,6 @@
                                      VerticalContentAlignment="Center"
                                      Text="{Binding CurrentCustomerOrder.tblCustomer.CustomerName}"
                                      IsReadOnly="True"
-                                      
                                      Foreground="Black"
                                      BorderBrush="Black"
                                      BorderThickness="1"
@@ -168,13 +166,11 @@
                             <TextBlock Text="Địa chỉ:"
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                         />
+                                       VerticalAlignment="Center" />
 
                             <TextBox Grid.Column="2"
                                      IsReadOnly="True"
                                      Text="{Binding CurrentCustomerOrder.tblCustomer.Address}"
-                                      
                                      BorderBrush="Black" />
 
                         </Grid>
@@ -191,15 +187,13 @@
                             <TextBlock Text="Điện thoại:"
                                        Grid.Column="0"
                                        HorizontalAlignment="Right"
-                                       VerticalAlignment="Center"
-                                         />
+                                       VerticalAlignment="Center" />
 
                             <TextBox  Grid.Column="2"
                                       HorizontalContentAlignment="Left"
                                       VerticalContentAlignment="Center"
                                       Text="{Binding CurrentCustomerOrder.tblCustomer.Phone}"
                                       IsReadOnly="True"
-                                       
                                       Foreground="Black"
                                       BorderBrush="Black"
                                       BorderThickness="1"
@@ -274,14 +268,12 @@
                             <TextBlock Text="Tên thuốc:"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"
-                                       Grid.Column="0"
-                                         />
+                                       Grid.Column="0" />
 
                             <hps:HorusBox Grid.Column="2"
                                           Style="{StaticResource SearchingBoxTheme}"
                                           Tag="Nhập thuốc tại đây"
                                           IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                           
                                           BorderThickness="1"
                                           FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
                                           SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine,Mode=TwoWay}"
@@ -335,16 +327,14 @@
                             <TextBlock Text="Số lượng:"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Right"
-                                       Grid.Column="4"
-                                         />
+                                       Grid.Column="4" />
                             <hps:AkerTextBox Grid.Column="6"
                                              AkerTextBoxType="Decimal"
                                              Text="{Binding MedicineOV.Quantity,
                                              Mode=TwoWay,
                                              UpdateSourceTrigger=PropertyChanged}"
                                              Tag="0"
-                                             IsEnabled="{Binding IsEnableEdittingBill}"
-                                               />
+                                             IsEnabled="{Binding IsEnableEdittingBill}" />
 
                             <hps:OsirisButton Margin="10,2,10,2"
                                               BorderThickness="0"
@@ -362,7 +352,8 @@
                                               FontFamily="{StaticResource FontAwesome}"
                                               TextContent="&#xf067;"
                                               IsUsingDropShadowEffect="True"
-                                              Grid.Column="7" />
+                                              Grid.Column="7"
+                                              ToolTip="Thêm thuốc"/>
 
                             <hps:OsirisButton Margin="10,2,10,2"
                                               BorderThickness="0"
@@ -376,7 +367,8 @@
                                               FontFamily="{StaticResource FontAwesome}"
                                               TextContent="&#xf040;"
                                               IsUsingDropShadowEffect="True"
-                                              Grid.Column="8" />
+                                              Grid.Column="8"
+                                              ToolTip="Chỉnh sửa"/>
 
                             <hps:OsirisButton Margin="10,2,10,2"
                                               BorderThickness="0"
@@ -390,7 +382,8 @@
                                               FontFamily="{StaticResource FontAwesome}"
                                               TextContent="&#xf0e2;"
                                               IsUsingDropShadowEffect="True"
-                                              Grid.Column="9" />
+                                              Grid.Column="9"
+                                              ToolTip="Hoàn tác"/>
 
                             <hps:OsirisButton TextContent="&#xf0c7;"
                                               OBCornerRadius="10"
@@ -408,13 +401,15 @@
                                               Background="{StaticResource NormalTheme_1st_Background_Brush}"
                                               FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                               IsUsingDropShadowEffect="True"
-                                              Grid.Column="10" />
+                                              Grid.Column="10"
+                                              ToolTip="Lưu thay đổi"/>
                         </Grid>
 
                         <!--table area-->
                         <DataGrid Grid.Row="1"
                                   x:Name="OrderDetailDataGrid"
                                   Margin="0,15,0,0"
+                                  IsReadOnly="True"
                                   VerticalAlignment="Top"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False"
@@ -620,16 +615,14 @@
                             <TextBlock Text="Ghi chú:"
                                        VerticalAlignment="Top"
                                        HorizontalAlignment="Right"
-                                       Grid.Column="0"
-                                         />
+                                       Grid.Column="0" />
                             <hps:AkerTextBox Grid.Column="2"
                                              IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              AkerTextBoxType="Normal"
                                              TextWrapping="Wrap"
                                              Text="{Binding CurrentCustomerOrder.OrderDescription}"
                                              VerticalContentAlignment="Top"
-                                             Tag="Thêm ghi chú tại đây"
-                                               />
+                                             Tag="Thêm ghi chú tại đây" />
                             <Grid Grid.Column="4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -649,16 +642,13 @@
                                 <TextBlock Text="Công nợ:"
                                            Grid.Row="1"
                                            Grid.Column="0"
-                                            
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="Tổng cộng:"
                                            Grid.Row="2"
                                            Grid.Column="0"
-                                            
                                            VerticalAlignment="Center" />
 
-                                <hps:AkerTextBox  
-                                                 AkerExpense="{Binding MedicineOV.MedicineCost, Mode=TwoWay}"
+                                <hps:AkerTextBox AkerExpense="{Binding MedicineOV.MedicineCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsReadOnly="True"
                                                  AkerExpenseUnit="VND"
@@ -672,8 +662,7 @@
                                                  BorderThickness="0"
                                                  Grid.Row="1"
                                                  Grid.Column="2" />
-                                <hps:AkerTextBox 
-                                                 AkerExpense="{Binding MedicineOV.TotalCost, Mode=TwoWay}"
+                                <hps:AkerTextBox AkerExpense="{Binding MedicineOV.TotalCost, Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsReadOnly="True"
                                                  AkerExpenseUnit="VND"
@@ -704,25 +693,21 @@
                                            HorizontalAlignment="Center"
                                            Grid.Row="0"
                                            Grid.Column="1"
-                                            
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="Còn lại:"
                                            Grid.Row="1"
                                            HorizontalAlignment="Right"
                                            Grid.Column="0"
-                                            
                                            VerticalAlignment="Center" />
 
-                                <hps:AkerTextBox  
-                                                 AkerExpense="{Binding MedicineOV.PaidAmount,Mode=TwoWay}"
+                                <hps:AkerTextBox AkerExpense="{Binding MedicineOV.PaidAmount,Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                  AkerExpenseUnit="VND"
                                                  Grid.Row="0"
                                                  Grid.Column="2" />
 
-                                <hps:AkerTextBox  
-                                                 AkerExpense="{Binding MedicineOV.RestAmount,Mode=TwoWay}"
+                                <hps:AkerTextBox AkerExpense="{Binding MedicineOV.RestAmount,Mode=TwoWay}"
                                                  AkerTextBoxType="Expense"
                                                  IsReadOnly="True"
                                                  AkerExpenseUnit="VND"
@@ -730,6 +715,47 @@
                                                  Foreground="Red"
                                                  Grid.Row="1"
                                                  Grid.Column="2" />
+
+                                <Grid Grid.Column="0"
+                                      Grid.ColumnSpan="3"
+                                      Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <hps:OsirisButton Grid.Column="1"
+                                                      Margin="10,0,0,0"
+                                                      TextContent="Quay lại"
+                                                      IsUsingDropShadowEffect="True"
+                                                      HorizontalContentAlignment="Center"
+                                                      VerticalContentAlignment="Center"
+                                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                                      Command="{Binding ButtonCommandOV.CancelButtonCommand}"
+                                                      BorderThickness="0"
+                                                      MaxHeight="100"
+                                                      Foreground="White" />
+
+                                    <hps:OsirisButton OBContentOrientation="Horizontal"
+                                                      OBTextVerticalAlignment="Center"
+                                                      IsUsingDropShadowEffect="True"
+                                                      HorizontalContentAlignment="Center"
+                                                      VerticalContentAlignment="Center"
+                                                      TextContent="Xuất hóa đơn"
+                                                      FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                                                      Grid.Column="0"
+                                                      Background="{StaticResource ForegroundMainBrush}"
+                                                      Foreground="White"
+                                                      BorderThickness="0"
+                                                      IconSource="{StaticResource Print}"
+                                                      IconStretch="Uniform"
+                                                      IconWidth="30"
+                                                      IconHeight="30"
+                                                      IconTextGapWidth="5"
+                                                      Padding="5"
+                                                      Command="{Binding ButtonCommandOV.PrintInvoiceButtonCommand}" />
+                                </Grid>
+
                             </Grid>
                         </Grid>
                     </Grid>

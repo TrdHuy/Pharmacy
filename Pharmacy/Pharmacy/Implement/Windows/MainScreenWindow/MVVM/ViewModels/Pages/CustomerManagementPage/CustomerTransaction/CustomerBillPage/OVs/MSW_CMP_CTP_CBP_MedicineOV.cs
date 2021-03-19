@@ -18,6 +18,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public MSW_CMP_CTP_CBP_MedicineOV(BaseViewModel parentVM) : base(parentVM)
         {
+            PaidAmount = (ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder.PurchasePrice;
         }
         public string MedicineTextSearch
         {

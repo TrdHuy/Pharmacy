@@ -289,7 +289,7 @@
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               TextContent="&#xf00d;" />
 
-                                            <hps:OsirisButton Grid.Column="5"
+                                            <!--<hps:OsirisButton Grid.Column="5"
                                                               Background="Transparent"
                                                               BorderThickness="0"
                                                               HorizontalAlignment="Right"
@@ -300,7 +300,7 @@
                                                               FontSize="{Binding FontSizeOV.FontSizeRegular,ElementName=InvoiceManagementPageDataContext}"
                                                               TextContent="Xem hóa đơn"
                                                               Command="{Binding BillDisplayButtonCommand}"
-                                                              FontStyle="Italic" />
+                                                              FontStyle="Italic" />-->
                                         </Grid>
                                     </Border>
                                 </DataTemplate>

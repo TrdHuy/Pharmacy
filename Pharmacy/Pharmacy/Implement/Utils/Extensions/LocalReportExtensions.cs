@@ -87,6 +87,7 @@ namespace Pharmacy.Implement.Utils.CustomControls
                         streams = null;
                     }
                 };
+                printDocument.DocumentName = "HoaDon";
                 printDocument.Print();
             }
         }

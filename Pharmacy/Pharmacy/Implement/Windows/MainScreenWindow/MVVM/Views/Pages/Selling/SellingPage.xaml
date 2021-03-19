@@ -422,6 +422,7 @@
                         <DataGrid Grid.Row="1"
                                   x:Name="OrderDetailDataGrid"
                                   Margin="0,15,0,0"
+                                  IsReadOnly="True"
                                   VerticalAlignment="Top"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False"

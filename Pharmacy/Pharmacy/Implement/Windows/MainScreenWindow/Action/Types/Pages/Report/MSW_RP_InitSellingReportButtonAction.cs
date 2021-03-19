@@ -51,6 +51,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
             {
                 PharmacyDBDataSet.CustomerOrdersDataTable tbl = new PharmacyDBDataSet.CustomerOrdersDataTable();
                 int index = 0;
+                long orderIDNow = 0;
                 decimal finalIncome = 0;
                 decimal finalProfit = 0;
                 foreach (tblOrder item in queryResult.Result as List<tblOrder>)
@@ -63,10 +64,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                         finalIncome += totalPrice;
                         finalProfit += totalProfit;
 
-                        tbl.AddCustomerOrdersRow(item.OrderID + "",
+                        if (item.OrderID != orderIDNow)
+                        {
+                            index++;
+                            orderIDNow = item.OrderID;
+                        }
+
+                        tbl.AddCustomerOrdersRow(index + "",
                             item.OrderTime.ToString("dd/MM/yyyy HH:mm"),
                             item.tblCustomer.CustomerName,
-                            ++index + "",
+                            index + "",
                             itemDetail.MedicineID,
                             itemDetail.tblMedicine.MedicineName,
                             itemDetail.tblMedicine.tblMedicineUnit.MedicineUnitName,

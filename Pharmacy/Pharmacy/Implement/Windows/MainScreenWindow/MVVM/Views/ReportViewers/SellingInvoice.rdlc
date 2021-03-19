@@ -65,7 +65,7 @@
                   <Width>0.45833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.61458in</Width>
+                  <Width>2.90625in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.61458in</Width>
@@ -77,7 +77,7 @@
                   <Width>0.8125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.92708in</Width>
+                  <Width>0.63543in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.48958in</Width>
@@ -371,7 +371,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Khuyến mãi</Value>
+                                  <Value>KM (%)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -646,7 +646,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>PromoPercent</rd:DefaultName>
@@ -722,7 +724,7 @@
             <Top>1.48834in</Top>
             <Left>0.28in</Left>
             <Height>0.55208in</Height>
-            <Width>7.52082in</Width>
+            <Width>7.52084in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

@@ -187,6 +187,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON:
                     action = new MSW_CMP_CTP_CBP_RefreshButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_CANCEL_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_CancelButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON:
+                    action = new MSW_CMP_CTP_CBP_PrintInvoiceButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_EDIT_BUTTON:
                     action = new MSW_CMP_EditButtonAction();
                     break;

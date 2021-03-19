@@ -63,6 +63,8 @@
         public const string KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON = "msw_cmp_ctp_cbp_add_order_detail_button";
         public const string KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON = "msw_cmp_ctp_cbp_save_button";
         public const string KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON = "msw_cmp_ctp_cbp_refresh_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_CANCEL_BUTTON = "msw_cmp_ctp_cbp_cancel_button";
+        public const string KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON = "msw_cmp_ctp_cbp_print_invoice_button";
         public const string KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON = "msw_cmp_ctp_cbp_delete_order_detail_button";
 
         //Customer instantiation page key string

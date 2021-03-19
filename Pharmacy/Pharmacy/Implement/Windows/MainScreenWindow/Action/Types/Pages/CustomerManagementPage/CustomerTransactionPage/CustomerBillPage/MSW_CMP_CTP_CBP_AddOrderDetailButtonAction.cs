@@ -92,7 +92,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 }
                 else
                 {
-                    _viewModel.CurrentOrderDetails.Add(orderDetailVO);
+                    _viewModel.CurrentOrderDetails.Add(orderDetailVO); 
                 }
             }
             catch (Exception e)
@@ -102,6 +102,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             finally
             {
                 _viewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                _viewModel.MedicineOV.CurrentSelectedMedicine = null;
+                _viewModel.MedicineOV.Quantity = null;
+                _viewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");
+                _viewModel.MedicineOV.Invalidate("Quantity");
             }
 
         }

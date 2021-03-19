@@ -147,15 +147,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 report.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
-                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày " + _newOrder.OrderTime.Day + ", tháng " + _newOrder.OrderTime.Month + ", năm " + _newOrder.OrderTime.Year);
+                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _newOrder.OrderTime.Hour + ":" + _newOrder.OrderTime.Minute + " " + _newOrder.OrderTime.Day + "/" + _newOrder.OrderTime.Month + "/" + _newOrder.OrderTime.Year);
                 reportParameters[1] = new ReportParameter("KhachHang", _newOrder.tblCustomer.CustomerName);
                 reportParameters[2] = new ReportParameter("SDT", _newOrder.tblCustomer.Phone);
                 reportParameters[3] = new ReportParameter("DiaChi", _newOrder.tblCustomer.Address);
                 reportParameters[4] = new ReportParameter("ThanhTien", _viewModel.MedicineOV.MedicineCost.ToString());
                 reportParameters[5] = new ReportParameter("CongNo", _previousDebt.ToString());
-                reportParameters[6] = new ReportParameter("TongCong", (_viewModel.MedicineOV.MedicineCost+_previousDebt).ToString());
+                reportParameters[6] = new ReportParameter("TongCong", (_viewModel.MedicineOV.MedicineCost + _previousDebt).ToString());
                 reportParameters[7] = new ReportParameter("DaTra", _viewModel.MedicineOV.PaidAmount.ToString());
-                reportParameters[8] = new ReportParameter("ConLai", ((_viewModel.MedicineOV.MedicineCost + _previousDebt)-_viewModel.MedicineOV.PaidAmount).ToString());
+                reportParameters[8] = new ReportParameter("ConLai", ((_viewModel.MedicineOV.MedicineCost + _previousDebt) - _viewModel.MedicineOV.PaidAmount).ToString());
                 reportParameters[9] = new ReportParameter("GhiChu", _newOrder.OrderDescription);
                 report.LocalReport.SetParameters(reportParameters);
 

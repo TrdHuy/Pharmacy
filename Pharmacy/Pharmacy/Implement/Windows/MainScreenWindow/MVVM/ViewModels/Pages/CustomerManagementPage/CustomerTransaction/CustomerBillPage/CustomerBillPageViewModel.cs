@@ -96,10 +96,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         protected override void OnInitializing()
         {
+            CurrentCustomerOrder = MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder;
+
             MedicineOV = new MSW_CMP_CTP_CBP_MedicineOV(this);
             ButtonCommandOV = new MSW_CMP_CTP_CBP_ButtonCommandOV(this);
-
-            CurrentCustomerOrder = MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder;
 
             DeleteColumnVisibility = IsEnableEdittingBill ? Visibility.Visible : Visibility.Collapsed;
 
@@ -113,6 +113,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public void RefreshListOrder()
         {
             InstantinateOrderDetailItems();
+            MedicineOV.PaidAmount = CurrentCustomerOrder.PurchasePrice;
             Invalidate("MedicineOV");
         }
 

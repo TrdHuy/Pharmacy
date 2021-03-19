@@ -59,6 +59,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public RunInputCommand EditEnablerButtonCommand { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand RefreshOrderDetaisButtonCommand { get; set; }
+        public RunInputCommand CancelButtonCommand { get; set; }
+        public RunInputCommand PrintInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
@@ -96,6 +98,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
                     , paramaters);
+            });
+
+            CancelButtonCommand = new RunInputCommand(paramaters =>
+            {
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_CANCEL_BUTTON
+                , paramaters);
+            });
+
+            PrintInvoiceButtonCommand = new RunInputCommand(paramaters =>
+            {
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON
+                  , paramaters);
             });
         }
 

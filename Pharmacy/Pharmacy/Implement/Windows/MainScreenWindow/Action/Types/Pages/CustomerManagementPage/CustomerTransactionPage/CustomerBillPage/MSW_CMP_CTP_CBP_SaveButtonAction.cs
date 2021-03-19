@@ -55,9 +55,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         _viewModel.CurrentCustomerOrder
                         );
                 }
-            }
-            else
-            {
+                
                 _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
         }
