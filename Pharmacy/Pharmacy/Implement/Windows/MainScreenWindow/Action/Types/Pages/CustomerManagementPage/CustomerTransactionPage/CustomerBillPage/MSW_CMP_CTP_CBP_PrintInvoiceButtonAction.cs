@@ -43,7 +43,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             try
             {
                 ReportViewer report = new ReportViewer();
-                report.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
+                report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
                 reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _viewModel.CurrentCustomerOrder.OrderTime.Hour + ":" + _viewModel.CurrentCustomerOrder.OrderTime.Minute + " " + _viewModel.CurrentCustomerOrder.OrderTime.Day + "/" + _viewModel.CurrentCustomerOrder.OrderTime.Month + "/" + _viewModel.CurrentCustomerOrder.OrderTime.Year);
@@ -82,7 +82,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             }
             catch (Exception ex)
             {
-                App.Current.ShowApplicationMessageBox("Lỗi in hóa đơn!",
+                while (ex.InnerException != null)
+                    ex = ex.InnerException;
+                App.Current.ShowApplicationMessageBox("Lỗi in hóa đơn! " + ex.Message,
                                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                                   OwnerWindow.MainScreen,

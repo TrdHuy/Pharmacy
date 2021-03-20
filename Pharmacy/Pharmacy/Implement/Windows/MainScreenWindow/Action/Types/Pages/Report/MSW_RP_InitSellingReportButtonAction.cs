@@ -92,7 +92,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                 reportDataSource.Value = tbl;
                 _reportViewer.LocalReport.DataSources.Add(reportDataSource);
 
-                _reportViewer.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingReport.rdlc");
+                _reportViewer.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingReport.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[3];
                 reportParameters[0] = new ReportParameter("NgayBaoCao",

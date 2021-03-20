@@ -13,6 +13,9 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Security.AccessControl;
+using System.Security.Principal;
+using System.IO;
 
 namespace Pharmacy.Implement.Utils.Extensions
 {
@@ -60,6 +63,14 @@ namespace Pharmacy.Implement.Utils.Extensions
         {
             Regex regex = new Regex("^[0-9]*$");
             return regex.IsMatch(text);
+        }
+
+        public static void GrantAccess()
+        {
+            DirectoryInfo dInfo = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            DirectorySecurity dSecurity = dInfo.GetAccessControl();
+            dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.WorldSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+            dInfo.SetAccessControl(dSecurity);
         }
     }
 }

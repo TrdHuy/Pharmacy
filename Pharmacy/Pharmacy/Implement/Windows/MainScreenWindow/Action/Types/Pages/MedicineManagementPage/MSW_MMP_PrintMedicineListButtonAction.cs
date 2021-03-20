@@ -37,7 +37,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             try
             {
                 ReportViewer report = new ReportViewer();
-                report.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/MedicineListReport.rdlc");
+                report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/MedicineListReport.rdlc");
 
                 PharmacyDBDataSet.MedicineInfoDataTable tblCaoDon = new PharmacyDBDataSet.MedicineInfoDataTable();
                 PharmacyDBDataSet.MedicineInfoDataTable tblDuocLieu = new PharmacyDBDataSet.MedicineInfoDataTable();

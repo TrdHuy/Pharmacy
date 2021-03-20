@@ -53,7 +53,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
             {
                 _reportViewer.Reset();
 
-                _reportViewer.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/ComprehensiveReport.rdlc");
+                _reportViewer.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/ComprehensiveReport.rdlc");
 
                 MSW_RP_ComprehensiveReportOV result = queryResult.Result as MSW_RP_ComprehensiveReportOV;
 
