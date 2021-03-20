@@ -54,8 +54,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sett
                 , new FactoryLocker(LockReason.TaskHandling, true));
         }
 
-        private void CancleButtonClickEvent(object obj)
+        private void CancleButtonClickEvent(object paramaters)
         {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = ParentsModel;
+            dataTransfer[1] = paramaters;
+            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON
+                , dataTransfer);
         }
     }
 }

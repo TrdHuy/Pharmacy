@@ -82,7 +82,7 @@
                                  AutoGenerateColumns="False"
                                  Height="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
                                  ItemsSource="{Binding CustomerItemSource}"
-                                 Margin="20,0,20,0"
+                                 Margin="10,0,10,0"
                                  HorizontalGridLinesBrush="White"
                                  VerticalGridLinesBrush="White"
                                  HeadersVisibility="Column"
@@ -324,10 +324,9 @@
                 <ColumnDefinition Width="1.015*" />
                 <ColumnDefinition Width="0.13*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="0.33*" />
             </Grid.ColumnDefinitions>
 
-            <hps:OsirisButton Margin="0,5,0,20"
+            <hps:OsirisButton Margin="0,5,10,10"
                               Grid.Column="3"
                               Padding="10,0,10,0"
                               TextContent="+ Thêm mới"

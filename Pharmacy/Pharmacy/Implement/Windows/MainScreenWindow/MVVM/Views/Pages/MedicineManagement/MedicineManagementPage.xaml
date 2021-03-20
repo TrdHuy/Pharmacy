@@ -331,7 +331,7 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <hps:OsirisButton Margin="0,0,10,0"
+            <!--<hps:OsirisButton Margin="0,0,10,0"
                               Grid.Column="0"
                               TextContent="Nhập từ Excel"
                               IsUsingDropShadowEffect="True"
@@ -350,7 +350,7 @@
                               IconTextGapWidth="5"
                               Padding="5"
                               Foreground="White"
-                              Background="{StaticResource ForegroundMainBrush}" />
+                              Background="{StaticResource ForegroundMainBrush}" />-->
             <hps:OsirisButton OBContentOrientation="Horizontal"
                               OBTextVerticalAlignment="Center"
                               IsUsingDropShadowEffect="True"

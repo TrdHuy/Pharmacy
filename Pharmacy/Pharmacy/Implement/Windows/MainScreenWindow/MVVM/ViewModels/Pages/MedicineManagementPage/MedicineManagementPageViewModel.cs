@@ -14,6 +14,7 @@ using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Base.UIEventHandler.Action;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
 {
@@ -35,7 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
         private DispatcherTimer _timerUpdateFilter;
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
         private List<int> _lstMedicineTypeFilter = new List<int>();
         private List<tblMedicineType> _lstMedicineType = new List<tblMedicineType>();
 
@@ -188,7 +189,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
+            dataTransfer[1] = MedicineItemSource;
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON
                 , dataTransfer);
