@@ -637,7 +637,8 @@
                                       Style="{StaticResource SearchingBoxTheme}"
                                       IsUsingListFilter="False"
                                       SelectedIndex="0"
-                                      IsEditable="False">
+                                      IsEditable="False"
+                                      IsEnabled="False">
                             
                             <hps:HorusBox.SelectedItemTemplate>
                                 <DataTemplate>
@@ -713,7 +714,8 @@
                                       Style="{StaticResource SearchingBoxTheme}"
                                       IsUsingListFilter="False"
                                       SelectedIndex="0"
-                                      IsEditable="False">
+                                      IsEditable="False"
+                                      IsEnabled="False">
 
                             <hps:HorusBox.ItemTemplate>
                                 <DataTemplate>
@@ -754,7 +756,8 @@
                                       Style="{StaticResource SearchingBoxTheme}"
                                       IsUsingListFilter="False"
                                       SelectedIndex="0"
-                                      IsEditable="False">
+                                      IsEditable="False"
+                                      IsEnabled="False">
 
                             <hps:HorusBox.ItemTemplate>
                                 <DataTemplate>

@@ -139,6 +139,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON:
                     action = new MSW_MMP_ShowMedicineInfoButtonAction();
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON:
+                    action = new MSW_MMP_PrintMedicineListButtonAction();
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON:
                     action = new MSW_MMP_DiscountByMedicineButtonAction();
                     break;
