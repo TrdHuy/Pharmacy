@@ -15,24 +15,30 @@ using System.Globalization;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Base.UIEventHandler.Action;
+using System.Windows;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement
 {
     public class MedicineManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("MedicineManagementPageViewModel");
 
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
-        public RunInputCommand ExcelImportButtonCommand { get; set; }
-        public RunInputCommand PrintMedicineListButtonCommand { get; set; }
-        public RunInputCommand AddNewMedicineButtonCommand { get; set; }
-        public RunInputCommand EditMedicineButtonCommand { get; set; }
-        public RunInputCommand DeleteMedicineButtonCommand { get; set; }
-        public RunInputCommand PromoMedicineButtonCommand { get; set; }
+        public MSW_MMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public RunInputCommand FilterMedicineTypeCommand { get; set; }
         public EventHandleCommand ShowMedicineInfoCommand { get; set; }
         public EventHandleCommand SearchTextChangedCommand { get; set; }
         public string FilterText { get; set; } = "";
+
+        public Visibility AdminToolboxsVisibility
+        {
+            get
+            {
+                return App.Current.CurrentUser.IsAdmin ?
+                   Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
         private DispatcherTimer _timerUpdateFilter;
@@ -45,12 +51,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         protected override void OnInitializing()
         {
             MedicineItemSource = new ObservableCollection<tblMedicine>();
-            ExcelImportButtonCommand = new RunInputCommand(ExcelImportButtonClickEvent);
-            PrintMedicineListButtonCommand = new RunInputCommand(PrintMedicineListButtonClickEvent);
-            AddNewMedicineButtonCommand = new RunInputCommand(AddNewMedicineButtonClickEvent);
-            EditMedicineButtonCommand = new RunInputCommand(EditMedicineButtonClickEvent);
-            DeleteMedicineButtonCommand = new RunInputCommand(DeleteMedicineButtonClickEvent);
-            PromoMedicineButtonCommand = new RunInputCommand(PromoMedicineButtonClickEvent);
+            ButtonCommandOV = new MSW_MMP_ButtonCommandOV(this);
             FilterMedicineTypeCommand = new RunInputCommand(FilterMedicineTypeClickEvent);
             SearchTextChangedCommand = new EventHandleCommand(SearchTextChangedEvent);
             ShowMedicineInfoCommand = new EventHandleCommand(ShowMedicineInfoEvent);
@@ -175,64 +176,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 , dataTransfer);
         }
 
-        private void ExcelImportButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_EXCEL_IMPORT_BUTTON
-                , dataTransfer);
-        }
-
-        private void PrintMedicineListButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = MedicineItemSource;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON
-                , dataTransfer);
-        }
-
-        private void AddNewMedicineButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
-                , dataTransfer);
-        }
-
-        private void PromoMedicineButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON
-                , dataTransfer);
-        }
-
-        private void DeleteMedicineButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON
-                , dataTransfer);
-        }
-
-        private void EditMedicineButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON
-                , dataTransfer);
-        }
+      
     }
 }

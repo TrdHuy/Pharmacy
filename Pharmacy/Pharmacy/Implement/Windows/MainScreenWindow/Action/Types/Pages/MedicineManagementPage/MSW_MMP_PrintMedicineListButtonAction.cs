@@ -1,6 +1,4 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Collections.Generic;
@@ -13,6 +11,7 @@ using Microsoft.Reporting.WinForms;
 using System.IO;
 using Pharmacy.Implement.Utils.CustomControls;
 using System.Collections.ObjectModel;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {

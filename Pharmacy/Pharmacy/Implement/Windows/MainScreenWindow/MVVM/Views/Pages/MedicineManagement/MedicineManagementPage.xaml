@@ -6,7 +6,7 @@
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement"
       mc:Ignorable="d"
       Background="White"
       x:Name="PageMedicineManagement"
@@ -14,7 +14,7 @@
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="MedicineManagementPage">
     <Page.DataContext>
-        <vm:MedicineManagementPageViewModel x:Name="MedicineManagementDataContext"/>
+        <vm:MedicineManagementPageViewModel x:Name="MedicineManagementDataContext" />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -281,7 +281,7 @@
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
-                                                      Command="{Binding DataContext.EditMedicineButtonCommand,ElementName=PageMedicineManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.EditMedicineButtonCommand,ElementName=PageMedicineManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       FontFamily="{StaticResource FontAwesome}"
@@ -294,20 +294,20 @@
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
                                                       IconStretch="Uniform"
-                                                      Command="{Binding DataContext.DeleteMedicineButtonCommand,ElementName=PageMedicineManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.DeleteMedicineButtonCommand,ElementName=PageMedicineManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Red"
                                                       FontFamily="{StaticResource FontAwesome}"
                                                       FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=MedicineManagementDataContext}"
                                                       TextContent="&#xf00d;" />
-                                    
+
                                     <hps:OsirisButton Grid.Column="5"
                                                       BorderThickness="0"
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
-                                                      Command="{Binding DataContext.PromoMedicineButtonCommand,ElementName=PageMedicineManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.PromoMedicineButtonCommand,ElementName=PageMedicineManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="blue"
@@ -320,8 +320,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
+                
+                
             </DataGrid.Columns>
+            
         </DataGrid>
         <Grid Grid.Row="3"
               Margin="10,0,0,20">
@@ -353,6 +355,7 @@
                               Background="{StaticResource ForegroundMainBrush}" />-->
             <hps:OsirisButton OBContentOrientation="Horizontal"
                               OBTextVerticalAlignment="Center"
+                              Visibility="{Binding AdminToolboxsVisibility}"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
@@ -368,8 +371,9 @@
                               IconHeight="30"
                               IconTextGapWidth="5"
                               Padding="5"
-                              Command="{Binding PrintMedicineListButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.PrintMedicineListButtonCommand}" />
             <hps:OsirisButton OBTextVerticalAlignment="Center"
+                              Visibility="{Binding AdminToolboxsVisibility}"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
@@ -381,7 +385,7 @@
                               Foreground="White"
                               Margin="10,0"
                               Padding="5"
-                              Command="{Binding AddNewMedicineButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.AddNewMedicineButtonCommand}" />
         </Grid>
     </Grid>
 </Page>
