@@ -2,12 +2,10 @@
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 {
@@ -66,6 +64,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
         public LoginScreenWindowViewModel()
         {
             SystemLoginButton = new RunInputCommand(SystemLoginButtonClickEvent);
+            PharmacyExtension.GrantAccess();
         }
 
         protected override void InitPropertiesRegistry()

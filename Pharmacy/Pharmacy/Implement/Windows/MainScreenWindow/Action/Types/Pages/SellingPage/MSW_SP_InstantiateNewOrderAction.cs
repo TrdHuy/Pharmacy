@@ -144,7 +144,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             try
             {
                 ReportViewer report = new ReportViewer();
-                report.LocalReport.ReportPath = Path.GetFullPath(@"../../Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
+                report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
                 reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _newOrder.OrderTime.Hour + ":" + _newOrder.OrderTime.Minute + " " + _newOrder.OrderTime.Day + "/" + _newOrder.OrderTime.Month + "/" + _newOrder.OrderTime.Year);
