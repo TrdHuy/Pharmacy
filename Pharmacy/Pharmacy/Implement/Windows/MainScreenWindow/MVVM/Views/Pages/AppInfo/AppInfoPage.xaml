@@ -67,7 +67,7 @@
                                Grid.Column="0"
                                FontWeight="Bold"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
-                    <TextBlock Text="{Binding ProductName}"
+                    <TextBlock Text="{Binding AppInfo.ProductName}"
                                Grid.Column="1"
                                FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                 </Grid>
@@ -82,12 +82,10 @@
                                FontWeight="Bold"
                                Grid.Column="0"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
-                    <TextBlock Text="{Binding ProductID}"
+                    <TextBlock Text="{Binding AppInfo.ProductID}"
                                Grid.Column="1"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
                 </Grid>
-
-
 
                 <Grid Grid.Row="2"
                       HorizontalAlignment="Center">
@@ -99,7 +97,7 @@
                                FontWeight="Bold"
                                Grid.Column="0"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
-                    <TextBlock Text="{Binding ReleaseDate}"
+                    <TextBlock Text="{Binding AppInfo.ReleaseDate}"
                                Grid.Column="1"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
                 </Grid>
@@ -114,7 +112,7 @@
                                FontWeight="Bold"
                                Grid.Column="0"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
-                    <TextBlock Text="{Binding Company}"
+                    <TextBlock Text="{Binding AppInfo.Company}"
                                Grid.Column="1"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
                 </Grid>
@@ -129,7 +127,7 @@
                                FontWeight="Bold"
                                Grid.Column="0"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
-                    <TextBlock Text="{Binding ProductVersion}"
+                    <TextBlock Text="{Binding AppInfo.ProductVersion}"
                                Grid.Column="1"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
                 </Grid>
@@ -144,7 +142,7 @@
                                FontWeight="Bold"
                                Grid.Column="0"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
-                    <TextBlock Text="{Binding Description}"
+                    <TextBlock Text="{Binding AppInfo.Description}"
                                Grid.Column="1"
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
                 </Grid>
@@ -182,6 +180,7 @@
                         <hps:OsirisButton IconSource="{StaticResource AppUpdateImage}"
                                           Grid.Column="0"
                                           BorderThickness="0"
+                                          Command="{Binding ButtonCommandOV.AppUpdateButtonCommand}"
                                           IconStretch="Uniform"
                                           Background="Transparent"
                                           IsUsingDropShadowEffect="True"

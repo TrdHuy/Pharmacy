@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
@@ -67,5 +68,51 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 #endif
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
         }
+
+        protected void OnKey(BaseViewModel viewModel, string keyTag, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN, params object[] paramaters)
+        {
+            logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
+
+#if DEBUG
+            Stopwatch onKeyWatcher = Stopwatch.StartNew();
+#endif
+            _keyActionListener.OnKey(viewModel
+                , logger
+                , windowTag
+                , keyTag
+                , paramaters);
+
+#if DEBUG
+            onKeyWatcher.Stop();
+            var timeExecuted = onKeyWatcher.ElapsedMilliseconds;
+            logger.D("Time executed on key = " + timeExecuted + "(ms)");
+#endif
+            logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
+        }
+
+        protected void OnKey(BaseViewModel viewModel, string keyTag, FactoryLocker locker, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN, params object[] paramaters)
+        {
+            logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
+
+#if DEBUG
+            Stopwatch onKeyWatcher = Stopwatch.StartNew();
+#endif
+
+            _keyActionListener.OnKey(viewModel
+                , logger
+                , windowTag
+                , keyTag
+                , paramaters
+                , locker);
+
+#if DEBUG
+            onKeyWatcher.Stop();
+            var timeExecuted = onKeyWatcher.ElapsedMilliseconds;
+            logger.D("Time executed on key = " + timeExecuted + "(ms)");
+#endif
+            logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
+        }
+
+
     }
 }

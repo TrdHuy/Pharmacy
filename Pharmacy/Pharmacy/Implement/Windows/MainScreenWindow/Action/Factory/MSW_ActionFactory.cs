@@ -1,4 +1,6 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
@@ -395,8 +397,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_APP_INFO:
                     action = new MSW_AppInfoAction();
                     break;
+                default:
+                    action = null;
+                    break;
+            }
+
+            return action;
+        }
+
+        protected override IAction CreateActionFromCurrentWindow(BaseViewModel viewModel, ILogger logger, string keyTag)
+        {
+            IAction action;
+            switch (keyTag)
+            {
                 case KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON:
-                    action = new MSW_AIP_AppUpdateButtonAction();
+                    action = new MSW_AIP_AppUpdateButtonAction(viewModel, logger);
                     break;
                 default:
                     action = null;
@@ -417,6 +432,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
             return action;
         }
 
+        protected override IAction CreateAlternativeActionFromCurrentWindow(BaseViewModel viewModel, ILogger logger, string keyTag)
+        {
+            return null;
+        }
     }
 
 

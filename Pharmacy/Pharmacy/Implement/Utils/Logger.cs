@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Utils.Attributes;
+﻿using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Utils
 {
-    public class Logger
+    public class Logger : ILogger
     {
         private enum LogLv
         {

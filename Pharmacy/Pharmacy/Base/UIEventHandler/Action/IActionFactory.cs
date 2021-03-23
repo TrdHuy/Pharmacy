@@ -1,4 +1,6 @@
-﻿using Pharmacy.Implement.Utils.Attributes;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
     public interface IActionFactory
     {
         IAction CreateAction(object obj);
+        IAction CreateAction(BaseViewModel viewModel, ILogger logger, object obj);
 
         void LockFactory(bool key, LockReason reason = LockReason.Default);
 
@@ -32,7 +35,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
     {
         [StringValue("...")]
         Default = 0,
-        
+
         [StringValue("Tác vụ đang được xử lý, vui lòng đợi trong vài giây!")]
         TaskHandling = 1,
 

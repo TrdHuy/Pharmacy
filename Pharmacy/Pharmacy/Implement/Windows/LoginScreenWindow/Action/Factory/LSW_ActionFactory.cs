@@ -1,4 +1,6 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type;
@@ -35,7 +37,17 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
             return action;
         }
 
+        protected override IAction CreateActionFromCurrentWindow(BaseViewModel viewModel, ILogger logger, string keyTag)
+        {
+            return null;
+        }
+
         protected override IAction CreateAlternativeActionFromCurrentWindow(string keyTag)
+        {
+            return null;
+        }
+
+        protected override IAction CreateAlternativeActionFromCurrentWindow(BaseViewModel viewModel, ILogger logger, string keyTag)
         {
             return null;
         }
