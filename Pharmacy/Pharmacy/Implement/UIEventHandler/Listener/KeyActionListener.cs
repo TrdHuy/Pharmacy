@@ -1,5 +1,7 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.UIEventHandler.Listener;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory;
@@ -41,12 +43,31 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             }
         }
 
-        public void LockMSW_ActionFactory(bool key,LockReason reason)
+        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object[] dataTransfer)
+        {
+            IAction action = GetKeyActionType(viewModel, logger, windowTag, keyFeature);
+            if (action != null)
+            {
+                action.Execute(dataTransfer);
+            }
+        }
+
+        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object[] dataTransfer, FactoryLocker locker)
+        {
+            IAction action = GetKeyActionAndLockFactory(viewModel, logger, windowTag, keyFeature, locker.IsLock, locker.Reason);
+            if (action != null)
+            {
+                action.Execute(dataTransfer);
+            }
+        }
+
+
+        public void LockMSW_ActionFactory(bool key, LockReason reason)
         {
             _mSW_ActionFactory.LockFactory(key, reason);
         }
 
-        public void LockLSW_ActionFactory(bool key , LockReason reason)
+        public void LockLSW_ActionFactory(bool key, LockReason reason)
         {
             _lSW_ActionFactory.LockFactory(key, reason);
         }
@@ -76,6 +97,22 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             return action;
         }
 
+        private IAction GetKeyActionType(BaseViewModel viewModel, ILogger logger, string windowTag, object obj)
+        {
+            IAction action = null;
+            switch (windowTag)
+            {
+                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
+                    action = _lSW_ActionFactory.CreateAction(viewModel, logger, obj);
+                    break;
+                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
+                    action = _mSW_ActionFactory.CreateAction(viewModel, logger, obj);
+                    break;
+
+            }
+            return action;
+        }
+
         private IAction GetKeyActionAndLockFactory(string windowTag, object obj, bool isLock = false, LockReason reason = LockReason.Default)
         {
             IAction action = null;
@@ -89,10 +126,29 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
                     action = _mSW_ActionFactory.CreateAction(obj);
                     _mSW_ActionFactory.LockFactory(isLock, reason);
                     break;
-              
+
             }
             return action;
         }
+
+        private IAction GetKeyActionAndLockFactory(BaseViewModel viewModel, ILogger logger, string windowTag, object obj, bool isLock = false, LockReason reason = LockReason.Default)
+        {
+            IAction action = null;
+            switch (windowTag)
+            {
+                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
+                    action = _lSW_ActionFactory.CreateAction(viewModel, logger, obj);
+                    _lSW_ActionFactory.LockFactory(isLock, reason);
+                    break;
+                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
+                    action = _mSW_ActionFactory.CreateAction(viewModel, logger, obj);
+                    _mSW_ActionFactory.LockFactory(isLock, reason);
+                    break;
+
+            }
+            return action;
+        }
+
 
         public static KeyActionListener Instance
         {

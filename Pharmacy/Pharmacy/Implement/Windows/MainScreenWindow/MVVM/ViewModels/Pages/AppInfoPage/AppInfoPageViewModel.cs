@@ -1,5 +1,7 @@
 ﻿using Pharmacy.Base.Utils.Attributes;
+using Pharmacy.Implement.AppImpl.Models.VOs;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
@@ -16,55 +18,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
     {
         private static Logger L = new Logger("AppInfoPageViewModel");
 
-        public string ProductName
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Name;
-            }
-        }
-        public string ProductID
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyProductIDAttribute>()?.ProductID;
-            }
-        }
-        public string ProductVersion
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-        }
-        public string ReleaseDate
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyReleaseDateAttribute>()?.ReleaseDate;
-            }
-        }
-        public string Description
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyReleaseDetailAttribute>()?.ReleaseDetail;
-            }
-        }
-        public string Company
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly()
-                    .GetCustomAttributes(typeof(AssemblyCompanyAttribute), false)
-                    .OfType<AssemblyCompanyAttribute>()
-                    .FirstOrDefault()?
-                    .Company;
-
-                //return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).CompanyName;
-            }
-        }
-
+        public AppInfoVO AppInfo { get; set; }
+        public MSW_AIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         protected override Logger logger => L;
 
@@ -74,7 +29,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
 
         protected override void OnInitializing()
         {
-
+            AppInfo = new AppInfoVO();
+            ButtonCommandOV = new MSW_AIP_ButtonCommandOV(this);
         }
 
     }

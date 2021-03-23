@@ -26,8 +26,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
         {
             AppUpdateButtonCommand = new RunInputCommand((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON,
-                    paramaters);
+                OnKey(parentsModel
+                    , KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON
+                    , WindowTag.WINDOW_TAG_MAIN_SCREEN
+                    , paramaters);
             });
         }
 
