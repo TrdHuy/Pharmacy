@@ -19,14 +19,14 @@ HPS_FT_IS_SUPPORT_LOCATOR_WINDOW_FOR_PERSONAL_AVATAR=FALSE
 ############################################################
 #Feature price: 2,000,000 vnd
 #Notify icon switch
-HPS_FT_IS_SUPPORT_NOTIFY_ICON=TRUE
+HPS_FT_IS_SUPPORT_NOTIFY_ICON=FALSE
 ############################################################
 
 
 ############################################################
 #Feature price: 2,000,000 vnd
 #Navigation button switch
-HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=TRUE
+HPS_FT_IS_SUPPORT_WINDOW_NAVIGATION_BUTTON_PANEL=FALSE
 ############################################################
 
 

@@ -187,6 +187,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_AppUpdateButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_PrintInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_CancelButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_PrintMedicineListButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_InitComprehensiveReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_InitSellingReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_CancleButtonAction.cs" />
@@ -849,6 +850,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\ComprehensiveReport.rdlc" />
+    <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\MedicineListReport.rdlc" />
     <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingInvoice.rdlc" />
     <EmbeddedResource Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingReport.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
