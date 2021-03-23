@@ -1,6 +1,5 @@
-﻿using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
+﻿using Pharmacy.Base.Utils.Attributes;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -8,13 +7,20 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Pharmacy")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyReleaseDetail("First release of PMC")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HPSoftwareSolution")]
-[assembly: AssemblyProduct("Pharmacy")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyProduct("PMC")]
+[assembly: AssemblyCopyright("Copyright ©  2020 Project - All Right Reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+// date format dd-MM-yyyy
+[assembly: AssemblyReleaseDate("23-03-2021")]
+
+//product id naming rule
+//<Prod_name(short name)>_<Release_date(ddmm)>_<other_code(A-Z)>_<Version>
+[assembly: AssemblyProductID("PMC2303XXU1-0-0")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 

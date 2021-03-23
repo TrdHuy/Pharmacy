@@ -3,6 +3,7 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerInstantiationPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage;
@@ -390,6 +391,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON:
                     action = new MSW_RP_InitComprehensiveReportButtonAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_APP_INFO:
+                    action = new MSW_AppInfoAction();
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON:
+                    action = new MSW_AIP_AppUpdateButtonAction();
                     break;
                 default:
                     action = null;

@@ -65,6 +65,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string ADD_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/AddOtherPaymentPage.xaml";
         public const string MODIFY_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/ModifyOtherPaymentPage.xaml";
         public const string SETTING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Setting/SettingPage.xaml";
+        public const string APP_INFO_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/AppInfo/AppInfoPage.xaml";
 
         public const string DAILY_REPORT_DETAIL_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/PopupScreenWindow/MVVM/Views/Pages/DailyReportDetailPage.xaml";
 
@@ -101,6 +102,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long MODIFY_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long SETTING_PAGE_LOADING_DELAY_TIME = 200;
         public static readonly long DAILY_REPORT_DETAIL_PAGE_LOADING_DELAY_TIME = 1000;
+        public static readonly long APP_INFO_PAGE_LOADING_DELAY_TIME = 1000;
 
     }
 

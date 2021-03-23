@@ -168,6 +168,9 @@
     <Compile Include="Base\Observable\ObserverPattern\ObservableProperty.cs" />
     <Compile Include="Base\Observable\ObserverPattern\PropertyObserver.cs" />
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
+    <Compile Include="Base\Utils\Attributes\AssemblyProductIDAttribute.cs" />
+    <Compile Include="Base\Utils\Attributes\AssemblyReleaseDateAttribute.cs" />
+    <Compile Include="Base\Utils\Attributes\AssemblyReleaseDetailAttribute.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\Utils\Extensions\LocalReportExtensions.cs" />
@@ -179,13 +182,17 @@
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSource.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSourceWatcher.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_AppInfoAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_AppUpdateButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_PrintInvoiceButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_InitComprehensiveReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\Report\MSW_RP_InitSellingReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_CancleButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_SaveButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\AppInfoPage\AppInfoPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\AppInfoPage\OVs\MSW_AIP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagement\OVs\MSW_CMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagement\OVs\MSW_CMP_EventCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\OVs\MSW_CMP_CTP_CDP_CustomerDebtOV.cs" />
@@ -194,6 +201,10 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\ReportPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\OVs\MSW_SeP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\SettingPage\SettingPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControl\OVs\MSW_MMC_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\AppInfo\AppInfoPage.xaml.cs">
+      <DependentUpon>AppInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Setting\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
@@ -410,7 +421,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\ModifyWarehouseImportPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\AddWarehouseImportPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\WarehouseManagementPageViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControlViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\UserControls\MainMenuControl\MainMenuControlViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\CustomerManagement\CustomerModificationPage.xaml.cs">
       <DependentUpon>CustomerModificationPage.xaml</DependentUpon>
     </Compile>
@@ -577,6 +588,10 @@
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WindowDirector.cs" />
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\AppInfo\AppInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\Setting\SettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -963,6 +978,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>PharmacyDB.mdf</DependentUpon>
     </Content>
+    <Resource Include="Resources\Icons\anti_bug.png" />
+    <Resource Include="Resources\Icons\app_update.png" />
+    <Resource Include="Resources\Icons\fb_messenger.png" />
     <Resource Include="Resources\Images\config.png" />
     <Resource Include="Resources\Images\app_icon.png" />
     <Resource Include="Resources\Icons\bill_icon.png" />

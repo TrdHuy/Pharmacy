@@ -18,6 +18,7 @@
         public const string KEY_TAG_MSW_WAREHOUSE_MANAGEMENT = "msw_warehouse_management";
         public const string KEY_TAG_MSW_REPORT = "msw_report";
         public const string KEY_TAG_MSW_SETTING = "msw_setting";
+        public const string KEY_TAG_MSW_APP_INFO = "msw_app_info";
 
         public const string KEY_TAG_MSW_NOT_SUPPORTED_BUTTON = "msw_not_supported_button";
         public const string KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON = "msw_not_implemented_button";
@@ -188,5 +189,8 @@
         //Report page key string
         public const string KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON = "msw_rp_init_selling_report_button";
         public const string KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON = "msw_rp_init_comprehensive_report_button";
+
+        //App info page key string
+        public const string KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON = "msw_aip_app_update_button";
     }
 }

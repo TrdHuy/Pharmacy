@@ -31,6 +31,7 @@
     <system:Double x:Key="FontSizeXXLarge">24</system:Double>
     <system:Double x:Key="FontSizeXXXLarge">28</system:Double>
     <system:Double x:Key="FontSizeXXXXLarge">30</system:Double>
+    <system:Double x:Key="FontSizeXXXXXLarge">34</system:Double>
     <system:Double x:Key="HeaderFontSize">30</system:Double>
 
 

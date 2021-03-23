@@ -56,6 +56,15 @@
     <BitmapImage x:Key="DefaultCustomerImage"
                  UriSource="/Pharmacy;component/Resources/Images/customer_default_icon.png" />
 
+    <BitmapImage x:Key="FaceBookMessengerImage"
+                 UriSource="/Pharmacy;component/Resources/Icons/fb_messenger.png" />
+    
+    <BitmapImage x:Key="AppUpdateImage"
+                 UriSource="/Pharmacy;component/Resources/Icons/app_update.png" />
+
+    <BitmapImage x:Key="AntiBugImage"
+                 UriSource="/Pharmacy;component/Resources/Icons/anti_bug.png" />
+
     <system:Double x:Key="ImageSizeRegular">34</system:Double>
     <system:Double x:Key="ImageSizeRegular_Float">40</system:Double>
     

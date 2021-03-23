@@ -178,7 +178,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
              new Uri(PharmacyDefinitions.SETTING_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
              PharmacyDefinitions.SETTING_PAGE_LOADING_DELAY_TIME));
 
-        
+        private Lazy<PageVO> AppInfoPage = new Lazy<PageVO>(() =>
+        new PageVO(
+            new Uri(PharmacyDefinitions.APP_INFO_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+            PharmacyDefinitions.APP_INFO_PAGE_LOADING_DELAY_TIME));
+
 
 
         private MSW_PageController()
@@ -321,6 +325,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.SETTING_PAGE:
                     CurrentPageOV.PageUri = SettingPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SettingPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.APP_INFO_PAGE:
+                    CurrentPageOV.PageUri = AppInfoPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = AppInfoPage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageOV.PageUri = HomePage.Value.PageUri;
@@ -497,6 +505,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageSource = PageSource.SETTING_PAGE;
                     CurrentPageOV.PageUri = SettingPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = SettingPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.APP_INFO_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.APP_INFO_PAGE;
+                    CurrentPageOV.PageUri = AppInfoPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = AppInfoPage.Value.LoadingDelayTime;
                     break;
                 default:
                     CurrentPageSource = PageSource.HOME_PAGE;

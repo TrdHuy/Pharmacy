@@ -23,6 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
         private const double BASE_FONT_XXLARGE = 24d;
         private const double BASE_FONT_XXXLARGE = 28d;
         private const double BASE_FONT_XXXXLARGE = 30d;
+        private const double BASE_FONT_XXXXXLARGE = 34d;
         private const double BASE_HEADER_FONT = 30d;
         private const double BASE_FLOATING_FONT_LARGE = 22d;
 
@@ -130,6 +131,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             get
             {
                 return BASE_FONT_XXXXLARGE * FontSizeZoomRatio;
+            }
+        }
+        public double FontSizeXXXXXLarge
+        {
+            get
+            {
+                return BASE_FONT_XXXXXLARGE * FontSizeZoomRatio;
             }
         }
         public double HeaderFontSize

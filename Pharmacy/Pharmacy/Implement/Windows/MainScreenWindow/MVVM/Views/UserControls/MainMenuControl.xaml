@@ -1,16 +1,15 @@
-﻿<UserControl
-    x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls.MainMenuControl"
-    x:Name="main_container"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserControls"
-    mc:Ignorable="d"
-    d:DesignHeight="650"
-    d:DesignWidth="170">
+﻿<UserControl x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls.MainMenuControl"
+             x:Name="main_container"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="650"
+             d:DesignWidth="170">
 
     <UserControl.DataContext>
         <vm:MainMenuControlViewModel />
@@ -28,46 +27,41 @@
             <RowDefinition Height="2*" />
 
         </Grid.RowDefinitions>
-  
 
-        <cctrl:HPSL_Button
-            Grid.Row="1"
-            Content="TRANG CHỦ"
-            ImageSource="{DynamicResource HomeIcon}"
-            Padding="10,0,0,0"
-            Command="{Binding HomePageCommand}"
-            Style="{DynamicResource MenuTabButton}" />
-        <cctrl:HPSL_Button
-            Grid.Row="2"
-            Content="TÀI KHOẢN"
-            ImageSource="{DynamicResource AccountIcon}"
-            Padding="10,0,0,0"
-            Command="{Binding PersonalAccountCommand}"
-            Style="{DynamicResource MenuTabButton}" />
-        <cctrl:HPSL_Button
-            Grid.Row="3"
-            Content="CÀI ĐẶT"
-            ImageSource="{DynamicResource SettingIcon}"
-            Command="{Binding SettingPageCommand}"
-            Padding="10,0,0,0"
-            Style="{DynamicResource MenuTabButton}" />
-        <cctrl:HPSL_Button
-            Grid.Row="4"
-            Content="BÁO LỖI"
-            ImageSource="{DynamicResource BugIcon}"
-            Padding="10,0,0,0"
-            Style="{DynamicResource MenuTabButton}" />
-        <cctrl:HPSL_Button
-            Grid.Row="5"
-            Content="CSKH"
-            ImageSource="{DynamicResource CSIcon}"
-            Padding="10,0,0,0"
-            Style="{DynamicResource MenuTabButton}" />
-        <cctrl:HPSL_Button
-            Grid.Row="6"
-            Content="THÔNG TIN"
-            ImageSource="{DynamicResource AppInfoIcon}"
-            Padding="10,0,0,0"
-            Style="{DynamicResource MenuTabButton}" />
+
+        <cctrl:HPSL_Button Grid.Row="1"
+                           Content="TRANG CHỦ"
+                           ImageSource="{DynamicResource HomeIcon}"
+                           Padding="10,0,0,0"
+                           Command="{Binding ButtonCommandOV.HomePageCommand}"
+                           Style="{DynamicResource MenuTabButton}" />
+        <cctrl:HPSL_Button Grid.Row="2"
+                           Content="TÀI KHOẢN"
+                           ImageSource="{DynamicResource AccountIcon}"
+                           Padding="10,0,0,0"
+                           Command="{Binding ButtonCommandOV.PersonalAccountCommand}"
+                           Style="{DynamicResource MenuTabButton}" />
+        <cctrl:HPSL_Button Grid.Row="3"
+                           Content="CÀI ĐẶT"
+                           ImageSource="{DynamicResource SettingIcon}"
+                           Command="{Binding ButtonCommandOV.SettingPageCommand}"
+                           Padding="10,0,0,0"
+                           Style="{DynamicResource MenuTabButton}" />
+        <cctrl:HPSL_Button Grid.Row="4"
+                           Content="BÁO LỖI"
+                           ImageSource="{DynamicResource BugIcon}"
+                           Padding="10,0,0,0"
+                           Style="{DynamicResource MenuTabButton}" />
+        <cctrl:HPSL_Button Grid.Row="5"
+                           Content="CSKH"
+                           ImageSource="{DynamicResource CSIcon}"
+                           Padding="10,0,0,0"
+                           Style="{DynamicResource MenuTabButton}" />
+        <cctrl:HPSL_Button Grid.Row="6"
+                           Content="THÔNG TIN"
+                           ImageSource="{DynamicResource AppInfoIcon}"
+                           Padding="10,0,0,0"
+                           Command="{Binding ButtonCommandOV.AppInfoCommand}"
+                           Style="{DynamicResource MenuTabButton}" />
     </Grid>
 </UserControl>

@@ -1,0 +1,251 @@
+﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo.AppInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo"
+      mc:Ignorable="d"
+      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage"
+      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+      Title="AppInfoPage">
+    <Page.DataContext>
+        <vm:AppInfoPageViewModel />
+    </Page.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*" />
+            <RowDefinition Height="9*" />
+            <RowDefinition Height=".5*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width=".5*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Content grid-->
+        <Grid Grid.Column="1"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <!--HPSS Logo-->
+            <Image Source="/Pharmacy;component/Resources/Icons/company logo x2.png"
+                   Stretch="Uniform" />
+
+            <!--package Info area-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Tên sản phẩm: "
+                               Grid.Column="0"
+                               FontWeight="Bold"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                    <TextBlock Text="{Binding ProductName}"
+                               Grid.Column="1"
+                               FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                </Grid>
+
+                <Grid Grid.Row="1"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Mã sản phẩm: "
+                               FontWeight="Bold"
+                               Grid.Column="0"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                    <TextBlock Text="{Binding ProductID}"
+                               Grid.Column="1"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                </Grid>
+
+
+
+                <Grid Grid.Row="2"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Ngày phát hành: "
+                               FontWeight="Bold"
+                               Grid.Column="0"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                    <TextBlock Text="{Binding ReleaseDate}"
+                               Grid.Column="1"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                </Grid>
+
+                <Grid Grid.Row="3"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sản phẩm thuộc: "
+                               FontWeight="Bold"
+                               Grid.Column="0"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                    <TextBlock Text="{Binding Company}"
+                               Grid.Column="1"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                </Grid>
+
+                <Grid Grid.Row="4"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Phiên bản: "
+                               FontWeight="Bold"
+                               Grid.Column="0"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                    <TextBlock Text="{Binding ProductVersion}"
+                               Grid.Column="1"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                </Grid>
+
+                <Grid Grid.Row="5"
+                      HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Chi tiết phiên bản: "
+                               FontWeight="Bold"
+                               Grid.Column="0"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                    <TextBlock Text="{Binding Description}"
+                               Grid.Column="1"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+                </Grid>
+
+                <Border Height="1"
+                        Grid.Row="10"
+                        Background="Black"/>
+                
+                <Grid Grid.Row="11">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="0.6*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock Text="Kiểm tra cập nhật"
+                               Grid.Column="1"
+                               VerticalAlignment="Center"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+
+                    <hps:SquareGrid Grid.Column="2"
+                                    Margin="3">
+                        <hps:OsirisButton IconSource="{StaticResource AppUpdateImage}"
+                                          Grid.Column="0"
+                                          BorderThickness="0"
+                                          IconStretch="Uniform"
+                                          Background="Transparent"
+                                          IsUsingDropShadowEffect="True"
+                                          VerticalContentAlignment="Center"
+                                          HorizontalContentAlignment="Center" />
+                    </hps:SquareGrid>
+
+
+                    <TextBlock Text="Liên hệ CSKH"
+                               Grid.Column="4"
+                               VerticalAlignment="Center"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+
+                    <hps:SquareGrid Grid.Column="5"
+                                    Margin="3">
+                        <hps:OsirisButton Grid.Column="0"
+                                          BorderThickness="0"
+                                          IsUsingDropShadowEffect="True"
+                                          Background="Transparent"
+                                          IconStretch="Uniform"
+                                          IconSource="{StaticResource FaceBookMessengerImage}"
+                                          VerticalContentAlignment="Center"
+                                          HorizontalContentAlignment="Center" />
+                    </hps:SquareGrid>
+
+                    <TextBlock Text="Báo lỗi sản phẩm"
+                               Grid.Column="7"
+                               VerticalAlignment="Center"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+
+                    <hps:SquareGrid Grid.Column="8"
+                                    Margin="3">
+                        <hps:OsirisButton IconStretch="Uniform"
+                                          Grid.Column="0"
+                                          BorderThickness="0"
+                                          IsUsingDropShadowEffect="True"
+                                          Background="Transparent"
+                                          IconSource="{StaticResource AntiBugImage}"
+                                          VerticalContentAlignment="Center"
+                                          HorizontalContentAlignment="Center" />
+                    </hps:SquareGrid>
+
+                    <TextBlock Text="Trang chủ"
+                               Grid.Column="10"
+                               VerticalAlignment="Center"
+                               FontSize="{Binding FontSizeOV.FontSizeLarge}" />
+
+                    <hps:SquareGrid Grid.Column="11"
+                                    Margin="3">
+                        <hps:OsirisButton TextContent="&#xf082;"
+                                          Grid.Column="0"
+                                          BorderThickness="0"
+                                          Background="White"
+                                          IsUsingDropShadowEffect="True"
+                                          Foreground="#139BF7"
+                                          OBCornerRadius="1000"
+                                          VerticalContentAlignment="Center"
+                                          HorizontalContentAlignment="Center"
+                                          FontFamily="{StaticResource FontAwesome}"
+                                          FontSize="{StaticResource FontSizeXXXXLarge}" />
+                    </hps:SquareGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Page>
