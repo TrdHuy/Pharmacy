@@ -343,8 +343,7 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <hps:OsirisButton Grid.Column="2"
@@ -364,7 +363,7 @@
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
-                                          Grid.Column="1"
+                                          Grid.Column="0"
                                           Padding="30,0,30,0"
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
@@ -378,7 +377,7 @@
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
-                                          Grid.Column="2"
+                                          Grid.Column="1"
                                           Padding="20,0,20,0"
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"

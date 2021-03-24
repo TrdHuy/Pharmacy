@@ -96,11 +96,11 @@
                                                     <ColumnDefinition Width="2.1*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Viewbox Grid.Column="0">
-                                                    <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
+                                                    <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                                Text="{Binding OrderTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=DATE}" />
                                                 </Viewbox>
                                                 <Viewbox Grid.Column="2">
-                                                    <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
+                                                    <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                                Text="{Binding OrderTime,Converter={conv:SystemDateTimeToStringConverter},ConverterParameter=TIME}" />
                                                 </Viewbox>
                                                 <Grid Grid.Column="4">
@@ -110,13 +110,13 @@
                                                     </Grid.ColumnDefinitions>
                                                     <Viewbox Grid.Column="0"
                                                              HorizontalAlignment="Right">
-                                                        <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
+                                                        <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                                                    Text="Thành tiền: " />
                                                     </Viewbox>
                                                     <Viewbox Grid.Column="1"
                                                              HorizontalAlignment="Left">
-                                                        <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerTransactionHistoryPageDataContext}"
-                                                                   Text="{Binding TotalPrice}" />
+                                                        <TextBlock FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                                                   Text="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
                                                     </Viewbox>
                                                 </Grid>
 
@@ -292,20 +292,24 @@
                              BorderBrush="Black"
                              BorderThickness="2"
                              Grid.Column="2" />
-                    <TextBox Grid.Row="2"
-                             BorderThickness="2"
-                             IsReadOnly="True"
-                             Text="{Binding CurrentSelectedOrder.TotalPrice}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                             BorderBrush="Black"
-                             Grid.Column="2" />
-                    <TextBox Grid.Row="4"
-                             BorderThickness="2"
-                             IsReadOnly="True"
-                             Text="{Binding CurrentSelectedOrder.PurchasePrice}"
-                             FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                             BorderBrush="Black"
-                             Grid.Column="2" />
+                    <hps:AkerTextBox Grid.Row="2"
+                                     BorderThickness="2"
+                                     IsReadOnly="True"
+                                     AkerTextBoxType="Expense"
+                                     AkerExpenseUnit="VND"
+                                     AkerExpense="{Binding CurrentSelectedOrder.TotalPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                     BorderBrush="Black"
+                                     Grid.Column="2" />
+                    <hps:AkerTextBox Grid.Row="4"
+                                     BorderThickness="2"
+                                     IsReadOnly="True"
+                                     AkerTextBoxType="Expense"
+                                     AkerExpenseUnit="VND"
+                                     AkerExpense="{Binding CurrentSelectedOrder.PurchasePrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                     BorderBrush="Black"
+                                     Grid.Column="2" />
                     <TextBox Grid.Row="6"
                              BorderThickness="2"
                              IsReadOnly="True"
@@ -373,7 +377,7 @@
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
-                                          Command="{Binding ReturnButtonCommand}"/>
+                                          Command="{Binding ReturnButtonCommand}" />
 
                     </Grid>
                 </Grid>

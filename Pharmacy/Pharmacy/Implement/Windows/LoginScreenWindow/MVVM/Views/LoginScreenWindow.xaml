@@ -138,7 +138,7 @@
                        VerticalAlignment="Top"
                        Source="/Pharmacy;component/Resources/Icons/app icon x2.png" />
                 <TextBlock x:Name="textBlock"
-                           Height="20"
+                           Height="25"
                            Margin="0,170,0,0"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Top"
@@ -146,7 +146,7 @@
                            FontSize="20"
                            FontWeight="Bold"
                            Foreground="White"
-                           Text="Tung Anh's Pharmacy"
+                           Text="Pharmacy Management"
                            TextWrapping="Wrap" />
                 <Border Margin="10,218,10,45"
                         BorderBrush="White"
