@@ -330,14 +330,12 @@
             <!--Button area-->
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6.27*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.13*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="0.13*" />
+                    <ColumnDefinition Width="8.99*" />
+                    <ColumnDefinition Width="1.77*" />
+                    <ColumnDefinition Width="1.77*" />
                 </Grid.ColumnDefinitions>
 
-                <hps:OsirisButton Margin="0,5,0,20"
+                <hps:OsirisButton Margin="0,5,10,20"
                                   Grid.Column="1"
                                   Padding="30,0,30,0"
                                   TextContent="Trở lại"
@@ -348,8 +346,8 @@
                                   Command="{Binding CancleButtonCommand}"
                                   BorderThickness="0"
                                   Foreground="White" />
-                <hps:OsirisButton Margin="0,5,0,20"
-                                  Grid.Column="3"
+                <hps:OsirisButton Margin="0,5,10,20"
+                                  Grid.Column="2"
                                   Padding="20,0,20,0"
                                   TextContent="Lưu"
                                   IsBusy="{Binding IsSaveButtonRunning}"

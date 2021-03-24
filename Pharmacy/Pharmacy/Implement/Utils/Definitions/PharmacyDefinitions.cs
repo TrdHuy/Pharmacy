@@ -76,13 +76,13 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long CUSTOMER_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long SUPPLIER_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long INVOICE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
-        public static readonly long MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1300;
+        public static readonly long MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long REPORT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long USER_MODIFICATION_PAGE_LOADING_DELAY_TIME = 1000;
-        public static readonly long USER_INSTANTIATION_PAGE_LOADING_DELAY_TIME = 100;
-        public static readonly long CUSTOMER_INSTANTIATION_PAGE_LOADING_DELAY_TIME = 100;
+        public static readonly long USER_INSTANTIATION_PAGE_LOADING_DELAY_TIME = 500;
+        public static readonly long CUSTOMER_INSTANTIATION_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long CUSTOMER_MODIFICATION_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long CUSTOMER_TRANSACTION_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long CUSTOMER_DEBTS_PAGE_LOADING_DELAY_TIME = 1000;
@@ -100,7 +100,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long SUPPLIER_DEBT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long ADD_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long MODIFY_OTHER_PAYMENT_PAGE_LOADING_DELAY_TIME = 1000;
-        public static readonly long SETTING_PAGE_LOADING_DELAY_TIME = 200;
+        public static readonly long SETTING_PAGE_LOADING_DELAY_TIME = 500;
         public static readonly long DAILY_REPORT_DETAIL_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long APP_INFO_PAGE_LOADING_DELAY_TIME = 1000;
 
