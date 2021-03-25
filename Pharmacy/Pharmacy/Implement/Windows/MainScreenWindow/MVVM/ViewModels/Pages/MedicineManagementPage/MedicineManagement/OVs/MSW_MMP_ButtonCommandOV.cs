@@ -1,5 +1,4 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;

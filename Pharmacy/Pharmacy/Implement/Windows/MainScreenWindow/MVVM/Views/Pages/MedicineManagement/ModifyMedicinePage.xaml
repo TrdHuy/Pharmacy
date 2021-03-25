@@ -29,7 +29,7 @@
             <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding MedicineImageSource}"
                                  CamTip="Thay đổi ảnh thuốc"
-                                 CamButCmd="{Binding CameraButtonCommand}"
+                                 CamButCmd="{Binding ButtonCommandOV.CameraButtonCommand}"
                                  CamButVisibility="Visible"
                                  MainTiltle="{Binding ElementName=txtMedicineName, Path=Text}"
                                  SubTiltle="{Binding ElementName=cbxMedicineType, Path=Text}"
@@ -525,7 +525,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                              Command="{Binding CancelButtonCommand}"
+                              Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
                               Padding="10,0,10,0"
                               Foreground="White" />
@@ -539,7 +539,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               IsUsingDropShadowEffect="True"
-                              Command="{Binding SaveButtonCommand}"
+                              Command="{Binding ButtonCommandOV.SaveButtonCommand}"
                               Foreground="White"
                               Padding="10,0,10,0"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />

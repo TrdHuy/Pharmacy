@@ -1,29 +1,24 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Base.UIEventHandler.Listener;
+﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.ModifyMedicine
 {
-    public class ModifyMedicinePageViewModel : MSW_BasePageViewModel
+    internal class ModifyMedicinePageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("ModifyMedicinePageViewModel");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
+        public MSW_MMP_MMoP_ButtonCommandOV ButtonCommandOV { get; set; }
         public RunInputCommand SaveButtonCommand { get; set; }
         public RunInputCommand CameraButtonCommand { get; set; }
         public ObservableCollection<tblMedicineType> LstMedicineType { get; set; }
@@ -35,22 +30,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public int SupplierCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int BidPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int AskingPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-        public bool IsSaveButtonRunning
-        {
-            get
-            {
-                return _isSaveButtonRunning;
-            }
-            set
-            {
-                _isSaveButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
+        
         public bool IsSaveButtonCanPerform
         {
             get
@@ -173,9 +153,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         protected override void OnInitializing()
         {
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
+            ButtonCommandOV = new MSW_MMP_MMoP_ButtonCommandOV(this);
             InitData();
             UpdateModifyData();
         }
@@ -195,7 +173,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             BidPrice = _modifiedMedicine.BidPrice;
             AskingPrice = _modifiedMedicine.AskingPrice;
             MedicineDescription = _modifiedMedicine.MedicineDescription;
-            
+
             GetWarehouseImportDetail();
             MedicineImageSource = FileIOUtil.
                 GetBitmapFromName(_modifiedMedicine.MedicineID.ToString(), FileIOUtil.MEDICINE_IMAGE_FOLDER_NAME).
@@ -218,38 +196,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_STOCK_IN_WAREHOUSE_DATA_CMD_KEY
                     , _sqlCmdObserver
                     , MedicineID);
-        }
-
-        private void CameraButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_CAMERA_BUTTON
-                , dataTransfer);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_CANCEL_BUTTON
-                , dataTransfer);
         }
 
         private void CheckMedicineName()
@@ -341,7 +287,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 else
                 {
                     LstMedicineUnit = new ObservableCollection<tblMedicineUnit>();
-                }                
+                }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_UNIT_DATA_CMD_KEY
                     , _sqlCmdObserver);
@@ -358,7 +304,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 else
                 {
                     LstMedicineType = new ObservableCollection<tblMedicineType>();
-                }                
+                }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY
                     , _sqlCmdObserver);
