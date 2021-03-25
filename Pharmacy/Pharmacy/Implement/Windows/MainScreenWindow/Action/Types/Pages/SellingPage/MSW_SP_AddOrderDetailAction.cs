@@ -29,7 +29,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
                     "Thông báo!!");
-                    SPViewModel.IsAddOrderDeatailButtonRunning = false;
+                    SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                     return;
                 }
                 else
@@ -39,7 +39,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
                     "Thông báo!!");
-                    SPViewModel.IsAddOrderDeatailButtonRunning = false;
+                    SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 }
 
                 return;
@@ -62,7 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     "Thông báo!!");
                 if (x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
                 {
-                    SPViewModel.IsAddOrderDeatailButtonRunning = false;
+                    SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                     return;
                 }
                 else
@@ -118,7 +118,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
                    "Lỗi!!");
-                SPViewModel.IsAddOrderDeatailButtonRunning = false;
+                SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
             }
         }
 
@@ -191,7 +191,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             }
             finally
             {
-                SPViewModel.IsAddOrderDeatailButtonRunning = false;
+                SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 SPViewModel.MedicineOV.CurrentSelectedMedicine = null;
                 SPViewModel.MedicineOV.Quantity = null;
                 SPViewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");

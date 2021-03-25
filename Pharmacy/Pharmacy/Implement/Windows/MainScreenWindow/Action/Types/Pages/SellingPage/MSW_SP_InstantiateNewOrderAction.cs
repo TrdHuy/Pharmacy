@@ -24,7 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
             if (!CanExecute())
             {
-                SPViewModel.IsInstantiateNewOrderButtonRunning = false;
+                SPViewModel.ButtonCommandOV.IsInstantiateNewOrderButtonRunning = false;
                 return;
             }
             GenerateOrder();
@@ -90,7 +90,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                    OwnerWindow.MainScreen,
                    "Lỗi!!");
-                SPViewModel.IsInstantiateNewOrderButtonRunning = false;
+                SPViewModel.ButtonCommandOV.IsInstantiateNewOrderButtonRunning = false;
             }
 
             _previousDebt = SPViewModel.MedicineOV.DebtCost;
@@ -130,7 +130,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   "Lỗi!!");
             }
 
-            SPViewModel.IsInstantiateNewOrderButtonRunning = false;
+            SPViewModel.ButtonCommandOV.IsInstantiateNewOrderButtonRunning = false;
         }
 
         private void PrintInvoice()

@@ -59,8 +59,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         {
             AddOrderDetailCommand = new RunInputCommand((paramaters) =>
             {
+                IsAddOrderDeatailButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON
-                    , paramaters);
+                    , paramaters
+                    , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
             RemoveOrderDetailCommand = new RunInputCommand((paramaters) =>
             {
@@ -69,8 +71,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             });
             InstantiateOrderCommand = new RunInputCommand((paramaters) =>
             {
+                IsInstantiateNewOrderButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON
-                    , paramaters);
+                    , paramaters
+                    , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
             RefreshSellingPageCommand = new RunInputCommand((paramaters) =>
             {
