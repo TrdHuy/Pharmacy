@@ -3,11 +3,6 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserControls.MainMenuControl.OVs
 {
@@ -27,22 +22,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserContro
             SettingPageCommand = new RunInputCommand((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SETTING
-                    , paramaters);
+                    , paramaters
+                    , false);
             });
             PersonalAccountCommand = new RunInputCommand((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
-                    , paramaters);
+                    , paramaters
+                    , false);
             });
             HomePageCommand = new RunInputCommand((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE
-                    , paramaters);
+                    , paramaters
+                    , false);
             });
             AppInfoCommand = new RunInputCommand((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_APP_INFO
-                    , paramaters);
+                    , paramaters
+                    , false);
             });
         }
     }
