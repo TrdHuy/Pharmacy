@@ -6,7 +6,7 @@
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement"
       mc:Ignorable="d"
       Background="White"
       x:Name="PageMedicineManagement"
@@ -56,7 +56,7 @@
                       VerticalAlignment="Center"
                       VerticalContentAlignment="Center"
                       IsChecked="True"
-                      Command="{Binding FilterMedicineTypeCommand}"
+                      Command="{Binding ButtonCommandOV.FilterMedicineTypeCommand}"
                       x:Name="cbxDuocLieu">
                 <CheckBox.CommandParameter>
                     <MultiBinding Converter="{conv:MultiBindingConverter}">
@@ -281,7 +281,7 @@
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
-                                                      Command="{Binding DataContext.EditMedicineButtonCommand,ElementName=PageMedicineManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.EditMedicineButtonCommand,ElementName=PageMedicineManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       FontFamily="{StaticResource FontAwesome}"
@@ -294,7 +294,7 @@
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
                                                       IconStretch="Uniform"
-                                                      Command="{Binding DataContext.DeleteMedicineButtonCommand,ElementName=PageMedicineManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.DeleteMedicineButtonCommand,ElementName=PageMedicineManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Red"
@@ -307,7 +307,7 @@
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
-                                                      Command="{Binding DataContext.PromoMedicineButtonCommand,ElementName=PageMedicineManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.PromoMedicineButtonCommand,ElementName=PageMedicineManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="blue"
@@ -340,7 +340,7 @@
                               OBContentOrientation="Horizontal"
                               OBTextVerticalAlignment="Center"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                              Command="{Binding ExcelImportButtonCommand}"
+                              Command="{Binding ButtonCommandOV.ExcelImportButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
                               IconSource="{StaticResource ExcelImport}"
@@ -368,7 +368,7 @@
                               IconHeight="30"
                               IconTextGapWidth="5"
                               Padding="5"
-                              Command="{Binding PrintMedicineListButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.PrintMedicineListButtonCommand}" />
             <hps:OsirisButton OBTextVerticalAlignment="Center"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
@@ -381,7 +381,7 @@
                               Foreground="White"
                               Margin="10,0"
                               Padding="5"
-                              Command="{Binding AddNewMedicineButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.AddNewMedicineButtonCommand}" />
         </Grid>
     </Grid>
 </Page>

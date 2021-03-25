@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.AddMedicine.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
 using System.Collections.Generic;
@@ -16,18 +17,17 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.AddMedicine
 {
-    public class AddMedicinePageViewModel : MSW_BasePageViewModel
+    internal class AddMedicinePageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("AddMedicinePageViewModel");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
         public ObservableCollection<tblMedicineType> LstMedicineType { get; set; }
         public ObservableCollection<tblMedicineUnit> LstMedicineUnit { get; set; }
         public ObservableCollection<tblSupplier> LstSupplier { get; set; }
+
+        public MSW_MMP_AMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public string MedicineIDCheckingStatusText { get; set; } = MedicineIDCheckingStatusMessage.Empty.GetStringValue();
         public int MedicineIDCheckingStatus { get; set; } = 1; //based on MedicineIDCheckingStatusMessage
         public int MedicineNameCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
@@ -36,22 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public int SupplierCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int BidPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int AskingPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-        public bool IsSaveButtonRunning
-        {
-            get
-            {
-                return _isSaveButtonRunning;
-            }
-            set
-            {
-                _isSaveButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
+      
         public bool IsSaveButtonCanPerform
         {
             get
@@ -167,9 +152,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         protected override void OnInitializing()
         {
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
+            ButtonCommandOV = new MSW_MMP_AMP_ButtonCommandOV(this);
             BidPrice = 0;
             AskingPrice = 0;
             InitData();
@@ -177,38 +160,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         protected override void OnInitialized()
         {
-        }
-
-        private void CameraButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_CAMERA_BUTTON
-                , dataTransfer);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_CANCEL_BUTTON
-                , dataTransfer);
         }
 
         private void CheckMedicineID()
