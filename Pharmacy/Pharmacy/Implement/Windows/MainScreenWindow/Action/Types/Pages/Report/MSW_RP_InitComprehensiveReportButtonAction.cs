@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                 || RPViewModel.ComprehensiveReportEndDate < RPViewModel.ComprehensiveReportStartDate)
             {
                 MessageBox.Show("Kiểm tra lại ngày bắt đầu và kết thúc!");
-                RPViewModel.IsInitComprehensiveReportButtonRunning = false;
+                RPViewModel.ButtonCommandOV.IsInitComprehensiveReportButtonRunning = false;
                 return;
             }
 
@@ -72,7 +72,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
             {
                 App.Current.ShowApplicationMessageBox("Lỗi khởi tạo báo cáo!");
             }
-            RPViewModel.IsInitComprehensiveReportButtonRunning = false;
+            RPViewModel.ButtonCommandOV.IsInitComprehensiveReportButtonRunning = false;
         }
     }
 }

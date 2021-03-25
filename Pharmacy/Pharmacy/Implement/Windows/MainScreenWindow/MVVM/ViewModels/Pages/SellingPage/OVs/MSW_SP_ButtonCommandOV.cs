@@ -7,7 +7,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs
 {
-    internal class MSW_SP_ButtonCommanOV : MSW_ButtonCommandOV
+    internal class MSW_SP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_SP_ButtonCommanOV");
         protected override Logger logger => L;
@@ -55,7 +55,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         public RunInputCommand InstantiateOrderCommand { get; set; }
         public RunInputCommand RefreshSellingPageCommand { get; set; }
 
-        public MSW_SP_ButtonCommanOV(BaseViewModel parentsModel) : base(parentsModel)
+        public MSW_SP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
             AddOrderDetailCommand = new RunInputCommand((paramaters) =>
             {

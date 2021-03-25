@@ -20,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
         public ObservableCollection<OrderDetailOV> CustomerOrderDetailItemSource { get; set; }
-        public MSW_SP_ButtonCommanOV ButtonCommandOV { get; set; }
+        public MSW_SP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         public MSW_SP_CustomerOV CustomerOV { get; set; }
         public MSW_SP_MedicineOV MedicineOV { get; set; }
@@ -57,7 +57,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             MedicineOV = new MSW_SP_MedicineOV(this);
 
             InstantiateItems();
-            ButtonCommandOV = new MSW_SP_ButtonCommanOV(this);
+            ButtonCommandOV = new MSW_SP_ButtonCommandOV(this);
         }
 
         protected override void OnInitialized()

@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                 || RPViewModel.SellingReportEndDate < RPViewModel.SellingReportStartDate)
             {
                 MessageBox.Show("Kiểm tra lại ngày bắt đầu và kết thúc!");
-                RPViewModel.IsInitSellingReportButtonRunning = false;
+                RPViewModel.ButtonCommandOV.IsInitSellingReportButtonRunning = false;
                 return;
             }
 
@@ -104,7 +104,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
             {
                 App.Current.ShowApplicationMessageBox("Lỗi khởi tạo báo cáo!");
             }
-            RPViewModel.IsInitSellingReportButtonRunning = false;
+            RPViewModel.ButtonCommandOV.IsInitSellingReportButtonRunning = false;
         }
     }
 }

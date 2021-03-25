@@ -1,26 +1,18 @@
-﻿using Microsoft.Reporting.WinForms;
-using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage.OVs;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms.Integration;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage
 {
-    public class ReportPageViewModel : MSW_BasePageViewModel
+    internal class ReportPageViewModel : MSW_BasePageViewModel
     {
-        public RunInputCommand InitSellingReportButtonCommand { get; set; }
-        public RunInputCommand InitComprehensiveReportButtonCommand { get; set; }
+        public MSW_RP_ButtonCommandOV ButtonCommandOV { get; set; }
         public bool IsInitSellingReportButtonRunning
         {
             get
@@ -71,32 +63,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             SellingReportEndDate = DateTime.Today.AddDays(1);
             ComprehensiveReportStartDate = DateTime.Today;
             ComprehensiveReportEndDate = DateTime.Today.AddDays(1);
-            InitSellingReportButtonCommand = new RunInputCommand(InitSellingReportButtonClickEvent);
-            InitComprehensiveReportButtonCommand = new RunInputCommand(InitComprehensiveReportButtonClickEvent);
-        }
 
-        private void InitComprehensiveReportButtonClickEvent(object paramaters)
-        {
-            IsInitComprehensiveReportButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void InitSellingReportButtonClickEvent(object paramaters)
-        {
-            IsInitSellingReportButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
+            ButtonCommandOV = new MSW_RP_ButtonCommandOV(this);
         }
 
         protected override void OnInitialized()

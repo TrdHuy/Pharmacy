@@ -93,7 +93,7 @@
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
                                           IsUsingDropShadowEffect="True"
-                                          Command="{Binding InitSellingReportButtonCommand}"
+                                          Command="{Binding ButtonCommandOV.InitSellingReportButtonCommand}"
                                           CommandParameter="{Binding ElementName=SellingReport}"
                                           Foreground="White"
                                           Background="{StaticResource NormalTheme_1st_Background_Brush}" />
@@ -147,7 +147,7 @@
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
                                           IsUsingDropShadowEffect="True"
-                                          Command="{Binding InitComprehensiveReportButtonCommand}"
+                                          Command="{Binding ButtonCommandOV.InitComprehensiveReportButtonCommand}"
                                           CommandParameter="{Binding ElementName=ComprehensiveReport}"
                                           Foreground="White"
                                           Background="{StaticResource NormalTheme_1st_Background_Brush}" />
