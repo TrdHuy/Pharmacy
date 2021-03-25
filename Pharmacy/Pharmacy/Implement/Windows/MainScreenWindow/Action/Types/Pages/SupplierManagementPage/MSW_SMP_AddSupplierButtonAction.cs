@@ -1,24 +1,16 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage
 {
-    public class MSW_SMP_AddSupplierButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SMP_AddSupplierButtonAction : MSW_SMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_SMP_AddSupplierButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.ADD_SUPPLIER_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.ADD_SUPPLIER_PAGE);
         }
     }
 }

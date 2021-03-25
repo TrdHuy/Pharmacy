@@ -13,7 +13,7 @@ namespace Pharmacy.Base.AsyncTask
         private AsyncTaskResult _result;
 
         private Action<AsyncTaskResult> _callback;
-        private Task<AsyncTaskResult> _execute;
+        private Func<Task<AsyncTaskResult>> _execute;
         private Func<bool> _canExecute;
 
         public long DelayTime { get => _delayTime; }
@@ -21,32 +21,32 @@ namespace Pharmacy.Base.AsyncTask
 
         public Func<bool> CanExecute => _canExecute;
 
-        public Task<AsyncTaskResult> Execute => _execute;
+        public Func<Task<AsyncTaskResult>> Execute => _execute;
 
         public Action<AsyncTaskResult> CallbackHandler => _callback;
 
-        public AsyncTask(Task<AsyncTaskResult> execute)
+        public AsyncTask(Func<Task<AsyncTaskResult>> execute)
         {
             InitializeAsyncTask(execute);
         }
 
-        public AsyncTask(Task<AsyncTaskResult> execute, Func<bool> canExecute)
+        public AsyncTask(Func<Task<AsyncTaskResult>> execute, Func<bool> canExecute)
         {
             InitializeAsyncTask(execute, canExecute);
         }
 
-        public AsyncTask(Task<AsyncTaskResult> execute, Func<bool> canExecute, Action<AsyncTaskResult> callback)
+        public AsyncTask(Func<Task<AsyncTaskResult>> execute, Func<bool> canExecute, Action<AsyncTaskResult> callback)
         {
             InitializeAsyncTask(execute, canExecute, callback);
         }
 
-        public AsyncTask(Task<AsyncTaskResult> execute, Func<bool> canExecute, Action<AsyncTaskResult> callback, long delayTime)
+        public AsyncTask(Func<Task<AsyncTaskResult>> execute, Func<bool> canExecute, Action<AsyncTaskResult> callback, long delayTime)
         {
             InitializeAsyncTask(execute, canExecute, callback, delayTime);
         }
 
         private void InitializeAsyncTask(
-            Task<AsyncTaskResult> execute,
+            Func<Task<AsyncTaskResult>> execute,
             Func<bool> canExecute = null,
             Action<AsyncTaskResult> callback = null,
             long delayTime = 0)

@@ -1,24 +1,16 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
-    public class MSW_MMP_AddNewMedicineButtonAction : Base.UIEventHandler.Action.IAction
-    {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+    internal class MSW_MMP_AddNewMedicineButtonAction : MSW_MMP_ButtonAction
+    { 
+        public MSW_MMP_AddNewMedicineButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.ADD_MEDICINE_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.ADD_MEDICINE_PAGE);
         }
     }
 }

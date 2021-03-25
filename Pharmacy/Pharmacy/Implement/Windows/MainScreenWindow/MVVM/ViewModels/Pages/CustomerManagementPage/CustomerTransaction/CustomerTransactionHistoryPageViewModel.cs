@@ -3,6 +3,7 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
@@ -13,20 +14,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction
 {
-    public class CustomerTransactionHistoryPageViewModel : MSW_BasePageViewModel
+    internal class CustomerTransactionHistoryPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerTransactionHistoryPageViewModel");
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private tblOrder _currentSelectedOrder;
 
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
-        public RunInputCommand DebtsDisplayButtonCommand { get; set; }
-        public RunInputCommand BillDisplayButtonCommand { get; set; }
-        public RunInputCommand ReturnButtonCommand { get; set; }
-
+        public MSW_CMP_CTHP_ButtonCommandOV ButtonCommandOV { get; set; }
+      
         public tblCustomer CurrentModifiedCustomer { get; set; }
         public tblOrder CurrentSelectedOrder
         {
@@ -129,9 +128,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             InstantiateItems();
-            DebtsDisplayButtonCommand = new RunInputCommand(OnDebtsDisplayButtonClickEvent);
-            ReturnButtonCommand = new RunInputCommand(OnReturnButtonClickEvent);
-            BillDisplayButtonCommand = new RunInputCommand(OnBillDisplayButtonClickEvent);
+            ButtonCommandOV = new MSW_CMP_CTHP_ButtonCommandOV(this);
         }
 
         protected override void OnInitialized()
@@ -150,39 +147,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
 
         }
-
-        private void OnDebtsDisplayButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_DEBTS_BUTTON
-                , dataTransfer);
-        }
-
-
-        private void OnReturnButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_RETURN_BUTTON
-                , dataTransfer);
-        }
-
-        private void OnBillDisplayButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_BILL_BUTTON
-                , dataTransfer);
-        }
-
-
 
     }
 }

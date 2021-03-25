@@ -1,34 +1,27 @@
 ﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using System;
-using System.Collections.Generic;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage
 {
-    public class MSW_UMP_UMoP_CameraButtonAction : Base.UIEventHandler.Action.IAction
+    internal  class MSW_UMP_UMoP_CameraButtonAction : MSW_UMP_UMoP_ButtonAction
     {
-        private UserModificationPageViewModel _viewModel;
+        public MSW_UMP_UMoP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as UserModificationPageViewModel;
-
-            if (String.IsNullOrEmpty(_viewModel.UserNameText))
+            if (String.IsNullOrEmpty(UMoPViewModel.UserNameText))
             {
                 App.Current.ShowApplicationMessageBox("Vui lòng nhập tên tài khoản trước!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                return false;
+                return ;
             }
 
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh đại diện của bạn!");
@@ -41,8 +34,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     case DialogResult.OK:
                         var file = openDialog.FileName;
                         Bitmap userBit = (Bitmap)Image.FromFile(file);
-                        _viewModel.UserImageFileName = file;
-                        _viewModel.UserImageSource = userBit.ToImageSource();
+                        UMoPViewModel.UserImageFileName = file;
+                        UMoPViewModel.UserImageSource = userBit.ToImageSource();
                         userBit.Dispose();
                         break;
                     default:
@@ -56,11 +49,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
                     "Lỗi!");
-                return false;
+                return ;
             }
 
-
-            return true;
+            return ;
         }
     }
 }

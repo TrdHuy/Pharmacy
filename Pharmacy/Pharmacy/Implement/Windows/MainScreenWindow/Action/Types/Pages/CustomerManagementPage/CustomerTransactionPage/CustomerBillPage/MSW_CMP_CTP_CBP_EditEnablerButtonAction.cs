@@ -1,28 +1,18 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_EditEnablerButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_EditEnablerButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private CustomerBillPageViewModel _viewModel;
+        public MSW_CMP_CTP_CBP_EditEnablerButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-            
-            _viewModel.IsEnableEdittingBill = !_viewModel.IsEnableEdittingBill;
-            
-            _viewModel.DeleteColumnVisibility = _viewModel.IsEnableEdittingBill ? 
-                System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            CBPViewModel.IsEnableEdittingBill = !CBPViewModel.IsEnableEdittingBill;
 
-            return true;
+            CBPViewModel.DeleteColumnVisibility = CBPViewModel.IsEnableEdittingBill ?
+                System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
     }
 }

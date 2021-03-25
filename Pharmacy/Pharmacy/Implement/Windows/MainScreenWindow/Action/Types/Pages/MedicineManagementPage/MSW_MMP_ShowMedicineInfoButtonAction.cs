@@ -1,30 +1,24 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
-    public class MSW_MMP_ShowMedicineInfoButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MMP_ShowMedicineInfoButtonAction : MSW_MMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private MedicineManagementPageViewModel _viewModel;
+        public MSW_MMP_ShowMedicineInfoButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as MedicineManagementPageViewModel;
-            object[] param = dataTransfer[1] as object[];
+            base.ExecuteCommand(dataTransfer);
+            object[] param = DataTransfer[1] as object[];
             DataGrid ctrl = param[0] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentModifiedMedicine = _viewModel.MedicineItemSource[ctrl.SelectedIndex];
-            _pageHost.UpdateCurrentPageSource(PageSource.SHOW_MEDICINE_INFO_PAGE);
-            return true;
+            MSW_DataFlowHost.Current.CurrentModifiedMedicine = MMPViewModel.MedicineItemSource[ctrl.SelectedIndex];
+            PageHost.UpdateCurrentPageSource(PageSource.SHOW_MEDICINE_INFO_PAGE);
+            return;
         }
     }
 }

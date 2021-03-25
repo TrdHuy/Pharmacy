@@ -1,22 +1,15 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_RefreshButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_RefreshButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private CustomerBillPageViewModel _viewModel;
+        public MSW_CMP_CTP_CBP_RefreshButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-
-            if (_viewModel.IsOrderModified)
+            if (CBPViewModel.IsOrderModified)
             {
                 var x = App.Current.ShowApplicationMessageBox("Bạn có muốn hoàn lại (các) tác vụ?",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -26,11 +19,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
 
                 if(x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
                 {
-                    _viewModel.RefreshListOrder();
+                    CBPViewModel.RefreshListOrder();
                 }
             }
 
-            return true;
+            return;
         }
     }
 }

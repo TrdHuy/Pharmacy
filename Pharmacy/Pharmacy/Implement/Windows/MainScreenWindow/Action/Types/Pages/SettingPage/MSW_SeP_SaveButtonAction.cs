@@ -1,28 +1,22 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions.Entities;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SettingPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.Utils;
+using Pharmacy.Base.MVVM.ViewModels;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SettingPage
 {
-    public class MSW_SeP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SeP_SaveButtonAction : MSW_SeP_ButtonAction
     {
-        private SettingPageViewModel _viewModel;
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_SeP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SettingPageViewModel;
             var user = App.Current.CurrentUser;
-            user.GetUserData().FontZoomRatio = _viewModel.FontSizeRatio;
+            user.GetUserData().FontZoomRatio = SPViewModel.FontSizeRatio;
             user.UserDataJSON = user.GetUserDataJSON();
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
@@ -32,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Setting
                     , user
                     , App.Current.CurrentUser.Username
                     , "");
-            return true;
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -44,13 +38,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Setting
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
+                PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
             }
             else
             {
                 App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin!");
             }
-            _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+            SPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
         }
     }
 }

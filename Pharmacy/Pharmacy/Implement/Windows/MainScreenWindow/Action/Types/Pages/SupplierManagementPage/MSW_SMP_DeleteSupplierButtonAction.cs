@@ -1,24 +1,18 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage
 {
-    public class MSW_SMP_DeleteSupplierButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SMP_DeleteSupplierButtonAction : MSW_SMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private SupplierManagementPageViewModel _viewModel;
-        private DataGrid ctrl;
-        public bool Execute(object[] dataTransfer)
+        private DataGrid supplierDataGrid;
+        public MSW_SMP_DeleteSupplierButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SupplierManagementPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+            supplierDataGrid = DataTransfer[1] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa nhà cung cấp này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -39,18 +33,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        _viewModel.SupplierItemSource.RemoveAt(ctrl.SelectedIndex);
+                        SMPViewModel.SupplierItemSource.RemoveAt(supplierDataGrid.SelectedIndex);
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_SUPPLIER_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    _viewModel.SupplierItemSource[ctrl.SelectedIndex].SupplierID);
+                    SMPViewModel.SupplierItemSource[supplierDataGrid.SelectedIndex].SupplierID);
 
-                return true;
+                return;
             }
 
-            return false;
+            return;
         }
     }
 }

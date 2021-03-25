@@ -1,25 +1,16 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SettingPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SettingPage
 {
-    public class MSW_SeP_CancleButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SeP_CancleButtonAction : MSW_SeP_ButtonAction
     {
-        private SettingPageViewModel _viewModel;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        public MSW_SeP_CancleButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SettingPageViewModel;
-            _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
         }
     }
 }

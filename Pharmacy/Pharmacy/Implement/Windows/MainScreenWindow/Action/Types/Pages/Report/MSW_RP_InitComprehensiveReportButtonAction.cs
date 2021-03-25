@@ -1,50 +1,43 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Utils.Extensions.Entities;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage;
-using System.Collections.Generic;
 using Microsoft.Reporting.WinForms;
 using System.IO;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage.OVs;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
 {
-    public class MSW_RP_InitComprehensiveReportButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_RP_InitComprehensiveReportButtonAction : MSW_RP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private ReportPageViewModel _viewModel;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
         private ReportViewer _reportViewer;
+        public MSW_RP_InitComprehensiveReportButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ReportPageViewModel;
-            _reportViewer = dataTransfer[1] as ReportViewer;
+            base.ExecuteCommand(dataTransfer);
 
-            if (_viewModel.ComprehensiveReportEndDate == null
-                || _viewModel.ComprehensiveReportStartDate == null
-                || _viewModel.ComprehensiveReportEndDate < _viewModel.ComprehensiveReportStartDate)
+            _reportViewer = DataTransfer[1] as ReportViewer;
+
+            if (RPViewModel.ComprehensiveReportEndDate == null
+                || RPViewModel.ComprehensiveReportStartDate == null
+                || RPViewModel.ComprehensiveReportEndDate < RPViewModel.ComprehensiveReportStartDate)
             {
                 MessageBox.Show("Kiểm tra lại ngày bắt đầu và kết thúc!");
-                _viewModel.IsInitComprehensiveReportButtonRunning = false;
-                return false;
+                RPViewModel.IsInitComprehensiveReportButtonRunning = false;
+                return;
             }
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_CMD_KEY
                 , PharmacyDefinitions.GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_DELAY_TIME
                 , _sqlCmdObserver
-                , _viewModel.ComprehensiveReportStartDate
-                , _viewModel.ComprehensiveReportEndDate
-                , _viewModel);
-            return true;
+                , RPViewModel.ComprehensiveReportStartDate
+                , RPViewModel.ComprehensiveReportEndDate
+                , RPViewModel);
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -59,7 +52,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
 
                 ReportParameter[] reportParameters = new ReportParameter[9];
                 reportParameters[0] = new ReportParameter("NgayBaoCao",
-                    "Từ " + _viewModel.ComprehensiveReportStartDate.ToString("dd/MM/yyyy") + " đến " + _viewModel.ComprehensiveReportEndDate.ToString("dd/MM/yyyy"));
+                    "Từ " + RPViewModel.ComprehensiveReportStartDate.ToString("dd/MM/yyyy") + " đến " + RPViewModel.ComprehensiveReportEndDate.ToString("dd/MM/yyyy"));
                 reportParameters[1] = new ReportParameter("TongGiaTriNhap", result.TongGiaTriNhap.ToString());
                 reportParameters[2] = new ReportParameter("TongGiaTriXuat", result.TongGiaTriXuat.ToString());
                 reportParameters[3] = new ReportParameter("TongNoKH", result.TongNoKH.ToString());
@@ -79,7 +72,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
             {
                 App.Current.ShowApplicationMessageBox("Lỗi khởi tạo báo cáo!");
             }
-            _viewModel.IsInitComprehensiveReportButtonRunning = false;
+            RPViewModel.IsInitComprehensiveReportButtonRunning = false;
         }
     }
 }

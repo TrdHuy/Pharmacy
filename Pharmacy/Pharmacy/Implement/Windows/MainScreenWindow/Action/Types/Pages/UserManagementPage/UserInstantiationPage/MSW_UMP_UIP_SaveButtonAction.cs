@@ -1,41 +1,35 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage
 {
-    public class MSW_UMP_UIP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_UMP_UIP_SaveButtonAction : MSW_UMP_UIP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private UserInstantiationPageViewModel _viewModel;
         private tblUser _newUserInfo;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_UMP_UIP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as UserInstantiationPageViewModel;
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!UIPViewModel.IsSaveButtonCanPerform)
             {
                 App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                UIPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
             if (!IsUseDefaultPassword())
             {
-                return false;
+                return;
             }
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
@@ -43,9 +37,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                 PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME,
                 _sqlCmdObserver,
                 _newUserInfo,
-                _viewModel.UserImageFileName);
+                UIPViewModel.UserImageFileName);
 
-            return true;
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -66,24 +60,24 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
+            UIPViewModel.IsSaveButtonRunning = false;
+            PageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
         }
 
         private bool IsUseDefaultPassword()
         {
             _newUserInfo = new tblUser();
-            _newUserInfo.Username = _viewModel.UserNameText;
+            _newUserInfo.Username = UIPViewModel.UserNameText;
             _newUserInfo.IsAdmin = false;
             _newUserInfo.IsActive = true;
-            _newUserInfo.FullName = _viewModel.FullNameText;
-            _newUserInfo.Address = _viewModel.AdressText;
-            _newUserInfo.Link = _viewModel.LinkText;
-            _newUserInfo.Phone = _viewModel.PhoneText;
-            _newUserInfo.Job = _viewModel.JobText;
-            _newUserInfo.Email = _viewModel.EmailText;
+            _newUserInfo.FullName = UIPViewModel.FullNameText;
+            _newUserInfo.Address = UIPViewModel.AdressText;
+            _newUserInfo.Link = UIPViewModel.LinkText;
+            _newUserInfo.Phone = UIPViewModel.PhoneText;
+            _newUserInfo.Job = UIPViewModel.JobText;
+            _newUserInfo.Email = UIPViewModel.EmailText;
 
-            if (String.IsNullOrEmpty(_viewModel?.NewPassword))
+            if (String.IsNullOrEmpty(UIPViewModel?.NewPassword))
             {
                 var queryRes = App.Current.ShowApplicationMessageBox("Trường mật khẩu bị bỏ trống, bạn muốn dùng mật khẩu mặc định là \"abc@13579\"?",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -103,7 +97,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
             }
             else
             {
-                _newUserInfo.Password = _viewModel.NewPassword;
+                _newUserInfo.Password = UIPViewModel.NewPassword;
             }
             return true;
         }

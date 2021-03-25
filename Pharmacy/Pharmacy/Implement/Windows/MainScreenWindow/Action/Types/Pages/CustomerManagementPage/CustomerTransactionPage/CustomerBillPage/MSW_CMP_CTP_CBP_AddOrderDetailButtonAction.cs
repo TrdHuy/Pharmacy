@@ -1,36 +1,28 @@
 ﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using System.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_AddOrderDetailButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_AddOrderDetailButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private CustomerBillPageViewModel _viewModel;
-        private DataGrid ctrl;
+        public MSW_CMP_CTP_CBP_AddOrderDetailButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
-
-            if (!_viewModel.IsAddOrderDetailCanPerform)
+            if (!CBPViewModel.IsAddOrderDetailCanPerform)
             {
-                if (String.IsNullOrEmpty(_viewModel.MedicineOV.Quantity) || _viewModel.MedicineOV.Quantity.Equals("0"))
+                if (String.IsNullOrEmpty(CBPViewModel.MedicineOV.Quantity) || CBPViewModel.MedicineOV.Quantity.Equals("0"))
                 {
                     App.Current.ShowApplicationMessageBox("Kiểm tra lại số lượng!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
                     "Thông báo!!");
-                    _viewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
-                    return false;
+                    CBPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                    return;
                 }
                 else
                 {
@@ -39,15 +31,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
                     "Thông báo!!");
-                    _viewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                    CBPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 }
 
-                return false;
+                return;
             }
 
             CreateNewOrderDetail();
 
-            return true;
+            return;
         }
 
         private void CreateNewOrderDetail()
@@ -55,23 +47,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             try
             {
                 OrderDetailOV orderDetailVO = new OrderDetailOV();
-                orderDetailVO.MedicineName = _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
-                orderDetailVO.MedicineID = _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
-                orderDetailVO.MedicineUnitName = _viewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.Quantity = Convert.ToDouble(_viewModel.MedicineOV.Quantity);
-                orderDetailVO.UnitPrice = _viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
-                orderDetailVO.UnitBidPrice = _viewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
+                orderDetailVO.MedicineName = CBPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
+                orderDetailVO.MedicineID = CBPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
+                orderDetailVO.MedicineUnitName = CBPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
+                orderDetailVO.Quantity = Convert.ToDouble(CBPViewModel.MedicineOV.Quantity);
+                orderDetailVO.UnitPrice = CBPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
+                orderDetailVO.UnitBidPrice = CBPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
                 GetPromo(orderDetailVO);
-                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(_viewModel.MedicineOV.Quantity) *
-                   Convert.ToDouble(_viewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
+                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(CBPViewModel.MedicineOV.Quantity) *
+                   Convert.ToDouble(CBPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
                    (100 - orderDetailVO.PromoPercent) / 100);
 
                 OrderDetailOV checkExistedVO = null;
                 try
                 {
-                    if (_viewModel.CurrentOrderDetails.Count > 0)
+                    if (CBPViewModel.CurrentOrderDetails.Count > 0)
                     {
-                        checkExistedVO = _viewModel.CurrentOrderDetails.First(VO => VO.MedicineID.Equals(orderDetailVO.MedicineID));
+                        checkExistedVO = CBPViewModel.CurrentOrderDetails.First(VO => VO.MedicineID.Equals(orderDetailVO.MedicineID));
                     }
                 }
                 catch (Exception e)
@@ -92,7 +84,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 }
                 else
                 {
-                    _viewModel.CurrentOrderDetails.Add(orderDetailVO); 
+                    CBPViewModel.CurrentOrderDetails.Add(orderDetailVO);
                 }
             }
             catch (Exception e)
@@ -101,11 +93,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             }
             finally
             {
-                _viewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
-                _viewModel.MedicineOV.CurrentSelectedMedicine = null;
-                _viewModel.MedicineOV.Quantity = null;
-                _viewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");
-                _viewModel.MedicineOV.Invalidate("Quantity");
+                CBPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                CBPViewModel.MedicineOV.CurrentSelectedMedicine = null;
+                CBPViewModel.MedicineOV.Quantity = null;
+                CBPViewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");
+                CBPViewModel.MedicineOV.Invalidate("Quantity");
             }
 
         }
@@ -113,11 +105,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         private void GetPromo(OrderDetailOV orderDetailVO)
         {
             tblPromo appliedPromo = new tblPromo();
-            if (_viewModel.CurrentCustomerOrder != null)
+            if (CBPViewModel.CurrentCustomerOrder != null)
             {
-                foreach (tblPromo promo in _viewModel.CurrentCustomerOrder.tblCustomer.tblPromoes)
+                foreach (tblPromo promo in CBPViewModel.CurrentCustomerOrder.tblCustomer.tblPromoes)
                 {
-                    if (promo.MedicineID == _viewModel.MedicineOV.CurrentSelectedMedicine.MedicineID)
+                    if (promo.MedicineID == CBPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID)
                     {
                         appliedPromo = promo;
                         break;

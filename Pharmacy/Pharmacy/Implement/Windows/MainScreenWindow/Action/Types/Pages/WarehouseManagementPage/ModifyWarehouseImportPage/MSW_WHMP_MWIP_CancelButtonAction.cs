@@ -1,25 +1,15 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ModifyWarehouseImportPage
 {
-    public class MSW_WHMP_MWIP_CancelButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_WHMP_MWIP_CancelButtonAction :MSW_WHMP_MWIP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_WHMP_MWIP_CancelButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
         }
     }
 }

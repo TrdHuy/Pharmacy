@@ -1,27 +1,22 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private CustomerBillPageViewModel _viewModel;
-        private DataGrid ctrl;
+        private DataGrid orderDetailDataGrid;
 
+        public MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
 
-            _viewModel.CurrentOrderDetails.RemoveAt(ctrl.SelectedIndex);
+            orderDetailDataGrid = DataTransfer[1] as DataGrid;
 
-            return true;
+            CBPViewModel.CurrentOrderDetails.RemoveAt(orderDetailDataGrid.SelectedIndex);
         }
     }
 }

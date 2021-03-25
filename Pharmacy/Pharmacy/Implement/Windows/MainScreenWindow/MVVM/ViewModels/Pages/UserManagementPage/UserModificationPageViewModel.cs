@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
     {
         private static Logger L = new Logger("UserModificationPageViewModel");
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         private tblUser _currentModifiedUser;
         private Visibility _userNameAwareTextBlockVisibility = Visibility.Visible;
@@ -323,7 +323,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
                 _isSaveButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -425,7 +425,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
         private void CancleButtonClickEvent(object paramaters)

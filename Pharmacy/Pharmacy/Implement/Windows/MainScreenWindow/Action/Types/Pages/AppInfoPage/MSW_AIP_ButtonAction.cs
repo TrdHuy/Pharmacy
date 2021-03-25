@@ -5,7 +5,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoP
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfoPage
 {
-    internal class MSW_AIP_ButtonAction : BaseViewModelCommandExecuter
+    internal class MSW_AIP_ButtonAction : AbstractDestroyableViewModelCommandExecuter
     {
         protected AppInfoPageViewModel AIPViewmodel
         {
@@ -17,7 +17,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 
         public MSW_AIP_ButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        protected override void ExecuteVM(params object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
+        {
+        }
+
+        protected override void ExecuteOnDestroy()
         {
 
         }

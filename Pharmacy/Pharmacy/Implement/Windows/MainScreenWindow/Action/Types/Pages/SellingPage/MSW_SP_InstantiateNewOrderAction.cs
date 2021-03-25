@@ -5,42 +5,36 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Printing;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
-    public class MSW_SP_InstantiateNewOrderAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SP_InstantiateNewOrderAction : MSW_SP_ButtonAction
     {
-        private SellingPageViewModel _viewModel;
         private tblOrder _newOrder;
         private SQLQueryCustodian _createNewOrderQueryObserver;
         private decimal _previousDebt;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_SP_InstantiateNewOrderAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SellingPageViewModel;
+            base.ExecuteCommand(dataTransfer);
 
             if (!CanExecute())
             {
-                _viewModel.IsInstantiateNewOrderButtonRunning = false;
-                return false;
+                SPViewModel.IsInstantiateNewOrderButtonRunning = false;
+                return;
             }
             GenerateOrder();
 
-            return true;
+            return;
         }
 
         private bool CanExecute()
         {
-            if (_viewModel.CustomerOV.CurrentSelectedCustomer == null)
+            if (SPViewModel.CustomerOV.CurrentSelectedCustomer == null)
             {
                 var x = App.Current.ShowApplicationMessageBox("Vui lòng chọn khách hàng!",
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -49,8 +43,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   "Thông báo!!");
                 return false;
             }
-            if (_viewModel.CustomerOrderDetailItemSource == null
-                || _viewModel.CustomerOrderDetailItemSource.Count == 0)
+            if (SPViewModel.CustomerOrderDetailItemSource == null
+                || SPViewModel.CustomerOrderDetailItemSource.Count == 0)
             {
                 var x = App.Current.ShowApplicationMessageBox("Hóa đơn phải có ít nhất 1 sản phẩm!",
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -70,11 +64,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 _newOrder.IsActive = true;
                 _newOrder.OrderTime = DateTime.Now;
                 _newOrder.UserID = App.Current.CurrentUser.Username;
-                _newOrder.CustomerID = _viewModel.CustomerOV.CurrentSelectedCustomer.CustomerID;
-                _newOrder.OrderDescription = _viewModel.OrderDescription;
-                _newOrder.TotalPrice = _viewModel.MedicineOV.MedicineCost;
-                _newOrder.PurchasePrice = _viewModel.MedicineOV.PaidAmount;
-                foreach (OrderDetailOV vo in _viewModel.CustomerOrderDetailItemSource)
+                _newOrder.CustomerID = SPViewModel.CustomerOV.CurrentSelectedCustomer.CustomerID;
+                _newOrder.OrderDescription = SPViewModel.OrderDescription;
+                _newOrder.TotalPrice = SPViewModel.MedicineOV.MedicineCost;
+                _newOrder.PurchasePrice = SPViewModel.MedicineOV.PaidAmount;
+                foreach (OrderDetailOV vo in SPViewModel.CustomerOrderDetailItemSource)
                 {
                     tblOrderDetail oD = new tblOrderDetail()
                     {
@@ -96,10 +90,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                    OwnerWindow.MainScreen,
                    "Lỗi!!");
-                _viewModel.IsInstantiateNewOrderButtonRunning = false;
+                SPViewModel.IsInstantiateNewOrderButtonRunning = false;
             }
 
-            _previousDebt = _viewModel.MedicineOV.DebtCost;
+            _previousDebt = SPViewModel.MedicineOV.DebtCost;
 
             _createNewOrderQueryObserver = new SQLQueryCustodian(GenerateOrderCallback,
                 null,
@@ -125,7 +119,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
                 PrintInvoice();
 
-                _viewModel.RefreshViewModel(refreshCustomer, refreshMedicineBillBoard);
+                SPViewModel.RefreshViewModel(refreshCustomer, refreshMedicineBillBoard);
             }
             else
             {
@@ -136,7 +130,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   "Lỗi!!");
             }
 
-            _viewModel.IsInstantiateNewOrderButtonRunning = false;
+            SPViewModel.IsInstantiateNewOrderButtonRunning = false;
         }
 
         private void PrintInvoice()
@@ -151,11 +145,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 reportParameters[1] = new ReportParameter("KhachHang", _newOrder.tblCustomer.CustomerName);
                 reportParameters[2] = new ReportParameter("SDT", _newOrder.tblCustomer.Phone);
                 reportParameters[3] = new ReportParameter("DiaChi", _newOrder.tblCustomer.Address);
-                reportParameters[4] = new ReportParameter("ThanhTien", _viewModel.MedicineOV.MedicineCost.ToString());
+                reportParameters[4] = new ReportParameter("ThanhTien", SPViewModel.MedicineOV.MedicineCost.ToString());
                 reportParameters[5] = new ReportParameter("CongNo", _previousDebt.ToString());
-                reportParameters[6] = new ReportParameter("TongCong", (_viewModel.MedicineOV.MedicineCost + _previousDebt).ToString());
-                reportParameters[7] = new ReportParameter("DaTra", _viewModel.MedicineOV.PaidAmount.ToString());
-                reportParameters[8] = new ReportParameter("ConLai", ((_viewModel.MedicineOV.MedicineCost + _previousDebt) - _viewModel.MedicineOV.PaidAmount).ToString());
+                reportParameters[6] = new ReportParameter("TongCong", (SPViewModel.MedicineOV.MedicineCost + _previousDebt).ToString());
+                reportParameters[7] = new ReportParameter("DaTra", SPViewModel.MedicineOV.PaidAmount.ToString());
+                reportParameters[8] = new ReportParameter("ConLai", ((SPViewModel.MedicineOV.MedicineCost + _previousDebt) - SPViewModel.MedicineOV.PaidAmount).ToString());
                 reportParameters[9] = new ReportParameter("GhiChu", _newOrder.OrderDescription);
                 report.LocalReport.SetParameters(reportParameters);
 

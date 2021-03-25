@@ -1,24 +1,19 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.Utils;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative
 {
-    public class MSW_AlternativeAction : IAction
+    internal class MSW_AlternativeAction : MSW_BaseAlternativeButtonAction
     {
-        public bool Execute(object[] dataTransfer)
+        public MSW_AlternativeAction(ILogger logger) : base(logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            App.Current.ShowApplicationMessageBox(KeyActionListener.Instance.GetMSWFactoryLockReason().GetStringValue(),
+            App.Current.ShowApplicationMessageBox(KeyActionListener.Current.GetMSWFactoryStatus().GetStringValue(),
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                 OwnerWindow.MainScreen,
                 "Thông báo!");
-            return true;
         }
     }
 }

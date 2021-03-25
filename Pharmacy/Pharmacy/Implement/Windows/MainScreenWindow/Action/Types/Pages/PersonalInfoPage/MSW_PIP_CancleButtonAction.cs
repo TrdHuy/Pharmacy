@@ -1,23 +1,18 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage
 {
-    public class MSW_PIP_CancleButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_PIP_CancleButtonAction : MSW_PIP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        public MSW_PIP_CancleButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
             DbManager.Instance.RollBack();
-            _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE); 
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE); 
         }
     }
 }

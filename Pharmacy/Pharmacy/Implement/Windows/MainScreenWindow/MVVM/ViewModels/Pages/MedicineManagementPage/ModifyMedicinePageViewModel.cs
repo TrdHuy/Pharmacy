@@ -46,7 +46,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 _isSaveButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -167,7 +167,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private decimal _askingPrice = 0;
         private bool _isSaveButtonRunning;
         private tblMedicine _modifiedMedicine;
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         protected override Logger logger => L;
 
@@ -239,7 +239,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
         private void CancelButtonClickEvent(object paramaters)

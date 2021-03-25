@@ -8,6 +8,7 @@ using Pharmacy.Implement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +22,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 
         public MSW_AIP_AppUpdateButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        protected override void ExecuteVM(params object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            base.ExecuteVM(dataTransfer);
+            base.ExecuteCommand(dataTransfer);
 
             try
             {
-
-                AsyncTask asyncTask = new AsyncTask(SendRequestAppUpdateToHpssServer());
+                AsyncTask asyncTask = new AsyncTask(SendRequestAppUpdateToHpssServer);
                 AsyncTaskExecuter.AsyncExecute(asyncTask);
-
-
             }
             catch (Exception ex)
             {
@@ -39,36 +37,45 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
             }
         }
 
-        private Task<AsyncTaskResult> SendRequestAppUpdateToHpssServer()
+        private async Task<AsyncTaskResult> SendRequestAppUpdateToHpssServer()
         {
-            var task = new Task<AsyncTaskResult>(() => GetAsyncTaskResult().Result);
+            try
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            return task;
+                var endPoint = new Uri(HPSS_REQUEST_APP_UPDATE_ENDPOINT);
+
+                HPSSBodyRequest request = new HPSSBodyRequest();
+                request.RequestID = HPSSCustomerRequestID.PharmarcyPackage_CheckAppUpdate;
+                var data = JsonConvert.SerializeObject(request);
+
+                var httpContent = new StringContent(data);
+
+                //need this to authorize customer
+                httpContent.Headers.Add("x-functions-key", HPSS_REQUEST_APP_UPDATE_FUNCTION_KEY);
+                httpContent.Headers.Add("hpss-request-id", HPSSCustomerServiceDefinitions.HPSS_PHARMARCY_CHECK_APP_UPDATE);
+
+
+                HttpClient client = new HttpClient();
+                var response = await client.PostAsync(endPoint, httpContent);
+
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+            return null;
         }
 
-        private async Task<AsyncTaskResult> GetAsyncTaskResult()
+        protected override void ExecuteOnDestroy()
         {
-            var endPoint = new Uri(HPSS_REQUEST_APP_UPDATE_ENDPOINT);
-            var result = new AsyncTaskResult(null, MessageAsyncTaskResult.Non);
-
-            HPSSBodyRequest request = new HPSSBodyRequest();
-            request.RequestID = HPSSCustomerRequestID.PharmarcyPackage_CheckAppUpdate;
-            var data = JsonConvert.SerializeObject(request);
-
-            var httpContent = new StringContent(data);
-
-            //need this to authorize customer
-            httpContent.Headers.Add("x-functions-key", HPSS_REQUEST_APP_UPDATE_FUNCTION_KEY);
-            httpContent.Headers.Add("hpss-request-id", HPSSCustomerServiceDefinitions.HPSS_PHARMARCY_CHECK_APP_UPDATE);
-
-            HttpClient client = new HttpClient();
-
-            var response = await client.PostAsync(endPoint, httpContent);
-
-            response.EnsureSuccessStatusCode();
-            string responseBody = await response.Content.ReadAsStringAsync();
-
-            return result;
+            base.ExecuteOnDestroy();
         }
+
     }
 }

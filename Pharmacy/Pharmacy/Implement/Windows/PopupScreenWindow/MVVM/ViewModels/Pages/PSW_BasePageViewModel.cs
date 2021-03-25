@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Utils.CustomControls.DestroyablePage;
 using System;
 using System.Collections.Generic;

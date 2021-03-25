@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger L = new Logger("CustomerDebtsPageViewModel");
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         public tblCustomer CurrentModifiedCustomer { get; set; }
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }

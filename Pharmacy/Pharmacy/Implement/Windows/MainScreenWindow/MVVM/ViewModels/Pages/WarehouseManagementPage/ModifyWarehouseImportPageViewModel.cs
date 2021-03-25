@@ -72,7 +72,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                 _isAddImportDetailButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -85,13 +85,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                 _isAddWarehouseImportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
         }
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private List<tblMedicine> _lstMedicineFull;
         private tblMedicine _selectedMedicine;
         private decimal _purchasedPrice;
@@ -132,7 +132,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_SAVE_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
         private void DeleteMedicineFromListButtonClickEvent(object paramaters)
@@ -164,7 +164,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
         private void BrowseInvoiceImageButtonClickEvent(object paramaters)

@@ -1,31 +1,27 @@
-﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils.DatabaseManager;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage
 {
-    public class MSW_CMP_DeleteButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_DeleteButtonAction : MSW_CMP_ButtonAction
     {
-        private CustomerManagementPageViewModel _viewModel;
-        private DataGrid ctrl;
+        private DataGrid _customerDataGrid;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_CMP_DeleteButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerManagementPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
 
+            _customerDataGrid = DataTransfer[1] as DataGrid;
+            
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa khách hàng này?",
-                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
-                HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
-                OwnerWindow.MainScreen,
-                "Thông báo!");
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
+                            OwnerWindow.MainScreen,
+                            "Thông báo!");
 
             if (mesResult == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
@@ -40,17 +36,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        _viewModel.CustomerItemSource.RemoveAt(ctrl.SelectedIndex);
+                        CMPViewModel.CustomerItemSource.RemoveAt(_customerDataGrid.SelectedIndex);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_CUSTOMER_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    _viewModel.CustomerItemSource[ctrl.SelectedIndex].CustomerID);
+                    CMPViewModel.CustomerItemSource[_customerDataGrid.SelectedIndex].CustomerID);
             }
-
-            return true;
         }
 
     }

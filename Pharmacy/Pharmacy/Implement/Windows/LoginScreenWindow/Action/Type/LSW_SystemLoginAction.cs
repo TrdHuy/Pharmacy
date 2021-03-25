@@ -1,32 +1,27 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels;
-using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {
-    public class LSW_SystemLoginAction : Base.UIEventHandler.Action.IAction
+    internal class LSW_SystemLoginAction : LSW_ButtonAction
     {
         private SQLQueryCustodian _observer;
-        private LoginScreenWindowViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public LSW_SystemLoginAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = (LoginScreenWindowViewModel)dataTransfer[0];
+            base.ExecuteCommand(dataTransfer);
 
-            //_viewModel.IsLoginButtonRunning = true;
-            object[] dataFromView = (object[])dataTransfer[1];
+            object[] dataFromView = (object[])DataTransfer[1];
+
             TextBox userNameTextEdit = (TextBox)dataFromView[0];
             PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
 
@@ -49,7 +44,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             finally
             {
             }
-            return true;
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -91,18 +86,18 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             }
             finally
             {
-                if (_viewModel != null)
+                if (LSWViewModel != null)
                 {
-                    _viewModel.IsLoginButtonRunning = false;
+                    LSWViewModel.IsLoginButtonRunning = false;
                 }
             }
         }
 
         private void SaveUserName(string userName)
         {
-            if (_viewModel.IsUserRemember)
+            if (LSWViewModel.IsUserRemember)
             {
-                _viewModel.UserName = userName;
+                LSWViewModel.UserName = userName;
             }
         }
     }

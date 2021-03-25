@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger L = new Logger("CustomerModificationPageViewModel");
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
@@ -168,7 +168,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 _isSaveButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -233,7 +233,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_SAVE_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
 

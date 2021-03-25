@@ -21,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger L = new Logger("CustomerManagementPageViewModel");
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private SQLQueryCustodian _sqlCmdObserver;
         private string _searchText;
         private string _tip;

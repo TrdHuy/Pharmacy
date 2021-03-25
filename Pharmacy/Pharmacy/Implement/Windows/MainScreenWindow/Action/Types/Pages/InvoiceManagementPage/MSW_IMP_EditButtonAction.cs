@@ -1,27 +1,19 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.InvoiceManagementPage
 {
-    public class MSW_IMP_EditButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_IMP_EditButtonAction : MSW_IMP_ButtonAction
     {
-        private InvoiceManagementPageViewModel _viewModel;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        public MSW_IMP_EditButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as InvoiceManagementPageViewModel;
 
-            MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = _viewModel.CurrentSelectedOrderOV.Order;
-            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);
-
-            return true;
+            MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = IMPViewModel.CurrentSelectedOrderOV.Order;
+            PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);
         }
     }
 }

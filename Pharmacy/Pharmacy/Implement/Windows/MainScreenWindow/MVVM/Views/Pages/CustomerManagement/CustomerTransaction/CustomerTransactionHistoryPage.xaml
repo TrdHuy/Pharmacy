@@ -9,7 +9,7 @@
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}">
 
@@ -348,7 +348,7 @@
                                           VerticalAlignment="Center"
                                           FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                           TextContent="Xem hóa đơn"
-                                          Command="{Binding BillDisplayButtonCommand}"
+                                          Command="{Binding ButtonCommandOV.BillDisplayButtonCommand}"
                                           FontStyle="Italic" />
 
                         <hps:OsirisButton BorderThickness="0"
@@ -361,7 +361,7 @@
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
-                                          Command="{Binding DebtsDisplayButtonCommand}" />
+                                          Command="{Binding ButtonCommandOV.DebtsDisplayButtonCommand}" />
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
@@ -373,7 +373,7 @@
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
-                                          Command="{Binding ReturnButtonCommand}"/>
+                                          Command="{Binding ButtonCommandOV.ReturnButtonCommand}"/>
 
                     </Grid>
                 </Grid>

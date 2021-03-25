@@ -1,28 +1,23 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_SaveButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private CustomerBillPageViewModel _viewModel;
         private SQLQueryCustodian _sqlQueryObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        
+        public MSW_CMP_CTP_CBP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-
-            if (_viewModel.CurrentOrderDetails.Count == 0)
+            if (CBPViewModel.CurrentOrderDetails.Count == 0)
             {
                 DeleteCurrentCustomerOrder();
             }
@@ -30,12 +25,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             {
                 SaveCurrentCustomerOrder();
             }
-            return true;
+            return;
         }
 
         private void SaveCurrentCustomerOrder()
         {
-            if (_viewModel.IsOrderModified)
+            if (CBPViewModel.IsOrderModified)
             {
                 var mbRes = App.Current.ShowApplicationMessageBox("Bạn có đồng ý lưu hóa đơn này?",
                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -52,11 +47,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_CUSTOMER_ORDER_DEATAIL_CMD_KEY,
                         PharmacyDefinitions.UPDATE_CUSTOMER_ORDER_DEATAIL_DELAY_TIME,
                         _sqlQueryObserver,
-                        _viewModel.CurrentCustomerOrder
+                        CBPViewModel.CurrentCustomerOrder
                         );
                 }
                 
-                _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+                CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
         }
 
@@ -64,9 +59,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             // Cập nhật lại order detail trong order của customer dựa theo thay đổi (OrderDetailOV)
             // từ phía người dùng
-            foreach (tblOrderDetail orderDetail in _viewModel.CurrentCustomerOrder.tblOrderDetails)
+            foreach (tblOrderDetail orderDetail in CBPViewModel.CurrentCustomerOrder.tblOrderDetails)
             {
-                var tempList = _viewModel.CurrentOrderDetails.Where(ov => ov.OrderDetailID == orderDetail.OrderDetailID).ToList();
+                var tempList = CBPViewModel.CurrentOrderDetails.Where(ov => ov.OrderDetailID == orderDetail.OrderDetailID).ToList();
                 if (tempList.Count > 0)
                 {
                     orderDetail.Quantity = tempList.First().Quantity;
@@ -79,7 +74,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             }
 
             // Thêm mới order detail trong OrderDetailOV vào trong order của customer
-            foreach (OrderDetailOV ov in _viewModel.CurrentOrderDetails)
+            foreach (OrderDetailOV ov in CBPViewModel.CurrentOrderDetails)
             {
                 if (ov.OrderDetailID == -1)
                 {
@@ -93,12 +88,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         PromoPercent = ov.PromoPercent,
                         UnitBidPrice = ov.UnitBidPrice
                     };
-                    _viewModel.CurrentCustomerOrder.tblOrderDetails.Add(newOD);
-                    _viewModel.CurrentCustomerOrder.TotalPrice += newOD.TotalPrice;
+                    CBPViewModel.CurrentCustomerOrder.tblOrderDetails.Add(newOD);
+                    CBPViewModel.CurrentCustomerOrder.TotalPrice += newOD.TotalPrice;
                 }
             }
 
-            _viewModel.CurrentCustomerOrder.PurchasePrice = _viewModel.MedicineOV.PaidAmount;
+            CBPViewModel.CurrentCustomerOrder.PurchasePrice = CBPViewModel.MedicineOV.PaidAmount;
         }
 
         private void UpdateCustomerOrderDetailQueryCallback(SQLQueryResult queryResult)
@@ -111,13 +106,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                OwnerWindow.MainScreen,
                "Thông báo!!");
 
-                if (_pageHost.PreviousePageSource != PageSource.NONE)
+                if (PageHost.PreviousePageSource != PageSource.NONE)
                 {
-                    _pageHost.UpdateCurrentPageSource(_pageHost.PreviousePageSource);
+                    PageHost.UpdateCurrentPageSource(PageHost.PreviousePageSource);
                 }
                 else
                 {
-                    _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
+                    PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
                 }
             }
             else
@@ -129,7 +124,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 "Thông báo!!");
             }
 
-            _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+            CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
 
         }
 
@@ -147,12 +142,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY,
                     PharmacyDefinitions.SET_CUSTOMER_ORDER_DEACTIVE_DELAY_TIME,
                     _sqlQueryObserver,
-                    _viewModel.CurrentCustomerOrder
+                    CBPViewModel.CurrentCustomerOrder
                     );
             }
             else
             {
-                _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+                CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
         }
 
@@ -166,13 +161,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 OwnerWindow.MainScreen,
                 "Thông báo!!");
 
-                if (_pageHost.PreviousePageSource != PageSource.NONE)
+                if (PageHost.PreviousePageSource != PageSource.NONE)
                 {
-                    _pageHost.UpdateCurrentPageSource(_pageHost.PreviousePageSource);
+                    PageHost.UpdateCurrentPageSource(PageHost.PreviousePageSource);
                 }
                 else
                 {
-                    _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
+                    PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
                 }
             }
             else
@@ -184,7 +179,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 "Thông báo!!");
             }
 
-            _viewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+            CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
         }
     }
 }

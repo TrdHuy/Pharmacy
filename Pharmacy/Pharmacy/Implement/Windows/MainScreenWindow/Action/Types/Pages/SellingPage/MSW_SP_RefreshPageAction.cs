@@ -1,38 +1,31 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
-    public class MSW_SP_RefreshPageAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SP_RefreshPageAction : MSW_SP_ButtonAction
     {
-        private SellingPageViewModel _viewModel;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_SP_RefreshPageAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SellingPageViewModel;
-
-            if(_viewModel.CustomerOrderDetailItemSource.Count > 0)
+            if (SPViewModel.CustomerOrderDetailItemSource.Count > 0)
             {
                 var x = App.Current.ShowApplicationMessageBox("Bạn có chắc tạo mới!",
                  HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                  HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                  OwnerWindow.MainScreen,
                  "Thông báo!!");
-                if(x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
+                if (x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
                 {
-                    return false;
+                    return;
                 }
             }
-            
+
             bool refreshCustomer = true;
             bool refreshBill = true;
-            _viewModel.RefreshViewModel(refreshCustomer,refreshBill);
+            SPViewModel.RefreshViewModel(refreshCustomer, refreshBill);
 
-            return true;
+            return;
         }
     }
 }

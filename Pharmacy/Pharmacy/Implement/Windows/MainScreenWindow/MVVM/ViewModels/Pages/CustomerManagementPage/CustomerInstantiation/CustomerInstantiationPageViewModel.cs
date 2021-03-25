@@ -1,38 +1,23 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Config;
-using Pharmacy.Implement.UIEventHandler;
-using Pharmacy.Implement.UIEventHandler.Listener;
-using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
+﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerInstantiation.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerInstantiation
 {
-    public class CustomerInstantiationPageViewModel : MSW_BasePageViewModel
+    internal class CustomerInstantiationPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerInstantiationPageViewModel");
-
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
         private ImageSource _customerImageSource;
         private tblCustomer _newCustomer;
-
-        private bool _isSaveButtonRunning = false;
 
         #region Public properties
         public tblCustomer NewCustomer
@@ -150,7 +135,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-
         public bool IsSaveButtonCanPerform
         {
             get
@@ -159,26 +143,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     PhoneAwareTextBlockVisibility != Visibility.Visible;
             }
         }
-        public bool IsSaveButtonRunning
-        {
-            get
-            {
-                return _isSaveButtonRunning;
-            }
-            set
-            {
-                _isSaveButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
+        public MSW_CMP_CIP_ButtonCommandOV ButtonCommandOV { get; set; }
         public string CustomerImageFileName { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
-        public RunInputCommand CancleButtonCommand { get; set; }
+        
         public EventHandleCommand GridSizeChangedCommand { get; set; }
 
         #endregion
@@ -187,12 +154,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         protected override void OnInitializing()
         {
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
-            CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
+            ButtonCommandOV = new MSW_CMP_CIP_ButtonCommandOV(this);
+
             NewCustomer = new tblCustomer();
 
-            CustomerImageSource = Pharmacy.Properties.Resources.customer_default_icon.ToImageSource();
+            CustomerImageSource = Properties.Resources.customer_default_icon.ToImageSource();
 
             CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.CustomerName) ?
                 Visibility.Visible : Visibility.Collapsed;
@@ -205,44 +171,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         protected override void OnInitialized()
         {
         }
-
-        private void CameraButtonClickEvent(object paramaters)
-        {
-            logger.V("OnCameraButtonClick");
-
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CAMERA_BUTTON
-                , dataTransfer);
-        }
-        private void CancleButtonClickEvent(object paramaters)
-        {
-            logger.V("OnCancleButtonClickEvent");
-
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CANCLE_BUTTON
-                , dataTransfer);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            logger.V("OnSaveButtonClickEvent");
-
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
-        }
-
 
         private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
         {

@@ -1,37 +1,32 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.Utils;
-using Pharmacy.Implement.Utils.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Implement.Utils.Attributes;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
     public interface IActionFactory
     {
-        IAction CreateAction(object obj);
-        IAction CreateAction(BaseViewModel viewModel, ILogger logger, object obj);
+        IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag);
 
-        void LockFactory(bool key, LockReason reason = LockReason.Default);
+        IAction CreateMainAction(string keyTag);
+
+        void LockFactory(FactoryStatus status = FactoryStatus.Default);
+        void UnlockFactory(FactoryStatus status = FactoryStatus.Default);
 
         FactoryLocker Locker { get; set; }
     }
 
     public class FactoryLocker
     {
-        public LockReason Reason;
+        public FactoryStatus Status;
         public bool IsLock;
 
-        public FactoryLocker(LockReason reason, bool key)
+        public FactoryLocker(FactoryStatus status, bool key)
         {
-            Reason = reason;
+            Status = status;
             IsLock = key;
         }
     }
 
-    public enum LockReason
+    public enum FactoryStatus
     {
         [StringValue("...")]
         Default = 0,
@@ -43,6 +38,9 @@ namespace Pharmacy.Base.UIEventHandler.Action
         NotAvailable = 2,
 
         [StringValue("Mở khóa tác vụ!")]
-        Unlock = 3
+        Unlock = 3,
+
+        [StringValue("Tác vụ đang được xử lý, vui lòng đợi trong giây lát!")]
+        TaskHandlingButCanDispose = 4,
     }
 }

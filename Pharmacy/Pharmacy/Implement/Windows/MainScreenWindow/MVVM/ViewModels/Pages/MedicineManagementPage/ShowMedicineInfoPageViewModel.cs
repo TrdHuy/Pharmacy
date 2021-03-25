@@ -28,7 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public ImageSource MedicineImageSource { get; set; }
         public tblMedicine MedicineInfo { get; set; }
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         protected override void InitPropertiesRegistry()
         {

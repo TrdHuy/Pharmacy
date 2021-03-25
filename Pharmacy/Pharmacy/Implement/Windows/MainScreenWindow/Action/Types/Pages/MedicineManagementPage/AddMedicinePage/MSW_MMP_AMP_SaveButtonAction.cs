@@ -9,38 +9,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage
 {
-    public class MSW_MMP_AMP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MMP_AMP_SaveButtonAction : MSW_MMP_AMP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private AddMedicinePageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_MMP_AMP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as AddMedicinePageViewModel;
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!AMPViewModel.IsSaveButtonCanPerform)
             {
                 App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                AMPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
             tblMedicine medicine = new tblMedicine();
-            medicine.MedicineID = _viewModel.MedicineID.Trim();
-            medicine.MedicineName = _viewModel.MedicineName.Trim();
-            medicine.MedicineTypeID = _viewModel.LstMedicineType[_viewModel.MedicineTypeID].MedicineTypeID;
-            medicine.MedicineUnitID = _viewModel.LstMedicineUnit[_viewModel.MedicineUnitID].MedicineUnitID;
-            medicine.SupplierID = _viewModel.LstSupplier[_viewModel.SupplierID].SupplierID;
-            medicine.BidPrice = _viewModel.BidPrice;
-            medicine.AskingPrice = _viewModel.AskingPrice;
-            medicine.MedicineDescription = _viewModel.MedicineDescription;
+            medicine.MedicineID = AMPViewModel.MedicineID.Trim();
+            medicine.MedicineName = AMPViewModel.MedicineName.Trim();
+            medicine.MedicineTypeID = AMPViewModel.LstMedicineType[AMPViewModel.MedicineTypeID].MedicineTypeID;
+            medicine.MedicineUnitID = AMPViewModel.LstMedicineUnit[AMPViewModel.MedicineUnitID].MedicineUnitID;
+            medicine.SupplierID = AMPViewModel.LstSupplier[AMPViewModel.SupplierID].SupplierID;
+            medicine.BidPrice = AMPViewModel.BidPrice;
+            medicine.AskingPrice = AMPViewModel.AskingPrice;
+            medicine.MedicineDescription = AMPViewModel.MedicineDescription;
             medicine.IsActive = true;
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
@@ -48,9 +49,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 PharmacyDefinitions.ADD_NEW_MEDICINE_DELAY_TIME,
                 _sqlCmdObserver,
                 medicine,
-                _viewModel.MedicineImageFileName);
+                AMPViewModel.MedicineImageFileName);
 
-            return true;
+            return;
         }
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
@@ -70,8 +71,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.MEDICINE_MANAGEMENT_PAGE);
+            AMPViewModel.IsSaveButtonRunning = false;
+            PageHost.UpdateCurrentPageSource(PageSource.MEDICINE_MANAGEMENT_PAGE);
         }
     }
 }

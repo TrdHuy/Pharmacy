@@ -1,24 +1,18 @@
-﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils.DatabaseManager;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.InvoiceManagementPage
 {
-    public class MSW_IMP_DeleteButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_IMP_DeleteButtonAction : MSW_IMP_ButtonAction
     {
-        private InvoiceManagementPageViewModel _viewModel;
         private SQLQueryCustodian _sqlQueryObserver;
 
-        public bool Execute(object[] dataTransfer)
-        {
-            _viewModel = dataTransfer[0] as InvoiceManagementPageViewModel;
+        public MSW_IMP_DeleteButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-            if(_viewModel.CurrentSelectedOrderOV != null)
+        public override void ExecuteCommand(object dataTransfer)
+        {
+            if(IMPViewModel.CurrentSelectedOrderOV != null)
             {
                 var x = App.Current.ShowApplicationMessageBox("Bạn có muốn xóa hóa đơn này?",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -30,11 +24,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
                     _sqlQueryObserver = new SQLQueryCustodian(SetDeactiveCustomerOrderQueryCallback);
                     DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_CUSTOMER_ORDER_DEACTIVE_CMD_KEY,
                         _sqlQueryObserver,
-                        _viewModel.CurrentSelectedOrderOV.Order
+                        IMPViewModel.CurrentSelectedOrderOV.Order
                         );
                 }
             }
-            return true;
         }
 
         private void SetDeactiveCustomerOrderQueryCallback(SQLQueryResult queryResult)
@@ -47,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
                 OwnerWindow.MainScreen,
                 "Thông báo!!");
 
-                _viewModel.CustomerOrdersItemSource.Remove(_viewModel.CurrentSelectedOrderOV);
+                IMPViewModel.CustomerOrdersItemSource.Remove(IMPViewModel.CurrentSelectedOrderOV);
             }
             else
             {

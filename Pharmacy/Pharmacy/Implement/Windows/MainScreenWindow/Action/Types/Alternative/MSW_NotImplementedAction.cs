@@ -1,22 +1,17 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative
 {
-    public class MSW_NotImplementedAction : IAction
+    internal class MSW_NotImplementedAction : MSW_BaseAlternativeButtonAction
     {
-        public bool Execute(object[] dataTransfer)
+        public MSW_NotImplementedAction(ILogger logger) : base(logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
             App.Current.ShowApplicationMessageBox("Chức năng này chưa được triển khai ở phiên bản hiện tại!\nVui lòng liên hệ CSKH để được tư vấn thêm!",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                 OwnerWindow.MainScreen,
                 "Thông báo!");
-            return true;
         }
     }
 }

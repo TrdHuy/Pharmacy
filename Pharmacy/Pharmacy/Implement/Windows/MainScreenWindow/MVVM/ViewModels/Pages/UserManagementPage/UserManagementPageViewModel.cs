@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
     {
         private static Logger L = new Logger("UserManagementPageViewModel");
        
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private SQLQueryCustodian _sqlCmdObserver;
 
         public ObservableCollection<tblUser> UserItemSource { get; set; }

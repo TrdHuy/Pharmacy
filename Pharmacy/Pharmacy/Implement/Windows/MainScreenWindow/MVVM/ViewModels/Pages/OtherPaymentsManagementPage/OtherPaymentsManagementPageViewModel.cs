@@ -31,7 +31,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
         public EventHandleCommand FilterChangedCommand { get; set; }
         public EventHandleCommand ShowOtherPaymentInfoCommand { get; set; }
 
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         protected override Logger logger => L;
 

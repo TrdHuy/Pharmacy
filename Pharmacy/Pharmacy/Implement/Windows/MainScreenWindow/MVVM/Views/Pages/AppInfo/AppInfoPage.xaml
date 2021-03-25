@@ -1,4 +1,4 @@
-﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo.AppInfoPage"
+﻿<cc_DestroyablePage:DestroyablePage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo.AppInfoPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,6 +7,7 @@
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+      xmlns:cc_DestroyablePage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.DestroyablePage"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -247,4 +248,4 @@
         </Grid>
 
     </Grid>
-</Page>
+</cc_DestroyablePage:DestroyablePage>

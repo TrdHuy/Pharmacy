@@ -1,46 +1,37 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.ModifySupplierPage
 {
-    public class MSW_SMP_MSP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SMP_MSP_SaveButtonAction : MSW_SMP_MSP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private ModifySupplierPageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_SMP_MSP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ModifySupplierPageViewModel;
-
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!MSPViewModel.IsSaveButtonCanPerform)
             {
                 App.Current.ShowApplicationMessageBox("Kiểm tra lại tên và số điện thoại của nhà cung cấp!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                MSPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
             tblSupplier supplier = new tblSupplier();
-            supplier.SupplierID = _viewModel.SupplierInfo.SupplierID;
-            supplier.SupplierName = _viewModel.SupplierName;
-            supplier.Phone = _viewModel.Phone;
-            supplier.Email = _viewModel.Email;
-            supplier.Address = _viewModel.Address;
-            supplier.SupplierDescription = _viewModel.Description;
+            supplier.SupplierID = MSPViewModel.SupplierInfo.SupplierID;
+            supplier.SupplierName = MSPViewModel.SupplierName;
+            supplier.Phone = MSPViewModel.Phone;
+            supplier.Email = MSPViewModel.Email;
+            supplier.Address = MSPViewModel.Address;
+            supplier.SupplierDescription = MSPViewModel.Description;
             supplier.IsActive = true;
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
@@ -49,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
                 _sqlCmdObserver,
                 supplier);
 
-            return true;
+            return;
         }
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
@@ -69,8 +60,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.SUPPLIER_MANAGEMENT_PAGE);
+            MSPViewModel.IsSaveButtonRunning = false;
+            PageHost.UpdateCurrentPageSource(PageSource.SUPPLIER_MANAGEMENT_PAGE);
         }
     }
 }

@@ -1,25 +1,21 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
-    public class MSW_MMP_DeleteMedicineButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MMP_DeleteMedicineButtonAction : MSW_MMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private MedicineManagementPageViewModel _viewModel;
-        private DataGrid ctrl;
-        public bool Execute(object[] dataTransfer)
+        private DataGrid medicineDataGrid;
+
+        public MSW_MMP_DeleteMedicineButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as MedicineManagementPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+
+            medicineDataGrid = DataTransfer[1] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa thuốc này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -39,19 +35,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        _viewModel.MedicineItemSource.RemoveAt(ctrl.SelectedIndex);
+                        MMPViewModel.MedicineItemSource.RemoveAt(medicineDataGrid.SelectedIndex);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    _viewModel.MedicineItemSource[ctrl.SelectedIndex].MedicineID);
+                    MMPViewModel.MedicineItemSource[medicineDataGrid.SelectedIndex].MedicineID);
 
-                return true;
+                return ;
             }
-
-            return false;
+            return ;
         }
     }
 }

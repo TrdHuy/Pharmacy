@@ -5,21 +5,24 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.DiscountByMedicinePage
 {
-    public class MSW_MMP_DBMP_DeleteButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MMP_DBMP_DeleteButtonAction : MSW_MMP_DBMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private DiscountByMedicinePageViewModel _viewModel;
-        private DataGrid ctrl;
-        public bool Execute(object[] dataTransfer)
+        private DataGrid discountDataGrid;
+        public MSW_MMP_DBMP_DeleteButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as DiscountByMedicinePageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+
+            discountDataGrid = DataTransfer[1] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa khuyến mãi này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -40,19 +43,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        _viewModel.LstPromo.RemoveAt(ctrl.SelectedIndex);
+                        DBMPViewModel.LstPromo.RemoveAt(discountDataGrid.SelectedIndex);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_PROMO_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    _viewModel.LstPromo[ctrl.SelectedIndex].PromoID);
+                    DBMPViewModel.LstPromo[discountDataGrid.SelectedIndex].PromoID);
 
-                return true;
+                return;
             }
 
-            return false;
+            return;
         }
     }
 }

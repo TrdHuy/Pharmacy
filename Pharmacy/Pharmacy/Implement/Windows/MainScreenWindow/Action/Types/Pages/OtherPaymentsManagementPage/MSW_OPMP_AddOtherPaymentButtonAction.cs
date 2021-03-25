@@ -1,24 +1,16 @@
-﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage
 {
-    public class MSW_OPMP_AddOtherPaymentButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_OPMP_AddOtherPaymentButtonAction : MSW_OPMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        public bool Execute(object[] dataTransfer)
-        {
-            _pageHost.UpdateCurrentPageSource(PageSource.ADD_OTHER_PAYMENT_PAGE);
+        public MSW_OPMP_AddOtherPaymentButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-            return true;
+        public override void ExecuteCommand(object dataTransfer)
+        {
+            PageHost.UpdateCurrentPageSource(PageSource.ADD_OTHER_PAYMENT_PAGE);
         }
     }
 }

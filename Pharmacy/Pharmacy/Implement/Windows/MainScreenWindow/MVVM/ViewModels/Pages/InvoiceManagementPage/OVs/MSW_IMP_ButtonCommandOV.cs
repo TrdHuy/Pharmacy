@@ -12,7 +12,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
 {
     public class MSW_IMP_ButtonCommandOV : BaseViewModel
     {
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         public RunInputCommand EditOrderButtonCommand { get; set; }
         public RunInputCommand DeleteOrderButtonCommand { get; set; }

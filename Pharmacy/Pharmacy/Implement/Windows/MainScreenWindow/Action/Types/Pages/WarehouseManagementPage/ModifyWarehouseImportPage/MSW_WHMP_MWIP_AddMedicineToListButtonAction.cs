@@ -1,40 +1,36 @@
-﻿using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ModifyWarehouseImportPage
 {
-    public class MSW_WHMP_MWIP_AddMedicineToListButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_WHMP_MWIP_AddMedicineToListButtonAction : MSW_WHMP_MWIP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private ModifyWarehouseImportPageViewModel _viewModel;
         private DataGrid dataGrid;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_WHMP_MWIP_AddMedicineToListButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ModifyWarehouseImportPageViewModel;
-            dataGrid = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+
+            dataGrid = DataTransfer[1] as DataGrid;
 
             try
             {
                 StringBuilder error = new StringBuilder();
-                if (_viewModel.SelectedMedicine == null)
+                if (MWIPViewModel.SelectedMedicine == null)
                 {
                     error.Append("Chưa chọn thuốc!").AppendLine();
                 }
-                if (_viewModel.MedicinePrice < 0)
+                if (MWIPViewModel.MedicinePrice < 0)
                 {
                     error.Append("Giá thuốc không hợp lệ!").AppendLine();
                 }
-                if (_viewModel.MedicineQuantity <= 0)
+                if (MWIPViewModel.MedicineQuantity <= 0)
                 {
                     error.Append("Số lượng thuốc không hợp lệ!").AppendLine();
                 }
@@ -45,30 +41,30 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                 }
 
                 MSW_WHMP_WarehouseImportDetailOV item;
-                if ((item = _viewModel.LstWarehouseImportDetail.Where(o => o.MedicineID == _viewModel.SelectedMedicine.MedicineID).FirstOrDefault()) == null)
+                if ((item = MWIPViewModel.LstWarehouseImportDetail.Where(o => o.MedicineID == MWIPViewModel.SelectedMedicine.MedicineID).FirstOrDefault()) == null)
                 {
                     item = new MSW_WHMP_WarehouseImportDetailOV();
-                    item.MedicineID = _viewModel.SelectedMedicine.MedicineID;
-                    item.MedicineName = _viewModel.SelectedMedicine.MedicineName;
-                    item.MedicineUnitName = _viewModel.SelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                    item.Quantity = _viewModel.MedicineQuantity;
-                    item.UnitPrice = _viewModel.MedicinePrice;
+                    item.MedicineID = MWIPViewModel.SelectedMedicine.MedicineID;
+                    item.MedicineName = MWIPViewModel.SelectedMedicine.MedicineName;
+                    item.MedicineUnitName = MWIPViewModel.SelectedMedicine.tblMedicineUnit.MedicineUnitName;
+                    item.Quantity = MWIPViewModel.MedicineQuantity;
+                    item.UnitPrice = MWIPViewModel.MedicinePrice;
                     item.TotalPrice = (decimal)item.Quantity * item.UnitPrice;
 
-                    _viewModel.LstWarehouseImportDetail.Add(item);
+                    MWIPViewModel.LstWarehouseImportDetail.Add(item);
                 }
                 else
                 {
-                    item.Quantity += _viewModel.MedicineQuantity;
+                    item.Quantity += MWIPViewModel.MedicineQuantity;
                     item.TotalPrice = (decimal)item.Quantity * item.UnitPrice;
                     dataGrid.Items.Refresh();
                 }
 
-                var detail = _viewModel.ImportInfo.tblWarehouseImportDetails.Where(o => o.MedicineID == _viewModel.SelectedMedicine.MedicineID).FirstOrDefault();
+                var detail = MWIPViewModel.ImportInfo.tblWarehouseImportDetails.Where(o => o.MedicineID == MWIPViewModel.SelectedMedicine.MedicineID).FirstOrDefault();
                 if (detail != null)
                     detail.IsActive = true;
 
-                _viewModel.UpdateTotalPriceAndNewPrice();
+                MWIPViewModel.UpdateTotalPriceAndNewPrice();
             }
             catch (Exception e)
             {
@@ -77,13 +73,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
                     "Lỗi!");
-                return false;
+                return;
             }
             finally
             {
-                _viewModel.IsAddImportDetailButtonRunning = false;
+                MWIPViewModel.IsAddImportDetailButtonRunning = false;
             }
-            return true;
+            return;
         }
     }
 }

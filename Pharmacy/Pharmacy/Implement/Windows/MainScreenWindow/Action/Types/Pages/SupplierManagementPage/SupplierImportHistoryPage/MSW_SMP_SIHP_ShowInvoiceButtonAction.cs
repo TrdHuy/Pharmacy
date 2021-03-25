@@ -1,37 +1,30 @@
 ﻿using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.SupplierImportHistoryPage
 {
-    public class MSW_SMP_SIHP_ShowInvoiceButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SMP_SIHP_ShowInvoiceButtonAction : MSW_SMP_SIHP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private SupplierImportHistoryPageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_SMP_SIHP_ShowInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SupplierImportHistoryPageViewModel;
 
-            if (_viewModel.ImportInfo == null)
+            if (SIHPViewModel.ImportInfo == null)
             {
                 App.Current.ShowApplicationMessageBox("Vui lòng chọn 1 giao dịch để xem hóa đơn!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                return false;
+                return;
             }
 
-            FileIOUtil.ShowBitmapFromName(_viewModel.ImportInfo.ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
+            FileIOUtil.ShowBitmapFromName(SIHPViewModel.ImportInfo.ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
 
-            return true;
+            return;
         }
     }
 }

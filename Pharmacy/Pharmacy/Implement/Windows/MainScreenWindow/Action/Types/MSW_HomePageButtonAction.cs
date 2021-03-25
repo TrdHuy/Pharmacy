@@ -1,23 +1,15 @@
 ﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 {
 
-    public class MSW_HomePageButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_HomePageButtonAction : MSW_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_HomePageButtonAction(ILogger logger) : base(logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
         }
     }
 }

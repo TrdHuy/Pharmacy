@@ -1,28 +1,23 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage
 {
-    public class MSW_UMP_DeleteUserButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_UMP_DeleteUserButtonAction : MSW_UMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private UserManagementPageViewModel _viewModel;
-        private DataGrid ctrl;
-        public bool Execute(object[] dataTransfer)
+        private DataGrid userDataGrid;
+        public MSW_UMP_DeleteUserButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as UserManagementPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+            userDataGrid = DataTransfer[1] as DataGrid;
 
             if (!CanDeleteAccount())
             {
-                return false;
+                return;
             }
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa tài khoản này?",
@@ -44,22 +39,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        _viewModel.UserItemSource.RemoveAt(ctrl.SelectedIndex);
+                        UMPViewModel.UserItemSource.RemoveAt(userDataGrid.SelectedIndex);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_USER_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    _viewModel.UserItemSource[ctrl.SelectedIndex].Username);
+                    UMPViewModel.UserItemSource[userDataGrid.SelectedIndex].Username);
             }
 
-            return true;
         }
 
         private bool CanDeleteAccount()
         {
-            if (_viewModel.UserItemSource[ctrl.SelectedIndex].Username.
+            if (UMPViewModel.UserItemSource[userDataGrid.SelectedIndex].Username.
                 Equals(App.Current.CurrentUser.Username))
             {
                 App.Current.ShowApplicationMessageBox("Bạn không thể xóa tài khoản hiện tại đang đăng nhập!",
@@ -70,7 +64,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                 return false;
             }
 
-            if (_viewModel.UserItemSource[ctrl.SelectedIndex].IsAdmin)
+            if (UMPViewModel.UserItemSource[userDataGrid.SelectedIndex].IsAdmin)
             {
                 App.Current.ShowApplicationMessageBox("Bạn không thể xóa tài khoản quản trị hệ thống!",
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

@@ -1,28 +1,19 @@
 ﻿using Microsoft.Reporting.WinForms;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Utils.CustomControls;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_PrintInvoiceButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_PrintInvoiceButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private CustomerBillPageViewModel _viewModel;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        public MSW_CMP_CTP_CBP_PrintInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-
-            if (_viewModel.IsOrderModified)
+            if (CBPViewModel.IsOrderModified)
             {
                 var x = App.Current.ShowApplicationMessageBox("Vui lòng lưu các thay đổi hoặc hoàn tác trước khi xuất hóa đơn!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -35,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 PrintInvoice();
             }
 
-            return true;
+            return;
         }
 
         private void PrintInvoice()
@@ -46,23 +37,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
-                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _viewModel.CurrentCustomerOrder.OrderTime.Hour + ":" + _viewModel.CurrentCustomerOrder.OrderTime.Minute + " " + _viewModel.CurrentCustomerOrder.OrderTime.Day + "/" + _viewModel.CurrentCustomerOrder.OrderTime.Month + "/" + _viewModel.CurrentCustomerOrder.OrderTime.Year);
-                reportParameters[1] = new ReportParameter("KhachHang", _viewModel.CurrentCustomerOrder.tblCustomer.CustomerName);
-                reportParameters[2] = new ReportParameter("SDT", _viewModel.CurrentCustomerOrder.tblCustomer.Phone);
-                reportParameters[3] = new ReportParameter("DiaChi", _viewModel.CurrentCustomerOrder.tblCustomer.Address);
-                reportParameters[4] = new ReportParameter("ThanhTien", _viewModel.MedicineOV.MedicineCost.ToString());
-                reportParameters[5] = new ReportParameter("CongNo", _viewModel.MedicineOV.DebtCost.ToString());
-                reportParameters[6] = new ReportParameter("TongCong", _viewModel.MedicineOV.TotalCost.ToString());
-                reportParameters[7] = new ReportParameter("DaTra", _viewModel.MedicineOV.PaidAmount.ToString());
-                reportParameters[8] = new ReportParameter("ConLai", _viewModel.MedicineOV.RestAmount.ToString());
-                reportParameters[9] = new ReportParameter("GhiChu", _viewModel.CurrentCustomerOrder.OrderDescription);
+                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + CBPViewModel.CurrentCustomerOrder.OrderTime.Hour + ":" + CBPViewModel.CurrentCustomerOrder.OrderTime.Minute + " " + CBPViewModel.CurrentCustomerOrder.OrderTime.Day + "/" + CBPViewModel.CurrentCustomerOrder.OrderTime.Month + "/" + CBPViewModel.CurrentCustomerOrder.OrderTime.Year);
+                reportParameters[1] = new ReportParameter("KhachHang", CBPViewModel.CurrentCustomerOrder.tblCustomer.CustomerName);
+                reportParameters[2] = new ReportParameter("SDT", CBPViewModel.CurrentCustomerOrder.tblCustomer.Phone);
+                reportParameters[3] = new ReportParameter("DiaChi", CBPViewModel.CurrentCustomerOrder.tblCustomer.Address);
+                reportParameters[4] = new ReportParameter("ThanhTien", CBPViewModel.MedicineOV.MedicineCost.ToString());
+                reportParameters[5] = new ReportParameter("CongNo", CBPViewModel.MedicineOV.DebtCost.ToString());
+                reportParameters[6] = new ReportParameter("TongCong", CBPViewModel.MedicineOV.TotalCost.ToString());
+                reportParameters[7] = new ReportParameter("DaTra", CBPViewModel.MedicineOV.PaidAmount.ToString());
+                reportParameters[8] = new ReportParameter("ConLai", CBPViewModel.MedicineOV.RestAmount.ToString());
+                reportParameters[9] = new ReportParameter("GhiChu", CBPViewModel.CurrentCustomerOrder.OrderDescription);
                 report.LocalReport.SetParameters(reportParameters);
 
 
                 PharmacyDBDataSet.InvoiceDetailListDataTable tbl = new PharmacyDBDataSet.InvoiceDetailListDataTable();
 
                 int id = 1;
-                foreach (var item in _viewModel.CurrentCustomerOrder.tblOrderDetails)
+                foreach (var item in CBPViewModel.CurrentCustomerOrder.tblOrderDetails)
                 {
                     tbl.AddInvoiceDetailListRow(id++.ToString(), item.tblMedicine.MedicineName, item.tblMedicine.tblMedicineUnit.MedicineUnitName,
                         item.Quantity.ToString(), item.UnitPrice.ToString(), item.PromoPercent.ToString(), item.TotalPrice.ToString());

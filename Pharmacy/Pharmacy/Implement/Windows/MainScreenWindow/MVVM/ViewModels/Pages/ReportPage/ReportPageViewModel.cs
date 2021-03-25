@@ -32,7 +32,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 _isInitSellingReportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -48,7 +48,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 _isInitComprehensiveReportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -59,7 +59,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         public DateTime ComprehensiveReportEndDate { get; set; }
 
         private static Logger L = new Logger("ReportPageViewModel");
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private bool _isInitSellingReportButtonRunning;
         private bool _isInitComprehensiveReportButtonRunning;
 
@@ -84,7 +84,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
         private void InitSellingReportButtonClickEvent(object paramaters)
@@ -96,7 +96,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON
                 , dataTransfer
-                , new FactoryLocker(LockReason.TaskHandling, true));
+                , new FactoryLocker(FactoryStatus.TaskHandling, true));
         }
 
         protected override void OnInitialized()

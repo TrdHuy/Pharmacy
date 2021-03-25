@@ -34,7 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         public decimal PurchasedDebt { get; set; }
         public decimal GrossDebt { get; set; }
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         protected override Logger logger => L;
 

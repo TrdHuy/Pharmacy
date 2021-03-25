@@ -1,56 +1,49 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserModificationPage
 {
-    public class MSW_UMP_UMoP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_UMP_UMoP_SaveButtonAction : MSW_UMP_UMoP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private UserModificationPageViewModel _viewModel;
         private tblUser modifiedInfo;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_UMP_UMoP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as UserModificationPageViewModel;
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!UMoPViewModel.IsSaveButtonCanPerform)
             {
                 App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                UMoPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
             modifiedInfo = new tblUser();
-            modifiedInfo.FullName = _viewModel.FullNameText;
-            modifiedInfo.Address = _viewModel.AddressText;
-            modifiedInfo.Phone = _viewModel.PhoneText;
-            modifiedInfo.Email = _viewModel.EmailText;
-            modifiedInfo.Link = _viewModel.LinkText;
-            modifiedInfo.Job = _viewModel.JobText;
-            modifiedInfo.Password = String.IsNullOrEmpty(_viewModel.NewPassword) ?
-                App.Current.CurrentUser.Password : _viewModel.NewPassword;
+            modifiedInfo.FullName = UMoPViewModel.FullNameText;
+            modifiedInfo.Address = UMoPViewModel.AddressText;
+            modifiedInfo.Phone = UMoPViewModel.PhoneText;
+            modifiedInfo.Email = UMoPViewModel.EmailText;
+            modifiedInfo.Link = UMoPViewModel.LinkText;
+            modifiedInfo.Job = UMoPViewModel.JobText;
+            modifiedInfo.Password = String.IsNullOrEmpty(UMoPViewModel.NewPassword) ?
+                App.Current.CurrentUser.Password : UMoPViewModel.NewPassword;
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_USER_INFO_CMD_KEY
                     , PharmacyDefinitions.SAVE_USER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME
                     , _sqlCmdObserver
                     , modifiedInfo
-                    , _viewModel.UserNameText
-                    ,_viewModel.UserImageFileName);
-            return true;
+                    , UMoPViewModel.UserNameText
+                    , UMoPViewModel.UserImageFileName);
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -71,8 +64,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
+            UMoPViewModel.IsSaveButtonRunning = false;
+            PageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
 using System.IO;
@@ -11,7 +12,9 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 {
     public class LoginScreenWindowViewModel : BaseViewModel
     {
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private static Logger logger = new Logger("LoginScreenWindowViewModel");
+
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private string _userName;
         private bool _isLoginButtonRunnig = false;
 
@@ -64,7 +67,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
         public LoginScreenWindowViewModel()
         {
             SystemLoginButton = new RunInputCommand(SystemLoginButtonClickEvent);
-            PharmacyExtension.GrantAccess();
+            //PharmacyExtension.GrantAccess();
         }
 
         protected override void InitPropertiesRegistry()
@@ -80,7 +83,9 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = obj;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_LOGIN_SCREEN
+            _keyActionListener.OnKey(this
+                , logger
+                , WindowTag.WINDOW_TAG_LOGIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_LSW_LOGIN_FEATURE
                 , dataTransfer);
         }

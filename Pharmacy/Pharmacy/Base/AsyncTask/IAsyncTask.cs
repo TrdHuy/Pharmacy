@@ -26,7 +26,7 @@ namespace Pharmacy.Base.AsyncTask
         /// <summary>
         /// Triển khai task cho 1 đối tượng  được định nghĩa trước
         /// </summary>
-        Task<AsyncTaskResult> Execute { get; }
+        Func<Task<AsyncTaskResult>> Execute { get; }
 
         /// <summary>
         /// Xử lý call back sau khi async task được triển khai 

@@ -1,44 +1,35 @@
-﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils.DatabaseManager;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.DiscountByMedicinePage
 {
-    public class MSW_MMP_DBMP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MMP_DBMP_SaveButtonAction : MSW_MMP_DBMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
         private SQLQueryCustodian _sqlCmdObserver;
-        private DiscountByMedicinePageViewModel _viewModel;
         private bool _doRefresh;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_MMP_DBMP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
             _doRefresh = false;
-            _viewModel = dataTransfer[0] as DiscountByMedicinePageViewModel;
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!DBMPViewModel.IsSaveButtonCanPerform)
             {
                 App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                DBMPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
             tblPromo promo = new tblPromo();
-            promo.PromoPercent = _viewModel.PromoPercent;
-            promo.PromoDescription = _viewModel.PromoDescription;
-            promo.MedicineID = _viewModel.MedicineInfo.MedicineID;
-            promo.CustomerID = _viewModel.LstCustomer[_viewModel.SelectedCustomer].CustomerID;
+            promo.PromoPercent = DBMPViewModel.PromoPercent;
+            promo.PromoDescription = DBMPViewModel.PromoDescription;
+            promo.MedicineID = DBMPViewModel.MedicineInfo.MedicineID;
+            promo.CustomerID = DBMPViewModel.LstCustomer[DBMPViewModel.SelectedCustomer].CustomerID;
             promo.IsActive = true;
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
@@ -48,10 +39,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 
             if (_doRefresh)
             {
-                _viewModel.RefreshPage();
-                return true;
+                DBMPViewModel.RefreshPage();
+                return;
             }
-            return false;
+            return;
         }
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
@@ -72,7 +63,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsSaveButtonRunning = false;
+            DBMPViewModel.IsSaveButtonRunning = false;
         }
     }
 }

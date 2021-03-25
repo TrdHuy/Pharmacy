@@ -1,26 +1,22 @@
-﻿using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.Definitions;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.ModifyMedicinePage
 {
-    public class MSW_MMP_MMP_CameraButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MMP_MMP_CameraButtonAction : MSW_MMP_MMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private ModifyMedicinePageViewModel _viewModel;
+        public MSW_MMP_MMP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ModifyMedicinePageViewModel;
-
             if (!CanChooseNewImage())
             {
-                return false;
+                return;
             }
 
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh thuốc!");
@@ -33,9 +29,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     case DialogResult.OK:
                         var file = openDialog.FileName;
                         Bitmap medicineBit = (Bitmap)Image.FromFile(file);
-                        _viewModel.MedicineImageFileName = file;
-                        _viewModel.MedicineImageSource = medicineBit.ToImageSource();
-                        _viewModel.Invalidate("MedicineImageSource");
+                        MMPViewModel.MedicineImageFileName = file;
+                        MMPViewModel.MedicineImageSource = medicineBit.ToImageSource();
+                        MMPViewModel.Invalidate("MedicineImageSource");
                         medicineBit.Dispose();
                         break;
                     default:
@@ -49,16 +45,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
                     "Lỗi!");
-                return false;
+                return;
             }
 
 
-            return true;
+            return;
         }
 
         private bool CanChooseNewImage()
         {
-            if (String.IsNullOrEmpty(_viewModel.MedicineID))
+            if (String.IsNullOrEmpty(MMPViewModel.MedicineID))
             {
                 App.Current.ShowApplicationMessageBox("Vui lòng nhập mã thuốc trước!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

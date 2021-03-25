@@ -27,7 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
     {
         private static Logger L = new Logger("PersonalInfoPageViewModel");
         
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         private Visibility _fullNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;

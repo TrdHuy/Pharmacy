@@ -1,46 +1,41 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions.Entities;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage
 {
-    public class MSW_PIP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_PIP_SaveButtonAction : MSW_PIP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private PersonalInfoPageViewModel _viewModel;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
         private tblUser modifiedInfo;
-        public bool Execute(object[] dataTransfer)
+        public MSW_PIP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as PersonalInfoPageViewModel;
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!PIPViewModel.IsSaveButtonCanPerform)
             {
                 MessageBox.Show("Kiểm tra lại các trường bị sai trên!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                PIPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
             modifiedInfo = new tblUser();
-            modifiedInfo.Username = _viewModel.CurrentUser.Username;
-            modifiedInfo.FullName = _viewModel.FullNameText;
-            modifiedInfo.Address = _viewModel.AdressText;
-            modifiedInfo.Phone = _viewModel.PhoneText;
-            modifiedInfo.Email = _viewModel.EmailText;
-            modifiedInfo.Link = _viewModel.LinkText;
-            modifiedInfo.Job = _viewModel.CurrentUser.Job;
-            modifiedInfo.UserDataJSON = _viewModel.CurrentUser.GetUserDataJSON();
+            modifiedInfo.Username = PIPViewModel.CurrentUser.Username;
+            modifiedInfo.FullName = PIPViewModel.FullNameText;
+            modifiedInfo.Address = PIPViewModel.AdressText;
+            modifiedInfo.Phone = PIPViewModel.PhoneText;
+            modifiedInfo.Email = PIPViewModel.EmailText;
+            modifiedInfo.Link = PIPViewModel.LinkText;
+            modifiedInfo.Job = PIPViewModel.CurrentUser.Job;
+            modifiedInfo.UserDataJSON = PIPViewModel.CurrentUser.GetUserDataJSON();
 
-            modifiedInfo.Password = String.IsNullOrEmpty(_viewModel.NewPassword) ?
-                App.Current.CurrentUser.Password : _viewModel.NewPassword;
+            modifiedInfo.Password = String.IsNullOrEmpty(PIPViewModel.NewPassword) ?
+                App.Current.CurrentUser.Password : PIPViewModel.NewPassword;
 
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_USER_INFO_CMD_KEY
@@ -48,8 +43,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     , _sqlCmdObserver
                     , modifiedInfo
                     , App.Current.CurrentUser.Username
-                    ,_viewModel.UserImageFileName);
-            return true;
+                    , PIPViewModel.UserImageFileName);
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -61,13 +56,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _pageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
+                PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
             }
             else
             {
                 App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin!");
             }
-            _viewModel.IsSaveButtonRunning = false;
+            PIPViewModel.IsSaveButtonRunning = false;
         }
     }
 }

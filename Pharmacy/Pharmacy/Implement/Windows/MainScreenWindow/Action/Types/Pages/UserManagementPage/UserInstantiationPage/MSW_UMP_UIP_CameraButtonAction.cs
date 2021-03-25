@@ -1,29 +1,24 @@
 ﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Forms;
-using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserManagementPage.UserInstantiationPage
 {
-    public class MSW_UMP_UIP_CameraButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_UMP_UIP_CameraButtonAction : MSW_UMP_UIP_ButtonAction
     {
-        private UserInstantiationPageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_UMP_UIP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as UserInstantiationPageViewModel;
-
             if (!CanChooseNewImage())
             {
-                return false;
+                return;
             }
 
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh đại diện của bạn!");
@@ -36,8 +31,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                     case DialogResult.OK:
                         var file = openDialog.FileName;
                         Bitmap userBit = (Bitmap)Image.FromFile(file);
-                        _viewModel.UserImageFileName = file;
-                        _viewModel.UserImageSource = userBit.ToImageSource();
+                        UIPViewModel.UserImageFileName = file;
+                        UIPViewModel.UserImageSource = userBit.ToImageSource();
                         userBit.Dispose();
                         break;
                     default:
@@ -51,16 +46,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
                     "Lỗi!");
-                return false;
+                return;
             }
-          
 
-            return true;
+
+            return;
         }
 
         private bool CanChooseNewImage()
         {
-            if (String.IsNullOrEmpty(_viewModel.UserNameText))
+            if (String.IsNullOrEmpty(UIPViewModel.UserNameText))
             {
                 App.Current.ShowApplicationMessageBox("Vui lòng nhập tên tài khoản trước!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -70,7 +65,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                 return false;
             }
 
-            if (!_viewModel.IsDoneEvaluateUserName)
+            if (!UIPViewModel.IsDoneEvaluateUserName)
             {
                 App.Current.ShowApplicationMessageBox("Vui lòng chờ trong lúc đánh giá tính khả thi của tên tài khoản!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

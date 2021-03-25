@@ -1,25 +1,19 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
-    public class MSW_SP_RemoveOrderDetailAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SP_RemoveOrderDetailAction : MSW_SP_ButtonAction
     {
-        private SellingPageViewModel _viewModel;
-        private DataGrid ctrl;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_SP_RemoveOrderDetailAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SellingPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+            DataGrid ctrl = DataTransfer[1] as DataGrid;
 
-            _viewModel.CustomerOrderDetailItemSource.RemoveAt(ctrl.SelectedIndex);
-            return true;
+            SPViewModel.CustomerOrderDetailItemSource.RemoveAt(ctrl.SelectedIndex);
+            return;
         }
     }
 }

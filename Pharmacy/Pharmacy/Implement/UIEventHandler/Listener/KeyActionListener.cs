@@ -2,30 +2,78 @@
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Base.Utils;
-using Pharmacy.Implement.UIEventHandler.Action;
+using Pharmacy.Implement.Windows.BaseWindow.Action.Factory;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.UIEventHandler.Listener
 {
     public class KeyActionListener : IActionListener
     {
         private static KeyActionListener _instance;
-        private MSW_ActionFactory _mSW_ActionFactory;
-        private LSW_ActionFactory _lSW_ActionFactory;
+
+        /// <summary>
+        /// Actions cache for Main Screen window
+        /// Currently only support cache for destroyable action
+        /// </summary>
+        private Dictionary<string, IAction> _msw_DestroyableActions;
+
+        /// <summary>
+        /// Action cache for Login Screen Window
+        /// Currently only support cache for destroyable action
+        /// </summary>
+        private Dictionary<string, IAction> _lsw_DestroyableActions;
+
+        private MSW_CommandExecuterFactory _mSW_ActionFactory;
+        private LSW_CommandExecuterFactory _lSW_ActionFactory;
 
         private KeyActionListener()
         {
-            _mSW_ActionFactory = new MSW_ActionFactory();
-            _lSW_ActionFactory = new LSW_ActionFactory();
+            _msw_DestroyableActions = new Dictionary<string, IAction>();
+            _lsw_DestroyableActions = new Dictionary<string, IAction>();
+            _mSW_ActionFactory = new MSW_CommandExecuterFactory();
+            _lSW_ActionFactory = new LSW_CommandExecuterFactory();
         }
 
-        public void OnKey(string windowTag, string keyFeature, object[] dataTransfer)
+        public void OnKeyDestroy(string windowTag, string keyFeature)
+        {
+            switch (windowTag)
+            {
+                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
+                    BasedWindowOnKeyDestroy(_lsw_DestroyableActions, keyFeature);
+                    break;
+                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
+                    BasedWindowOnKeyDestroy(_msw_DestroyableActions, keyFeature);
+                    break;
+            }
+        }
+
+        private void BasedWindowOnKeyDestroy(Dictionary<string, IAction> cacheActionsList, string keyFeature)
+        {
+            IAction action;
+            try
+            {
+                action = cacheActionsList[keyFeature];
+            }
+            catch
+            {
+                action = null;
+            }
+
+            if (action != null)
+            {
+                IDestroyable destroyableAction = action as IDestroyable;
+                if (destroyableAction != null)
+                {
+                    destroyableAction.OnDestroy();
+                }
+
+                cacheActionsList.Remove(keyFeature);
+            }
+        }
+
+        public void OnKey(string windowTag, string keyFeature, object dataTransfer)
         {
             IAction action = GetKeyActionType(windowTag, keyFeature);
             if (action != null)
@@ -34,115 +82,76 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             }
         }
 
-        public void OnKey(string windowTag, string keyFeature, object[] dataTransfer, FactoryLocker locker)
+        public void OnKey(string windowTag, string keyFeature, object dataTransfer, FactoryLocker locker)
         {
-            IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Reason);
+            IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Status);
             if (action != null)
             {
                 action.Execute(dataTransfer);
             }
         }
 
-        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object[] dataTransfer)
+        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer)
         {
-            IAction action = GetKeyActionType(viewModel, logger, windowTag, keyFeature);
+            IAction action = GetKeyActionType(windowTag, keyFeature, viewModel, logger);
             if (action != null)
             {
                 action.Execute(dataTransfer);
             }
         }
 
-        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object[] dataTransfer, FactoryLocker locker)
+        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer, FactoryLocker locker)
         {
-            IAction action = GetKeyActionAndLockFactory(viewModel, logger, windowTag, keyFeature, locker.IsLock, locker.Reason);
+            IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Status, viewModel, logger);
             if (action != null)
             {
                 action.Execute(dataTransfer);
             }
         }
 
-
-        public void LockMSW_ActionFactory(bool key, LockReason reason)
+        public void LockMSW_ActionFactory(bool key, FactoryStatus status)
         {
-            _mSW_ActionFactory.LockFactory(key, reason);
-        }
-
-        public void LockLSW_ActionFactory(bool key, LockReason reason)
-        {
-            _lSW_ActionFactory.LockFactory(key, reason);
-        }
-
-        public LockReason GetMSWFactoryLockReason()
-        {
-            return _mSW_ActionFactory.Locker.Reason;
-        }
-        public LockReason GetLSWFactoryLockReason()
-        {
-            return _lSW_ActionFactory.Locker.Reason;
-        }
-
-        private IAction GetKeyActionType(string windowTag, object obj)
-        {
-            IAction action = null;
-            switch (windowTag)
+            if (key)
             {
-                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
-                    action = _lSW_ActionFactory.CreateAction(obj);
-                    break;
-                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
-                    action = _mSW_ActionFactory.CreateAction(obj);
-                    break;
-
+                _mSW_ActionFactory.LockFactory(status);
             }
-            return action;
-        }
-
-        private IAction GetKeyActionType(BaseViewModel viewModel, ILogger logger, string windowTag, object obj)
-        {
-            IAction action = null;
-            switch (windowTag)
+            else
             {
-                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
-                    action = _lSW_ActionFactory.CreateAction(viewModel, logger, obj);
-                    break;
-                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
-                    action = _mSW_ActionFactory.CreateAction(viewModel, logger, obj);
-                    break;
-
+                _mSW_ActionFactory.UnlockFactory(status);
             }
-            return action;
         }
 
-        private IAction GetKeyActionAndLockFactory(string windowTag, object obj, bool isLock = false, LockReason reason = LockReason.Default)
+        public void LockLSW_ActionFactory(bool key, FactoryStatus status)
         {
-            IAction action = null;
-            switch (windowTag)
+            if (key)
             {
-                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
-                    action = _lSW_ActionFactory.CreateAction(obj);
-                    _lSW_ActionFactory.LockFactory(isLock, reason);
-                    break;
-                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
-                    action = _mSW_ActionFactory.CreateAction(obj);
-                    _mSW_ActionFactory.LockFactory(isLock, reason);
-                    break;
-
+                _lSW_ActionFactory.LockFactory(status);
             }
-            return action;
+            else
+            {
+                _lSW_ActionFactory.UnlockFactory(status);
+            }
         }
 
-        private IAction GetKeyActionAndLockFactory(BaseViewModel viewModel, ILogger logger, string windowTag, object obj, bool isLock = false, LockReason reason = LockReason.Default)
+        public FactoryStatus GetMSWFactoryStatus()
+        {
+            return _mSW_ActionFactory.Locker.Status;
+        }
+        public FactoryStatus GetLSWFactoryStatus()
+        {
+            return _lSW_ActionFactory.Locker.Status;
+        }
+
+        private IAction GetKeyActionType(string windowTag, string keytag, BaseViewModel viewModel = null, ILogger logger = null)
         {
             IAction action = null;
             switch (windowTag)
             {
                 case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
-                    action = _lSW_ActionFactory.CreateAction(viewModel, logger, obj);
-                    _lSW_ActionFactory.LockFactory(isLock, reason);
+                    action = CreateAction(keytag, _lSW_ActionFactory, _lsw_DestroyableActions, viewModel, logger);
                     break;
                 case WindowTag.WINDOW_TAG_MAIN_SCREEN:
-                    action = _mSW_ActionFactory.CreateAction(viewModel, logger, obj);
-                    _mSW_ActionFactory.LockFactory(isLock, reason);
+                    action = CreateAction(keytag, _mSW_ActionFactory, _msw_DestroyableActions, viewModel, logger);
                     break;
 
             }
@@ -150,7 +159,87 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         }
 
 
-        public static KeyActionListener Instance
+        private IAction GetKeyActionAndLockFactory(string windowTag, string keytag, bool isLock = false, FactoryStatus status = FactoryStatus.Default, BaseViewModel viewModel = null, ILogger logger = null)
+        {
+            IAction action = null;
+            switch (windowTag)
+            {
+                case WindowTag.WINDOW_TAG_LOGIN_SCREEN:
+                    action = CreateAction(keytag, _lSW_ActionFactory, _lsw_DestroyableActions, viewModel, logger);
+                    _lSW_ActionFactory.LockFactory(status);
+                    break;
+                case WindowTag.WINDOW_TAG_MAIN_SCREEN:
+                    action = CreateAction(keytag, _mSW_ActionFactory, _msw_DestroyableActions, viewModel, logger);
+                    _mSW_ActionFactory.LockFactory(status);
+                    break;
+
+            }
+            return action;
+        }
+
+        private IAction CreateAction(string keyTag
+            , BaseCommandExecuterFactory factory
+            , Dictionary<string, IAction> cacheActionList
+            , BaseViewModel viewModel = null
+            , ILogger logger = null
+            , bool isDestroyableCommandExecuter = false)
+        {
+            IAction action;
+            try
+            {
+                action = cacheActionList[keyTag];
+            }
+            catch
+            {
+                action = null;
+            }
+
+            if (action == null)
+            {
+                if (!factory.Locker.IsLock)
+                {
+                    if (viewModel != null)
+                    {
+                        if (!isDestroyableCommandExecuter)
+                        {
+                            action = factory.CreateViewModelCommandExecuter(keyTag, viewModel, logger);
+                        }
+                        else
+                        {
+                            action = factory.CreateDestroyableViewModelCommandExecuter(keyTag, viewModel, logger);
+                            cacheActionList.Add(keyTag, action);
+                        }
+                    }
+                    else
+                    {
+                        action = factory.CreateCommandExecuter(keyTag, logger);
+                    }
+                }
+                else
+                {
+                    if (viewModel != null)
+                    {
+                        if (!isDestroyableCommandExecuter)
+                        {
+                            action = factory.CreateAlternativeViewModelCommandExecuterWhenFactoryIsLock(keyTag, viewModel, logger);
+                        }
+                        else
+                        {
+                            action = factory.CreateAlternativeDestroyableViewModelCommandExecuterWhenFactoryIsLock(keyTag, viewModel, logger);
+                            cacheActionList.Add(keyTag, action);
+                        }
+                    }
+                    else
+                    {
+                        action = factory.CreateAlternativeCommandExecuterWhenFactoryIsLock(keyTag, logger);
+                    }
+                }
+            }
+
+            return action;
+        }
+
+        public static KeyActionListener Current
         {
             get
             {

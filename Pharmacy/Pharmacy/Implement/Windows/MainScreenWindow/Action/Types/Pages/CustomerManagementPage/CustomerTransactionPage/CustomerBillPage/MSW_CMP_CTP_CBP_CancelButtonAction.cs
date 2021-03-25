@@ -1,25 +1,17 @@
-﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
-    public class MSW_CMP_CTP_CBP_CancelButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CBP_CancelButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
-        private CustomerBillPageViewModel _viewModel;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        public MSW_CMP_CTP_CBP_CancelButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerBillPageViewModel;
-
-            if (_viewModel.IsOrderModified)
+            if (CBPViewModel.IsOrderModified)
             {
                 var x = App.Current.ShowApplicationMessageBox("Vui lòng lưu các thay đổi hoặc hoàn tác trước khi rời khỏi trang này!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
@@ -29,10 +21,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             }
             else
             {
-                _pageHost.UpdateCurrentPageSource(_pageHost.PreviousePageSource);
+                PageHost.UpdateCurrentPageSource(PageHost.PreviousePageSource);
             }
 
-            return true;
+            return;
         }
     }
 }

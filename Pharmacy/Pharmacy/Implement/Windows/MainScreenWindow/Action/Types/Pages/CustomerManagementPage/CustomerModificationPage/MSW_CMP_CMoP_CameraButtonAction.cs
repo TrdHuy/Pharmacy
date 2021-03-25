@@ -1,24 +1,19 @@
-﻿using Pharmacy.Implement.Utils;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage
 {
-    public class MSW_CMP_CMoP_CameraButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CMoP_CameraButtonAction : MSW_CMP_CMoP_ButtonAction
     {
-        private CustomerModificationPageViewModel _viewModel;
+        public MSW_CMP_CMoP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerModificationPageViewModel;
 
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh đại diện của bạn!");
             var result = openDialog.ShowDialog();
@@ -30,8 +25,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     case DialogResult.OK:
                         var file = openDialog.FileName;
                         Bitmap cusBit = (Bitmap)Image.FromFile(file);
-                        _viewModel.CustomerImageFileName = file;
-                        _viewModel.CustomerImageSource = cusBit.ToImageSource();
+                        CMoPViewModel.CustomerImageFileName = file;
+                        CMoPViewModel.CustomerImageSource = cusBit.ToImageSource();
                         cusBit.Dispose();
                         break;
                     default:
@@ -45,11 +40,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
                     "Lỗi!");
-                return false;
+                return;
             }
 
 
-            return true;
+            return;
         }
 
     }

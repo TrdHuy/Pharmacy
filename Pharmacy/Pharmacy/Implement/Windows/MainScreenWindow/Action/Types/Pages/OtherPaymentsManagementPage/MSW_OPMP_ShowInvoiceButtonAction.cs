@@ -1,28 +1,20 @@
 ﻿using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage
 {
-    public class MSW_OPMP_ShowInvoiceButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_OPMP_ShowInvoiceButtonAction : MSW_OPMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private OtherPaymentsManagementPageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_OPMP_ShowInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as OtherPaymentsManagementPageViewModel;
-            DataGrid ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+            DataGrid ctrl = DataTransfer[1] as DataGrid;
 
-            FileIOUtil.ShowBitmapFromName(_viewModel.OtherPaymentItemSource[ctrl.SelectedIndex].PaymentID.ToString(), FileIOUtil.OTHER_PAYMENT_IMAGE_FOLDER_NAME);
-
-            return true;
+            FileIOUtil.ShowBitmapFromName(OPMPViewModel.OtherPaymentItemSource[ctrl.SelectedIndex].PaymentID.ToString(), FileIOUtil.OTHER_PAYMENT_IMAGE_FOLDER_NAME);
         }
     }
 }

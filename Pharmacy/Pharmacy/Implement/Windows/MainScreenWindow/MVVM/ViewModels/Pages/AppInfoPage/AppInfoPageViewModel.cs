@@ -1,4 +1,5 @@
-﻿using Pharmacy.Base.Utils.Attributes;
+﻿using Pharmacy.Base.Utils;
+using Pharmacy.Base.Utils.Attributes;
 using Pharmacy.Implement.AppImpl.Models.VOs;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage.OVs;
@@ -23,14 +24,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
 
         protected override Logger logger => L;
 
-        protected override void OnInitialized()
-        {
-        }
+        protected override void OnInitialized() { }
 
         protected override void OnInitializing()
         {
             AppInfo = new AppInfoVO();
             ButtonCommandOV = new MSW_AIP_ButtonCommandOV(this);
+        }
+
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            ButtonCommandOV.OnDestroy();
         }
 
     }

@@ -1,22 +1,17 @@
 ﻿using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Drawing;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Forms;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage.ModifyOtherPaymentPage
 {
-    public class MSW_OPMP_MOPP_BrowseInvoiceImageButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_OPMP_MOPP_BrowseInvoiceImageButtonAction : MSW_OPMP_MOPP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private ModifyOtherPaymentPageViewModel _viewModel;
+        public MSW_OPMP_MOPP_BrowseInvoiceImageButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ModifyOtherPaymentPageViewModel;
 
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh hóa đơn!");
             var result = openDialog.ShowDialog();
@@ -27,8 +22,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                 {
                     case DialogResult.OK:
                         var file = openDialog.FileName;
-                        _viewModel.InvoiceImageURL = file;
-                        _viewModel.Invalidate("InvoiceImageURL");
+                        MOPPViewModel.InvoiceImageURL = file;
+                        MOPPViewModel.Invalidate("InvoiceImageURL");
                         break;
                     default:
                         break;
@@ -41,10 +36,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
                     "Lỗi!");
-                return false;
+                return;
             }
 
-            return true;
+            return;
         }
     }
 }

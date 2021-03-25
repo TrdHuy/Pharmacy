@@ -1,35 +1,28 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage
 {
-    public class MSW_CMP_CMoP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CMoP_SaveButtonAction : MSW_CMP_CMoP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private CustomerModificationPageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_CMP_CMoP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerModificationPageViewModel;
-
-            if (!_viewModel.IsSaveButtonCanPerform)
+            if (!CMoPViewModel.IsSaveButtonCanPerform)
             {
                 App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                _viewModel.IsSaveButtonRunning = false;
-                return false;
+                CMoPViewModel.IsSaveButtonRunning = false;
+                return;
             }
 
 
@@ -37,10 +30,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.UPDATE_CUSTOMER_INFO_CMD_KEY,
                 PharmacyDefinitions.SAVE_CUSTOMER_MODIFIED_INFO_BUTTON_PERFORM_DELAY_TIME,
                 _sqlCmdObserver,
-                _viewModel.CurrentModifiedCustomer,
-                _viewModel.CustomerImageFileName);
+                CMoPViewModel.CurrentModifiedCustomer,
+                CMoPViewModel.CustomerImageFileName);
 
-            return true;
+            return;
         }
 
         private void SQLQueryCallback(SQLQueryResult queryResult)
@@ -61,8 +54,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsSaveButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_MANAGEMENT_PAGE);
+            CMoPViewModel.IsSaveButtonRunning = false;
+            PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_MANAGEMENT_PAGE);
         }
 
     }

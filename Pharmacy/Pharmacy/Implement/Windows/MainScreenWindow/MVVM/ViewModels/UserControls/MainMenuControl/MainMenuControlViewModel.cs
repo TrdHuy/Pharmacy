@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserContro
 {
     internal class MainMenuControlViewModel : BaseViewModel
     {
-        private IActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         public MSW_MMC_ButtonCommandOV ButtonCommandOV { get; set; }
 

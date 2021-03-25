@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.Observable;
 using Pharmacy.Base.Observable.ObserverPattern;
+using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Utils;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Windows.Markup;
 
 namespace Pharmacy.Base.MVVM.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged, Observable.ObserverPattern.IObservable<object>
+    public class BaseViewModel : INotifyPropertyChanged, Observable.ObserverPattern.IObservable<object>, IDestroyable
     {
         private List<string> _propertiesRegistry = new List<string>();
         private List<Observable.ObserverPattern.IObserver<object>> _observers = new List<Observable.ObserverPattern.IObserver<object>>();
@@ -123,6 +124,8 @@ namespace Pharmacy.Base.MVVM.ViewModels
             _propertiesRegistry.Add(propName);
         }
 
-
+        public virtual void OnDestroy()
+        {
+        }
     }
 }

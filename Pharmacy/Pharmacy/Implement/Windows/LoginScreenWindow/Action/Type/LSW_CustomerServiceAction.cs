@@ -1,17 +1,15 @@
-﻿using Pharmacy.Base.UIEventHandler.Action;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {
-    class LSW_CustomerServiceAction : IAction
+    internal class LSW_CustomerServiceAction : LSW_ButtonAction
     {
-        public bool Execute(object[] dataTransfer)
+        public LSW_CustomerServiceAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            throw new NotImplementedException();
         }
     }
 }

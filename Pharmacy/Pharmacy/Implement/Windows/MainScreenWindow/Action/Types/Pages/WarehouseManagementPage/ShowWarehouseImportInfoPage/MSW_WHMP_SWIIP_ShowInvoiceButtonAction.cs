@@ -1,27 +1,15 @@
-﻿using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ModifyWarehouseImportPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ShowWarehouseImportInfoPage
 {
-    public class MSW_WHMP_SWIIP_ShowInvoiceButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_WHMP_SWIIP_ShowInvoiceButtonAction : MSW_WHMP_SWIP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private ShowWarehouseImportInfoPageViewModel _viewModel;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_WHMP_SWIIP_ShowInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ShowWarehouseImportInfoPageViewModel;
-
-            FileIOUtil.ShowBitmapFromName(_viewModel.ImportInfo.ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
-
-            return true;
+            FileIOUtil.ShowBitmapFromName(SWIPViewModel.ImportInfo.ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
         }
     }
 }

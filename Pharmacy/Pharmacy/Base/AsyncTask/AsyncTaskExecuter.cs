@@ -19,30 +19,18 @@ namespace Pharmacy.Base.AsyncTask
 
             if (canExecute)
             {
-                var asyncTaskResult = new AsyncTaskResult(null, MessageAsyncTaskResult.Non);
-                try
+                var asyncTaskResult = asyncTask.Execute == null ? 
+                    new AsyncTaskResult(null, MessageAsyncTaskResult.Non)
+                    : await asyncTask.Execute?.Invoke();
+
+                AsynTaskExecuteWatcher.Stop();
+                long restLoadingTime = asyncTask.DelayTime - AsynTaskExecuteWatcher.ElapsedMilliseconds;
+                if (restLoadingTime > 0)
                 {
-                    asyncTask.Execute?.Start();
-                    asyncTaskResult = asyncTask.Execute == null ? null : await asyncTask.Execute;
-                }
-                catch (Exception e)
-                {
-                    asyncTask.Result.MesResult = MessageAsyncTaskResult.Aborted;
-                    asyncTask.Result.Messsage = e.Message;
+                    await Task.Delay(Convert.ToInt32(restLoadingTime));
                 }
 
-
-                if (asyncTaskResult.MesResult != MessageAsyncTaskResult.Non)
-                {
-                    AsynTaskExecuteWatcher.Stop();
-                    long restLoadingTime = asyncTask.DelayTime - AsynTaskExecuteWatcher.ElapsedMilliseconds;
-
-                    if (restLoadingTime > 0)
-                    {
-                        await Task.Delay(Convert.ToInt32(restLoadingTime));
-                    }
-                    asyncTask.CallbackHandler?.Invoke(asyncTaskResult);
-                }
+                asyncTask.CallbackHandler?.Invoke(asyncTaskResult);
             }
         }
     }

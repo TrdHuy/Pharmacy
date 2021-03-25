@@ -31,7 +31,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 _isAddOrderDeatailButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -48,7 +48,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 _isSaveButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, LockReason.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -77,7 +77,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 IsAddOrderDeatailButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
                     , paramaters
-                    , new FactoryLocker(LockReason.TaskHandling, true));
+                    , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
 
             SaveButtonCommand = new RunInputCommand((paramaters) =>
@@ -85,7 +85,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
                     , paramaters
-                    , new FactoryLocker(LockReason.TaskHandling, true));
+                    , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
 
             DeleteOrderDetailButtonCommand = new RunInputCommand((paramaters) =>

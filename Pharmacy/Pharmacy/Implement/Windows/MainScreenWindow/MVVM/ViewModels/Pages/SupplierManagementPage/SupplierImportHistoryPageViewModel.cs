@@ -41,7 +41,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         public ObservableCollection<tblWarehouseImport> LstWarehouseImport { get; set; }
         public ObservableCollection<string> LstWarehouseImportDetail { get; set; }
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Instance;
+        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private tblWarehouseImport _importInfo;
 
         protected override Logger logger => L;

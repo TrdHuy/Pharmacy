@@ -1,23 +1,14 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+﻿using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 {
-    public class MSW_MedicineManagementAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_MedicineManagementAction : MSW_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_MedicineManagementAction(ILogger logger) : base(logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.MEDICINE_MANAGEMENT_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.MEDICINE_MANAGEMENT_PAGE);
         }
     }
 }

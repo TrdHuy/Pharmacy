@@ -3,11 +3,6 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement.OVs
 {
@@ -28,26 +23,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
             EditButtonCommand = new RunInputCommand((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_EDIT_BUTTON,
-                    paramaters);
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_EDIT_BUTTON
+                    , paramaters);
             });
 
             DeleteButtonCommand = new RunInputCommand((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_DELETE_BUTTON,
-                    paramaters);
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_DELETE_BUTTON
+                    , paramaters);
             });
 
             HistoryButtonCommand = new RunInputCommand((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_HISTORY_BUTTON,
-                    paramaters);
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_HISTORY_BUTTON
+                    , paramaters);
             });
 
             AddNewCustomerButtonCommand = new RunInputCommand((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON,
-                    paramaters);
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON
+                    , paramaters);
             });
 
         }

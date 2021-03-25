@@ -1,24 +1,20 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPaymentsManagementPage
 {
-    public class MSW_OPMP_DeleteOtherPaymentButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_OPMP_DeleteOtherPaymentButtonAction : MSW_OPMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private OtherPaymentsManagementPageViewModel _viewModel;
-        private DataGrid ctrl;
-        public bool Execute(object[] dataTransfer)
+        private DataGrid otherPaymentsDataGrid;
+
+        public MSW_OPMP_DeleteOtherPaymentButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as OtherPaymentsManagementPageViewModel;
-            ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+            otherPaymentsDataGrid = DataTransfer[1] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa thanh toán này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
@@ -39,18 +35,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        _viewModel.OtherPaymentItemSource.RemoveAt(ctrl.SelectedIndex);
+                        OPMPViewModel.OtherPaymentItemSource.RemoveAt(otherPaymentsDataGrid.SelectedIndex);
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_OTHER_PAYMENT_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    _viewModel.OtherPaymentItemSource[ctrl.SelectedIndex].PaymentID);
+                    OPMPViewModel.OtherPaymentItemSource[otherPaymentsDataGrid.SelectedIndex].PaymentID);
 
-                return true;
+                return;
             }
 
-            return false;
+            return;
         }
     }
 }

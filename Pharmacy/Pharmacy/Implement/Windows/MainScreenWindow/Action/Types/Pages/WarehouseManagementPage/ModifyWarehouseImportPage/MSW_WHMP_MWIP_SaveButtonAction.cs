@@ -1,35 +1,27 @@
 ﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
 using System.Collections.Generic;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage.ModifyWarehouseImportPage
 {
-    public class MSW_WHMP_MWIP_SaveButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_WHMP_MWIP_SaveButtonAction : MSW_WHMP_MWIP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private ModifyWarehouseImportPageViewModel _viewModel;
 
-        public bool Execute(object[] dataTransfer)
+        public MSW_WHMP_MWIP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as ModifyWarehouseImportPageViewModel;
 
-            tblWarehouseImport import = _viewModel.ImportInfo;
-            import.ImportDescription = _viewModel.NoteString.Trim();
-            import.TotalPrice = _viewModel.TotalPrice;
-            import.PurchasePrice = _viewModel.PurchasedPrice;
+            tblWarehouseImport import = MWIPViewModel.ImportInfo;
+            import.ImportDescription = MWIPViewModel.NoteString.Trim();
+            import.TotalPrice = MWIPViewModel.TotalPrice;
+            import.PurchasePrice = MWIPViewModel.PurchasedPrice;
 
             List<tblWarehouseImportDetail> details = new List<tblWarehouseImportDetail>();
-            foreach (var item in _viewModel.LstWarehouseImportDetail)
+            foreach (var item in MWIPViewModel.LstWarehouseImportDetail)
             {
                 tblWarehouseImportDetail detail = new tblWarehouseImportDetail();
                 detail.IsActive = true;
@@ -45,9 +37,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                 _sqlCmdObserver,
                 import,
                 details,
-                _viewModel.InvoiceImageURL);
+                MWIPViewModel.InvoiceImageURL);
 
-            return true;
+            return;
         }
         private void SQLQueryCallback(SQLQueryResult queryResult)
         {
@@ -67,8 +59,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            _viewModel.IsAddWarehouseImportButtonRunning = false;
-            _pageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
+            MWIPViewModel.IsAddWarehouseImportButtonRunning = false;
+            PageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
         }
     }
 }

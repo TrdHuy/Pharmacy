@@ -1,24 +1,21 @@
-﻿using Pharmacy.Implement.Utils;
+﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.PersonalInfoPage
 {
-    public class MSW_PIP_CameraButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_PIP_CameraButtonAction : MSW_PIP_ButtonAction
     {
-        private PersonalInfoPageViewModel _viewModel;
+        public MSW_PIP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as PersonalInfoPageViewModel;
+            base.ExecuteCommand(dataTransfer);
 
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh đại diện của bạn!");
             var result = openDialog.ShowDialog();
@@ -30,8 +27,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     case DialogResult.OK:
                         var file = openDialog.FileName;
                         Bitmap userBit = (Bitmap)Image.FromFile(file);
-                        _viewModel.UserImageFileName = file;
-                        _viewModel.UserImageSource = userBit.ToImageSource();
+                        PIPViewModel.UserImageFileName = file;
+                        PIPViewModel.UserImageSource = userBit.ToImageSource();
                         userBit.Dispose();
                         break;
                     default:
@@ -41,11 +38,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                return false;
+                return;
             }
-          
 
-            return true;
+            return;
         }
     }
 }

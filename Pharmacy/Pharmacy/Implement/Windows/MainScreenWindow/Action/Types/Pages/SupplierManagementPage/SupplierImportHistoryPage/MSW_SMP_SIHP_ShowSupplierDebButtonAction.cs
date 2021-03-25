@@ -1,28 +1,16 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.SupplierImportHistoryPage
 {
-    public class MSW_SMP_SIHP_ShowSupplierDebButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_SMP_SIHP_ShowSupplierDebButtonAction : MSW_SMP_SIHP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private SupplierManagementPageViewModel _viewModel;
+        public MSW_SMP_SIHP_ShowSupplierDebButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as SupplierManagementPageViewModel;
-
-            _pageHost.UpdateCurrentPageSource(PageSource.SUPPLIER_DEBT_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.SUPPLIER_DEBT_PAGE);
         }
     }
 }

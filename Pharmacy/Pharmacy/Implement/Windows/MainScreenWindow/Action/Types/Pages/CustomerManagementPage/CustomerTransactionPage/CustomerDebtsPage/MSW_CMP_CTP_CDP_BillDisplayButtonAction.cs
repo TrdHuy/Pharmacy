@@ -1,31 +1,23 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerDebtsPage
 {
-    public class MSW_CMP_CTP_CDP_BillDisplayButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_CDP_BillDisplayButtonAction : MSW_CMP_CTP_CDP_ButtonAction
     {
-        private MSW_PageController _pageHost { get; set; } = MSW_PageController.Instance;
-        private CustomerDebtsPageViewModel _viewModel;
+        public MSW_CMP_CTP_CDP_BillDisplayButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as CustomerDebtsPageViewModel;
-            DataGrid ctrl = dataTransfer[1] as DataGrid;
+            base.ExecuteCommand(dataTransfer);
+            DataGrid ctrl = DataTransfer[1] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = _viewModel.OrderItemSource.Where(o => o.OrderID == _viewModel.DebtItemSource[ctrl.SelectedIndex].OrderID).FirstOrDefault();
-            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);
-
-            return true;
+            MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = CDPViewModel.OrderItemSource.Where(o => o.OrderID == CDPViewModel.DebtItemSource[ctrl.SelectedIndex].OrderID).FirstOrDefault();
+            PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);
         }
     }
 }

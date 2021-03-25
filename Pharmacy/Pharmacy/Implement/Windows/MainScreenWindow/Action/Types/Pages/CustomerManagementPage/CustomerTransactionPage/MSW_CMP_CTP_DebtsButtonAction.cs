@@ -1,23 +1,16 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage
 {
-    public class MSW_CMP_CTP_DebtsButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_CMP_CTP_DebtsButtonAction : MSW_CMP_CTP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
+        public MSW_CMP_CTP_DebtsButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
 
-        public bool Execute(object[] dataTransfer)
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _pageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_DEBT_PAGE);
-
-            return true;
+            PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_DEBT_PAGE);
         }
     }
 }

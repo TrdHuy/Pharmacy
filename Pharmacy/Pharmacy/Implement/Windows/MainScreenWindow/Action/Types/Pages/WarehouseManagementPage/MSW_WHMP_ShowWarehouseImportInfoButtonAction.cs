@@ -1,30 +1,24 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage;
-using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
-using System.Collections.Generic;
+﻿using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage
 {
-    public class MSW_WHMP_ShowWarehouseImportInfoButtonAction : Base.UIEventHandler.Action.IAction
+    internal class MSW_WHMP_ShowWarehouseImportInfoButtonAction : MSW_WHMP_ButtonAction
     {
-        private MSW_PageController _pageHost = MSW_PageController.Instance;
-        private WarehouseManagementPageViewModel _viewModel;
-
-        public bool Execute(object[] dataTransfer)
+        public MSW_WHMP_ShowWarehouseImportInfoButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public override void ExecuteCommand(object dataTransfer)
         {
-            _viewModel = dataTransfer[0] as WarehouseManagementPageViewModel;
-            object[] param = dataTransfer[1] as object[];
+            base.ExecuteCommand(dataTransfer);
+            object[] param = DataTransfer[1] as object[];
             DataGrid ctrl = param[0] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = _viewModel.LstWarehouseImport[ctrl.SelectedIndex];
-            _pageHost.UpdateCurrentPageSource(PageSource.SHOW_WAREHOUSE_IMPORT_INFO_PAGE);
+            MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex];
+            PageHost.UpdateCurrentPageSource(PageSource.SHOW_WAREHOUSE_IMPORT_INFO_PAGE);
 
-            return true;
+            return;
         }
     }
 }
