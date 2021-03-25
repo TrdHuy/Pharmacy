@@ -256,7 +256,7 @@
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=UserManagementPageVM}"
                                                               TextContent="&#xf040;"
-                                                              Command="{Binding EditButtonCommand,ElementName=UserManagementPageVM}"
+                                                              Command="{Binding ButtomCommandOV.EditButtonCommand,ElementName=UserManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=UserDataGrid}" />
 
                                             <hps:OsirisButton Grid.Column="3"
@@ -269,7 +269,7 @@
                                                               FontFamily="{StaticResource FontAwesome}"
                                                               FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=UserManagementPageVM}"
                                                               TextContent="&#xf00d;"
-                                                              Command="{Binding DeleteUserButtonCommand,ElementName=UserManagementPageVM}"
+                                                              Command="{Binding ButtomCommandOV.DeleteUserButtonCommand,ElementName=UserManagementPageVM}"
                                                               CommandParameter="{Binding ElementName=UserDataGrid}"/>
 
                                         </Grid>
@@ -303,7 +303,7 @@
                               ProgressSpinnerBackground="Black"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               BorderThickness="0"
-                              Command="{Binding AddNewUserButtonCommand}"
+                              Command="{Binding ButtomCommandOV.AddNewUserButtonCommand}"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               IsUsingDropShadowEffect="True"

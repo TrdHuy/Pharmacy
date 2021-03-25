@@ -1,44 +1,29 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
-using Pharmacy.Implement.Utils.Extensions;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media;
 using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.InputCommand;
-using System.Windows.Controls;
 using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Implement.UIEventHandler.Listener;
-using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
 {
-    public class UserManagementPageViewModel : MSW_BasePageViewModel
+    internal class UserManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("UserManagementPageViewModel");
-       
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
+
         private SQLQueryCustodian _sqlCmdObserver;
 
         public ObservableCollection<tblUser> UserItemSource { get; set; }
-        public RunInputCommand EditButtonCommand { get; set; }
-        public RunInputCommand DeleteUserButtonCommand { get; set; }
-        public RunInputCommand AddNewUserButtonCommand { get; set; }
+        public MSW_UMP_ButtomCommandOV ButtomCommandOV { get; set; }
 
         protected override Logger logger => L;
 
         protected override void OnInitializing()
         {
             UserItemSource = new ObservableCollection<tblUser>();
-            EditButtonCommand = new RunInputCommand(EditButtonClickEvent);
-            DeleteUserButtonCommand = new RunInputCommand(DeleteUserButtonClickEvent);
-            AddNewUserButtonCommand = new RunInputCommand(AddNewUserButtonClickEvent);
+            ButtomCommandOV = new MSW_UMP_ButtomCommandOV(this);
             InstantiateItems();
         }
 
@@ -62,35 +47,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             }
         }
 
-        private void EditButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_UMP_EDIT_BUTTON
-                , dataTransfer);
-        }
-
-        private void DeleteUserButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_UMP_DELETE_BUTTON
-                , dataTransfer);
-        }
-
-        private void AddNewUserButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_UMP_ADD_BUTTON
-                , dataTransfer);
-        }
     }
 
 }

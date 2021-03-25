@@ -7,7 +7,7 @@
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage.UserModification"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       FontSize="{Binding FontSizeOV.FontSizeLarge}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
@@ -42,7 +42,7 @@
             <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding UserImageSource}"
                                  CamTip="Thay đổi ảnh đại diện nhân viên"
-                                 CamButCmd="{Binding CameraButtonCommand}"
+                                 CamButCmd="{Binding ButtomCommandOV.CameraButtonCommand}"
                                  CamButVisibility="Visible"
                                  MainTiltle="{Binding FullNameText}"
                                  SubTiltle="{Binding CurrentModifiedUser.Username}"
@@ -384,7 +384,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                              Command="{Binding CancleButtonCommand}"
+                              Command="{Binding ButtomCommandOV.CancleButtonCommand}"
                               BorderThickness="0"
                               Foreground="White" />
             <hps:OsirisButton Margin="0,5,0,20"
@@ -398,7 +398,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               IsUsingDropShadowEffect="True"
-                              Command="{Binding SaveButtonCommand}"
+                              Command="{Binding ButtomCommandOV.SaveButtonCommand}"
                               Foreground="White"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>

@@ -10,19 +10,16 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage.UserModification.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage.UserModification
 {
-    public class UserModificationPageViewModel : MSW_BasePageViewModel
+    internal class UserModificationPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("UserModificationPageViewModel");
 
@@ -104,7 +101,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 CurrentModifiedUser.FullName = value;
-                FullNameAwareTextBlockVisibility = String.IsNullOrEmpty(value) ?
+                FullNameAwareTextBlockVisibility = string.IsNullOrEmpty(value) ?
                     Visibility.Visible : Visibility.Collapsed;
                 InvalidateOwn();
             }
@@ -118,7 +115,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 CurrentModifiedUser.Phone = value;
-                PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(value) ?
+                PhoneAwareTextBlockVisibility = string.IsNullOrEmpty(value) ?
                     Visibility.Visible : Visibility.Collapsed;
                 InvalidateOwn();
             }
@@ -168,7 +165,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 CurrentModifiedUser.Job = value;
-                JobTitleAwareTextBlockVisibility = String.IsNullOrEmpty(value) ?
+                JobTitleAwareTextBlockVisibility = string.IsNullOrEmpty(value) ?
                     Visibility.Visible : Visibility.Collapsed;
                 InvalidateOwn();
             }
@@ -329,9 +326,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             }
         }
 
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CancleButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
+        public MSW_UMP_UMoP_ButtomCommandOV ButtomCommandOV { get; set; }
 
         public EventHandleCommand GridSizeChangedCommand { get; set; }
         public EventHandleCommand NewPasswordChangedCommand { get; set; }
@@ -342,19 +337,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         protected override void OnInitializing()
 
         {
-            SetupFeatures();
+            ButtomCommandOV = new MSW_UMP_UMoP_ButtomCommandOV(this);
             CurrentModifiedUser = MSW_DataFlowHost.Current.CurrentModifiedUser;
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
 
-            UserNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Username) ?
+            UserNameAwareTextBlockVisibility = string.IsNullOrEmpty(CurrentModifiedUser.Username) ?
                     Visibility.Visible : Visibility.Collapsed;
             UserNameVerifiedTextBlockVisibility = Visibility.Collapsed;
-            FullNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.FullName) ?
+            FullNameAwareTextBlockVisibility = string.IsNullOrEmpty(CurrentModifiedUser.FullName) ?
                  Visibility.Visible : Visibility.Collapsed;
-            PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Phone) ?
+            PhoneAwareTextBlockVisibility = string.IsNullOrEmpty(CurrentModifiedUser.Phone) ?
                 Visibility.Visible : Visibility.Collapsed;
-            JobTitleAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedUser.Job) ?
+            JobTitleAwareTextBlockVisibility = string.IsNullOrEmpty(CurrentModifiedUser.Job) ?
                 Visibility.Visible : Visibility.Collapsed;
 
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
@@ -364,27 +357,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
 
         protected override void OnInitialized()
         {
-        }
-
-        private void SetupFeatures()
-        {
-            CameraButtonVisibility = Visibility.Collapsed;
-            bool isUsingCameraButton = RUNE.IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE;
-            if (isUsingCameraButton)
-            {
-                CameraButtonVisibility = Visibility.Visible;
-                CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
-            }
-        }
-
-        private void CameraButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CAMERA_BUTTON
-                , dataTransfer);
         }
 
         private void OnVerifiedPasswordChagedEvent(object sender, EventArgs e, object paramater)
@@ -416,36 +388,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             }
         }
 
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void CancleButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_UMP_UMoP_CANCLE_BUTTON
-                , dataTransfer);
-        }
-
-
         private void UpdatePasswordAwareTextBlock()
         {
             UpdateNewPasswordAwareTextBlock();
             UpdateVerifiedPasswordAwareTextBlock();
 
-            if (String.IsNullOrEmpty(NewPassword) &&
-                String.IsNullOrEmpty(VerifiedPassword))
+            if (string.IsNullOrEmpty(NewPassword) &&
+                string.IsNullOrEmpty(VerifiedPassword))
             {
                 NewPasswordAwareTextBlockVisibility = Visibility.Collapsed;
                 VerifiedPasswordAwareTextBlockVisibility = Visibility.Collapsed;

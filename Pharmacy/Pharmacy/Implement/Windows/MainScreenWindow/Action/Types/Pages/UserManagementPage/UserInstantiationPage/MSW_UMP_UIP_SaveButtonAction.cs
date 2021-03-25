@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                UIPViewModel.IsSaveButtonRunning = false;
+                UIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
 
@@ -60,7 +60,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            UIPViewModel.IsSaveButtonRunning = false;
+            UIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
         }
 
