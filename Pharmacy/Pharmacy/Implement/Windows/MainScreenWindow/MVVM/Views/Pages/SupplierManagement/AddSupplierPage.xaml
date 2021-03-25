@@ -232,7 +232,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                              Command="{Binding CancelButtonCommand}"
+                              Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
                               Foreground="White" />
@@ -240,7 +240,7 @@
                               Grid.Column="3"
                               TextContent="Lưu"
                               Padding="20,0,20,0"
-                              IsBusy="{Binding IsSaveButtonRunning}"
+                              IsBusy="{Binding ButtonCommandOV.IsSaveButtonRunning}"
                               ProgressSpinnerSize="30"
                               ProgressSpinnerBackground="Black"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
@@ -248,7 +248,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               IsUsingDropShadowEffect="True"
-                              Command="{Binding SaveButtonCommand}"
+                              Command="{Binding ButtonCommandOV.SaveButtonCommand}"
                               Foreground="White"
                               MaxHeight="100"
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />

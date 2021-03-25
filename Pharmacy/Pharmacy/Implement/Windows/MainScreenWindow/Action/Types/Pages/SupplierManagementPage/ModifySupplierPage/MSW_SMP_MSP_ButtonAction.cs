@@ -1,8 +1,8 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Implement.Windows.BaseWindow.Action.Types;
 using Pharmacy.Base.Utils;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.ModifySupplier;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SupplierManagementPage.ModifySupplierPage
 {
