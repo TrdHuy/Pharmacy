@@ -241,7 +241,7 @@
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
-                                                      Command="{Binding DataContext.EditOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.EditOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Black"
@@ -254,7 +254,7 @@
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
-                                                      Command="{Binding DataContext.DeleteOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.DeleteOtherPaymentButtonCommand,ElementName=OtherPaymentManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Red"
@@ -265,7 +265,7 @@
                                     <TextBlock Grid.Column="5"
                                                VerticalAlignment="Center">
                                         <Hyperlink FontStyle="Italic"
-                                                   Command="{Binding DataContext.ShowInvoiceButtonCommand,ElementName=OtherPaymentManagement}"
+                                                   Command="{Binding DataContext.ButtonCommandOV.ShowInvoiceButtonCommand,ElementName=OtherPaymentManagement}"
                                                    CommandParameter="{Binding ElementName=DataGrid}">
                                             Xem hóa đơn
                                         </Hyperlink>
@@ -298,7 +298,7 @@
                               Foreground="White"
                               Margin="10,0"
                               Padding="30,0,30,0"
-                              Command="{Binding AddNewOtherPaymentButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.AddNewOtherPaymentButtonCommand}" />
         </Grid>
     </Grid>
 </Page>

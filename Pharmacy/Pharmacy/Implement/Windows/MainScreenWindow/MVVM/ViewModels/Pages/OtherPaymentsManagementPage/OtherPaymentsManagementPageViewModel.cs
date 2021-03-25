@@ -16,18 +16,17 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Warehous
 using HPSolutionCCDevPackage.netFramework;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage
 {
-    public class OtherPaymentsManagementPageViewModel : MSW_BasePageViewModel
+    internal class OtherPaymentsManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("OtherPaymentsManagementPageViewModel");
 
         public ObservableCollection<tblOtherPayment> OtherPaymentItemSource { get; set; }
-        public RunInputCommand AddNewOtherPaymentButtonCommand { get; set; }
-        public RunInputCommand EditOtherPaymentButtonCommand { get; set; }
-        public RunInputCommand DeleteOtherPaymentButtonCommand { get; set; }
-        public RunInputCommand ShowInvoiceButtonCommand { get; set; }
+
+        public MSW_OPMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public EventHandleCommand FilterChangedCommand { get; set; }
         public EventHandleCommand ShowOtherPaymentInfoCommand { get; set; }
 
@@ -37,10 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         protected override void OnInitializing()
         {
-            AddNewOtherPaymentButtonCommand = new RunInputCommand(AddNewAddNewOtherPaymentButtonClickEvent);
-            DeleteOtherPaymentButtonCommand = new RunInputCommand(DeleteOtherPaymentButtonClickEvent);
-            EditOtherPaymentButtonCommand = new RunInputCommand(EditEditOtherPaymentButtonClickEvent);
-            ShowInvoiceButtonCommand = new RunInputCommand(ShowInvoiceButtonClickEvent);
+            ButtonCommandOV = new MSW_OPMP_ButtonCommandOV(this);
             FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
             ShowOtherPaymentInfoCommand = new EventHandleCommand(ShowOtherPaymentInfoEvent);
             InstantiateItems();
@@ -128,49 +124,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = (paramaters as object[])[0];
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+            _keyActionListener.OnKey(this
+                , logger
+                , WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
                 , dataTransfer);
         }
 
-        private void AddNewAddNewOtherPaymentButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_ADD_BUTTON
-                , dataTransfer);
-        }
-
-        private void DeleteOtherPaymentButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_DELETE_BUTTON
-                , dataTransfer);
-        }
-
-        private void EditEditOtherPaymentButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
-                , dataTransfer);
-        }
-
-        private void ShowInvoiceButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON
-                , dataTransfer);
-        }
     }
 }
