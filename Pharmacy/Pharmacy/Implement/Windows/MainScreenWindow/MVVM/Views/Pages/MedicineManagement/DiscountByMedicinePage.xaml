@@ -216,18 +216,21 @@
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                  Command="{Binding CreateNewPromoButtonCommand}"
+                                  Command="{Binding ButtonCommandOV.CreateNewPromoButtonCommand}"
                                   BorderThickness="0"
                                   Foreground="White" />
 
                 <hps:OsirisButton Grid.Column="3"
                                   TextContent="Lưu"
                                   Padding="20,0,20,0"
+                                  ProgressSpinnerSize="{Binding FontSizeOV.FontSizeXXXLarge}"
+                                  ProgressSpinnerBackground="Black"
+                                  IsBusy="{Binding ButtonCommandOV.IsSaveButtonRunning}"
                                   IsUsingDropShadowEffect="True"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                  Command="{Binding SaveButtonCommand}"
+                                  Command="{Binding ButtonCommandOV.SaveButtonCommand}"
                                   BorderThickness="0"
                                   Background="{StaticResource NormalTheme_1st_Background_Brush}"
                                   Foreground="White" />
@@ -421,7 +424,7 @@
                                                       Background="White"
                                                       VerticalAlignment="Center"
                                                       IconStretch="Uniform"
-                                                      Command="{Binding DataContext.DeleteButtonCommand,ElementName=MedicineManagementPage}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.DeleteButtonCommand,ElementName=MedicineManagementPage}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       IconSource="{StaticResource UserManagementPage_DeleteUserRow}" />
                                 </Border>
@@ -447,7 +450,7 @@
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                              Command="{Binding CancelButtonCommand}"
+                              Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
                               Foreground="White" />

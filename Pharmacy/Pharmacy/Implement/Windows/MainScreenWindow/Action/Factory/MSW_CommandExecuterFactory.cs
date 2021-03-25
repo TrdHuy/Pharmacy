@@ -253,6 +253,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_SMIP_CANCEL_BUTTON:
                     viewModelCommandExecuter = new MSW_MMP_SMIP_CancelButtonAction(viewModel, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CREATE_NEW_PROMO_BUTTON:
+                    viewModelCommandExecuter = new MSW_MMP_DBMP_CreateNewPromoButtonAction(viewModel, logger);
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON:
                     viewModelCommandExecuter = new MSW_MMP_DBMP_CancelButtonAction(viewModel, logger);
                     break;

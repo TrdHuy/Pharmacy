@@ -3,6 +3,7 @@ using Pharmacy.Implement.Windows.BaseWindow.Action.Types;
 using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.DiscountByMedicine;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.DiscountByMedicinePage
 {

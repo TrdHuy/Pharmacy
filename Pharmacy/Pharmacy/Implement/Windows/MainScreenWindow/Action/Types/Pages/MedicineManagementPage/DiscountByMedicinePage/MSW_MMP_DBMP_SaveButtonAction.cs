@@ -21,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                DBMPViewModel.IsSaveButtonRunning = false;
+                DBMPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
 
@@ -63,7 +63,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            DBMPViewModel.IsSaveButtonRunning = false;
+            DBMPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
         }
     }
 }

@@ -224,6 +224,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InvoiceManagementPage\MSW_IMP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\DiscountByMedicinePage\MSW_MMP_DBMP_ButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\DiscountByMedicinePage\MSW_MMP_DBMP_CreateNewPromoButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ModifyMedicinePage\MSW_MMP_MMP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_PrintMedicineListButtonAction.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\OVs\MSW_CMP_CTHP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePage\OVs\MSW_HP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicine\OVs\MSW_MMP_AMP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicine\OVs\MSW_MMP_DBMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagement\OVs\MSW_MMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MSW_BasePageVM\OVs\MSW_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ComprehensiveReportOV.cs" />

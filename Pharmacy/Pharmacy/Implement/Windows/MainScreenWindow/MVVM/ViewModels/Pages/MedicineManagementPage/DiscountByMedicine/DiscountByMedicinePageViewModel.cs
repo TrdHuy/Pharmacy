@@ -1,37 +1,23 @@
-﻿using HPSolutionCCDevPackage.netFramework;
-using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Implement.UIEventHandler;
-using Pharmacy.Implement.UIEventHandler.Listener;
+﻿using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Linq;
-using System.Globalization;
 using Pharmacy.Config;
-using System.Windows.Threading;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.AddMedicine.OVs;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.DiscountByMedicine
 {
-    public class DiscountByMedicinePageViewModel : MSW_BasePageViewModel
+    internal class DiscountByMedicinePageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("DiscountByMedicinePageViewModel");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand CreateNewPromoButtonCommand { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand DeleteButtonCommand { get; set; }
+        public MSW_MMP_DBMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public ImageSource MedicineImageSource { get; set; }
         public tblMedicine MedicineInfo { get; set; }
         public ObservableCollection<tblPromo> LstPromo { get; set; }
@@ -47,15 +33,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                     && PromoPercentCheckingStatus == 1;
             }
         }
-        public bool IsSaveButtonRunning
-        {
-            get { return _isSaveButtonRunning; }
-            set
-            {
-                _isSaveButtonRunning = value;
-                InvalidateOwn();
-            }
-        }
+
         public int SelectedCustomer
         {
             get { return _selectedCustomer; }
@@ -96,10 +74,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         protected override void OnInitializing()
         {
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            CreateNewPromoButtonCommand = new RunInputCommand(CreateNewPromoButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            DeleteButtonCommand = new RunInputCommand(DeleteButtonClickEvent);
+            ButtonCommandOV = new MSW_MMP_DBMP_ButtonCommandOV(this);
             UpdateMedicineData();
             GetCustomerList();
             GetFilterList();
@@ -123,7 +98,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public void RefreshPage()
         {
             GetPromoListByMedicine();
-            CreateNewPromoButtonClickEvent(null);
+            PromoDescription = "";
+            PromoPercent = 0;
+            SelectedCustomer = -1;
         }
 
         private void GetCustomerList()
@@ -142,34 +119,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_CUSTOMER_CMD_KEY
                     , _sqlCmdObserver);
-        }
-
-        private void CreateNewPromoButtonClickEvent(object paramaters)
-        {
-            PromoDescription = "";
-            PromoPercent = 0;
-            SelectedCustomer = -1;
-        }
-
-        private void DeleteButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON
-                , dataTransfer);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON
-                , dataTransfer);
         }
 
         private void UpdateMedicineData()
@@ -198,16 +147,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_PROMO_BY_MEDICINE_CMD_KEY
                     , _sqlCmdObserver
                     , MedicineInfo.MedicineID);
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON
-                , dataTransfer);
         }
 
         private void CheckSelectedCustomer()
