@@ -22,9 +22,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
         public MSW_MMP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public RunInputCommand FilterMedicineTypeCommand { get; set; }
-        public EventHandleCommand ShowMedicineInfoCommand { get; set; }
-        public EventHandleCommand SearchTextChangedCommand { get; set; }
+        public CommandModel FilterMedicineTypeCommand { get; set; }
+        public EventCommandModel ShowMedicineInfoCommand { get; set; }
+        public EventCommandModel SearchTextChangedCommand { get; set; }
         public string FilterText { get; set; } = "";
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
@@ -40,9 +40,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             MedicineItemSource = new ObservableCollection<tblMedicine>();
             ButtonCommandOV = new MSW_MMP_ButtonCommandOV(this);
 
-            FilterMedicineTypeCommand = new RunInputCommand(FilterMedicineTypeClickEvent);
-            SearchTextChangedCommand = new EventHandleCommand(SearchTextChangedEvent);
-            ShowMedicineInfoCommand = new EventHandleCommand(ShowMedicineInfoEvent);
+            FilterMedicineTypeCommand = new CommandModel(FilterMedicineTypeClickEvent);
+            SearchTextChangedCommand = new EventCommandModel(SearchTextChangedEvent);
+            ShowMedicineInfoCommand = new EventCommandModel(ShowMedicineInfoEvent);
 
             InstantiateItems();
         }

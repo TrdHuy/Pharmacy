@@ -166,7 +166,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         }
 
         public MSW_CMP_CMoP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
+        public EventCommandModel GridSizeChangedCommand { get; set; }
 
         #endregion
 
@@ -176,7 +176,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             ButtonCommandOV = new MSW_CMP_CMoP_ButtonCommandOV(this);
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
+            GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
 
             CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.CustomerName) ?
                 Visibility.Visible : Visibility.Collapsed;

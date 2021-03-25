@@ -11,25 +11,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger L = new Logger("MSW_CMP_CTP_CDB_ButtonCommandOV");
 
-        public RunInputCommand PrintCustomerDebtButtonCommand { get; set; }
-        public RunInputCommand ReturnButtonCommand { get; set; }
-        public RunInputCommand BillDisplayButtonCommand { get; set; }
+        public CommandModel PrintCustomerDebtButtonCommand { get; set; }
+        public CommandModel ReturnButtonCommand { get; set; }
+        public CommandModel BillDisplayButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_CMP_CTP_CDP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            PrintCustomerDebtButtonCommand = new RunInputCommand((paramaters) =>
+            PrintCustomerDebtButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_PRINT_DEBTS_BUTTON
                     , paramaters);
             });
-            BillDisplayButtonCommand = new RunInputCommand((paramaters) =>
+            BillDisplayButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_BILL_DISPLAY_BUTTON
                     , paramaters);
             });
-            ReturnButtonCommand = new RunInputCommand((paramaters) =>
+            ReturnButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CDP_RETURN_BUTTON
                     , paramaters);

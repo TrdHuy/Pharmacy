@@ -10,10 +10,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger L = new Logger("MSW_CMP_ButtonCommandOV");
 
-        public RunInputCommand AddNewCustomerButtonCommand { get; set; }
-        public RunInputCommand EditButtonCommand { get; set; }
-        public RunInputCommand DeleteButtonCommand { get; set; }
-        public RunInputCommand HistoryButtonCommand { get; set; }
+        public CommandModel AddNewCustomerButtonCommand { get; set; }
+        public CommandModel EditButtonCommand { get; set; }
+        public CommandModel DeleteButtonCommand { get; set; }
+        public CommandModel HistoryButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
@@ -21,25 +21,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             this.ParentsModel = parentsModel;
 
-            EditButtonCommand = new RunInputCommand((paramaters) =>
+            EditButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_EDIT_BUTTON
                     , paramaters);
             });
 
-            DeleteButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_DELETE_BUTTON
                     , paramaters);
             });
 
-            HistoryButtonCommand = new RunInputCommand((paramaters) =>
+            HistoryButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_HISTORY_BUTTON
                     , paramaters);
             });
 
-            AddNewCustomerButtonCommand = new RunInputCommand((paramaters) =>
+            AddNewCustomerButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON
                     , paramaters);

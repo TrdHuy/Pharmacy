@@ -54,7 +54,7 @@ namespace Pharmacy
                 if (_mainScreenWindow == null)
                 {
                     _mainScreenWindow = new MSWindow();
-                    _mainScreenWindow.CloseWindowCommand = new RunInputCommand(CloseMainScreenWindow);
+                    _mainScreenWindow.CloseWindowCommand = new CommandModel(CloseMainScreenWindow);
                 }
                 return _mainScreenWindow;
             }
@@ -70,7 +70,7 @@ namespace Pharmacy
                 if (_loginWindow == null)
                 {
                     _loginWindow = new LoginScreenWindow();
-                    _loginWindow.CloseWindowCommand = new RunInputCommand(CloseLoginWindowCommand);
+                    _loginWindow.CloseWindowCommand = new CommandModel(CloseLoginWindowCommand);
                 }
                 return _loginWindow;
             }
@@ -316,7 +316,7 @@ namespace Pharmacy
                 DataContext = dataContext
             };
 
-            popup.CloseWindowCommand = new RunInputCommand(ClosePopupWindown);
+            popup.CloseWindowCommand = new CommandModel(ClosePopupWindown);
             _popupScreenWindows.Add(popup);
 
             popup.Show();
@@ -326,7 +326,7 @@ namespace Pharmacy
         {
             PopupScreenWindow popup = new PopupScreenWindow();
             popup.DataContext = dataContext;
-            popup.CloseWindowCommand = new RunInputCommand(ClosePopupWindown);
+            popup.CloseWindowCommand = new CommandModel(ClosePopupWindown);
             _popupScreenWindows.Add(popup);
 
             popup.ShowDialog();

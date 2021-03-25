@@ -28,26 +28,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
-        public RunInputCommand CancleButtonCommand { get; set; }
+        public CommandModel SaveButtonCommand { get; set; }
+        public CommandModel CameraButtonCommand { get; set; }
+        public CommandModel CancleButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_CMP_CMoP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            SaveButtonCommand = new CommandModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_SAVE_BUTTON
                     , paramaters);
             });
-            CameraButtonCommand = new RunInputCommand((paramaters) =>
+            CameraButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CAMERA_BUTTON
                     , paramaters);
             });
-            CancleButtonCommand = new RunInputCommand((paramaters) =>
+            CancleButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CANCLE_BUTTON
                     , paramaters);

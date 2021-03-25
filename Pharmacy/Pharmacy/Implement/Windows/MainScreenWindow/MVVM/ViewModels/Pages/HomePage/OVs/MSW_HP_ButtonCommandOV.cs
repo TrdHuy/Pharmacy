@@ -10,85 +10,85 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Home
     {
         private static Logger L = new Logger("MSW_HP_ButtonCommandOV");
 
-        public RunInputCommand SellingCommand { get; set; }
-        public RunInputCommand UserManagementCommand { get; set; }
-        public RunInputCommand CustomerManagementCommand { get; set; }
-        public RunInputCommand MedicineManagementCommand { get; set; }
-        public RunInputCommand SupplierManagementCommand { get; set; }
-        public RunInputCommand WarehouseManagementCommand { get; set; }
-        public RunInputCommand InvoiceManagementCommand { get; set; }
-        public RunInputCommand OtherPaymentsManagementCommand { get; set; }
-        public RunInputCommand ReportCommand { get; set; }
-        public RunInputCommand PersonalInfoCommand { get; set; }
+        public CommandModel SellingCommand { get; set; }
+        public CommandModel UserManagementCommand { get; set; }
+        public CommandModel CustomerManagementCommand { get; set; }
+        public CommandModel MedicineManagementCommand { get; set; }
+        public CommandModel SupplierManagementCommand { get; set; }
+        public CommandModel WarehouseManagementCommand { get; set; }
+        public CommandModel InvoiceManagementCommand { get; set; }
+        public CommandModel OtherPaymentsManagementCommand { get; set; }
+        public CommandModel ReportCommand { get; set; }
+        public CommandModel PersonalInfoCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_HP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SellingCommand = new RunInputCommand((paramaters) =>
+            SellingCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SELLING_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            UserManagementCommand = new RunInputCommand((paramaters) =>
+            UserManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_USER_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            CustomerManagementCommand = new RunInputCommand((paramaters) =>
+            CustomerManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CUSTOMER_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            MedicineManagementCommand = new RunInputCommand((paramaters) =>
+            MedicineManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MEDICINE_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            SupplierManagementCommand = new RunInputCommand((paramaters) =>
+            SupplierManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SUPPLIER_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            WarehouseManagementCommand = new RunInputCommand((paramaters) =>
+            WarehouseManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_WAREHOUSE_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            InvoiceManagementCommand = new RunInputCommand((paramaters) =>
+            InvoiceManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_INVOICE_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            OtherPaymentsManagementCommand = new RunInputCommand((paramaters) =>
+            OtherPaymentsManagementCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            ReportCommand = new RunInputCommand((paramaters) =>
+            ReportCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_REPORT
                     , paramaters
                     , false);
             });
 
-            PersonalInfoCommand = new RunInputCommand((paramaters) =>
+            PersonalInfoCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
                     , paramaters

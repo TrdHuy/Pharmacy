@@ -50,33 +50,33 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             }
         }
 
-        public RunInputCommand AddOrderDetailCommand { get; set; }
-        public RunInputCommand RemoveOrderDetailCommand { get; set; }
-        public RunInputCommand InstantiateOrderCommand { get; set; }
-        public RunInputCommand RefreshSellingPageCommand { get; set; }
+        public CommandModel AddOrderDetailCommand { get; set; }
+        public CommandModel RemoveOrderDetailCommand { get; set; }
+        public CommandModel InstantiateOrderCommand { get; set; }
+        public CommandModel RefreshSellingPageCommand { get; set; }
 
         public MSW_SP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            AddOrderDetailCommand = new RunInputCommand((paramaters) =>
+            AddOrderDetailCommand = new CommandModel((paramaters) =>
             {
                 IsAddOrderDeatailButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON
                     , paramaters
                     , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
-            RemoveOrderDetailCommand = new RunInputCommand((paramaters) =>
+            RemoveOrderDetailCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_REMOVE_BUTTON
                     , paramaters);
             });
-            InstantiateOrderCommand = new RunInputCommand((paramaters) =>
+            InstantiateOrderCommand = new CommandModel((paramaters) =>
             {
                 IsInstantiateNewOrderButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON
                     , paramaters
                     , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
-            RefreshSellingPageCommand = new RunInputCommand((paramaters) =>
+            RefreshSellingPageCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_REFRESH_BUTTON
                     , paramaters);

@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
         private MSW_PageController _pageHost = MSW_PageController.Instance;
         private PageSourceWatcher _pageSourceWatcher;
 
-        public EventHandleCommand PagePreviewNavigateEventCommand { get; set; }
+        public EventCommandModel PagePreviewNavigateEventCommand { get; set; }
 
         public Uri CurrentPageSource
         {
@@ -67,7 +67,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
         {
             _pageSourceWatcher = new PageSourceWatcher(OnPageSourceChange);
             _pageHost.Subcribe(_pageSourceWatcher);
-            PagePreviewNavigateEventCommand = new EventHandleCommand(OnPagePreviewNavigate);
+            PagePreviewNavigateEventCommand = new EventCommandModel(OnPagePreviewNavigate);
         }
 
         private void OnPagePreviewNavigate(object sender, EventArgs e, object paramater)

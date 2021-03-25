@@ -341,9 +341,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
         }
 
         public MSW_UMP_UIP_ButtomCommandOV ButtonCommandOV { get; set; }
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
-        public EventHandleCommand NewPasswordChangedCommand { get; set; }
-        public EventHandleCommand VerifiedPasswordChangedCommand { get; set; }
+        public EventCommandModel GridSizeChangedCommand { get; set; }
+        public EventCommandModel NewPasswordChangedCommand { get; set; }
+        public EventCommandModel VerifiedPasswordChangedCommand { get; set; }
         #endregion
 
         protected override Logger logger => L;
@@ -371,8 +371,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
                 GetBitmapFromName(NewUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
                 ToImageSource();
 
-            NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
-            VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+            NewPasswordChangedCommand = new EventCommandModel(OnNewPasswordChagedEvent);
+            VerifiedPasswordChangedCommand = new EventCommandModel(OnVerifiedPasswordChagedEvent);
 
         }
 

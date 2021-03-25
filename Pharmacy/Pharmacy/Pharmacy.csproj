@@ -351,7 +351,7 @@
     <Compile Include="Implement\Utils\Extensions\Entities\UserEntityExtension.cs" />
     <Compile Include="Implement\Utils\Extensions\PharmacyExtension.cs" />
     <Compile Include="Implement\Utils\FileIOUtil.cs" />
-    <Compile Include="Implement\Utils\InputCommand\EventHandleCommand.cs" />
+    <Compile Include="Implement\Utils\InputCommand\EventCommandModel.cs" />
     <Compile Include="Implement\Utils\Logger.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_CommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_AlternativeAction.cs" />
@@ -709,7 +709,7 @@
     <Compile Include="Implement\Utils\DatabaseManager\DbManager.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\SQLQueryCustodian.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\SQLResultHandler.cs" />
-    <Compile Include="Implement\Utils\InputCommand\RunInputCommand.cs" />
+    <Compile Include="Implement\Utils\InputCommand\CommandModel.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Factory\LSW_CommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_BugReportAction.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_CustomerServiceAction.cs" />

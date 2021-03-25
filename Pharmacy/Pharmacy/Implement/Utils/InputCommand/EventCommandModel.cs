@@ -7,11 +7,11 @@ using System.Windows.Input;
 
 namespace Pharmacy.Implement.Utils.InputCommand
 {
-    public class EventHandleCommand
+    public class EventCommandModel
     {
         private Handle handler;
 
-        public EventHandleCommand(Handle obj)
+        public EventCommandModel(Handle obj)
         {
             handler = obj;
         }

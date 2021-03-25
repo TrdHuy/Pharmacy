@@ -13,8 +13,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         private bool _isInitSellingReportButtonRunning;
         private bool _isInitComprehensiveReportButtonRunning;
 
-        public RunInputCommand InitSellingReportButtonCommand { get; set; }
-        public RunInputCommand InitComprehensiveReportButtonCommand { get; set; }
+        public CommandModel InitSellingReportButtonCommand { get; set; }
+        public CommandModel InitComprehensiveReportButtonCommand { get; set; }
         public bool IsInitSellingReportButtonRunning
         {
             get
@@ -52,14 +52,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
 
         public MSW_RP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            InitSellingReportButtonCommand = new RunInputCommand((paramaters) =>
+            InitSellingReportButtonCommand = new CommandModel((paramaters) =>
             {
                 IsInitSellingReportButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON
                 , paramaters
                 , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
-            InitComprehensiveReportButtonCommand = new RunInputCommand((paramaters) =>
+            InitComprehensiveReportButtonCommand = new CommandModel((paramaters) =>
             {
                 IsInitComprehensiveReportButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON

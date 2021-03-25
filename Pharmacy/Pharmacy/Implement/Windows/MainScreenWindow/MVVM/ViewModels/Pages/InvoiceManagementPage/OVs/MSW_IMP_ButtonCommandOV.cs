@@ -11,19 +11,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
         private static Logger L = new Logger("MSW_IMP_ButtonCommandOV");
 
 
-        public RunInputCommand EditOrderButtonCommand { get; set; }
-        public RunInputCommand DeleteOrderButtonCommand { get; set; }
+        public CommandModel EditOrderButtonCommand { get; set; }
+        public CommandModel DeleteOrderButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_IMP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            EditOrderButtonCommand = new RunInputCommand((paramaters) =>
+            EditOrderButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_IMP_EDIT_BUTTON
                     , paramaters);
             });
-            DeleteOrderButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteOrderButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_IMP_DELETE_BUTTON
                     , paramaters);

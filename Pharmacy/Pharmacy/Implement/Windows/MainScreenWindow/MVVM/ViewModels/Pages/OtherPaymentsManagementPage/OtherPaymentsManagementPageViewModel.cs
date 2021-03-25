@@ -27,8 +27,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
         public ObservableCollection<tblOtherPayment> OtherPaymentItemSource { get; set; }
 
         public MSW_OPMP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public EventHandleCommand FilterChangedCommand { get; set; }
-        public EventHandleCommand ShowOtherPaymentInfoCommand { get; set; }
+        public EventCommandModel FilterChangedCommand { get; set; }
+        public EventCommandModel ShowOtherPaymentInfoCommand { get; set; }
 
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
@@ -37,8 +37,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_OPMP_ButtonCommandOV(this);
-            FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
-            ShowOtherPaymentInfoCommand = new EventHandleCommand(ShowOtherPaymentInfoEvent);
+            FilterChangedCommand = new EventCommandModel(FilterChangedEvent);
+            ShowOtherPaymentInfoCommand = new EventCommandModel(ShowOtherPaymentInfoEvent);
             InstantiateItems();
         }
 

@@ -11,25 +11,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
     {
         private static Logger L = new Logger("MSW_SMP_SDP_ButtonCommandOV");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand PrintDebtButtonCommand { get; set; }
-        public RunInputCommand ShowInvoiceButtonCommand { get; set; }
+        public CommandModel CancelButtonCommand { get; set; }
+        public CommandModel PrintDebtButtonCommand { get; set; }
+        public CommandModel ShowInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_SMP_SDP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            ShowInvoiceButtonCommand = new RunInputCommand((paramaters) =>
+            ShowInvoiceButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_SHOW_INVOICE_BUTTON
                 , paramaters);
             });
-            PrintDebtButtonCommand = new RunInputCommand((paramaters) =>
+            PrintDebtButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_PRINT_DEBT_BUTTON
                 , paramaters);
             });
-            CancelButtonCommand = new RunInputCommand((paramaters) =>
+            CancelButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SDP_CANCEL_BUTTON
                 , paramaters);

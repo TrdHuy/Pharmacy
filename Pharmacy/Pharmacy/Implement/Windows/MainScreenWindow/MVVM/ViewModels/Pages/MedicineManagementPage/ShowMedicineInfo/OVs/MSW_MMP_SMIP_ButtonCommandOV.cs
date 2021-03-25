@@ -10,12 +10,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
     {
         private static Logger L = new Logger("MSW_MMP_SMIP_ButtonCommandOV");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
+        public CommandModel CancelButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_SMIP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            CancelButtonCommand = new RunInputCommand((paramaters) =>
+            CancelButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_SMIP_CANCEL_BUTTON
                     , paramaters);

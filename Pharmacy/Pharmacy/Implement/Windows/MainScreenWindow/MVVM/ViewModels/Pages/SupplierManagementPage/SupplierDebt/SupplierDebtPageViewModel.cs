@@ -15,8 +15,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         private static Logger L = new Logger("SupplierDebtPageViewModel");
 
         public MSW_SMP_SDP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public RunInputCommand PrintDebtButtonCommand { get; set; }
-        public RunInputCommand ShowInvoiceButtonCommand { get; set; }
+        public CommandModel PrintDebtButtonCommand { get; set; }
+        public CommandModel ShowInvoiceButtonCommand { get; set; }
         public tblSupplier SupplierInfo { get; set; }
         public ObservableCollection<MSW_SMP_SDP_SupplierDebtOV> LstDebt { get; set; }
         public decimal TotalDebt { get; set; }

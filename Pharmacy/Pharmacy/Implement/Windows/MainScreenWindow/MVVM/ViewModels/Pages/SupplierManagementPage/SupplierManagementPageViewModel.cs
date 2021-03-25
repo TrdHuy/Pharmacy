@@ -21,8 +21,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         public ObservableCollection<tblSupplier> SupplierItemSource { get; set; }
         public MSW_SMP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public EventHandleCommand FilterChangedCommand { get; set; }
-        public EventHandleCommand ShowSupplierInfoCommand { get; set; }
+        public EventCommandModel FilterChangedCommand { get; set; }
+        public EventCommandModel ShowSupplierInfoCommand { get; set; }
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
         private DispatcherTimer _timerUpdateFilter;
@@ -33,8 +33,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_SMP_ButtonCommandOV(this);
-            FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
-            ShowSupplierInfoCommand = new EventHandleCommand(ShowSupplierInfoEvent);
+            FilterChangedCommand = new EventCommandModel(FilterChangedEvent);
+            ShowSupplierInfoCommand = new EventCommandModel(ShowSupplierInfoEvent);
             InstantiateItems();
         }
 

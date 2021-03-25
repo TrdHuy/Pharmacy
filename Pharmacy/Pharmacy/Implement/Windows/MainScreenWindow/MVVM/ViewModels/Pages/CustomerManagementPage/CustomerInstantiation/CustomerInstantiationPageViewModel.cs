@@ -146,7 +146,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public MSW_CMP_CIP_ButtonCommandOV ButtonCommandOV { get; set; }
         public string CustomerImageFileName { get; set; }
         
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
+        public EventCommandModel GridSizeChangedCommand { get; set; }
 
         #endregion
 
@@ -165,7 +165,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.Phone) ?
                 Visibility.Visible : Visibility.Collapsed;
 
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
+            GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
         }
         
         protected override void OnInitialized()

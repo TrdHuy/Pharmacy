@@ -17,14 +17,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
 
         protected override Logger logger => L;
 
-        public RunInputCommand AppUpdateButtonCommand { get; set; }
-        public RunInputCommand CustomerSupportButtonCommand { get; set; }
-        public RunInputCommand BugReportButtonCommand { get; set; }
-        public RunInputCommand HpssHomePageButtonCommand { get; set; }
+        public CommandModel AppUpdateButtonCommand { get; set; }
+        public CommandModel CustomerSupportButtonCommand { get; set; }
+        public CommandModel BugReportButtonCommand { get; set; }
+        public CommandModel HpssHomePageButtonCommand { get; set; }
 
         public MSW_AIP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            AppUpdateButtonCommand = new RunInputCommand((paramaters) =>
+            AppUpdateButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON
                     , paramaters);

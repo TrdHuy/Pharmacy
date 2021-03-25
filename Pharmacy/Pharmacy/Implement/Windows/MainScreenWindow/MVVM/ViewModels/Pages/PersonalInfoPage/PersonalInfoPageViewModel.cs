@@ -243,10 +243,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             }
         }
 
-        public EventHandleCommand GridSizeChangedCommand;
-        public EventHandleCommand CurrentPasswordChangedCommand;
-        public EventHandleCommand NewPasswordChangedCommand;
-        public EventHandleCommand VerifiedPasswordChangedCommand;
+        public EventCommandModel GridSizeChangedCommand;
+        public EventCommandModel CurrentPasswordChangedCommand;
+        public EventCommandModel NewPasswordChangedCommand;
+        public EventCommandModel VerifiedPasswordChangedCommand;
         public MSW_PIP_ButtonCommandOV ButtonCommandOV{ get; set; }
 
         protected override Logger logger => L;
@@ -259,10 +259,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
             ButtonCommandOV = new MSW_PIP_ButtonCommandOV(this);
 
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
-            CurrentPasswordChangedCommand = new EventHandleCommand(OnCurrentPasswordChagedEvent);
-            NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
-            VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+            GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
+            CurrentPasswordChangedCommand = new EventCommandModel(OnCurrentPasswordChagedEvent);
+            NewPasswordChangedCommand = new EventCommandModel(OnNewPasswordChagedEvent);
+            VerifiedPasswordChangedCommand = new EventCommandModel(OnVerifiedPasswordChagedEvent);
         }
 
         protected override void OnInitialized()

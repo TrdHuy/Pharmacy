@@ -15,12 +15,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     public class MSW_CMP_EventCommandOV : BaseViewModel
     {
 
-        public EventHandleCommand SearchTextChangedCommand { get; set; }
+        public EventCommandModel SearchTextChangedCommand { get; set; }
         private CancellationTokenSource Cts { get; set; }
 
         public MSW_CMP_EventCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SearchTextChangedCommand = new EventHandleCommand(OnSearchTextChangedEvent);
+            SearchTextChangedCommand = new EventCommandModel(OnSearchTextChangedEvent);
         }
 
         private async void OnSearchTextChangedEvent(object sender, EventArgs e, object paramaters)

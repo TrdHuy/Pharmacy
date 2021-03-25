@@ -10,42 +10,42 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
     {
         private static Logger L = new Logger("MSW_MMP_ButtonCommandOV");
 
-        public RunInputCommand ExcelImportButtonCommand { get; set; }
-        public RunInputCommand PrintMedicineListButtonCommand { get; set; }
-        public RunInputCommand AddNewMedicineButtonCommand { get; set; }
-        public RunInputCommand EditMedicineButtonCommand { get; set; }
-        public RunInputCommand DeleteMedicineButtonCommand { get; set; }
-        public RunInputCommand PromoMedicineButtonCommand { get; set; }
+        public CommandModel ExcelImportButtonCommand { get; set; }
+        public CommandModel PrintMedicineListButtonCommand { get; set; }
+        public CommandModel AddNewMedicineButtonCommand { get; set; }
+        public CommandModel EditMedicineButtonCommand { get; set; }
+        public CommandModel DeleteMedicineButtonCommand { get; set; }
+        public CommandModel PromoMedicineButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            ExcelImportButtonCommand = new RunInputCommand((paramaters) =>
+            ExcelImportButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EXCEL_IMPORT_BUTTON
                     , paramaters);
             });
-            PrintMedicineListButtonCommand = new RunInputCommand((paramaters) =>
+            PrintMedicineListButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON
                     , paramaters);
             });
-            AddNewMedicineButtonCommand = new RunInputCommand((paramaters) =>
+            AddNewMedicineButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
                     , paramaters);
             });
-            EditMedicineButtonCommand = new RunInputCommand((paramaters) =>
+            EditMedicineButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON
                     , paramaters);
             });
-            PromoMedicineButtonCommand = new RunInputCommand((paramaters) =>
+            PromoMedicineButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON
                     , paramaters);
             });
-            DeleteMedicineButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteMedicineButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON
                     , paramaters);

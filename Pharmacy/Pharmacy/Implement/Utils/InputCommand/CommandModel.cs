@@ -8,13 +8,13 @@ using System.Windows.Input;
 
 namespace Pharmacy.Implement.Utils.InputCommand
 {
-    public class RunInputCommand : ICommand, IDestroyable
+    public class CommandModel : ICommand, IDestroyable
     {
         public event EventHandler CanExecuteChanged;
         private Action<object> actionObj;
         private Action destroyAction;
 
-        public RunInputCommand(Action<object> obj, Action destroy = null)
+        public CommandModel(Action<object> obj, Action destroy = null)
         {
             actionObj = obj;
             destroyAction = destroy;

@@ -12,8 +12,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sett
         private static Logger L = new Logger("MSW_SeP_ButtonCommandOV");
         private bool _isSaveButtonRunning;
 
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CancleButtonCommand { get; set; }
+        public CommandModel SaveButtonCommand { get; set; }
+        public CommandModel CancleButtonCommand { get; set; }
         public bool IsSaveButtonRunning
         {
             get
@@ -36,14 +36,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sett
 
         public MSW_SeP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            SaveButtonCommand = new CommandModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SeP_SAVE_BUTTON
                 , paramaters
                 , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
-            CancleButtonCommand = new RunInputCommand((paramaters) =>
+            CancleButtonCommand = new CommandModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON

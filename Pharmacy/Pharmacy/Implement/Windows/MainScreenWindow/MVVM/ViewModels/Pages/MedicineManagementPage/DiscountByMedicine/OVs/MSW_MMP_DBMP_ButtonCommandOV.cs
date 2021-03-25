@@ -29,30 +29,30 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             }
         }
 
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand CreateNewPromoButtonCommand { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand DeleteButtonCommand { get; set; }
+        public CommandModel CancelButtonCommand { get; set; }
+        public CommandModel CreateNewPromoButtonCommand { get; set; }
+        public CommandModel SaveButtonCommand { get; set; }
+        public CommandModel DeleteButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_DBMP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            CancelButtonCommand = new RunInputCommand((paramaters) =>
+            CancelButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON
                     , paramaters);
             });
-            CreateNewPromoButtonCommand = new RunInputCommand((paramaters) =>
+            CreateNewPromoButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CREATE_NEW_PROMO_BUTTON
                     , paramaters);
             });
-            DeleteButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON
                     , paramaters);
             });
-            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            SaveButtonCommand = new CommandModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON

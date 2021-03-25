@@ -24,8 +24,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         public ObservableCollection<MSW_WHMP_WarehouseImportOV> WarehouseImportItemSource { get; set; }
         public MSW_WHMP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public EventHandleCommand FilterChangedCommand { get; set; }
-        public EventHandleCommand ShowWarehouseImportInfoCommand { get; set; }
+        public EventCommandModel FilterChangedCommand { get; set; }
+        public EventCommandModel ShowWarehouseImportInfoCommand { get; set; }
         public List<tblWarehouseImport> LstWarehouseImport { get; set; }
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
@@ -37,8 +37,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_WHMP_ButtonCommandOV(this);
-            FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
-            ShowWarehouseImportInfoCommand = new EventHandleCommand(ShowWarehouseImportInfoEvent);
+            FilterChangedCommand = new EventCommandModel(FilterChangedEvent);
+            ShowWarehouseImportInfoCommand = new EventCommandModel(ShowWarehouseImportInfoEvent);
             InstantiateItems();
         }
 

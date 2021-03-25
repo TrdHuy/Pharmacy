@@ -12,32 +12,32 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserContro
 
         protected override Logger logger => L;
 
-        public RunInputCommand SettingPageCommand { get; set; }
-        public RunInputCommand PersonalAccountCommand { get; set; }
-        public RunInputCommand HomePageCommand { get; set; }
-        public RunInputCommand AppInfoCommand { get; set; }
+        public CommandModel SettingPageCommand { get; set; }
+        public CommandModel PersonalAccountCommand { get; set; }
+        public CommandModel HomePageCommand { get; set; }
+        public CommandModel AppInfoCommand { get; set; }
 
         public MSW_MMC_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SettingPageCommand = new RunInputCommand((paramaters) =>
+            SettingPageCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SETTING
                     , paramaters
                     , false);
             });
-            PersonalAccountCommand = new RunInputCommand((paramaters) =>
+            PersonalAccountCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
                     , paramaters
                     , false);
             });
-            HomePageCommand = new RunInputCommand((paramaters) =>
+            HomePageCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE
                     , paramaters
                     , false);
             });
-            AppInfoCommand = new RunInputCommand((paramaters) =>
+            AppInfoCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_APP_INFO
                     , paramaters

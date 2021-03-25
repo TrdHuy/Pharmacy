@@ -18,7 +18,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
         private string _userName;
         private bool _isLoginButtonRunnig = false;
 
-        public RunInputCommand SystemLoginButton { get; set; }
+        public CommandModel SystemLoginButton { get; set; }
         public bool IsUserRemember
         {
             get { return Properties.Settings.Default.IsUserRemember; }
@@ -66,7 +66,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 
         public LoginScreenWindowViewModel()
         {
-            SystemLoginButton = new RunInputCommand(SystemLoginButtonClickEvent);
+            SystemLoginButton = new CommandModel(SystemLoginButtonClickEvent);
             //PharmacyExtension.GrantAccess();
         }
 

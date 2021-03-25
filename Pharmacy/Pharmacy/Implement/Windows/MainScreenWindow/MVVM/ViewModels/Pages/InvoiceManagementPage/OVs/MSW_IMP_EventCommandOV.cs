@@ -18,15 +18,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
         private DateTime? _dateEnd { get; set; }
         private string _filterText { get; set; }
 
-        public EventHandleCommand StartDateChangedCommand { get; set; }
-        public EventHandleCommand EndDateChangedCommand { get; set; }
-        public EventHandleCommand SearchTextChangedCommand { get; set; }
+        public EventCommandModel StartDateChangedCommand { get; set; }
+        public EventCommandModel EndDateChangedCommand { get; set; }
+        public EventCommandModel SearchTextChangedCommand { get; set; }
 
         public MSW_IMP_EventCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            StartDateChangedCommand = new EventHandleCommand(OnStartDateChangedEvent);
-            EndDateChangedCommand = new EventHandleCommand(OnEndDateChangedEvent);
-            SearchTextChangedCommand = new EventHandleCommand(OnSearchTextChangedEvent);
+            StartDateChangedCommand = new EventCommandModel(OnStartDateChangedEvent);
+            EndDateChangedCommand = new EventCommandModel(OnEndDateChangedEvent);
+            SearchTextChangedCommand = new EventCommandModel(OnSearchTextChangedEvent);
         }
 
         private void OnSearchTextChangedEvent(object sender, EventArgs e, object paramater)

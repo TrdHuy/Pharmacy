@@ -37,7 +37,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
 
-        public EventHandleCommand AvatarCommand { get; set; }
+        public EventCommandModel AvatarCommand { get; set; }
         public MSW_HP_ButtonCommandOV ButtonCommandOV { get; set; }
 
 
@@ -83,7 +83,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         protected override void OnInitializing()
         {
             ClockIntansiation();
-            AvatarCommand = new EventHandleCommand(AvatarClickEvent);
+            AvatarCommand = new EventCommandModel(AvatarClickEvent);
             ButtonCommandOV = new MSW_HP_ButtonCommandOV(this);
 
         }

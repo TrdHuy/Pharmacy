@@ -10,25 +10,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
     {
         private static Logger L = new Logger("MSW_UMP_ButtomCommandOV");
 
-        public RunInputCommand EditButtonCommand { get; set; }
-        public RunInputCommand DeleteUserButtonCommand { get; set; }
-        public RunInputCommand AddNewUserButtonCommand { get; set; }
+        public CommandModel EditButtonCommand { get; set; }
+        public CommandModel DeleteUserButtonCommand { get; set; }
+        public CommandModel AddNewUserButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_UMP_ButtomCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            AddNewUserButtonCommand = new RunInputCommand((paramaters) =>
+            AddNewUserButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_UMP_ADD_BUTTON
                 , paramaters);
             });
-            DeleteUserButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteUserButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_UMP_DELETE_BUTTON
                 , paramaters);
             });
-            EditButtonCommand = new RunInputCommand((paramaters) =>
+            EditButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_UMP_EDIT_BUTTON
                 , paramaters);

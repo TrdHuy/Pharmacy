@@ -328,9 +328,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
 
         public MSW_UMP_UMoP_ButtomCommandOV ButtomCommandOV { get; set; }
 
-        public EventHandleCommand GridSizeChangedCommand { get; set; }
-        public EventHandleCommand NewPasswordChangedCommand { get; set; }
-        public EventHandleCommand VerifiedPasswordChangedCommand { get; set; }
+        public EventCommandModel GridSizeChangedCommand { get; set; }
+        public EventCommandModel NewPasswordChangedCommand { get; set; }
+        public EventCommandModel VerifiedPasswordChangedCommand { get; set; }
 
         protected override Logger logger => L;
 
@@ -350,9 +350,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             JobTitleAwareTextBlockVisibility = string.IsNullOrEmpty(CurrentModifiedUser.Job) ?
                 Visibility.Visible : Visibility.Collapsed;
 
-            GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
-            NewPasswordChangedCommand = new EventHandleCommand(OnNewPasswordChagedEvent);
-            VerifiedPasswordChangedCommand = new EventHandleCommand(OnVerifiedPasswordChagedEvent);
+            GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
+            NewPasswordChangedCommand = new EventCommandModel(OnNewPasswordChagedEvent);
+            VerifiedPasswordChangedCommand = new EventCommandModel(OnVerifiedPasswordChagedEvent);
         }
 
         protected override void OnInitialized()

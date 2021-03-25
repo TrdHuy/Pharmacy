@@ -54,25 +54,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public RunInputCommand AddNewOrderDetailButtonCommand { get; set; }
-        public RunInputCommand DeleteOrderDetailButtonCommand { get; set; }
-        public RunInputCommand EditEnablerButtonCommand { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand RefreshOrderDetaisButtonCommand { get; set; }
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand PrintInvoiceButtonCommand { get; set; }
+        public CommandModel AddNewOrderDetailButtonCommand { get; set; }
+        public CommandModel DeleteOrderDetailButtonCommand { get; set; }
+        public CommandModel EditEnablerButtonCommand { get; set; }
+        public CommandModel SaveButtonCommand { get; set; }
+        public CommandModel RefreshOrderDetaisButtonCommand { get; set; }
+        public CommandModel CancelButtonCommand { get; set; }
+        public CommandModel PrintInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_CMP_CTP_CBP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            EditEnablerButtonCommand = new RunInputCommand((paramaters) =>
+            EditEnablerButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
                     , paramaters);
             });
 
-            AddNewOrderDetailButtonCommand = new RunInputCommand((paramaters) =>
+            AddNewOrderDetailButtonCommand = new CommandModel((paramaters) =>
             {
                 IsAddOrderDeatailButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
@@ -80,7 +80,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
 
-            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            SaveButtonCommand = new CommandModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
@@ -88,25 +88,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
 
-            DeleteOrderDetailButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteOrderDetailButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON
                     , paramaters);
             });
 
-            RefreshOrderDetaisButtonCommand = new RunInputCommand((paramaters) =>
+            RefreshOrderDetaisButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
                     , paramaters);
             });
 
-            CancelButtonCommand = new RunInputCommand(paramaters =>
+            CancelButtonCommand = new CommandModel(paramaters =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_CANCEL_BUTTON
                 , paramaters);
             });
 
-            PrintInvoiceButtonCommand = new RunInputCommand(paramaters =>
+            PrintInvoiceButtonCommand = new CommandModel(paramaters =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON
                   , paramaters);

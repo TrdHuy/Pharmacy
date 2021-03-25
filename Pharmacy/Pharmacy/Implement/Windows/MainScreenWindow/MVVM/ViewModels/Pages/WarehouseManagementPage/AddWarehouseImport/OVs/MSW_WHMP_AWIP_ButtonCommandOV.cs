@@ -39,41 +39,41 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                 InvalidateOwn();
             }
         }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand BrowseInvoiceImageButtonCommand { get; set; }
-        public RunInputCommand AddMedicineToListButtonCommand { get; set; }
-        public RunInputCommand DeleteMedicineFromListButtonCommand { get; set; }
+        public CommandModel SaveButtonCommand { get; set; }
+        public CommandModel CancelButtonCommand { get; set; }
+        public CommandModel BrowseInvoiceImageButtonCommand { get; set; }
+        public CommandModel AddMedicineToListButtonCommand { get; set; }
+        public CommandModel DeleteMedicineFromListButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_WHMP_AWIP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            DeleteMedicineFromListButtonCommand = new RunInputCommand((paramaters) =>
+            DeleteMedicineFromListButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON
                 , paramaters);
             });
-            AddMedicineToListButtonCommand = new RunInputCommand((paramaters) =>
+            AddMedicineToListButtonCommand = new CommandModel((paramaters) =>
             {
                 IsAddImportDetailButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON
                 , paramaters
                 , new FactoryLocker(FactoryStatus.TaskHandling,true));
             });
-            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            SaveButtonCommand = new CommandModel((paramaters) =>
             {
                 IsAddWarehouseImportButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON
                 , paramaters
                 , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
-            CancelButtonCommand = new RunInputCommand((paramaters) =>
+            CancelButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON
                 , paramaters);
             });
-            BrowseInvoiceImageButtonCommand = new RunInputCommand((paramaters) =>
+            BrowseInvoiceImageButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON
                 , paramaters);

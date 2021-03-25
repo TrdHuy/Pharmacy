@@ -12,23 +12,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         protected override Logger logger => L;
 
-        public RunInputCommand DebtsDisplayButtonCommand { get; set; }
-        public RunInputCommand BillDisplayButtonCommand { get; set; }
-        public RunInputCommand ReturnButtonCommand { get; set; }
+        public CommandModel DebtsDisplayButtonCommand { get; set; }
+        public CommandModel BillDisplayButtonCommand { get; set; }
+        public CommandModel ReturnButtonCommand { get; set; }
 
         public MSW_CMP_CTHP_ButtonCommandOV(BaseViewModel parentsVM) : base(parentsVM) {
 
-            DebtsDisplayButtonCommand = new RunInputCommand((paramaters) =>
+            DebtsDisplayButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_DEBTS_BUTTON
                     , paramaters);
             });
-            BillDisplayButtonCommand = new RunInputCommand((paramaters) =>
+            BillDisplayButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_BILL_BUTTON
                     , paramaters);
             });
-            ReturnButtonCommand = new RunInputCommand((paramaters) =>
+            ReturnButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_RETURN_BUTTON
                     , paramaters);

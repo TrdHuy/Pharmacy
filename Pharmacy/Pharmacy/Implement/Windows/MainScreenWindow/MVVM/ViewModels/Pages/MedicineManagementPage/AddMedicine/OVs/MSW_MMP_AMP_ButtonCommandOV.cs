@@ -29,26 +29,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             }
         }
 
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
+        public CommandModel CancelButtonCommand { get; set; }
+        public CommandModel SaveButtonCommand { get; set; }
+        public CommandModel CameraButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_AMP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            SaveButtonCommand = new CommandModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_SAVE_BUTTON
                     , paramaters
                     , new FactoryLocker(FactoryStatus.TaskHandling, true));
             });
-            CameraButtonCommand = new RunInputCommand((paramaters) =>
+            CameraButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_CAMERA_BUTTON
                     , paramaters);
             });
-            CancelButtonCommand = new RunInputCommand((paramaters) =>
+            CancelButtonCommand = new CommandModel((paramaters) =>
             {
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_AMP_CANCEL_BUTTON
                     , paramaters);
