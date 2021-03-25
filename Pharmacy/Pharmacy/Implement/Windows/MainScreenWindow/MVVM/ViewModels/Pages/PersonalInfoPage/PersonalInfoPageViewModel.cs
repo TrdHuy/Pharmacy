@@ -1,17 +1,8 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.Observable.ObserverPattern;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Implement.UIEventHandler;
-using Pharmacy.Implement.UIEventHandler.Listener;
-using Pharmacy.Implement.Utils.Attributes;
+﻿using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.InputCommand;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -20,10 +11,11 @@ using Pharmacy.Config;
 using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 using Pharmacy.Implement.Utils.Extensions.Entities;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.PersonalInfoPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
-    public class PersonalInfoPageViewModel : MSW_BasePageViewModel
+    internal class PersonalInfoPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("PersonalInfoPageViewModel");
         
@@ -38,7 +30,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         private string _newPassword = "";
         private string _verifiedPassword = "";
         private string _newPasswordAwareTextBlockContent = "";
-        private bool _isSaveButtonRunning = false;
         private ImageSource _userAvatarSource = null;
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
@@ -251,26 +242,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                     VerifiedPasswordAwareTextBlockVisibility != Visibility.Visible;
             }
         }
-        public bool IsSaveButtonRunning
-        {
-            get
-            {
-                return _isSaveButtonRunning;
-            }
-            set
-            {
-                _isSaveButtonRunning = value;
-                InvalidateOwn();
-            }
-        }
 
         public EventHandleCommand GridSizeChangedCommand;
         public EventHandleCommand CurrentPasswordChangedCommand;
         public EventHandleCommand NewPasswordChangedCommand;
         public EventHandleCommand VerifiedPasswordChangedCommand;
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CancleButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
+        public MSW_PIP_ButtonCommandOV ButtonCommandOV{ get; set; }
 
         protected override Logger logger => L;
 
@@ -280,9 +257,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                  GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
                  ToImageSource();
 
-            SaveButtonCommand = new RunInputCommand(OnSaveButtonClickEvent);
-            CameraButtonCommand = new RunInputCommand(OnCameraButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(OnCancleButtonClickEvent);
+            ButtonCommandOV = new MSW_PIP_ButtonCommandOV(this);
 
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
             CurrentPasswordChangedCommand = new EventHandleCommand(OnCurrentPasswordChagedEvent);
@@ -296,37 +271,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
 
         #region Button, event field
-
-        private void OnCancleButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_PIP_CANCLE_BUTTON
-                , dataTransfer);
-        }
-
-        private void OnCameraButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_PIP_CAMERA_BUTTON
-                , dataTransfer);
-        }
-
-        private void OnSaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_PIP_SAVE_BUTTON
-                , dataTransfer);
-        }
 
         private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
         {

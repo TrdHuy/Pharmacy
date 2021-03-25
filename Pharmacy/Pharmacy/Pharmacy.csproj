@@ -266,6 +266,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ModifyMedicine\OVs\MSW_MMP_MMoP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfo\OVs\MSW_MMP_SMIP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MSW_BasePageVM\OVs\MSW_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\PersonalInfoPage\OVs\MSW_PIP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ComprehensiveReportOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\ReportPageViewModel.cs" />

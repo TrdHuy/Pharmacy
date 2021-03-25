@@ -51,7 +51,7 @@
                                  IsSupportChangeImageZoom="{Binding IsSupportChangePersonalAvatarZoom}"
                                  IsSupportLocatorWindow="{Binding IsSupportLocatorPersonalAvatarWindow}"
                                  AvatarSource="{Binding UserImageSource}"
-                                 CamButCmd="{Binding CameraButtonCommand}"
+                                 CamButCmd="{Binding ButtonCommandOV.CameraButtonCommand}"
                                  CamTip="Thay đổi ảnh đại diện cá nhân"
                                  CamButVisibility="Visible"
                                  MainTiltle="{Binding FullNameText}"
@@ -345,14 +345,14 @@
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                  Command="{Binding CancleButtonCommand}"
+                                  Command="{Binding ButtonCommandOV.CancleButtonCommand}"
                                   BorderThickness="0"
                                   Foreground="White" />
                 <hps:OsirisButton Margin="0,5,0,20"
                                   Grid.Column="3"
                                   Padding="20,0,20,0"
                                   TextContent="Lưu"
-                                  IsBusy="{Binding IsSaveButtonRunning}"
+                                  IsBusy="{Binding ButtonCommandOV.IsSaveButtonRunning}"
                                   ProgressSpinnerSize="30"
                                   ProgressSpinnerBackground="Black"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
@@ -360,9 +360,10 @@
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   IsUsingDropShadowEffect="True"
-                                  Command="{Binding SaveButtonCommand}"
+                                  Command="{Binding ButtonCommandOV.SaveButtonCommand}"
                                   Foreground="White"
-                                  Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                                  Background="{StaticResource NormalTheme_1st_Background_Brush}"
+                                  OBTextVerticalAlignment="Center" />
 
             </Grid>
         </Grid>

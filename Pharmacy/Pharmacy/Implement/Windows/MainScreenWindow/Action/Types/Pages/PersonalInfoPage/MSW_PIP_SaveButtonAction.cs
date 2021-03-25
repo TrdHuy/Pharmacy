@@ -19,8 +19,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
         {
             if (!PIPViewModel.IsSaveButtonCanPerform)
             {
-                MessageBox.Show("Kiểm tra lại các trường bị sai trên!");
-                PIPViewModel.IsSaveButtonRunning = false;
+                App.Current.ShowApplicationMessageBox("Kiểm tra lại các trường bị sai trên!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
+                PIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
 
@@ -62,7 +66,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
             {
                 App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin!");
             }
-            PIPViewModel.IsSaveButtonRunning = false;
+            PIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
         }
     }
 }
