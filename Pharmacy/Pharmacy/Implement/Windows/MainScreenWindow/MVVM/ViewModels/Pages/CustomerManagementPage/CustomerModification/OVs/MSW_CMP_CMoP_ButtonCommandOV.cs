@@ -5,7 +5,7 @@ using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerModification.OVs
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerModification.OVs
 {
     internal class MSW_CMP_CMoP_ButtonCommandOV : MSW_ButtonCommandOV
     {

@@ -1,10 +1,9 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerModification.OVs;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerModification.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;

@@ -256,7 +256,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagement\OVs\MSW_CMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagement\OVs\MSW_CMP_EventCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\OVs\MSW_CMP_CTP_CDP_CustomerDebtOV.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerModification\OVs\MSW_CMP_CMoP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerModification\OVs\MSW_CMP_CMoP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\OVs\MSW_CMP_CTHP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MSW_BasePageVM\OVs\MSW_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\ReportPage\OVs\MSW_RP_ComprehensiveReportOV.cs" />
@@ -455,7 +455,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\OVs\MSW_WHMP_WarehouseImportDetailOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\WarehouseManagementPage\OVs\MSW_WHMP_WarehouseImportOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\MainScreenWindowViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerModification\CustomerModificationPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerModification\CustomerModificationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerManagement\CustomerManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerInstantiation\CustomerInstantiationPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerTransactionHistoryPageViewModel.cs" />
