@@ -1,34 +1,23 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Implement.UIEventHandler;
-using Pharmacy.Implement.UIEventHandler.Listener;
-using Pharmacy.Implement.Utils;
+﻿using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
-using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.ShowMedicineInfo.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.ShowMedicineInfo
 {
-    public class ShowMedicineInfoPageViewModel : MSW_BasePageViewModel
+    internal class ShowMedicineInfoPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("ShowMedicineInfoPageViewModel");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
         public ObservableCollection<tblWarehouseImportDetail> LstWarehouseImportDetail { get; set; }
         public ImageSource MedicineImageSource { get; set; }
         public tblMedicine MedicineInfo { get; set; }
-
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
+        public MSW_MMP_SMIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         protected override void InitPropertiesRegistry()
         {
@@ -38,7 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
 
         protected override void OnInitializing()
         {
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
+            ButtonCommandOV = new MSW_MMP_SMIP_ButtonCommandOV(this);
             UpdateModifyData();
         }
 
@@ -73,15 +62,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                     , MedicineInfo.MedicineID);
         }
 
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_SMIP_CANCEL_BUTTON
-                , dataTransfer);
-        }
     }
 
 }
