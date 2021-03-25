@@ -7,7 +7,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage.OVs
 {
-    public class MSW_RP_ButtonCommandOV : MSW_ButtonCommandOV
+    internal class MSW_RP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_RP_ButtonCommandOV");
         private bool _isInitSellingReportButtonRunning;

@@ -25,7 +25,7 @@ using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
-    public class HomePageViewModel : MSW_BasePageViewModel
+    internal class HomePageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("HomePageViewModel");
 

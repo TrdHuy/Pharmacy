@@ -1,13 +1,9 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.OVs
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.SupplierDebt.OVs
 {
-    public class MSW_SMP_SupplierDebtOV : BaseViewModel
+    public class MSW_SMP_SDP_SupplierDebtOV : BaseViewModel
     {
         public long ImportID { get; set; }
         public DateTime ImportTime { get; set; }

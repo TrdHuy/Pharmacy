@@ -6,7 +6,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage.OVs
 {
-    public class MSW_IMP_ButtonCommandOV : MSW_ButtonCommandOV
+    internal class MSW_IMP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_IMP_ButtonCommandOV");
 

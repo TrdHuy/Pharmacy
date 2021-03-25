@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage.OVs
 {
-    public class MSW_AIP_ButtonCommandOV : MSW_ButtonCommandOV
+    internal class MSW_AIP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_AIP_ButtonCommandOV");
 

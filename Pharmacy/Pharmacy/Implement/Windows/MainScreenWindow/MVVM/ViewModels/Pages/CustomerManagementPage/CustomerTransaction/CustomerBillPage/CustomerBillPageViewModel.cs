@@ -22,7 +22,7 @@ using System.Windows;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage
 {
-    public class CustomerBillPageViewModel : MSW_BasePageViewModel
+    internal class CustomerBillPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerBillPageViewModel");
 

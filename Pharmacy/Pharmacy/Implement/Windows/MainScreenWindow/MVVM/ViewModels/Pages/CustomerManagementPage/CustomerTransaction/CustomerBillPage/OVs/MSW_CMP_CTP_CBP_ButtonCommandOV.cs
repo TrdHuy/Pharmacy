@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerBillPage.OVs
 {
-    public class MSW_CMP_CTP_CBP_ButtonCommandOV : MSW_ButtonCommandOV
+    internal class MSW_CMP_CTP_CBP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_CMP_CTP_CBP_ButtonCommandOV");
         private bool _isAddOrderDeatailButtonRunning;

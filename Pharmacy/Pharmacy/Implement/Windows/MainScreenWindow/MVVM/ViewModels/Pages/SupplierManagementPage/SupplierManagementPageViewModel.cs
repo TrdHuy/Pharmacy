@@ -1,12 +1,9 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using System.Windows.Controls;
-using System.Linq;
 using System;
 using Pharmacy.Implement.UIEventHandler;
 using System.Windows.Threading;
@@ -14,18 +11,16 @@ using Pharmacy.Config;
 using System.Globalization;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage
 {
-    public class SupplierManagementPageViewModel : MSW_BasePageViewModel
+    internal class SupplierManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("SupplierManagementPageViewModel");
 
         public ObservableCollection<tblSupplier> SupplierItemSource { get; set; }
-        public RunInputCommand AddNewSupplierButtonCommand { get; set; }
-        public RunInputCommand EditSupplierButtonCommand { get; set; }
-        public RunInputCommand DeleteSupplierButtonCommand { get; set; }
-        public RunInputCommand ShowImportHistoryButtonCommand { get; set; }
+        public MSW_SMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public EventHandleCommand FilterChangedCommand { get; set; }
         public EventHandleCommand ShowSupplierInfoCommand { get; set; }
 
@@ -37,10 +32,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         protected override void OnInitializing()
         {
-            AddNewSupplierButtonCommand = new RunInputCommand(AddNewSupplierButtonClickEvent);
-            DeleteSupplierButtonCommand = new RunInputCommand(DeleteSupplierButtonClickEvent);
-            EditSupplierButtonCommand = new RunInputCommand(EditSupplierButtonClickEvent);
-            ShowImportHistoryButtonCommand = new RunInputCommand(ShowImportHistoryButtonClickEvent);
+            ButtonCommandOV = new MSW_SMP_ButtonCommandOV(this);
             FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
             ShowSupplierInfoCommand = new EventHandleCommand(ShowSupplierInfoEvent);
             InstantiateItems();
@@ -122,49 +114,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = (paramaters as object[])[0];
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+            _keyActionListener.OnKey(this
+                , logger
+                , WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON
                 , dataTransfer);
         }
 
-        private void AddNewSupplierButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_ADD_BUTTON
-                , dataTransfer);
-        }
 
-        private void DeleteSupplierButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_DELETE_BUTTON
-                , dataTransfer);
-        }
-
-        private void EditSupplierButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON
-                , dataTransfer);
-        }
-
-        private void ShowImportHistoryButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SMP_SHOW_IMPORT_HISTORY_BUTTON
-                , dataTransfer);
-        }
     }
 }

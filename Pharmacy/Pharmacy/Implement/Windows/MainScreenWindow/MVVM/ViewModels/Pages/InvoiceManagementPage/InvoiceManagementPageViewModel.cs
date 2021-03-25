@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage
 {
-    public class InvoiceManagementPageViewModel : MSW_BasePageViewModel
+    internal class InvoiceManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("InvoiceManagementPageViewModel");
 

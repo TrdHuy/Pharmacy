@@ -7,7 +7,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage.OVs
 {
-    public class MSW_CMP_CTP_CDP_ButtonCommandOV : MSW_ButtonCommandOV
+    internal class MSW_CMP_CTP_CDP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_CMP_CTP_CDB_ButtonCommandOV");
 

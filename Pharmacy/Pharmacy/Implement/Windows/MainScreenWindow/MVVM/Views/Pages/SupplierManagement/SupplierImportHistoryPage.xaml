@@ -360,7 +360,7 @@
                                           TextContent="Xem hóa đơn"
                                           FontStyle="Italic"
                                           HorizontalAlignment="Right"
-                                          Command="{Binding ShowInvoiceButtonCommand}"/>
+                                          Command="{Binding ButtonCommandOV.ShowInvoiceButtonCommand}"/>
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
@@ -374,7 +374,7 @@
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
-                                          Command="{Binding ShowDebtButtonCommand}"/>
+                                          Command="{Binding ButtonCommandOV.ShowDebtButtonCommand}"/>
 
                         <hps:OsirisButton BorderThickness="0"
                                           Grid.Row="1"
@@ -387,7 +387,7 @@
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
-                                          Command="{Binding CancelButtonCommand}"/>
+                                          Command="{Binding ButtonCommandOV.CancelButtonCommand}"/>
 
                     </Grid>
                 </Grid>

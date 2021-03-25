@@ -7,7 +7,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SettingPage.OVs
 {
-    public class MSW_SeP_ButtonCommandOV : MSW_ButtonCommandOV
+    internal class MSW_SeP_ButtonCommandOV : MSW_ButtonCommandOV
     {
         private static Logger L = new Logger("MSW_SeP_ButtonCommandOV");
         private bool _isSaveButtonRunning;

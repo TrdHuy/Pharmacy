@@ -17,7 +17,7 @@ using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement
 {
-    public class CustomerManagementPageViewModel : MSW_BasePageViewModel
+    internal class CustomerManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerManagementPageViewModel");
 

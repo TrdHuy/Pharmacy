@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs
 {
-    public abstract class MSW_ButtonCommandOV : BaseViewModel
+    internal abstract class MSW_ButtonCommandOV : BaseViewModel
     {
         protected abstract Logger logger { get; }
 

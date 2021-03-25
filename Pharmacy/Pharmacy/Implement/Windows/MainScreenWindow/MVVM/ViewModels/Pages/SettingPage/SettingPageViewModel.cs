@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SettingPage
 {
-    public class SettingPageViewModel : MSW_BasePageViewModel
+    internal class SettingPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("SettingPageViewModel");
 

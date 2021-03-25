@@ -7,6 +7,7 @@
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement"
+      
       mc:Ignorable="d"
       Background="White"
       x:Name="PageSupplierManagement"
@@ -218,7 +219,7 @@
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
-                                                      Command="{Binding DataContext.EditSupplierButtonCommand,ElementName=PageSupplierManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.EditSupplierButtonCommand,ElementName=PageSupplierManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Black"
@@ -231,7 +232,7 @@
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
-                                                      Command="{Binding DataContext.DeleteSupplierButtonCommand,ElementName=PageSupplierManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.DeleteSupplierButtonCommand,ElementName=PageSupplierManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Red"
@@ -244,7 +245,7 @@
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
-                                                      Command="{Binding DataContext.ShowImportHistoryButtonCommand,ElementName=PageSupplierManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.ShowImportHistoryButtonCommand,ElementName=PageSupplierManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Blue"
@@ -279,7 +280,7 @@
                               Background="{StaticResource NormalTheme_1st_Background_Brush}"
                               Foreground="White"
                               Margin="10,0"
-                              Command="{Binding AddNewSupplierButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.AddNewSupplierButtonCommand}" />
         </Grid>
     </Grid>
 </Page>
