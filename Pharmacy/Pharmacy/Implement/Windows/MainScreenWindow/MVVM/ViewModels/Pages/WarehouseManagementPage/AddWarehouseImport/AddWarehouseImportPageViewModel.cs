@@ -7,19 +7,16 @@ using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using System.Windows.Controls;
 using System.Linq;
-using System;
 using Pharmacy.Implement.UIEventHandler;
-using System.Windows.Threading;
-using Pharmacy.Config;
-using System.Globalization;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.AddWarehouseImport.OVs;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.AddWarehouseImport
 {
-    public class AddWarehouseImportPageViewModel : MSW_BasePageViewModel
+    internal class AddWarehouseImportPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("AddWarehouseImportPageViewModel");
 
@@ -80,38 +77,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             }
         }
         public decimal NetPrice { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand BrowseInvoiceImageButtonCommand { get; set; }
-        public RunInputCommand AddMedicineToListButtonCommand { get; set; }
-        public RunInputCommand DeleteMedicineFromListButtonCommand { get; set; }
+        public MSW_WHMP_AWIP_ButtonCommandOV ButtonCommandOV { get; set; }
         public int SelectedSupplierCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-        public bool IsAddImportDetailButtonRunning
-        {
-            get { return _isAddImportDetailButtonRunning; }
-            set
-            {
-                _isAddImportDetailButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
-        public bool IsAddWarehouseImportButtonRunning
-        {
-            get { return _isAddWarehouseImportButtonRunning; }
-            set
-            {
-                _isAddWarehouseImportButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
+      
         public bool IsSaveButtonCanPerform
         {
             get
@@ -135,11 +103,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         protected override void OnInitializing()
         {
-            BrowseInvoiceImageButtonCommand = new RunInputCommand(BrowseInvoiceImageButtonClickEvent);
-            AddMedicineToListButtonCommand = new RunInputCommand(AddMedicineToListButtonClickEvent);
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            DeleteMedicineFromListButtonCommand = new RunInputCommand(DeleteMedicineFromListButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
+            ButtonCommandOV = new MSW_WHMP_AWIP_ButtonCommandOV(this);
             InstantiateItems();
             InitImportDetail();
         }
@@ -154,60 +118,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             NetPrice = TotalPrice - PurchasedPrice;
             Invalidate("TotalPrice");
             Invalidate("NetPrice");
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsAddWarehouseImportButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void DeleteMedicineFromListButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON
-                , dataTransfer);
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON
-                , dataTransfer);
-        }
-
-        private void AddMedicineToListButtonClickEvent(object paramaters)
-        {
-            IsAddImportDetailButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void BrowseInvoiceImageButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON
-                , dataTransfer);
         }
 
         private void InstantiateItems()

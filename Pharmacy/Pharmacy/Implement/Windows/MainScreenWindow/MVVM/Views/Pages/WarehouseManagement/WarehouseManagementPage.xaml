@@ -262,7 +262,7 @@
                                                       HorizontalAlignment="Center"
                                                       VerticalAlignment="Center"
                                                       BorderThickness="0"
-                                                      Command="{Binding DataContext.EditWarehouseImportButtonCommand,ElementName=WarehouseManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.EditWarehouseImportButtonCommand,ElementName=WarehouseManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Black"
@@ -275,7 +275,7 @@
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
                                                       VerticalAlignment="Center"
-                                                      Command="{Binding DataContext.DeleteWarehouseImportButtonCommand,ElementName=WarehouseManagement}"
+                                                      Command="{Binding DataContext.ButtonCommandOV.DeleteWarehouseImportButtonCommand,ElementName=WarehouseManagement}"
                                                       CommandParameter="{Binding ElementName=DataGrid}"
                                                       Background="Transparent"
                                                       Foreground="Red"
@@ -287,7 +287,7 @@
                                                VerticalAlignment="Center">
                                         <Hyperlink FontStyle="Italic"
                                                    FontSize="{StaticResource FontSizeRegular}"
-                                                   Command="{Binding DataContext.ShowInvoiceButtonCommand,ElementName=WarehouseManagement}"
+                                                   Command="{Binding DataContext.ButtonCommandOV.ShowInvoiceButtonCommand,ElementName=WarehouseManagement}"
                                                    CommandParameter="{Binding ElementName=DataGrid}">
                                             Xem hóa đơn
                                         </Hyperlink>
@@ -320,7 +320,7 @@
                               Foreground="White"
                               Margin="10,0"
                               Padding="30,0,30,0"
-                              Command="{Binding AddNewWarehouseImportButtonCommand}" />
+                              Command="{Binding ButtonCommandOV.AddNewWarehouseImportButtonCommand}" />
         </Grid>
     </Grid>
 </Page>

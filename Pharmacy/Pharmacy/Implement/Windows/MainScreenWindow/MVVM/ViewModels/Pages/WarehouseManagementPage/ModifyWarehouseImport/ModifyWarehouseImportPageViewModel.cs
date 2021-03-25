@@ -17,13 +17,14 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.ModifyWarehouseImport.OVs;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.ModifyWarehouseImport
 {
-    public class ModifyWarehouseImportPageViewModel : MSW_BasePageViewModel
+    internal class ModifyWarehouseImportPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("ModifyWarehouseImportPageViewModel");
-        
+
         public ObservableCollection<tblMedicine> LstMedicine { get; set; }
         public ObservableCollection<MSW_WHMP_WarehouseImportDetailOV> LstWarehouseImportDetail { get; set; }
         public tblWarehouseImport ImportInfo { get; set; }
@@ -59,37 +60,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             }
         }
         public decimal NetPrice { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand BrowseInvoiceImageButtonCommand { get; set; }
-        public RunInputCommand AddMedicineToListButtonCommand { get; set; }
-        public RunInputCommand DeleteMedicineFromListButtonCommand { get; set; }
-        public bool IsAddImportDetailButtonRunning
-        {
-            get { return _isAddImportDetailButtonRunning; }
-            set
-            {
-                _isAddImportDetailButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
-        public bool IsAddWarehouseImportButtonRunning
-        {
-            get { return _isAddWarehouseImportButtonRunning; }
-            set
-            {
-                _isAddWarehouseImportButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
+        public MSW_WHMP_MWIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private List<tblMedicine> _lstMedicineFull;
@@ -102,11 +73,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         protected override void OnInitializing()
         {
-            BrowseInvoiceImageButtonCommand = new RunInputCommand(BrowseInvoiceImageButtonClickEvent);
-            AddMedicineToListButtonCommand = new RunInputCommand(AddMedicineToListButtonClickEvent);
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            DeleteMedicineFromListButtonCommand = new RunInputCommand(DeleteMedicineFromListButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
+            ButtonCommandOV = new MSW_WHMP_MWIP_ButtonCommandOV(this);
             InstantiateItems();
             InitImportDetail();
         }
@@ -122,61 +89,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             Invalidate("TotalPrice");
             Invalidate("NetPrice");
         }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsAddWarehouseImportButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void DeleteMedicineFromListButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON
-                , dataTransfer);
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_CANCEL_BUTTON
-                , dataTransfer);
-        }
-
-        private void AddMedicineToListButtonClickEvent(object paramaters)
-        {
-            IsAddImportDetailButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void BrowseInvoiceImageButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_MWIP_BROWSE_INVOICE_IMAGE_BUTTON
-                , dataTransfer);
-        }
-
+   
         private void InstantiateItems()
         {
             GetMedicineList();
@@ -223,7 +136,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             PurchasedPrice = ImportInfo.PurchasePrice;
             NetPrice = TotalPrice - PurchasedPrice;
             LstWarehouseImportDetail = new ObservableCollection<MSW_WHMP_WarehouseImportDetailOV>();
-            foreach (var item in ImportInfo.tblWarehouseImportDetails.Where(o=>o.IsActive))
+            foreach (var item in ImportInfo.tblWarehouseImportDetails.Where(o => o.IsActive))
             {
                 var detail = new MSW_WHMP_WarehouseImportDetailOV();
                 detail.MedicineID = item.MedicineID;

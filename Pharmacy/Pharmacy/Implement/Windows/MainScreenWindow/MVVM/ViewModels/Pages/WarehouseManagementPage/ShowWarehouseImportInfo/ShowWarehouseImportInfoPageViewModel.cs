@@ -17,10 +17,11 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.ShowWarehouseImportInfo.OVs;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.ShowWarehouseImportInfo
 {
-    public class ShowWarehouseImportInfoPageViewModel : MSW_BasePageViewModel
+    internal class ShowWarehouseImportInfoPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("ShowWarehouseImportInfoPageViewModel");
 
@@ -29,8 +30,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public decimal TotalPrice { get; set; }
         public decimal PurchasedPrice { get; set; }
         public decimal NetPrice { get; set; }
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand BrowseInvoiceImageButtonCommand { get; set; }
+        public MSW_WHMP_SWIIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
@@ -38,33 +38,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         protected override void OnInitializing()
         {
-            BrowseInvoiceImageButtonCommand = new RunInputCommand(BrowseInvoiceImageButtonClickEvent);
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
+            ButtonCommandOV = new MSW_WHMP_SWIIP_ButtonCommandOV(this);
             InitImportDetail();
         }
 
         protected override void OnInitialized()
         {
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON
-                , dataTransfer);
-        }
-
-        private void BrowseInvoiceImageButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON
-                , dataTransfer);
         }
 
         private void InitImportDetail()
@@ -74,7 +53,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             PurchasedPrice = ImportInfo.PurchasePrice;
             NetPrice = TotalPrice - PurchasedPrice;
             LstWarehouseImportDetail = new ObservableCollection<MSW_WHMP_WarehouseImportDetailOV>();
-            foreach (var item in ImportInfo.tblWarehouseImportDetails.Where(o=>o.IsActive))
+            foreach (var item in ImportInfo.tblWarehouseImportDetails.Where(o => o.IsActive))
             {
                 var detail = new MSW_WHMP_WarehouseImportDetailOV();
                 detail.MedicineID = item.MedicineID;

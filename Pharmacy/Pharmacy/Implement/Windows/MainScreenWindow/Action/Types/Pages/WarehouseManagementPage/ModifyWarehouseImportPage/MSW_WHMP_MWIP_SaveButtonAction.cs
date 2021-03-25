@@ -59,7 +59,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            MWIPViewModel.IsAddWarehouseImportButtonRunning = false;
+            MWIPViewModel.ButtonCommandOV.IsAddWarehouseImportButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
         }
     }

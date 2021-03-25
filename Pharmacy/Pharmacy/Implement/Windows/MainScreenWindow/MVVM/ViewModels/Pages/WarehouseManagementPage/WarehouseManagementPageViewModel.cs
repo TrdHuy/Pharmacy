@@ -18,15 +18,12 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage
 {
-    public class WarehouseManagementPageViewModel : MSW_BasePageViewModel
+    internal class WarehouseManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("WarehouseManagementPageViewModel");
-        
+
         public ObservableCollection<MSW_WHMP_WarehouseImportOV> WarehouseImportItemSource { get; set; }
-        public RunInputCommand AddNewWarehouseImportButtonCommand { get; set; }
-        public RunInputCommand EditWarehouseImportButtonCommand { get; set; }
-        public RunInputCommand DeleteWarehouseImportButtonCommand { get; set; }
-        public RunInputCommand ShowInvoiceButtonCommand { get; set; }
+        public MSW_WHMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public EventHandleCommand FilterChangedCommand { get; set; }
         public EventHandleCommand ShowWarehouseImportInfoCommand { get; set; }
         public List<tblWarehouseImport> LstWarehouseImport { get; set; }
@@ -39,10 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
 
         protected override void OnInitializing()
         {
-            AddNewWarehouseImportButtonCommand = new RunInputCommand(AddNewWarehouseImportButtonClickEvent);
-            DeleteWarehouseImportButtonCommand = new RunInputCommand(DeleteWarehouseImportButtonClickEvent);
-            EditWarehouseImportButtonCommand = new RunInputCommand(EditWarehouseImportButtonClickEvent);
-            ShowInvoiceButtonCommand = new RunInputCommand(ShowInvoiceButtonClickEvent);
+            ButtonCommandOV = new MSW_WHMP_ButtonCommandOV(this);
             FilterChangedCommand = new EventHandleCommand(FilterChangedEvent);
             ShowWarehouseImportInfoCommand = new EventHandleCommand(ShowWarehouseImportInfoEvent);
             InstantiateItems();
@@ -170,49 +164,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
             dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
+            _keyActionListener.OnKey(this
+                , logger
+                , WindowTag.WINDOW_TAG_MAIN_SCREEN
                 , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INFO_BUTTON
                 , dataTransfer);
         }
 
-        private void AddNewWarehouseImportButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_ADD_BUTTON
-                , dataTransfer);
-        }
-
-        private void DeleteWarehouseImportButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_DELETE_BUTTON
-                , dataTransfer);
-        }
-
-        private void EditWarehouseImportButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_EDIT_BUTTON
-                , dataTransfer);
-        }
-
-        private void ShowInvoiceButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_WHMP_SHOW_INVOICE_BUTTON
-                , dataTransfer);
-        }
     }
 }

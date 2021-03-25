@@ -77,7 +77,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
             }
             finally
             {
-                MWIPViewModel.IsAddImportDetailButtonRunning = false;
+                MWIPViewModel.ButtonCommandOV.IsAddImportDetailButtonRunning = false;
             }
             return;
         }

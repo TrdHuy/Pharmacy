@@ -80,7 +80,7 @@
                        VerticalAlignment="Center"
                        Margin="3">
                 <Hyperlink FontStyle="Italic"
-                           Command="{Binding BrowseInvoiceImageButtonCommand}">
+                           Command="{Binding ButtonCommandOV.BrowseInvoiceImageButtonCommand}">
                     Xem hóa đơn
                 </Hyperlink>
             </TextBlock>
@@ -367,7 +367,7 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              Command="{Binding CancelButtonCommand}"
+                              Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
                               Foreground="White" />

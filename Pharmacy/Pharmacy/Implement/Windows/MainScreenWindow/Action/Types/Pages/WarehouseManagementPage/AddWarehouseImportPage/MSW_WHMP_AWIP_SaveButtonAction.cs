@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                AWIPViewModel.IsAddWarehouseImportButtonRunning = false;
+                AWIPViewModel.ButtonCommandOV.IsAddWarehouseImportButtonRunning = false;
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            AWIPViewModel.IsAddWarehouseImportButtonRunning = false;
+            AWIPViewModel.ButtonCommandOV.IsAddWarehouseImportButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);
         }
     }
