@@ -39,7 +39,7 @@
                 <UniformGrid Grid.Row="1" Columns="3">
                     
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding SellingCommand}"
+                                      Command="{Binding ButtonCommandOV.SellingCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -58,7 +58,7 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Visibility="{Binding AdminToolboxsVisibility}"
-                                      Command="{Binding UserManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.UserManagementCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -76,7 +76,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding CustomerManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.CustomerManagementCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -94,7 +94,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding MedicineManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.MedicineManagementCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
@@ -112,7 +112,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding SupplierManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.SupplierManagementCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -130,7 +130,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding WarehouseManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.WarehouseManagementCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -148,7 +148,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding InvoiceManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.InvoiceManagementCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
@@ -166,7 +166,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding OtherPaymentsManagementCommand}"
+                                      Command="{Binding ButtonCommandOV.OtherPaymentsManagementCommand}"
                                       OBTextHorizontalAlignment="Center"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
@@ -184,7 +184,7 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
-                                      Command="{Binding ReportCommand}"
+                                      Command="{Binding ButtonCommandOV.ReportCommand}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"

@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 
         protected MSW_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel) { }
 
-        protected void OnKey(string keyTag, object paramaters, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected void OnKey(string keyTag, object paramaters, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 
@@ -25,11 +25,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this.ParentsModel;
             dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(ParentsModel
-                , logger
-                , windowTag
-                , keyTag
-                , dataTransfer);
+
+            _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
+                                , logger
+                                , windowTag
+                                , keyTag
+                                , dataTransfer);
 
 #if DEBUG
             onKeyWatcher.Stop();
@@ -39,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
         }
 
-        protected void OnKey(string keyTag, object paramaters, FactoryLocker locker, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected void OnKey(string keyTag, object paramaters, FactoryLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 
@@ -49,13 +50,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this.ParentsModel;
             dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(ParentsModel
-                , logger
-                , windowTag
-                , keyTag
-                , dataTransfer
-                , locker);
 
+            _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
+                                , logger
+                                , windowTag
+                                , keyTag
+                                , dataTransfer
+                                , locker);
 #if DEBUG
             onKeyWatcher.Stop();
             var timeExecuted = onKeyWatcher.ElapsedMilliseconds;
