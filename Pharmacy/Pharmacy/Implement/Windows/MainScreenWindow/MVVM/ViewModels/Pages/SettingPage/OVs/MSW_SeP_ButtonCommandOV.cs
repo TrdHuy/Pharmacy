@@ -1,19 +1,15 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
-using Pharmacy.Implement.UIEventHandler.Listener;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SettingPage.OVs
 {
-    public class MSW_SeP_ButtonCommandOV : BaseViewModel
+    public class MSW_SeP_ButtonCommandOV : MSW_ButtonCommandOV
     {
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
+        private static Logger L = new Logger("MSW_SeP_ButtonCommandOV");
         private bool _isSaveButtonRunning;
 
         public RunInputCommand SaveButtonCommand { get; set; }
@@ -36,32 +32,24 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sett
             }
         }
 
+        protected override Logger logger => L;
+
         public MSW_SeP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SeP_SAVE_BUTTON
-                , dataTransfer
+            SaveButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                IsSaveButtonRunning = true;
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_SeP_SAVE_BUTTON
+                , paramaters
                 , new FactoryLocker(FactoryStatus.TaskHandling, true));
+            });
+            CancleButtonCommand = new RunInputCommand((paramaters) =>
+            {
+                IsSaveButtonRunning = true;
+                OnKey(KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON
+                , paramaters);
+            });
         }
 
-        private void CancleButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = ParentsModel;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON
-                , dataTransfer);
-        }
     }
 }
