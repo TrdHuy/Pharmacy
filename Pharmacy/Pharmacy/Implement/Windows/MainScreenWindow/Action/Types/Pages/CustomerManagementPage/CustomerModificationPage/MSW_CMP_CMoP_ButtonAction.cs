@@ -1,7 +1,7 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Action.Types;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerModification;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerModificationPage

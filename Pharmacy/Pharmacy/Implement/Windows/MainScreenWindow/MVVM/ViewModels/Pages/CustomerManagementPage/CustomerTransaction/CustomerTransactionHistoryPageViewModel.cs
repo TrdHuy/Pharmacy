@@ -7,12 +7,8 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Customer
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction
 {

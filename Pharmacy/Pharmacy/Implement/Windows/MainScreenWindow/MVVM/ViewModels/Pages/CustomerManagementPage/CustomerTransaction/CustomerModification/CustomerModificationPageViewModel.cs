@@ -1,28 +1,20 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Config;
+﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerModification.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerModification
 {
-    public class CustomerModificationPageViewModel : MSW_BasePageViewModel
+    internal class CustomerModificationPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerModificationPageViewModel");
 
@@ -174,9 +166,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand CameraButtonCommand { get; set; }
-        public RunInputCommand CancleButtonCommand { get; set; }
+        public MSW_CMP_CMoP_ButtonCommandOV ButtonCommandOV { get; set; }
         public EventHandleCommand GridSizeChangedCommand { get; set; }
 
         #endregion
@@ -186,9 +176,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         protected override void OnInitializing()
         {
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            CancleButtonCommand = new RunInputCommand(CancleButtonClickEvent);
-            CameraButtonCommand = new RunInputCommand(CameraButtonClickEvent);
+            ButtonCommandOV = new MSW_CMP_CMoP_ButtonCommandOV(this);
             GridSizeChangedCommand = new EventHandleCommand(OnGridSizeChangedEvent);
 
             CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.CustomerName) ?
@@ -204,38 +192,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         protected override void OnInitialized()
         {
         }
-
-        private void CameraButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CAMERA_BUTTON
-                , dataTransfer);
-        }
-        private void CancleButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_CANCLE_BUTTON
-                , dataTransfer);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_CMP_CMoP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
 
         private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
         {
