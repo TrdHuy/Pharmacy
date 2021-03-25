@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaymentManagement"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage.AddOtherPayment"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
@@ -14,9 +15,11 @@
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       FontSize="{Binding FontSizeOV.FontSizeLarge}"
-      Title="AddOtherPaymentPage"
-      Loaded="AddOtherPayment_Loaded">
+      Title="AddOtherPaymentPage">
 
+    <Page.DataContext>
+        <vm:AddOtherPaymentPageViewModel />
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
@@ -198,7 +201,7 @@
                               TextContent="..."
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              Command="{Binding BrowseInvoiceButtonCommand}"
+                              Command="{Binding ButtonCommandOV.BrowseInvoiceButtonCommand}"
                               Margin="3"
                               BorderThickness="2"
                               OBCornerRadius="10" />
@@ -218,7 +221,7 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              Command="{Binding CancelButtonCommand}"
+                              Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
                               Foreground="White" />
@@ -230,10 +233,10 @@
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
-                              Command="{Binding SaveButtonCommand}"
+                              Command="{Binding ButtonCommandOV.SaveButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
-                              IsBusy="{Binding IsSaveButtonRunning, UpdateSourceTrigger=PropertyChanged}"
+                              IsBusy="{Binding ButtonCommandOV.IsSaveButtonRunning}"
                               ProgressSpinnerBackground="Black"
                               ProgressSpinnerSize="30"
                               Foreground="White"

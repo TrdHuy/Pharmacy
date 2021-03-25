@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                AOPPViewModel.IsSaveButtonRunning = false;
+                AOPPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
 
@@ -61,7 +61,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                    OwnerWindow.MainScreen,
                    "Thông báo!");
             }
-            AOPPViewModel.IsSaveButtonRunning = false;
+            AOPPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.OTHER_PAYMENT_MANAGEMENT_PAGE);
         }
     }

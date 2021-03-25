@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage.AddOtherPayment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaym
         public AddOtherPaymentPage()
         {
             InitializeComponent();
-        }
-
-        private void AddOtherPayment_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataContext = new AddOtherPaymentPageViewModel();
         }
     }
 }

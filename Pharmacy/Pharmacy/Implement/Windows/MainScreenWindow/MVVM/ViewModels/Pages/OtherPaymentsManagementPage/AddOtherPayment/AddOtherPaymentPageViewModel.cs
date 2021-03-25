@@ -1,48 +1,21 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
-using Pharmacy.Base.UIEventHandler.Listener;
+﻿using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Definitions;
-using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage.AddOtherPayment.OVs;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
-using System.Windows.Controls;
-using System.Windows.Media;
 
-namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage
+namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage.AddOtherPayment
 {
-    public class AddOtherPaymentPageViewModel : MSW_BasePageViewModel
+    internal class AddOtherPaymentPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("AddOtherPaymentPageViewModel");
 
-        public RunInputCommand CancelButtonCommand { get; set; }
-        public RunInputCommand SaveButtonCommand { get; set; }
-        public RunInputCommand BrowseInvoiceButtonCommand { get; set; }
+        public MSW_OPMP_AOPP_ButtonCommandOV ButtonCommandOV { get; set; }
         public int PaymentDetailCheckingStatus { get; set; } = 1; //-1:Invalid 0:Checking 1:Valid
         public int PaymentPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-        public bool IsSaveButtonRunning
-        {
-            get
-            {
-                return _isSaveButtonRunning;
-            }
-            set
-            {
-                _isSaveButtonRunning = value;
-                if (!value)
-                {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
-                }
-                InvalidateOwn();
-            }
-        }
         public bool IsSaveButtonCanPerform
         {
             get
@@ -102,9 +75,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         protected override void OnInitializing()
         {
-            CancelButtonCommand = new RunInputCommand(CancelButtonClickEvent);
-            SaveButtonCommand = new RunInputCommand(SaveButtonClickEvent);
-            BrowseInvoiceButtonCommand = new RunInputCommand(BrowseInvoiceButtonClickEvent);
+            ButtonCommandOV = new MSW_OPMP_AOPP_ButtonCommandOV(this);
             PaymentPrice = 0;
             PaymentTime = DateTime.Now;
             PaymentType = 0;
@@ -113,38 +84,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         protected override void OnInitialized()
         {
-        }
-
-        private void BrowseInvoiceButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_BROWSE_INVOICE_IMAGE_BUTTON
-                , dataTransfer);
-        }
-
-        private void SaveButtonClickEvent(object paramaters)
-        {
-            IsSaveButtonRunning = true;
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_SAVE_BUTTON
-                , dataTransfer
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
-        }
-
-        private void CancelButtonClickEvent(object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_CANCEL_BUTTON
-                , dataTransfer);
         }
 
         private void CheckPaymentDetail()
