@@ -35,7 +35,6 @@ namespace Pharmacy.Implement.Utils.CustomControls
     {
         public DateTimePickerCustom()
         {
-            BorderThickness = new System.Windows.Thickness(2);
             BorderBrush = Brushes.Black;
             Value = DateTime.Now;
             this.Language = XmlLanguage.GetLanguage("vi-VN");

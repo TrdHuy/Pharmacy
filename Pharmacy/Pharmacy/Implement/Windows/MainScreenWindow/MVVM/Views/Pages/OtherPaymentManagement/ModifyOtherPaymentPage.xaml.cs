@@ -25,10 +25,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaym
         {
             InitializeComponent();
         }
-
-        private void ModifyOtherPayment_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataContext = new ModifyOtherPaymentPageViewModel();
-        }
     }
 }
