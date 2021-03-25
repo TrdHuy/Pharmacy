@@ -65,7 +65,7 @@
                            FontSize="{Binding FontSizeOV.FontSizeXXLarge}" />
                 <TextBox x:Name="SearchTextBox"
                          Grid.Column="1"
-                         ToolTip="{Binding SearchTextBoxToolTip}"
+                         ToolTip="Hỗ trợ tìm kiếm theo: tên khách hàng hoặc tên thuốc"
                          TextChanged="SearchTextBox_TextChanged"
                          FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                          Style="{StaticResource DefaultTextBox}">
@@ -243,10 +243,12 @@
                         <!--Order deatails column-->
                         <DataGridTextColumn Width="*"
                                             CellStyle="{StaticResource DGTextCell}"
-                                            Header="Thành tiền">
-                            <DataGridTextColumn.Binding>
-                                <Binding Path="TotalPrice" />
-                            </DataGridTextColumn.Binding>
+                                            Header="Thành tiền"
+                                            Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}">
+                            <!--<DataGridTextColumn.Binding>
+                                <Binding Path="TotalPrice"
+                                         StringFormat="#\,##0 VND"/>
+                            </DataGridTextColumn.Binding>-->
                         </DataGridTextColumn>
 
                         <!--Edit column-->

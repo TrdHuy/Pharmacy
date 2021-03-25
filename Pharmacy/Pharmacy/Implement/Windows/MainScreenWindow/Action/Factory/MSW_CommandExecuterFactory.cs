@@ -48,6 +48,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
 
             switch (keyTag)
             {
+                case KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON:
+                    commandExecuter = new MSW_NonAdminAction(logger);
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON:
                     commandExecuter = new MSW_NotImplementedAction(logger);
                     break;

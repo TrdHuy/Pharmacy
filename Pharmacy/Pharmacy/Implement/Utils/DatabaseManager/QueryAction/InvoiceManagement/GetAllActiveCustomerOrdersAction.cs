@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.InvoiceManagement
             try
             {
                 var x = appDBContext.tblOrders.
-                    Where<tblOrder>(order => order.IsActive);
+                    Where<tblOrder>(order => order.IsActive).OrderByDescending(o=>o.OrderTime);
                 result = new SQLQueryResult(x, MessageQueryResult.Done);
             }
             catch (Exception e)

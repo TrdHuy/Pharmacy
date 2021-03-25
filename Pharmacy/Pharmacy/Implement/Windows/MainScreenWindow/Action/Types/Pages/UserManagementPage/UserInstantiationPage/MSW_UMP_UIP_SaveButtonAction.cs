@@ -29,6 +29,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
 
             if (!IsUseDefaultPassword())
             {
+                UIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
 

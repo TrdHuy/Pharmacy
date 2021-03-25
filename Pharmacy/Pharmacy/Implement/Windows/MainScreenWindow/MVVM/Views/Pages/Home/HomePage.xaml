@@ -30,8 +30,7 @@
         <ScrollViewer Grid.Row="1">
             <Grid Height="800">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*" />
-                    <RowDefinition Height="4*" />
+                    <RowDefinition Height="100" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -40,6 +39,8 @@
                     
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.SellingCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -57,6 +58,8 @@
                     </hps:OsirisButton>
 
                     <hps:OsirisButton IconStretch="UniformToFill"
+                                      MaxHeight="300"
+                                      MinHeight="200"
                                       Visibility="{Binding AdminToolboxsVisibility}"
                                       Command="{Binding ButtonCommandOV.UserManagementCommand}"
                                       HorizontalContentAlignment="Center"
@@ -77,6 +80,9 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.CustomerManagementCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
+                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -95,6 +101,8 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.MedicineManagementCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
@@ -113,6 +121,9 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.SupplierManagementCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
+                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -131,6 +142,9 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.WarehouseManagementCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
+                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"
@@ -149,6 +163,9 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.InvoiceManagementCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
+                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
@@ -167,7 +184,10 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.OtherPaymentsManagementCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
                                       OBTextHorizontalAlignment="Center"
+                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
@@ -185,6 +205,9 @@
 
                     <hps:OsirisButton IconStretch="UniformToFill"
                                       Command="{Binding ButtonCommandOV.ReportCommand}"
+                                      MaxHeight="300"
+                                      MinHeight="200"
+                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       OBTextHorizontalAlignment="Center"

@@ -14,7 +14,7 @@
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="MedicineManagementPage">
     <Page.DataContext>
-        <vm:MedicineManagementPageViewModel x:Name="MedicineManagementDataContext"/>
+        <vm:MedicineManagementPageViewModel x:Name="MedicineManagementDataContext" />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -56,7 +56,7 @@
                       VerticalAlignment="Center"
                       VerticalContentAlignment="Center"
                       IsChecked="True"
-                      Command="{Binding ButtonCommandOV.FilterMedicineTypeCommand}"
+                      Command="{Binding FilterMedicineTypeCommand}"
                       x:Name="cbxDuocLieu">
                 <CheckBox.CommandParameter>
                     <MultiBinding Converter="{conv:MultiBindingConverter}">
@@ -301,7 +301,7 @@
                                                       FontFamily="{StaticResource FontAwesome}"
                                                       FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=MedicineManagementDataContext}"
                                                       TextContent="&#xf00d;" />
-                                    
+
                                     <hps:OsirisButton Grid.Column="5"
                                                       BorderThickness="0"
                                                       HorizontalAlignment="Center"
@@ -320,7 +320,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
+                
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="3"
@@ -353,6 +353,7 @@
                               Background="{StaticResource ForegroundMainBrush}" />-->
             <hps:OsirisButton OBContentOrientation="Horizontal"
                               OBTextVerticalAlignment="Center"
+                              Visibility="{Binding AdminToolboxsVisibility}"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"
@@ -370,6 +371,7 @@
                               Padding="5"
                               Command="{Binding ButtonCommandOV.PrintMedicineListButtonCommand}" />
             <hps:OsirisButton OBTextVerticalAlignment="Center"
+                              Visibility="{Binding AdminToolboxsVisibility}"
                               IsUsingDropShadowEffect="True"
                               HorizontalContentAlignment="Center"
                               VerticalContentAlignment="Center"

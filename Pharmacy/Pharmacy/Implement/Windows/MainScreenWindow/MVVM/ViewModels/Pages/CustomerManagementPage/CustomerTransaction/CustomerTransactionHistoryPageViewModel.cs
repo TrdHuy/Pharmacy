@@ -134,7 +134,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private void InstantiateItems()
         {
             OrderItemSource = new ObservableCollection<tblOrder>();
-            foreach (tblOrder order in CurrentModifiedCustomer.tblOrders)
+            foreach (tblOrder order in CurrentModifiedCustomer.tblOrders.OrderByDescending(o=>o.OrderTime))
             {
                 if (order.IsActive)
                 {

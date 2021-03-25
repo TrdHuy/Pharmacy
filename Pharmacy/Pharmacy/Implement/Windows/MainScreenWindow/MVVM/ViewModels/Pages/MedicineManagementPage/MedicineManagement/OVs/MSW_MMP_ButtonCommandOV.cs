@@ -35,21 +35,47 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
                     , paramaters);
             });
-            EditMedicineButtonCommand = new CommandModel((paramaters) =>
+
+            if (App.Current.CurrentUser.IsAdmin)
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON
-                    , paramaters);
-            });
-            PromoMedicineButtonCommand = new CommandModel((paramaters) =>
+                EditMedicineButtonCommand = new CommandModel((paramaters) =>
+                {
+                    OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON,
+                           paramaters);
+                });
+                DeleteMedicineButtonCommand = new CommandModel((paramaters) =>
+                {
+                    OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON,
+                           paramaters);
+                });
+                PromoMedicineButtonCommand = new CommandModel((paramaters) =>
+                {
+                    OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON,
+                           paramaters);
+                });
+            }
+            else
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON
-                    , paramaters);
-            });
-            DeleteMedicineButtonCommand = new CommandModel((paramaters) =>
-            {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON
-                    , paramaters);
-            });
+                EditMedicineButtonCommand = new CommandModel((paramaters) =>
+                {
+                    OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
+                           paramaters,
+                           false);
+                });
+                DeleteMedicineButtonCommand = new CommandModel((paramaters) =>
+                {
+                    OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
+                           paramaters,
+                           false);
+                });
+                PromoMedicineButtonCommand = new CommandModel((paramaters) =>
+                {
+                    OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
+                           paramaters,
+                           false);
+                });
+            }
+            
         }
 
     }

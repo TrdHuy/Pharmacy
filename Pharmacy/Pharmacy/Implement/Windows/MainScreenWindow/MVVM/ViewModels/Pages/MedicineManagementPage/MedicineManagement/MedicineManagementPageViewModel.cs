@@ -13,6 +13,7 @@ using System.Globalization;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
+using System.Windows;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement
 {
@@ -26,6 +27,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public EventCommandModel ShowMedicineInfoCommand { get; set; }
         public EventCommandModel SearchTextChangedCommand { get; set; }
         public string FilterText { get; set; } = "";
+
+        public Visibility AdminToolboxsVisibility
+        {
+            get
+            {
+                return App.Current.CurrentUser.IsAdmin ?
+                   Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         private TimeSpan DELAY_TIME_TO_UPDATE_FILTER = TimeSpan.FromMilliseconds(500);
         private DispatcherTimer _timerUpdateFilter;

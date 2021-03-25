@@ -564,7 +564,7 @@
                                 <DataGridTextColumn Width="0.6*"
                                                     CellStyle="{StaticResource DGTextCell}"
                                                     Header="Đơn giá"
-                                                    Binding="{Binding UnitPrice}" />
+                                                    Binding="{Binding UnitPrice, StringFormat=#\,##0 VND}" />
 
                                 <!--Chiết khấu column-->
                                 <DataGridTextColumn Width="0.7*"
@@ -576,7 +576,7 @@
                                 <DataGridTextColumn Width="0.6*"
                                                     CellStyle="{StaticResource DGTextCell}"
                                                     Header="Thành tiền "
-                                                    Binding="{Binding TotalPrice}" />
+                                                    Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
 
                                 <!--Edit column-->
                                 <DataGridTemplateColumn CanUserResize="False"

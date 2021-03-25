@@ -208,6 +208,7 @@
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSourceWatcher.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_BaseAlternativeButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NonAdminAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_AppInfoAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
