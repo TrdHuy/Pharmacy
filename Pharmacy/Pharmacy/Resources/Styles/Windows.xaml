@@ -47,9 +47,7 @@
 
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CaptionHeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
-                    AncestorType={x:Type cctrl:DashboardWindow}},
-                    Path=TitleBarHeight, FallbackValue={StaticResource default_title_bar_height_dashboard_window}}" />
+                <WindowChrome />
             </Setter.Value>
         </Setter>
 
@@ -357,11 +355,9 @@
                                                     Orientation="Horizontal">
 
                                             <Button x:Name="MinimizeButton"
-                                                    Command="{Binding MinimizeCommand}"
                                                     Content="{StaticResource FontAwesomeMinimizeWindowIcon}"
                                                     Style="{StaticResource WindowControlButton}" />
                                             <Button x:Name="MaximizeButton"
-                                                    Command="{Binding MaximizeCommand}"
                                                     Style="{StaticResource WindowMaximizeButton}" />
                                             <Button x:Name="CloseButton"
                                                     Command="{Binding CloseCommand}"
@@ -576,7 +572,7 @@
                                     Value="Visible" />
                         </Trigger>
 
-                       
+
                         <!--Page loading trigger-->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

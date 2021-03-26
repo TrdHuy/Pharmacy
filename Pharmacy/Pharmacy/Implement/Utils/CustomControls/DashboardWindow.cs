@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Threading;
 using System.Diagnostics;
+using System.Windows.Shell;
 
 namespace Pharmacy.Implement.Utils.CustomControls
 {
@@ -54,7 +55,13 @@ namespace Pharmacy.Implement.Utils.CustomControls
                 new FrameworkPropertyMetadata(
                     defaultTitleBarHeight,
                     FrameworkPropertyMetadataOptions.AffectsRender,
-                    null));
+                    new PropertyChangedCallback(OnTitleBarHeightChangedCallback)));
+
+        private static void OnTitleBarHeightChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var ctrl = d as DashboardWindow;
+            ctrl.SetValue(WindowChrome.CaptionHeightProperty, Convert.ToDouble(e.NewValue));
+        }
 
         /// <summary>
         /// Height of the window title bar
