@@ -3,21 +3,14 @@ using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public abstract class AbstractDestroyableViewModelCommandExecuter : AbstractCommandExecuter, IDestroyableViewModelCommandExecuter
+    public abstract class AbstractViewModelCommandExecuter : AbstractCommandExecuter, IViewModelCommandExecuter
     {
-        public virtual BaseViewModel ViewModel { get; set; }
+        public virtual BaseViewModel ViewModel { get; protected set; }
 
-        public AbstractDestroyableViewModelCommandExecuter(BaseViewModel viewModel, ILogger logger) : base(logger)
+        public AbstractViewModelCommandExecuter(string actionID, string builderID, BaseViewModel viewModel, ILogger logger)
+            : base(actionID, builderID, logger)
         {
             this.ViewModel = viewModel;
-        }
-
-        public void OnDestroy()
-        {
-            if (!IsCompleted)
-            {
-                ExecuteOnDestroy();
-            }
         }
 
         /// <summary>
@@ -32,7 +25,6 @@ namespace Pharmacy.Base.UIEventHandler.Action
             IsCompleted = true;
         }
 
-
         /// <summary>
         /// Check posibility of command with transfered data
         /// default = true
@@ -44,10 +36,6 @@ namespace Pharmacy.Base.UIEventHandler.Action
             return true;
         }
 
-        protected virtual void ExecuteOnDestroy()
-        {
-            IsCancled = true;
-        }
 
     }
 }

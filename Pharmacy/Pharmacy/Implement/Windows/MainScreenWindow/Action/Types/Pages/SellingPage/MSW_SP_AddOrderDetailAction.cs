@@ -14,10 +14,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         private SQLQueryCustodian _queryObserver;
         private DataGrid orderDetaiDataGrid;
 
-        public MSW_SP_AddOrderDetailAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SP_AddOrderDetailAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             orderDetaiDataGrid = DataTransfer[1] as DataGrid;
 
             if (!SPViewModel.IsAddOrderDetailCanPerform)

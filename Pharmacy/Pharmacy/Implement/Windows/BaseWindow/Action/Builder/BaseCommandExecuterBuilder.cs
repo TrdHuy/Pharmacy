@@ -2,21 +2,21 @@
 using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.Utils;
 
-namespace Pharmacy.Implement.Windows.BaseWindow.Action.Factory
+namespace Pharmacy.Implement.Windows.BaseWindow.Action.Builder
 {
-    internal class BaseCommandExecuterFactory : AbstractCommandExecuterFactory
+    internal class BaseCommandExecuterBuilder : AbstractCommandExecuterBuilder
     {
-        public override ICommandExecuter CreateAlternativeCommandExecuterWhenFactoryIsLock(string keyTag, ILogger logger = null)
+        public override ICommandExecuter CreateAlternativeCommandExecuterWhenBuilderIsLock(string keyTag, ILogger logger = null)
         {
             return null;
         }
 
-        public override IDestroyableViewModelCommandExecuter CreateAlternativeDestroyableViewModelCommandExecuterWhenFactoryIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null)
+        public override IDestroyableViewModelCommandExecuter CreateAlternativeDestroyableViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null)
         {
             return null;
         }
 
-        public override IViewModelCommandExecuter CreateAlternativeViewModelCommandExecuterWhenFactoryIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null)
+        public override IViewModelCommandExecuter CreateAlternativeViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null)
         {
             return null;
         }

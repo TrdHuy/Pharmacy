@@ -9,10 +9,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
     internal class MSW_OPMP_ModifyOtherPaymentButtonAction : MSW_OPMP_ButtonAction
     {
 
-        public MSW_OPMP_ModifyOtherPaymentButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_OPMP_ModifyOtherPaymentButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             DataGrid ctrl = DataTransfer[1] as DataGrid;
 

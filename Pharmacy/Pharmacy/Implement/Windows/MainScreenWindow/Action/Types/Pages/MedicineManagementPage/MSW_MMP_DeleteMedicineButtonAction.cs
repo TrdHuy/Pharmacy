@@ -9,11 +9,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
     {
         private DataGrid medicineDataGrid;
 
-        public MSW_MMP_DeleteMedicineButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_MMP_DeleteMedicineButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             medicineDataGrid = DataTransfer[1] as DataGrid;
 

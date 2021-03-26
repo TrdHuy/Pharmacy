@@ -10,9 +10,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
     {
         protected MSW_PageController PageHost { get; } = MSW_PageController.Instance;
 
-        public MSW_ButtonAction(ILogger logger) : base(logger) { }
+        public MSW_ButtonAction(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
 
         }

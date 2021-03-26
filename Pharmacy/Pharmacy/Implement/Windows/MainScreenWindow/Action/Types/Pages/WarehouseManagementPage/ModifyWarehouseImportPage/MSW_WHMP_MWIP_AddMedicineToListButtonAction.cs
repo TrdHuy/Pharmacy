@@ -12,10 +12,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
     {
         private DataGrid dataGrid;
 
-        public MSW_WHMP_MWIP_AddMedicineToListButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_WHMP_MWIP_AddMedicineToListButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             dataGrid = DataTransfer[1] as DataGrid;
 

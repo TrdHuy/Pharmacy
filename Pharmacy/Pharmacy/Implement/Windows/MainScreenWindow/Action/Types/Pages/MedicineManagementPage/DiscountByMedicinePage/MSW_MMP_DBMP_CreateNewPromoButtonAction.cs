@@ -5,9 +5,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 {
     internal class MSW_MMP_DBMP_CreateNewPromoButtonAction : MSW_MMP_DBMP_ButtonAction
     {
-        public MSW_MMP_DBMP_CreateNewPromoButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_MMP_DBMP_CreateNewPromoButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             DBMPViewModel.PromoDescription = "";
             DBMPViewModel.PromoPercent = 0;

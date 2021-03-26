@@ -7,10 +7,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
 {
     internal class MSW_SMP_SDP_ShowInvoiceButtonAction : MSW_SMP_SDP_ButtonAction
     {
-        public MSW_SMP_SDP_ShowInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SMP_SDP_ShowInvoiceButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[1] as DataGrid;
 
             FileIOUtil.ShowBitmapFromName(SDPViewModel.LstDebt[ctrl.SelectedIndex].ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);

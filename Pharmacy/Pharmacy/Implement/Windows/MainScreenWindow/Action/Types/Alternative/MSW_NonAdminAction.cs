@@ -6,8 +6,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative
 {
     internal class MSW_NonAdminAction : MSW_BaseAlternativeButtonAction
     {
-        public MSW_NonAdminAction(ILogger logger) : base(logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_NonAdminAction(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
+        public override void ExecuteCommand()
         {
             App.Current.ShowApplicationMessageBox("Chức năng này không được hỗ trợ ở phiên người dùng hiện tại!\nVui lòng liên hệ người quản trị hệ thống!",
                  HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,

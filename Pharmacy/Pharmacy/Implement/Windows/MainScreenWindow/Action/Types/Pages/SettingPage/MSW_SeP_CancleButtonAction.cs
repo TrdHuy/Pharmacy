@@ -6,9 +6,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Setting
 {
     internal class MSW_SeP_CancleButtonAction : MSW_SeP_ButtonAction
     {
-        public MSW_SeP_CancleButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_SeP_CancleButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
         }

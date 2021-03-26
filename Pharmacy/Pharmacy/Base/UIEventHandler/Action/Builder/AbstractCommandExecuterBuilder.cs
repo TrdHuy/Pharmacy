@@ -4,7 +4,7 @@ using System;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public abstract class AbstractCommandExecuterFactory : AbstractActionFactory, ICommandExecuterFactory
+    public abstract class AbstractCommandExecuterBuilder : AbstractActionBuilder, ICommandExecuterBuilder
     {
         public override IAction CreateMainAction(string keyTag)
         {
@@ -13,12 +13,12 @@ namespace Pharmacy.Base.UIEventHandler.Action
 
         public override IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag)
         {
-            return CreateAlternativeCommandExecuterWhenFactoryIsLock(keyTag);
+            return CreateAlternativeCommandExecuterWhenBuilderIsLock(keyTag);
         }
 
-        public abstract ICommandExecuter CreateAlternativeCommandExecuterWhenFactoryIsLock(string keyTag, ILogger logger = null);
-        public abstract IDestroyableViewModelCommandExecuter CreateAlternativeDestroyableViewModelCommandExecuterWhenFactoryIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
-        public abstract IViewModelCommandExecuter CreateAlternativeViewModelCommandExecuterWhenFactoryIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
+        public abstract ICommandExecuter CreateAlternativeCommandExecuterWhenBuilderIsLock(string keyTag, ILogger logger = null);
+        public abstract IDestroyableViewModelCommandExecuter CreateAlternativeDestroyableViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
+        public abstract IViewModelCommandExecuter CreateAlternativeViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
 
         public abstract ICommandExecuter CreateCommandExecuter(string keyTag, ILogger logger = null);
         public abstract IDestroyableViewModelCommandExecuter CreateDestroyableViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null);

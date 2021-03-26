@@ -12,9 +12,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
     internal class MSW_UMP_UIP_CameraButtonAction : MSW_UMP_UIP_ButtonAction
     {
 
-        public MSW_UMP_UIP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_UMP_UIP_CameraButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             if (!CanChooseNewImage())
             {

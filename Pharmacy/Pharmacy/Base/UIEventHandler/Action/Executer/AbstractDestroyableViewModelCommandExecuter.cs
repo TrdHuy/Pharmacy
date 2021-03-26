@@ -3,13 +3,27 @@ using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public abstract class AbstractViewModelCommandExecuter : AbstractCommandExecuter, IViewModelCommandExecuter
-    {
-        public virtual BaseViewModel ViewModel { get; set; }
 
-        public AbstractViewModelCommandExecuter(BaseViewModel viewModel, ILogger logger) : base(logger)
+    /// <summary>
+    /// Destroyable command is uesed for the command that the execute method was async.
+    /// When the method awaiting the result of some tasks, we can destroy the command
+    /// and abandon those tasks
+    /// </summary>
+    public abstract class AbstractDestroyableViewModelCommandExecuter : AbstractCommandExecuter, IDestroyableViewModelCommandExecuter
+    {
+        public virtual BaseViewModel ViewModel { get; protected set; }
+
+        public AbstractDestroyableViewModelCommandExecuter(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, logger)
         {
             this.ViewModel = viewModel;
+        }
+
+        public void OnDestroy()
+        {
+            if (!IsCompleted)
+            {
+                ExecuteOnDestroy();
+            }
         }
 
         /// <summary>
@@ -24,6 +38,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
             IsCompleted = true;
         }
 
+
         /// <summary>
         /// Check posibility of command with transfered data
         /// default = true
@@ -35,6 +50,10 @@ namespace Pharmacy.Base.UIEventHandler.Action
             return true;
         }
 
+        protected virtual void ExecuteOnDestroy()
+        {
+            IsCancled = true;
+        }
 
     }
 }

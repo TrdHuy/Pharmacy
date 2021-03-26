@@ -12,11 +12,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 {
     internal class MSW_MMP_PrintMedicineListButtonAction : MSW_MMP_ButtonAction
     {
-        public MSW_MMP_PrintMedicineListButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_MMP_PrintMedicineListButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
        
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             var lstMedicine = DataTransfer[1] as ObservableCollection<tblMedicine>;
 
             var lstCaoDon = lstMedicine.Where(o => o.MedicineTypeID == 2).ToList();

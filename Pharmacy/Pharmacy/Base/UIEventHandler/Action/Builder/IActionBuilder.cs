@@ -2,31 +2,31 @@
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public interface IActionFactory
+    public interface IActionBuilder
     {
         IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag);
 
         IAction CreateMainAction(string keyTag);
 
-        void LockFactory(FactoryStatus status = FactoryStatus.Default);
-        void UnlockFactory(FactoryStatus status = FactoryStatus.Default);
+        void LockBuilder(BuilderStatus status = BuilderStatus.Default);
+        void UnlockBuilder(BuilderStatus status = BuilderStatus.Default);
 
-        FactoryLocker Locker { get; set; }
+        BuilderLocker Locker { get; set; }
     }
 
-    public class FactoryLocker
+    public class BuilderLocker
     {
-        public FactoryStatus Status;
+        public BuilderStatus Status;
         public bool IsLock;
 
-        public FactoryLocker(FactoryStatus status, bool key)
+        public BuilderLocker(BuilderStatus status, bool key)
         {
             Status = status;
             IsLock = key;
         }
     }
 
-    public enum FactoryStatus
+    public enum BuilderStatus
     {
         [StringValue("...")]
         Default = 0,

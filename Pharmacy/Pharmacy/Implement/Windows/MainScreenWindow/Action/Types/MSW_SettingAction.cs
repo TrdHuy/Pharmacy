@@ -5,8 +5,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 {
     internal class MSW_SettingAction : MSW_ButtonAction
     {
-        public MSW_SettingAction(ILogger logger) : base(logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SettingAction(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
+        public override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.SETTING_PAGE);
         }

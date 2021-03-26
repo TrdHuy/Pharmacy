@@ -13,11 +13,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
     {
         private SQLQueryCustodian _sqlCmdObserver;
         private ReportViewer _reportViewer;
-        public MSW_RP_InitSellingReportButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_RP_InitSellingReportButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             _reportViewer = DataTransfer[1] as ReportViewer;
 

@@ -6,9 +6,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 {
     internal class MSW_MMP_AddNewMedicineButtonAction : MSW_MMP_ButtonAction
     { 
-        public MSW_MMP_AddNewMedicineButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_MMP_AddNewMedicineButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.ADD_MEDICINE_PAGE);
         }

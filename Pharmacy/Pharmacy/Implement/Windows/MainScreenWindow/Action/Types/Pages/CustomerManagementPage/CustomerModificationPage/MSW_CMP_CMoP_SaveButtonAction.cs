@@ -10,9 +10,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
     {
         private SQLQueryCustodian _sqlCmdObserver;
 
-        public MSW_CMP_CMoP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_CMP_CMoP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             if (!CMoPViewModel.IsSaveButtonCanPerform)
             {

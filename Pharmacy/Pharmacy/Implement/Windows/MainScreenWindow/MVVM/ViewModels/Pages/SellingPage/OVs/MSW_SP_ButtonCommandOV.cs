@@ -27,7 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 _isInstantiateNewOrderButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -44,7 +44,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 _isAddOrderDeatailButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -62,7 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 IsAddOrderDeatailButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON
                     , paramaters
-                    , new FactoryLocker(FactoryStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
             });
             RemoveOrderDetailCommand = new CommandModel((paramaters) =>
             {
@@ -74,7 +74,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 IsInstantiateNewOrderButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON
                     , paramaters
-                    , new FactoryLocker(FactoryStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
             });
             RefreshSellingPageCommand = new CommandModel((paramaters) =>
             {

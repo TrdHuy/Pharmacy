@@ -1,11 +1,11 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfoPage
 {
-    internal class MSW_AIP_ButtonAction : AbstractDestroyableViewModelCommandExecuter
+    internal class MSW_AIP_ButtonAction : BaseDestroyableViewModelCommandExecuter
     {
         protected AppInfoPageViewModel AIPViewmodel
         {
@@ -15,15 +15,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
             }
         }
 
-        public MSW_AIP_ButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_AIP_ButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
+            base.ExecuteCommand();
         }
 
         protected override void ExecuteOnDestroy()
         {
-
+            base.ExecuteOnDestroy();
         }
     }
 }

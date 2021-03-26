@@ -9,9 +9,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
     internal class MSW_SMP_ASP_SaveButtonAction : MSW_SMP_ASP_ButtonAction
     {
         private SQLQueryCustodian _sqlCmdObserver;
-        public MSW_SMP_ASP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_SMP_ASP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             if (!ASPViewModel.IsSaveButtonCanPerform)
             {

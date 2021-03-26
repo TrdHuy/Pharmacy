@@ -40,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
         }
 
-        protected void OnKey(string keyTag, object paramaters, FactoryLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected void OnKey(string keyTag, object paramaters, BuilderLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 

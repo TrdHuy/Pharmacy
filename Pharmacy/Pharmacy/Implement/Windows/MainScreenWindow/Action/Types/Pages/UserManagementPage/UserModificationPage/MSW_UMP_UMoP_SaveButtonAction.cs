@@ -12,8 +12,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         private SQLQueryCustodian _sqlCmdObserver;
         private tblUser modifiedInfo;
 
-        public MSW_UMP_UMoP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_UMP_UMoP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
             if (!UMoPViewModel.IsSaveButtonCanPerform)
             {

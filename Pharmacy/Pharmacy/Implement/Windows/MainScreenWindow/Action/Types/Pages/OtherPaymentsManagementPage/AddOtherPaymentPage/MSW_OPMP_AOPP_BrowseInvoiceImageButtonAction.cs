@@ -8,9 +8,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
 {
     internal class MSW_OPMP_AOPP_BrowseInvoiceImageButtonAction : MSW_OPMP_AOPP_ButtonAction
     {
-        public MSW_OPMP_AOPP_BrowseInvoiceImageButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_OPMP_AOPP_BrowseInvoiceImageButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             OpenFileDialog openDialog = FileIOUtil.OpenFile("File ảnh|*.bmp;*.jpg;*.jpeg;*.png", "", "Chọn ảnh hóa đơn!");
             var result = openDialog.ShowDialog();

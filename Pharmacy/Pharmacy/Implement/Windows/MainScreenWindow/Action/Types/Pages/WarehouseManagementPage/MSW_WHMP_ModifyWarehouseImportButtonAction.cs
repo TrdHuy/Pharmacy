@@ -9,11 +9,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
     internal class MSW_WHMP_ModifyWarehouseImportButtonAction : MSW_WHMP_ButtonAction
     {
 
-        public MSW_WHMP_ModifyWarehouseImportButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_WHMP_ModifyWarehouseImportButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[1] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex];

@@ -3,23 +3,23 @@ using Pharmacy.Base.Utils;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public abstract class AbstractActionFactory : IActionFactory
+    public abstract class AbstractActionBuilder : IActionBuilder
     {
-        protected FactoryLocker _locker = new FactoryLocker(FactoryStatus.Unlock, false);
+        protected BuilderLocker _locker = new BuilderLocker(BuilderStatus.Unlock, false);
 
-        public virtual FactoryLocker Locker { get => _locker; set => _locker = value; }
+        public virtual BuilderLocker Locker { get => _locker; set => _locker = value; }
 
         public abstract IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag);
 
         public abstract IAction CreateMainAction(string keyTag);
 
-        public void LockFactory(FactoryStatus status)
+        public void LockBuilder(BuilderStatus status)
         {
             Locker.IsLock = true;
             Locker.Status = status;
         }
 
-        public void UnlockFactory(FactoryStatus status)
+        public void UnlockBuilder(BuilderStatus status)
         {
             Locker.IsLock = false;
             Locker.Status = status;

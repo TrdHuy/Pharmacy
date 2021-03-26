@@ -25,7 +25,7 @@ namespace Pharmacy.Base.UIEventHandler.Listener
         /// <typeparam name="keyFeature">là chuỗi key để xác định đó là feature gì</typeparam>
         /// <typeparam name="obj">data transfer giữa các class</typeparam>
         /// <typeparam name="locker">khóa factory sau khi tạo action</typeparam>
-        void OnKey(string windowTag, string keyFeature, object obj, FactoryLocker locker);
+        void OnKey(string windowTag, string keyFeature, object obj, BuilderLocker locker);
 
         /// <summary>
         /// Thực hiện hành động click vao 1 button
@@ -44,7 +44,7 @@ namespace Pharmacy.Base.UIEventHandler.Listener
         /// <typeparam name="logger">ghi log</typeparam>
         /// <typeparam name="obj">data transfer giữa các class</typeparam>
         /// <typeparam name="locker">khóa factory sau khi tạo action</typeparam>
-        void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object obj, FactoryLocker locker);
+        void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object obj, BuilderLocker locker);
 
         /// <summary>
         /// Thực hiện khi 1 button bị hủy lệnh giữa chừng

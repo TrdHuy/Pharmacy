@@ -11,10 +11,27 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
 {
     internal class BaseDestroyableViewModelCommandExecuter : AbstractDestroyableViewModelCommandExecuter
     {
-        public BaseDestroyableViewModelCommandExecuter(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-
-        public override void ExecuteCommand(object dataTransfer)
+        public BaseDestroyableViewModelCommandExecuter(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger)
         {
+        }
+
+        public override void ExecuteAlternativeCommand()
+        {
+        }
+
+        public override void ExecuteCommand()
+        {
+        }
+
+        protected override void ExecuteOnDestroy()
+        {
+            // set flag IsCancle to true
+            base.ExecuteOnDestroy();
+        }
+
+        public override void SetCompleteFlagAfterExecuteCommand()
+        {
+            IsCompleted = true;
         }
     }
 }

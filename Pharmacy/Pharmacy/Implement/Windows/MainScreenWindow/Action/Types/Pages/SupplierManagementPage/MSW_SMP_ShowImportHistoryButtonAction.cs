@@ -8,10 +8,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
 {
     internal class MSW_SMP_ShowImportHistoryButtonAction : MSW_SMP_ButtonAction
     {
-        public MSW_SMP_ShowImportHistoryButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SMP_ShowImportHistoryButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[1] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedSupplier = SMPViewModel.SupplierItemSource[ctrl.SelectedIndex];

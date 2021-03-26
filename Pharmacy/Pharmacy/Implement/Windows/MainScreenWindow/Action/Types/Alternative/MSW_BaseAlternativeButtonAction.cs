@@ -6,11 +6,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative
 {
     internal class MSW_BaseAlternativeButtonAction : BaseCommandExecuter
     {
-        public MSW_BaseAlternativeButtonAction(ILogger logger) : base(logger) { }
+        public MSW_BaseAlternativeButtonAction(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
         }
     }
 }

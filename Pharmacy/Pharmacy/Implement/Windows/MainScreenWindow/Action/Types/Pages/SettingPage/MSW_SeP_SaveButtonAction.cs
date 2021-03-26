@@ -11,9 +11,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Setting
     {
         private SQLQueryCustodian _sqlCmdObserver;
 
-        public MSW_SeP_SaveButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_SeP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             var user = App.Current.CurrentUser;
             user.GetUserData().FontZoomRatio = SPViewModel.FontSizeRatio;

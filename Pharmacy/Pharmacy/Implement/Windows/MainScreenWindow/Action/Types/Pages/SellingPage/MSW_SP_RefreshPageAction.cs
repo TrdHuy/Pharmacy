@@ -5,8 +5,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 {
     internal class MSW_SP_RefreshPageAction : MSW_SP_ButtonAction
     {
-        public MSW_SP_RefreshPageAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SP_RefreshPageAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
             if (SPViewModel.CustomerOrderDetailItemSource.Count > 0)
             {

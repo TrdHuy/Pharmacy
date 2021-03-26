@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
                 _isSaveButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -46,7 +46,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_AOPP_SAVE_BUTTON
                 , paramaters
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true));
             });
             BrowseInvoiceButtonCommand = new CommandModel((paramaters) =>
             {

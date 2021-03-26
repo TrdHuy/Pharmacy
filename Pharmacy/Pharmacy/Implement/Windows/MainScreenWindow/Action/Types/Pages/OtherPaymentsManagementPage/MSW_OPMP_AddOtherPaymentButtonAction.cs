@@ -6,9 +6,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
 {
     internal class MSW_OPMP_AddOtherPaymentButtonAction : MSW_OPMP_ButtonAction
     {
-        public MSW_OPMP_AddOtherPaymentButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_OPMP_AddOtherPaymentButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.ADD_OTHER_PAYMENT_PAGE);
         }

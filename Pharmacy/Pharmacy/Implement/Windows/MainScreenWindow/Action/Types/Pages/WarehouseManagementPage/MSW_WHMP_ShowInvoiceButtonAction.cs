@@ -7,11 +7,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
 {
     internal class MSW_WHMP_ShowInvoiceButtonAction : MSW_WHMP_ButtonAction
     {
-        public MSW_WHMP_ShowInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_WHMP_ShowInvoiceButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[1] as DataGrid;
 
             FileIOUtil.ShowBitmapFromName(WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex].ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);

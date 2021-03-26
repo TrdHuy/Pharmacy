@@ -10,9 +10,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
 {
     internal  class MSW_UMP_UMoP_CameraButtonAction : MSW_UMP_UMoP_ButtonAction
     {
-        public MSW_UMP_UMoP_CameraButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_UMP_UMoP_CameraButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             if (String.IsNullOrEmpty(UMoPViewModel.UserNameText))
             {

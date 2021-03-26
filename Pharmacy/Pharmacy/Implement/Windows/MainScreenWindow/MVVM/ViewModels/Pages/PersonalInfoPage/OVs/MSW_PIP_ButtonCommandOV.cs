@@ -24,7 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Pers
                 _isSaveButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -43,7 +43,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Pers
                 IsSaveButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_PIP_SAVE_BUTTON
                 , paramaters
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true));
             });
             CancleButtonCommand = new CommandModel((paramaters) =>
             {

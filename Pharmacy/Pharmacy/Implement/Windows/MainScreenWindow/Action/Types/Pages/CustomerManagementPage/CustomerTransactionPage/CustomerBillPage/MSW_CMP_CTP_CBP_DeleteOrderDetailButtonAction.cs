@@ -8,11 +8,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
     {
         private DataGrid orderDetailDataGrid;
 
-        public MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_CMP_CTP_CBP_DeleteOrderDetailButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             orderDetailDataGrid = DataTransfer[1] as DataGrid;
 

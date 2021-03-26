@@ -7,8 +7,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
     internal class MSW_SMP_AddSupplierButtonAction : MSW_SMP_ButtonAction
     {
 
-        public MSW_SMP_AddSupplierButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SMP_AddSupplierButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.ADD_SUPPLIER_PAGE);
         }

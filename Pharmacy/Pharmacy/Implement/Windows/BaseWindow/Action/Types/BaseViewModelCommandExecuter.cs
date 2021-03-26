@@ -11,27 +11,21 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
 {
     internal class BaseViewModelCommandExecuter : AbstractViewModelCommandExecuter
     {
-        public BaseViewModelCommandExecuter(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger)
+        public BaseViewModelCommandExecuter(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger)
         {
-            DataTransfer = new List<object>();
         }
 
-        protected List<object> DataTransfer;
-
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            var cast = dataTransfer as object[];
-            if (cast != null)
-            {
-                foreach (object data in cast)
-                {
-                    DataTransfer.Add(data);
-                }
-            }
-            else if (dataTransfer != null)
-            {
-                DataTransfer.Add(dataTransfer);
-            }
+        }
+
+        public override void ExecuteAlternativeCommand()
+        {
+        }
+
+        public override void SetCompleteFlagAfterExecuteCommand()
+        {
+            IsCompleted = true;
         }
     }
 }

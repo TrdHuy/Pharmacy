@@ -8,10 +8,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
     internal class MSW_SMP_DeleteSupplierButtonAction : MSW_SMP_ButtonAction
     {
         private DataGrid supplierDataGrid;
-        public MSW_SMP_DeleteSupplierButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SMP_DeleteSupplierButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
             supplierDataGrid = DataTransfer[1] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa nhà cung cấp này?",

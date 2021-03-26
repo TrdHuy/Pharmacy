@@ -24,7 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 _isInitSellingReportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -40,7 +40,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 _isInitComprehensiveReportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }

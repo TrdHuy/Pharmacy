@@ -17,10 +17,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         private SQLQueryCustodian _createNewOrderQueryObserver;
         private decimal _previousDebt;
 
-        public MSW_SP_InstantiateNewOrderAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_SP_InstantiateNewOrderAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             if (!CanExecute())
             {

@@ -8,10 +8,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
     {
         private DataGrid warehouseDataGrid;
 
-        public MSW_WHMP_AWIP_DeleteWarehouseImportDetailButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
-        public override void ExecuteCommand(object dataTransfer)
+        public MSW_WHMP_AWIP_DeleteWarehouseImportDetailButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             warehouseDataGrid = DataTransfer[1] as DataGrid;
 

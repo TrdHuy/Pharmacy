@@ -7,9 +7,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
     internal class MSW_SMP_SIHP_ShowInvoiceButtonAction : MSW_SMP_SIHP_ButtonAction
     {
 
-        public MSW_SMP_SIHP_ShowInvoiceButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_SMP_SIHP_ShowInvoiceButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
 
             if (SIHPViewModel.ImportInfo == null)

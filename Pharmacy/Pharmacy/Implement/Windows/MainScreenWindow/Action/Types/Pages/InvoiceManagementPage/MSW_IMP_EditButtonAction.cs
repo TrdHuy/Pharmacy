@@ -7,9 +7,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
 {
     internal class MSW_IMP_EditButtonAction : MSW_IMP_ButtonAction
     {
-        public MSW_IMP_EditButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_IMP_EditButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
 
             MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = IMPViewModel.CurrentSelectedOrderOV.Order;

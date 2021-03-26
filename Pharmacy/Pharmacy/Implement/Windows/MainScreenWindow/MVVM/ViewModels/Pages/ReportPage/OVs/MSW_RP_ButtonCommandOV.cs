@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 _isInitSellingReportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -42,7 +42,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 _isInitComprehensiveReportButtonRunning = value;
                 if (!value)
                 {
-                    _keyActionListener.LockMSW_ActionFactory(false, FactoryStatus.Unlock);
+                    _keyActionListener.LockMSW_ActionFactory(false, BuilderStatus.Unlock);
                 }
                 InvalidateOwn();
             }
@@ -57,14 +57,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
                 IsInitSellingReportButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON
                 , paramaters
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true));
             });
             InitComprehensiveReportButtonCommand = new CommandModel((paramaters) =>
             {
                 IsInitComprehensiveReportButtonRunning = true;
                 OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON
                 , paramaters
-                , new FactoryLocker(FactoryStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true));
             });
         }
 

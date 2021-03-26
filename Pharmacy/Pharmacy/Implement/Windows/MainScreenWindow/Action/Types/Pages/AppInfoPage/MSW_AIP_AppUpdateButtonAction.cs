@@ -20,11 +20,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
         private const string HPSS_REQUEST_APP_UPDATE_ENDPOINT = "https://hpss-customer-services20210319004727.azurewebsites.net/api/CheckForUpdate";
         private const string HPSS_REQUEST_APP_UPDATE_FUNCTION_KEY = "lbffmZxUsfmYaMqeybpu2eOs6qJ2ECdy8Fcvz8cS/bQww6fhg2EeSg==";
 
-        public MSW_AIP_AppUpdateButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_AIP_AppUpdateButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             try
             {

@@ -5,14 +5,20 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
 {
     internal class BaseCommandExecuter : AbstractCommandExecuter
     {
-        public BaseCommandExecuter(ILogger logger) : base(logger) { }
+        public BaseCommandExecuter(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
 
         public override bool CanExecute(object dataTransfer)
         {
             return true;
         }
 
-        public override void ExecuteCommand(object dataTransfer) { }
+        public override void ExecuteAlternativeCommand()
+        {
+        }
+
+        public override void ExecuteCommand()
+        {
+        }
 
         public override void SetCompleteFlagAfterExecuteCommand()
         {

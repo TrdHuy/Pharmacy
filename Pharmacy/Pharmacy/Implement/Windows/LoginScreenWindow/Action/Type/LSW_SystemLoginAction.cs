@@ -14,11 +14,11 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
     {
         private SQLQueryCustodian _observer;
 
-        public LSW_SystemLoginAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public LSW_SystemLoginAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
-            base.ExecuteCommand(dataTransfer);
+            base.ExecuteCommand();
 
             object[] dataFromView = (object[])DataTransfer[1];
 
@@ -90,7 +90,16 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
                 {
                     LSWViewModel.IsLoginButtonRunning = false;
                 }
+
+                //In this asycn action, till the call back method was done execute
+                //need to set the Compelete flag  
+                SetCompleteFlagAfterExecuteCommand();
             }
+        }
+
+        public override void SetCompleteFlagAfterExecuteCommand()
+        {
+            IsCompleted = !LSWViewModel.IsLoginButtonRunning;
         }
 
         private void SaveUserName(string userName)

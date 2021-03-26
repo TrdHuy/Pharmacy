@@ -8,9 +8,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
     {
         private SQLQueryCustodian _sqlQueryObserver;
 
-        public MSW_IMP_DeleteButtonAction(BaseViewModel viewModel, ILogger logger) : base(viewModel, logger) { }
+        public MSW_IMP_DeleteButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand(object dataTransfer)
+        public override void ExecuteCommand()
         {
             if(IMPViewModel.CurrentSelectedOrderOV != null)
             {
