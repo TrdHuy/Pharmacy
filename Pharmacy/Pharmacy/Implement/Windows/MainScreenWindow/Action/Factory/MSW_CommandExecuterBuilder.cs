@@ -97,7 +97,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     commandExecuter = new MSW_AppInfoAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
                     break;
                 default:
-                    commandExecuter = new MSW_NotImplementedAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
                     break;
             }
 

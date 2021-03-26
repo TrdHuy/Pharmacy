@@ -119,7 +119,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             , ILogger logger = null
             , bool isDestroyableCommandExecuter = false)
         {
-            return CreateAction(keytag, windowTag, viewModel, logger, isDestroyableCommandExecuter);
+            return GetAction(keytag, windowTag, viewModel, logger, isDestroyableCommandExecuter);
         }
 
         private IAction GetKeyActionAndLockFactory(string windowTag
@@ -130,15 +130,13 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             , ILogger logger = null
             , bool isDestroyableCommandExecuter = false)
         {
-            IAction action = null;
-
-            action = CreateAction(keytag, windowTag, viewModel, logger, isDestroyableCommandExecuter);
+            var action = GetAction(keytag, windowTag, viewModel, logger, isDestroyableCommandExecuter);
             _commandExecuterFactory.LockBuilder(windowTag, isLock, status);
 
             return action;
         }
 
-        private IAction CreateAction(string keyTag
+        private IAction GetAction(string keyTag
             , string builderID
             , BaseViewModel viewModel = null
             , ILogger logger = null
