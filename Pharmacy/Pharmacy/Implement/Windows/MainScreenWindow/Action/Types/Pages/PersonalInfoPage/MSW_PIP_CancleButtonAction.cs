@@ -9,7 +9,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
     {
         public MSW_PIP_CancleButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             DbManager.Instance.RollBack();
             PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE); 

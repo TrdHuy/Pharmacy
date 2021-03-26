@@ -3,10 +3,10 @@ using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 {
-    internal class MSW_PersonalInfoAction : MSW_ButtonAction
+    internal class MSW_PersonalInfoAction : MSW_NavigationButtonAction
     {
         public MSW_PersonalInfoAction(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.PERSONAL_INFO_PAGE);
         }

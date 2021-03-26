@@ -83,11 +83,32 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
         private void ExetcuteAction(object dataTransfer, IAction action)
         {
-            var status = _actionExecuteHelper.ExecuteAction(action, dataTransfer);
+            var status = ExecuteStatus.None;
 
-            if(status == ExecuteStatus.ExistedExecuter)
+            // if the Helper currently is busy, will check to execute alter action
+            if (action is INavigationAction && _actionExecuteHelper.Status == HelperStatus.RemainSomeExecutingActions)
             {
-                //Implement action when an executer already exist in cache
+                //if the navigation action is going to navigating to new source, will execute alter action
+                if (((INavigationAction)action).IsGotoNewSource)
+                {
+                    status = _actionExecuteHelper.ExecuteAlterAction(action, dataTransfer);
+                }
+                //else keep execute normal action
+                else
+                {
+                    status = _actionExecuteHelper.ExecuteAction(action, dataTransfer);
+                }
+            }
+            else
+            {
+                status = _actionExecuteHelper.ExecuteAction(action, dataTransfer);
+            }
+
+            if (status == ExecuteStatus.ExistedExecuter)
+            {
+                //Create new action that inform to user
+                var newAction = GetAction(KeyFeatureTag.KEY_TAG_EXISTED_SAME_RUNNING_ACTION_BUTTON, WindowTag.WINDOW_TAG_BASE_WINDOW, null, null);
+                status = _actionExecuteHelper.ExecuteAction(newAction, null);
             }
         }
         #endregion
@@ -116,10 +137,9 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         private IAction GetKeyActionType(string windowTag
             , string keytag
             , BaseViewModel viewModel = null
-            , ILogger logger = null
-            , bool isDestroyableCommandExecuter = false)
+            , ILogger logger = null)
         {
-            return GetAction(keytag, windowTag, viewModel, logger, isDestroyableCommandExecuter);
+            return GetAction(keytag, windowTag, viewModel, logger);
         }
 
         private IAction GetKeyActionAndLockFactory(string windowTag
@@ -127,10 +147,9 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             , bool isLock = false
             , BuilderStatus status = BuilderStatus.Default
             , BaseViewModel viewModel = null
-            , ILogger logger = null
-            , bool isDestroyableCommandExecuter = false)
+            , ILogger logger = null)
         {
-            var action = GetAction(keytag, windowTag, viewModel, logger, isDestroyableCommandExecuter);
+            var action = GetAction(keytag, windowTag, viewModel, logger);
             _commandExecuterFactory.LockBuilder(windowTag, isLock, status);
 
             return action;
@@ -139,8 +158,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         private IAction GetAction(string keyTag
             , string builderID
             , BaseViewModel viewModel = null
-            , ILogger logger = null
-            , bool isDestroyableCommandExecuter = false)
+            , ILogger logger = null)
         {
             IAction action;
             try
@@ -154,7 +172,6 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
             if (action == null)
             {
-                _commandExecuterFactory.TurnDestroyableActionBuilder(isDestroyableCommandExecuter);
                 action = _commandExecuterFactory.CreateAction(builderID, keyTag, viewModel, logger);
             }
 

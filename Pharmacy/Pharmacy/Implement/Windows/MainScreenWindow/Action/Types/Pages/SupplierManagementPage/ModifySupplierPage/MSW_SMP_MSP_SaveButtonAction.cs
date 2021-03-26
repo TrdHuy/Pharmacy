@@ -12,7 +12,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
 
         public MSW_SMP_MSP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             if (!MSPViewModel.IsSaveButtonCanPerform)
             {

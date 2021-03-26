@@ -7,7 +7,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
     internal class MSW_UMP_UIP_CancleButtonAction : MSW_UMP_UIP_ButtonAction
     {
         public MSW_UMP_UIP_CancleButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
         }

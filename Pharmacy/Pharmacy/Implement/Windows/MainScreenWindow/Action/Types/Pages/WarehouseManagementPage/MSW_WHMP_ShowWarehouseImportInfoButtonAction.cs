@@ -9,7 +9,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
     internal class MSW_WHMP_ShowWarehouseImportInfoButtonAction : MSW_WHMP_ButtonAction
     {
         public MSW_WHMP_ShowWarehouseImportInfoButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
             object[] param = DataTransfer[1] as object[];

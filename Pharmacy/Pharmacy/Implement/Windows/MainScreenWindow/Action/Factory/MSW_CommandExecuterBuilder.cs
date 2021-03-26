@@ -42,7 +42,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
 {
     internal class MSW_CommandExecuterBuilder : BaseCommandExecuterBuilder
     {
-        public override ICommandExecuter CreateCommandExecuter(string keyTag, ILogger logger)
+        public override ICommandExecuter BuildCommandExecuter(string keyTag, ILogger logger)
         {
             ICommandExecuter commandExecuter = null;
 
@@ -103,21 +103,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
             return commandExecuter;
         }
 
-        public override IDestroyableViewModelCommandExecuter CreateDestroyableViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null)
-        {
-            IDestroyableViewModelCommandExecuter destroyableViewModelCommandExecuter = null;
-            switch (keyTag)
-            {
-                case KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON:
-                    destroyableViewModelCommandExecuter = new MSW_AIP_AppUpdateButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
-                    break;
-                default:
-                    break;
-            }
-            return destroyableViewModelCommandExecuter;
-        }
-
-        public override IViewModelCommandExecuter CreateViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger)
+        public override IViewModelCommandExecuter BuildViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger)
         {
             IViewModelCommandExecuter viewModelCommandExecuter = null;
             switch (keyTag)
@@ -429,19 +415,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON:
                     viewModelCommandExecuter = new MSW_RP_InitComprehensiveReportButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON:
+                    viewModelCommandExecuter = new MSW_AIP_AppUpdateButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
                 default:
                     break;
             }
             return viewModelCommandExecuter;
         }
 
-        public override ICommandExecuter CreateAlternativeCommandExecuterWhenBuilderIsLock(string keyTag, ILogger logger = null)
+        public override ICommandExecuter BuildAlternativeCommandExecuterWhenBuilderIsLock(string keyTag, ILogger logger = null)
         {
             ICommandExecuter action;
             switch (keyTag)
             {
                 default:
-                    action = new MSW_AlternativeAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
+                    action = new MSW_LockedBuilderAlternativeAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
                     break;
             }
             return action;

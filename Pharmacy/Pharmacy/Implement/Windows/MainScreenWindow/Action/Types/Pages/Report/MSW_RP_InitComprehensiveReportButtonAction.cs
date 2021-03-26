@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
         private ReportViewer _reportViewer;
         public MSW_RP_InitComprehensiveReportButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
 

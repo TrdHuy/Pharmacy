@@ -10,7 +10,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
     {
 
         public MSW_OPMP_ModifyOtherPaymentButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
 

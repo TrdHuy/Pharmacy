@@ -23,6 +23,7 @@
         public const string KEY_TAG_MSW_NOT_SUPPORTED_BUTTON = "msw_not_supported_button";
         public const string KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON = "msw_not_implemented_button";
         public const string KEY_TAG_MSW_NONADMIN_BUTTON = "msw_nonadmin_button";
+        public const string KEY_TAG_EXISTED_SAME_RUNNING_ACTION_BUTTON = "existed_same_running_action_button";
 
         //Personal info page key string
         public const string KEY_TAG_MSW_PIP_SAVE_BUTTON = "msw_pip_save_button";

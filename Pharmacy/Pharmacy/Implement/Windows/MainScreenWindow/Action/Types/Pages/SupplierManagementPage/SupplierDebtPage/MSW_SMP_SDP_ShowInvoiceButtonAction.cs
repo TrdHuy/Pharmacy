@@ -8,7 +8,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
     internal class MSW_SMP_SDP_ShowInvoiceButtonAction : MSW_SMP_SDP_ButtonAction
     {
         public MSW_SMP_SDP_ShowInvoiceButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[1] as DataGrid;

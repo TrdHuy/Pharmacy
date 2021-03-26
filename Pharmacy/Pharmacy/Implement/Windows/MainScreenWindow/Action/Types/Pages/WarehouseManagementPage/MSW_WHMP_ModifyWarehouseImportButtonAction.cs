@@ -11,7 +11,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
 
         public MSW_WHMP_ModifyWarehouseImportButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[1] as DataGrid;

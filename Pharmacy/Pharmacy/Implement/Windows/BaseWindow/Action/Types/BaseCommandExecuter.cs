@@ -7,20 +7,24 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
     {
         public BaseCommandExecuter(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
 
-        public override bool CanExecute(object dataTransfer)
+        protected override bool CanExecute(object dataTransfer)
         {
             return true;
         }
 
-        public override void ExecuteAlternativeCommand()
+        protected override void ExecuteAlternativeCommand()
         {
         }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
         }
 
-        public override void SetCompleteFlagAfterExecuteCommand()
+        protected override void ExecuteOnDestroy()
+        {
+        }
+
+        protected override void SetCompleteFlagAfterExecuteCommand()
         {
             IsCompleted = true;
         }

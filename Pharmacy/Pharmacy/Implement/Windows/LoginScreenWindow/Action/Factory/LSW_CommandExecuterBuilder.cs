@@ -9,7 +9,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
 {
     internal class LSW_CommandExecuterBuilder : BaseCommandExecuterBuilder
     {
-        public override IViewModelCommandExecuter CreateViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null)
+        public override IViewModelCommandExecuter BuildViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null)
         {
             IViewModelCommandExecuter viewModelCommandExecuter;
 

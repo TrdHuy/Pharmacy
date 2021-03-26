@@ -13,7 +13,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         private tblUser modifiedInfo;
 
         public MSW_UMP_UMoP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             if (!UMoPViewModel.IsSaveButtonCanPerform)
             {

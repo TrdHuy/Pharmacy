@@ -7,7 +7,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
     internal class MSW_WHMP_SWIIP_ShowInvoiceButtonAction : MSW_WHMP_SWIP_ButtonAction
     {
         public MSW_WHMP_SWIIP_ShowInvoiceButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             FileIOUtil.ShowBitmapFromName(SWIPViewModel.ImportInfo.ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
         }

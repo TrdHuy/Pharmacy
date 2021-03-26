@@ -8,7 +8,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
     internal class MSW_WHMP_AddWarehouseImportButtonAction : MSW_WHMP_ButtonAction
     {
         public MSW_WHMP_AddWarehouseImportButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             PageHost.UpdateCurrentPageSource(PageSource.ADD_WAREHOUSE_IMPORT_PAGE);
         }

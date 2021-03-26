@@ -9,9 +9,9 @@ namespace Pharmacy.Base.UIEventHandler.Action
 
         public virtual BuilderLocker Locker { get => _locker; set => _locker = value; }
 
-        public abstract IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag);
+        public abstract IAction BuildAlternativeActionWhenFactoryIsLock(string keyTag);
 
-        public abstract IAction CreateMainAction(string keyTag);
+        public abstract IAction BuildMainAction(string keyTag);
 
         public void LockBuilder(BuilderStatus status)
         {

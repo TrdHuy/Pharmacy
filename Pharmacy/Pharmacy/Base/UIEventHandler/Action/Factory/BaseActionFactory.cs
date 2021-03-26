@@ -7,6 +7,8 @@ namespace Pharmacy.Base.UIEventHandler.Action.Factory
     {
         public override IAction CreateAction(string builderID, string keyID, BaseViewModel viewModel = null, ILogger logger = null)
         {
+
+            //try to get the registered builder
             IActionBuilder builder = null;
             try
             {
@@ -17,13 +19,14 @@ namespace Pharmacy.Base.UIEventHandler.Action.Factory
                 return null;
             }
 
+            // Build the action
             if (!builder.Locker.IsLock)
             {
-                return builder.CreateMainAction(keyID);
+                return builder.BuildMainAction(keyID);
             }
             else
             {
-                return builder.CreateAlternativeActionWhenFactoryIsLock(keyID);
+                return builder.BuildAlternativeActionWhenFactoryIsLock(keyID);
             }
         }
     }

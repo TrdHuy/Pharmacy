@@ -3,13 +3,15 @@ using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Base.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace Pharmacy.Implement.UIEventHandler.Listener
 {
     public class ActionExecuteHelper
     {
         private static ActionExecuteHelper _instance;
-
+        private const int MAX_BUILDER_CAPACITY = 10;
+        private const int MAX_ACTION_CAPACITY_EACH_BUILDER = 10;
         public static ActionExecuteHelper Current
         {
             get
@@ -21,18 +23,16 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
                 return _instance;
             }
         }
-        private Dictionary<string, Dictionary<string, IAction>> ActionsCache { get; set; }
 
-        /// <summary>
-        /// Action cache for Login Screen Window
-        /// Currently only support cache for destroyable action
-        /// </summary>
-        private Dictionary<string, Dictionary<string, IAction>> DestroyableActionsCache;
+        public HelperStatus Status { get; private set; }
+
+        private Dictionary<string, Dictionary<string, IAction>> BuildersCache { get; set; }
+
 
         private ActionExecuteHelper()
         {
-            ActionsCache = new Dictionary<string, Dictionary<string, IAction>>();
-            DestroyableActionsCache = new Dictionary<string, Dictionary<string, IAction>>();
+            BuildersCache = new Dictionary<string, Dictionary<string, IAction>>(MAX_BUILDER_CAPACITY);
+            Status = HelperStatus.Available;
         }
 
 
@@ -56,14 +56,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
                 {
                     try
                     {
-                        if (cmdEx is IDestroyable)
-                        {
-                            DestroyableActionsCache[action.BuilderID].Remove(action.ActionID);
-                        }
-                        else
-                        {
-                            ActionsCache[action.BuilderID].Remove(action.ActionID);
-                        }
+                        UnregisterActionToCache(action);
                     }
                     catch
                     {
@@ -77,35 +70,68 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             }
         }
 
-        public ExecuteStatus ExecuteAction(IAction action, object dataTransfer)
+        public ExecuteStatus ExecuteAlterAction(IAction action, object dataTransfer)
         {
             var provider = action as ICommandExecuter;
 
             if (provider != null)
             {
 
-                if (!ActionsCache.ContainsKey(action.BuilderID))
+                if (!BuildersCache.ContainsKey(action.BuilderID))
                 {
-                    ActionsCache.Add(action.BuilderID, new Dictionary<string, IAction>());
+                    var actionCache = new Dictionary<string, IAction>(MAX_ACTION_CAPACITY_EACH_BUILDER);
+                    BuildersCache.Add(action.BuilderID, actionCache);
                 }
 
-                if (!DestroyableActionsCache.ContainsKey(action.BuilderID))
+                if (!BuildersCache[action.BuilderID].ContainsKey(action.ActionID))
                 {
-                    DestroyableActionsCache.Add(action.BuilderID, new Dictionary<string, IAction>());
-                }
+                    RegisterActionToCache(provider);
 
-                if (!ActionsCache[action.BuilderID].ContainsKey(action.ActionID))
-                {
-                    if (action is IDestroyable)
-                    {
-                        DestroyableActionsCache[action.BuilderID].Add(action.ActionID, provider);
-                    }
-                    else
-                    {
-                        ActionsCache[action.BuilderID].Add(action.ActionID, provider);
-                    }
                     provider.IsCompletedChanged += ActionIsCompletedChanged;
                     provider.IsCanceledChanged += ActionIsCanceledChanged;
+
+                    provider?.AlterExecute(dataTransfer);
+
+                    return ExecuteStatus.OK;
+                }
+                else
+                {
+                    return ExecuteStatus.ExistedExecuter;
+                }
+            }
+
+            return ExecuteStatus.None;
+        }
+
+        public ExecuteStatus ExecuteAction(IAction action, object dataTransfer)
+        {
+            var provider = action as ICommandExecuter;
+
+            if (provider != null)
+            {
+                if (BuildersCache.Count > MAX_BUILDER_CAPACITY)
+                {
+                    throw new InvalidOperationException("Capacity of builder now is maximum!");
+                }
+
+                if (!BuildersCache.ContainsKey(action.BuilderID))
+                {
+                    var actionCache = new Dictionary<string, IAction>(MAX_ACTION_CAPACITY_EACH_BUILDER);
+                    BuildersCache.Add(action.BuilderID, actionCache);
+                }
+
+                if (!BuildersCache[action.BuilderID].ContainsKey(action.ActionID))
+                {
+                    if (BuildersCache[action.BuilderID].Count > MAX_ACTION_CAPACITY_EACH_BUILDER)
+                    {
+                        throw new InvalidOperationException("Capacity of action now is maximum!");
+                    }
+
+                    RegisterActionToCache(provider);
+
+                    provider.IsCompletedChanged += ActionIsCompletedChanged;
+                    provider.IsCanceledChanged += ActionIsCanceledChanged;
+
                     provider?.Execute(dataTransfer);
 
                     return ExecuteStatus.OK;
@@ -119,17 +145,61 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             return ExecuteStatus.None;
         }
 
+        private void RegisterActionToCache(IAction action)
+        {
+            try
+            {
+                BuildersCache[action.BuilderID].Add(action.ActionID, action);
+                UpdateHelperStatus();
+            }
+            catch { }
+        }
+
+        private void UnregisterActionToCache(IAction action)
+        {
+            try
+            {
+                BuildersCache[action.BuilderID].Remove(action.ActionID);
+                UpdateHelperStatus();
+            }
+            catch { }
+        }
+
+        private void UpdateHelperStatus()
+        {
+            bool isAllBuilderAreFree = false;
+            foreach (var key in BuildersCache.Keys)
+            {
+                isAllBuilderAreFree = IsAllBuilderActionsFinished(key);
+            }
+            if (isAllBuilderAreFree)
+            {
+                Status = HelperStatus.Available;
+            }
+            else
+            {
+                bool isAllBuilderAreFullCache = true;
+                foreach (var key in BuildersCache.Keys)
+                {
+                    isAllBuilderAreFullCache = BuildersCache[key].Count == MAX_ACTION_CAPACITY_EACH_BUILDER;
+                }
+
+                if (isAllBuilderAreFullCache)
+                {
+                    Status = HelperStatus.Unavailable;
+                }
+                else
+                {
+                    Status = HelperStatus.RemainSomeExecutingActions;
+                }
+            }
+        }
+
         public IAction GetActionInCache(string builderID, string keyID)
         {
             try
             {
-                return DestroyableActionsCache[builderID][keyID];
-            }
-            catch { }
-
-            try
-            {
-                return ActionsCache[builderID][keyID];
+                return BuildersCache[builderID][keyID];
             }
             catch { }
 
@@ -144,15 +214,9 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         /// <returns></returns>
         public bool IsActionFinished(string actionID, string builderID)
         {
-            return CheckInNormalCache(actionID, builderID)
-                && CheckInDestroyableCache(actionID, builderID);
-        }
-
-        private bool CheckInNormalCache(string actionID, string builderID)
-        {
             try
             {
-                return !ActionsCache[builderID].ContainsKey(actionID);
+                return !BuildersCache[builderID].ContainsKey(actionID);
             }
             catch
             {
@@ -160,19 +224,19 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             }
         }
 
-        private bool CheckInDestroyableCache(string actionID, string builderID)
+        public bool IsAllBuilderActionsFinished(string builderID)
         {
             try
             {
-                return !DestroyableActionsCache[builderID].ContainsKey(actionID);
+                return !(BuildersCache[builderID].Count > 0);
             }
             catch
             {
                 return true;
             }
         }
+
     }
-
     public enum ExecuteStatus
     {
         None = 1,
@@ -181,4 +245,17 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
         ExistedExecuter = 3,
     }
+
+    public enum HelperStatus
+    {
+        None = 1,
+
+        Available = 2,
+
+        Unavailable = 3,
+
+        RemainSomeExecutingActions = 4,
+    }
 }
+
+

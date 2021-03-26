@@ -184,8 +184,8 @@
     <Compile Include="Base\UIEventHandler\Action\Factory\IActionFactory.cs" />
     <Compile Include="Base\UIEventHandler\Action\Executer\ICommandExecuter.cs" />
     <Compile Include="Base\UIEventHandler\Action\Builder\ICommandExecuterBuilder.cs" />
-    <Compile Include="Base\UIEventHandler\Action\Executer\IDestroyableViewModelCommandExecuter.cs" />
     <Compile Include="Base\UIEventHandler\Action\Executer\IViewModelCommandExecuter.cs" />
+    <Compile Include="Base\UIEventHandler\Action\INavigationAction.cs" />
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\Attributes\AssemblyProductIDAttribute.cs" />
     <Compile Include="Base\Utils\Attributes\AssemblyReleaseDateAttribute.cs" />
@@ -195,7 +195,6 @@
     <Compile Include="Base\Utils\ILogger.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\AppImpl\Models\VOs\AppInfoVO.cs" />
-    <Compile Include="Base\UIEventHandler\Action\Executer\AbstractDestroyableViewModelCommandExecuter.cs" />
     <Compile Include="Implement\UIEventHandler\Listener\ActionExecuteHelper.cs" />
     <Compile Include="Implement\Utils\Extensions\LocalReportExtensions.cs" />
     <Compile Include="Implement\Utils\CustomControls\BusyDataGrid.cs" />
@@ -207,16 +206,16 @@
     <Compile Include="Base\UIEventHandler\Action\Factory\BaseCommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Factory\Pharmacy_CommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseCommandExecuter.cs" />
-    <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseDestroyableViewModelCommandExecuter.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseViewModelCommandExecuter.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSource.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSourceWatcher.cs" />
     <Compile Include="Implement\Windows\LoginScreenWindow\Action\Type\LSW_ButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_ActionIsAlreadyExistedAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_BaseAlternativeButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NonAdminAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_AppInfoAction.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_ButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_NavigationButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_AppUpdateButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_ButtonAction.cs" />
@@ -361,7 +360,7 @@
     <Compile Include="Implement\Utils\InputCommand\EventCommandModel.cs" />
     <Compile Include="Implement\Utils\Logger.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Factory\MSW_CommandExecuterBuilder.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_AlternativeAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_LockedBuilderAlternativeAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NotImplementedAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NotSupportedAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_HomePageButtonAction.cs" />

@@ -8,7 +8,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative
     {
         public MSW_BaseAlternativeButtonAction(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
         }

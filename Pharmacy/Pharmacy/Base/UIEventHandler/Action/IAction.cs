@@ -1,4 +1,6 @@
 ﻿
+using Pharmacy.Base.Utils;
+
 namespace Pharmacy.Base.UIEventHandler.Action
 {
     public interface IAction
@@ -17,5 +19,10 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// Builder id of Action
         /// </summary>
         string BuilderID { get; }
+
+        /// <summary>
+        /// action logger
+        /// </summary>
+        ILogger Logger { get; }
     }
 }

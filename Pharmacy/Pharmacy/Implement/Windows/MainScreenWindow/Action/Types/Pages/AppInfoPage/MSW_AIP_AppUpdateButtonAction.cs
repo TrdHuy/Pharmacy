@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 
         public MSW_AIP_AppUpdateButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
 
@@ -33,7 +33,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
             }
             catch (Exception ex)
             {
-                Log.E(ex.Message);
+                Logger.E(ex.Message);
             }
         }
 

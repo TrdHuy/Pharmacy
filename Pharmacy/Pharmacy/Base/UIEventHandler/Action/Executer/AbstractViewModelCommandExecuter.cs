@@ -20,7 +20,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// 
         /// And the flag will be true as default.
         /// </summary>
-        public override void SetCompleteFlagAfterExecuteCommand()
+        protected override void SetCompleteFlagAfterExecuteCommand()
         {
             IsCompleted = true;
         }
@@ -31,7 +31,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// </summary>
         /// <param name="dataTransfer">data passed into executer</param>
         /// <returns>true if meet condition and execute the command</returns>
-        public override bool CanExecute(object dataTransfer)
+        protected override bool CanExecute(object dataTransfer)
         {
             return true;
         }

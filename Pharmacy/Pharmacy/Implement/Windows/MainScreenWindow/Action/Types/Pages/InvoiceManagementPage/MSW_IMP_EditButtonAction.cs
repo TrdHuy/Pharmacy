@@ -9,7 +9,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
     {
         public MSW_IMP_EditButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
 
             MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = IMPViewModel.CurrentSelectedOrderOV.Order;

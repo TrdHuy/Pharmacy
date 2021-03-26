@@ -4,9 +4,9 @@ namespace Pharmacy.Base.UIEventHandler.Action
 {
     public interface IActionBuilder
     {
-        IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag);
+        IAction BuildAlternativeActionWhenFactoryIsLock(string keyTag);
 
-        IAction CreateMainAction(string keyTag);
+        IAction BuildMainAction(string keyTag);
 
         void LockBuilder(BuilderStatus status = BuilderStatus.Default);
         void UnlockBuilder(BuilderStatus status = BuilderStatus.Default);

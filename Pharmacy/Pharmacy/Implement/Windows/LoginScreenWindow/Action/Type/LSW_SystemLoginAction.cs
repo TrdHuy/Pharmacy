@@ -16,7 +16,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 
         public LSW_SystemLoginAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
 
@@ -97,7 +97,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
             }
         }
 
-        public override void SetCompleteFlagAfterExecuteCommand()
+        protected override void SetCompleteFlagAfterExecuteCommand()
         {
             IsCompleted = !LSWViewModel.IsLoginButtonRunning;
         }

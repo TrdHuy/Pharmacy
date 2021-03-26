@@ -1,19 +1,14 @@
-﻿using Pharmacy.Base.Observable.ObserverPattern;
+﻿using Pharmacy.Base.Utils;
 using System.Collections.Generic;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public interface ICommandExecuter : IAction
+    public interface ICommandExecuter : IAction, IDestroyable
     {
         /// <summary>
         ///  Dữ liệu được truyền vào trong lệnh
         /// </summary>
         IList<object> DataTransfer { get; }
-
-        /// <summary>
-        /// Kiểm tra liệu lệnh này có thể thực thi hay không 
-        /// </summary>
-        bool CanExecute(object dataTransfer);
 
         /// <summary>
         /// Kiểm tra liệu lệnh này đã được thực thi thành công chưa 
@@ -26,22 +21,10 @@ namespace Pharmacy.Base.UIEventHandler.Action
         bool IsCancled { get; }
 
         /// <summary>
-        /// Set completed flag for some command, because when some ExecuteVM() was call
-        /// it may be async method, so should let inherited child overide the flag
-        /// by their own.
+        /// Triển khai action thay thế cho 1 đối tượng  được định nghĩa trước
         /// </summary>
-        void SetCompleteFlagAfterExecuteCommand();
-
-        /// <summary>
-        /// The main method for executer, everything need to be executed will happen here
-        /// </summary>
-        void ExecuteCommand();
-
-
-        /// <summary>
-        /// When command can't be executed, an other alternative command will be executed 
-        /// </summary>
-        void ExecuteAlternativeCommand();
+        /// <returns></returns>
+        bool AlterExecute(object dataTransfer);
 
         event NotifyIsCompletedChangedHandler IsCompletedChanged;
         event NotifyIsCanceledChangedHandler IsCanceledChanged;

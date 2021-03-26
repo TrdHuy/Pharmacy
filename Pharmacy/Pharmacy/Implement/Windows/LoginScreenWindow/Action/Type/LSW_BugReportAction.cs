@@ -7,7 +7,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
     {
         public LSW_BugReportAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
         }
     }

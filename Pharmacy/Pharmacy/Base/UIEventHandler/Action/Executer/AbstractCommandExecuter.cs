@@ -14,7 +14,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
         public event NotifyIsCanceledChangedHandler IsCanceledChanged;
         public event NotifyIsCompletedChangedHandler IsCompletedChanged;
 
-        protected ILogger Log { get; set; }
+        public ILogger Logger { get; private set; }
 
         public bool IsCompleted
         {
@@ -28,7 +28,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
                     ClearCache();
                 }
                 if (oldValue != value)
-                    IsCompletedChanged(this, new ExecuterStatusArgs(value, oldValue));
+                    IsCompletedChanged?.Invoke(this, new ExecuterStatusArgs(value, oldValue));
             }
         }
 
@@ -44,7 +44,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
                     ClearCache();
                 }
                 if (oldValue != value)
-                    IsCanceledChanged(this, new ExecuterStatusArgs(value, oldValue));
+                    IsCanceledChanged?.Invoke(this, new ExecuterStatusArgs(value, oldValue));
 
             }
         }
@@ -56,12 +56,34 @@ namespace Pharmacy.Base.UIEventHandler.Action
 
         public AbstractCommandExecuter(string actionID, string builderID, ILogger logger)
         {
-            this.Log = logger;
+            this.Logger = logger;
             _actionID = actionID;
             _builderID = builderID;
         }
 
+        public void OnDestroy()
+        {
+            if (!IsCompleted)
+            {
+                ExecuteOnDestroy();
+            }
+        }
+
         public bool Execute(object dataTransfer)
+        {
+            AssignDataTransfer(dataTransfer);
+
+            if (CanExecute(dataTransfer))
+            {
+                //Execute the command
+                ExecuteCommand();
+                SetCompleteFlagAfterExecuteCommand();
+                return true;
+            }
+            return false;
+        }
+
+        private void AssignDataTransfer(object dataTransfer)
         {
             //Assign data to Cache
             _dataTransfer = new List<object>();
@@ -77,21 +99,20 @@ namespace Pharmacy.Base.UIEventHandler.Action
             {
                 _dataTransfer.Add(dataTransfer);
             }
+        }
+
+        public bool AlterExecute(object dataTransfer)
+        {
+            AssignDataTransfer(dataTransfer);
 
             if (CanExecute(dataTransfer))
-            {
-                //Execute the command
-                ExecuteCommand();
-                SetCompleteFlagAfterExecuteCommand();
-                return true;
-            }
-            else
             {
                 //Execute alternative command
                 ExecuteAlternativeCommand();
                 SetCompleteFlagAfterExecuteCommand();
-                return false;
+                return true;
             }
+            return false;
         }
 
         /// <summary>
@@ -111,13 +132,13 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// 
         /// And the flag will be true as default.
         /// </summary>
-        public abstract void SetCompleteFlagAfterExecuteCommand();
+        protected abstract void SetCompleteFlagAfterExecuteCommand();
 
 
         /// <summary>
         /// The main method for executer, everything need to be executed will happen here
         /// </summary>
-        public abstract void ExecuteCommand();
+        protected abstract void ExecuteCommand();
 
 
         /// <summary>
@@ -125,13 +146,19 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// </summary>
         /// <param name="dataTransfer">data passed into executer</param>
         /// <returns>true if meet condition and execute the command</returns>
-        public abstract bool CanExecute(object dataTransfer);
+        protected abstract bool CanExecute(object dataTransfer);
 
 
         /// <summary>
-        /// When command can't be executed, an other alternative command will be executed 
+        /// The alternative method for executer, everything need to be executed will happen here
         /// </summary>
-        public abstract void ExecuteAlternativeCommand();
+        protected abstract void ExecuteAlternativeCommand();
+
+
+        /// <summary>
+        /// Destroy a command executer while it is running 
+        /// </summary>
+        protected abstract void ExecuteOnDestroy();
 
     }
 }

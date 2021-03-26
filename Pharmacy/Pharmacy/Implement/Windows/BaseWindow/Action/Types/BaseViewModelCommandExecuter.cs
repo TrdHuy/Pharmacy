@@ -15,17 +15,26 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
         {
         }
 
-        public override void ExecuteCommand()
+        protected override bool CanExecute(object dataTransfer)
+        {
+            return true;
+        }
+
+        protected override void ExecuteCommand()
         {
         }
 
-        public override void ExecuteAlternativeCommand()
+        protected override void ExecuteAlternativeCommand()
         {
         }
 
-        public override void SetCompleteFlagAfterExecuteCommand()
+        protected override void SetCompleteFlagAfterExecuteCommand()
         {
             IsCompleted = true;
+        }
+
+        protected override void ExecuteOnDestroy()
+        {
         }
     }
 }

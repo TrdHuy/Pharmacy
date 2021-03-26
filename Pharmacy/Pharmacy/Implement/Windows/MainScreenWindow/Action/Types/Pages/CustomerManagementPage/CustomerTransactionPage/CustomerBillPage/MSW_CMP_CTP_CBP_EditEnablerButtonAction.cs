@@ -7,7 +7,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
     {
         public MSW_CMP_CTP_CBP_EditEnablerButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
-        public override void ExecuteCommand()
+        protected override void ExecuteCommand()
         {
             CBPViewModel.IsEnableEdittingBill = !CBPViewModel.IsEnableEdittingBill;
 

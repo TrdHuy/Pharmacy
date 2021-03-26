@@ -6,23 +6,21 @@ namespace Pharmacy.Base.UIEventHandler.Action
 {
     public abstract class AbstractCommandExecuterBuilder : AbstractActionBuilder, ICommandExecuterBuilder
     {
-        public override IAction CreateMainAction(string keyTag)
+        public override IAction BuildMainAction(string keyTag)
         {
-            return CreateCommandExecuter(keyTag);
+            return BuildCommandExecuter(keyTag);
         }
 
-        public override IAction CreateAlternativeActionWhenFactoryIsLock(string keyTag)
+        public override IAction BuildAlternativeActionWhenFactoryIsLock(string keyTag)
         {
-            return CreateAlternativeCommandExecuterWhenBuilderIsLock(keyTag);
+            return BuildAlternativeCommandExecuterWhenBuilderIsLock(keyTag);
         }
 
-        public abstract ICommandExecuter CreateAlternativeCommandExecuterWhenBuilderIsLock(string keyTag, ILogger logger = null);
-        public abstract IDestroyableViewModelCommandExecuter CreateAlternativeDestroyableViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
-        public abstract IViewModelCommandExecuter CreateAlternativeViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
+        public abstract ICommandExecuter BuildAlternativeCommandExecuterWhenBuilderIsLock(string keyTag, ILogger logger = null);
+        public abstract IViewModelCommandExecuter BuildAlternativeViewModelCommandExecuterWhenBuilderIsLock(string keyTag, BaseViewModel viewModel, ILogger logger = null);
 
-        public abstract ICommandExecuter CreateCommandExecuter(string keyTag, ILogger logger = null);
-        public abstract IDestroyableViewModelCommandExecuter CreateDestroyableViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null);
-        public abstract IViewModelCommandExecuter CreateViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null);
+        public abstract ICommandExecuter BuildCommandExecuter(string keyTag, ILogger logger = null);
+        public abstract IViewModelCommandExecuter BuildViewModelCommandExecuter(string keyTag, BaseViewModel viewModel, ILogger logger = null);
 
 
     }
