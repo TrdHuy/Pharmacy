@@ -87,7 +87,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
             if(status == ExecuteStatus.ExistedExecuter)
             {
-
+                //Implement action when an executer already exist in cache
             }
         }
         #endregion

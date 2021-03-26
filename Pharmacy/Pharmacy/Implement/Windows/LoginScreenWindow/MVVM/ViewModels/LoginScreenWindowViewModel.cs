@@ -77,8 +77,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 
         private void SystemLoginButtonClickEvent(object obj)
         {
-            if (IsLoginButtonRunning) return;
-
             IsLoginButtonRunning = true;
             object[] dataTransfer = new object[2];
             dataTransfer[0] = this;
