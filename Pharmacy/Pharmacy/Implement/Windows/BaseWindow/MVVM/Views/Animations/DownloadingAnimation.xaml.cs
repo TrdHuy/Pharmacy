@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.MVVM.Views.Animations
     public partial class DownloadingAnimation : UserControl
     {
         private static double[] STATIC_POS = { 200, 360, 460, 520, 525 };
-
+        private double CacheDistance;
         public DownloadingAnimation()
         {
             InitializeComponent();
@@ -50,6 +50,13 @@ namespace Pharmacy.Implement.Windows.BaseWindow.MVVM.Views.Animations
 
         private void SetUpAnimation()
         {
+            var distance = MainGrid.ActualWidth - PurpleTangle.ActualWidth;
+            if(distance == CacheDistance)
+            {
+                return;
+            }
+            CacheDistance = distance;
+
             TranslateTransform translateTransform2 =
                 new TranslateTransform();
             TranslateTransform translateTransform21 =
@@ -86,7 +93,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.MVVM.Views.Animations
                     BeginTime = TimeSpan.FromSeconds(0.6)
                 };
 
-            var poss = CaculatePoint2(MainGrid.ActualWidth);
+            var poss = CaculatePoint2(MainGrid.ActualWidth - PurpleTangle.ActualWidth);
 
             for (int i = 0; i < STATIC_POS.Length; i++)
             {
@@ -112,7 +119,6 @@ namespace Pharmacy.Implement.Windows.BaseWindow.MVVM.Views.Animations
                 res[i] = STATIC_POS[i] * ratio;
             }
             return res;
-
         }
 
     }

@@ -131,52 +131,46 @@
 
         <hps:SquareGrid x:Name="PurpleTangle">
 
-            <Border RenderTransformOrigin="0.5,0.5"
-                    Background="#FF01DCFF"
-                    CornerRadius="100"
-                    BorderThickness="1">
-                <Border.RenderTransform>
+            <Ellipse RenderTransformOrigin="0.5,0.5"
+                     Fill="#FF01DCFF">
+                <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform x:Name="SaleTfDot1st"
                                         ScaleX="1"
                                         ScaleY="1" />
                     </TransformGroup>
-                </Border.RenderTransform>
-            </Border>
+                </Ellipse.RenderTransform>
+            </Ellipse>
         </hps:SquareGrid>
 
-        <hps:SquareGrid Grid.Column="2"
+        <hps:SquareGrid Grid.Column="0"
                         x:Name="PurpleTangle2">
 
-            <Border CornerRadius="100"
-                    Background="#FF01DCFF"
-                    RenderTransformOrigin="0.5,0.5"
-                    BorderThickness="1">
-                <Border.RenderTransform>
+            <Ellipse Fill="#FF01DCFF"
+                     RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform x:Name="SaleTfDot2nd"
                                         ScaleX="0.5"
                                         ScaleY="0.5" />
                     </TransformGroup>
-                </Border.RenderTransform>
-            </Border>
+                </Ellipse.RenderTransform>
+            </Ellipse>
         </hps:SquareGrid>
 
-        <hps:SquareGrid Grid.Column="4"
+        <hps:SquareGrid Grid.Column="0"
                         x:Name="PurpleTangle3">
 
-            <Border RenderTransformOrigin="0.5,0.5"
-                    CornerRadius="100"
-                    Background="#FF01DCFF"
-                    BorderThickness="1">
-                <Border.RenderTransform>
+            <Ellipse RenderTransformOrigin="0.5,0.5"
+                    Fill="#FF01DCFF">
+                <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform x:Name="SaleTfDot3rd"
                                         ScaleX="0.5"
                                         ScaleY="0.5" />
                     </TransformGroup>
-                </Border.RenderTransform>
-            </Border>
+                </Ellipse.RenderTransform>
+            </Ellipse>
 
             <hps:SquareGrid.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
