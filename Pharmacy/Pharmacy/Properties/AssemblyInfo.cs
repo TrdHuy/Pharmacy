@@ -7,7 +7,8 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Pharmacy")]
-[assembly: AssemblyReleaseDetail("First release of PMC")]
+
+
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HPSoftwareSolution")]
 [assembly: AssemblyProduct("PMC")]
@@ -15,16 +16,26 @@ using System.Windows;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+//================================================================================
+// Check release detail when package the product
+[assembly: AssemblyReleaseDetail("First release of PMC")]
+
+// Update the date when package the product
 // date format dd-MM-yyyy
 [assembly: AssemblyReleaseDate("23-03-2021")]
 
-//product id naming rule
-//<Prod_name(short name)>_<Release_date(ddmm)>_<other_code(A-Z)>_<Version>
+// Update the product ID when version up as guide below
+// product id naming rule
+// <Prod_name(short name)>_<Release_date(ddmm)>_<other_code(A-Z)>_<Version>
+// Pharmacy package code: <PMC>_<Release_date(ddmm)>_<XXU>_<Version>
 [assembly: AssemblyProductID("PMC2303XXU1-0-0")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
+
+//================================================================================
+
 [assembly: ComVisible(false)]
 
 //In order to begin building localizable applications, set 
