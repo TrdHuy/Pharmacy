@@ -36,5 +36,9 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
         protected override void ExecuteOnDestroy()
         {
         }
+
+        protected override void ExecuteOnCancel()
+        {
+        }
     }
 }

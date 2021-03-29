@@ -4,6 +4,7 @@ using Pharmacy.Base.UIEventHandler.Action.Factory;
 using Pharmacy.Base.Utils;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Windows.BaseWindow.Action.Builder;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory;
 using System;
@@ -31,6 +32,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Factory
 
         private Pharmacy_CommandExecuterFactory()
         {
+            RegisterBuilder(WindowTag.WINDOW_TAG_BASE_WINDOW, new BaseCommandExecuterBuilder());
             RegisterBuilder(WindowTag.WINDOW_TAG_LOGIN_SCREEN, new LSW_CommandExecuterBuilder());
             RegisterBuilder(WindowTag.WINDOW_TAG_MAIN_SCREEN, new MSW_CommandExecuterBuilder());
         }

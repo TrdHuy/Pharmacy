@@ -165,7 +165,6 @@
     <Compile Include="Base\AsyncAction\AsyncActionResult.cs" />
     <Compile Include="Base\AsyncAction\IAsyncAction.cs" />
     <Compile Include="Base\AsyncTask\AsyncTask.cs" />
-    <Compile Include="Base\AsyncTask\AsyncTaskExecuter.cs" />
     <Compile Include="Base\AsyncTask\AsyncTaskResult.cs" />
     <Compile Include="Base\AsyncTask\IAsyncTask.cs" />
     <Compile Include="Base\Converter\BaseMultiValueConverter.cs" />
@@ -191,6 +190,7 @@
     <Compile Include="Base\Utils\Attributes\AssemblyReleaseDateAttribute.cs" />
     <Compile Include="Base\Utils\Attributes\AssemblyReleaseDetailAttribute.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
+    <Compile Include="Base\Utils\ICanelable.cs" />
     <Compile Include="Base\Utils\IDestroyable.cs" />
     <Compile Include="Base\Utils\ILogger.cs" />
     <Compile Include="Config\RUNE.cs" />
@@ -201,12 +201,16 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetInfoForComprehensiveReportAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetAllActiveCustomerOrdersByDateAction.cs" />
     <Compile Include="Implement\Utils\CustomControls\DestroyablePage\DestroyablePage.cs" />
+    <Compile Include="Implement\Utils\InputCommand\CommandExecuterModel.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Builder\BaseCommandExecuterBuilder.cs" />
     <Compile Include="Base\UIEventHandler\Action\Factory\BaseActionFactory.cs" />
     <Compile Include="Base\UIEventHandler\Action\Factory\BaseCommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Factory\Pharmacy_CommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseCommandExecuter.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseViewModelCommandExecuter.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\MVVM\Views\Animations\DownloadingAnimation.xaml.cs">
+      <DependentUpon>DownloadingAnimation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\BasePageController.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSource.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Utils\PageController\PageSourceWatcher.cs" />
@@ -617,6 +621,9 @@
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPageViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml.cs">
+      <DependentUpon>DownloadProgressControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml.cs">
       <DependentUpon>DailyReportDetailPage.xaml</DependentUpon>
     </Compile>
@@ -681,6 +688,10 @@
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WindowDirector.cs" />
+    <Page Include="Implement\Windows\BaseWindow\MVVM\Views\Animations\DownloadingAnimation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\AppInfo\AppInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -861,6 +872,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\UserControls\PageOverviewInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

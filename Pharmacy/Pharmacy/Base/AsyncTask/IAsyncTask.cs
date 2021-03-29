@@ -32,5 +32,21 @@ namespace Pharmacy.Base.AsyncTask
         /// Xử lý call back sau khi async task được triển khai 
         /// </summary>
         Action<AsyncTaskResult> CallbackHandler { get; }
+
+        /// <summary>
+        /// Task chính đã được thực hiện xong chưa
+        /// </summary>
+        bool IsCompleted { get; internal set; }
+
+        /// <summary>
+        /// Callback đã được thực hiện xong chưa
+        /// </summary>
+        bool IsCompletedCallback { get; internal set; }
+
+        /// <summary>
+        /// Kiểm tra Task chính có bị hủy hay không
+        /// </summary>
+        bool IsCanceled { get; internal set; }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.UIEventHandler.Action;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.InputCommand;
@@ -15,23 +16,40 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
     {
         private static Logger L = new Logger("MSW_AIP_ButtonCommandOV");
 
-        protected override Logger logger => L;
+        private bool _isAppUpdateButtonRunning = false;
 
-        public CommandModel AppUpdateButtonCommand { get; set; }
+        protected override Logger logger => L;
+        public bool IsAppUpdateButtonRunning
+        {
+            get
+            {
+                return _isAppUpdateButtonRunning;
+            }
+            set
+            {
+                _isAppUpdateButtonRunning = value;
+                if (ParentsModel != null && ParentsModel is AppInfoPageViewModel)
+                {
+                    ((AppInfoPageViewModel)ParentsModel).UpdateFlagActionRunning();
+                }
+            }
+        }
+        public bool IsCustomerSupportButtonRunning { get; set; }
+        public bool IsBugReportButtonRunning { get; set; }
+        public bool IsHpssHomePageButtonRunning { get; set; }
+
+        public CommandExecuterModel AppUpdateButtonCommand { get; set; }
         public CommandModel CustomerSupportButtonCommand { get; set; }
         public CommandModel BugReportButtonCommand { get; set; }
         public CommandModel HpssHomePageButtonCommand { get; set; }
 
         public MSW_AIP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            AppUpdateButtonCommand = new CommandModel((paramaters) =>
+            AppUpdateButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON
-                    , paramaters);
-            }
-            , () =>
-            {
-                OnKeyDestroy(WindowTag.WINDOW_TAG_MAIN_SCREEN, KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON);
+                IsAppUpdateButtonRunning = true;
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON
+                    , paramaters) as ICommandExecuter;
             });
 
 

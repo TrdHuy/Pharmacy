@@ -52,7 +52,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             {
                 var cmdEx = action as ICommandExecuter;
 
-                if (cmdEx.IsCompleted || cmdEx.IsCancled)
+                if (cmdEx.IsCompleted || cmdEx.IsCanceled)
                 {
                     try
                     {
@@ -138,6 +138,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
                 }
                 else
                 {
+                    provider?.AlterExecute(dataTransfer);
                     return ExecuteStatus.ExistedExecuter;
                 }
             }
@@ -233,6 +234,20 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             catch
             {
                 return true;
+            }
+        }
+
+        public void CancelAllAction()
+        {
+            foreach(var actions in BuildersCache.Values)
+            {
+                foreach(var action in actions.Values)
+                {
+                    if(action is ICommandExecuter)
+                    {
+                        ((ICommandExecuter)action).OnCancel();
+                    }
+                } 
             }
         }
 

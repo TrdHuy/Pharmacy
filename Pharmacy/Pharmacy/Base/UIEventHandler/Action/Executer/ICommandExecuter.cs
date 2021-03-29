@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Pharmacy.Base.UIEventHandler.Action
 {
-    public interface ICommandExecuter : IAction, IDestroyable
+    public interface ICommandExecuter : IAction, IDestroyable, ICanelable
     {
         /// <summary>
         ///  Dữ liệu được truyền vào trong lệnh
@@ -18,7 +18,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// <summary>
         /// Kiểm tra liệu lệnh này có bị hủy trong lúc đang thực thi hay không 
         /// </summary>
-        bool IsCancled { get; }
+        bool IsCanceled { get; }
 
         /// <summary>
         /// Triển khai action thay thế cho 1 đối tượng  được định nghĩa trước

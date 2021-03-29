@@ -20,6 +20,10 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
         {
         }
 
+        protected override void ExecuteOnCancel()
+        {
+        }
+
         protected override void ExecuteOnDestroy()
         {
         }

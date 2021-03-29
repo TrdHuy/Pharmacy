@@ -1,26 +1,42 @@
-﻿using Pharmacy.Base.Utils;
-using Pharmacy.Base.Utils.Attributes;
-using Pharmacy.Implement.AppImpl.Models.VOs;
+﻿using Pharmacy.Implement.AppImpl.Models.VOs;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage
 {
     internal class AppInfoPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("AppInfoPageViewModel");
+        private bool _isAnActionRunning = false;
 
         public AppInfoVO AppInfo { get; set; }
         public MSW_AIP_ButtonCommandOV ButtonCommandOV { get; set; }
+
+        public bool IsAnActionRunning
+        {
+            get
+            {
+                return _isAnActionRunning;
+            }
+            set
+            {
+                _isAnActionRunning = ButtonCommandOV.IsAppUpdateButtonRunning
+                    || ButtonCommandOV.IsBugReportButtonRunning
+                    || ButtonCommandOV.IsCustomerSupportButtonRunning
+                    || ButtonCommandOV.IsHpssHomePageButtonRunning;
+                InvalidateOwn();
+                Invalidate("AnimationLoadingVisibility");
+            }
+        }
+        public Visibility AnimationLoadingVisibility
+        {
+            get
+            {
+                return IsAnActionRunning ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
 
         protected override Logger logger => L;
 
@@ -38,5 +54,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
             ButtonCommandOV.OnDestroy();
         }
 
+        public void UpdateFlagActionRunning()
+        {
+            IsAnActionRunning = true;
+        }
     }
 }

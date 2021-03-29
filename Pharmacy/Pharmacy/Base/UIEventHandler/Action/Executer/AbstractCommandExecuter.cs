@@ -6,7 +6,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
     public abstract class AbstractCommandExecuter : ICommandExecuter
     {
         private bool _isCompleted = false;
-        private bool _isCancled = false;
+        private bool _isCanceled = false;
         private List<object> _dataTransfer;
         private string _actionID;
         private string _builderID;
@@ -32,14 +32,14 @@ namespace Pharmacy.Base.UIEventHandler.Action
             }
         }
 
-        public bool IsCancled
+        public bool IsCanceled
         {
-            get => _isCancled;
+            get => _isCanceled;
             protected set
             {
-                var oldValue = _isCancled;
-                _isCancled = value;
-                if (_isCancled)
+                var oldValue = _isCanceled;
+                _isCanceled = value;
+                if (_isCanceled)
                 {
                     ClearCache();
                 }
@@ -63,9 +63,16 @@ namespace Pharmacy.Base.UIEventHandler.Action
 
         public void OnDestroy()
         {
+            ClearCache();
+            ExecuteOnDestroy();
+        }
+
+        public void OnCancel()
+        {
             if (!IsCompleted)
             {
-                ExecuteOnDestroy();
+                IsCanceled = true;
+                ExecuteOnCancel();
             }
         }
 
@@ -120,8 +127,11 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// </summary>
         private void ClearCache()
         {
-            _dataTransfer.Clear();
-            _dataTransfer = null;
+            if (_dataTransfer != null)
+            {
+                _dataTransfer.Clear();
+                _dataTransfer = null;
+            }
         }
 
 
@@ -156,9 +166,14 @@ namespace Pharmacy.Base.UIEventHandler.Action
 
 
         /// <summary>
-        /// Destroy a command executer while it is running 
+        /// Destroy a command executer, normally will clear the cache
         /// </summary>
         protected abstract void ExecuteOnDestroy();
 
+
+        /// <summary>
+        /// Cancel a command executer while it is running 
+        /// </summary>
+        protected abstract void ExecuteOnCancel();
     }
 }

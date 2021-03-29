@@ -1,18 +1,19 @@
 ﻿<cc_DestroyablePage:DestroyablePage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo.AppInfoPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo"
-      mc:Ignorable="d"
-      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:cc_DestroyablePage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.DestroyablePage"
-      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      Title="AppInfoPage">
+                                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                    xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo"
+                                    mc:Ignorable="d"
+                                    xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                    xmlns:buca="clr-namespace:Pharmacy.Implement.Windows.BaseWindow.MVVM.Views.Animations"
+                                    xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                    xmlns:cc_DestroyablePage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.DestroyablePage"
+                                    xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                    xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppInfoPage"
+                                    d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                    d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                    Title="AppInfoPage">
     <Page.DataContext>
         <vm:AppInfoPageViewModel />
     </Page.DataContext>
@@ -148,10 +149,16 @@
                                FontSize="{Binding FontSizeOV.FontSizeLarge}" />
                 </Grid>
 
-                <Border Height="1"
-                        Grid.Row="10"
-                        Background="Black"/>
+                <Grid Grid.Row="10"
+                      Height="30">
+                    <Border Height="1"
+                            Background="Black" />
+                    <buca:DownloadingAnimation Visibility="{Binding AnimationLoadingVisibility}">
+                        
+                    </buca:DownloadingAnimation>
+                </Grid>
                 
+
                 <Grid Grid.Row="11">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

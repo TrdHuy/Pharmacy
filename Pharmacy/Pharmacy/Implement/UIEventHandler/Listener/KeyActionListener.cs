@@ -45,40 +45,44 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         #endregion
 
         #region Onkey and execute action field
-        public void OnKey(string windowTag, string keyFeature, object dataTransfer)
+        public IAction OnKey(string windowTag, string keyFeature, object dataTransfer)
         {
             IAction action = GetKeyActionType(windowTag, keyFeature);
             if (action != null)
             {
                 ExetcuteAction(dataTransfer, action);
             }
+            return action;
         }
 
-        public void OnKey(string windowTag, string keyFeature, object dataTransfer, BuilderLocker locker)
+        public IAction OnKey(string windowTag, string keyFeature, object dataTransfer, BuilderLocker locker)
         {
             IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Status);
             if (action != null)
             {
                 ExetcuteAction(dataTransfer, action);
             }
+            return action;
         }
 
-        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer)
+        public IAction OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer)
         {
             IAction action = GetKeyActionType(windowTag, keyFeature, viewModel, logger);
             if (action != null)
             {
                 ExetcuteAction(dataTransfer, action);
             }
+            return action;
         }
 
-        public void OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer, BuilderLocker locker)
+        public IAction OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer, BuilderLocker locker)
         {
             IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Status, viewModel, logger);
             if (action != null)
             {
                 ExetcuteAction(dataTransfer, action);
             }
+            return action;
         }
 
         private void ExetcuteAction(object dataTransfer, IAction action)
@@ -91,6 +95,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
                 //if the navigation action is going to navigating to new source, will execute alter action
                 if (((INavigationAction)action).IsGotoNewSource)
                 {
+                    _actionExecuteHelper.CancelAllAction();
                     status = _actionExecuteHelper.ExecuteAlterAction(action, dataTransfer);
                 }
                 //else keep execute normal action
@@ -104,12 +109,6 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
                 status = _actionExecuteHelper.ExecuteAction(action, dataTransfer);
             }
 
-            if (status == ExecuteStatus.ExistedExecuter)
-            {
-                //Create new action that inform to user
-                var newAction = GetAction(KeyFeatureTag.KEY_TAG_EXISTED_SAME_RUNNING_ACTION_BUTTON, WindowTag.WINDOW_TAG_BASE_WINDOW, null, null);
-                status = _actionExecuteHelper.ExecuteAction(newAction, null);
-            }
         }
         #endregion
 

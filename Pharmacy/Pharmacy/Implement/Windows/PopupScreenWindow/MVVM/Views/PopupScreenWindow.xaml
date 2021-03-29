@@ -6,25 +6,19 @@
                        xmlns:local="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views"
                        xmlns:cctrl="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
                        xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-                       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls"
                        xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels"
                        mc:Ignorable="d"
                        WindowStyle="None"
                        BorderBrush="{StaticResource NormalTheme_MessageBox_Border_Brush}"
                        BorderThickness="1"
-                       DataContextChanged="OnDataContextChanged"
-                       MinHeight="{Binding WindowHeight}"
-                       MinWidth="{Binding WindowWidth}"
-                       Height="{Binding WindowHeight}"
-                       Width="{Binding WindowWidth}"
                        Style="{StaticResource DefaultDashboardStyle}"
                        Title="PopupWindow"
-                       Content="{Binding Content,Mode=TwoWay}"
                        ContentType="NormalContentType"
                        IsEnableMenuTab="False"
                        WindowStartupLocation="CenterScreen"
                        WaitingIconSource="{StaticResource AppIconNoCrop}"
                        PageLoadingDelayTime="{Binding PageLoadingDelayTime}">
-    
 
+    <!--<uc:DownloadProgressControl />-->
 </cctrl:DashboardWindow>

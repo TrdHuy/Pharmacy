@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 
         protected MSW_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel) { }
 
-        protected void OnKey(string keyTag, object paramaters, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected IAction OnKey(string keyTag, object paramaters, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 
@@ -26,7 +26,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             dataTransfer[0] = this.ParentsModel;
             dataTransfer[1] = paramaters;
 
-            _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
+            var action = _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
                                 , logger
                                 , windowTag
                                 , keyTag
@@ -38,9 +38,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             logger.D("Time executed on key = " + timeExecuted + "(ms)");
 #endif
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
+
+            return action;
         }
 
-        protected void OnKey(string keyTag, object paramaters, BuilderLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected IAction OnKey(string keyTag, object paramaters, BuilderLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 
@@ -51,7 +53,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             dataTransfer[0] = this.ParentsModel;
             dataTransfer[1] = paramaters;
 
-            _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
+            var action = _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
                                 , logger
                                 , windowTag
                                 , keyTag
@@ -63,6 +65,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             logger.D("Time executed on key = " + timeExecuted + "(ms)");
 #endif
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
+
+            return action;
         }
 
         protected void OnKeyDestroy(string windowTag, string keyTag)

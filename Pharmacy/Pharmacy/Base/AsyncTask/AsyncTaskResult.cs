@@ -8,22 +8,27 @@ namespace Pharmacy.Base.AsyncTask
 {
     public enum MessageAsyncTaskResult
     {
-        Non = 0x000000,
+        Non = 0,
 
-        // The task has done, but there is no result return
+        /// <summary>
+        /// The task has done, but there is no result return
+        /// </summary>
         OK = 1,
 
-        // Done the task, and return the result
+        /// <summary>
+        /// Done the task, and return the result
+        /// </summary>
         Done = 2,
 
-        // Finished the task, but return the null
+        /// <summary>
+        /// Finished the task, but return the null
+        /// </summary>
         Finished = 3,
 
-        // The task was aborted
+        /// <summary>
+        /// The task was aborted
+        /// </summary>
         Aborted = 4,
-
-        // The task was cancled
-        Cancled = 5
     }
 
     public class AsyncTaskResult

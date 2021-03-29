@@ -25,17 +25,5 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views
         {
             InitializeComponent();
         }
-
-        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            var context = DataContext as PopupScreenWindowViewModel;
-            if(context != null)
-            {
-                this.MinHeight = context.WindowHeight;
-                this.MinWidth = context.WindowWidth;
-                this.Height = context.WindowHeight;
-                this.Width = context.WindowWidth;
-            }
-        }
     }
 }
