@@ -152,8 +152,19 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             {
                 BuildersCache[action.BuilderID].Add(action.ActionID, action);
                 UpdateHelperStatus();
+
+                if (action.Logger != null)
+                {
+                    action.Logger.I($"Registered successfully action: keyID = {action.ActionID}, builderID = {action.BuilderID}");
+                }
             }
-            catch { }
+            catch (Exception e)
+            {
+                if (action.Logger != null)
+                {
+                    action.Logger.E(e.Message);
+                }
+            }
         }
 
         private void UnregisterActionToCache(IAction action)
@@ -162,8 +173,18 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             {
                 BuildersCache[action.BuilderID].Remove(action.ActionID);
                 UpdateHelperStatus();
+                if (action.Logger != null)
+                {
+                    action.Logger.I($"Unregistered successfully action: keyID = {action.ActionID}, builderID = {action.BuilderID}");
+                }
             }
-            catch { }
+            catch (Exception e)
+            {
+                if (action.Logger != null)
+                {
+                    action.Logger.E(e.Message);
+                }
+            }
         }
 
         private void UpdateHelperStatus()
@@ -239,15 +260,37 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
         public void CancelAllAction()
         {
-            foreach(var actions in BuildersCache.Values)
+            foreach (var actions in BuildersCache.Values)
             {
-                foreach(var action in actions.Values)
+                foreach (var action in actions.Values)
                 {
-                    if(action is ICommandExecuter)
+                    if (action is ICommandExecuter)
                     {
                         ((ICommandExecuter)action).OnCancel();
                     }
-                } 
+                }
+            }
+        }
+
+        public void CancelActionWithFeatureKey(string actionKey)
+        {
+            try
+            {
+                foreach (var actions in BuildersCache.Values)
+                {
+                    foreach (var act in actions.Values)
+                    {
+                        if (act is ICommandExecuter && act.ActionID.Equals(actionKey))
+                        {
+                            ((ICommandExecuter)act).OnCancel();
+                            return;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
             }
         }
 
