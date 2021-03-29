@@ -108,7 +108,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
             IViewModelCommandExecuter viewModelCommandExecuter = null;
             switch (keyTag)
             {
-
                 case KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON:
                     viewModelCommandExecuter = new MSW_CMP_AddButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
@@ -417,6 +416,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON:
                     viewModelCommandExecuter = new MSW_AIP_AppUpdateButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_AIP_CONTACT_US_BUTTON:
+                    viewModelCommandExecuter = new MSW_AIP_ContactUsButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
                 default:
                     break;

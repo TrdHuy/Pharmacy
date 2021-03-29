@@ -24,7 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
             {
                 _isAnActionRunning = ButtonCommandOV.IsAppUpdateButtonRunning
                     || ButtonCommandOV.IsBugReportButtonRunning
-                    || ButtonCommandOV.IsCustomerSupportButtonRunning
+                    || ButtonCommandOV.IsContatUsButtonRunning
                     || ButtonCommandOV.IsHpssHomePageButtonRunning;
                 InvalidateOwn();
                 Invalidate("AnimationLoadingVisibility");

@@ -97,7 +97,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 
                 HttpClient client = new HttpClient();
                 client.Timeout = TimeSpan.FromSeconds(10);
+
+                Logger.I($"Start a http connection: Endpoint = {endPoint}, Content = {data}");
+
                 var response = await client.PostAsync(endPoint, httpContent);
+
 
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -107,6 +111,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
             }
             catch (Exception e)
             {
+                Logger.E(e.Message);
                 result.Messsage = e.Message;
                 result.MesResult = MessageAsyncTaskResult.Aborted;
             }

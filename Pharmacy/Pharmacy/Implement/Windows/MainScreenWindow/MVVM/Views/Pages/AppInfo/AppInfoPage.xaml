@@ -207,6 +207,7 @@
                         <hps:OsirisButton Grid.Column="0"
                                           BorderThickness="0"
                                           IsUsingDropShadowEffect="True"
+                                          Command="{Binding ButtonCommandOV.ContactUsButtonCommand}"
                                           Background="Transparent"
                                           IconStretch="Uniform"
                                           IconSource="{StaticResource FaceBookMessengerImage}"

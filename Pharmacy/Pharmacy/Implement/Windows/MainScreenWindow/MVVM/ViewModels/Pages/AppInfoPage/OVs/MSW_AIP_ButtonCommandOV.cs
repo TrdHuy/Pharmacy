@@ -17,6 +17,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
         private static Logger L = new Logger("MSW_AIP_ButtonCommandOV");
 
         private bool _isAppUpdateButtonRunning = false;
+        private bool _isContactUsButtonRunning = false;
 
         protected override Logger logger => L;
         public bool IsAppUpdateButtonRunning
@@ -34,12 +35,26 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
                 }
             }
         }
-        public bool IsCustomerSupportButtonRunning { get; set; }
+        public bool IsContatUsButtonRunning
+        {
+            get
+            {
+                return _isContactUsButtonRunning;
+            }
+            set
+            {
+                _isContactUsButtonRunning = value;
+                if (ParentsModel != null && ParentsModel is AppInfoPageViewModel)
+                {
+                    ((AppInfoPageViewModel)ParentsModel).UpdateFlagActionRunning();
+                }
+            }
+        }
         public bool IsBugReportButtonRunning { get; set; }
         public bool IsHpssHomePageButtonRunning { get; set; }
 
         public CommandExecuterModel AppUpdateButtonCommand { get; set; }
-        public CommandModel CustomerSupportButtonCommand { get; set; }
+        public CommandExecuterModel ContactUsButtonCommand { get; set; }
         public CommandModel BugReportButtonCommand { get; set; }
         public CommandModel HpssHomePageButtonCommand { get; set; }
 
@@ -51,7 +66,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON
                     , paramaters) as ICommandExecuter;
             });
-
+            ContactUsButtonCommand = new CommandExecuterModel((paramaters) =>
+            {
+                IsContatUsButtonRunning = true;
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_CONTACT_US_BUTTON
+                    , paramaters) as ICommandExecuter;
+            });
 
         }
 

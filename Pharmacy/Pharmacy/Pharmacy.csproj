@@ -223,6 +223,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_AppUpdateButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_ButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_ContactUsButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerInstantiationPage\MSW_CMP_CIP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerModificationPage\MSW_CMP_CMoP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerBillPage\MSW_CMP_CTP_CBP_ButtonAction.cs" />
