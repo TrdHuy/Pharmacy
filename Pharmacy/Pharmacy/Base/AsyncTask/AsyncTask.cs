@@ -128,5 +128,56 @@ namespace Pharmacy.Base.AsyncTask
             }
         }
 
+        public static async void AsyncExecute(IAsyncTask asyncTask)
+        {
+            if (asyncTask == null)
+                return;
+
+            var asyncTaskResult = new AsyncTaskResult(null, MessageAsyncTaskResult.Non);
+
+            try
+            {
+                AsynTaskExecuteWatcher = Stopwatch.StartNew();
+
+                var canExecute = asyncTask.CanExecute == null ? true : (bool)asyncTask.CanExecute?.Invoke();
+
+                if (canExecute)
+                {
+                    try
+                    {
+                        asyncTaskResult = await Task.Run<AsyncTaskResult>(asyncTask.Execute);
+
+                        if (asyncTaskResult != null && asyncTaskResult.MesResult == MessageAsyncTaskResult.Aborted)
+                        {
+                            throw new OperationCanceledException(asyncTaskResult.Messsage);
+                        }
+
+                        asyncTask.IsCompleted = true;
+                    }
+                    catch
+                    {
+                        asyncTask.IsCanceled = true;
+                    }
+
+                    AsynTaskExecuteWatcher.Stop();
+                    long restLoadingTime = asyncTask.DelayTime - AsynTaskExecuteWatcher.ElapsedMilliseconds;
+                    if (restLoadingTime > 0)
+                    {
+                        await Task.Delay(Convert.ToInt32(restLoadingTime));
+                    }
+
+                    asyncTask.CallbackHandler?.Invoke(asyncTaskResult);
+                    asyncTask.IsCompletedCallback = true;
+                }
+
+            }
+            catch (OperationCanceledException)
+            {
+                asyncTask.IsCompletedCallback = false;
+                asyncTask.IsCompleted = false;
+                asyncTask.IsCanceled = true;
+            }
+        }
+
     }
 }
