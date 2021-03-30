@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             base.ExecuteCommand();
 
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedCustomer = ctrl.SelectedItem as tblCustomer;
             PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_MODIFICATION_PAGE);

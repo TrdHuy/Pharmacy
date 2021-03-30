@@ -1,5 +1,6 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Base.UIEventHandler.Action.Executer;
 using Pharmacy.Base.UIEventHandler.Listener;
 using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Action.Factory;
@@ -20,96 +21,31 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             _actionExecuteHelper = ActionExecuteHelper.Current;
         }
 
-        #region OnKeyDestroy field
-        public void OnKeyDestroy(string windowTag, string keyFeature)
-        {
-            IAction action;
-            try
-            {
-                action = _actionExecuteHelper.GetActionInCache(windowTag, keyFeature);
-            }
-            catch
-            {
-                action = null;
-            }
-
-            if (action != null)
-            {
-                IDestroyable destroyableAction = action as IDestroyable;
-                if (destroyableAction != null)
-                {
-                    destroyableAction.OnDestroy();
-                }
-            }
-        }
-        #endregion
-
         #region Onkey and execute action field
         public IAction OnKey(string windowTag, string keyFeature, object dataTransfer)
         {
             IAction action = GetKeyActionType(windowTag, keyFeature);
-            if (action != null)
-            {
-                ExetcuteAction(dataTransfer, action);
-            }
             return action;
         }
 
         public IAction OnKey(string windowTag, string keyFeature, object dataTransfer, BuilderLocker locker)
         {
             IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Status);
-            if (action != null)
-            {
-                ExetcuteAction(dataTransfer, action);
-            }
             return action;
         }
 
         public IAction OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer)
         {
             IAction action = GetKeyActionType(windowTag, keyFeature, viewModel, logger);
-            if (action != null)
-            {
-                ExetcuteAction(dataTransfer, action);
-            }
             return action;
         }
 
         public IAction OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object dataTransfer, BuilderLocker locker)
         {
             IAction action = GetKeyActionAndLockFactory(windowTag, keyFeature, locker.IsLock, locker.Status, viewModel, logger);
-            if (action != null)
-            {
-                ExetcuteAction(dataTransfer, action);
-            }
             return action;
         }
 
-        private void ExetcuteAction(object dataTransfer, IAction action)
-        {
-            var status = ExecuteStatus.None;
-
-            // if the Helper currently is busy, will check to execute alter action
-            if (action is INavigationAction && _actionExecuteHelper.Status == HelperStatus.RemainSomeExecutingActions)
-            {
-                //if the navigation action is going to navigating to new source, will execute alter action
-                if (((INavigationAction)action).IsGotoNewSource)
-                {
-                    _actionExecuteHelper.CancelAllAction();
-                    status = _actionExecuteHelper.ExecuteAlterAction(action, dataTransfer);
-                }
-                //else keep execute normal action
-                else
-                {
-                    status = _actionExecuteHelper.ExecuteAction(action, dataTransfer);
-                }
-            }
-            else
-            {
-                status = _actionExecuteHelper.ExecuteAction(action, dataTransfer);
-            }
-
-        }
         #endregion
 
         #region public methods

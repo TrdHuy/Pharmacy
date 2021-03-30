@@ -13,6 +13,12 @@ namespace Pharmacy.Base.UIEventHandler.Action
             this.ViewModel = viewModel;
         }
 
+        public AbstractViewModelCommandExecuter(string actionName, string actionID, string builderID, BaseViewModel viewModel, ILogger logger)
+            : base(actionName, actionID, builderID, logger)
+        {
+            this.ViewModel = viewModel;
+        }
+
         /// <summary>
         /// Set completed flag for some command, because when some ExecuteVM() was call
         /// it may be async method, so should let inherited child overide the flag

@@ -184,7 +184,7 @@
     <Compile Include="Base\UIEventHandler\Action\Executer\ICommandExecuter.cs" />
     <Compile Include="Base\UIEventHandler\Action\Builder\ICommandExecuterBuilder.cs" />
     <Compile Include="Base\UIEventHandler\Action\Executer\IViewModelCommandExecuter.cs" />
-    <Compile Include="Base\UIEventHandler\Action\INavigationAction.cs" />
+    <Compile Include="Base\UIEventHandler\Action\Executer\INavigationCommandExecuter.cs" />
     <Compile Include="Base\UIEventHandler\AttachedProperty\BaseAttachedProperty.cs" />
     <Compile Include="Base\Utils\Attributes\AssemblyProductIDAttribute.cs" />
     <Compile Include="Base\Utils\Attributes\AssemblyReleaseDateAttribute.cs" />
@@ -202,6 +202,7 @@
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetAllActiveCustomerOrdersByDateAction.cs" />
     <Compile Include="Implement\Utils\CustomControls\DestroyablePage\DestroyablePage.cs" />
     <Compile Include="Implement\Utils\InputCommand\CommandExecuterModel.cs" />
+    <Compile Include="Implement\Utils\InputCommand\NavigationCommandExecuterModel.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Builder\BaseCommandExecuterBuilder.cs" />
     <Compile Include="Base\UIEventHandler\Action\Factory\BaseActionFactory.cs" />
     <Compile Include="Base\UIEventHandler\Action\Factory\BaseCommandExecuterFactory.cs" />

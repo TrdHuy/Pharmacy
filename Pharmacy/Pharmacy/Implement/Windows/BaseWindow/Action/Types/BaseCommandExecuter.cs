@@ -6,6 +6,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
     internal class BaseCommandExecuter : AbstractCommandExecuter
     {
         public BaseCommandExecuter(string actionID, string builderID, ILogger logger) : base(actionID, builderID, logger) { }
+        public BaseCommandExecuter(string actionName, string actionID, string builderID, ILogger logger) : base(actionName, actionID, builderID, logger) { }
 
         protected override bool CanExecute(object dataTransfer)
         {

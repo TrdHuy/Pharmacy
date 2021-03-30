@@ -9,6 +9,7 @@ namespace Pharmacy.Base.UIEventHandler.Action
         private bool _isCanceled = false;
         private List<object> _dataTransfer;
         private string _actionID;
+        private string _actionName;
         private string _builderID;
 
         public event NotifyIsCanceledChangedHandler IsCanceledChanged;
@@ -53,12 +54,21 @@ namespace Pharmacy.Base.UIEventHandler.Action
 
         public string ActionID { get => _actionID; }
         public string BuilderID { get => _builderID; }
+        public string ActionName { get => _actionName; }
 
         public AbstractCommandExecuter(string actionID, string builderID, ILogger logger)
         {
             this.Logger = logger;
             _actionID = actionID;
             _builderID = builderID;
+        }
+
+        public AbstractCommandExecuter(string actionName, string actionID, string builderID, ILogger logger)
+        {
+            this.Logger = logger;
+            _actionID = actionID;
+            _builderID = builderID;
+            _actionName = actionName;
         }
 
         public void OnDestroy()

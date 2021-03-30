@@ -14,7 +14,12 @@ namespace Pharmacy.Base.UIEventHandler.Action
         /// ID of Action
         /// </summary>
         string ActionID { get; }
-
+ 
+        /// <summary>
+        /// Name of action
+        /// </summary>
+        string ActionName { get; }
+        
         /// <summary>
         /// Builder id of Action
         /// </summary>

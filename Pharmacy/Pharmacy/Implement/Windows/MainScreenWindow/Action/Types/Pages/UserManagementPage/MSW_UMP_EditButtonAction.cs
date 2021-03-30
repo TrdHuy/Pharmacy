@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         {
             base.ExecuteCommand();
 
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedUser = UMPViewModel.UserItemSource[ctrl.SelectedIndex];
             PageHost.UpdateCurrentPageSource(PageSource.USER_MODIFICATION_PAGE);

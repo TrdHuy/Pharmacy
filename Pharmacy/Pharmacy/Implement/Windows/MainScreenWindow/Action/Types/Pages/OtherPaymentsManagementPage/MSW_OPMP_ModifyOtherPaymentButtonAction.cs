@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
         {
             base.ExecuteCommand();
 
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentSelectedOtherPayment = OPMPViewModel.OtherPaymentItemSource[ctrl.SelectedIndex];
             PageHost.UpdateCurrentPageSource(PageSource.MODIFY_OTHER_PAYMENT_PAGE);

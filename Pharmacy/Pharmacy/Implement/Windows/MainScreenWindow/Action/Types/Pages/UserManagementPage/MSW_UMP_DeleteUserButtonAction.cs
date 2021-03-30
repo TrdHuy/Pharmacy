@@ -13,7 +13,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            userDataGrid = DataTransfer[1] as DataGrid;
+            userDataGrid = DataTransfer[0] as DataGrid;
 
             if (!CanDeleteAccount())
             {

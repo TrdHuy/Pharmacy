@@ -13,7 +13,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         {
             base.ExecuteCommand();
 
-            warehouseDataGrid = DataTransfer[1] as DataGrid;
+            warehouseDataGrid = DataTransfer[0] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa thuốc này khỏi danh sách?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,

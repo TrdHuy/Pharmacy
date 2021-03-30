@@ -13,7 +13,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedMedicine = MMPViewModel.MedicineItemSource[ctrl.SelectedIndex];
             PageHost.UpdateCurrentPageSource(PageSource.MODIFY_MEDICINE_PAGE);

@@ -17,7 +17,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            var lstMedicine = DataTransfer[1] as ObservableCollection<tblMedicine>;
+            var lstMedicine = DataTransfer[0] as ObservableCollection<tblMedicine>;
 
             var lstCaoDon = lstMedicine.Where(o => o.MedicineTypeID == 2).ToList();
             var lstDuocLieu = lstMedicine.Where(o => o.MedicineTypeID == 1).ToList();

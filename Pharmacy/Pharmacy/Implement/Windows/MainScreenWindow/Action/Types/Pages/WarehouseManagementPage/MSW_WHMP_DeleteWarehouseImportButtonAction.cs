@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         {
             base.ExecuteCommand();
 
-            warehouseDataGrid = DataTransfer[1] as DataGrid;
+            warehouseDataGrid = DataTransfer[0] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa thông tin nhập kho này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,

@@ -45,12 +45,5 @@ namespace Pharmacy.Base.UIEventHandler.Listener
         /// <typeparam name="obj">data transfer giữa các class</typeparam>
         /// <typeparam name="locker">khóa factory sau khi tạo action</typeparam>
         IAction OnKey(BaseViewModel viewModel, ILogger logger, string windowTag, string keyFeature, object obj, BuilderLocker locker);
-
-        /// <summary>
-        /// Thực hiện khi 1 button bị hủy lệnh giữa chừng
-        /// </summary>
-        /// <typeparam name="windowTag">là chuỗi key để xác định window nào đang gọi</typeparam>
-        /// <typeparam name="keyFeature">là chuỗi key để xác định đó là feature gì</typeparam>
-        void OnKeyDestroy(string windowTag, string keyFeature);
     }
 }

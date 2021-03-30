@@ -12,7 +12,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             FileIOUtil.ShowBitmapFromName(WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex].ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
             return;

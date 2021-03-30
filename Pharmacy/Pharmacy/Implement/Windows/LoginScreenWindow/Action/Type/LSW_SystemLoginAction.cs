@@ -20,10 +20,8 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
         {
             base.ExecuteCommand();
 
-            object[] dataFromView = (object[])DataTransfer[1];
-
-            TextBox userNameTextEdit = (TextBox)dataFromView[0];
-            PasswordBox userPasswordTextEdit = (PasswordBox)dataFromView[1];
+            TextBox userNameTextEdit = (TextBox)DataTransfer[0];
+            PasswordBox userPasswordTextEdit = (PasswordBox)DataTransfer[1];
 
             string userName = userNameTextEdit.Text;
             string passWord = userPasswordTextEdit.Password;

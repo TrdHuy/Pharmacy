@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
         {
             base.ExecuteCommand();
 
-            _reportViewer = DataTransfer[1] as ReportViewer;
+            _reportViewer = DataTransfer[0] as ReportViewer;
 
             if (RPViewModel.SellingReportEndDate == null
                 || RPViewModel.SellingReportStartDate == null

@@ -14,6 +14,9 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Types
         public BaseViewModelCommandExecuter(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger)
         {
         }
+        public BaseViewModelCommandExecuter(string actionName, string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionName, actionID, builderID, viewModel, logger)
+        {
+        }
 
         protected override bool CanExecute(object dataTransfer)
         {

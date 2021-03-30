@@ -12,7 +12,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedSupplier = SMPViewModel.SupplierItemSource[ctrl.SelectedIndex];
             PageHost.UpdateCurrentPageSource(PageSource.SUPPLIER_IMPORT_HISTORY_PAGE);

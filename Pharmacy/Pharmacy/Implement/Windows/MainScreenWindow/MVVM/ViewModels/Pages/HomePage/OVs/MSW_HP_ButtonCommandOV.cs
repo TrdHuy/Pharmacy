@@ -10,85 +10,85 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Home
     {
         private static Logger L = new Logger("MSW_HP_ButtonCommandOV");
 
-        public CommandExecuterModel SellingCommand { get; set; }
-        public CommandExecuterModel UserManagementCommand { get; set; }
-        public CommandExecuterModel CustomerManagementCommand { get; set; }
-        public CommandExecuterModel MedicineManagementCommand { get; set; }
-        public CommandExecuterModel SupplierManagementCommand { get; set; }
-        public CommandExecuterModel WarehouseManagementCommand { get; set; }
-        public CommandExecuterModel InvoiceManagementCommand { get; set; }
-        public CommandExecuterModel OtherPaymentsManagementCommand { get; set; }
-        public CommandExecuterModel ReportCommand { get; set; }
-        public CommandExecuterModel PersonalInfoCommand { get; set; }
+        public NavigationCommandExecuterModel SellingCommand { get; set; }
+        public NavigationCommandExecuterModel UserManagementCommand { get; set; }
+        public NavigationCommandExecuterModel CustomerManagementCommand { get; set; }
+        public NavigationCommandExecuterModel MedicineManagementCommand { get; set; }
+        public NavigationCommandExecuterModel SupplierManagementCommand { get; set; }
+        public NavigationCommandExecuterModel WarehouseManagementCommand { get; set; }
+        public NavigationCommandExecuterModel InvoiceManagementCommand { get; set; }
+        public NavigationCommandExecuterModel OtherPaymentsManagementCommand { get; set; }
+        public NavigationCommandExecuterModel ReportCommand { get; set; }
+        public NavigationCommandExecuterModel PersonalInfoCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_HP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SellingCommand = new CommandExecuterModel((paramaters) =>
+            SellingCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_SELLING_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            UserManagementCommand = new CommandExecuterModel((paramaters) =>
+            UserManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_USER_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            CustomerManagementCommand = new CommandExecuterModel((paramaters) =>
+            CustomerManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_CUSTOMER_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            MedicineManagementCommand = new CommandExecuterModel((paramaters) =>
+            MedicineManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_MEDICINE_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            SupplierManagementCommand = new CommandExecuterModel((paramaters) =>
+            SupplierManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_SUPPLIER_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            WarehouseManagementCommand = new CommandExecuterModel((paramaters) =>
+            WarehouseManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_WAREHOUSE_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            InvoiceManagementCommand = new CommandExecuterModel((paramaters) =>
+            InvoiceManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_INVOICE_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            OtherPaymentsManagementCommand = new CommandExecuterModel((paramaters) =>
+            OtherPaymentsManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT
                     , paramaters
                     , false);
             });
 
-            ReportCommand = new CommandExecuterModel((paramaters) =>
+            ReportCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_REPORT
                     , paramaters
                     , false);
             });
 
-            PersonalInfoCommand = new CommandExecuterModel((paramaters) =>
+            PersonalInfoCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
                     , paramaters

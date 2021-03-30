@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder = CDPViewModel.OrderItemSource.Where(o => o.OrderID == CDPViewModel.DebtItemSource[ctrl.SelectedIndex].OrderID).FirstOrDefault();
             PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_BILL_PAGE);

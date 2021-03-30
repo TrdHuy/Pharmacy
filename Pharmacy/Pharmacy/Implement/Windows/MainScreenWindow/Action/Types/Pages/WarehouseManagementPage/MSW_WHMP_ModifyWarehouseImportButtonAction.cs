@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex];
             PageHost.UpdateCurrentPageSource(PageSource.MODIFY_WAREHOUSE_IMPORT_PAGE);

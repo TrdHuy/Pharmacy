@@ -22,15 +22,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 #if DEBUG
             Stopwatch onKeyWatcher = Stopwatch.StartNew();
 #endif
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this.ParentsModel;
-            dataTransfer[1] = paramaters;
 
             var action = _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
                                 , logger
                                 , windowTag
                                 , keyTag
-                                , dataTransfer);
+                                , paramaters);
 
 #if DEBUG
             onKeyWatcher.Stop();
@@ -49,15 +46,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 #if DEBUG
             Stopwatch onKeyWatcher = Stopwatch.StartNew();
 #endif
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this.ParentsModel;
-            dataTransfer[1] = paramaters;
 
             var action = _keyActionListener.OnKey(isViewModelOnKey ? ParentsModel : null
                                 , logger
                                 , windowTag
                                 , keyTag
-                                , dataTransfer
+                                , paramaters
                                 , locker);
 #if DEBUG
             onKeyWatcher.Stop();
@@ -69,22 +63,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             return action as ICommandExecuter;
         }
 
-        protected void OnKeyDestroy(string windowTag, string keyTag)
-        {
-            logger.I("OnKeyDestroy: keyTag = " + keyTag + " windowTag = " + windowTag);
-
-#if DEBUG
-            Stopwatch onKeyWatcher = Stopwatch.StartNew();
-#endif
-
-            _keyActionListener.OnKeyDestroy(windowTag, keyTag);
-
-#if DEBUG
-            onKeyWatcher.Stop();
-            var timeExecuted = onKeyWatcher.ElapsedMilliseconds;
-            logger.D("Time executed on key destroy = " + timeExecuted + "(ms)");
-#endif
-            logger.I("OnKeyDestroy done: keyTag = " + keyTag + " windowTag = " + windowTag);
-        }
     }
 }

@@ -18,7 +18,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            orderDetaiDataGrid = DataTransfer[1] as DataGrid;
+            orderDetaiDataGrid = DataTransfer[0] as DataGrid;
 
             if (!SPViewModel.IsAddOrderDetailCanPerform)
             {

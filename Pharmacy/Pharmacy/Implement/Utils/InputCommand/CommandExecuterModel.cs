@@ -1,5 +1,7 @@
 ﻿using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Base.UIEventHandler.Action.Executer;
 using Pharmacy.Base.Utils;
+using Pharmacy.Implement.UIEventHandler.Listener;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +20,40 @@ namespace Pharmacy.Implement.Utils.InputCommand
         private Func<object, ICommandExecuter> _action;
         private ICommandExecuter _commandExecuterCache;
 
+        protected ActionExecuteHelper ActionExecuteHelper { get; set; }
+
+        protected virtual ICommandExecuter CommandExecuterCache
+        {
+            get
+            {
+                return _commandExecuterCache;
+            }
+            set
+            {
+                _commandExecuterCache = value;
+            }
+        }
+
+        public bool IsCompleted
+        {
+            get
+            {
+                return CommandExecuterCache == null ? throw new NullReferenceException("Current cache is null") : CommandExecuterCache.IsCompleted;
+            }
+        }
+
+        public bool IsCaneled
+        {
+            get
+            {
+                return CommandExecuterCache == null ? throw new NullReferenceException("Current cache is null") : CommandExecuterCache.IsCanceled;
+            }
+        }
+
         public CommandExecuterModel(Func<object, ICommandExecuter> hpssAction)
         {
             _action = hpssAction;
+            ActionExecuteHelper = ActionExecuteHelper.Current;
         }
 
         public bool CanExecute(object parameter)
@@ -30,19 +63,21 @@ namespace Pharmacy.Implement.Utils.InputCommand
 
         public void Execute(object parameter)
         {
-            if (_commandExecuterCache != null)
+            if (CommandExecuterCache != null)
             {
-                _commandExecuterCache.IsCompletedChanged -= OnCommandExecuterCompletedChanged;
-                _commandExecuterCache.IsCanceledChanged -= OnCommandExecuterCanceledChanged;
+                CommandExecuterCache.IsCompletedChanged -= OnCommandExecuterCompletedChanged;
+                CommandExecuterCache.IsCanceledChanged -= OnCommandExecuterCanceledChanged;
             }
 
-            _commandExecuterCache = _action?.Invoke(parameter);
-            
-            if (_commandExecuterCache != null)
+            CommandExecuterCache = _action?.Invoke(parameter);
+
+            if (CommandExecuterCache != null)
             {
-                _commandExecuterCache.IsCompletedChanged += OnCommandExecuterCompletedChanged;
-                _commandExecuterCache.IsCanceledChanged += OnCommandExecuterCanceledChanged;
+                CommandExecuterCache.IsCompletedChanged += OnCommandExecuterCompletedChanged;
+                CommandExecuterCache.IsCanceledChanged += OnCommandExecuterCanceledChanged;
             }
+
+            ExetcuteAction(parameter);
         }
 
         private void OnCommandExecuterCompletedChanged(object sender, ExecuterStatusArgs arg)
@@ -57,34 +92,29 @@ namespace Pharmacy.Implement.Utils.InputCommand
 
         public void OnDestroy()
         {
-            if (_commandExecuterCache != null)
+            if (CommandExecuterCache != null)
             {
-                _commandExecuterCache.OnDestroy();
+                CommandExecuterCache.OnDestroy();
             }
         }
 
         public void OnCancel()
         {
-            if (_commandExecuterCache != null)
+            if (CommandExecuterCache != null)
             {
-                _commandExecuterCache.OnCancel();
+                CommandExecuterCache.OnCancel();
             }
         }
 
-        public bool IsCompleted
-        {
-            get
-            {
-                return _commandExecuterCache == null ? throw new NullReferenceException("Current cache is null") : _commandExecuterCache.IsCompleted;
-            }
-        }
 
-        public bool IsCaneled
+
+        protected virtual void ExetcuteAction(object dataTransfer)
         {
-            get
+            if (CommandExecuterCache == null)
             {
-                return _commandExecuterCache == null ? throw new NullReferenceException("Current cache is null") : _commandExecuterCache.IsCanceled;
+                return;
             }
+            ActionExecuteHelper.ExecuteAction(CommandExecuterCache, dataTransfer);
         }
     }
 }

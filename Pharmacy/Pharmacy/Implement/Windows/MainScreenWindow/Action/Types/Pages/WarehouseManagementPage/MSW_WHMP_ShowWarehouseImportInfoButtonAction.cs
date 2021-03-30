@@ -12,7 +12,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            object[] param = DataTransfer[1] as object[];
+            object[] param = DataTransfer[0] as object[];
             DataGrid ctrl = param[0] as DataGrid;
 
             MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex];

@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
         {
             base.ExecuteCommand();
 
-            discountDataGrid = DataTransfer[1] as DataGrid;
+            discountDataGrid = DataTransfer[0] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa khuyến mãi này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,

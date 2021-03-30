@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            otherPaymentsDataGrid = DataTransfer[1] as DataGrid;
+            otherPaymentsDataGrid = DataTransfer[0] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa thanh toán này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,

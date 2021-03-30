@@ -12,7 +12,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            DataGrid ctrl = DataTransfer[1] as DataGrid;
+            DataGrid ctrl = DataTransfer[0] as DataGrid;
 
             FileIOUtil.ShowBitmapFromName(OPMPViewModel.OtherPaymentItemSource[ctrl.SelectedIndex].PaymentID.ToString(), FileIOUtil.OTHER_PAYMENT_IMAGE_FOLDER_NAME);
         }

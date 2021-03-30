@@ -17,7 +17,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         {
             base.ExecuteCommand();
 
-            dataGrid = DataTransfer[1] as DataGrid;
+            dataGrid = DataTransfer[0] as DataGrid;
 
             try
             {

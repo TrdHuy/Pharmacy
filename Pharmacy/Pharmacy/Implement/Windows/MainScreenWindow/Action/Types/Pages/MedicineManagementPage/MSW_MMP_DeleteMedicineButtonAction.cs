@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
         {
             base.ExecuteCommand();
 
-            medicineDataGrid = DataTransfer[1] as DataGrid;
+            medicineDataGrid = DataTransfer[0] as DataGrid;
 
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa thuốc này?",
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,

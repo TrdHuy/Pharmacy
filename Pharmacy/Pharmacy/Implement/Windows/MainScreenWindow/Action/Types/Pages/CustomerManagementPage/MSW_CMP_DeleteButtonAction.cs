@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             base.ExecuteCommand();
 
-            _customerDataGrid = DataTransfer[1] as DataGrid;
+            _customerDataGrid = DataTransfer[0] as DataGrid;
             
             var mesResult = App.Current.ShowApplicationMessageBox("Bạn có chắc xóa khách hàng này?",
                             HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
