@@ -28,29 +28,29 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 InvalidateOwn();
             }
         }
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel CameraButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel SaveButtonCommand { get; set; }
+        public CommandExecuterModel CameraButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_MMoP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            CancelButtonCommand = new CommandModel((paramaters) =>
+            CancelButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_CANCEL_BUTTON
                     , paramaters);
             });
-            CameraButtonCommand = new CommandModel((paramaters) =>
+            CameraButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_CAMERA_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_CAMERA_BUTTON
                     , paramaters);
             });
-            SaveButtonCommand = new CommandModel((paramaters) =>
+            SaveButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_MMP_SAVE_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
         }
 

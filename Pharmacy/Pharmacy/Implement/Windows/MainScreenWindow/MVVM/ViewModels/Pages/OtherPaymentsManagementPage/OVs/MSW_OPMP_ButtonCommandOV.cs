@@ -11,33 +11,33 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
     {
         private static Logger L = new Logger("MSW_OPMP_ButtonCommandOV");
        
-        public CommandModel AddNewOtherPaymentButtonCommand { get; set; }
-        public CommandModel EditOtherPaymentButtonCommand { get; set; }
-        public CommandModel DeleteOtherPaymentButtonCommand { get; set; }
-        public CommandModel ShowInvoiceButtonCommand { get; set; }
+        public CommandExecuterModel AddNewOtherPaymentButtonCommand { get; set; }
+        public CommandExecuterModel EditOtherPaymentButtonCommand { get; set; }
+        public CommandExecuterModel DeleteOtherPaymentButtonCommand { get; set; }
+        public CommandExecuterModel ShowInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_OPMP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            AddNewOtherPaymentButtonCommand = new CommandModel((paramaters) =>
+            AddNewOtherPaymentButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_ADD_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_ADD_BUTTON
                 , paramaters);
             });
-            EditOtherPaymentButtonCommand = new CommandModel((paramaters) =>
+            EditOtherPaymentButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
                 , paramaters);
             }); 
-            DeleteOtherPaymentButtonCommand = new CommandModel((paramaters) =>
+            DeleteOtherPaymentButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_DELETE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_DELETE_BUTTON
                 , paramaters);
             });
-            ShowInvoiceButtonCommand = new CommandModel((paramaters) =>
+            ShowInvoiceButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON
                 , paramaters);
             });
         }

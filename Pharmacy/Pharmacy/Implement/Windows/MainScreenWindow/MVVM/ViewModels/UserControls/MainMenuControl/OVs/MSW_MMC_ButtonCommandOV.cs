@@ -12,34 +12,34 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserContro
 
         protected override Logger logger => L;
 
-        public CommandModel SettingPageCommand { get; set; }
-        public CommandModel PersonalAccountCommand { get; set; }
-        public CommandModel HomePageCommand { get; set; }
-        public CommandModel AppInfoCommand { get; set; }
+        public CommandExecuterModel SettingPageCommand { get; set; }
+        public CommandExecuterModel PersonalAccountCommand { get; set; }
+        public CommandExecuterModel HomePageCommand { get; set; }
+        public CommandExecuterModel AppInfoCommand { get; set; }
 
         public MSW_MMC_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SettingPageCommand = new CommandModel((paramaters) =>
+            SettingPageCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SETTING
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SETTING
                     , paramaters
                     , false);
             });
-            PersonalAccountCommand = new CommandModel((paramaters) =>
+            PersonalAccountCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
                     , paramaters
                     , false);
             });
-            HomePageCommand = new CommandModel((paramaters) =>
+            HomePageCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_HOME_PAGE
                     , paramaters
                     , false);
             });
-            AppInfoCommand = new CommandModel((paramaters) =>
+            AppInfoCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_APP_INFO
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_APP_INFO
                     , paramaters
                     , false);
             });

@@ -55,8 +55,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
 
         public CommandExecuterModel AppUpdateButtonCommand { get; set; }
         public CommandExecuterModel ContactUsButtonCommand { get; set; }
-        public CommandModel BugReportButtonCommand { get; set; }
-        public CommandModel HpssHomePageButtonCommand { get; set; }
+        public CommandExecuterModel BugReportButtonCommand { get; set; }
+        public CommandExecuterModel HpssHomePageButtonCommand { get; set; }
 
         public MSW_AIP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
@@ -64,13 +64,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
             {
                 IsAppUpdateButtonRunning = true;
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON
-                    , paramaters) as ICommandExecuter;
+                    , paramaters);
             });
             ContactUsButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsContatUsButtonRunning = true;
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_CONTACT_US_BUTTON
-                    , paramaters) as ICommandExecuter;
+                    , paramaters);
             });
 
         }

@@ -29,35 +29,35 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             }
         }
 
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel CreateNewPromoButtonCommand { get; set; }
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel DeleteButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel CreateNewPromoButtonCommand { get; set; }
+        public CommandExecuterModel SaveButtonCommand { get; set; }
+        public CommandExecuterModel DeleteButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_DBMP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            CancelButtonCommand = new CommandModel((paramaters) =>
+            CancelButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CANCEL_BUTTON
                     , paramaters);
             });
-            CreateNewPromoButtonCommand = new CommandModel((paramaters) =>
+            CreateNewPromoButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CREATE_NEW_PROMO_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_CREATE_NEW_PROMO_BUTTON
                     , paramaters);
             });
-            DeleteButtonCommand = new CommandModel((paramaters) =>
+            DeleteButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_DELETE_BUTTON
                     , paramaters);
             });
-            SaveButtonCommand = new CommandModel((paramaters) =>
+            SaveButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DBMP_SAVE_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
 
         }

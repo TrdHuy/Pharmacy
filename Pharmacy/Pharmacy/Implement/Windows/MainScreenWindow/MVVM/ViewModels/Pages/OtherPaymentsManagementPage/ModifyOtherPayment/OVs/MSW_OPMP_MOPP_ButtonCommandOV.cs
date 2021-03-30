@@ -28,29 +28,29 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
                 InvalidateOwn();
             }
         }
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel BrowseInvoiceButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel SaveButtonCommand { get; set; }
+        public CommandExecuterModel BrowseInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_OPMP_MOPP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            CancelButtonCommand = new CommandModel((paramaters) =>
+            CancelButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_CANCEL_BUTTON
                 , paramaters);
             });
-            SaveButtonCommand = new CommandModel((paramaters) =>
+            SaveButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_SAVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_SAVE_BUTTON
                 , paramaters
-                , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
-            BrowseInvoiceButtonCommand = new CommandModel((paramaters) =>
+            BrowseInvoiceButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_BROWSE_INVOICE_IMAGE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_MOPP_BROWSE_INVOICE_IMAGE_BUTTON
                 , paramaters);
             });
         }

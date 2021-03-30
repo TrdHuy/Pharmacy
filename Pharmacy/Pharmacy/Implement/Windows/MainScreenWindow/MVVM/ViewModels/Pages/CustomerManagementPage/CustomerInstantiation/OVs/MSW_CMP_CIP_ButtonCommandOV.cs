@@ -32,27 +32,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel CameraButtonCommand { get; set; }
-        public CommandModel CancleButtonCommand { get; set; }
+        public CommandExecuterModel SaveButtonCommand { get; set; }
+        public CommandExecuterModel CameraButtonCommand { get; set; }
+        public CommandExecuterModel CancleButtonCommand { get; set; }
 
         public MSW_CMP_CIP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            SaveButtonCommand = new CommandModel((paramaters) =>
+            SaveButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_SAVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_SAVE_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
-            CameraButtonCommand = new CommandModel((paramaters) =>
+            CameraButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CAMERA_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CAMERA_BUTTON
                     , paramaters);
             });
-            CancleButtonCommand = new CommandModel((paramaters) =>
+            CancleButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CANCLE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CIP_CANCLE_BUTTON
                     , paramaters);
             });
         }

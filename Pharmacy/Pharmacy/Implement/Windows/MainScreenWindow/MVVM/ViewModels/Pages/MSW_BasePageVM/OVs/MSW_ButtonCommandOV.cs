@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 
         protected MSW_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel) { }
 
-        protected IAction OnKey(string keyTag, object paramaters, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected ICommandExecuter OnKey(string keyTag, object paramaters, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 
@@ -39,10 +39,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 #endif
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
 
-            return action;
+            return action as ICommandExecuter;
         }
 
-        protected IAction OnKey(string keyTag, object paramaters, BuilderLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
+        protected ICommandExecuter OnKey(string keyTag, object paramaters, BuilderLocker locker, bool isViewModelOnKey = true, string windowTag = WindowTag.WINDOW_TAG_MAIN_SCREEN)
         {
             logger.I("OnKey: keyTag = " + keyTag + " windowTag = " + windowTag);
 
@@ -66,7 +66,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 #endif
             logger.I("Done: keyTag = " + keyTag + " windowTag = " + windowTag);
 
-            return action;
+            return action as ICommandExecuter;
         }
 
         protected void OnKeyDestroy(string windowTag, string keyTag)

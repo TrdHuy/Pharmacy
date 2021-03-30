@@ -17,8 +17,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private static Logger L = new Logger("ModifyMedicinePageViewModel");
 
         public MSW_MMP_MMoP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel CameraButtonCommand { get; set; }
         public ObservableCollection<tblMedicineType> LstMedicineType { get; set; }
         public ObservableCollection<tblMedicineUnit> LstMedicineUnit { get; set; }
         public ObservableCollection<tblSupplier> LstSupplier { get; set; }

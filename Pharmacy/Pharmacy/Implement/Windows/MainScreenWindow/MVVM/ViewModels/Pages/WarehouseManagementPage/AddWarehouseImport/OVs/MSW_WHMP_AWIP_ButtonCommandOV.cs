@@ -39,43 +39,43 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                 InvalidateOwn();
             }
         }
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel BrowseInvoiceImageButtonCommand { get; set; }
-        public CommandModel AddMedicineToListButtonCommand { get; set; }
-        public CommandModel DeleteMedicineFromListButtonCommand { get; set; }
+        public CommandExecuterModel SaveButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel BrowseInvoiceImageButtonCommand { get; set; }
+        public CommandExecuterModel AddMedicineToListButtonCommand { get; set; }
+        public CommandExecuterModel DeleteMedicineFromListButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_WHMP_AWIP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            DeleteMedicineFromListButtonCommand = new CommandModel((paramaters) =>
+            DeleteMedicineFromListButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_DELETE_MEDICINE_TO_IMPORT_LIST_BUTTON
                 , paramaters);
             });
-            AddMedicineToListButtonCommand = new CommandModel((paramaters) =>
+            AddMedicineToListButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsAddImportDetailButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_ADD_MEDICINE_TO_IMPORT_LIST_BUTTON
                 , paramaters
                 , new BuilderLocker(BuilderStatus.TaskHandling,true));
             });
-            SaveButtonCommand = new CommandModel((paramaters) =>
+            SaveButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsAddWarehouseImportButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_SAVE_BUTTON
                 , paramaters
-                , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
-            CancelButtonCommand = new CommandModel((paramaters) =>
+            CancelButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_CANCEL_BUTTON
                 , paramaters);
             });
-            BrowseInvoiceImageButtonCommand = new CommandModel((paramaters) =>
+            BrowseInvoiceImageButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_AWIP_BROWSE_INVOICE_IMAGE_BUTTON
                 , paramaters);
             });
         }

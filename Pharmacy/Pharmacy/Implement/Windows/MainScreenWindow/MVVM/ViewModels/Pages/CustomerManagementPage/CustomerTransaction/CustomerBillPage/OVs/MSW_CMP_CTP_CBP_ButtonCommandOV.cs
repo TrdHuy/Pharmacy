@@ -54,61 +54,61 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public CommandModel AddNewOrderDetailButtonCommand { get; set; }
-        public CommandModel DeleteOrderDetailButtonCommand { get; set; }
-        public CommandModel EditEnablerButtonCommand { get; set; }
-        public CommandModel SaveButtonCommand { get; set; }
-        public CommandModel RefreshOrderDetaisButtonCommand { get; set; }
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel PrintInvoiceButtonCommand { get; set; }
+        public CommandExecuterModel AddNewOrderDetailButtonCommand { get; set; }
+        public CommandExecuterModel DeleteOrderDetailButtonCommand { get; set; }
+        public CommandExecuterModel EditEnablerButtonCommand { get; set; }
+        public CommandExecuterModel SaveButtonCommand { get; set; }
+        public CommandExecuterModel RefreshOrderDetaisButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel PrintInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_CMP_CTP_CBP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            EditEnablerButtonCommand = new CommandModel((paramaters) =>
+            EditEnablerButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
                     , paramaters);
             });
 
-            AddNewOrderDetailButtonCommand = new CommandModel((paramaters) =>
+            AddNewOrderDetailButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsAddOrderDeatailButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_ADD_ORDER_DETAIL_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
 
-            SaveButtonCommand = new CommandModel((paramaters) =>
+            SaveButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsSaveButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_SAVE_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
 
-            DeleteOrderDetailButtonCommand = new CommandModel((paramaters) =>
+            DeleteOrderDetailButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_DELETE_ORDER_DETAIL_BUTTON
                     , paramaters);
             });
 
-            RefreshOrderDetaisButtonCommand = new CommandModel((paramaters) =>
+            RefreshOrderDetaisButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_REFRESH_BUTTON
                     , paramaters);
             });
 
-            CancelButtonCommand = new CommandModel(paramaters =>
+            CancelButtonCommand = new CommandExecuterModel(paramaters =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_CANCEL_BUTTON
                 , paramaters);
             });
 
-            PrintInvoiceButtonCommand = new CommandModel(paramaters =>
+            PrintInvoiceButtonCommand = new CommandExecuterModel(paramaters =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON
                   , paramaters);
             });
         }

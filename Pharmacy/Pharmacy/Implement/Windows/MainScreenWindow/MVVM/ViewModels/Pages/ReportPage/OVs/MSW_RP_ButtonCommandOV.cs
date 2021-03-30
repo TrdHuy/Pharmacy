@@ -13,8 +13,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         private bool _isInitSellingReportButtonRunning;
         private bool _isInitComprehensiveReportButtonRunning;
 
-        public CommandModel InitSellingReportButtonCommand { get; set; }
-        public CommandModel InitComprehensiveReportButtonCommand { get; set; }
+        public CommandExecuterModel InitSellingReportButtonCommand { get; set; }
+        public CommandExecuterModel InitComprehensiveReportButtonCommand { get; set; }
         public bool IsInitSellingReportButtonRunning
         {
             get
@@ -52,19 +52,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
 
         public MSW_RP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            InitSellingReportButtonCommand = new CommandModel((paramaters) =>
+            InitSellingReportButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsInitSellingReportButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON
                 , paramaters
-                , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
-            InitComprehensiveReportButtonCommand = new CommandModel((paramaters) =>
+            InitComprehensiveReportButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsInitComprehensiveReportButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_RP_INIT_COMPREHENSIVE_REPORT_BUTTON
                 , paramaters
-                , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
         }
 

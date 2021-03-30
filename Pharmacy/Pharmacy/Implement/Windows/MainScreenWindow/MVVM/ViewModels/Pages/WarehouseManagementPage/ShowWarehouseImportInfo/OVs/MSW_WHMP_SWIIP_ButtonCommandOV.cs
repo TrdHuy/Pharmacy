@@ -11,22 +11,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
     {
         private static Logger L = new Logger("MSW_WHMP_SWIIP_ButtonCommandOV");
         
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel BrowseInvoiceImageButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel BrowseInvoiceImageButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_WHMP_SWIIP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
             
-            CancelButtonCommand = new CommandModel((paramaters) =>
+            CancelButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_CANCEL_BUTTON
                 , paramaters);
             });
-            BrowseInvoiceImageButtonCommand = new CommandModel((paramaters) =>
+            BrowseInvoiceImageButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_WHMP_SWIIP_SHOW_INVOICE_BUTTON
                 , paramaters);
             });
         }

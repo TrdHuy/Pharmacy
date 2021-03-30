@@ -21,9 +21,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public tblOrder CurrentSelectedOrderDetail { get; set; }
         public MSW_CMP_CTP_CDP_ButtonCommandOV ButtonCommandOV { get; set; }
 
-        public CommandModel PrintCustomerDebtButtonCommand { get; set; }
-        public CommandModel ReturnButtonCommand { get; set; }
-        public CommandModel BillDisplayButtonCommand { get; set; }
+        public CommandExecuterModel PrintCustomerDebtButtonCommand { get; set; }
+        public CommandExecuterModel ReturnButtonCommand { get; set; }
+        public CommandExecuterModel BillDisplayButtonCommand { get; set; }
 
         public decimal PaidAmount
         {

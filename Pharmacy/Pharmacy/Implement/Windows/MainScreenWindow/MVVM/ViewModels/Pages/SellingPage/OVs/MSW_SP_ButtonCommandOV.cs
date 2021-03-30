@@ -50,35 +50,35 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             }
         }
 
-        public CommandModel AddOrderDetailCommand { get; set; }
-        public CommandModel RemoveOrderDetailCommand { get; set; }
-        public CommandModel InstantiateOrderCommand { get; set; }
-        public CommandModel RefreshSellingPageCommand { get; set; }
+        public CommandExecuterModel AddOrderDetailCommand { get; set; }
+        public CommandExecuterModel RemoveOrderDetailCommand { get; set; }
+        public CommandExecuterModel InstantiateOrderCommand { get; set; }
+        public CommandExecuterModel RefreshSellingPageCommand { get; set; }
 
         public MSW_SP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            AddOrderDetailCommand = new CommandModel((paramaters) =>
+            AddOrderDetailCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsAddOrderDeatailButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_ADD_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
-            RemoveOrderDetailCommand = new CommandModel((paramaters) =>
+            RemoveOrderDetailCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_REMOVE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_REMOVE_BUTTON
                     , paramaters);
             });
-            InstantiateOrderCommand = new CommandModel((paramaters) =>
+            InstantiateOrderCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsInstantiateNewOrderButtonRunning = true;
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_INSTANTIATE_BUTTON
                     , paramaters
-                    , new BuilderLocker(BuilderStatus.TaskHandling, true));
+                    , new BuilderLocker(BuilderStatus.TaskHandling, true)) as ICommandExecuter;
             });
-            RefreshSellingPageCommand = new CommandModel((paramaters) =>
+            RefreshSellingPageCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_REFRESH_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SP_REFRESH_BUTTON
                     , paramaters);
             });
 

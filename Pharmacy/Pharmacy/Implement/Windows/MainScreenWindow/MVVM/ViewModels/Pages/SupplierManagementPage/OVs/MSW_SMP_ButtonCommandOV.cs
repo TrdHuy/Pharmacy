@@ -10,33 +10,33 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
     {
         private static Logger L = new Logger("MSW_SMP_ButtonCommandOV");
 
-        public CommandModel AddNewSupplierButtonCommand { get; set; }
-        public CommandModel EditSupplierButtonCommand { get; set; }
-        public CommandModel DeleteSupplierButtonCommand { get; set; }
-        public CommandModel ShowImportHistoryButtonCommand { get; set; }
+        public CommandExecuterModel AddNewSupplierButtonCommand { get; set; }
+        public CommandExecuterModel EditSupplierButtonCommand { get; set; }
+        public CommandExecuterModel DeleteSupplierButtonCommand { get; set; }
+        public CommandExecuterModel ShowImportHistoryButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_SMP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            AddNewSupplierButtonCommand = new CommandModel((paramaters) =>
+            AddNewSupplierButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_ADD_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_ADD_BUTTON
                 , paramaters);
             });
-            EditSupplierButtonCommand = new CommandModel((paramaters) =>
+            EditSupplierButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_EDIT_BUTTON
                 , paramaters);
             });
-            DeleteSupplierButtonCommand = new CommandModel((paramaters) =>
+            DeleteSupplierButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_DELETE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_DELETE_BUTTON
                 , paramaters);
             });
-            ShowImportHistoryButtonCommand = new CommandModel((paramaters) =>
+            ShowImportHistoryButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SHOW_IMPORT_HISTORY_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SHOW_IMPORT_HISTORY_BUTTON
                 , paramaters);
             });
         }

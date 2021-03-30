@@ -11,27 +11,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
     {
         private static Logger L = new Logger("MSW_SMP_SIHP_ButtonCommandOV");
 
-        public CommandModel CancelButtonCommand { get; set; }
-        public CommandModel ShowDebtButtonCommand { get; set; }
-        public CommandModel ShowInvoiceButtonCommand { get; set; }
+        public CommandExecuterModel CancelButtonCommand { get; set; }
+        public CommandExecuterModel ShowDebtButtonCommand { get; set; }
+        public CommandExecuterModel ShowInvoiceButtonCommand { get; set; }
 
         protected override Logger logger => L;
 
         public MSW_SMP_SIHP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            ShowDebtButtonCommand = new CommandModel((paramaters) =>
+            ShowDebtButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_DEBT_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_DEBT_BUTTON
                 , paramaters);
             });
-            CancelButtonCommand = new CommandModel((paramaters) =>
+            CancelButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_CANCEL_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_CANCEL_BUTTON
                 , paramaters);
             });
-            ShowInvoiceButtonCommand = new CommandModel((paramaters) =>
+            ShowInvoiceButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_SMP_SIHP_SHOW_INVOICE_BUTTON
                 , paramaters);
             });
         }

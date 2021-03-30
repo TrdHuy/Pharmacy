@@ -10,67 +10,67 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
     {
         private static Logger L = new Logger("MSW_MMP_ButtonCommandOV");
 
-        public CommandModel ExcelImportButtonCommand { get; set; }
-        public CommandModel PrintMedicineListButtonCommand { get; set; }
-        public CommandModel AddNewMedicineButtonCommand { get; set; }
-        public CommandModel EditMedicineButtonCommand { get; set; }
-        public CommandModel DeleteMedicineButtonCommand { get; set; }
-        public CommandModel PromoMedicineButtonCommand { get; set; }
+        public CommandExecuterModel ExcelImportButtonCommand { get; set; }
+        public CommandExecuterModel PrintMedicineListButtonCommand { get; set; }
+        public CommandExecuterModel AddNewMedicineButtonCommand { get; set; }
+        public CommandExecuterModel EditMedicineButtonCommand { get; set; }
+        public CommandExecuterModel DeleteMedicineButtonCommand { get; set; }
+        public CommandExecuterModel PromoMedicineButtonCommand { get; set; }
 
         protected override Logger logger => L;
         public MSW_MMP_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
-            ExcelImportButtonCommand = new CommandModel((paramaters) =>
+            ExcelImportButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EXCEL_IMPORT_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EXCEL_IMPORT_BUTTON
                     , paramaters);
             });
-            PrintMedicineListButtonCommand = new CommandModel((paramaters) =>
+            PrintMedicineListButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON
                     , paramaters);
             });
-            AddNewMedicineButtonCommand = new CommandModel((paramaters) =>
+            AddNewMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
             {
-                OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_ADD_BUTTON
                     , paramaters);
             });
 
             if (App.Current.CurrentUser.IsAdmin)
             {
-                EditMedicineButtonCommand = new CommandModel((paramaters) =>
+                EditMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
                 {
-                    OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON,
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON,
                            paramaters);
                 });
-                DeleteMedicineButtonCommand = new CommandModel((paramaters) =>
+                DeleteMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
                 {
-                    OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON,
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_DELETE_BUTTON,
                            paramaters);
                 });
-                PromoMedicineButtonCommand = new CommandModel((paramaters) =>
+                PromoMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
                 {
-                    OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON,
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_MMP_PROMO_BUTTON,
                            paramaters);
                 });
             }
             else
             {
-                EditMedicineButtonCommand = new CommandModel((paramaters) =>
+                EditMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
                 {
-                    OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
                            paramaters,
                            false);
                 });
-                DeleteMedicineButtonCommand = new CommandModel((paramaters) =>
+                DeleteMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
                 {
-                    OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
                            paramaters,
                            false);
                 });
-                PromoMedicineButtonCommand = new CommandModel((paramaters) =>
+                PromoMedicineButtonCommand = new CommandExecuterModel((paramaters) =>
                 {
-                    OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON,
                            paramaters,
                            false);
                 });

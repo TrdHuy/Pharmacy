@@ -16,7 +16,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         private static Logger L = new Logger("AddSupplierPageViewModel");
 
         public MSW_SMP_ASP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public CommandModel SaveButtonCommand { get; set; }
         public int SupplierNameCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int SupplierPhoneCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public bool IsSaveButtonCanPerform
@@ -58,7 +57,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         private string _supplierName = "";
         private string _phone = "";
-        private bool _isSaveButtonRunning;
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private List<tblSupplier> _lstActiveSuppliers;
 
