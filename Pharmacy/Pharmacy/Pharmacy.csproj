@@ -622,6 +622,9 @@
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPageViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\BugReportPage.xaml.cs">
+      <DependentUpon>BugReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml.cs">
       <DependentUpon>DownloadProgressControl.xaml</DependentUpon>
     </Compile>
@@ -876,6 +879,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\BugReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -969,6 +976,7 @@
     <Content Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingReport.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\anti_bug.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

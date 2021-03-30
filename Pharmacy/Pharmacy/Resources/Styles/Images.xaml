@@ -64,6 +64,9 @@
 
     <BitmapImage x:Key="AntiBugImage"
                  UriSource="/Pharmacy;component/Resources/Icons/anti_bug.png" />
+    
+    <BitmapImage x:Key="AntiBugImage2"
+                 UriSource="/Pharmacy;component/Resources/Images/anti_bug.png"></BitmapImage>
 
     <system:Double x:Key="ImageSizeRegular">34</system:Double>
     <system:Double x:Key="ImageSizeRegular_Float">40</system:Double>
