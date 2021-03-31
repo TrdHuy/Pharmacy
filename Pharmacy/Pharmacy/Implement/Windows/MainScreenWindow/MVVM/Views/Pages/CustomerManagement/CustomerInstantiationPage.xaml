@@ -1,18 +1,23 @@
 ﻿<quotableEventPage:QuotableEventPage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerInstantiationPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
-      mc:Ignorable="d"
-      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerInstantiation"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      DataContext="{Binding Path=(vm:CustomerInstantiationPageViewModel.Current)}"
-      Title="CustomerInstantiationPage">
+                                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
+                                     mc:Ignorable="d"
+                                     xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerInstantiation"
+                                     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                     xmlns:vmh="clr-namespace:Pharmacy.Base.Utils.ViewModelHelper"
+                                     d:DataContext="{d:DesignInstance {x:Type vm:CustomerInstantiationPageViewModel}}"
+                                     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                     Title="CustomerInstantiationPage">
+
+    <Page.DataContext>
+        <Binding Source="{vmh:VMManagerMarkup {x:Type vm:CustomerInstantiationPageViewModel}}" />
+    </Page.DataContext>
 
     <Grid Background="White">
         <Grid.RowDefinitions>

@@ -175,17 +175,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         protected override void OnInitializing()
         {
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
+
             ButtonCommandOV = new MSW_CMP_CMoP_ButtonCommandOV(this);
             GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
-
-            CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.CustomerName) ?
-                Visibility.Visible : Visibility.Collapsed;
-            PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.Phone) ?
-                Visibility.Visible : Visibility.Collapsed;
-
-            CustomerImageSource = FileIOUtil.
-                GetBitmapFromName(CurrentModifiedCustomer.CustomerID.ToString(), FileIOUtil.CUSTOMER_IMAGE_FOLDER_NAME).
-                ToImageSource();
         }
 
         protected override void OnInitialized()
@@ -205,6 +197,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             {
                 ctrl.Width = avaBorder.RenderSize.Width;
             }
+        }
+
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
+
+            CustomerImageSource = FileIOUtil.
+                GetBitmapFromName(CurrentModifiedCustomer.CustomerID.ToString(), FileIOUtil.CUSTOMER_IMAGE_FOLDER_NAME).
+                ToImageSource();
+
+            CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.CustomerName) ?
+               Visibility.Visible : Visibility.Collapsed;
+            PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(CurrentModifiedCustomer.Phone) ?
+                Visibility.Visible : Visibility.Collapsed;
         }
 
     }

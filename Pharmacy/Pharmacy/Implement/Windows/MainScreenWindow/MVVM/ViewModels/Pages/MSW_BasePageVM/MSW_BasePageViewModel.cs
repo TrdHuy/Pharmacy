@@ -34,8 +34,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
             IsInitialized = true;
         }
 
+        /// <summary>
+        /// Occur once when the view model was created
+        /// </summary>
         protected abstract void OnInitializing();
+
+        /// <summary>
+        /// Occur once when finish initting view model
+        /// </summary>
         protected abstract void OnInitialized();
+
 
         public virtual void OnUnloaded()
         {

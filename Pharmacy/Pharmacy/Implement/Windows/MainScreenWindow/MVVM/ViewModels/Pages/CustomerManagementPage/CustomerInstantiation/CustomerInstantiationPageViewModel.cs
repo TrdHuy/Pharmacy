@@ -13,14 +13,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     internal class CustomerInstantiationPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerInstantiationPageViewModel");
-        private static CustomerInstantiationPageViewModel VM = new CustomerInstantiationPageViewModel();
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
         private ImageSource _customerImageSource;
         private tblCustomer _newCustomer;
 
-        public static CustomerInstantiationPageViewModel Current => VM;
 
         #region Public properties
         public tblCustomer NewCustomer
@@ -157,17 +155,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         protected override void OnInitializing()
         {
-            ButtonCommandOV = new MSW_CMP_CIP_ButtonCommandOV(this);
-
             NewCustomer = new tblCustomer();
 
-            CustomerImageSource = Properties.Resources.customer_default_icon.ToImageSource();
-
-            CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.CustomerName) ?
-                Visibility.Visible : Visibility.Collapsed;
-            PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.Phone) ?
-                Visibility.Visible : Visibility.Collapsed;
-
+            ButtonCommandOV = new MSW_CMP_CIP_ButtonCommandOV(this);
             GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
         }
         
@@ -190,6 +180,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            NewCustomer = new tblCustomer();
+            CustomerImageSource = Properties.Resources.customer_default_icon.ToImageSource();
+            CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.CustomerName) ?
+               Visibility.Visible : Visibility.Collapsed;
+            PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.Phone) ?
+                Visibility.Visible : Visibility.Collapsed;
+        }
     }
 }

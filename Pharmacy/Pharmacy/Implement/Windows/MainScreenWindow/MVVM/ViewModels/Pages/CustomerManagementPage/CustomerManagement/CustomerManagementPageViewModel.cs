@@ -13,15 +13,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     internal class CustomerManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerManagementPageViewModel");
-        private static CustomerManagementPageViewModel VM = new CustomerManagementPageViewModel();
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private SQLQueryCustodian _sqlCmdObserver;
         private string _searchText;
         private string _tip;
         private bool _isDataGridLoading;
 
-        public static CustomerManagementPageViewModel Current => VM;
         public int DelayTextChangedHandler { get; set; }
         public string SearchText
         {
@@ -69,7 +66,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             InstantiateTipText();
             ButtonCommandOV = new MSW_CMP_ButtonCommandOV(this);
             EventCommandOV = new MSW_CMP_EventCommandOV(this);
-
             InstantiateItems();
 
         }

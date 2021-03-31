@@ -7,6 +7,8 @@
       mc:Ignorable="d"
       xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
       xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+      xmlns:vmh="clr-namespace:Pharmacy.Base.Utils.ViewModelHelper"
+      d:DataContext="{d:DesignInstance {x:Type vm:CustomerModificationPageViewModel}}"
       xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerModification"
       xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
@@ -14,7 +16,7 @@
       Title="CustomerInstantiationPage">
 
     <Page.DataContext>
-        <vm:CustomerModificationPageViewModel />
+        <Binding Source="{vmh:VMManagerMarkup {x:Type vm:CustomerModificationPageViewModel}}" />
     </Page.DataContext>
 
     <Grid Background="White">
