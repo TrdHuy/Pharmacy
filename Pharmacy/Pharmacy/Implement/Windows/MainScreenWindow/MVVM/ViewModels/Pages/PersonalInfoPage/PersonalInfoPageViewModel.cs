@@ -12,6 +12,7 @@ using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 using Pharmacy.Implement.Utils.Extensions.Entities;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.PersonalInfoPage.OVs;
+using System.ComponentModel;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 {
@@ -19,8 +20,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
     {
         private static Logger L = new Logger("PersonalInfoPageViewModel");
         
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
-
         private Visibility _fullNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _currentPasswordAwareTextBlockVisibility = Visibility.Collapsed;
@@ -39,6 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         public bool IsSupportChangePersonalAvatarZoom { get { return RUNE.IS_SUPPORT_CHANGE_PERSONAL_AVATAR_ZOOM; } }
         public bool IsSupportLocatorPersonalAvatarWindow { get { return RUNE.IS_SUPPORT_LOCATOR_WINDOW_FOR_PERSONAL_AVATAR; } }
 
+        [Bindable(true)]
         public ImageSource UserImageSource
         {
             get
@@ -52,6 +52,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             }
         }
 
+        [Bindable(true)]
         public AtumUserData AvatarInfoData 
         {
             get
@@ -64,6 +65,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string FullNameText
         {
             get
@@ -80,6 +83,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string PhoneText
         {
             get
@@ -96,6 +101,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string AdressText
         {
             get
@@ -108,6 +115,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string EmailText
         {
             get
@@ -120,6 +129,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string LinkText
         {
             get
@@ -132,6 +143,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public Visibility FullNameAwareTextBlockVisibility
         {
             get
@@ -144,6 +157,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public Visibility PhoneAwareTextBlockVisibility
         {
             get
@@ -156,6 +171,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public Visibility CurrentPasswordAwareTextBlockVisibility
         {
             get
@@ -168,6 +185,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public Visibility NewPasswordAwareTextBlockVisibility
         {
             get
@@ -180,6 +199,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public Visibility VerifiedPasswordAwareTextBlockVisibility
         {
             get
@@ -192,6 +213,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string CurrentPassword
         {
             get { return _currentInputPassword; }
@@ -201,6 +224,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string NewPassword
         {
             get { return _newPassword; }
@@ -210,6 +235,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string VerifiedPassword
         {
             get { return _verifiedPassword; }
@@ -219,6 +246,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public string NewPasswordAwareTextBlockContent
         {
             get
@@ -253,10 +282,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         protected override void OnInitializing()
         {
-            UserImageSource = FileIOUtil.
-                 GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
-                 ToImageSource();
-
             ButtonCommandOV = new MSW_PIP_ButtonCommandOV(this);
 
             GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
@@ -369,5 +394,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             NewPasswordAwareTextBlockContent = mes.GetStringValue();
         }
 
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            UserImageSource = FileIOUtil.
+                 GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
+                 ToImageSource();
+            RefreshViewModel();
+        }
     }
 }
