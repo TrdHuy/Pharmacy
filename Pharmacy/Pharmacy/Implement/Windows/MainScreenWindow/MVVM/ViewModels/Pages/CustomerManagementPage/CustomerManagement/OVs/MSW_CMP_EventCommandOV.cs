@@ -37,21 +37,25 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             DataGrid dg = (DataGrid)((object[])paramaters)[0];
             TextBox ctrl = (TextBox)sender;
 
-            Cts = new CancellationTokenSource();
+            await Task.Delay(100);
+
+            if (Cts == null)
+            {
+                Cts = new CancellationTokenSource();
+            }
+
             var ct = Cts.Token;
             try
             {
                 await Task.Delay(model.DelayTextChangedHandler, ct);
-                if (ct.IsCancellationRequested)
-                {
-                    ct.ThrowIfCancellationRequested();
-                }
+                
                 dg.Items.Filter = new Predicate<object>(customer => FilterCustomerList(customer as tblCustomer, ctrl.Text));
                 model.IsDataGridLoading = false;
             }
             catch (OperationCanceledException ex)
             {
-                Cts.Dispose();
+                if (Cts != null)
+                    Cts.Dispose();
                 Cts = null;
             }
 
