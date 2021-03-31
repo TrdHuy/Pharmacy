@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,10 +32,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private Visibility _deleteColumnVisibility;
         private ObservablePropertiesCollection<OrderDetailOV> _currentOrderDetails;
 
+        [Bindable(true)]
         public tblOrder CurrentCustomerOrder { get; set; }
+
+        [Bindable(true)]
         public MSW_CMP_CTP_CBP_MedicineOV MedicineOV { get; set; }
+
+        [Bindable(true)]
         public MSW_CMP_CTP_CBP_ButtonCommandOV ButtonCommandOV { get; set; }
+
+        [Bindable(true)]
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
+
         public bool IsOrderDetailsModified { get; private set; }
         public bool IsOrderModified
         {
@@ -45,6 +54,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
+        [Bindable(true)]
         public ObservablePropertiesCollection<OrderDetailOV> CurrentOrderDetails
         {
             get
@@ -67,6 +77,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     && !MedicineOV.Quantity.Equals("0");
             }
         }
+
+        [Bindable(true)]
         public bool IsEnableEdittingBill
         {
             get
@@ -79,6 +91,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+
+        [Bindable(true)]
         public Visibility DeleteColumnVisibility
         {
             get
@@ -108,6 +122,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         protected override void OnInitialized()
         {
+        }
+
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            CurrentCustomerOrder = MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder;
+            DeleteColumnVisibility = IsEnableEdittingBill ? Visibility.Visible : Visibility.Collapsed;
+            InstantinateOrderDetailItems();
+
+            RefreshViewModel();
         }
 
         public void RefreshListOrder()
@@ -188,6 +212,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-
+        //private void RefreshViewModel()
+        //{
+        //    Invalidate("CurrentCustomerOrder");
+        //    Invalidate("MedicineOV");
+        //}
     }
 }

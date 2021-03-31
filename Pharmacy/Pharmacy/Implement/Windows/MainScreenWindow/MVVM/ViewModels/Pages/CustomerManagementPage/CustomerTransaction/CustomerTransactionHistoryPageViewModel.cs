@@ -8,6 +8,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction
@@ -15,14 +16,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     internal class CustomerTransactionHistoryPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerTransactionHistoryPageViewModel");
-
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private tblOrder _currentSelectedOrder;
 
+        [Bindable(true)]
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
+
+        [Bindable(true)]
         public MSW_CMP_CTHP_ButtonCommandOV ButtonCommandOV { get; set; }
 
+        [Bindable(true)]
         public tblCustomer CurrentModifiedCustomer => MSW_DataFlowHost.Current.CurrentModifiedCustomer;
+
+        [Bindable(true)]
         public tblOrder CurrentSelectedOrder
         {
             get
@@ -37,6 +42,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
+        [Bindable(true)]
         public string CurrentSelectedOrderDetails
         {
             get
@@ -45,21 +51,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 if (CurrentSelectedOrder != null)
                 {
                     var listDetails = CurrentSelectedOrder.tblOrderDetails;
-                    //var tabPos = GetTabPosAsString(ComputeTabPos());
-                    //var stringFormat = "{0," + tabPos[0] + "}" +
-                    //    "{1," + tabPos[1] + "}" +
-                    //    "{2," + tabPos[2] + "} " +
-                    //    "{3}";
+                    var tabPos = GetTabPosAsString(ComputeTabPos());
+                    var stringFormat = "{0," + tabPos[0] + "}" +
+                        "{1," + tabPos[1] + "}" +
+                        "{2," + tabPos[2] + "} " +
+                        "{3}";
 
                     orderDetails += String.Join("\n", listDetails.Where((content) => content.IsActive).
                         Select((content, a) =>
-                            //String.Format(stringFormat
-                            //, content.tblMedicine.MedicineName
-                            //, content.Quantity
-                            //, content.tblMedicine.tblMedicineUnit.MedicineUnitName
-                            //, content.TotalPrice)
-                            content.tblMedicine.MedicineName + " - " + content.Quantity
-                            + " " + content.tblMedicine.tblMedicineUnit.MedicineUnitName + ": " + ((decimal)content.Quantity * content.UnitPrice).ToString(@"#\,##0 VND")
+                            String.Format(stringFormat
+                            , content.tblMedicine.MedicineName
+                            , content.Quantity
+                            , content.tblMedicine.tblMedicineUnit.MedicineUnitName
+                            , ((decimal)content.Quantity * content.UnitPrice).ToString(@"#\,##0 VND"))
                         ));
 
                     logger.D("Order detail format: " + orderDetails);
@@ -147,6 +151,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             base.OnLoaded();
             InstantiateItems();
+            RefreshViewModel();
         }
     }
 }
