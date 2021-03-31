@@ -37,7 +37,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
 
         public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
 
-        public EventCommandModel AvatarCommand { get; set; }
         public MSW_HP_ButtonCommandOV ButtonCommandOV { get; set; }
 
 
@@ -83,7 +82,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         protected override void OnInitializing()
         {
             ClockIntansiation();
-            AvatarCommand = new EventCommandModel(AvatarClickEvent);
             ButtonCommandOV = new MSW_HP_ButtonCommandOV(this);
 
         }
@@ -111,16 +109,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             CurrentTime = DateTime.Now.ToString("hh:mm:ss");
         }
-
-        private void AvatarClickEvent(object sender, EventArgs e, object paramater)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramater;
-            _keyActionListener.OnKey(WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_PERSONAL_INFO
-                , dataTransfer);
-        }
-
     }
 }

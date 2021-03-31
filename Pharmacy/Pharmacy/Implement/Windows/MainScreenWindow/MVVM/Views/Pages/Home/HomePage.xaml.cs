@@ -28,7 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Home
 
         private void AtumImageView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ((HomePageViewModel)DataContext).AvatarCommand.Execute(sender, e, this);
+            ((HomePageViewModel)DataContext).ButtonCommandOV.PersonalInfoCommand.Execute(this);
         }
     }
 }
