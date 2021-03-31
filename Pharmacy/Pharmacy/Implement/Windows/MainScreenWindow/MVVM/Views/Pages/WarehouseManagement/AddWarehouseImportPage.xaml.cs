@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.AddWarehouseImport;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.AddWarehouseImport;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Warehouse
     /// <summary>
     /// Interaction logic for AddWarehouseImportPage.xaml
     /// </summary>
-    public partial class AddWarehouseImportPage : Page
+    public partial class AddWarehouseImportPage : QuotableEventPage
     {
         public AddWarehouseImportPage()
         {

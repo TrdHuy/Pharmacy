@@ -1,25 +1,10 @@
-﻿using Newtonsoft.Json;
-using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Base.Observable.ObserverPattern;
-using Pharmacy.Base.UIEventHandler.Listener;
-using Pharmacy.Config;
-using Pharmacy.Implement.UIEventHandler;
-using Pharmacy.Implement.UIEventHandler.Listener;
+﻿using Pharmacy.Config;
 using Pharmacy.Implement.Utils;
-using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.Extensions.Entities;
-using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.HomePage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 using static HPSolutionCCDevPackage.netFramework.AtumImageView;
 
@@ -29,13 +14,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
     {
         private static Logger L = new Logger("HomePageViewModel");
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
-
         private string _currentTime;
 
         #region public properties
 
-        public tblUser CurrentUser { get { return App.Current.CurrentUser; } }
+        public tblUser CurrentUser => App.Current.CurrentUser;
 
         public MSW_HP_ButtonCommandOV ButtonCommandOV { get; set; }
 
@@ -83,7 +66,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
             ClockIntansiation();
             ButtonCommandOV = new MSW_HP_ButtonCommandOV(this);
-
         }
 
         protected override void OnInitialized()

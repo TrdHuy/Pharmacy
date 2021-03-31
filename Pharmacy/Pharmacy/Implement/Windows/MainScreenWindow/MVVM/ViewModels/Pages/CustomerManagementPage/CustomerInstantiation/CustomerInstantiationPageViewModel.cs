@@ -13,11 +13,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     internal class CustomerInstantiationPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerInstantiationPageViewModel");
+        private static CustomerInstantiationPageViewModel VM = new CustomerInstantiationPageViewModel();
 
         private Visibility _customerNameAwareTextBlockVisibility = Visibility.Visible;
         private Visibility _phoneNameAwareTextBlockVisibility = Visibility.Visible;
         private ImageSource _customerImageSource;
         private tblCustomer _newCustomer;
+
+        public static CustomerInstantiationPageViewModel Current => VM;
 
         #region Public properties
         public tblCustomer NewCustomer

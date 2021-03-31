@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.ModifySupplier;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierM
     /// <summary>
     /// Interaction logic for ModifySupplierPage.xaml
     /// </summary>
-    public partial class ModifySupplierPage : Page
+    public partial class ModifySupplierPage : QuotableEventPage
     {
         public ModifySupplierPage()
         {

@@ -1,25 +1,19 @@
-﻿using Pharmacy.Base.MVVM.ViewModels;
-using Pharmacy.Config;
-using Pharmacy.Implement.UIEventHandler;
+﻿using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
-using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement
 {
     internal class CustomerManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("CustomerManagementPageViewModel");
+        private static CustomerManagementPageViewModel VM = new CustomerManagementPageViewModel();
 
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private SQLQueryCustodian _sqlCmdObserver;
@@ -27,6 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private string _tip;
         private bool _isDataGridLoading;
 
+        public static CustomerManagementPageViewModel Current => VM;
         public int DelayTextChangedHandler { get; set; }
         public string SearchText
         {

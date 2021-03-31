@@ -1,5 +1,6 @@
-﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement.AddSupplierPage"
+﻿<quotableEventPage:QuotableEventPage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement.AddSupplierPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -254,4 +255,4 @@
                               Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
     </Grid>
-</Page>
+</quotableEventPage:QuotableEventPage>

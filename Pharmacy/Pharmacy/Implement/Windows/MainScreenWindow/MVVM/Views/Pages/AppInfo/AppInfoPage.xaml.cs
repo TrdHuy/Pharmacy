@@ -1,4 +1,4 @@
-﻿using Pharmacy.Implement.Utils.CustomControls.DestroyablePage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.AppInfo
     /// <summary>
     /// Interaction logic for AppInfoPage.xaml
     /// </summary>
-    public partial class AppInfoPage : DestroyablePage
+    public partial class AppInfoPage : QuotableEventPage
     {
         public AppInfoPage()
         {

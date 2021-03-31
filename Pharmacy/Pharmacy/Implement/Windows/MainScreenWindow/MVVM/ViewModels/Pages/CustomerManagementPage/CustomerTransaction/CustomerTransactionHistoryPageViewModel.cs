@@ -21,8 +21,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
         public MSW_CMP_CTHP_ButtonCommandOV ButtonCommandOV { get; set; }
-      
-        public tblCustomer CurrentModifiedCustomer { get; set; }
+
+        public tblCustomer CurrentModifiedCustomer => MSW_DataFlowHost.Current.CurrentModifiedCustomer;
         public tblOrder CurrentSelectedOrder
         {
             get
@@ -122,7 +122,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         protected override void OnInitializing()
         {
-            CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
             InstantiateItems();
             ButtonCommandOV = new MSW_CMP_CTHP_ButtonCommandOV(this);
         }
@@ -144,5 +143,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         }
 
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            InstantiateItems();
+        }
     }
 }

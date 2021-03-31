@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.AddMedicine;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.AddMedicine;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement
@@ -6,7 +7,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
     /// <summary>
     /// Interaction logic for AddMedicinePage.xaml
     /// </summary>
-    public partial class AddMedicinePage : Page
+    public partial class AddMedicinePage : QuotableEventPage
     {
         public AddMedicinePage()
         {

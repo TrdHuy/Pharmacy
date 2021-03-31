@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Report
     /// <summary>
     /// Interaction logic for ReportPage.xaml
     /// </summary>
-    public partial class ReportPage : Page
+    public partial class ReportPage : QuotableEventPage
     {
         public ReportPage()
         {

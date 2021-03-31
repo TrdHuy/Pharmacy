@@ -1,5 +1,6 @@
-﻿<Page x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerManagementPage"
+﻿<quotableEventPage:QuotableEventPage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerManagement.CustomerManagementPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,11 +12,12 @@
       xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
       mc:Ignorable="d"
       Title="CustomerManagementPage"
+      x:Name="CMP"
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}">
 
     <Page.DataContext>
-        <vm:CustomerManagementPageViewModel x:Name="CustomerManagementPageVM" />
+        <Binding Path="(vm:CustomerManagementPageViewModel.Current)"/>
     </Page.DataContext>
 
     <Grid Background="White">
@@ -100,7 +102,7 @@
                                     Value="True" />
 
                             <Setter Property="FontSize"
-                                    Value="{Binding FontSizeOV.FontSizeLarge, ElementName=CustomerManagementPageVM}" />
+                                    Value="{Binding DataContext.FontSizeOV.FontSizeLarge, ElementName=CMP}" />
 
                             <Setter Property="Foreground"
                                     Value="Black" />
@@ -179,7 +181,7 @@
                                     Value="Center" />
 
                             <Setter Property="FontSize"
-                                    Value="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}" />
+                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=CMP}" />
 
                         </Style>
 
@@ -269,11 +271,11 @@
                                                               IsUsingDropShadowEffect="True"
                                                               HorizontalAlignment="Center"
                                                               BorderThickness="0"
-                                                              Command="{Binding ButtonCommandOV.EditButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              Command="{Binding DataContext.ButtonCommandOV.EditButtonCommand,ElementName=CMP}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}"
                                                               Background="Transparent"
                                                               FontFamily="{StaticResource FontAwesome}"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
+                                                              FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=CMP}"
                                                               TextContent="&#xf040;"
                                                               VerticalAlignment="Center" />
 
@@ -283,12 +285,12 @@
                                                               IsUsingDropShadowEffect="True"
                                                               VerticalAlignment="Center"
                                                               IconStretch="Uniform"
-                                                              Command="{Binding ButtonCommandOV.DeleteButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              Command="{Binding DataContext.ButtonCommandOV.DeleteButtonCommand,ElementName=CMP}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}"
                                                               Background="Transparent"
                                                               Foreground="Red"
                                                               FontFamily="{StaticResource FontAwesome}"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
+                                                              FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=CMP}"
                                                               TextContent="&#xf00d;" />
 
                                             <hps:OsirisButton Grid.Column="5"
@@ -298,10 +300,10 @@
                                                               Background="Transparent"
                                                               Foreground="Blue"
                                                               FontFamily="{StaticResource FontAwesome}"
-                                                              FontSize="{Binding FontSizeOV.FontSizeXLarge,ElementName=CustomerManagementPageVM}"
+                                                              FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=CMP}"
                                                               TextContent="&#xf155;"
                                                               VerticalAlignment="Center"
-                                                              Command="{Binding ButtonCommandOV.HistoryButtonCommand,ElementName=CustomerManagementPageVM}"
+                                                              Command="{Binding DataContext.ButtonCommandOV.HistoryButtonCommand,ElementName=CMP}"
                                                               CommandParameter="{Binding ElementName=CustomerDataGrid}" />
 
                                         </Grid>
@@ -343,4 +345,4 @@
 
         </Grid>
     </Grid>
-</Page>
+</quotableEventPage:QuotableEventPage>

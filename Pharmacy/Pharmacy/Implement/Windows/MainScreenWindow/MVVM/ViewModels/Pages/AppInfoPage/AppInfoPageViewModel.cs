@@ -48,9 +48,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
             ButtonCommandOV = new MSW_AIP_ButtonCommandOV(this);
         }
 
-        public override void OnDestroy()
+        public override void OnUnloaded()
         {
-            base.OnDestroy();
+            base.OnUnloaded();
             ButtonCommandOV.OnDestroy();
         }
 

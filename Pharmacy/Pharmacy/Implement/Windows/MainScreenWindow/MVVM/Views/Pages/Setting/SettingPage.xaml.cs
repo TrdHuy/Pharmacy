@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Setting
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class SettingPage : Page
+    public partial class SettingPage : QuotableEventPage
     {
         public SettingPage()
         {

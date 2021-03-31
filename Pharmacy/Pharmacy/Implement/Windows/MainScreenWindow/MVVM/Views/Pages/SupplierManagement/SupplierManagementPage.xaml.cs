@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierM
     /// <summary>
     /// Interaction logic for SupplierManagementPage.xaml
     /// </summary>
-    public partial class SupplierManagementPage : Page
+    public partial class SupplierManagementPage : QuotableEventPage
     {
         public SupplierManagementPage()
         {

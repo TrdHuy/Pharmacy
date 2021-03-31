@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.UserManag
     /// <summary>
     /// Interaction logic for UserManagementPage.xaml
     /// </summary>
-    public partial class UserManagementPage : Page
+    public partial class UserManagementPage : QuotableEventPage
     {
         public UserManagementPage()
         {

@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.SupplierImportHistory;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SupplierManagementPage.SupplierImportHistory;
 using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierManagement
@@ -6,7 +7,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.SupplierM
     /// <summary>
     /// Interaction logic for SupplierImportHistoryPage.xaml
     /// </summary>
-    public partial class SupplierImportHistoryPage : Page
+    public partial class SupplierImportHistoryPage : QuotableEventPage
     {
         public SupplierImportHistoryPage()
         {

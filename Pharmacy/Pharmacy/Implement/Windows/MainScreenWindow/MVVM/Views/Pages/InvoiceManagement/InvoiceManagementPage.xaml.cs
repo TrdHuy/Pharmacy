@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.InvoiceMa
     /// <summary>
     /// Interaction logic for InvoiceManagementPage.xaml
     /// </summary>
-    public partial class InvoiceManagementPage : Page
+    public partial class InvoiceManagementPage : QuotableEventPage
     {
         public InvoiceManagementPage()
         {

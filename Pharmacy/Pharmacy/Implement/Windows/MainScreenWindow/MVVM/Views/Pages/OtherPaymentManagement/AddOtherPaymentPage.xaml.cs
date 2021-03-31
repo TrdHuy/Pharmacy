@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.OtherPaymentsManagementPage.AddOtherPayment;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.OtherPaym
     /// <summary>
     /// Interaction logic for AddOtherPaymentPage.xaml
     /// </summary>
-    public partial class AddOtherPaymentPage : Page
+    public partial class AddOtherPaymentPage : QuotableEventPage
     {
         public AddOtherPaymentPage()
         {

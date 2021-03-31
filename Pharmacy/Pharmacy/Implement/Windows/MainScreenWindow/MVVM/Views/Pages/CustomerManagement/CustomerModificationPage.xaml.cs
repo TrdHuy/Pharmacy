@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.CustomerM
     /// <summary>
     /// Interaction logic for CustomerInstantiationPage.xaml
     /// </summary>
-    public partial class CustomerModificationPage : Page
+    public partial class CustomerModificationPage : QuotableEventPage
     {
         public CustomerModificationPage()
         {

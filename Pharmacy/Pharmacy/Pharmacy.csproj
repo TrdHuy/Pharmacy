@@ -193,14 +193,16 @@
     <Compile Include="Base\Utils\ICanelable.cs" />
     <Compile Include="Base\Utils\IDestroyable.cs" />
     <Compile Include="Base\Utils\ILogger.cs" />
+    <Compile Include="Base\Utils\ViewModelHelper\VMManagerMarkupExtension.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\AppImpl\Models\VOs\AppInfoVO.cs" />
     <Compile Include="Implement\UIEventHandler\Listener\ActionExecuteHelper.cs" />
+    <Compile Include="Implement\Utils\CustomControls\QuotableEventPage\IQuotableEvent.cs" />
     <Compile Include="Implement\Utils\Extensions\LocalReportExtensions.cs" />
     <Compile Include="Implement\Utils\CustomControls\BusyDataGrid.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetInfoForComprehensiveReportAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetAllActiveCustomerOrdersByDateAction.cs" />
-    <Compile Include="Implement\Utils\CustomControls\DestroyablePage\DestroyablePage.cs" />
+    <Compile Include="Implement\Utils\CustomControls\QuotableEventPage\QuotableEventPage.cs" />
     <Compile Include="Implement\Utils\InputCommand\CommandExecuterModel.cs" />
     <Compile Include="Implement\Utils\InputCommand\NavigationCommandExecuterModel.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Builder\BaseCommandExecuterBuilder.cs" />
@@ -629,9 +631,6 @@
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml.cs">
       <DependentUpon>DownloadProgressControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml.cs">
-      <DependentUpon>DailyReportDetailPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\PopupScreenWindowViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\PopupScreenWindow.xaml.cs">
       <DependentUpon>PopupScreenWindow.xaml</DependentUpon>
@@ -885,10 +884,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\DailyReportDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
