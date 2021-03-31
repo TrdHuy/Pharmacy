@@ -5,6 +5,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Customer
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage
@@ -13,16 +14,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
     {
         private static Logger L = new Logger("CustomerDebtsPageViewModel");
 
+        [Bindable(true)]
         public tblCustomer CurrentModifiedCustomer { get; set; }
+
+        [Bindable(true)]
         public ObservableCollection<tblOrder> OrderItemSource { get; set; }
+
+        [Bindable(true)]
         public ObservableCollection<MSW_CMP_CTP_CDP_CustomerDebtOV> DebtItemSource { get; set; }
         public tblOrder CurrentSelectedOrderDetail { get; set; }
+
+        [Bindable(true)]
         public MSW_CMP_CTP_CDP_ButtonCommandOV ButtonCommandOV { get; set; }
 
-        public CommandExecuterModel PrintCustomerDebtButtonCommand { get; set; }
-        public CommandExecuterModel ReturnButtonCommand { get; set; }
-        public CommandExecuterModel BillDisplayButtonCommand { get; set; }
-
+        [Bindable(true)]
         public decimal PaidAmount
         {
             get
@@ -31,6 +36,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 return pA;
             }
         }
+
+        [Bindable(true)]
         public decimal RestAmount
         {
             get
@@ -38,6 +45,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 return DebtAmount + PaidAmount;
             }
         }
+
+        [Bindable(true)]
         public decimal DebtAmount
         {
             get
@@ -47,7 +56,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public string PaymentClassification { get; set; }
 
         protected override Logger logger => L;
 
@@ -62,8 +70,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
         }
 
+        public override void OnLoaded()
+        {
+            base.OnLoaded();
+            CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
+            InstantiateItems();
+            RefreshViewModel();
+        }
+
         private void InstantiateItems()
         {
+
             OrderItemSource = new ObservableCollection<tblOrder>(
                 CurrentModifiedCustomer
                 .tblOrders
