@@ -37,8 +37,8 @@ namespace Pharmacy.Implement.Utils
             ERROR = 5
         }
 
-        private const string TAG = "HPSCCDP";
-        private static object LogLocker = new object();
+        private const string TAG = "HPSS_PMC";
+        private const int OLD_LOG_FILES_CAPACITY = 1;
         private static readonly SemaphoreSlim Mutex = new SemaphoreSlim(1);
 
         private static ObservableQueue<Task<bool>> TaskQueue { get; set; }
@@ -55,7 +55,6 @@ namespace Pharmacy.Implement.Utils
 
         static Logger()
         {
-            Console.WriteLine("Init static Logger");
 
             TaskQueue = new ObservableQueue<Task<bool>>();
             var cast = TaskQueue as IEnumerable<Task<bool>>;
@@ -132,16 +131,53 @@ namespace Pharmacy.Implement.Utils
                 }
             }
 
+            DeleteLogInFolder();
         }
 
+        /// <summary>
+        /// Delete old logs 
+        /// </summary>
+        private static void DeleteLogInFolder()
+        {
+            try
+            {
+                var enumerateFile = Directory.EnumerateFiles(directory, "*.txt");
+                List<string> fileNames = new List<string>(enumerateFile);
+                var fileCount = enumerateFile.Count();
+                if (fileCount > OLD_LOG_FILES_CAPACITY)
+                {
+                    for(int i = OLD_LOG_FILES_CAPACITY; i < fileCount; i++)
+                    {
+                        var temp = fileNames[i];
+                        File.Delete(temp);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
+        /// <summary>
+        /// When a writting log task was push to a queue, process the queue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private static void TaskQueueChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                ProcessQueue();
+                Task.Run(() => ProcessQueue());
             }
         }
 
+        /// <summary>
+        /// Fire a log when app fall into unhandle exception
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             WriteLog("F", TAG, "[UnhandledException]:" + e.ExceptionObject.ToString());
@@ -151,6 +187,10 @@ namespace Pharmacy.Implement.Utils
             TaskQueue.Enqueue(task2);
         }
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="className"></param>
         public Logger(string className)
         {
             this.className = className;
@@ -161,13 +201,11 @@ namespace Pharmacy.Implement.Utils
 
         private static void InitUserLog()
         {
-            Console.WriteLine("Init release logger");
             _userLogBuilder = new StringBuilder();
         }
 
         private static void InitLogDebug()
         {
-            Console.WriteLine("Init debug logger");
             _logBuilder = new StringBuilder();
         }
 
@@ -212,6 +250,11 @@ namespace Pharmacy.Implement.Utils
             TaskQueue.Enqueue(task);
         }
 
+        /// <summary>
+        /// Process the queue when a task was pushed in
+        /// do the task and remove it from queue if it is done
+        /// or cancel if it try to do it three times
+        /// </summary>
         private static async void ProcessQueue()
         {
             await Mutex.WaitAsync();
@@ -239,6 +282,16 @@ namespace Pharmacy.Implement.Utils
             }
         }
 
+        /// <summary>
+        /// Generate a writting log task, to handle write log async
+        /// </summary>
+        /// <param name="logLV"></param>
+        /// <param name="TAG"></param>
+        /// <param name="className"></param>
+        /// <param name="callMemberName"></param>
+        /// <param name="message"></param>
+        /// <param name="isExportLogFile"></param>
+        /// <returns></returns>
         private Task<bool> GenerateTask(string logLV, string TAG, string className, string callMemberName, string message, bool isExportLogFile = false)
         {
             var task = !isExportLogFile ?
@@ -255,6 +308,16 @@ namespace Pharmacy.Implement.Utils
             return task;
         }
 
+        /// <summary>
+        /// Generate a writting log task, to handle write log async
+        /// </summary>
+        /// <param name="logLV"></param>
+        /// <param name="TAG"></param>
+        /// <param name="className"></param>
+        /// <param name="callMemberName"></param>
+        /// <param name="message"></param>
+        /// <param name="isExportLogFile"></param>
+        /// <returns></returns>
         private static Task<bool> GenerateTask(string logLV, string TAG, string message, bool isExportLogFile = false)
         {
             var task = !isExportLogFile ?
@@ -270,6 +333,13 @@ namespace Pharmacy.Implement.Utils
             return task;
         }
 
+        /// <summary>
+        /// Append the message log to log builder
+        /// </summary>
+        /// <param name="logLv"></param>
+        /// <param name="tag"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private bool WriteLog(string logLv, string tag, string className, string methodName, string message)
         {
             try
@@ -311,6 +381,13 @@ namespace Pharmacy.Implement.Utils
             return true;
         }
 
+        /// <summary>
+        /// Append the message log to log builder
+        /// </summary>
+        /// <param name="logLv"></param>
+        /// <param name="tag"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
         private static bool WriteLog(string logLv, string tag, string message)
         {
             try
@@ -347,6 +424,11 @@ namespace Pharmacy.Implement.Utils
             return true;
         }
 
+
+        /// <summary>
+        /// Clear the builder's buffer if reach max capacity 
+        /// </summary>
+        /// <param name="builder"></param>
         private static void ClearBuffer(StringBuilder builder)
         {
             if (builder.Capacity >= builder.MaxCapacity - 100000)
@@ -356,6 +438,10 @@ namespace Pharmacy.Implement.Utils
             }
         }
 
+        /// <summary>
+        /// Export log from string builder to file .txt
+        /// </summary>
+        /// <returns></returns>
         public static bool ExportLogFile()
         {
             try
