@@ -31,6 +31,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
                     action = null;
                     break;
             }
+
             return action;
         }
     }
