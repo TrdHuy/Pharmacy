@@ -1,6 +1,7 @@
 ﻿using HPSolutionCCDevPackage.netFramework;
 using Pharmacy.Config;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
@@ -330,6 +331,21 @@ namespace Pharmacy
             _popupScreenWindows.Add(popup);
 
             popup.ShowDialog();
+        }
+
+        public void ShowBugReportWindow()
+        {
+            ResourceDictionary resDimen = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Dimens.xaml", UriKind.Relative));
+
+            PopupScreenWindow popup = new PopupScreenWindow()
+            {
+                PageSource = new Uri(PharmacyDefinitions.BUG_REPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+            };
+
+            popup.Height = (double)resDimen["DefaultPopupWindowHeight"];
+            popup.Width = (double)resDimen["DefaultPopupWindowWidth"];
+
+            popup.Show();
         }
 
         private void ClosePopupWindown(object paramater)

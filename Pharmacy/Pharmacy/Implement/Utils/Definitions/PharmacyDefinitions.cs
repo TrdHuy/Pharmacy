@@ -66,6 +66,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string MODIFY_OTHER_PAYMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/OtherPaymentManagement/ModifyOtherPaymentPage.xaml";
         public const string SETTING_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/Setting/SettingPage.xaml";
         public const string APP_INFO_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/AppInfo/AppInfoPage.xaml";
+        public const string BUG_REPORT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/PopupScreenWindow/MVVM/Views/Pages/BugReportPage.xaml";
 
         public const string DAILY_REPORT_DETAIL_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/PopupScreenWindow/MVVM/Views/Pages/DailyReportDetailPage.xaml";
 

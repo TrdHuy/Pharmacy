@@ -109,6 +109,11 @@ namespace Pharmacy
         {
             _winDirector.ShowPopupScreenWindow(dataContext);
         }
+        
+        public void ShowBugReportWindow()
+        {
+            _winDirector.ShowBugReportWindow();
+        }
 
         /// <summary>
         /// Global data container, used to store shared data between all class of project

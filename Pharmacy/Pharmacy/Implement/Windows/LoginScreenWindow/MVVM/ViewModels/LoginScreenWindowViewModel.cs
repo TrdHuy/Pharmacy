@@ -6,6 +6,7 @@ using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.Extensions;
 using Pharmacy.Implement.Utils.InputCommand;
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -20,6 +21,8 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
         private bool _isLoginButtonRunnig = false;
 
         public CommandExecuterModel SystemLoginButton { get; set; }
+        public CommandExecuterModel BugReportButton { get; set; }
+
         public bool IsUserRemember
         {
             get { return Properties.Settings.Default.IsUserRemember; }
@@ -68,12 +71,26 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
         public LoginScreenWindowViewModel()
         {
             SystemLoginButton = new CommandExecuterModel(SystemLoginButtonClickEvent);
-            //PharmacyExtension.GrantAccess();
+            BugReportButton = new CommandExecuterModel(BugReportButtonClickEvent);
+            PharmacyExtension.GrantAccess();
         }
 
+        
         protected override void InitPropertiesRegistry()
         {
 
+        }
+
+        private ICommandExecuter BugReportButtonClickEvent(object arg)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = arg;
+            return _keyActionListener.OnKey(this
+                , logger
+                , WindowTag.WINDOW_TAG_LOGIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_LSW_BUG_REPORT_FEATURE
+                , dataTransfer) as ICommandExecuter;
         }
 
         private ICommandExecuter SystemLoginButtonClickEvent(object obj)

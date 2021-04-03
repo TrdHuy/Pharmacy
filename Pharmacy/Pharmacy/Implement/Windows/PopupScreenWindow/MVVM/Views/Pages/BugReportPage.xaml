@@ -4,76 +4,704 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.Pages"
+      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
       mc:Ignorable="d"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+      d:DesignHeight="{StaticResource DefaultPopupWindowHeight}"
+      d:DesignWidth="1200"
+      MinHeight="{StaticResource DefaultPopupWindowHeight}"
+      FontFamily="{StaticResource Roboto}"
+      MinWidth="{StaticResource DefaultPopupWindowWidth}"
       Title="BugReportPage">
 
-    <Grid Background="White">
-        <ScrollViewer>
-            <Grid Height="1200">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
+    <Page.Resources>
+        <Style x:Key="BorderTextBoxStyle"
+               TargetType="{x:Type Rectangle}">
+            <Setter Property="OverridesDefaultStyle"
+                    Value="True" />
 
+            <Setter Property="Fill"
+                    Value="Yellow" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Fill"
+                            Value="Aqua" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate TargetType="{x:Type hps:AkerTextBox}"
+                         x:Key="BugReportTextBoxCT">
+            <Border x:Name="border"
+                    CornerRadius="5"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="#F3F3F3"
+                    SnapsToDevicePixels="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="10" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!--HPSS Logo-->
-                    <Image Source="/Pharmacy;component/Resources/Icons/company logo x2.png"
-                           Stretch="Uniform" />
+                    <ScrollViewer x:Name="PART_ContentHost"
+                                  Focusable="False"
+                                  Margin="0,5,0,0"
+                                  Grid.Column="1"
+                                  HorizontalScrollBarVisibility="Hidden"
+                                  VerticalScrollBarVisibility="Hidden" />
+                    <TextBox x:Name="placeholder"
+                             BorderThickness="0"
+                             Grid.Column="1"
+                             Background="Transparent"
+                             Foreground="#101010"
+                             Margin="0,5,0,0"
+                             FontFamily="{TemplateBinding FontFamily}"
+                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             IsHitTestVisible="False"
+                             IsReadOnly="True"
+                             Padding="{TemplateBinding Padding}"
+                             Text="{TemplateBinding Tag}"
+                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Value="">
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Grid>
+            </Border>
 
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid Margin="50,50,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="20" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="ANTI BUG"
-                                       FontSize="50"
-                                       FontFamily="Adobe Gothic Std B" />
-                            <Image Source="{StaticResource AntiBugImage2}"
-                                   Grid.Column="2"
-                                   Stretch="Uniform" />
-                        </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"
+                         Value="False">
+                    <Setter Property="Opacity"
+                            TargetName="border"
+                            Value="0.56" />
+                </Trigger>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                            TargetName="border"
+                            Value="#FF7EB4EA" />
+                    <Setter Property="BorderThickness"
+                            TargetName="border"
+                            Value="1" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                            TargetName="border"
+                            Value="#FF569DE5" />
+                    <Setter Property="BorderThickness"
+                            TargetName="border"
+                            Value="1" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Page.Resources>
+    <Grid>
+        <ScrollViewer>
 
-                        <Grid Grid.Row="1"
-                              Margin="50,20,0,0">
+            <hps:RatiateableGrid Revert="True"
+                                 SizeRatio="0.76">
+                <Grid Background="#EFEFEF">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="17.98*" />
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="22.4*" />
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="15.3*" />
+                        <RowDefinition Height="1.5*" />
+                        <RowDefinition Height="35.12*" />
+                        <RowDefinition Height="4.7*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="35.3*" />
+                        <ColumnDefinition Width="38.245*" />
+                        <ColumnDefinition Width="26.455*" />
+                    </Grid.ColumnDefinitions>
+                    <!--Logo and title-->
+                    <Grid Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35.3*" />
+                            <ColumnDefinition Width="64.7*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <!--HPSS Logo-->
+                        <hps:SquareGrid Margin="20">
+                            <Border BorderThickness="0"
+                                    CornerRadius="1000"
+                                    BorderBrush="Black"
+                                    Background="White">
+
+                                <Border.Effect>
+                                    <DropShadowEffect ShadowDepth="0"
+                                                      Direction="0"
+                                                      Color="Black"
+                                                      Opacity="0.2"
+                                                      BlurRadius="20" />
+                                </Border.Effect>
+
+                                <Image Source="/Pharmacy;component/Resources/Icons/company logo x2.png"
+                                       Stretch="Uniform"
+                                       Margin="20" />
+
+                            </Border>
+                        </hps:SquareGrid>
+
+
+
+                        <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="0.7*" />
+                                <RowDefinition Height="0.3*" />
+                                <RowDefinition Height="0.7*" />
+                                <RowDefinition Height="0.3*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <TextBlock FontSize="30"
-                                       Text="Mẫu báo lỗi sản phẩm"
-                                       FontFamily="/Pharmacy;component/Resources/Fonts/#VNF-Oswald" />
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="1"
-                                  Height="2"
-                                  Margin="0,10,50,00"
-                                  Background="Black" />
+                            <Viewbox Stretch="Uniform"
+                                     HorizontalAlignment="Left"
+                                     Grid.Row="2"
+                                     Grid.RowSpan="2">
+                                <TextBlock Text="ANTI BUG"
+                                           Foreground="#101010"
+                                           FontFamily="Adobe Gothic Std B" />
+                            </Viewbox>
+
+                            <Image Source="{StaticResource AntiBugImage2}"
+                                   Grid.Row="1"
+                                   Grid.RowSpan="2"
+                                   HorizontalAlignment="Right"
+                                   Grid.Column="0" />
+
+
+                            <Viewbox Stretch="Uniform"
+                                     Grid.Row="3"
+                                     Grid.RowSpan="2">
+                                <TextBlock FontSize="19.92"
+                                           Foreground="#494949"
+                                           Text="Mẫu báo lỗi sản phẩm"
+                                           FontFamily="/Pharmacy;component/Resources/Fonts/#VNF-Oswald" />
+                            </Viewbox>
+
+
+
                         </Grid>
+                    </Grid>
+
+                    <!--Sub title-->
+                    <Grid Grid.Row="1"
+                          Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Fill="#C4C4C4"
+                                   Height="1"
+                                   Grid.Column="1" />
+
+                        <Viewbox Grid.Column="2">
+                            <TextBlock Text="  Thông tin cá nhân  "
+                                       Foreground="#C4C4C4"
+                                       FontSize="13.3" />
+                        </Viewbox>
+
+
+                        <Rectangle Fill="#C4C4C4"
+                                   Grid.Column="3"
+                                   Height="1" />
+                    </Grid>
+
+                    <!--Personal contact-->
+                    <Border Grid.Row="2"
+                            Margin="10,0,10,0"
+                            Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="12*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="18*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.75*" />
+                                <ColumnDefinition Width="79.25*" />
+                                <ColumnDefinition Width="4.5*" />
+                                <ColumnDefinition Width="12.5*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border CornerRadius="5"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="4"
+                                    Grid.RowSpan="9"
+                                    Background="White" />
+
+
+                            <!--Full name-->
+                            <hps:AkerTextBox Grid.Row="2"
+                                             Grid.Column="1"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Họ tên"
+                                             FontSize="13.3"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}">
+
+                            </hps:AkerTextBox>
+                            <Viewbox Grid.Column="2"
+                                     Grid.Row="2">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+
+
+                            <!--Phone-->
+                            <hps:AkerTextBox Grid.Row="4"
+                                             Grid.Column="1"
+                                             VerticalContentAlignment="Top"
+                                             FontSize="13.3"
+                                             Tag="Số điện thoại"
+                                             Background="Transparent"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}" />
+                            <Viewbox Grid.Column="2"
+                                     Grid.Row="4">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+                            <!--Email-->
+
+                            <hps:AkerTextBox Grid.Row="6"
+                                             Grid.Column="1"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Email"
+                                             FontSize="13.3"
+                                             Background="Transparent"
+                                             Template="{StaticResource BugReportTextBoxCT}"
+                                             BorderThickness="0" />
+                            <Viewbox Grid.Column="2"
+                                     Grid.Row="6">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+
+                            <!--Address-->
+
+                            <hps:AkerTextBox Tag="Địa chỉ"
+                                             VerticalContentAlignment="Top"
+                                             Grid.Row="8"
+                                             FontSize="13.3"
+                                             Template="{StaticResource BugReportTextBoxCT}"
+                                             Grid.Column="1"
+                                             Background="Transparent"
+                                             BorderThickness="0" />
+
+                        </Grid>
+
+
+
+                    </Border>
+
+                    <!--Sub title-->
+                    <Grid Grid.Row="3"
+                          Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Fill="#C4C4C4"
+                                   Height="1"
+                                   Grid.Column="1" />
+
+                        <Viewbox Grid.Column="2">
+                            <TextBlock Text="  Thông tin sản phẩm  "
+                                       Foreground="#C4C4C4"
+                                       FontSize="13.3" />
+                        </Viewbox>
+
+
+                        <Rectangle Fill="#C4C4C4"
+                                   Grid.Column="3"
+                                   Height="1" />
+                    </Grid>
+
+                    <!--Product Info-->
+                    <Border Grid.Row="4"
+                            Margin="10,0,10,0"
+                            Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="12*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="18*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.75*" />
+                                <ColumnDefinition Width="79.25*" />
+                                <ColumnDefinition Width="4.5*" />
+                                <ColumnDefinition Width="12.5*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border CornerRadius="5"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="4"
+                                    Grid.RowSpan="5"
+                                    Background="White" />
+
+
+                            <!--Prod ID-->
+
+
+                            <hps:AkerTextBox Grid.Row="2"
+                                             Grid.Column="1"
+                                             Tag="Mã sản phẩm"
+                                             VerticalContentAlignment="Top"
+                                             FontSize="13.3"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}">
+
+                            </hps:AkerTextBox>
+
+
+                            <Viewbox Grid.Column="2"
+                                     Grid.Row="2">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+
+
+                            <!--Version-->
+                            <hps:AkerTextBox Grid.Row="4"
+                                             Grid.Column="1"
+                                             VerticalContentAlignment="Top"
+                                             FontSize="13.3"
+                                             Tag="Phiên bản"
+                                             Background="Transparent"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}" />
+                            <Viewbox Grid.Column="2"
+                                     Grid.Row="4">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+                        </Grid>
+
+
+
+                    </Border>
+
+                    <!--Sub title-->
+                    <Grid Grid.Row="5"
+                          Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Rectangle Fill="#C4C4C4"
+                                   Height="1"
+                                   Grid.Column="1" />
+
+                        <Viewbox Grid.Column="2">
+                            <TextBlock Text="  Mô tả vấn đề bạn gặp phải  "
+                                       Foreground="#C4C4C4"
+                                       FontSize="13.3" />
+                        </Viewbox>
+
+
+                        <Rectangle Fill="#C4C4C4"
+                                   Grid.Column="3"
+                                   Height="1" />
+                    </Grid>
+
+                    <!--Bug detail-->
+                    <Border Grid.Row="6"
+                            Margin="10,0,10,0"
+                            Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="12*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="7*" />
+                                <RowDefinition Height="25.25*" />
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="18*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3.75*" />
+                                <ColumnDefinition Width="69.25*" />
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="4.5*" />
+                                <ColumnDefinition Width="12.5*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border CornerRadius="5"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="5"
+                                    Grid.RowSpan="15"
+                                    Background="White" />
+
+
+                            <!--Title-->
+                            <hps:AkerTextBox Grid.Row="2"
+                                             Grid.ColumnSpan="2"
+                                             Grid.Column="1"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Tiêu đề"
+                                             FontSize="13.3"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}">
+
+                            </hps:AkerTextBox>
+                            <Viewbox Grid.Column="3"
+                                     Grid.Row="2">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+
+                            <!--Detail-->
+                            <hps:AkerTextBox Grid.Row="4"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2"
+                                             FontSize="13.3"
+                                             Grid.RowSpan="5"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Mô tả chi tiết vấn đề"
+                                             Background="Transparent"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}" />
+                            <Viewbox Grid.Column="3"
+                                     Grid.Row="4">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+
+
+                            <!--Time-->
+                            <hps:AkerTextBox Grid.Row="10"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Thời gian bạn gặp phải vấn đề"
+                                             FontSize="13.3"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}">
+
+                            </hps:AkerTextBox>
+                            <Viewbox Grid.Column="3"
+                                     Grid.Row="10">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+                            <hps:SquareGrid Grid.Row="10"
+                                            Margin="2"
+                                            Grid.Column="2">
+                                <hps:OsirisButton OBCornerRadius="1000"
+                                                  BorderThickness="0"
+                                                  FontSize="20"
+                                                  Foreground="#E46C10"
+                                                  HorizontalContentAlignment="Center"
+                                                  VerticalContentAlignment="Center"
+                                                  TextContent="&#xf073;"
+                                                  FontFamily="{StaticResource FontAwesome}"
+                                                  Background="White" />
+                            </hps:SquareGrid>
+
+
+
+                            <!--Log attach-->
+                            <hps:AkerTextBox Grid.Row="12"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Đính kèm log file"
+                                             FontSize="13.3"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}">
+
+                            </hps:AkerTextBox>
+                            <Viewbox Grid.Column="3"
+                                     Grid.Row="12">
+                                <TextBlock HorizontalAlignment="Center"
+                                           Foreground="#FF0000"
+                                           FontSize="15"
+                                           FontFamily="Arial Black"
+                                           Text="*" />
+                            </Viewbox>
+                            <hps:SquareGrid Grid.Row="12"
+                                            Margin="2"
+                                            Grid.Column="2">
+                                <hps:OsirisButton OBCornerRadius="1000"
+                                                  BorderThickness="0"
+                                                  FontSize="20"
+                                                  Foreground="#E46C10"
+                                                  HorizontalContentAlignment="Center"
+                                                  VerticalContentAlignment="Center"
+                                                  TextContent="&#xf0ee;"
+                                                  FontFamily="{StaticResource FontAwesome}"
+                                                  Background="White" />
+                            </hps:SquareGrid>
+                            <!--video attach-->
+                            <hps:AkerTextBox Grid.Row="14"
+                                             Grid.Column="1"
+                                             Grid.ColumnSpan="2"
+                                             VerticalContentAlignment="Top"
+                                             Tag="Đính kèm video, hình ảnh"
+                                             FontSize="13.3"
+                                             BorderThickness="0"
+                                             Template="{StaticResource BugReportTextBoxCT}">
+
+                            </hps:AkerTextBox>
+                            <hps:SquareGrid Grid.Row="14"
+                                            Margin="2"
+                                            Grid.Column="2">
+                                <hps:OsirisButton OBCornerRadius="1000"
+                                                  BorderThickness="0"
+                                                  FontSize="20"
+                                                  Foreground="#E46C10"
+                                                  HorizontalContentAlignment="Center"
+                                                  VerticalContentAlignment="Center"
+                                                  TextContent="&#xf0c1;"
+                                                  FontFamily="{StaticResource FontAwesome}"
+                                                  Background="White" />
+                            </hps:SquareGrid>
+                        </Grid>
+
+
+
+                    </Border>
+
+                    <Grid Grid.Row="7"
+                          Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.8*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.2*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+
+                        <Border Grid.Column="1"
+                                CornerRadius="5"
+                                Background="#20B596">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Viewbox Stretch="Uniform"
+                                         Grid.Column="0"
+                                         Margin="5">
+                                    <TextBlock FontFamily="{StaticResource FontAwesome}"
+                                               Text="&#xf1d8;"
+                                               Foreground="White" />
+                                </Viewbox>
+                                <Viewbox Stretch="Uniform"
+                                         Grid.Column="1"
+                                         Margin="5">
+                                    <TextBlock FontFamily="{StaticResource Roboto}"
+                                               Text="Gửi"
+                                               Foreground="White" />
+                                </Viewbox>
+
+                                <Button Background="Transparent"
+                                        Grid.ColumnSpan="2"
+                                        BorderThickness="0" />
+
+                            </Grid>
+                        </Border>
 
                     </Grid>
-                </Grid>
 
-                <Grid Grid.Row="1"
-                      Height="2"
-                      Margin="20,10,20,10"
-                      Background="Black"></Grid>
-            </Grid>
+                </Grid>
+            </hps:RatiateableGrid>
+
         </ScrollViewer>
     </Grid>
 </Page>

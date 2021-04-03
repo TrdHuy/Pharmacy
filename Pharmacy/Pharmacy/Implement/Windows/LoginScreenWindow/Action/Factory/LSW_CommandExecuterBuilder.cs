@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
                     viewModelCommandExecuter = null;
                     break;
                 case KeyFeatureTag.KEY_TAG_LSW_BUG_REPORT_FEATURE:
-                    viewModelCommandExecuter = null;
+                    viewModelCommandExecuter = new LSW_BugReportAction(keyTag, WindowTag.WINDOW_TAG_LOGIN_SCREEN, viewModel, logger);
                     break;
                 default:
                     viewModelCommandExecuter = null;

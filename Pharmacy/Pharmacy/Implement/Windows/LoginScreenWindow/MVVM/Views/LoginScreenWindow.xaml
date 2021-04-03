@@ -95,6 +95,7 @@
                                           BorderBrush="Black"
                                           FontFamily="Century Gothic"
                                           FontSize="15"
+                                          Command="{Binding BugReportButton}"
                                           Foreground="#FF7CB4CD"
                                           OBTextVerticalAlignment="Center"
                                           IconHeight="40"

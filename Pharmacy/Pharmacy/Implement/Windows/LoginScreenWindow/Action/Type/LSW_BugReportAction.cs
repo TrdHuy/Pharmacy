@@ -9,6 +9,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 
         protected override void ExecuteCommand()
         {
+            App.Current.ShowBugReportWindow();
         }
     }
 }
