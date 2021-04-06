@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.Pages
     /// <summary>
     /// Interaction logic for BugReportPage.xaml
     /// </summary>
-    public partial class BugReportPage : Page
+    public partial class BugReportPage : QuotableEventPage
     {
         public BugReportPage()
         {

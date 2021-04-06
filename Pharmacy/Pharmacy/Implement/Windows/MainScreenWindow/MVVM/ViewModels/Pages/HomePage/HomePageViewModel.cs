@@ -72,11 +72,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
         {
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-            PropRegister("CurrentUser");
-        }
-
         private void ClockIntansiation()
         {
             // Critical issue: DispatcherTimer initalized to many time when open HomePage,

@@ -15,8 +15,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public decimal PurchasedDebt { get; set; }
         public string Description { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
     }
 }

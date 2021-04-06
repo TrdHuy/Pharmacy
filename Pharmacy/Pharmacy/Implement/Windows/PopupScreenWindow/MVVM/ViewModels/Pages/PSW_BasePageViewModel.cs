@@ -11,22 +11,27 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages
 {
     public abstract class PSW_BasePageViewModel : BaseViewModel, IQuotableEvent
     {
-        public double DesignHeight { get; set; }
-        public double DesignWidth { get; set; }
-
-        public void OnBeginInit()
+        public virtual void OnApplyTemplate(object sender)
         {
         }
 
-        public void OnEndInit()
+        public virtual void OnBeginInit(object sender)
         {
         }
 
-        public void OnLoaded()
+        public virtual void OnEndInit(object sender)
         {
         }
 
-        public void OnUnloaded()
+        public virtual void OnLoaded(object sender)
+        {
+        }
+
+        public virtual void OnSizeChanged(object sender)
+        {
+        }
+
+        public virtual void OnUnloaded(object sender)
         {
         }
     }

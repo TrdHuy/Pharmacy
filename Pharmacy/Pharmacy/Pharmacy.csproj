@@ -91,9 +91,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\outsource packages\HPSolutionCCDevPackage_1.2.0.0\HPSolutionCCDevPackage.netFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions">
-      <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\outsource packages\Others\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -121,9 +118,6 @@
       <HintPath>..\outsource packages\Others\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity">
-      <HintPath>..\..\..\..\..\..\Desktop\WPF project\SmartLogAnalyze\SmartLogAnalyze\SmartLogAnalyze\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -190,6 +184,7 @@
     <Compile Include="Base\Utils\Attributes\AssemblyReleaseDateAttribute.cs" />
     <Compile Include="Base\Utils\Attributes\AssemblyReleaseDetailAttribute.cs" />
     <Compile Include="Base\Utils\BaseFileIOUtil.cs" />
+    <Compile Include="Base\Utils\HPSSExtension.cs" />
     <Compile Include="Base\Utils\ICanelable.cs" />
     <Compile Include="Base\Utils\IDestroyable.cs" />
     <Compile Include="Base\Utils\ILogger.cs" />
@@ -623,6 +618,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPageViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageViewModel.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\BugReportPage.xaml.cs">
@@ -972,6 +968,7 @@
     <Content Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingReport.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Fonts\AdobeGothicStd-Bold.otf" />
     <Resource Include="Resources\Images\anti_bug.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -19,8 +19,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public string ImportDescription { get; set; }
         public List<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
     }
 }

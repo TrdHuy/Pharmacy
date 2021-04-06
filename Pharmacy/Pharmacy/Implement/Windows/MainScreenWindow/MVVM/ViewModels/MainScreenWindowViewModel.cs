@@ -57,12 +57,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
             }
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-            PropRegister("PageLoadingDelayTime");
-            PropRegister("CurrentPageSource");
-        }
-
         public MainScreenWindowViewModel()
         {
             _pageSourceWatcher = new PageSourceWatcher(OnPageSourceChange);

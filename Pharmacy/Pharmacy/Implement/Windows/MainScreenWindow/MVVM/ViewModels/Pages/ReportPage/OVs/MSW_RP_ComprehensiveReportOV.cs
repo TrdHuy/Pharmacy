@@ -25,8 +25,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
             _parentModel = parentVM;
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
     }
 }

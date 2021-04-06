@@ -7,7 +7,7 @@
     <system:Double x:Key="DefaultWindowHeight">650</system:Double>
     <system:Double x:Key="DefaultWindowWidth">1200</system:Double>
     <system:Double x:Key="DefaultPopupWindowHeight">420</system:Double>
-    <system:Double x:Key="DefaultPopupWindowWidth">800</system:Double>
+    <system:Double x:Key="DefaultPopupWindowWidth">910</system:Double>
     <system:Double x:Key="DefaultWindowTitleBarHeight">30</system:Double>
     <system:Double x:Key="DefaultMenuTabWidth">70</system:Double>
     <system:Double x:Key="DefaultMenuTabExpandedWidth">170</system:Double>
@@ -30,5 +30,8 @@
     <system:Double x:Key="DefaultDataGrid_RowHeight">55</system:Double>
     <system:Double x:Key="DefaultDataGrid_HavingListBox_RowHeight">100</system:Double>
     <system:Double x:Key="DefaultDataGrid_MaxWidthEditColumn">300</system:Double>
+
+    <system:Double x:Key="BugReportPageHeight">420</system:Double>
+    <system:Double x:Key="BugReportPageWidth">910</system:Double>
 
 </ResourceDictionary>

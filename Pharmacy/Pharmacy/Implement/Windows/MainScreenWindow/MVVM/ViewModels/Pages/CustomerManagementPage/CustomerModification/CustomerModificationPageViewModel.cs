@@ -199,9 +199,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public override void OnLoaded()
+        public override void OnLoaded(object sender)
         {
-            base.OnLoaded();
+            base.OnLoaded(sender);
             CurrentModifiedCustomer = MSW_DataFlowHost.Current.CurrentModifiedCustomer;
 
             CustomerImageSource = FileIOUtil.

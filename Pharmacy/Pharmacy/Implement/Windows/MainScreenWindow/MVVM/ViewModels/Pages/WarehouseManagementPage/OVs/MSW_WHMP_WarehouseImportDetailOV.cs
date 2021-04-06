@@ -16,8 +16,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public decimal UnitPrice { get; set; }
         public decimal TotalPrice { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
     }
 }

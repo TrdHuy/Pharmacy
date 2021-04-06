@@ -133,11 +133,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             _parentModel = parentVM;
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
-
-        public void RefreshViewModel()
+        public override void RefreshViewModel()
         {
             MedicineTextSearch = "";
             MedicineCost = 0;

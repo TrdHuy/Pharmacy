@@ -180,9 +180,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        public override void OnLoaded()
+        public override void OnLoaded(object sender)
         {
-            base.OnLoaded();
+            base.OnLoaded(sender);
             NewCustomer = new tblCustomer();
             CustomerImageSource = Properties.Resources.customer_default_icon.ToImageSource();
             CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.CustomerName) ?

@@ -394,9 +394,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages
             NewPasswordAwareTextBlockContent = mes.GetStringValue();
         }
 
-        public override void OnLoaded()
+        public override void OnLoaded(object sender)
         {
-            base.OnLoaded();
+            base.OnLoaded(sender);
             UserImageSource = FileIOUtil.
                  GetBitmapFromName(CurrentUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
                  ToImageSource();

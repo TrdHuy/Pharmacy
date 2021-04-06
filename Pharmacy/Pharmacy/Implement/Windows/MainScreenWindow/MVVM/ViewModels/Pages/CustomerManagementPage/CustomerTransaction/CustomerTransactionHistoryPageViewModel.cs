@@ -118,10 +118,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             return resPos;
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
-
         protected override Logger logger => L;
 
         protected override void OnInitializing()
@@ -147,9 +143,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         }
 
-        public override void OnLoaded()
+        public override void OnLoaded(object sender)
         {
-            base.OnLoaded();
+            base.OnLoaded(sender);
             InstantiateItems();
             RefreshViewModel();
         }

@@ -1,5 +1,7 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
+using Pharmacy.Implement.Utils.Definitions;
+using System;
 
 namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Type
 {

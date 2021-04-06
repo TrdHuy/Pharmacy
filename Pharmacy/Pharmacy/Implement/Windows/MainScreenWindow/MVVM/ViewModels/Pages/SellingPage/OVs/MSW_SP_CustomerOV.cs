@@ -109,8 +109,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             Invalidate("IsAdressTextBoxEnable");
         }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
     }
 }

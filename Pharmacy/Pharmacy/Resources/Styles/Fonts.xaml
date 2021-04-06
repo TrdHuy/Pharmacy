@@ -7,6 +7,7 @@
     <FontFamily x:Key="Human">/Pharmacy;component/Resources/Fonts/#Human</FontFamily>
     <FontFamily x:Key="LibelSuit">/Pharmacy;component/Resources/Fonts/#Libel Suit Rg</FontFamily>
     <FontFamily x:Key="VNFOswald">/Pharmacy;component/Resources/Fonts/#VNF-Oswald</FontFamily>
+    <FontFamily x:Key="AdobeGothicStdBold">/Pharmacy;component/Resources/Fonts/#Adobe Gothic Std B</FontFamily>
 
     <FontFamily x:Key="RobotoBlack">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto Black</FontFamily>
     <FontFamily x:Key="Roboto">/Pharmacy;component/Resources/Fonts/Roboto/#Roboto</FontFamily>

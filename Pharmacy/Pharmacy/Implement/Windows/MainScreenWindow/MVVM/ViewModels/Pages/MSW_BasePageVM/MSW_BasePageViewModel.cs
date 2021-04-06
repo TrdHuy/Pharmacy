@@ -45,35 +45,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
         /// </summary>
         protected abstract void OnInitialized();
 
-
-        protected virtual void RefreshViewModel()
-        {
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(this);
-
-            foreach(PropertyDescriptor property in properties)
-            {
-                var attributes = property.Attributes;
-
-                if (attributes[typeof(BindableAttribute)].Equals(BindableAttribute.Yes))
-                {
-                    Invalidate(property.Name);
-                }
-            }
-        }
-
-        public virtual void OnUnloaded()
+        public virtual void OnUnloaded(object sender)
         {
         }
 
-        public virtual void OnLoaded()
+        public virtual void OnLoaded(object sender)
         {
         }
 
-        public virtual void OnBeginInit()
+        public virtual void OnBeginInit(object sender)
         {
         }
 
-        public virtual void OnEndInit()
+        public virtual void OnEndInit(object sender)
+        {
+        }
+
+        public virtual void OnSizeChanged(object sender)
+        {
+        }
+
+        public virtual void OnApplyTemplate(object sender)
         {
         }
     }

@@ -11,6 +11,7 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Models.VOs
         public object Content { get; set; }
         public double DesignHeight { get; set; }
         public double DesignWidth { get; set; }
+        public long ContentLoadingDelayTime { get; set; }
 
     }
 }

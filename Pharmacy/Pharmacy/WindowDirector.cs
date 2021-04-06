@@ -5,6 +5,7 @@ using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Models.VOs;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views;
 using System;
@@ -333,17 +334,19 @@ namespace Pharmacy
             popup.ShowDialog();
         }
 
-        public void ShowBugReportWindow()
+        public void ShowPopupWindow(PSW_ContentVO vo)
         {
+            var titleBarHeight = 30d;
+            PopupScreenWindow popup = new PopupScreenWindow();
+
             ResourceDictionary resDimen = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Dimens.xaml", UriKind.Relative));
 
-            PopupScreenWindow popup = new PopupScreenWindow()
-            {
-                PageSource = new Uri(PharmacyDefinitions.BUG_REPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
-            };
+            popup.Height = vo?.DesignHeight + titleBarHeight ?? (double)resDimen["DefaultPopupWindowHeight"];
+            popup.Width = vo?.DesignWidth ?? (double)resDimen["DefaultPopupWindowWidth"];
+            popup.MinHeight = popup.Height;
+            popup.MinWidth = popup.Width;
 
-            popup.Height = (double)resDimen["DefaultPopupWindowHeight"];
-            popup.Width = (double)resDimen["DefaultPopupWindowWidth"];
+            popup.DataContext = new PopupScreenWindowViewModel(vo);
 
             popup.Show();
         }
@@ -358,7 +361,6 @@ namespace Pharmacy
                 ctrl.ForceClose();
             }
         }
-
 
     }
 }

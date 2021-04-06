@@ -18,6 +18,28 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
 
             Loaded -= Page_Loaded;
             Loaded += Page_Loaded;
+
+            SizeChanged -= Page_SizeChanged;
+            SizeChanged += Page_SizeChanged;
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            var destroyableObject = DataContext as IQuotableEvent;
+            if (destroyableObject != null)
+            {
+                destroyableObject.OnApplyTemplate(this);
+            }
+        }
+
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var destroyableObject = DataContext as IQuotableEvent;
+            if (destroyableObject != null)
+            {
+                destroyableObject.OnSizeChanged(this);
+            }
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -25,7 +47,7 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
             var destroyableObject = DataContext as IQuotableEvent;
             if (destroyableObject != null)
             {
-                destroyableObject.OnUnloaded();
+                destroyableObject.OnUnloaded(this);
             }
         }
 
@@ -34,7 +56,7 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
             var destroyableObject = DataContext as IQuotableEvent;
             if (destroyableObject != null)
             {
-                destroyableObject.OnLoaded();
+                destroyableObject.OnLoaded(this);
             }
         }
 
@@ -44,7 +66,7 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
             var destroyableObject = DataContext as IQuotableEvent;
             if (destroyableObject != null)
             {
-                destroyableObject.OnBeginInit();
+                destroyableObject.OnBeginInit(this);
             }
         }
 
@@ -54,7 +76,7 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
             var destroyableObject = DataContext as IQuotableEvent;
             if (destroyableObject != null)
             {
-                destroyableObject.OnEndInit();
+                destroyableObject.OnEndInit(this);
             }
         }
     }

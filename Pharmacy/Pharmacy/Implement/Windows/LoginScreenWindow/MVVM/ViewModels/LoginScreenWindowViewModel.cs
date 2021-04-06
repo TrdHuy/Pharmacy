@@ -75,12 +75,6 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
             PharmacyExtension.GrantAccess();
         }
 
-        
-        protected override void InitPropertiesRegistry()
-        {
-
-        }
-
         private ICommandExecuter BugReportButtonClickEvent(object arg)
         {
             object[] dataTransfer = new object[2];

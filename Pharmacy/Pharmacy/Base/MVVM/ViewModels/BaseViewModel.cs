@@ -35,7 +35,6 @@ namespace Pharmacy.Base.MVVM.ViewModels
         private void Init(BaseViewModel parentsModel)
         {
             ParentsModel = parentsModel;
-            InitPropertiesRegistry();
         }
         #endregion
 
@@ -114,18 +113,25 @@ namespace Pharmacy.Base.MVVM.ViewModels
 
         #endregion
 
-        protected virtual void InitPropertiesRegistry()
-        {
-
-        }
-
-        protected void PropRegister(string propName)
-        {
-            _propertiesRegistry.Add(propName);
-        }
 
         public virtual void OnDestroy()
         {
+        }
+
+
+        public virtual void RefreshViewModel()
+        {
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(this);
+
+            foreach (PropertyDescriptor property in properties)
+            {
+                var attributes = property.Attributes;
+
+                if (attributes[typeof(BindableAttribute)].Equals(BindableAttribute.Yes))
+                {
+                    Invalidate(property.Name);
+                }
+            }
         }
     }
 }

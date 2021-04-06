@@ -19,10 +19,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public tblMedicine MedicineInfo { get; set; }
         public MSW_MMP_SMIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
-        protected override void InitPropertiesRegistry()
-        {
-        }
-
         protected override Logger logger => L;
 
         protected override void OnInitializing()

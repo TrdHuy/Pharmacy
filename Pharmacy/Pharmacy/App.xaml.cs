@@ -2,8 +2,10 @@
 using Pharmacy.Base.Observable.ObserverPattern;
 using Pharmacy.Config;
 using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.Views;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Models.VOs;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -110,9 +112,19 @@ namespace Pharmacy
             _winDirector.ShowPopupScreenWindow(dataContext);
         }
         
+        /// <summary>
+        /// Display the bug report window
+        /// </summary>
         public void ShowBugReportWindow()
         {
-            _winDirector.ShowBugReportWindow();
+            ResourceDictionary resDimen = (ResourceDictionary)Application.LoadComponent(new Uri("/Pharmacy;component/Resources/Styles/Dimens.xaml", UriKind.Relative));
+
+            _winDirector.ShowPopupWindow(new PSW_ContentVO()
+            {
+                DesignHeight = (double)resDimen["BugReportPageHeight"],
+                DesignWidth = (double)resDimen["BugReportPageWidth"],
+                Content = new Uri(PharmacyDefinitions.BUG_REPORT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+            });
         }
 
         /// <summary>
