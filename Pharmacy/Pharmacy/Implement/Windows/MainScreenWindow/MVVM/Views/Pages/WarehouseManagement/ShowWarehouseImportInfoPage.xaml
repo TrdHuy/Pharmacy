@@ -370,6 +370,7 @@
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
         </Grid>
     </Grid>

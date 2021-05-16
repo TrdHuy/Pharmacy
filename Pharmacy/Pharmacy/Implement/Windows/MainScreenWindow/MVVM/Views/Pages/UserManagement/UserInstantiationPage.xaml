@@ -408,6 +408,7 @@
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding CancleButtonCommand}"
                               BorderThickness="0"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
             <hps:OsirisButton Margin="0,5,10,20"
                               Grid.Column="2"

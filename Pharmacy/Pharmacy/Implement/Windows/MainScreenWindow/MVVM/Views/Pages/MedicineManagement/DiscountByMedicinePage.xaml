@@ -218,6 +218,7 @@
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                   Command="{Binding CreateNewPromoButtonCommand}"
                                   BorderThickness="0"
+                                  Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                   Foreground="White" />
 
                 <hps:OsirisButton Grid.Column="3"
@@ -450,6 +451,7 @@
                               Command="{Binding CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
         </Grid>
     </Grid>

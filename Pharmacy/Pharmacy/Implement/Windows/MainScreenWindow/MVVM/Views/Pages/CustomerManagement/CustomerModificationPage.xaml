@@ -11,7 +11,7 @@
       d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
       d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
       Title="CustomerInstantiationPage">
-    
+
     <Page.DataContext>
         <vm:CustomerModificationPageViewModel />
     </Page.DataContext>
@@ -36,7 +36,7 @@
             <!--Page title-->
             <uc:PageHeader HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"
                            HeaderText="Thông tin khách hàng"
-                           Grid.Row="0"/>
+                           Grid.Row="0" />
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding CustomerImageSource}"
@@ -205,7 +205,7 @@
                              BorderThickness="2"
                              BorderBrush="Black"
                              FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
-                  
+
                 </Grid>
 
             </Grid>
@@ -223,29 +223,30 @@
             </Grid.ColumnDefinitions>
 
             <hps:OsirisButton Margin="0,5,0,20"
-                            Grid.Column="1"
-                            TextContent="Quay lại"
-                            IsUsingDropShadowEffect="True"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            Command="{Binding CancleButtonCommand}"
-                            BorderThickness="0"
-                            Foreground="White" />
+                              Grid.Column="1"
+                              TextContent="Quay lại"
+                              IsUsingDropShadowEffect="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              Command="{Binding CancleButtonCommand}"
+                              BorderThickness="0"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
+                              Foreground="White" />
             <hps:OsirisButton Margin="0,5,0,20"
-                            Grid.Column="3"
-                            TextContent="Lưu"
-                            IsBusy="{Binding IsSaveButtonRunning}"
-                            ProgressSpinnerSize="30"
-                            ProgressSpinnerBackground="Black"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            BorderThickness="0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            IsUsingDropShadowEffect="True"
-                            Command="{Binding SaveButtonCommand}"
-                            Foreground="White"
-                            Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                              Grid.Column="3"
+                              TextContent="Lưu"
+                              IsBusy="{Binding IsSaveButtonRunning}"
+                              ProgressSpinnerSize="30"
+                              ProgressSpinnerBackground="Black"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              BorderThickness="0"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              IsUsingDropShadowEffect="True"
+                              Command="{Binding SaveButtonCommand}"
+                              Foreground="White"
+                              Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
 
     </Grid>

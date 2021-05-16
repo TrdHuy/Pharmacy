@@ -38,7 +38,7 @@
             <!--Page title-->
             <uc:PageHeader Grid.Row="0"
                            MaxHeight="{StaticResource PageHeaderMaxHeight}"
-                           HeaderText="Xem công nợ"
+                           HeaderText="Xem nợ cũ"
                            HeaderIcon="{StaticResource HomePage_CustomerManageIcon}" />
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
@@ -331,6 +331,7 @@
                               Command="{Binding ButtonCommandOV.ReturnButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
             <!--<hps:OsirisButton Margin="0,5,0,0"
                               Grid.Column="1"

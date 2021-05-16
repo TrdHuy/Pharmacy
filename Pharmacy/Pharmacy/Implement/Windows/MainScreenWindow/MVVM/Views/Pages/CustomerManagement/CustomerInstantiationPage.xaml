@@ -35,7 +35,7 @@
             <!--Page title-->
             <uc:PageHeader HeaderIcon="{StaticResource HomePage_CustomerManageIcon}"
                            Grid.Row="0"
-                           HeaderText="Thêm mới thông tin khách hàng"/>
+                           HeaderText="Thêm mới thông tin khách hàng" />
             <!--Image and user info area-->
             <uc:PageOverviewInfo Grid.Row="1"
                                  AvatarSource="{Binding CustomerImageSource}"
@@ -204,7 +204,7 @@
                              BorderThickness="2"
                              BorderBrush="Black"
                              FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
-                  
+
                 </Grid>
 
             </Grid>
@@ -220,29 +220,30 @@
             </Grid.ColumnDefinitions>
 
             <hps:OsirisButton Margin="0,5,10,20"
-                            Grid.Column="1"
-                            TextContent="Quay lại"
-                            IsUsingDropShadowEffect="True"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            Command="{Binding CancleButtonCommand}"
-                            BorderThickness="0"
-                            Foreground="White" />
+                              Grid.Column="1"
+                              TextContent="Quay lại"
+                              IsUsingDropShadowEffect="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              Command="{Binding CancleButtonCommand}"
+                              BorderThickness="0"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
+                              Foreground="White" />
             <hps:OsirisButton Margin="0,5,10,20"
-                            Grid.Column="2"
-                            TextContent="Lưu"
-                            IsBusy="{Binding IsSaveButtonRunning}"
-                            ProgressSpinnerSize="30"
-                            ProgressSpinnerBackground="Black"
-                            FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                            BorderThickness="0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            IsUsingDropShadowEffect="True"
-                            Command="{Binding SaveButtonCommand}"
-                            Foreground="White"
-                            Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                              Grid.Column="2"
+                              TextContent="Lưu"
+                              IsBusy="{Binding IsSaveButtonRunning}"
+                              ProgressSpinnerSize="30"
+                              ProgressSpinnerBackground="Black"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              BorderThickness="0"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              IsUsingDropShadowEffect="True"
+                              Command="{Binding SaveButtonCommand}"
+                              Foreground="White"
+                              Background="{StaticResource NormalTheme_1st_Background_Brush}" />
         </Grid>
 
     </Grid>

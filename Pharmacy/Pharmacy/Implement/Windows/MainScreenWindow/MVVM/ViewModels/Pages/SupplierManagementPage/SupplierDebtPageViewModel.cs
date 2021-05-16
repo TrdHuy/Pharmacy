@@ -62,8 +62,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
                     MSW_SMP_SupplierDebtOV debt = new MSW_SMP_SupplierDebtOV();
                     debt.ImportID = item.ImportID;
                     debt.ImportTime = item.ImportTime;
-                    debt.PurchasedDebt = item.PurchasePrice - item.TotalPrice;
-                    debt.DebtType = debt.PurchasedDebt > 0 ? "Trả" : "Nợ";
+                    debt.PurchasedDebt = Math.Abs(item.PurchasePrice - item.TotalPrice);
+                    debt.DebtType = (item.PurchasePrice - item.TotalPrice) > 0 ? "Trả" : "Nợ";
                     debt.Description = debt.Description;
                     LstDebt.Add(debt);
                 }
@@ -71,7 +71,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
             TotalDebt = LstDebt.Where(o => o.DebtType == "Nợ").Sum(o => o.PurchasedDebt);
             PurchasedDebt = LstDebt.Where(o => o.DebtType == "Trả").Sum(o => o.PurchasedDebt);
-            GrossDebt = TotalDebt + PurchasedDebt;
+            GrossDebt = TotalDebt - PurchasedDebt;
         }
 
         private void ShowInvoiceButtonClickEvent(object paramaters)

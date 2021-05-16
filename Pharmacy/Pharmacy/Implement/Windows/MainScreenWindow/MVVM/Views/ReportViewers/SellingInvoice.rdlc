@@ -1031,7 +1031,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Công nợ:</Value>
+                    <Value>Nợ cũ:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
