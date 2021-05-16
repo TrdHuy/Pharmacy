@@ -650,7 +650,7 @@
                                            Grid.Column="0"
                                            FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                            VerticalAlignment="Center" />
-                                <TextBlock Text="Công nợ:"
+                                <TextBlock Text="Nợ cũ:"
                                            Grid.Row="1"
                                            Grid.Column="0"
                                            FontSize="{Binding FontSizeOV.FontSizeLarge}"

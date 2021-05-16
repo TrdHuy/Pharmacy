@@ -469,6 +469,7 @@
                               Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
                               MaxHeight="100"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
             <hps:OsirisButton Margin="0,5,10,0"
                               Grid.Column="2"

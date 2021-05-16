@@ -369,7 +369,7 @@
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
                                           Background="#FFC00000"
-                                          TextContent="Xem công nợ"
+                                          TextContent="Xem nợ cũ"
                                           Foreground="White"
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
@@ -382,11 +382,12 @@
                                           Padding="20,0,20,0"
                                           IsUsingDropShadowEffect="true"
                                           Margin="5,0,5,20"
-                                          TextContent="Trở lại"
+                                          TextContent="Quay lại"
                                           Foreground="White"
                                           FontSize="{Binding FontSizeOV.FontSizeXXLarge}"
                                           HorizontalContentAlignment="Center"
                                           VerticalContentAlignment="Center"
+                                          Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                           Command="{Binding ButtonCommandOV.CancelButtonCommand}"/>
 
                     </Grid>

@@ -340,13 +340,14 @@
 
                 <hps:OsirisButton Margin="0,5,10,20"
                                   Grid.Column="1"
-                                  TextContent="Trở lại"
+                                  TextContent="Quay lại"
                                   IsUsingDropShadowEffect="True"
                                   HorizontalContentAlignment="Center"
                                   VerticalContentAlignment="Center"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                   Command="{Binding ButtonCommandOV.CancleButtonCommand}"
                                   BorderThickness="0"
+                                  Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                   Foreground="White" />
                 <hps:OsirisButton Margin="0,5,10,20"
                                   Grid.Column="2"
