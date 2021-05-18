@@ -99,7 +99,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
             _parentModel = parentVM;
         }
 
-        public void RefreshViewModel()
+        public override void RefreshViewModel()
         {
             CurrentSelectedCustomer = null;
             CustomerName = "";

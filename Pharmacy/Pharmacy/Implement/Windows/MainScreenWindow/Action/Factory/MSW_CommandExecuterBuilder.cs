@@ -417,6 +417,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON:
                     viewModelCommandExecuter = new MSW_AIP_AppUpdateButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_AIP_BUG_REPORT_BUTTON:
+                    viewModelCommandExecuter = new MSW_AIP_BugReportButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_AIP_CONTACT_US_BUTTON:
                     viewModelCommandExecuter = new MSW_AIP_ContactUsButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;

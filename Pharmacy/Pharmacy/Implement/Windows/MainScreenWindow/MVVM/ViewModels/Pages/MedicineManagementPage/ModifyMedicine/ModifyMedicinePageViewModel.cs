@@ -141,9 +141,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private int _supplierID = -1;
         private decimal _bidPrice = 0;
         private decimal _askingPrice = 0;
-        private bool _isSaveButtonRunning;
         private tblMedicine _modifiedMedicine;
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         protected override Logger logger => L;
 

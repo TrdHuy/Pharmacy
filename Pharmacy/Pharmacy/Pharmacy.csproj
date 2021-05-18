@@ -106,7 +106,7 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -206,6 +206,8 @@
     <Compile Include="Implement\Windows\BaseWindow\Action\Factory\Pharmacy_CommandExecuterFactory.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseCommandExecuter.cs" />
     <Compile Include="Implement\Windows\BaseWindow\Action\Types\BaseViewModelCommandExecuter.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\MVVM\ViewModel\BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\BaseWindow\MVVM\ViewModel\OVs\ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\BaseWindow\MVVM\Views\Animations\DownloadingAnimation.xaml.cs">
       <DependentUpon>DownloadingAnimation.xaml</DependentUpon>
     </Compile>
@@ -220,6 +222,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_NavigationButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_AppUpdateButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_BugReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_ContactUsButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerInstantiationPage\MSW_CMP_CIP_ButtonAction.cs" />
@@ -617,10 +620,18 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_DataFlowHost.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_PageController.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Factory\PSW_CommandExecuterBuilder.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_ButtonAction.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_DateTimePickerAction.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_SendReportAction.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
-    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageViewModel.cs" />
-    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\DailyReportDetailPageViewModel.cs" />
-    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageVM\BugReportPageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageVM\OVs\PSW_BRP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageVM\OVs\PSW_BRP_IssueInfoOV.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageVM\OVs\PSW_BRP_ProductInfoOV.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageVM\OVs\PSW_BRP_UserInfoOV.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageVM\PSW_BasePageViewModel.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\PSW_BasePageVM\OVs\PSW_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\BugReportPage.xaml.cs">
       <DependentUpon>BugReportPage.xaml</DependentUpon>
     </Compile>

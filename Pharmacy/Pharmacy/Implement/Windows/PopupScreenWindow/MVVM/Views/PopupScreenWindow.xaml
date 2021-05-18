@@ -14,8 +14,6 @@
                        BorderThickness="1"
                        Style="{StaticResource DefaultDashboardStyle}"
                        Title="PopupWindow"
-                       Height="{Binding MinHeight,RelativeSource={RelativeSource Mode=Self}}"
-                       Width="{Binding MinWidth,RelativeSource={RelativeSource Mode=Self}}"
                        MinHeight="{Binding WindowMinHeight}"
                        MinWidth="{Binding WindowMinWidth}"
                        ContentType="NormalContentType"

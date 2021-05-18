@@ -196,5 +196,9 @@
         //App info page key string
         public const string KEY_TAG_MSW_AIP_APP_UPDATE_BUTTON = "msw_aip_app_update_button";
         public const string KEY_TAG_MSW_AIP_CONTACT_US_BUTTON = "msw_aip_contact_us_button";
+        public const string KEY_TAG_MSW_AIP_BUG_REPORT_BUTTON = "msw_aip_bug_report_button";
+
+        //Bug report key string
+        public const string KEY_TAG_PSW_BRP_SEND_REPORT_BUTTON = "psw_brp_send_report_button";
     }
 }

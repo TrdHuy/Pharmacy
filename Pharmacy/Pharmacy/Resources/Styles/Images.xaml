@@ -28,7 +28,6 @@
     <BitmapImage x:Key="HomePage_WarehouseManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/warehouse_manage_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_OtherPaymentsManageIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/other_payments_manage_icon.png"></BitmapImage>
     <BitmapImage x:Key="HomePage_ReportIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/report_icon.png"></BitmapImage>
-    <BitmapImage x:Key="HomePage_VendorIcon" UriSource="/Pharmacy;component/Resources/Icons/HomePageIcon/vendor_icon.png"></BitmapImage>
 
     <BitmapImage x:Key="UserManagementPage_EditUserRow"
                  UriSource="/Pharmacy;component/Resources/Icons/UserManagementPageIcons/edit_pencil.png"/>

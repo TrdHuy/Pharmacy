@@ -227,6 +227,7 @@
                                           BorderThickness="0"
                                           IsUsingDropShadowEffect="True"
                                           Background="Transparent"
+                                          Command="{Binding ButtonCommandOV.BugReportButtonCommand}"
                                           IconSource="{StaticResource AntiBugImage}"
                                           VerticalContentAlignment="Center"
                                           HorizontalContentAlignment="Center" />

@@ -7,6 +7,7 @@ using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Action.Builder;
 using Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory;
+using Pharmacy.Implement.Windows.PopupScreenWindow.Action.Factory;
 using System;
 using System.Collections.Generic;
 
@@ -35,6 +36,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Action.Factory
             RegisterBuilder(WindowTag.WINDOW_TAG_BASE_WINDOW, new BaseCommandExecuterBuilder());
             RegisterBuilder(WindowTag.WINDOW_TAG_LOGIN_SCREEN, new LSW_CommandExecuterBuilder());
             RegisterBuilder(WindowTag.WINDOW_TAG_MAIN_SCREEN, new MSW_CommandExecuterBuilder());
+            RegisterBuilder(WindowTag.WINDOW_TAG_POPUP_SCREEN, new PSW_CommandExecuterBuilder());
         }
 
         public void LockBuilder(string builderID, bool key, BuilderStatus status)
