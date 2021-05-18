@@ -98,6 +98,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             {
                 List<tblCustomer> result = (List<tblCustomer>)queryResult.Result;
                 CustomerItemSource = new ObservableCollection<tblCustomer>(result);
+                Invalidate("CustomerItemSource");
                 if (CustomerItemSource.Count <= 5000)
                 {
                     DelayTextChangedHandler = 1000;

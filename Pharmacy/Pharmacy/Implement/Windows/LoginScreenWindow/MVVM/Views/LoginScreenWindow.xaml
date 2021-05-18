@@ -104,7 +104,8 @@
                                           IconWidth="40"
                                           Padding="0,0,50,0"
                                           RenderTransformOrigin="0.5,0.5"
-                                          TextContent="Báo lỗi" />
+                                          TextContent="Báo lỗi"
+                                          TabIndex="4"/>
                         <hps:OsirisButton IconStretch="UniformToFill"
                                           Height="40"
                                           Margin="42,0,42,70"
@@ -122,7 +123,8 @@
                                           IconWidth="40"
                                           Padding="0,0,50,0"
                                           RenderTransformOrigin="0.5,0.5"
-                                          TextContent="CSKH" />
+                                          TextContent="CSKH"
+                                          TabIndex="5"/>
                     </Grid>
                 </Border>
 
@@ -148,7 +150,7 @@
                            FontWeight="Bold"
                            Foreground="White"
                            Text="Pharmacy Management"
-                           TextWrapping="Wrap" />
+                           TextWrapping="Wrap"/>
                 <Border Margin="10,218,10,45"
                         BorderBrush="White"
                         CornerRadius="30">
@@ -181,12 +183,14 @@
                                  Style="{StaticResource LoginTextBox}"
                                  x:Name="loginUserNameTextEdit"
                                  Foreground="White"
-                                 Margin="25,60,25,54" />
+                                 Margin="25,60,25,54"
+                                 TabIndex="0" />
                         <PasswordBox Tag="Mật khẩu"
                                      Style="{StaticResource LoginPasswordBox}"
                                      x:Name="loginUserPasswordTextEdit"
                                      Foreground="White"
-                                     Margin="25,109,25,5" />
+                                     Margin="25,109,25,5"
+                                     TabIndex="1" />
 
                         <CheckBox IsChecked="{Binding IsUserRemember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   Margin="59,0,0,26.857"
@@ -194,7 +198,8 @@
                                   VerticalAlignment="Bottom"
                                   Content="Lưu tên đăng nhập"
                                   Foreground="#FFC6C6C6"
-                                  Grid.Row="1" />
+                                  Grid.Row="1"
+                                  TabIndex="2"/>
                         <hps:OsirisButton IsUsingDropShadowEffect="True"
                                           IsBusy="{Binding IsLoginButtonRunning}"
                                           ProgressSpinnerBackground="Black"
@@ -211,7 +216,8 @@
                                           Foreground="{StaticResource ForegroundLightBrush}"
                                           RenderTransformOrigin="0.5,0.5"
                                           TextContent="Đăng nhập"
-                                          Grid.Row="1">
+                                          Grid.Row="1"
+                                          TabIndex="3">
                             <hps:OsirisButton.CommandParameter>
                                 <MultiBinding Converter="{StaticResource MultiBinding}">
                                     <Binding ElementName="loginUserNameTextEdit" />
