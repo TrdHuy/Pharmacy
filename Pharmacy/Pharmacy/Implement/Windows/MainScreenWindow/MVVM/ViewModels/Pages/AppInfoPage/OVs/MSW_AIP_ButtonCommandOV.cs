@@ -72,6 +72,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.AppI
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_CONTACT_US_BUTTON
                     , paramaters);
             });
+            BugReportButtonCommand = new CommandExecuterModel((paramaters) =>
+            {
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_AIP_BUG_REPORT_BUTTON
+                    , paramaters);
+            });
 
         }
 

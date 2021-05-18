@@ -4,7 +4,7 @@
                                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.Pages"
-                                     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages"
+                                     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages.BugReportPageVM"
                                      xmlns:vmh="clr-namespace:Pharmacy.Base.Utils.ViewModelHelper"
                                      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
                                      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
@@ -27,58 +27,58 @@
                TargetType="{x:Type Button}">
             <Setter Property="Template">
                 <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type ButtonBase}">
-                            <Border x:Name="border"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Background="{TemplateBinding Background}"
-                                    SnapsToDevicePixels="True">
-                                <ContentPresenter x:Name="contentPresenter"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                  Content="{TemplateBinding Content}"
-                                                  ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                  Focusable="False"
-                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                  Margin="{TemplateBinding Padding}"
-                                                  RecognizesAccessKey="True"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="Button.IsDefaulted"
-                                         Value="True">
-                                    <Setter Property="BorderBrush"
-                                            TargetName="border"
-                                            Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                                </Trigger>
-                                <Trigger Property="IsMouseOver"
-                                         Value="True">
-                                    <Setter Property="Background"
-                                            TargetName="border"
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                              Focusable="False"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Button.IsDefaulted"
+                                     Value="True">
+                                <Setter Property="BorderBrush"
+                                        TargetName="border"
+                                        Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        TargetName="border"
                                         Value="#35C9C9C9" />
                                 <Setter Property="Cursor"
                                         Value="Hand" />
                             </Trigger>
-                                <Trigger Property="IsPressed"
-                                         Value="True">
-                                    <Setter Property="Background"
+                            <Trigger Property="IsPressed"
+                                     Value="True">
+                                <Setter Property="Background"
                                         TargetName="border"
                                         Value="#55C9C9C9" />
-                                </Trigger>
-                                
-                                <Trigger Property="IsEnabled"
-                                         Value="False">
-                                    <Setter Property="Background"
-                                            TargetName="border"
-                                            Value="#FFF4F4F4" />
-                                    <Setter Property="Foreground"
-                                            Value="#FF838383" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+                                <Setter Property="Background"
+                                        TargetName="border"
+                                        Value="#FFF4F4F4" />
+                                <Setter Property="Foreground"
+                                        Value="#FF838383" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            
+
         </Style>
 
         <Style x:Key="BugReportTextBoxS"
@@ -352,6 +352,7 @@
                             <!--Full name-->
                             <hps:AkerTextBox x:Name="FullNameTextBox"
                                              Grid.Row="2"
+                                             Text="{Binding FullNameText}"
                                              Grid.Column="1"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              VerticalContentAlignment="Top"
@@ -373,6 +374,7 @@
 
                             <!--Phone-->
                             <hps:AkerTextBox Grid.Row="4"
+                                             Text="{Binding PhoneText}"
                                              Grid.Column="1"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
@@ -392,6 +394,7 @@
                             <!--Email-->
 
                             <hps:AkerTextBox Grid.Row="6"
+                                             Text="{Binding EmailText}"
                                              Grid.Column="1"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
@@ -413,6 +416,7 @@
                             <hps:AkerTextBox Tag="Địa chỉ"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
+                                             Text="{Binding AddressText}"
                                              Grid.Row="8"
                                              Style="{StaticResource BugReportTextBoxS}"
                                              Grid.Column="1"
@@ -482,6 +486,7 @@
 
                             <!--Prod ID-->
                             <hps:AkerTextBox Grid.Row="2"
+                                             Text="{Binding ProdIDText}"
                                              Grid.Column="1"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              Tag="Mã sản phẩm"
@@ -508,6 +513,7 @@
                                              Grid.Column="1"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
+                                             Text="{Binding ProdVersionText}"
                                              Tag="Phiên bản"
                                              Background="Transparent"
                                              BorderThickness="0"
@@ -597,6 +603,7 @@
                             <hps:AkerTextBox Grid.Row="2"
                                              Grid.ColumnSpan="2"
                                              Grid.Column="1"
+                                             Text="{Binding IssueTitleText}"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              VerticalContentAlignment="Top"
                                              Tag="Tiêu đề"
@@ -619,6 +626,8 @@
                                              Grid.Column="1"
                                              Grid.ColumnSpan="2"
                                              Grid.RowSpan="5"
+                                             Text="{Binding IssueDetailText}"
+                                             AcceptsReturn="True"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              Tag="Mô tả chi tiết vấn đề"
@@ -636,16 +645,6 @@
 
 
                             <!--Time-->
-                            <hps:AkerTextBox Grid.Row="10"
-                                             Grid.Column="1"
-                                             Grid.ColumnSpan="2"
-                                             Padding="{Binding CurrentBugReportTBPadding}"
-                                             VerticalContentAlignment="Top"
-                                             Tag="Thời gian bạn gặp phải vấn đề"
-                                             BorderThickness="0"
-                                             Style="{StaticResource BugReportTextBoxS}">
-
-                            </hps:AkerTextBox>
                             <Viewbox Grid.Column="3"
                                      Grid.Row="10">
                                 <TextBlock HorizontalAlignment="Center"
@@ -654,33 +653,20 @@
                                            FontFamily="Arial Black"
                                            Text="*" />
                             </Viewbox>
-                            <hps:SquareGrid Grid.Row="10"
-                                            Margin="2"
-                                            Grid.Column="2">
-                                <hps:OsirisButton OBCornerRadius="1000"
-                                                  BorderThickness="0"
-                                                  FontSize="20"
-                                                  Foreground="#E46C10"
-                                                  HorizontalContentAlignment="Center"
-                                                  VerticalContentAlignment="Center"
-                                                  TextContent="&#xf073;"
-                                                  FontFamily="{StaticResource FontAwesome}"
-                                                  Background="White" />
-                            </hps:SquareGrid>
-
+                            <hps:SekerBox Grid.Row="10"
+                                          Grid.Column="1"
+                                          Text="{Binding IncidentTimeText}"
+                                          SuggestTextForegroundColor="Black"
+                                          Grid.ColumnSpan="2"
+                                          IsReadOnly="True"
+                                          CalendarColor="#E46C10"
+                                          Padding="{Binding CurrentBugReportTBPadding}"
+                                          VerticalContentAlignment="Center"
+                                          Tag="Thời gian bạn gặp phải vấn đề"
+                                          BorderThickness="0" />
 
 
                             <!--Log attach-->
-                            <hps:AkerTextBox Grid.Row="12"
-                                             Grid.Column="1"
-                                             Grid.ColumnSpan="2"
-                                             VerticalContentAlignment="Top"
-                                             Padding="{Binding CurrentBugReportTBPadding}"
-                                             Tag="Đính kèm log file"
-                                             BorderThickness="0"
-                                             Style="{StaticResource BugReportTextBoxS}">
-
-                            </hps:AkerTextBox>
                             <Viewbox Grid.Column="3"
                                      Grid.Row="12">
                                 <TextBlock HorizontalAlignment="Center"
@@ -689,30 +675,108 @@
                                            FontFamily="Arial Black"
                                            Text="*" />
                             </Viewbox>
-                            <hps:SquareGrid Grid.Row="12"
-                                            Margin="2"
-                                            Grid.Column="2">
-                                <hps:OsirisButton OBCornerRadius="1000"
-                                                  BorderThickness="0"
-                                                  FontSize="20"
-                                                  Foreground="#E46C10"
-                                                  HorizontalContentAlignment="Center"
-                                                  VerticalContentAlignment="Center"
-                                                  TextContent="&#xf0ee;"
-                                                  FontFamily="{StaticResource FontAwesome}"
-                                                  Background="White" />
-                            </hps:SquareGrid>
-                            <!--video attach-->
-                            <hps:AkerTextBox Grid.Row="14"
-                                             Grid.Column="1"
-                                             Padding="{Binding CurrentBugReportTBPadding}"
-                                             Grid.ColumnSpan="2"
-                                             VerticalContentAlignment="Top"
-                                             Tag="Đính kèm video, hình ảnh"
-                                             BorderThickness="0"
-                                             Style="{StaticResource BugReportTextBoxS}">
+                            <hps:FinderBox Grid.Row="12"
+                                           Grid.Column="1"
+                                           Text="{Binding LogPathText}"
+                                           Grid.ColumnSpan="2"
+                                           SuggestTextForegroundColor="Black"
+                                           VerticalContentAlignment="Center"
+                                           Padding="{Binding CurrentBugReportTBPadding}"
+                                           Tag="Đính kèm log file"
+                                           BorderThickness="0">
+                                <hps:FinderBox.FinderButtonStyle>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                                                    <Border x:Name="border"
+                                                            BorderThickness="0"
+                                                            Background="Transparent"
+                                                            SnapsToDevicePixels="True">
 
-                            </hps:AkerTextBox>
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="3*" />
+                                                                <RowDefinition Height="4*" />
+                                                                <RowDefinition Height="10*" />
+                                                                <RowDefinition Height="4*" />
+                                                                <RowDefinition Height="3*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="3*" />
+                                                                <ColumnDefinition Width="4*" />
+                                                                <ColumnDefinition Width="10*" />
+                                                                <ColumnDefinition Width="4*" />
+                                                                <ColumnDefinition Width="3*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Viewbox Grid.RowSpan="3"
+                                                                     Grid.ColumnSpan="3"
+                                                                     Grid.Row="1"
+                                                                     Grid.Column="1">
+                                                                <Path Data="m 90.843434,202.00176 c -1.53891,-0.16714 -5.42518,-0.78195 -8.63613,-1.36626 -3.21096,-0.58431 -9.14795,-2.1466 -13.19331,-3.47176 -4.04536,-1.32516 -10.73513,-4.1655 -14.86614,-6.31186 -4.13101,-2.14636 -10.17217,-5.89977 -13.42481,-8.34091 -3.25264,-2.44114 -8.49991,-7.06099 -11.66062,-10.26632 -3.1607,-3.20533 -7.61747,-8.34611 -9.90392,-11.42394 -2.28646,-3.07784 -5.8714,-8.90124 -7.96653,-12.9409 C 9.0968443,143.84015 6.4109843,137.76128 5.2233843,134.3712 4.0357845,130.98112 2.3715145,125.00033 1.5250045,121.08055 0.24693448,115.16245 -0.01165552,111.75879 3.9448423e-4,101.01278 0.01229448,90.402039 0.28942448,86.788605 1.5395045,80.945006 c 0.83854,-3.919776 2.50332,-9.900566 3.6995098,-13.290656 1.1962,-3.39007 3.43175,-8.682 4.9678897,-11.75984 1.53615,-3.07783 4.47725,-8.11429 6.53579,-11.19212 2.05854,-3.07784 5.69394,-7.79952 8.07865,-10.49262 2.38472,-2.69311 6.56845,-6.87411 9.29718,-9.29112 2.72873,-2.41701 7.47955,-6.07337 10.55739,-8.12525 3.07783,-2.05189 8.2478,-5.06317 11.48881,-6.69175 3.24102,-1.6285699 9.11289,-4.0158799 13.04862,-5.3051299 C 73.149064,3.50727 79.153734,1.90064 82.557064,1.22622 87.028964,0.34004 92.139574,0 100.98631,0 c 8.84673,0 13.95733,0.34004 18.42924,1.22622 3.40332,0.67442 9.4977,2.31044 13.54307,3.6356001 4.04536,1.32516 10.70418,4.15462 14.79738,6.2876699 4.09319,2.13306 9.9604,5.74902 13.03824,8.03548 3.07783,2.28646 8.21538,6.74004 11.41677,9.89684 3.20139,3.15681 7.83268,8.43502 10.29174,11.72937 2.45907,3.29435 6.18467,9.2949 8.27912,13.33456 2.09445,4.03966 4.77976,10.11854 5.96736,13.50861 1.18759,3.39009 2.84534,9.37088 3.68387,13.290656 1.25009,5.843599 1.52723,9.457033 1.53912,20.067774 0.012,10.74601 -0.24654,14.14967 -1.52461,20.06777 -0.84652,3.91978 -2.51079,9.90057 -3.69838,13.29065 -1.1876,3.39008 -3.87347,9.46895 -5.9686,13.50861 -2.09513,4.03966 -5.68174,9.86306 -7.97026,12.9409 -2.28852,3.07783 -6.76185,8.2263 -9.94075,11.44105 -3.17889,3.21474 -8.42449,7.83458 -11.65688,10.26632 -3.23238,2.43173 -9.25698,6.17744 -13.38799,8.3238 -4.13101,2.14636 -10.80591,4.98183 -14.83312,6.30104 -4.0272,1.31921 -9.96419,2.90911 -13.1933,3.5331 -3.22912,0.62399 -10.43542,1.24368 -16.01399,1.37708 -5.578579,0.13341 -11.401986,0.10581 -12.940906,-0.0613 z"
+                                                                      Fill="White"
+                                                                      x:Name="backgroundPath"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Center"
+                                                                      StrokeThickness="0" />
+                                                            </Viewbox>
+
+                                                            <Viewbox Grid.Row="2"
+                                                                     Grid.Column="2">
+                                                                <Path Data="M 40.946343,144.59896 C 36.826596,144.18508 31.820215,142.90428 28.134654,141.3213 16.688689,136.40516 7.0244677,126.32624 2.7360911,114.83288 -1.127387,104.47829 -0.88155328,91.333952 3.3608383,81.428509 7.7917031,71.083011 14.359577,63.735775 23.920313,58.429381 l 2.433346,-1.350555 0.03983,-4.80947 c 0.06809,-8.221929 1.350106,-14.41309 4.391274,-21.20652 5.313578,-11.869592 16.426701,-22.6173344 28.217996,-27.2902478 7.627609,-3.022832 15.487057,-4.228767 23.586197,-3.619018 7.320019,0.551093 12.666772,1.953122 18.959234,4.971484 11.83416,5.6766138 20.42029,14.5822518 25.85579,26.8179168 l 0.32601,0.73387 1.75222,-1.313523 c 5.45706,-4.090777 12.4438,-5.760683 19.57692,-4.679089 5.65615,0.857631 10.57624,3.452816 14.72486,7.766864 4.67941,4.866002 7.01681,10.351531 7.3223,17.184329 0.20521,4.589961 -0.71309,8.756899 -2.85845,12.970661 -0.62328,1.224225 -1.10764,2.247495 -1.07634,2.273948 0.0313,0.02644 0.66631,0.219424 1.41113,0.428833 6.62821,1.863559 11.9556,4.987316 16.95649,9.942547 5.0662,5.019963 7.88579,9.471566 10.03604,15.845031 2.3802,7.055028 2.52212,16.122898 0.36849,23.543548 -1.98957,6.85536 -5.59979,12.4869 -11.57453,18.05494 -5.99161,5.58379 -13.72528,9.07645 -21.96087,9.91792 -2.85951,0.29217 -118.547061,0.27894 -121.461908,-0.0139 z m 62.894247,-26.73073 c 1.51442,-1.1551 1.43174,0.0233 1.43174,-20.403447 V 78.945748 h 11.97358 c 13.00374,0 12.7195,0.0261 13.73095,-1.259763 0.61529,-0.78223 0.81962,-1.976596 0.51221,-2.99398 -0.19831,-0.656258 -4.06356,-4.635131 -18.93202,-19.488561 C 99.610407,42.2699 93.679513,36.492267 93.240094,36.385643 c -0.348773,-0.08462 -1.096599,-0.101719 -1.661853,-0.03805 -1.13723,0.128189 1.465385,-2.379301 -28.869602,27.814435 -4.864027,4.841374 -9.109621,9.197546 -9.434654,9.680386 -1.030261,1.530465 -0.642978,3.76262 0.806104,4.646099 0.724606,0.441782 1.109153,0.455542 12.758441,0.456353 l 12.011315,8.53e-4 0.06389,18.566754 c 0.06347,18.432847 0.06731,18.572147 0.539031,19.316957 0.261317,0.41261 0.769152,0.94405 1.128529,1.18097 0.620233,0.40889 1.208111,0.43084 11.578805,0.43225 l 10.9254,0.002 0.75508,-0.57592 z"
+                                                                      Fill="#E46C10"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Center"
+                                                                      StrokeThickness="0" />
+                                                            </Viewbox>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="Button.IsDefaulted"
+                                                                 Value="True">
+                                                            <Setter Property="BorderBrush"
+                                                                    TargetName="border"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFBEE6FD" />
+
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed"
+                                                                 Value="True">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFC4E5F6" />
+
+                                                        </Trigger>
+                                                        <Trigger Property="ToggleButton.IsChecked"
+                                                                 Value="True">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFBCDDEE" />
+
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="False">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFF4F4F4" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="#FF838383" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </hps:FinderBox.FinderButtonStyle>
+                            </hps:FinderBox>
+
+
+                            <!--video attach-->
                             <hps:SquareGrid Grid.Row="14"
                                             Margin="2"
                                             Grid.Column="2">
@@ -726,6 +790,107 @@
                                                   FontFamily="{StaticResource FontAwesome}"
                                                   Background="White" />
                             </hps:SquareGrid>
+
+                            <hps:FinderBox  Grid.Row="14"
+                                            Grid.Column="1"
+                                            Text="{Binding VideoPathText}"
+                                            Grid.ColumnSpan="2"
+                                            SuggestTextForegroundColor="Black"
+                                            VerticalContentAlignment="Center"
+                                            Padding="{Binding CurrentBugReportTBPadding}"
+                                            Tag="Đính kèm video, hình ảnh"
+                                            BorderThickness="0">
+                                
+                                <hps:FinderBox.FinderButtonStyle>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                                                    <Border x:Name="border"
+                                                            BorderThickness="0"
+                                                            Background="Transparent"
+                                                            SnapsToDevicePixels="True">
+
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="3*" />
+                                                                <RowDefinition Height="4*" />
+                                                                <RowDefinition Height="10*" />
+                                                                <RowDefinition Height="4*" />
+                                                                <RowDefinition Height="3*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="3*" />
+                                                                <ColumnDefinition Width="4*" />
+                                                                <ColumnDefinition Width="10*" />
+                                                                <ColumnDefinition Width="4*" />
+                                                                <ColumnDefinition Width="3*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Viewbox Grid.RowSpan="3"
+                                                                     Grid.ColumnSpan="3"
+                                                                     Grid.Row="1"
+                                                                     Grid.Column="1">
+                                                                <Path Data="m 90.843434,202.00176 c -1.53891,-0.16714 -5.42518,-0.78195 -8.63613,-1.36626 -3.21096,-0.58431 -9.14795,-2.1466 -13.19331,-3.47176 -4.04536,-1.32516 -10.73513,-4.1655 -14.86614,-6.31186 -4.13101,-2.14636 -10.17217,-5.89977 -13.42481,-8.34091 -3.25264,-2.44114 -8.49991,-7.06099 -11.66062,-10.26632 -3.1607,-3.20533 -7.61747,-8.34611 -9.90392,-11.42394 -2.28646,-3.07784 -5.8714,-8.90124 -7.96653,-12.9409 C 9.0968443,143.84015 6.4109843,137.76128 5.2233843,134.3712 4.0357845,130.98112 2.3715145,125.00033 1.5250045,121.08055 0.24693448,115.16245 -0.01165552,111.75879 3.9448423e-4,101.01278 0.01229448,90.402039 0.28942448,86.788605 1.5395045,80.945006 c 0.83854,-3.919776 2.50332,-9.900566 3.6995098,-13.290656 1.1962,-3.39007 3.43175,-8.682 4.9678897,-11.75984 1.53615,-3.07783 4.47725,-8.11429 6.53579,-11.19212 2.05854,-3.07784 5.69394,-7.79952 8.07865,-10.49262 2.38472,-2.69311 6.56845,-6.87411 9.29718,-9.29112 2.72873,-2.41701 7.47955,-6.07337 10.55739,-8.12525 3.07783,-2.05189 8.2478,-5.06317 11.48881,-6.69175 3.24102,-1.6285699 9.11289,-4.0158799 13.04862,-5.3051299 C 73.149064,3.50727 79.153734,1.90064 82.557064,1.22622 87.028964,0.34004 92.139574,0 100.98631,0 c 8.84673,0 13.95733,0.34004 18.42924,1.22622 3.40332,0.67442 9.4977,2.31044 13.54307,3.6356001 4.04536,1.32516 10.70418,4.15462 14.79738,6.2876699 4.09319,2.13306 9.9604,5.74902 13.03824,8.03548 3.07783,2.28646 8.21538,6.74004 11.41677,9.89684 3.20139,3.15681 7.83268,8.43502 10.29174,11.72937 2.45907,3.29435 6.18467,9.2949 8.27912,13.33456 2.09445,4.03966 4.77976,10.11854 5.96736,13.50861 1.18759,3.39009 2.84534,9.37088 3.68387,13.290656 1.25009,5.843599 1.52723,9.457033 1.53912,20.067774 0.012,10.74601 -0.24654,14.14967 -1.52461,20.06777 -0.84652,3.91978 -2.51079,9.90057 -3.69838,13.29065 -1.1876,3.39008 -3.87347,9.46895 -5.9686,13.50861 -2.09513,4.03966 -5.68174,9.86306 -7.97026,12.9409 -2.28852,3.07783 -6.76185,8.2263 -9.94075,11.44105 -3.17889,3.21474 -8.42449,7.83458 -11.65688,10.26632 -3.23238,2.43173 -9.25698,6.17744 -13.38799,8.3238 -4.13101,2.14636 -10.80591,4.98183 -14.83312,6.30104 -4.0272,1.31921 -9.96419,2.90911 -13.1933,3.5331 -3.22912,0.62399 -10.43542,1.24368 -16.01399,1.37708 -5.578579,0.13341 -11.401986,0.10581 -12.940906,-0.0613 z"
+                                                                      Fill="White"
+                                                                      x:Name="backgroundPath"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Center"
+                                                                      StrokeThickness="0" />
+                                                            </Viewbox>
+
+                                                            <Viewbox Grid.Row="2"
+                                                                     Grid.Column="2">
+                                                                <Path Data="m 92.861237,131.07169 c -3.89538,-0.58417 -6.95774,-1.82349 -9.9704,-4.03498 -1.43963,-1.05678 -16.255571,-15.64923 -19.776746,-19.47842 -3.862737,-4.20063 -5.564565,-7.797709 -6.280424,-13.274642 -0.422986,-3.23621 0.07893,-7.86164 1.162242,-10.71075 1.254679,-3.2998 2.749658,-5.72235 4.960951,-8.03902 l 0.760304,-0.79653 -3.527802,-3.61171 -3.5278,-3.6117 -0.92679,0.88713 c -4.559166,4.36407 -10.196619,6.45076 -16.73081,6.19284 -5.16106,-0.20371 -8.998209,-1.53526 -12.97872,-4.50381 -1.49274,-1.11324 -19.8391308,-19.41817 -21.1776418,-21.12977 -3.473748,-4.44203 -5.11562901,-9.68918 -4.81200801,-15.37831 0.246071,-4.61079 1.56976001,-8.45228 4.16799701,-12.09598 C 5.6486522,19.459518 19.562162,5.6188676 21.62159,4.1592576 c 4.443656,-3.14945 9.871318,-4.57164004 15.47848,-4.05577004 4.593079,0.42257 8.143614,1.75998004 11.70415,4.40870004 1.67295,1.24453 19.961707,19.6544104 21.323567,21.4647904 2.19628,2.91961 3.57375,6.12094 4.19346,9.74582 1.26541,7.4019 -0.92703,14.83561 -5.89704,19.99452 l -0.89577,0.92981 3.55788,3.55788 3.55787,3.55787 1.20651,-1.1071 c 3.72507,-3.41815 8.17303,-5.35534 13.44578,-5.85593 5.80131,-0.55077 11.477433,1.00908 16.013723,4.40072 1.38097,1.0325 20.45427,20.1058 21.48677,21.48677 2.9866,3.99456 4.55896,8.8225 4.55896,13.99833 0,1.435303 -0.42111,4.695622 -0.77432,5.994882 -0.69725,2.56481 -2.11434,5.42302 -3.7566,7.5769 -0.9454,1.23992 -13.63238,14.00023 -15.676,15.76661 -4.82134,4.16726 -11.628885,6.04622 -18.287773,5.04763 z M 98.449995,115.55 c 1.997225,-0.53178 2.504925,-0.956 9.528765,-7.96198 5.7956,-5.78087 6.79423,-6.85371 7.19315,-7.727639 1.12649,-2.467843 0.90429,-5.483313 -0.55846,-7.579003 -0.29366,-0.42074 -4.65249,-4.86465 -9.68629,-9.87536 -9.540023,-9.49629 -9.614733,-9.56104 -11.610803,-10.06366 -0.45076,-0.1135 -1.50089,-0.17169 -2.35855,-0.13068 -1.79711,0.0859 -3.37374,0.70916 -4.60267,1.81943 l -0.72364,0.65376 1.9027,1.88226 c 2.79485,2.76484 3.66248,4.24156 3.85522,6.56166 0.43288,5.2108 -4.49246,9.34133 -9.57156,8.02697 -1.58138,-0.40923 -2.74451,-1.19609 -5.07556,-3.43364 l -2.11323,-2.02848 -0.70298,0.79217 c -0.8763,0.98746 -1.29976,1.80805 -1.66213,3.22089 -0.49693,1.93749 -0.0375,4.61865 1.04061,6.07319 0.67536,0.91116 17.44631,17.831452 18.37924,18.542922 1.73698,1.32464 4.51076,1.82772 6.766188,1.22719 z M 43.281337,58.347148 c 0.706713,-0.35661 1.55003,-0.87788 1.874037,-1.15838 l 0.589105,-0.50999 -1.538499,-1.47538 c -3.530804,-3.38595 -4.64533,-5.68853 -4.186927,-8.65008 0.655205,-4.23297 4.551837,-7.16134 8.708337,-6.54443 0.677787,0.1006 1.597682,0.35976 2.04421,0.57592 1.152673,0.558 3.12016,2.16987 4.584854,3.75615 l 1.254799,1.35896 0.746834,-0.81022 c 0.41076,-0.44562 0.996858,-1.34099 1.302439,-1.98971 0.51458,-1.0924 0.555222,-1.31639 0.550453,-3.0336 -0.0056,-2.00549 -0.337779,-3.2126 -1.209204,-4.39375 -0.234699,-0.31812 -4.48113,-4.658 -9.436511,-9.64418 -10.67577,-10.74211 -10.014424,-10.24199 -13.543537,-10.24199 -2.09733,0 -2.147228,0.009 -3.447272,0.65196 -1.20573,0.5959 -1.856407,1.18036 -7.568648,6.79837 -3.437231,3.38054 -6.589098,6.60534 -7.004147,7.16623 -1.103144,1.49076 -1.508922,2.71452 -1.504954,4.5387 0.0037,1.72073 0.396976,3.08566 1.233889,4.28291 0.28968,0.41441 4.605212,4.81796 9.590072,9.78569 6.292575,6.27095 9.306304,9.15446 9.857995,9.43204 1.475123,0.74222 2.119824,0.8726 4.012503,0.81147 1.670489,-0.054 1.901152,-0.1067 3.090172,-0.70669 z"
+                                                                      Fill="#E46C10"
+                                                                      VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Center"
+                                                                      StrokeThickness="0" />
+                                                            </Viewbox>
+                                                        </Grid>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="Button.IsDefaulted"
+                                                                 Value="True">
+                                                            <Setter Property="BorderBrush"
+                                                                    TargetName="border"
+                                                                    Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver"
+                                                                 Value="True">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFBEE6FD" />
+
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed"
+                                                                 Value="True">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFC4E5F6" />
+
+                                                        </Trigger>
+                                                        <Trigger Property="ToggleButton.IsChecked"
+                                                                 Value="True">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFBCDDEE" />
+
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled"
+                                                                 Value="False">
+                                                            <Setter Property="Fill"
+                                                                    TargetName="backgroundPath"
+                                                                    Value="#FFF4F4F4" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="#FF838383" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </hps:FinderBox.FinderButtonStyle>
+                            </hps:FinderBox>
                         </Grid>
 
 
@@ -736,7 +901,7 @@
                           Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.8*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1*" />
                             <ColumnDefinition Width="0.2*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -748,15 +913,22 @@
                                 CornerRadius="5"
                                 Background="#20B596">
                             <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.2*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="0.2*" />
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="0.5*" />
                                     <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="0.1*" />
+                                    <ColumnDefinition Width="1.2*" />
                                     <ColumnDefinition Width="0.5*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Viewbox Stretch="Uniform"
                                          Grid.Column="0"
+                                         Grid.Row="0"
+                                         Grid.RowSpan="3"
                                          Margin="8">
                                     <TextBlock FontFamily="{StaticResource FontAwesome}"
                                                Text="&#xf1d8;"
@@ -764,6 +936,7 @@
                                 </Viewbox>
                                 <Viewbox Stretch="Uniform"
                                          Grid.Column="2"
+                                         Grid.Row="1"
                                          Margin="5">
                                     <TextBlock FontFamily="{StaticResource Roboto}"
                                                Text="Gửi"
@@ -771,11 +944,13 @@
                                 </Viewbox>
 
                                 <Button Background="Transparent"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="3"
+                                        Command="{Binding ButtonCommandOV.SendReportButtonCommand}"
                                         Grid.ColumnSpan="4"
-                                        BorderThickness="1"
                                         BorderBrush="Transparent"
                                         Style="{StaticResource BugReportButtonStyle}">
-                                   
+
                                 </Button>
 
                             </Grid>

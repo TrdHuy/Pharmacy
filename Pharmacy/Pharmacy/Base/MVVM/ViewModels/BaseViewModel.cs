@@ -16,7 +16,6 @@ namespace Pharmacy.Base.MVVM.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged, Observable.ObserverPattern.IObservable<object>, IDestroyable
     {
-        private List<string> _propertiesRegistry = new List<string>();
         private List<Observable.ObserverPattern.IObserver<object>> _observers = new List<Observable.ObserverPattern.IObserver<object>>();
 
         public BaseViewModel ParentsModel { get; set; }
@@ -96,19 +95,6 @@ namespace Pharmacy.Base.MVVM.ViewModels
         public void InvalidateOwn([CallerMemberName()] string name = null)
         {
             OnChanged(this, name);
-        }
-
-        public void AddOnPropertyChange(string properties)
-        {
-            _propertiesRegistry.Add(properties);
-        }
-
-        public void InvalidateAll()
-        {
-            foreach (string property in _propertiesRegistry)
-            {
-                Invalidate(property);
-            }
         }
 
         #endregion

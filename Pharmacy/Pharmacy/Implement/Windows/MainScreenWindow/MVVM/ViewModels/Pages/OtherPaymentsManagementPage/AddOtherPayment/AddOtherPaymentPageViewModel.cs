@@ -68,8 +68,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
         private string _paymentDetail = "";
         private string _invoiceImageURL = "";
         private decimal _paymentPrice;
-        private bool _isSaveButtonRunning;
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
 
         protected override Logger logger => L;
 

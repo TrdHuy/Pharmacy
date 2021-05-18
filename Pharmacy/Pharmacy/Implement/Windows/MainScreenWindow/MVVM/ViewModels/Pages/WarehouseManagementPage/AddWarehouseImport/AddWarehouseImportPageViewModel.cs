@@ -96,8 +96,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         private tblSupplier _selectedSupplier;
         private tblMedicine _selectedMedicine;
         private decimal _purchasedPrice;
-        private bool _isAddImportDetailButtonRunning;
-        private bool _isAddWarehouseImportButtonRunning;
 
         protected override Logger logger => L;
 

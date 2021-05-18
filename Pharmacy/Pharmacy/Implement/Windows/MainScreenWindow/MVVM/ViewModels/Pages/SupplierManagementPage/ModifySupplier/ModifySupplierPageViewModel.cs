@@ -60,8 +60,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
 
         private string _supplierName = "";
         private string _phone = "";
-        private bool _isSaveButtonRunning;
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private List<tblSupplier> _lstActiveSuppliers;
 
 

@@ -62,12 +62,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public decimal NetPrice { get; set; }
         public MSW_WHMP_MWIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
-        private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private List<tblMedicine> _lstMedicineFull;
         private tblMedicine _selectedMedicine;
         private decimal _purchasedPrice;
-        private bool _isAddImportDetailButtonRunning;
-        private bool _isAddWarehouseImportButtonRunning;
 
         protected override Logger logger => L;
 
