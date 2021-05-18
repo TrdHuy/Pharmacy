@@ -178,7 +178,7 @@
 
                     <DataGrid.Columns>
                         <!--Avatar column-->
-                        <DataGridTemplateColumn Width="*"
+                        <DataGridTemplateColumn Width="{StaticResource AvatarColumnWidth}"
                                                 Header="Ảnh">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
