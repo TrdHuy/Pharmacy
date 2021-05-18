@@ -218,9 +218,11 @@
         <!--Footer area-->
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="8.99*" />
-                <ColumnDefinition Width="1.77*" />
-                <ColumnDefinition Width="1.77*" />
+                <ColumnDefinition Width="6.27*" />
+                <ColumnDefinition Width="1.015*" />
+                <ColumnDefinition Width="0.13*" />
+                <ColumnDefinition Width="1.015*" />
+                <ColumnDefinition Width="0.13*" />
             </Grid.ColumnDefinitions>
 
             <hps:OsirisButton Margin="0,5,0,20"
@@ -232,6 +234,7 @@
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding ButtonCommandOV.CancleButtonCommand}"
                               BorderThickness="0"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
             <hps:OsirisButton Margin="0,5,0,20"
                               Grid.Column="3"

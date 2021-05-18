@@ -637,7 +637,7 @@
                                            Grid.Row="0"
                                            Grid.Column="0"
                                            VerticalAlignment="Center" />
-                                <TextBlock Text="Công nợ:"
+                                <TextBlock Text="Nợ cũ:"
                                            Grid.Row="1"
                                            Grid.Column="0"
                                            VerticalAlignment="Center" />
@@ -731,6 +731,7 @@
                                                       Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                                                       BorderThickness="0"
                                                       MaxHeight="100"
+                                                      Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                                                       Foreground="White" />
 
                                     <hps:OsirisButton OBContentOrientation="Horizontal"

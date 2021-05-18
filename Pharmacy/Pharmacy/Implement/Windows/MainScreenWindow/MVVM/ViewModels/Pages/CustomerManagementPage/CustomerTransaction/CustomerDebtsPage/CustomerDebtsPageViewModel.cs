@@ -4,6 +4,7 @@ using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerTransaction.CustomerDebtsPage.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             get
             {
-                return DebtAmount + PaidAmount;
+                return DebtAmount - PaidAmount;
             }
         }
 
@@ -93,8 +94,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 MSW_CMP_CTP_CDP_CustomerDebtOV debt = new MSW_CMP_CTP_CDP_CustomerDebtOV();
                 debt.OrderID = item.OrderID;
                 debt.OrderTime = item.OrderTime;
-                debt.PurchasedDebt = item.PurchasePrice - item.TotalPrice;
-                debt.DebtType = debt.PurchasedDebt > 0 ? "Trả" : "Nợ";
+                debt.PurchasedDebt = Math.Abs(item.PurchasePrice - item.TotalPrice);
+                debt.DebtType = (item.PurchasePrice - item.TotalPrice) > 0 ? "Trả" : "Nợ";
                 debt.Description = item.OrderDescription;
                 DebtItemSource.Add(debt);
             }

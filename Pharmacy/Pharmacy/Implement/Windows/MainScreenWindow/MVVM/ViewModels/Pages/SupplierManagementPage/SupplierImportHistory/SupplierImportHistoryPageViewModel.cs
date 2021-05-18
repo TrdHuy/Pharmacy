@@ -45,7 +45,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Supp
         private void UpdateData()
         {
             SupplierInfo = MSW_DataFlowHost.Current.CurrentModifiedSupplier;
-            LstWarehouseImport = new ObservableCollection<tblWarehouseImport>(SupplierInfo.tblWarehouseImports.Where(o => o.IsActive));
+            LstWarehouseImport = new ObservableCollection<tblWarehouseImport>(SupplierInfo.tblWarehouseImports.Where(o => o.IsActive).OrderByDescending(o=>o.ImportTime));
         }
         private void UpdateWarehouseImportDetail()
         {

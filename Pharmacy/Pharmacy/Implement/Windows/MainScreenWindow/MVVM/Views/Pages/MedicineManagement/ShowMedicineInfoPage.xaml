@@ -361,6 +361,7 @@
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               Command="{Binding ButtonCommandOV.CancelButtonCommand}"
                               BorderThickness="0"
+                              Background="{StaticResource NormalTheme_ReturnButton_Bg_Brush}"
                               Foreground="White" />
         </Grid>
     </Grid>
