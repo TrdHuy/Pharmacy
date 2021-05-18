@@ -616,6 +616,18 @@ namespace Pharmacy.Implement.Utils.CustomControls
             MinimizeButtonElement = GetTemplateChild("MinimizeButton") as Button;
             CloseButtonElement = GetTemplateChild("CloseButton") as Button;
 
+            if (CloseButtonElement != null)
+                CloseButtonElement.IsTabStop = false;
+            if (MinimizeButtonElement != null)
+                MinimizeButtonElement.IsTabStop = false;
+            if (MaximizeButtonElement != null)
+                MaximizeButtonElement.IsTabStop = false;
+            if (PreviousNavigationButtonElement != null)
+                PreviousNavigationButtonElement.IsTabStop = false;
+            if (NextNavigationButtonElement != null)
+                NextNavigationButtonElement.IsTabStop = false;
+            if (DWPageHostFrameElement != null)
+                DWPageHostFrameElement.IsTabStop = false;
         }
 
         public void Navigate(Uri destinationPage)

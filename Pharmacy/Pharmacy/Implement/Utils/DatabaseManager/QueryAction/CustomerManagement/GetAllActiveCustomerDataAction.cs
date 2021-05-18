@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.CustomerManagemen
             try
             {
                 var x = appDBContext.tblCustomers.
-                    Where<tblCustomer>(cus => cus.IsActive).
+                    Where<tblCustomer>(cus => cus.IsActive).OrderBy(o => o.CustomerName).
                     ToList();
                 result = new SQLQueryResult(x, MessageQueryResult.Done);
             }
