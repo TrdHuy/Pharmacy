@@ -64,6 +64,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             set
             {
                 _userImageSource = value;
+                InvalidateOwn();
             }
         }
 
@@ -353,6 +354,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.User
             GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
             NewPasswordChangedCommand = new EventCommandModel(OnNewPasswordChagedEvent);
             VerifiedPasswordChangedCommand = new EventCommandModel(OnVerifiedPasswordChagedEvent);
+
+            UserImageSource = FileIOUtil.
+                 GetBitmapFromName(CurrentModifiedUser.Username, FileIOUtil.USER_IMAGE_FOLDER_NAME).
+                 ToImageSource();
         }
 
         protected override void OnInitialized()

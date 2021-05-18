@@ -34,7 +34,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
                 x.Password = modifiedUser.Password;
                 x.UserDataJSON = modifiedUser.UserDataJSON;
 
-                if (!SaveImageToFile(modifiedUser.Username, imageFolder, ImageType.User))
+                if (!SaveImageToFile(userNameBeforeChanged, imageFolder, ImageType.User))
                 {
                     result = new SQLQueryResult(null, MessageQueryResult.Aborted);
                     return result;
