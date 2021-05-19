@@ -92,8 +92,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public override void OnDestroy()
         {
-            customerDGCache.Items.Filter = null;
-            customerDGCache = null;
+            if (customerDGCache != null)
+            {
+                customerDGCache.Items.Filter = null;
+                customerDGCache = null;
+            }
             base.OnDestroy();
         }
     }
