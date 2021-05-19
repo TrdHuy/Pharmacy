@@ -23,6 +23,12 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_PSW_BRP_SEND_REPORT_BUTTON:
                     viewModelCommandExecuter = new PSW_BRP_SendReportAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_PSW_BRP_FINDER_LOG_PATH_BUTTON:
+                    viewModelCommandExecuter = new PSW_BRP_FinderLogPathButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_PSW_BRP_FINDER_VIDEO_PATH_BUTTON:
+                    viewModelCommandExecuter = new PSW_BRP_FinderVideoPathButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
                 default:
                     break;
             }

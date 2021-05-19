@@ -254,7 +254,7 @@ namespace Pharmacy
             switch (owner)
             {
                 case OwnerWindow.Default:
-                    messageBox = new AnubisMessageBox(message);
+                    messageBox = new AnubisMessageBox(message, messageType, messageIcon, caption);
                     break;
                 case OwnerWindow.LoginScreen:
                     messageBox = new AnubisMessageBox(LoginScreenWindow, message, messageType, messageIcon);
@@ -263,7 +263,7 @@ namespace Pharmacy
                     messageBox = new AnubisMessageBox(MainScreenWindow, message, messageType, messageIcon);
                     break;
                 default:
-                    messageBox = new AnubisMessageBox(message);
+                    messageBox = new AnubisMessageBox(message, messageType, messageIcon, caption);
                     break;
             }
             messageBox.CaptionContent = caption;
@@ -347,6 +347,10 @@ namespace Pharmacy
             popup.MinWidth = popup.Width;
 
             popup.DataContext = new PopupScreenWindowViewModel(vo);
+
+            popup.CloseWindowCommand = new CommandModel(ClosePopupWindown);
+            _popupScreenWindows.Add(popup);
+
 
             popup.Show();
         }

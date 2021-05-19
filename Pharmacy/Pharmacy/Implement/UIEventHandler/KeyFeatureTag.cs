@@ -200,5 +200,7 @@
 
         //Bug report key string
         public const string KEY_TAG_PSW_BRP_SEND_REPORT_BUTTON = "psw_brp_send_report_button";
+        public const string KEY_TAG_PSW_BRP_FINDER_LOG_PATH_BUTTON = "psw_brp_finder_log_path_button";
+        public const string KEY_TAG_PSW_BRP_FINDER_VIDEO_PATH_BUTTON = "psw_brp_finder_video_path_button";
     }
 }

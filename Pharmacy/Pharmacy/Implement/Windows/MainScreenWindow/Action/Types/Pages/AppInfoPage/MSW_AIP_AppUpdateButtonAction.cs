@@ -19,8 +19,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 {
     internal class MSW_AIP_AppUpdateButtonAction : MSW_AIP_ButtonAction
     {
-        private const string HPSS_REQUEST_APP_UPDATE_ENDPOINT = "https://hpss-customer-services20210319004727.azurewebsites.net/api/CheckForUpdate";
-        private const string HPSS_REQUEST_APP_UPDATE_FUNCTION_KEY = "lbffmZxUsfmYaMqeybpu2eOs6qJ2ECdy8Fcvz8cS/bQww6fhg2EeSg==";
+        private const string HPSS_REQUEST_APP_UPDATE_ENDPOINT = "https://hpss-customer-services20210519110840.azurewebsites.net/api/CheckForUpdate";
+        //private const string HPSS_REQUEST_APP_UPDATE_ENDPOINT = "http://localhost:7071/api/CheckForUpdate";
+        private const string HPSS_REQUEST_APP_UPDATE_FUNCTION_KEY = "WGNevw9s0XdYmrZnlwNdeuJNAkq9cBBuY1SgKn3Ysh0BIBS3B9aREg==";
 
         private CancellationTokenSource cts;
         private AsyncTask requestCheckUpdateTask;
@@ -47,6 +48,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
                 Logger.E(ex.Message);
             }
         }
+
         protected override void SetCompleteFlagAfterExecuteCommand()
         {
             if (requestCheckUpdateTask != null)
@@ -55,6 +57,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
                 IsCanceled = ((IAsyncTask)requestCheckUpdateTask).IsCanceled;
             }
         }
+
         protected override void ExecuteAlternativeCommand()
         {
             base.ExecuteAlternativeCommand();
@@ -92,7 +95,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 
                 //need this to authorize customer
                 httpContent.Headers.Add("x-functions-key", HPSS_REQUEST_APP_UPDATE_FUNCTION_KEY);
-                httpContent.Headers.Add("hpss-request-id", HPSSCustomerServiceDefinitions.HPSS_PHARMARCY_CHECK_APP_UPDATE);
+                httpContent.Headers.Add("hpss-request-id", HPSSCustomerServiceDefinitions.HPSS_PHARMACY_CHECK_APP_UPDATE);
 
 
                 HttpClient client = new HttpClient();
@@ -108,6 +111,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
 
                 result.Result = responseBody;
                 result.MesResult = MessageAsyncTaskResult.Done;
+
+                response.Dispose();
             }
             catch (Exception e)
             {

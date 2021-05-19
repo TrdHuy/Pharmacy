@@ -622,7 +622,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Utils\MSW_UserDataManager.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\Action\Factory\PSW_CommandExecuterBuilder.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_ButtonAction.cs" />
-    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_DateTimePickerAction.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_FinderLogPathButtonAction.cs" />
+    <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_FinderVideoPathButtonAction.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\Action\Types\Pages\BugReportPage\PSW_BRP_SendReportAction.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Models\VOs\PSW_ContentVO.cs" />
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\ViewModels\Pages\BugReportPageVM\BugReportPageViewModel.cs" />

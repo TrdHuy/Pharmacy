@@ -27,10 +27,18 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages.Bug
         private double _minTextBoxHeight = 0d;
         private double _currentFontSize = MIN_FONT_SIZE;
         private Thickness _currentTBPadding = MIN_PADDING;
+        private Visibility _uploadVOCAlertTextVisibility = Visibility.Hidden;
 
+        [Bindable(true)]
         public PSW_BRP_ButtonCommandOV ButtonCommandOV { get; set; }
+        
+        [Bindable(true)]
         public PSW_BRP_UserInfoOV UserInfoOV { get; set; }
+        
+        [Bindable(true)]
         public PSW_BRP_ProductInfoOV ProductInfoOV { get; set; }
+        
+        [Bindable(true)]
         public PSW_BRP_IssueInfoOV IssueInfoOV { get; set; }
 
         [Bindable(true)]
@@ -61,8 +69,19 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages.Bug
             }
         }
 
-    
-      
+        [Bindable(true)]
+        public Visibility UploadVOCAlertTextVisibility
+        {
+            get
+            {
+                return _uploadVOCAlertTextVisibility;
+            }
+            set
+            {
+                _uploadVOCAlertTextVisibility = value;
+                InvalidateOwn();
+            }
+        }
 
         protected override Logger logger => L;
 
