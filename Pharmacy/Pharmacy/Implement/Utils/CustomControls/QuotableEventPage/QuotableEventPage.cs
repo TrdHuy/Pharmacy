@@ -60,16 +60,6 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
             }
         }
 
-        public override void BeginInit()
-        {
-            base.BeginInit();
-            var destroyableObject = DataContext as IQuotableEvent;
-            if (destroyableObject != null)
-            {
-                destroyableObject.OnBeginInit(this);
-            }
-        }
-
         public override void EndInit()
         {
             base.EndInit();

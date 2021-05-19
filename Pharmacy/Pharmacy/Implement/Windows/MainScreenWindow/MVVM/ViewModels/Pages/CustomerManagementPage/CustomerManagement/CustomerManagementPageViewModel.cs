@@ -1,11 +1,14 @@
 ﻿using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
+using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerManagement
@@ -18,8 +21,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private string _searchText;
         private string _tip;
         private bool _isDataGridLoading;
+        private ObservableCollection<tblCustomer> _source;
 
         public int DelayTextChangedHandler { get; set; }
+
+        [Bindable(true)]
         public string SearchText
         {
             get
@@ -44,6 +50,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public MSW_CMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public MSW_CMP_EventCommandOV EventCommandOV { get; set; }
+
+        [Bindable(true)]
         public bool IsDataGridLoading
         {
             get
@@ -56,7 +64,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
-        public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
+
+
+        [Bindable(true)]
+        public ObservableCollection<tblCustomer> CustomerItemSource
+        {
+            get
+            {
+                return _source;
+            }
+            set
+            {
+                _source = value;
+                InvalidateOwn();
+            }
+        }
 
 
         protected override Logger logger => L;
@@ -67,11 +89,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             ButtonCommandOV = new MSW_CMP_ButtonCommandOV(this);
             EventCommandOV = new MSW_CMP_EventCommandOV(this);
             InstantiateItems();
-
         }
 
         protected override void OnInitialized()
         {
+        }
+
+        public override void OnUnloaded(object sender)
+        {
+            EventCommandOV.OnDestroy();
+            base.OnUnloaded(sender);
+        }
+
+        public override void OnPreviewBindingDataContextInCache()
+        {
+            InstantiateItems();
+            SearchText = "";
         }
 
         private void InstantiateTipText()
@@ -98,7 +131,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             {
                 List<tblCustomer> result = (List<tblCustomer>)queryResult.Result;
                 CustomerItemSource = new ObservableCollection<tblCustomer>(result);
-                Invalidate("CustomerItemSource");
                 if (CustomerItemSource.Count <= 5000)
                 {
                     DelayTextChangedHandler = 1000;

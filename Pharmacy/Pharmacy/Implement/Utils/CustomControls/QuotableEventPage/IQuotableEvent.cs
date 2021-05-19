@@ -19,11 +19,6 @@ namespace Pharmacy.Implement.Utils.CustomControls.QuotableEventPage
         void OnLoaded(object sender);
 
         /// <summary>
-        /// This event occurs every time the page start initting
-        /// </summary>
-        void OnBeginInit(object sender);
-
-        /// <summary>
         /// This event occurs every time the page finish initting
         /// </summary>
         void OnEndInit(object sender);

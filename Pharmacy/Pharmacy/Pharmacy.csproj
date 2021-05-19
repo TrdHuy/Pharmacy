@@ -188,6 +188,7 @@
     <Compile Include="Base\Utils\ICanelable.cs" />
     <Compile Include="Base\Utils\IDestroyable.cs" />
     <Compile Include="Base\Utils\ILogger.cs" />
+    <Compile Include="Base\Utils\ViewModelHelper\IVMMHelperExtension.cs" />
     <Compile Include="Base\Utils\ViewModelHelper\VMManagerMarkupExtension.cs" />
     <Compile Include="Config\RUNE.cs" />
     <Compile Include="Implement\AppImpl\Models\VOs\AppInfoVO.cs" />

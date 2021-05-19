@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Base.Utils.ViewModelHelper;
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.CustomControls;
 using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM
 
 {
-    public abstract class MSW_BasePageViewModel : BaseViewModel, IQuotableEvent
+    public abstract class MSW_BasePageViewModel : BaseViewModel, IQuotableEvent, IVMMHelperExtension
     {
         protected abstract Logger logger { get; }
 
@@ -51,10 +52,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
 
         public virtual void OnLoaded(object sender)
         {
-        }
-
-        public virtual void OnBeginInit(object sender)
-        {
+            RefreshViewModel();
         }
 
         public virtual void OnEndInit(object sender)
@@ -66,6 +64,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_
         }
 
         public virtual void OnApplyTemplate(object sender)
+        {
+        }
+
+        public virtual void OnPreviewBindingDataContextInCache()
         {
         }
     }

@@ -47,10 +47,6 @@ namespace Pharmacy.Implement.Windows.BaseWindow.MVVM.ViewModel
         {
         }
 
-        public virtual void OnBeginInit(object sender)
-        {
-        }
-
         public virtual void OnEndInit(object sender)
         {
         }

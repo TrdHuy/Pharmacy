@@ -26,6 +26,10 @@ namespace Pharmacy.Base.Utils.ViewModelHelper
         {
             if (DataContextInstanceCache.ContainsKey(DataContextType))
             {
+                if (DataContextInstanceCache[DataContextType] is IVMMHelperExtension)
+                {
+                    ((IVMMHelperExtension)DataContextInstanceCache[DataContextType]).OnPreviewBindingDataContextInCache();
+                }
                 return DataContextInstanceCache[DataContextType];
             }
             var dataContext = Activator.CreateInstance(DataContextType);

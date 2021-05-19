@@ -14,9 +14,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 {
     public class MSW_CMP_EventCommandOV : BaseViewModel
     {
+        private CancellationTokenSource Cts { get; set; }
+        private DataGrid customerDGCache { get; set; }
 
         public EventCommandModel SearchTextChangedCommand { get; set; }
-        private CancellationTokenSource Cts { get; set; }
+        
 
         public MSW_CMP_EventCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {
@@ -33,8 +35,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
 
             model.IsDataGridLoading = true;
-
-            DataGrid dg = (DataGrid)((object[])paramaters)[0];
+            if(customerDGCache == null)
+            {
+                customerDGCache = (DataGrid)((object[])paramaters)[0];
+            }
             TextBox ctrl = (TextBox)sender;
 
             await Task.Delay(100);
@@ -48,8 +52,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             try
             {
                 await Task.Delay(model.DelayTextChangedHandler, ct);
-                
-                dg.Items.Filter = new Predicate<object>(customer => FilterCustomerList(customer as tblCustomer, ctrl.Text));
+
+                customerDGCache.Items.Filter = new Predicate<object>(customer => FilterCustomerList(customer as tblCustomer, ctrl.Text));
                 model.IsDataGridLoading = false;
             }
             catch (OperationCanceledException ex)
@@ -84,6 +88,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private bool SearchByAddress(tblCustomer customer, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_ADDRESS ? (customer.Address.IndexOf(filterText) != -1) : false;
+        }
+
+        public override void OnDestroy()
+        {
+            customerDGCache.Items.Filter = null;
+            customerDGCache = null;
+            base.OnDestroy();
         }
     }
 }
