@@ -36,14 +36,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        CMPViewModel.CustomerItemSource.RemoveAt(_customerDataGrid.SelectedIndex);
+                        CMPViewModel.CustomerItemSource.Remove((tblCustomer)_customerDataGrid.SelectedItem);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_CUSTOMER_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    CMPViewModel.CustomerItemSource[_customerDataGrid.SelectedIndex].CustomerID);
+                    ((tblCustomer)_customerDataGrid.SelectedItem).CustomerID);
             }
         }
 
