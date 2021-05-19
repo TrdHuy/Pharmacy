@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.UserManagement
             try
             {
                 var x = appDBContext.tblUsers.
-                    Where<tblUser>(user => user.IsActive).
+                    Where<tblUser>(user => user.IsActive).OrderByDescending(o => o.IsAdmin).ThenBy(o => o.Username).
                     ToList();
                 result = new SQLQueryResult(x, MessageQueryResult.Done);
             }

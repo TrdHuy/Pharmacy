@@ -1,20 +1,20 @@
 ﻿<quotableEventPage:QuotableEventPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement.DiscountByMedicinePage"
-      mc:Ignorable="d"
-      Background="White"
-      x:Name="MedicineManagementPage"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge}"
-      Title="MedicineManagementPage">
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                     xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                     xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement"
+                                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                     x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineManagement.DiscountByMedicinePage"
+                                     mc:Ignorable="d"
+                                     Background="White"
+                                     x:Name="MedicineManagementPage"
+                                     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                     FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                                     Title="MedicineManagementPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
@@ -83,50 +83,96 @@
                           Style="{StaticResource SearchingBoxTheme}"
                           BorderThickness="1"
                           Margin="3">
-                <hps:HorusBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                VirtualizingPanel.CacheLengthUnit="Item" />
-                    </ItemsPanelTemplate>
-                </hps:HorusBox.ItemsPanel>
-                <hps:HorusBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ComboBoxItem}">
-                        <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
-                    </Style>
-                </hps:HorusBox.ItemContainerStyle>
                 <hps:HorusBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="30">
+                        <Grid Background="Transparent">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
                                 <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="20" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Border>
-                                <Border.OpacityMask>
-                                    <ImageBrush Stretch="Uniform"
-                                                ImageSource="{StaticResource AvatarImageOpacityMask}">
-                                    </ImageBrush>
-                                </Border.OpacityMask>
 
-                                <Image Stretch="Uniform"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Source="{Binding CustomerID,Converter={conv:StringToImageSourceConverter},ConverterParameter=CustomerImages}" />
-                            </Border>
-                            <TextBlock Grid.Column="1"
+                            <hps:SquareGrid Grid.Column="1">
+                                <hps:AtumImageView CornerRadius="100"
+                                                   BorderThickness="0"
+                                                   IsUsingAtumClippingBorder="True"
+                                                   IsSupportLoadingAnimation="True"
+                                                   ImageFileLoadingDelayTime="2000"
+                                                   HorizontalContentAlignment="Center"
+                                                   VerticalContentAlignment="Center"
+                                                   Stretch="UniformToFill"
+                                                   ImagePath="{Binding CustomerID,
+                                                Converter={conv:FileNameToImagePathConverter},
+                                                ConverterParameter=CustomerImages}">
+                                    <hps:AtumImageView.Resources>
+                                        <Style TargetType="hps:AtumImageView">
+                                            <Style.Triggers>
+                                                <Trigger Property="ImagePath"
+                                                         Value="{x:Null}">
+                                                    <Setter Property="Source"
+                                                            Value="{StaticResource DefaultCustomerImage}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </hps:AtumImageView.Resources>
+                                </hps:AtumImageView>
+                            </hps:SquareGrid>
+
+                            <TextBlock Grid.Column="5"
+                                       Foreground="Black"
                                        Text="{Binding CustomerName}"
                                        VerticalAlignment="Center"
-                                       Margin="5,0"
-                                       HorizontalAlignment="Stretch" />
-                            <TextBlock Grid.Column="2"
-                                       Text="{Binding Phone}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Right" />
+                                       HorizontalAlignment="Right"
+                                       FontSize="{Binding FontSizeOV.FontSizeRegular}" />
                         </Grid>
+
+
                     </DataTemplate>
                 </hps:HorusBox.ItemTemplate>
+
+                <hps:HorusBox.SelectedItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="Transparent">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <hps:SquareGrid Grid.Column="1"
+                                            Height="{Binding DataContext.FontSizeOV.FontSizeXLarge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=quotableEventPage:QuotableEventPage}}"
+                                            Background="Transparent"
+                                            Padding="3">
+                                <hps:AtumImageView CornerRadius="100"
+                                                   BorderThickness="0"
+                                                   IsUsingAtumClippingBorder="True"
+                                                   HorizontalContentAlignment="Center"
+                                                   VerticalContentAlignment="Center"
+                                                   Stretch="UniformToFill"
+                                                   Source="{Binding CustomerID,
+                                                Converter={conv:StringToImageSourceConverter},
+                                                ConverterParameter=CustomerImages}">
+                                </hps:AtumImageView>
+                            </hps:SquareGrid>
+
+
+                            <TextBlock Grid.Column="5"
+                                       Foreground="Black"
+                                       Text="{Binding CustomerName}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       FontSize="{Binding DataContext.FontSizeOV.FontSizeXLarge, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=quotableEventPage:QuotableEventPage}}" />
+                        </Grid>
+
+
+                    </DataTemplate>
+                </hps:HorusBox.SelectedItemTemplate>
             </hps:HorusBox>
 
             <TextBlock Grid.Row="1"

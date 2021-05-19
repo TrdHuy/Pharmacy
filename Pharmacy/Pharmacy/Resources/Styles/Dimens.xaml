@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Pharmacy"
-                     xmlns:system="clr-namespace:System;assembly=mscorlib">
+                     xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:presentation="http://schemas.microsoft.com/netfx/2009/xaml/presentation">
     
     <!--Normal theme-->
     <system:Double x:Key="DefaultWindowHeight">650</system:Double>
@@ -33,5 +34,7 @@
 
     <system:Double x:Key="BugReportPageHeight">420</system:Double>
     <system:Double x:Key="BugReportPageWidth">910</system:Double>
+
+    <presentation:DataGridLength x:Key="AvatarColumnWidth">100</presentation:DataGridLength>
 
 </ResourceDictionary>

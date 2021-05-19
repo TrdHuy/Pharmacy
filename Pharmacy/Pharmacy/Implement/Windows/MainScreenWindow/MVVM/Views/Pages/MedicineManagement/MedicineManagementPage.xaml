@@ -209,22 +209,20 @@
 
             <DataGrid.Columns>
                 <!--Avatar column-->
-                <DataGridTemplateColumn Width="auto"
+                <DataGridTemplateColumn Width="{StaticResource AvatarColumnWidth}"
                                         Header="Ảnh">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Border>
-                                <Border.OpacityMask>
-                                    <ImageBrush Stretch="Uniform"
-                                                ImageSource="{StaticResource AvatarImageOpacityMask}">
-                                    </ImageBrush>
-                                </Border.OpacityMask>
-
-                                <Image Stretch="Uniform"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"
-                                       Source="{Binding MedicineID,Converter={conv:StringToImageSourceConverter},ConverterParameter=MedicineImages}" />
-                            </Border>
+                            <hps:SquareGrid>
+                                <hps:AtumImageView Stretch="UniformToFill"
+                                                   VerticalContentAlignment="Center"
+                                                   HorizontalContentAlignment="Center"
+                                                   IsUsingAtumClippingBorder="True"
+                                                   HorizontalAlignment="Center"
+                                                   CornerRadius="1000"
+                                                   VerticalAlignment="Center"
+                                                   Source="{Binding MedicineID,Converter={conv:StringToImageSourceConverter},ConverterParameter=MedicineImages}" />
+                            </hps:SquareGrid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

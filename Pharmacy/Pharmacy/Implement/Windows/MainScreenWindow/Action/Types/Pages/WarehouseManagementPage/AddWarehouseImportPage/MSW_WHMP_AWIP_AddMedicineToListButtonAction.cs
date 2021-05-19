@@ -56,6 +56,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                 }
                 else
                 {
+                    item.UnitPrice = AWIPViewModel.MedicinePrice;
                     item.Quantity += AWIPViewModel.MedicineQuantity;
                     item.TotalPrice = (decimal)item.Quantity * item.UnitPrice;
                     dataGrid.Items.Refresh();
