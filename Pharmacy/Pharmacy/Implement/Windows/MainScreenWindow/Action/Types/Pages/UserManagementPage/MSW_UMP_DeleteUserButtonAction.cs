@@ -39,14 +39,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        UMPViewModel.UserItemSource.RemoveAt(userDataGrid.SelectedIndex);
+                        UMPViewModel.UserItemSource.Remove(userDataGrid.SelectedItem as tblUser);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_USER_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    UMPViewModel.UserItemSource[userDataGrid.SelectedIndex].Username);
+                    (userDataGrid.SelectedItem as tblUser).Username);
             }
 
         }

@@ -111,6 +111,7 @@
                           AutoGenerateColumns="False"
                           ItemsSource="{Binding CustomerOrdersItemSource}"
                           Margin="20,0,20,0"
+                          SelectionMode="Single"
                           MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
                           HorizontalGridLinesBrush="White"
                           VerticalGridLinesBrush="White"

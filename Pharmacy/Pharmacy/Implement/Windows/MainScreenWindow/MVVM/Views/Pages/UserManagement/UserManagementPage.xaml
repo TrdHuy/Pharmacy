@@ -49,6 +49,7 @@
                           CanUserDeleteRows="False"
                           AutoGenerateColumns="False"
                           ItemsSource="{Binding UserItemSource}"
+                          SelectionMode="Single"
                           Margin="20"
                           MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
                           HorizontalGridLinesBrush="White"

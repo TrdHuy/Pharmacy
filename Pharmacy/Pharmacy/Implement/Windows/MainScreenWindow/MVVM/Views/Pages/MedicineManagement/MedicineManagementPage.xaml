@@ -92,6 +92,7 @@
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding MedicineItemSource}"
                   Margin="10"
+                  SelectionMode="Single"
                   MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
                   HorizontalGridLinesBrush="White"
                   VerticalGridLinesBrush="White"

@@ -35,14 +35,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        MMPViewModel.MedicineItemSource.RemoveAt(medicineDataGrid.SelectedIndex);
+                        MMPViewModel.MedicineItemSource.Remove(medicineDataGrid.SelectedItem as tblMedicine);
 
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    MMPViewModel.MedicineItemSource[medicineDataGrid.SelectedIndex].MedicineID);
+                    (medicineDataGrid.SelectedItem as tblMedicine).MedicineID);
 
                 return ;
             }
