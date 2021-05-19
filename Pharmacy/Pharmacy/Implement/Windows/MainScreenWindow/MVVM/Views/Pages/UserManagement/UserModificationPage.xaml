@@ -336,7 +336,7 @@
                 <hps:HorusBox Grid.Column="6"
                               Grid.Row="4"
                               Margin="0,2.5,0,2.5"
-                              Text="{Binding JobText, UpdateSourceTrigger=PropertyChanged}"
+                              FilterText="{Binding JobText, UpdateSourceTrigger=PropertyChanged}"
                               IsReadOnly="True"
                               IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                               IsUsingHorusShadow="False"
