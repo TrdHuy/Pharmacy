@@ -10,8 +10,17 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
     public class ActionExecuteHelper
     {
         private static ActionExecuteHelper _instance;
+
+        /// <summary>
+        /// The capacity of action executer
+        /// For each builder, there is 10 slots
+        /// For the cache, there is 10 slots for builder
+        /// ==> Total slots: 100
+        /// So the app can handle 100 seprated action in the same time
+        /// </summary>
         private const int MAX_BUILDER_CAPACITY = 10;
         private const int MAX_ACTION_CAPACITY_EACH_BUILDER = 10;
+
         public static ActionExecuteHelper Current
         {
             get
@@ -26,12 +35,17 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
         public HelperStatus Status { get; private set; }
 
-        private Dictionary<string, Dictionary<string, IAction>> BuildersCache { get; set; }
+
+        /// <summary>
+        /// The cache storage action by seprated key, and each action
+        /// belong to sepreated builder. The builded is specified by key.
+        /// </summary>
+        private Dictionary<string, Dictionary<string, IAction>> ExecutingActionsCache { get; set; }
 
 
         private ActionExecuteHelper()
         {
-            BuildersCache = new Dictionary<string, Dictionary<string, IAction>>(MAX_BUILDER_CAPACITY);
+            ExecutingActionsCache = new Dictionary<string, Dictionary<string, IAction>>(MAX_BUILDER_CAPACITY);
             Status = HelperStatus.Available;
         }
 
@@ -46,6 +60,12 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             HelperUpdate(sender as IAction);
         }
 
+        /// <summary>
+        /// Update the action cache
+        /// Check for the action is completed or cancled or not
+        /// if it was cancled or completed, unregister it from the cache
+        /// </summary>
+        /// <param name="action"></param>
         private void HelperUpdate(IAction action)
         {
             if (action is ICommandExecuter)
@@ -70,59 +90,33 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             }
         }
 
-        public ExecuteStatus ExecuteAlterAction(IAction action, object dataTransfer)
-        {
-            var provider = action as ICommandExecuter;
-
-            if (provider != null)
-            {
-
-                if (!BuildersCache.ContainsKey(action.BuilderID))
-                {
-                    var actionCache = new Dictionary<string, IAction>(MAX_ACTION_CAPACITY_EACH_BUILDER);
-                    BuildersCache.Add(action.BuilderID, actionCache);
-                }
-
-                if (!BuildersCache[action.BuilderID].ContainsKey(action.ActionID))
-                {
-                    RegisterActionToCache(provider);
-
-                    provider.IsCompletedChanged += ActionIsCompletedChanged;
-                    provider.IsCanceledChanged += ActionIsCanceledChanged;
-
-                    provider?.AlterExecute(dataTransfer);
-
-                    return ExecuteStatus.OK;
-                }
-                else
-                {
-                    return ExecuteStatus.ExistedExecuter;
-                }
-            }
-
-            return ExecuteStatus.None;
-        }
-
+        /// <summary>
+        /// Register an action to cache and then execute it
+        /// If the action is already existed in the cache, it will be executed alternatively
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="dataTransfer"></param>
+        /// <returns></returns>
         public ExecuteStatus ExecuteAction(IAction action, object dataTransfer)
         {
             var provider = action as ICommandExecuter;
 
             if (provider != null)
             {
-                if (BuildersCache.Count > MAX_BUILDER_CAPACITY)
+                if (ExecutingActionsCache.Count > MAX_BUILDER_CAPACITY)
                 {
                     throw new InvalidOperationException("Capacity of builder now is maximum!");
                 }
 
-                if (!BuildersCache.ContainsKey(action.BuilderID))
+                if (!ExecutingActionsCache.ContainsKey(action.BuilderID))
                 {
                     var actionCache = new Dictionary<string, IAction>(MAX_ACTION_CAPACITY_EACH_BUILDER);
-                    BuildersCache.Add(action.BuilderID, actionCache);
+                    ExecutingActionsCache.Add(action.BuilderID, actionCache);
                 }
 
-                if (!BuildersCache[action.BuilderID].ContainsKey(action.ActionID))
+                if (!ExecutingActionsCache[action.BuilderID].ContainsKey(action.ActionID))
                 {
-                    if (BuildersCache[action.BuilderID].Count > MAX_ACTION_CAPACITY_EACH_BUILDER)
+                    if (ExecutingActionsCache[action.BuilderID].Count > MAX_ACTION_CAPACITY_EACH_BUILDER)
                     {
                         throw new InvalidOperationException("Capacity of action now is maximum!");
                     }
@@ -150,7 +144,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         {
             try
             {
-                BuildersCache[action.BuilderID].Add(action.ActionID, action);
+                ExecutingActionsCache[action.BuilderID].Add(action.ActionID, action);
                 UpdateHelperStatus();
 
                 if (action.Logger != null)
@@ -171,7 +165,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         {
             try
             {
-                BuildersCache[action.BuilderID].Remove(action.ActionID);
+                ExecutingActionsCache[action.BuilderID].Remove(action.ActionID);
                 UpdateHelperStatus();
                 if (action.Logger != null)
                 {
@@ -187,10 +181,16 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             }
         }
 
+        /// <summary>
+        /// Update the ActionExecuteHelper status
+        /// if all builder are free means the is no any action in the cache, it will return Status = Available
+        /// else some of builder are remain some executing actions, it will return status = RemainSomeExecutingActions
+        /// and if all builder all full of capacity for cache, it will return status = unavailable
+        /// </summary>
         private void UpdateHelperStatus()
         {
             bool isAllBuilderAreFree = false;
-            foreach (var key in BuildersCache.Keys)
+            foreach (var key in ExecutingActionsCache.Keys)
             {
                 isAllBuilderAreFree = IsAllBuilderActionsFinished(key);
             }
@@ -201,9 +201,9 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
             else
             {
                 bool isAllBuilderAreFullCache = true;
-                foreach (var key in BuildersCache.Keys)
+                foreach (var key in ExecutingActionsCache.Keys)
                 {
-                    isAllBuilderAreFullCache = BuildersCache[key].Count == MAX_ACTION_CAPACITY_EACH_BUILDER;
+                    isAllBuilderAreFullCache = ExecutingActionsCache[key].Count == MAX_ACTION_CAPACITY_EACH_BUILDER;
                 }
 
                 if (isAllBuilderAreFullCache)
@@ -221,7 +221,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         {
             try
             {
-                return BuildersCache[builderID][keyID];
+                return ExecutingActionsCache[builderID][keyID];
             }
             catch { }
 
@@ -238,7 +238,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         {
             try
             {
-                return !BuildersCache[builderID].ContainsKey(actionID);
+                return !ExecutingActionsCache[builderID].ContainsKey(actionID);
             }
             catch
             {
@@ -250,7 +250,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         {
             try
             {
-                return !(BuildersCache[builderID].Count > 0);
+                return !(ExecutingActionsCache[builderID].Count > 0);
             }
             catch
             {
@@ -260,7 +260,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
 
         public void CancelAllAction()
         {
-            foreach (var actions in BuildersCache.Values)
+            foreach (var actions in ExecutingActionsCache.Values)
             {
                 foreach (var action in actions.Values)
                 {
@@ -276,7 +276,7 @@ namespace Pharmacy.Implement.UIEventHandler.Listener
         {
             try
             {
-                foreach (var actions in BuildersCache.Values)
+                foreach (var actions in ExecutingActionsCache.Values)
                 {
                     foreach (var act in actions.Values)
                     {

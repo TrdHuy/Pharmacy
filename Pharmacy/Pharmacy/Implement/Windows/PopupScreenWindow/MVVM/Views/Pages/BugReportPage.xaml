@@ -5,12 +5,13 @@
                                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.Pages"
                                      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.ViewModels.Pages.BugReportPageVM"
+                                     xmlns:buca="clr-namespace:Pharmacy.Implement.Windows.BaseWindow.MVVM.Views.Animations"
                                      xmlns:vmh="clr-namespace:Pharmacy.Base.Utils.ViewModelHelper"
                                      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
                                      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
                                      mc:Ignorable="d"
                                      d:DataContext="{d:DesignInstance {x:Type vm:BugReportPageViewModel}}"
-                                     d:DesignHeight="{StaticResource BugReportPageHeight}"
+                                     d:DesignHeight="1500"
                                      d:DesignWidth="{StaticResource BugReportPageWidth}"
                                      MinHeight="{StaticResource BugReportPageHeight}"
                                      FontFamily="{StaticResource Roboto}"
@@ -176,6 +177,7 @@
                         <RowDefinition Height="15.3*" />
                         <RowDefinition Height="1.5*" />
                         <RowDefinition Height="35.12*" />
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="4.7*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -352,7 +354,7 @@
                             <!--Full name-->
                             <hps:AkerTextBox x:Name="FullNameTextBox"
                                              Grid.Row="2"
-                                             Text="{Binding FullNameText}"
+                                             Text="{Binding UserInfoOV.FullNameText}"
                                              Grid.Column="1"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              VerticalContentAlignment="Top"
@@ -362,6 +364,7 @@
 
                             </hps:AkerTextBox>
                             <Viewbox Grid.Column="2"
+                                     Visibility="{Binding UserInfoOV.FullNameTextFieldAlertVisibility}"
                                      Grid.Row="2">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -374,7 +377,7 @@
 
                             <!--Phone-->
                             <hps:AkerTextBox Grid.Row="4"
-                                             Text="{Binding PhoneText}"
+                                             Text="{Binding UserInfoOV.PhoneText}"
                                              Grid.Column="1"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
@@ -383,6 +386,7 @@
                                              BorderThickness="0"
                                              Style="{StaticResource BugReportTextBoxS}" />
                             <Viewbox Grid.Column="2"
+                                     Visibility="{Binding UserInfoOV.PhoneTextFieldAlertVisibility}"
                                      Grid.Row="4">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -394,7 +398,7 @@
                             <!--Email-->
 
                             <hps:AkerTextBox Grid.Row="6"
-                                             Text="{Binding EmailText}"
+                                             Text="{Binding UserInfoOV.EmailText}"
                                              Grid.Column="1"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
@@ -403,6 +407,7 @@
                                              Style="{StaticResource BugReportTextBoxS}"
                                              BorderThickness="0" />
                             <Viewbox Grid.Column="2"
+                                     Visibility="{Binding UserInfoOV.EmailTextFieldAlertVisibility}"
                                      Grid.Row="6">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -416,7 +421,7 @@
                             <hps:AkerTextBox Tag="Địa chỉ"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
-                                             Text="{Binding AddressText}"
+                                             Text="{Binding UserInfoOV.AddressText}"
                                              Grid.Row="8"
                                              Style="{StaticResource BugReportTextBoxS}"
                                              Grid.Column="1"
@@ -486,7 +491,7 @@
 
                             <!--Prod ID-->
                             <hps:AkerTextBox Grid.Row="2"
-                                             Text="{Binding ProdIDText}"
+                                             Text="{Binding ProductInfoOV.ProdIDText}"
                                              Grid.Column="1"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              Tag="Mã sản phẩm"
@@ -498,6 +503,7 @@
 
 
                             <Viewbox Grid.Column="2"
+                                     Visibility="{Binding ProductInfoOV.ProdIDTextFieldAlertVisibility}"
                                      Grid.Row="2">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -513,12 +519,13 @@
                                              Grid.Column="1"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
-                                             Text="{Binding ProdVersionText}"
+                                             Text="{Binding ProductInfoOV.ProdVersionText}"
                                              Tag="Phiên bản"
                                              Background="Transparent"
                                              BorderThickness="0"
                                              Style="{StaticResource BugReportTextBoxS}" />
                             <Viewbox Grid.Column="2"
+                                     Visibility="{Binding ProductInfoOV.ProdVersionTextFieldAlertVisibility}"
                                      Grid.Row="4">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -603,7 +610,7 @@
                             <hps:AkerTextBox Grid.Row="2"
                                              Grid.ColumnSpan="2"
                                              Grid.Column="1"
-                                             Text="{Binding IssueTitleText}"
+                                             Text="{Binding IssueInfoOV.IssueTitleText}"
                                              Padding="{Binding CurrentBugReportTBPadding}"
                                              VerticalContentAlignment="Top"
                                              Tag="Tiêu đề"
@@ -612,6 +619,7 @@
 
                             </hps:AkerTextBox>
                             <Viewbox Grid.Column="3"
+                                     Visibility="{Binding IssueInfoOV.IssueTitleTextFieldAlertVisibility}"
                                      Grid.Row="2">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -626,7 +634,7 @@
                                              Grid.Column="1"
                                              Grid.ColumnSpan="2"
                                              Grid.RowSpan="5"
-                                             Text="{Binding IssueDetailText}"
+                                             Text="{Binding IssueInfoOV.IssueDetailText}"
                                              AcceptsReturn="True"
                                              VerticalContentAlignment="Top"
                                              Padding="{Binding CurrentBugReportTBPadding}"
@@ -635,6 +643,7 @@
                                              BorderThickness="0"
                                              Style="{StaticResource BugReportTextBoxS}" />
                             <Viewbox Grid.Column="3"
+                                     Visibility="{Binding IssueInfoOV.IssueDetailTextFieldAlertVisibility}"
                                      Grid.Row="4">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -646,6 +655,7 @@
 
                             <!--Time-->
                             <Viewbox Grid.Column="3"
+                                     Visibility="{Binding IssueInfoOV.IncidentTimeTextFieldAlertVisibility}"
                                      Grid.Row="10">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -655,7 +665,7 @@
                             </Viewbox>
                             <hps:SekerBox Grid.Row="10"
                                           Grid.Column="1"
-                                          Text="{Binding IncidentTimeText}"
+                                          Text="{Binding IssueInfoOV.IncidentTimeText}"
                                           SuggestTextForegroundColor="Black"
                                           Grid.ColumnSpan="2"
                                           IsReadOnly="True"
@@ -668,6 +678,7 @@
 
                             <!--Log attach-->
                             <Viewbox Grid.Column="3"
+                                     Visibility="{Binding IssueInfoOV.LogPathTextFieldAlertVisibility}"
                                      Grid.Row="12">
                                 <TextBlock HorizontalAlignment="Center"
                                            Foreground="#FF0000"
@@ -677,9 +688,11 @@
                             </Viewbox>
                             <hps:FinderBox Grid.Row="12"
                                            Grid.Column="1"
-                                           Text="{Binding LogPathText}"
+                                           IsReadOnly="True"
+                                           Text="{Binding IssueInfoOV.LogPathText}"
                                            Grid.ColumnSpan="2"
                                            SuggestTextForegroundColor="Black"
+                                           FinderButtonCommand="{Binding ButtonCommandOV.FinderLogPathButtonCommand}"
                                            VerticalContentAlignment="Center"
                                            Padding="{Binding CurrentBugReportTBPadding}"
                                            Tag="Đính kèm log file"
@@ -793,14 +806,16 @@
 
                             <hps:FinderBox  Grid.Row="14"
                                             Grid.Column="1"
-                                            Text="{Binding VideoPathText}"
+                                            Text="{Binding IssueInfoOV.VideoPathText}"
                                             Grid.ColumnSpan="2"
+                                            IsReadOnly="True"
                                             SuggestTextForegroundColor="Black"
                                             VerticalContentAlignment="Center"
+                                            FinderButtonCommand="{Binding ButtonCommandOV.FinderVideoPathButtonCommand}"
                                             Padding="{Binding CurrentBugReportTBPadding}"
                                             Tag="Đính kèm video, hình ảnh"
                                             BorderThickness="0">
-                                
+
                                 <hps:FinderBox.FinderButtonStyle>
                                     <Style TargetType="{x:Type Button}">
                                         <Setter Property="Template">
@@ -897,7 +912,26 @@
 
                     </Border>
 
+
+
                     <Grid Grid.Row="7"
+                          Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Đang tải dữ liệu lên server..." 
+                                   FontSize="8"
+                                   Visibility="{Binding UploadVOCAlertTextVisibility}"
+                                   Foreground="OrangeRed"/>
+                        <Border Height="1"
+                                Grid.Row="1"
+                                Background="Black" />
+                        <buca:DownloadingAnimation Grid.Row="1"
+                                                   Visibility="{Binding ButtonCommandOV.AnimationLoadingVisibility}" />
+                    </Grid>
+                    
+                    <Grid Grid.Row="8"
                           Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.8*" />

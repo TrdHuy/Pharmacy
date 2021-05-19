@@ -19,5 +19,7 @@ namespace Pharmacy.Base.Utils
         void F(string message, string callMemberName = null);
 
         void V(string message, string callMemberName = null);
+
+        string GetLogDirectory();
     }
 }

@@ -466,6 +466,16 @@ namespace Pharmacy.Implement.Utils
             }
             return true;
         }
+
+
+        /// <summary>
+        /// return the directory of Pharmarcy's log files
+        /// </summary>
+        /// <returns></returns>
+        public string GetLogDirectory()
+        {
+            return directory;
+        }
     }
 
     internal class ObservableQueue<T> : Queue<T>, INotifyCollectionChanged
