@@ -4,6 +4,7 @@ using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.CustomerManagementPage.CustomerInstantiation.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -21,6 +22,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
 
         #region Public properties
+
+        [Bindable(true)]
         public tblCustomer NewCustomer
         {
             get
@@ -33,7 +36,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 _newCustomer.IsActive = true;
             }
         }
-
+        
+        [Bindable(true)]
         public ImageSource CustomerImageSource
         {
             get
@@ -46,6 +50,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+       
+        [Bindable(true)]
         public string CustomerNameText
         {
             get
@@ -60,6 +66,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+       
+        [Bindable(true)]
         public string PhoneText
         {
             get
@@ -74,6 +82,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+       
+        [Bindable(true)]
         public string AdressText
         {
             get
@@ -86,6 +96,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+        
+        [Bindable(true)]
         public string EmailText
         {
             get
@@ -98,6 +110,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+      
+        [Bindable(true)]
         public string DiscriptionText
         {
             get
@@ -110,7 +124,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
-
+        
+        [Bindable(true)]
         public Visibility CustomerNameAwareTextBlockVisibility
         {
             get
@@ -123,6 +138,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+       
+        [Bindable(true)]
         public Visibility PhoneAwareTextBlockVisibility
         {
             get
@@ -147,44 +164,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public MSW_CMP_CIP_ButtonCommandOV ButtonCommandOV { get; set; }
         public string CustomerImageFileName { get; set; }
         
-        public EventCommandModel GridSizeChangedCommand { get; set; }
-
         #endregion
 
         protected override Logger logger => L;
 
         protected override void OnInitializing()
         {
+            CustomerImageSource = Properties.Resources.customer_default_icon.ToImageSource();
             NewCustomer = new tblCustomer();
-
             ButtonCommandOV = new MSW_CMP_CIP_ButtonCommandOV(this);
-            GridSizeChangedCommand = new EventCommandModel(OnGridSizeChangedEvent);
         }
         
         protected override void OnInitialized()
         {
         }
 
-        private void OnGridSizeChangedEvent(object sender, EventArgs e, object paramaters)
+        public override void OnPreviewBindingDataContextInCache()
         {
-            Grid ctrl = (Grid)sender;
-            Border avaBorder = (Border)((object[])paramaters)[0];
-
-            if (avaBorder.RenderSize.Width >= avaBorder.RenderSize.Height)
-            {
-                ctrl.Width = avaBorder.RenderSize.Height;
-            }
-            else
-            {
-                ctrl.Width = avaBorder.RenderSize.Width;
-            }
-        }
-
-        public override void OnLoaded(object sender)
-        {
-            base.OnLoaded(sender);
+            base.OnPreviewBindingDataContextInCache();
             NewCustomer = new tblCustomer();
             CustomerImageSource = Properties.Resources.customer_default_icon.ToImageSource();
+            CustomerImageFileName = "";
             CustomerNameAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.CustomerName) ?
                Visibility.Visible : Visibility.Collapsed;
             PhoneAwareTextBlockVisibility = String.IsNullOrEmpty(NewCustomer.Phone) ?
