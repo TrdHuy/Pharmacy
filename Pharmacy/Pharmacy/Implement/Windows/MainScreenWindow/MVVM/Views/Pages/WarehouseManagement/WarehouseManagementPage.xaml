@@ -72,6 +72,7 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   AutoGenerateColumns="False"
+                  SelectionMode="Single"
                   ItemsSource="{Binding WarehouseImportItemSource}"
                   Margin="10"
                   MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"

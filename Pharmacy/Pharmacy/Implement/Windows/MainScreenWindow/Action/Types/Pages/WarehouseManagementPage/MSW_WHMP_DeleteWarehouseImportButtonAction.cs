@@ -2,6 +2,8 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.Windows.Controls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
+using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage
 {
@@ -35,13 +37,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        WHMPViewModel.WarehouseImportItemSource.RemoveAt(warehouseDataGrid.SelectedIndex);
+                        WHMPViewModel.WarehouseImportItemSource.Remove(warehouseDataGrid.SelectedItem as MSW_WHMP_WarehouseImportOV);
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    WHMPViewModel.WarehouseImportItemSource[warehouseDataGrid.SelectedIndex].ImportID);
+                    (warehouseDataGrid.SelectedItem as MSW_WHMP_WarehouseImportOV).ImportID);
 
                 return;
             }

@@ -87,6 +87,7 @@
                                  Height="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
                                  ItemsSource="{Binding CustomerItemSource}"
                                  Margin="10,0,10,0"
+                                 SelectionMode="Single"
                                  HorizontalGridLinesBrush="White"
                                  VerticalGridLinesBrush="White"
                                  HeadersVisibility="Column"

@@ -33,13 +33,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        SMPViewModel.SupplierItemSource.RemoveAt(supplierDataGrid.SelectedIndex);
+                        SMPViewModel.SupplierItemSource.Remove(supplierDataGrid.SelectedItem as tblSupplier);
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_SUPPLIER_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    SMPViewModel.SupplierItemSource[supplierDataGrid.SelectedIndex].SupplierID);
+                    (supplierDataGrid.SelectedItem as tblSupplier).SupplierID);
 
                 return;
             }

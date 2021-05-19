@@ -35,13 +35,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                         OwnerWindow.MainScreen,
                         "Thông báo!");
 
-                        OPMPViewModel.OtherPaymentItemSource.RemoveAt(otherPaymentsDataGrid.SelectedIndex);
+                        OPMPViewModel.OtherPaymentItemSource.Remove(otherPaymentsDataGrid.SelectedItem as tblOtherPayment);
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_OTHER_PAYMENT_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    OPMPViewModel.OtherPaymentItemSource[otherPaymentsDataGrid.SelectedIndex].PaymentID);
+                    (otherPaymentsDataGrid.SelectedItem as tblOtherPayment).PaymentID);
 
                 return;
             }
