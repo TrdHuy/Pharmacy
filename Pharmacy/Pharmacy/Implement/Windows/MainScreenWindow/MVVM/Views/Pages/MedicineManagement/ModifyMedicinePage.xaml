@@ -164,6 +164,7 @@
                           IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           ItemsSource="{Binding LstMedicineType}"
                           DisplayMemberPath="MedicineTypeName"
+                          IsUsingListFilter="False"
                           SelectedIndex="{Binding MedicineTypeID, UpdateSourceTrigger=PropertyChanged}"
                           Style="{StaticResource HorusBoxCustomNormalTheme}"
                           Margin="3" />
@@ -198,6 +199,7 @@
 
             <hps:HorusBox VerticalContentAlignment="Center"
                           Grid.Column="1"
+                          IsUsingListFilter="False"
                           Grid.Row="6"
                           IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           ItemsSource="{Binding LstMedicineUnit}"
@@ -236,6 +238,7 @@
 
             <hps:HorusBox VerticalContentAlignment="Center"
                           Grid.Column="1"
+                          IsUsingListFilter="False"
                           Grid.Row="8"
                           IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                           ItemsSource="{Binding LstSupplier}"
