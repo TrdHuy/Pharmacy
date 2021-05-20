@@ -46,7 +46,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
             var orderGrid = (paramater as object[])[0] as DataGrid;
 
             _dateStart = ctrl.SelectedDate;
-            
+
             DoFilter(orderGrid);
         }
 
@@ -84,7 +84,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
 
         private bool FilterOrderByCustomerName(CustomerOrderOV order)
         {
-            
+
             return RUNE.IS_SUPPORT_SEARCH_ORDER_BY_CUSTOMER_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(order.CustomerName, _filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
 
@@ -100,13 +100,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
                 return true;
             }
 
-            if (DateTime.Compare((DateTime)_dateEnd, (DateTime)_dateStart) < 0)
+            DateTime endDate = new DateTime((long)_dateEnd?.Ticks).AddHours(23).AddMinutes(59).AddSeconds(59);
+
+            if (DateTime.Compare(endDate, (DateTime)_dateStart) < 0)
             {
                 return true;
             }
 
             return DateTime.Compare(order.Order.OrderTime, (DateTime)_dateStart) > 0
-                && DateTime.Compare(order.Order.OrderTime, (DateTime)_dateEnd) < 0 ;
+                && DateTime.Compare(order.Order.OrderTime, endDate) < 0;
         }
     }
 }

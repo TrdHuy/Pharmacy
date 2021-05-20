@@ -113,7 +113,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         {
             return (SearchByMedicineID(item, filterText) || SearchByMedicineName(item, filterText) || SearchBySupplierName(item, filterText))
                 && FilterByStartDate(item, startDate)
-                && FilterByEndDate(item, endDate);
+                && FilterByEndDate(item, endDate != null ? new DateTime((long)endDate?.Ticks).AddHours(23).AddMinutes(59).AddSeconds(59) : endDate);
         }
 
         private bool FilterByEndDate(MSW_WHMP_WarehouseImportOV item, DateTime? endDate)
