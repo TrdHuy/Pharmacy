@@ -19,10 +19,10 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.Action.Types.Pages.BugRep
 {
     internal class PSW_BRP_SendReportAction : PSW_BRP_ButtonAction
     {
-        private const string HPSS_REQUEST_UPLOAD_VOC_ENDPOINT = "https://hpss-customer-services20210519110840.azurewebsites.net/api/UploadVOCFile";
-        //private const string HPSS_REQUEST_UPLOAD_VOC_ENDPOINT = "http://localhost:7071/api/UploadVOCFile";
-        private const string HPSS_REQUEST_UPLOAD_VOC_FUNCTION_KEY = "fbKWuxInTH40NZteiI3JPO8aNNEvIPSYMyaBlkVuWEND/5owJFSXfw==";
-
+        //private const string HPSS_REQUEST_UPLOAD_VOC_ENDPOINT = "https://hpss-customer-services20210519110840.azurewebsites.net/api/UploadVOCFile";
+        private const string HPSS_REQUEST_UPLOAD_VOC_ENDPOINT = "https://hpss-customer-services20210519110840.azurewebsites.net/api/UploadCustomerVOCToQueueHttpTrigger";
+        private const string HPSS_REQUEST_UPLOAD_VOC_FUNCTION_KEY = "vKk4bmXQQNcpoXHe72Wt/fkhAPfUEWtgSswLcgIwrIsaGOo9aQgZxQ==";
+        
         private CancellationTokenSource cts;
         private AsyncTask requestSendBugReportTask;
 
