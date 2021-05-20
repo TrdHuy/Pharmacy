@@ -4,6 +4,7 @@ using Pharmacy.Implement.Utils.InputCommand;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -75,19 +76,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         private bool SearchByName(tblCustomer customer, string filterText)
         {
-            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME ? (customer.CustomerName.IndexOf(filterText) != -1) : false;
+            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(customer.CustomerName, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
         private bool SearchByPhone(tblCustomer customer, string filterText)
         {
-            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE ? (customer.Phone.IndexOf(filterText) != -1) : false;
+            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_PHONE ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(customer.Phone, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
         private bool SearchByEmail(tblCustomer customer, string filterText)
         {
-            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_EMAIL ? (customer.Email.IndexOf(filterText) != -1) : false;
+            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_EMAIL ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(customer.Email, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
         private bool SearchByAddress(tblCustomer customer, string filterText)
         {
-            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_ADDRESS ? (customer.Address.IndexOf(filterText) != -1) : false;
+            return RUNE.IS_SUPPORT_SEARCH_CUSTOMER_BY_ADDRESS ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(customer.Address, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
 
         public override void OnDestroy()

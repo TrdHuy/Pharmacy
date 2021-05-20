@@ -44,9 +44,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 return false;
             }
             if (SPViewModel.CustomerOrderDetailItemSource == null
-                || SPViewModel.CustomerOrderDetailItemSource.Count == 0)
+                || SPViewModel.CustomerOrderDetailItemSource.Count == 0 && SPViewModel.MedicineOV.PaidAmount == 0)
             {
-                var x = App.Current.ShowApplicationMessageBox("Hóa đơn phải có ít nhất 1 sản phẩm!",
+                var x = App.Current.ShowApplicationMessageBox("Hóa đơn phải có ít nhất 1 sản phẩm hoặc tiền đã trả lớn hơn 0!",
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                   OwnerWindow.MainScreen,

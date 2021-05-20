@@ -2,6 +2,7 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.Windows.Controls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage
 {
@@ -14,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[0] as DataGrid;
 
-            FileIOUtil.ShowBitmapFromName(WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex].ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
+            FileIOUtil.ShowBitmapFromName((ctrl.SelectedItem as MSW_WHMP_WarehouseImportOV).ImportID.ToString(), FileIOUtil.WAREHOUSE_IMPORT_IMAGE_FOLDER_NAME);
             return;
         }
     }

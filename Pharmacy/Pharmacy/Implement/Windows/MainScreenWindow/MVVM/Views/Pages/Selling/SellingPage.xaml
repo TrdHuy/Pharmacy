@@ -90,8 +90,7 @@
                                        FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                             <TextBlock Text="*"
                                        Grid.Column="1"
-                                       Foreground="Red"
-                                       HorizontalAlignment="Center"
+                                       HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
                                        FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
@@ -243,8 +242,7 @@
                                        FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                             <TextBlock Text="*"
                                        Grid.Column="1"
-                                       Foreground="Red"
-                                       HorizontalAlignment="Center"
+                                       HorizontalAlignment="Left"
                                        VerticalAlignment="Center"
                                        FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
@@ -427,6 +425,7 @@
                                   VerticalAlignment="Top"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False"
+                                  SelectionMode="Single"
                                   ItemsSource="{Binding CustomerOrderDetailItemSource}"
                                   AutoGenerateColumns="False"
                                   HorizontalGridLinesBrush="White"
@@ -703,8 +702,7 @@
                                            FontSize="{Binding FontSizeOV.FontSizeLarge}"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="*"
-                                           Foreground="Red"
-                                           HorizontalAlignment="Center"
+                                           HorizontalAlignment="Left"
                                            Grid.Row="0"
                                            Grid.Column="1"
                                            FontSize="{Binding FontSizeOV.FontSizeLarge}"

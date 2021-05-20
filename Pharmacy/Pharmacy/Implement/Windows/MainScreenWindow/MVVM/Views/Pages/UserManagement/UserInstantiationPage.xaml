@@ -1,18 +1,18 @@
 ﻿<quotableEventPage:QuotableEventPage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.UserManagement.UserInstantiationPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      mc:Ignorable="d"
-      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage.UserInstantiation"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      Title="UserModificationPage">
+                                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                     xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     mc:Ignorable="d"
+                                     xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.UserManagementPage.UserInstantiation"
+                                     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                     FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                                     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                     Title="UserModificationPage">
     <Page.DataContext>
         <vm:UserInstantiationPageViewModel />
     </Page.DataContext>
@@ -166,31 +166,28 @@
                            Text="Facebook:" />
 
 
-                    <TextBlock FontFamily="{StaticResource VNFOswald}"
-                               Text="*"
-                               HorizontalAlignment="Center"
-                         Grid.Column="1"
-                         Grid.Row="0"
-                               Foreground="Red" />
-                    <TextBlock Style="{StaticResource SpinningText}"
-                               Foreground="Green"
-                               Grid.Column="1"
-                               Grid.Row="0"
-                               Visibility="{Binding UserNameVerifingTextBlockVisibility}"
-                               Background="White" />
-                    <TextBlock FontFamily="{StaticResource VNFOswald}"
-                               Text="*"
-                               HorizontalAlignment="Center"
-                               Grid.Column="1"
-                               Grid.Row="2"
-                               Foreground="Red" />
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Left"
+                           Grid.Column="1"
+                           Grid.Row="0" />
+                <TextBlock Style="{StaticResource SpinningText}"
+                           Foreground="Green"
+                           Grid.Column="1"
+                           Grid.Row="0"
+                           Visibility="{Binding UserNameVerifingTextBlockVisibility}"
+                           Background="White" />
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Left"
+                           Grid.Column="1"
+                           Grid.Row="2" />
 
-                    <TextBlock FontFamily="{StaticResource VNFOswald}"
-                               Text="*"
-                               HorizontalAlignment="Center"
-                               Grid.Column="1"
-                               Grid.Row="6"
-                               Foreground="Red" />
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Left"
+                           Grid.Column="1"
+                           Grid.Row="6" />
 
 
                 <TextBox x:Name="UserNameTextBox"
@@ -327,7 +324,7 @@
                               VerticalContentAlignment="Center"
                               PasswordChanged="NewPasswordBox_PasswordChanged"
                               BorderThickness="2"
-                              BorderBrush="Black"/>
+                              BorderBrush="Black" />
                 <TextBlock x:Name="NewPasswordAwareTextBlock"
                            Visibility="{Binding NewPasswordAwareTextBlockVisibility}"
                            IsHitTestVisible="False"
@@ -371,12 +368,11 @@
                     <ComboBoxItem Name="QuanLy"
                                   Content="Quản lý" />
                 </hps:HorusBox>
-                    <TextBlock FontFamily="{StaticResource VNFOswald}"
-                               Text="*"
-                               HorizontalAlignment="Center"
-                               Grid.Column="5"
-                               Grid.Row="4"
-                               Foreground="Red" />
+                <TextBlock FontFamily="{StaticResource VNFOswald}"
+                           Text="*"
+                           HorizontalAlignment="Left"
+                           Grid.Column="5"
+                           Grid.Row="4" />
                 <TextBlock x:Name="JobTitleAwareTextBlock"
                            Visibility="{Binding JobTitleAwareTextBlockVisibility}"
                            IsHitTestVisible="False"

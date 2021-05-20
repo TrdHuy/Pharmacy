@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[0] as DataGrid;
 
-            FileIOUtil.ShowBitmapFromName(OPMPViewModel.OtherPaymentItemSource[ctrl.SelectedIndex].PaymentID.ToString(), FileIOUtil.OTHER_PAYMENT_IMAGE_FOLDER_NAME);
+            FileIOUtil.ShowBitmapFromName((ctrl.SelectedItem as tblOtherPayment).PaymentID.ToString(), FileIOUtil.OTHER_PAYMENT_IMAGE_FOLDER_NAME);
         }
     }
 }

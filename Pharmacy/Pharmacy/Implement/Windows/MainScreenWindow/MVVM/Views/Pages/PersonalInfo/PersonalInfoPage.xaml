@@ -172,16 +172,14 @@
                 <TextBlock FontFamily="{StaticResource VNFOswald}"
                            Text="*"
                            Grid.Column="1"
-                           HorizontalAlignment="Center"
-                           Grid.Row="0"
-                           Foreground="Red" />
+                           HorizontalAlignment="Left"
+                           Grid.Row="0"/>
 
                 <TextBlock FontFamily="{StaticResource VNFOswald}"
                            Text="*"
                            Grid.Column="1"
                            Grid.Row="4"
-                           HorizontalAlignment="Center"
-                           Foreground="Red" />
+                           HorizontalAlignment="Left"/>
 
                 <TextBox x:Name="FullNameTextBox"
                          Margin="0,2.5,0,2.5"

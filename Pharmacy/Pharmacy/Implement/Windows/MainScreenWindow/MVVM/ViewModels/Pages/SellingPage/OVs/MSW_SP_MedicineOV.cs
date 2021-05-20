@@ -136,11 +136,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
         public override void RefreshViewModel()
         {
             MedicineTextSearch = "";
-            MedicineCost = 0;
             PaidAmount = 0;
+            MedicineCost = 0;
             CurrentSelectedMedicine = null;
             Quantity = "";
 
+            Invalidate("PaidAmount");
             Invalidate("DebtCost");
             Invalidate("TotalCost");
             Invalidate("RestAmount");

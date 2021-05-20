@@ -23,6 +23,14 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
             {
                 appDBContext.tblWarehouseImports.Add(import);
                 appDBContext.SaveChanges();
+
+                //Cập nhật giá vào thông tin thuốc
+                foreach (var item in import.tblWarehouseImportDetails)
+                {
+                    item.tblMedicine.BidPrice = item.Price;
+                }
+                appDBContext.SaveChanges();
+
                 if (imageFolder.Length > 0 && !SaveImageToFile(import.ImportID.ToString(), imageFolder, ImageType.WarehouseImport))
                 {
                     result = new SQLQueryResult(null, MessageQueryResult.Aborted);

@@ -241,6 +241,7 @@
                       VerticalAlignment="Top"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
+                      SelectionMode="Single"
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding LstWarehouseImportDetail, UpdateSourceTrigger=PropertyChanged}"
                       MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"

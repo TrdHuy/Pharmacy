@@ -29,6 +29,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 InvalidateOwn();
                 Invalidate("CustomerAddress");
                 Invalidate((_parentModel as SellingPageViewModel).MedicineOV, "DebtCost");
+                Invalidate((_parentModel as SellingPageViewModel).MedicineOV, "TotalCost");
+                Invalidate((_parentModel as SellingPageViewModel).MedicineOV, "RestAmount");
                 Invalidate("IsAdressTextBoxEnable");
             }
         }

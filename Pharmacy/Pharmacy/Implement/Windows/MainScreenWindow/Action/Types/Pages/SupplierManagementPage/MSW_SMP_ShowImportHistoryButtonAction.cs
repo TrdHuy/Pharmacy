@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Supplie
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[0] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentModifiedSupplier = SMPViewModel.SupplierItemSource[ctrl.SelectedIndex];
+            MSW_DataFlowHost.Current.CurrentModifiedSupplier = ctrl.SelectedItem as tblSupplier;
             PageHost.UpdateCurrentPageSource(PageSource.SUPPLIER_IMPORT_HISTORY_PAGE);
 
         }
