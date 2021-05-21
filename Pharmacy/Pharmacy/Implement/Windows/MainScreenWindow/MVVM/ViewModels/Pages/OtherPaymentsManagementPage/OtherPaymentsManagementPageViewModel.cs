@@ -73,7 +73,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
 
         private void DoFilter(int selectedTypeIndex, DateTime? startDate, DateTime? endDate, DataGrid dataGrid)
         {
-            dataGrid.Items.Filter = new Predicate<object>(item => FilterWarehouseImportInfoList(item as tblOtherPayment, selectedTypeIndex, startDate, endDate));
+            dataGrid.Items.Filter = new Predicate<object>(item => FilterWarehouseImportInfoList(item as tblOtherPayment, selectedTypeIndex, startDate,
+                endDate != null ? new DateTime((long)endDate?.Ticks).AddHours(23).AddMinutes(59).AddSeconds(59) : endDate));
         }
 
         private bool FilterWarehouseImportInfoList(tblOtherPayment item, int selectedTypeIndex, DateTime? startDate, DateTime? endDate)

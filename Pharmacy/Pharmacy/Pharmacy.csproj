@@ -637,6 +637,9 @@
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\BugReportPage.xaml.cs">
       <DependentUpon>BugReportPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\PrintPreviewControl.xaml.cs">
+      <DependentUpon>PrintPreviewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml.cs">
       <DependentUpon>DownloadProgressControl.xaml</DependentUpon>
     </Compile>
@@ -891,6 +894,10 @@
     <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\Pages\BugReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\PrintPreviewControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Implement\Windows\PopupScreenWindow\MVVM\Views\UserControls\DownloadProgressControl.xaml">
       <SubType>Designer</SubType>
@@ -1152,6 +1159,7 @@
   <ItemGroup>
     <Folder Include="Base\Implement\" />
     <Folder Include="Base\UIEventHandler\Listener\" />
+    <Folder Include="Implement\Windows\MainScreenWindow\Action\Types\MainMenu\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\ModelImpl\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\" />
   </ItemGroup>

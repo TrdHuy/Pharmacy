@@ -380,6 +380,7 @@
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       AutoGenerateColumns="False"
+                      SelectionMode="Single"
                       ItemsSource="{Binding LstWarehouseImportDetail}"
                       MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
                       HorizontalGridLinesBrush="White"

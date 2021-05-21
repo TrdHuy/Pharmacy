@@ -79,13 +79,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public decimal NetPrice { get; set; }
         public MSW_WHMP_AWIP_ButtonCommandOV ButtonCommandOV { get; set; }
         public int SelectedSupplierCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-      
+
         public bool IsSaveButtonCanPerform
         {
             get
             {
                 if (SelectedSupplier != null
-                        && LstWarehouseImportDetail.Count > 0)
+                        && (LstWarehouseImportDetail.Count > 0 || PurchasedPrice > 0))
                     return true;
                 return false;
             }

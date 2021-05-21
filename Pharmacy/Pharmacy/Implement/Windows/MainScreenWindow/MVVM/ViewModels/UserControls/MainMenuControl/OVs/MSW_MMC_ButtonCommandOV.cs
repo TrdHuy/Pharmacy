@@ -16,6 +16,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserContro
         public CommandExecuterModel PersonalAccountCommand { get; set; }
         public CommandExecuterModel HomePageCommand { get; set; }
         public CommandExecuterModel AppInfoCommand { get; set; }
+        public CommandExecuterModel ContactUsCommand { get; set; }
+        public CommandExecuterModel BugReportCommand { get; set; }
 
         public MSW_MMC_ButtonCommandOV(BaseViewModel parentsModel) : base(parentsModel)
         {

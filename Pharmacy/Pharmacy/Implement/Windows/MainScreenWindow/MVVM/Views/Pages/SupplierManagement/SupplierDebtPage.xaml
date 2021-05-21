@@ -67,6 +67,7 @@
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   AutoGenerateColumns="False"
+                  SelectionMode="Single"
                   ItemsSource="{Binding LstDebt}"
                   Margin="10"
                   MaxHeight="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"

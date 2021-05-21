@@ -60,9 +60,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Repo
         protected override void OnInitializing()
         {
             SellingReportStartDate = DateTime.Today;
-            SellingReportEndDate = DateTime.Today.AddDays(1);
+            SellingReportEndDate = DateTime.Today;
             ComprehensiveReportStartDate = DateTime.Today;
-            ComprehensiveReportEndDate = DateTime.Today.AddDays(1);
+            ComprehensiveReportEndDate = DateTime.Today;
 
             ButtonCommandOV = new MSW_RP_ButtonCommandOV(this);
         }

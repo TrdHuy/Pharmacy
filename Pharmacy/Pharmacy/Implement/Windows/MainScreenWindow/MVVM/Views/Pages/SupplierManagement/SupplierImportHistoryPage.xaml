@@ -81,6 +81,7 @@
                 </Viewbox>
                 <ListView BorderThickness="2"
                           BorderBrush="Black"
+                          SelectionMode="Single"
                           ItemsSource="{Binding LstWarehouseImport}"
                           SelectedItem="{Binding ImportInfo, UpdateSourceTrigger=PropertyChanged}"
                           Grid.Row="2">

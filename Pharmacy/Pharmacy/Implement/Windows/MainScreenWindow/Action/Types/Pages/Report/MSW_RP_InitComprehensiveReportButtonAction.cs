@@ -6,6 +6,7 @@ using System.IO;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.ReportPage.OVs;
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
+using System;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
 {
@@ -30,12 +31,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Report
                 return;
             }
 
+            DateTime endDate = new DateTime(RPViewModel.ComprehensiveReportEndDate.Ticks).AddHours(23).AddMinutes(59).AddSeconds(59);
+
             _sqlCmdObserver = new SQLQueryCustodian(SQLQueryCallback);
             DbManager.Instance.ExecuteQueryAsync(SQLCommandKey.GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_CMD_KEY
                 , PharmacyDefinitions.GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_DELAY_TIME
                 , _sqlCmdObserver
                 , RPViewModel.ComprehensiveReportStartDate
-                , RPViewModel.ComprehensiveReportEndDate
+                , endDate
                 , RPViewModel);
             return;
         }

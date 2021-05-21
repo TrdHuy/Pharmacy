@@ -16,7 +16,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             object[] param = DataTransfer[0] as object[];
             DataGrid ctrl = param[0] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentModifiedMedicine = MMPViewModel.MedicineItemSource[ctrl.SelectedIndex];
+            MSW_DataFlowHost.Current.CurrentModifiedMedicine = ctrl.SelectedItem as tblMedicine;
             PageHost.UpdateCurrentPageSource(PageSource.SHOW_MEDICINE_INFO_PAGE);
             return;
         }
