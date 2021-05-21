@@ -65,6 +65,7 @@
                       VerticalAlignment="Top"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
+                      SelectionMode="Single"
                       ItemsSource="{Binding DebtItemSource}"
                       AutoGenerateColumns="False"
                       HorizontalGridLinesBrush="White"

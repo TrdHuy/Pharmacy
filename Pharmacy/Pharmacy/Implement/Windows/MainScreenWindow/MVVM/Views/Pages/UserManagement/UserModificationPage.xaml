@@ -164,24 +164,21 @@
 
                 <TextBlock FontFamily="{StaticResource VNFOswald}"
                            Text="*"
-                           HorizontalAlignment="Center"
+                           HorizontalAlignment="Left"
                            Grid.Column=" 1"
-                           Grid.Row="0"
-                           Foreground="Red" />
+                           Grid.Row="0" />
 
                 <TextBlock FontFamily="{StaticResource VNFOswald}"
                            Text="*"
-                           HorizontalAlignment="Center"
+                           HorizontalAlignment="Left"
                            Grid.Column="1"
-                           Grid.Row="2"
-                           Foreground="Red" />
+                           Grid.Row="2" />
 
                 <TextBlock FontFamily="{StaticResource VNFOswald}"
                            Text="*"
-                           HorizontalAlignment="Center"
+                           HorizontalAlignment="Left"
                            Grid.Column="1"
-                           Grid.Row="6"
-                           Foreground="Red" />
+                           Grid.Row="6" />
 
 
                 <TextBox x:Name="UserNameTextBox"
@@ -346,13 +343,6 @@
                     <ComboBoxItem Name="QuanLy"
                                   Content="Quản lý" />
                 </hps:HorusBox>
-
-                <TextBlock FontFamily="{StaticResource VNFOswald}"
-                           Text="*"
-                           HorizontalAlignment="Center"
-                           Grid.Column="1"
-                           Grid.Row="6"
-                           Foreground="Red" />
 
                 <TextBlock x:Name="JobTitleAwareTextBlock"
                            Visibility="{Binding JobTitleAwareTextBlockVisibility}"

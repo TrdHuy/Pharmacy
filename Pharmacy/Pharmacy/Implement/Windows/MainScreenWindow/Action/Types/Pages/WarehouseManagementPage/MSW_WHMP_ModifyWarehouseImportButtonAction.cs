@@ -3,6 +3,8 @@ using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using System.Windows.Controls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.WarehouseManagementPage.OVs;
+using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.WarehouseManagementPage
 {
@@ -16,7 +18,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[0] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = WHMPViewModel.LstWarehouseImport[ctrl.SelectedIndex];
+            var selectedItem = ctrl.SelectedItem as MSW_WHMP_WarehouseImportOV;
+
+            MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport = WHMPViewModel.LstWarehouseImport.Where(o=>o.ImportID==selectedItem.ImportID).FirstOrDefault();
             PageHost.UpdateCurrentPageSource(PageSource.MODIFY_WAREHOUSE_IMPORT_PAGE);
 
             return;

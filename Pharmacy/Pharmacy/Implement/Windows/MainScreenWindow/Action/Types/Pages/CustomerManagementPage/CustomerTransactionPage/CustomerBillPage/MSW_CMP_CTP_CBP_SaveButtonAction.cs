@@ -12,12 +12,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
     internal class MSW_CMP_CTP_CBP_SaveButtonAction : MSW_CMP_CTP_CBP_ButtonAction
     {
         private SQLQueryCustodian _sqlQueryObserver;
-        
+
         public MSW_CMP_CTP_CBP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
         protected override void ExecuteCommand()
         {
-            if (CBPViewModel.CurrentOrderDetails.Count == 0)
+            if (CBPViewModel.CurrentOrderDetails.Count == 0 && CBPViewModel.MedicineOV.PaidAmount == 0)
             {
                 DeleteCurrentCustomerOrder();
             }
@@ -50,7 +50,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         CBPViewModel.CurrentCustomerOrder
                         );
                 }
-                
+
+                CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
+            }
+            else
+            {
                 CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
         }

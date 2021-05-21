@@ -411,6 +411,7 @@
                                   VerticalAlignment="Top"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False"
+                                  SelectionMode="Single"
                                   ItemsSource="{Binding CurrentOrderDetails}"
                                   AutoGenerateColumns="False"
                                   HorizontalGridLinesBrush="White"
@@ -687,8 +688,7 @@
                                            Grid.Column="0"
                                            VerticalAlignment="Center" />
                                 <TextBlock Text="*"
-                                           Foreground="Red"
-                                           HorizontalAlignment="Center"
+                                           HorizontalAlignment="Left"
                                            Grid.Row="0"
                                            Grid.Column="1"
                                            VerticalAlignment="Center" />

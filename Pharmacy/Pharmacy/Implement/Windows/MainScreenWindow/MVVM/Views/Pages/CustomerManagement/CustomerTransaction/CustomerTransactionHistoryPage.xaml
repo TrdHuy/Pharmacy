@@ -75,6 +75,7 @@
                            HorizontalAlignment="Left" />
                 <ListView BorderThickness="2"
                           BorderBrush="Black"
+                          SelectionMode="Single"
                           ItemsSource="{Binding OrderItemSource}"
                           SelectedItem="{Binding CurrentSelectedOrder}"
                           Grid.Row="2">

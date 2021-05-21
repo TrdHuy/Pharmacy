@@ -14,6 +14,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         public MSW_WHMP_MWIP_SaveButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
         protected override void ExecuteCommand()
         {
+            if (MWIPViewModel.LstWarehouseImportDetail.Count == 0 && MWIPViewModel.PurchasedPrice == 0)
+            {
+                App.Current.ShowApplicationMessageBox("Danh sách thuốc nhập phải có hơn 1 sản phẩm hoặc tiền đã trả lớn hơn 0!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
+                MWIPViewModel.ButtonCommandOV.IsAddWarehouseImportButtonRunning = false;
+                return;
+            }
 
             tblWarehouseImport import = MWIPViewModel.ImportInfo;
             import.ImportDescription = MWIPViewModel.NoteString.Trim();

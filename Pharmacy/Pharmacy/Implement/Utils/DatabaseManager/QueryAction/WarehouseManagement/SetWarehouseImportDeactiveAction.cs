@@ -23,9 +23,18 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
                 x.IsActive = false;
                 foreach (var item in x.tblWarehouseImportDetails)
                 {
+                    bool needUpdate = item.IsActive;
                     item.IsActive = false;
+                    if (needUpdate)
+                    {
+                        //Cập nhật giá nhập thuốc dựa vào giá của đơn nhập gần nhất sau khi xóa thông tin ở đơn hiện tại
+                        var prevDetail = item.tblMedicine.tblWarehouseImportDetails.Where(o => o.IsActive).OrderByDescending(o => o.tblWarehouseImport.ImportTime).FirstOrDefault();
+                        if (prevDetail != null)
+                            item.tblMedicine.BidPrice = prevDetail.Price;
+                    }
                 }
                 appDBContext.SaveChanges();
+
                 result = new SQLQueryResult(null, MessageQueryResult.Done);
                 return result;
             }

@@ -17,7 +17,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         {
             if (!AWIPViewModel.IsSaveButtonCanPerform)
             {
-                App.Current.ShowApplicationMessageBox("Kiểm tra lại thông tin nhà cung cấp và danh sách thuốc nhập!",
+                App.Current.ShowApplicationMessageBox("Kiểm tra lại thông tin nhà cung cấp, danh sách thuốc nhập phải có hơn 1 sản phẩm hoặc tiền đã trả lớn hơn 0!",
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
