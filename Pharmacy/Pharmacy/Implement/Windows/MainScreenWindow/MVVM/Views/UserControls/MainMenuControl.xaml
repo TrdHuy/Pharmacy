@@ -49,11 +49,13 @@
                            Style="{DynamicResource MenuTabButton}" />
         <cctrl:HPSL_Button Grid.Row="4"
                            Content="BÁO LỖI"
+                           Command="{Binding ButtonCommandOV.BugReportCommand}"
                            ImageSource="{DynamicResource BugIcon}"
                            Padding="10,0,0,0"
                            Style="{DynamicResource MenuTabButton}" />
         <cctrl:HPSL_Button Grid.Row="5"
                            Content="CSKH"
+                           Command="{Binding ButtonCommandOV.ContactUsCommand}"
                            ImageSource="{DynamicResource CSIcon}"
                            Padding="10,0,0,0"
                            Style="{DynamicResource MenuTabButton}" />

@@ -5,6 +5,7 @@ using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.Windows.BaseWindow.Action.Builder;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.MainMenu;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfoPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerInstantiationPage;
@@ -95,6 +96,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_APP_INFO:
                     commandExecuter = new MSW_AppInfoAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MM_BUG_REPORT:
+                    commandExecuter = new MSW_MM_BugReportButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_MM_CONTACT_US:
+                    commandExecuter = new MSW_MM_ContactUsButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
                     break;
                 default:
                     break;
