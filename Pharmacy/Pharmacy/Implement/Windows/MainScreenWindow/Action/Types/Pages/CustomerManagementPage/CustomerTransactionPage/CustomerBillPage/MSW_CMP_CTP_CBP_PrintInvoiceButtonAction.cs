@@ -3,6 +3,7 @@ using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
 using System;
+using System.Drawing.Printing;
 using System.IO;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
@@ -75,6 +76,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 printPreview.Report.ZoomMode = ZoomMode.Percent;
                 printPreview.Report.ZoomPercent = 100;
                 printPreview.Report.RefreshReport();
+
+                var pageSettings = new PageSettings();
+                pageSettings.PaperSize = printPreview.Report.LocalReport.GetDefaultPageSettings().PaperSize;
+                pageSettings.Landscape = printPreview.Report.LocalReport.GetDefaultPageSettings().IsLandscape;
+                pageSettings.Margins = printPreview.Report.LocalReport.GetDefaultPageSettings().Margins;
+                printPreview.Report.SetPageSettings(pageSettings);
 
                 //LocalReportExtensions.Print(report.LocalReport);
                 popupWindow.ShowDialog();

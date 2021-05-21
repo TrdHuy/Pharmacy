@@ -56,6 +56,7 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+
       <Body>
         <ReportItems>
           <Tablix Name="Tablix4">
@@ -65,7 +66,7 @@
                   <Width>0.45833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.90625in</Width>
+                  <Width>2.61458in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.61458in</Width>
@@ -74,13 +75,13 @@
                   <Width>0.60417in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8125in</Width>
+                  <Width>0.99084in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.63543in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.48958in</Width>
+                  <Width>1.60289in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -98,6 +99,7 @@
                                 <TextRun>
                                   <Value>STT</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -153,6 +155,7 @@
                                 <TextRun>
                                   <Value>Tên thuốc</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -208,6 +211,7 @@
                                 <TextRun>
                                   <Value>ĐVT</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -263,6 +267,7 @@
                                 <TextRun>
                                   <Value>SL</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -318,6 +323,7 @@
                                 <TextRun>
                                   <Value>Đơn giá</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -373,6 +379,7 @@
                                 <TextRun>
                                   <Value>KM (%)</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -428,6 +435,7 @@
                                 <TextRun>
                                   <Value>Thành tiền</Value>
                                   <Style>
+                                    <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -487,7 +495,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!ID.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -498,9 +508,28 @@
                           <rd:DefaultName>ID</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -519,7 +548,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!MedicineName.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -528,9 +559,28 @@
                           <rd:DefaultName>MedicineName</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -549,7 +599,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!MedicineUnit.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -560,9 +612,28 @@
                           <rd:DefaultName>MedicineUnit</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -581,7 +652,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Quantity.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -592,9 +665,28 @@
                           <rd:DefaultName>Quantity</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -613,7 +705,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Format(CDec(Fields!MedicineUnitPrice.Value), "#,##0")</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -622,9 +716,28 @@
                           <rd:DefaultName>MedicineUnitPrice</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -643,7 +756,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!PromoPercent.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -654,9 +769,28 @@
                           <rd:DefaultName>PromoPercent</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -675,7 +809,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Format(CDec(Fields!TotalPrice.Value), "#,##0")</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -684,9 +820,28 @@
                           <rd:DefaultName>TotalPrice</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Color>Black</Color>
+                              <Style>Solid</Style>
+                              <Width>1pt</Width>
+                            </RightBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -721,14 +876,15 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.73834in</Top>
+            <Top>1.86334in</Top>
             <Left>0.28in</Left>
             <Height>0.55208in</Height>
-            <Width>7.52084in</Width>
+            <Width>7.52082in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <FontSize>12pt</FontSize>
             </Style>
           </Tablix>
           <Textbox Name="Textbox97">
@@ -775,6 +931,7 @@
                   <TextRun>
                     <Value>Khách hàng:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -807,6 +964,7 @@
                   <TextRun>
                     <Value>SĐT:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -815,7 +973,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.1632in</Top>
+            <Top>1.2132in</Top>
             <Left>0.28in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -838,7 +996,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!KhachHang.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -870,7 +1030,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!SDT.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -879,7 +1041,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.1632in</Top>
+            <Top>1.2132in</Top>
             <Left>1.55777in</Left>
             <Height>0.25in</Height>
             <Width>6.24306in</Width>
@@ -903,6 +1065,7 @@
                   <TextRun>
                     <Value>Địa chỉ:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -911,7 +1074,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.41889in</Top>
+            <Top>1.51889in</Top>
             <Left>0.28in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -934,7 +1097,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!DiaChi.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -943,7 +1108,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.41889in</Top>
+            <Top>1.51889in</Top>
             <Left>1.55777in</Left>
             <Height>0.25in</Height>
             <Width>6.24306in</Width>
@@ -1001,6 +1166,7 @@
                   <TextRun>
                     <Value>Thành tiền:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1009,7 +1175,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>2.34598in</Top>
+            <Top>2.47098in</Top>
             <Left>4.81126in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -1033,6 +1199,7 @@
                   <TextRun>
                     <Value>Nợ cũ:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1041,7 +1208,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.59598in</Top>
+            <Top>2.78348in</Top>
             <Left>4.81126in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -1065,6 +1232,7 @@
                   <TextRun>
                     <Value>=Format(CDec(Parameters!ThanhTien.Value), "#,##0")</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1075,7 +1243,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>2.34598in</Top>
+            <Top>2.47098in</Top>
             <Left>6.08903in</Left>
             <Height>0.25in</Height>
             <Width>1.71181in</Width>
@@ -1099,6 +1267,7 @@
                   <TextRun>
                     <Value>=Format(CDec(Parameters!CongNo.Value), "#,##0")</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1109,7 +1278,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.59598in</Top>
+            <Top>2.78348in</Top>
             <Left>6.08903in</Left>
             <Height>0.25in</Height>
             <Width>1.71181in</Width>
@@ -1133,6 +1302,7 @@
                   <TextRun>
                     <Value>Tổng cộng:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1141,7 +1311,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.84598in</Top>
+            <Top>3.08348in</Top>
             <Left>4.81126in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -1165,6 +1335,7 @@
                   <TextRun>
                     <Value>=Format(CDec(Parameters!TongCong.Value), "#,##0")</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1175,7 +1346,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.84598in</Top>
+            <Top>3.08348in</Top>
             <Left>6.08901in</Left>
             <Height>0.25in</Height>
             <Width>1.71181in</Width>
@@ -1199,6 +1370,7 @@
                   <TextRun>
                     <Value>Đã trả:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1207,7 +1379,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.09598in</Top>
+            <Top>3.38348in</Top>
             <Left>4.81126in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -1231,6 +1403,7 @@
                   <TextRun>
                     <Value>=Format(CDec(Parameters!DaTra.Value), "#,##0")</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1241,7 +1414,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.09598in</Top>
+            <Top>3.38348in</Top>
             <Left>6.08901in</Left>
             <Height>0.25in</Height>
             <Width>1.71181in</Width>
@@ -1265,6 +1438,7 @@
                   <TextRun>
                     <Value>Còn lại:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1273,7 +1447,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.34598in</Top>
+            <Top>3.69598in</Top>
             <Left>4.81124in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -1297,6 +1471,7 @@
                   <TextRun>
                     <Value>=Format(CDec(Parameters!ConLai.Value), "#,##0")</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1307,7 +1482,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.34598in</Top>
+            <Top>3.69598in</Top>
             <Left>6.08901in</Left>
             <Height>0.25in</Height>
             <Width>1.71181in</Width>
@@ -1330,7 +1505,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!GhiChu.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -1339,9 +1516,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.58209in</Top>
+            <Top>2.73209in</Top>
             <Left>0.27997in</Left>
-            <Height>0.98611in</Height>
+            <Height>1.21389in</Height>
             <Width>4.46182in</Width>
             <ZIndex>19</ZIndex>
             <Style>
@@ -1363,6 +1540,7 @@
                   <TextRun>
                     <Value>Ghi chú:</Value>
                     <Style>
+                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1371,7 +1549,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>2.33209in</Top>
+            <Top>2.45709in</Top>
             <Left>0.28in</Left>
             <Height>0.25in</Height>
             <Width>1.20833in</Width>
@@ -1387,7 +1565,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.59598in</Height>
+        <Height>3.94598in</Height>
         <Style />
       </Body>
       <Width>8.03958in</Width>
