@@ -8,6 +8,7 @@ using System.IO;
 using Pharmacy.Implement.Utils.CustomControls;
 using System.Collections.ObjectModel;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
+using System.Drawing.Printing;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
@@ -69,6 +70,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 printPreview.Report.ZoomMode = ZoomMode.Percent;
                 printPreview.Report.ZoomPercent = 100;
                 printPreview.Report.RefreshReport();
+
+                var pageSettings = new PageSettings();
+                pageSettings.PaperSize = printPreview.Report.LocalReport.GetDefaultPageSettings().PaperSize;
+                pageSettings.Landscape = printPreview.Report.LocalReport.GetDefaultPageSettings().IsLandscape;
+                pageSettings.Margins = printPreview.Report.LocalReport.GetDefaultPageSettings().Margins;
+                printPreview.Report.SetPageSettings(pageSettings);
 
                 popupWindow.ShowDialog();
                 //LocalReportExtensions.Print(report.LocalReport);
