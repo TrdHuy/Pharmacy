@@ -7,6 +7,7 @@ using Microsoft.Reporting.WinForms;
 using System.IO;
 using Pharmacy.Implement.Utils.CustomControls;
 using System.Collections.ObjectModel;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
@@ -17,7 +18,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            var lstMedicine = DataTransfer[0] as ObservableCollection<tblMedicine>;
+            var lstMedicine = MMPViewModel.MedicineItemSource;
 
             var lstCaoDon = lstMedicine.Where(o => o.MedicineTypeID == 2).ToList();
             var lstDuocLieu = lstMedicine.Where(o => o.MedicineTypeID == 1).ToList();
@@ -29,8 +30,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
         {
             try
             {
-                ReportViewer report = new ReportViewer();
-                report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/MedicineListReport.rdlc");
+                PrintPreviewControl printPreview = new PrintPreviewControl();
+                printPreview.Report.Reset();
+
+                PopupScreenWindow.MVVM.Views.PopupScreenWindow popupWindow = new PopupScreenWindow.MVVM.Views.PopupScreenWindow();
+                popupWindow.Height = 600d;
+                popupWindow.Width = 800d;
+                popupWindow.Content = printPreview;
+
+                printPreview.Report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/MedicineListReport.rdlc");
 
                 PharmacyDBDataSet.MedicineInfoDataTable tblCaoDon = new PharmacyDBDataSet.MedicineInfoDataTable();
                 PharmacyDBDataSet.MedicineInfoDataTable tblDuocLieu = new PharmacyDBDataSet.MedicineInfoDataTable();
@@ -50,19 +58,20 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 ReportDataSource reportDataSource = new ReportDataSource();
                 reportDataSource.Name = "DataSet1";
                 reportDataSource.Value = tblCaoDon;
-                report.LocalReport.DataSources.Add(reportDataSource);
+                printPreview.Report.LocalReport.DataSources.Add(reportDataSource);
 
                 ReportDataSource reportDataSource2 = new ReportDataSource();
                 reportDataSource2.Name = "DataSet2";
                 reportDataSource2.Value = tblDuocLieu;
-                report.LocalReport.DataSources.Add(reportDataSource2);
+                printPreview.Report.LocalReport.DataSources.Add(reportDataSource2);
 
-                report.SetDisplayMode(DisplayMode.PrintLayout);
-                report.ZoomMode = ZoomMode.Percent;
-                report.ZoomPercent = 100;
-                report.RefreshReport();
+                printPreview.Report.SetDisplayMode(DisplayMode.PrintLayout);
+                printPreview.Report.ZoomMode = ZoomMode.Percent;
+                printPreview.Report.ZoomPercent = 100;
+                printPreview.Report.RefreshReport();
 
-                LocalReportExtensions.Print(report.LocalReport);
+                popupWindow.ShowDialog();
+                //LocalReportExtensions.Print(report.LocalReport);
                 return true;
             }
             catch (Exception ex)

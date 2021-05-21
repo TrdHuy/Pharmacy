@@ -1,13 +1,12 @@
-﻿using Microsoft.Reporting.WinForms;
-using Pharmacy.Implement.Utils.CustomControls;
-using Pharmacy.Implement.Utils.DatabaseManager;
+﻿using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Utils.Definitions;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage;
 using System;
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.IO;
+using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
+using Microsoft.Reporting.WinForms;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
@@ -137,8 +136,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         {
             try
             {
-                ReportViewer report = new ReportViewer();
-                report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
+                PrintPreviewControl printPreview = new PrintPreviewControl();
+                printPreview.Report.Reset();
+
+                PopupScreenWindow.MVVM.Views.PopupScreenWindow popupWindow = new PopupScreenWindow.MVVM.Views.PopupScreenWindow();
+                popupWindow.Height = 600d;
+                popupWindow.Width = 800d;
+                popupWindow.Content = printPreview;
+
+                printPreview.Report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
                 reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _newOrder.OrderTime.Hour + ":" + _newOrder.OrderTime.Minute + " " + _newOrder.OrderTime.Day + "/" + _newOrder.OrderTime.Month + "/" + _newOrder.OrderTime.Year);
@@ -151,7 +157,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 reportParameters[7] = new ReportParameter("DaTra", SPViewModel.MedicineOV.PaidAmount.ToString());
                 reportParameters[8] = new ReportParameter("ConLai", ((SPViewModel.MedicineOV.MedicineCost + _previousDebt) - SPViewModel.MedicineOV.PaidAmount).ToString());
                 reportParameters[9] = new ReportParameter("GhiChu", _newOrder.OrderDescription);
-                report.LocalReport.SetParameters(reportParameters);
+                printPreview.Report.LocalReport.SetParameters(reportParameters);
 
 
                 PharmacyDBDataSet.InvoiceDetailListDataTable tbl = new PharmacyDBDataSet.InvoiceDetailListDataTable();
@@ -166,14 +172,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 ReportDataSource reportDataSource = new ReportDataSource();
                 reportDataSource.Name = "DataSet1";
                 reportDataSource.Value = tbl;
-                report.LocalReport.DataSources.Add(reportDataSource);
+                printPreview.Report.LocalReport.DataSources.Add(reportDataSource);
 
-                report.SetDisplayMode(DisplayMode.PrintLayout);
-                report.ZoomMode = ZoomMode.Percent;
-                report.ZoomPercent = 100;
-                report.RefreshReport();
+                printPreview.Report.SetDisplayMode(DisplayMode.PrintLayout);
+                printPreview.Report.ZoomMode = ZoomMode.Percent;
+                printPreview.Report.ZoomPercent = 100;
+                printPreview.Report.RefreshReport();
 
-                LocalReportExtensions.Print(report.LocalReport);
+                //LocalReportExtensions.Print(report.LocalReport);
+                popupWindow.ShowDialog();
             }
             catch (Exception ex)
             {
