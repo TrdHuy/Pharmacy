@@ -219,6 +219,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_ActionIsAlreadyExistedAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_BaseAlternativeButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Alternative\MSW_NonAdminAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MainMenu\MSW_MM_BugReportButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MainMenu\MSW_MM_ContactUsButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_AppInfoAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_NavigationButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
@@ -1159,7 +1161,6 @@
   <ItemGroup>
     <Folder Include="Base\Implement\" />
     <Folder Include="Base\UIEventHandler\Listener\" />
-    <Folder Include="Implement\Windows\MainScreenWindow\Action\Types\MainMenu\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\ModelImpl\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\" />
   </ItemGroup>

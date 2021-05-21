@@ -20,6 +20,9 @@
         public const string KEY_TAG_MSW_SETTING = "msw_setting";
         public const string KEY_TAG_MSW_APP_INFO = "msw_app_info";
 
+        public const string KEY_TAG_MSW_MM_BUG_REPORT = "msw_mm_bug_report";
+        public const string KEY_TAG_MSW_MM_CONTACT_US = "msw_mm_contact_us";
+
         public const string KEY_TAG_MSW_NOT_SUPPORTED_BUTTON = "msw_not_supported_button";
         public const string KEY_TAG_MSW_NOT_IMPLEMENTED_BUTTON = "msw_not_implemented_button";
         public const string KEY_TAG_MSW_NONADMIN_BUTTON = "msw_nonadmin_button";

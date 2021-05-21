@@ -45,6 +45,18 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.UserContro
                     , paramaters
                     , false);
             });
+            ContactUsCommand = new CommandExecuterModel((paramaters) =>
+            {
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MM_CONTACT_US
+                    , paramaters
+                    , false);
+            });
+            BugReportCommand = new CommandExecuterModel((paramaters) =>
+            {
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_MM_BUG_REPORT
+                    , paramaters
+                    , false);
+            });
         }
     }
 }
