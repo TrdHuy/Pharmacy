@@ -662,7 +662,7 @@
         <Top>1.20375in</Top>
         <Left>0.18625in</Left>
         <Height>0.5in</Height>
-        <Width>7.59375in</Width>
+        <Width>7.59376in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1354,10 +1354,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox97</rd:DefaultName>
-        <Top>0.16903in</Top>
-        <Left>2.48271in</Left>
+        <Top>0.21903in</Top>
+        <Left>2.12438in</Left>
         <Height>0.44792in</Height>
-        <Width>3.07417in</Width>
+        <Width>3.80854in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
