@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.Action.Factory
                     viewModelCommandExecuter = new LSW_SystemLoginAction(keyTag, WindowTag.WINDOW_TAG_LOGIN_SCREEN, viewModel, logger);
                     break;
                 case KeyFeatureTag.KEY_TAG_LSW_CUSTOMER_SERVICE_FEATURE:
-                    viewModelCommandExecuter = null;
+                    viewModelCommandExecuter = new LSW_CustomerServiceAction(keyTag, WindowTag.WINDOW_TAG_LOGIN_SCREEN, viewModel, logger);
                     break;
                 case KeyFeatureTag.KEY_TAG_LSW_BUG_REPORT_FEATURE:
                     viewModelCommandExecuter = new LSW_BugReportAction(keyTag, WindowTag.WINDOW_TAG_LOGIN_SCREEN, viewModel, logger);

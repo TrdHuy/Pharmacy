@@ -22,6 +22,7 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
 
         public CommandExecuterModel SystemLoginButton { get; set; }
         public CommandExecuterModel BugReportButton { get; set; }
+        public CommandExecuterModel ContactUsButton { get; set; }
 
         public bool IsUserRemember
         {
@@ -72,7 +73,20 @@ namespace Pharmacy.Implement.Windows.LoginScreenWindow.MVVM.ViewModels
         {
             SystemLoginButton = new CommandExecuterModel(SystemLoginButtonClickEvent);
             BugReportButton = new CommandExecuterModel(BugReportButtonClickEvent);
+            ContactUsButton = new CommandExecuterModel(ContactUsButtonClickEvent);
             PharmacyExtension.GrantAccess();
+        }
+
+        private ICommandExecuter ContactUsButtonClickEvent(object arg)
+        {
+            object[] dataTransfer = new object[2];
+            dataTransfer[0] = this;
+            dataTransfer[1] = arg;
+            return _keyActionListener.OnKey(this
+                , logger
+                , WindowTag.WINDOW_TAG_LOGIN_SCREEN
+                , KeyFeatureTag.KEY_TAG_LSW_CUSTOMER_SERVICE_FEATURE
+                , dataTransfer) as ICommandExecuter;
         }
 
         private ICommandExecuter BugReportButtonClickEvent(object arg)

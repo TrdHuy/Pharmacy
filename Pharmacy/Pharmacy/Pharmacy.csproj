@@ -1159,6 +1159,7 @@
   <ItemGroup>
     <Folder Include="Base\Implement\" />
     <Folder Include="Base\UIEventHandler\Listener\" />
+    <Folder Include="Implement\Windows\MainScreenWindow\Action\Types\MainMenu\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\ModelImpl\" />
     <Folder Include="Implement\Windows\MainScreenWindow\MVVM\Model\VOs\" />
   </ItemGroup>
