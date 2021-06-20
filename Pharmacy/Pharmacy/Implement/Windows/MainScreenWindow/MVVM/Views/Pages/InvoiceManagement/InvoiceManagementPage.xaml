@@ -1,19 +1,19 @@
 ﻿<quotableEventPage:QuotableEventPage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.InvoiceManagement.InvoiceManagementPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.InvoiceManagement"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage"
-      xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
-      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      mc:Ignorable="d"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      Title="InvoiceManagementPage">
+                                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     xmlns:local="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.InvoiceManagement"
+                                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InvoiceManagementPage"
+                                     xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+                                     xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                     mc:Ignorable="d"
+                                     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                     Title="InvoiceManagementPage">
 
     <Page.DataContext>
         <vm:InvoiceManagementPageViewModel x:Name="InvoiceManagementPageDataContext" />
@@ -123,6 +123,9 @@
                             <Setter Property="IsTabStop"
                                     Value="False" />
 
+                            <Setter Property="MaxHeight"
+                                    Value="{StaticResource DefaultDataGrid_RowMaxHeight}" />
+
                             <Setter Property="TextBox.IsReadOnly"
                                     Value="True" />
 
@@ -148,7 +151,7 @@
                                                 BorderThickness="{TemplateBinding BorderThickness}">
                                             <Grid Background="{TemplateBinding Background}">
                                                 <ContentPresenter Focusable="False"
-                                                                  HorizontalAlignment="Center"
+                                                                  HorizontalAlignment="Stretch"
                                                                   VerticalAlignment="Center"
                                                                   Content="{TemplateBinding Content}">
 
@@ -232,15 +235,22 @@
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
-                        <!--Order deatails column-->
-                        <DataGridTextColumn Width="1.75*"
-                                            CellStyle="{StaticResource DGTextCell}"
-                                            Header="Danh sách thuốc">
-                            <!--Should not use converter here due to performance issue-->
-                            <DataGridTextColumn.Binding>
-                                <Binding Path="OrderDetail" />
-                            </DataGridTextColumn.Binding>
-                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="Danh sách thuốc"
+                                                Width="1.75*"                                                
+                                                CellStyle="{StaticResource DGTextCell}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox IsReadOnly="True"
+                                             Text="{Binding OrderDetail, Mode=OneWay}"
+                                             HorizontalScrollBarVisibility="Auto"
+                                             VerticalScrollBarVisibility="Auto"
+                                             HorizontalContentAlignment="Left"
+                                             HorizontalAlignment="Stretch"
+                                             BorderThickness="0"
+                                             Background="Transparent"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
                         <!--Order deatails column-->
                         <DataGridTextColumn Width="*"

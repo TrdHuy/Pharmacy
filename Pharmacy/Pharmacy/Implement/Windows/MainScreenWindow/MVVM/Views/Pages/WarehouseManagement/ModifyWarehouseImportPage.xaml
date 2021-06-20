@@ -183,7 +183,7 @@
                            Text="Số lượng:" />
 
                 <hps:AkerTextBox VerticalContentAlignment="Center"
-                                 AkerTextBoxType="Numeric"
+                                 AkerTextBoxType="Decimal"
                                  Grid.Column="6"
                                  Grid.Row="0"
                                  BorderThickness="2"

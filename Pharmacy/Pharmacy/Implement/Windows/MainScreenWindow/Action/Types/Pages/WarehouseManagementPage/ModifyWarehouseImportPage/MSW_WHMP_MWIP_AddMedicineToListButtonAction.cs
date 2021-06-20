@@ -30,7 +30,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                 {
                     error.Append("Giá thuốc không hợp lệ!").AppendLine();
                 }
-                if (MWIPViewModel.MedicineQuantity <= 0)
+                if (float.Parse(MWIPViewModel.MedicineQuantity) <= 0)
                 {
                     error.Append("Số lượng thuốc không hợp lệ!").AppendLine();
                 }
@@ -47,7 +47,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                     item.MedicineID = MWIPViewModel.SelectedMedicine.MedicineID;
                     item.MedicineName = MWIPViewModel.SelectedMedicine.MedicineName;
                     item.MedicineUnitName = MWIPViewModel.SelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                    item.Quantity = MWIPViewModel.MedicineQuantity;
+                    item.Quantity = float.Parse(MWIPViewModel.MedicineQuantity);
                     item.UnitPrice = MWIPViewModel.MedicinePrice;
                     item.TotalPrice = (decimal)item.Quantity * item.UnitPrice;
 
@@ -56,7 +56,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                 else
                 {
                     item.UnitPrice = MWIPViewModel.MedicinePrice;
-                    item.Quantity += MWIPViewModel.MedicineQuantity;
+                    item.Quantity += float.Parse(MWIPViewModel.MedicineQuantity);
                     item.TotalPrice = (decimal)item.Quantity * item.UnitPrice;
                     dataGrid.Items.Refresh();
                 }

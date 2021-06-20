@@ -35,7 +35,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             {
                 if (_selectedMedicine != value)
                 {
-                    MedicineQuantity = 0;
+                    MedicineQuantity = "";
                     MedicinePrice = 0;
                     Invalidate("MedicineQuantity");
                     Invalidate("MedicinePrice");
@@ -46,7 +46,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         }
         public string InvoiceImageURL { get; set; } = "";
         public string NoteString { get; set; } = "";
-        public int MedicineQuantity { get; set; }
+        public string MedicineQuantity { get; set; }
         public decimal MedicinePrice { get; set; }
         public decimal TotalPrice { get; set; }
         public decimal PurchasedPrice
@@ -109,7 +109,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         {
             if (ImportInfo != null)
             {
-                LstMedicine = new ObservableCollection<tblMedicine>(_lstMedicineFull.Where(o => o.SupplierID == ImportInfo.SupplierID));
+                LstMedicine = new ObservableCollection<tblMedicine>(_lstMedicineFull.Where(o => o.SupplierID == ImportInfo.SupplierID).OrderBy(o => o.MedicineName));
                 Invalidate("LstMedicine");
                 SelectedMedicine = null;
             }
@@ -127,7 +127,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             UpdateMedicineListBySupplier();
             NoteString = ImportInfo.ImportDescription;
             MedicinePrice = 0;
-            MedicineQuantity = 0;
+            MedicineQuantity = "";
             SelectedMedicine = null;
             TotalPrice = ImportInfo.TotalPrice;
             PurchasedPrice = ImportInfo.PurchasePrice;
