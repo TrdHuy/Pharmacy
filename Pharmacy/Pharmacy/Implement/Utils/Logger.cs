@@ -38,7 +38,7 @@ namespace Pharmacy.Implement.Utils
         }
 
         private const string TAG = "HPSS_PMC";
-        private const int OLD_LOG_FILES_CAPACITY = 1;
+        private const int OLD_LOG_FILES_CAPACITY = 50;
         private static readonly SemaphoreSlim Mutex = new SemaphoreSlim(1);
 
         private static ObservableQueue<Task<bool>> TaskQueue { get; set; }

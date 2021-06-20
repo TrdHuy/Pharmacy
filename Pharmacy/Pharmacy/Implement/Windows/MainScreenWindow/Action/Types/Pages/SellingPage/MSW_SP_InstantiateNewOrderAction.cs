@@ -8,6 +8,7 @@ using System.IO;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
 using Microsoft.Reporting.WinForms;
 using System.Drawing.Printing;
+using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
@@ -164,7 +165,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 PharmacyDBDataSet.InvoiceDetailListDataTable tbl = new PharmacyDBDataSet.InvoiceDetailListDataTable();
 
                 int id = 1;
-                foreach (var item in _newOrder.tblOrderDetails)
+                foreach (var item in _newOrder.tblOrderDetails.OrderBy(o=>o.tblMedicine.MedicineName))
                 {
                     tbl.AddInvoiceDetailListRow(id++.ToString(), item.tblMedicine.MedicineName, item.tblMedicine.tblMedicineUnit.MedicineUnitName,
                         item.Quantity.ToString(), item.UnitPrice.ToString(), item.PromoPercent.ToString(), item.TotalPrice.ToString());

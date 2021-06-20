@@ -36,7 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
             {
                 var val = _customerOrder.tblOrderDetails;
                 string result = "";
-                result += String.Join("\n", val.Where((content) => content.IsActive).
+                result += string.Join("\n", val.Where((content) => content.IsActive).
                         Select((content) => content.tblMedicine.MedicineName));
                 return result;
             }
