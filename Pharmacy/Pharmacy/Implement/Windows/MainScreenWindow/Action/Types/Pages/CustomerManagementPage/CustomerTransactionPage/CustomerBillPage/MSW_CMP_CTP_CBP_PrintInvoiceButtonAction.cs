@@ -5,6 +5,7 @@ using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
 using System;
 using System.Drawing.Printing;
 using System.IO;
+using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage
 {
@@ -61,7 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 PharmacyDBDataSet.InvoiceDetailListDataTable tbl = new PharmacyDBDataSet.InvoiceDetailListDataTable();
 
                 int id = 1;
-                foreach (var item in CBPViewModel.CurrentCustomerOrder.tblOrderDetails)
+                foreach (var item in CBPViewModel.CurrentCustomerOrder.tblOrderDetails.OrderBy(o=>o.tblMedicine.MedicineName))
                 {
                     tbl.AddInvoiceDetailListRow(id++.ToString(), item.tblMedicine.MedicineName, item.tblMedicine.tblMedicineUnit.MedicineUnitName,
                         item.Quantity.ToString(), item.UnitPrice.ToString(), item.PromoPercent.ToString(), item.TotalPrice.ToString());
