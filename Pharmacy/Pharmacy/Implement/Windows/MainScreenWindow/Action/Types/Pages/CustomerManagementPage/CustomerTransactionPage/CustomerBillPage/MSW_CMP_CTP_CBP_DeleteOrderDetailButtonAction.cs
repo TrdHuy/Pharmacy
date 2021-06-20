@@ -14,7 +14,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             base.ExecuteCommand();
 
-            orderDetailDataGrid = DataTransfer[1] as DataGrid;
+            orderDetailDataGrid = DataTransfer[0] as DataGrid;
 
             CBPViewModel.CurrentOrderDetails.RemoveAt(orderDetailDataGrid.SelectedIndex);
         }

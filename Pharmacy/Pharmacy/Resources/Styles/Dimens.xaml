@@ -28,8 +28,9 @@
     <system:Double x:Key="PageOverviewInfoMaxHeight">150</system:Double>
 
     <system:Double x:Key="DefaultDataGrid_ColumnHeaderHeight">50</system:Double>
+    <system:Double x:Key="DefaultDataGrid_RowMaxHeight">150</system:Double>
     <system:Double x:Key="DefaultDataGrid_RowHeight">55</system:Double>
-    <system:Double x:Key="DefaultDataGrid_HavingListBox_RowHeight">100</system:Double>
+    <system:Double x:Key="DefaultDataGrid_HavingListBox_RowHeight">150</system:Double>
     <system:Double x:Key="DefaultDataGrid_MaxWidthEditColumn">300</system:Double>
 
     <system:Double x:Key="BugReportPageHeight">420</system:Double>

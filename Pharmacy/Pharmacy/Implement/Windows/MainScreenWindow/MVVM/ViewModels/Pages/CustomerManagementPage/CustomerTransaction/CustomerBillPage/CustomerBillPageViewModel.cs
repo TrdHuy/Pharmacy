@@ -200,7 +200,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                MedicineItemSource = new ObservableCollection<tblMedicine>(queryResult.Result as List<tblMedicine>);
+                MedicineItemSource = new ObservableCollection<tblMedicine>((queryResult.Result as List<tblMedicine>).OrderBy(o => o.MedicineName));
             }
             else
             {

@@ -90,7 +90,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
-                    MedicineItemSource = new ObservableCollection<tblMedicine>(queryResult.Result as List<tblMedicine>);
+                    MedicineItemSource = new ObservableCollection<tblMedicine>((queryResult.Result as List<tblMedicine>).OrderBy(o => o.tblSupplier.SupplierName).ThenBy(o => o.MedicineName));
                     Invalidate("MedicineItemSource");
                 }
             });
