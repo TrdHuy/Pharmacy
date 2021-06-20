@@ -19,7 +19,8 @@
                                      d:DesignWidth="{StaticResource DefaultWindowContentWidth}">
 
     <Page.DataContext>
-        <Binding Source="{vmh:VMManagerMarkup {x:Type vm:CustomerBillPageViewModel}}" />
+        <vm:CustomerBillPageViewModel x:Name="CustomerBillPageDataContext" />
+        <!--<Binding Source="{vmh:VMManagerMarkup {x:Type vm:CustomerBillPageViewModel}}" />-->
     </Page.DataContext>
 
     <Grid Background="White">
@@ -274,7 +275,7 @@
                                           IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                           BorderThickness="1"
                                           FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
-                                          SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine,Mode=TwoWay}"
+                                          SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine}"
                                           ItemsSource="{Binding MedicineItemSource}"
                                           FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}">
 
