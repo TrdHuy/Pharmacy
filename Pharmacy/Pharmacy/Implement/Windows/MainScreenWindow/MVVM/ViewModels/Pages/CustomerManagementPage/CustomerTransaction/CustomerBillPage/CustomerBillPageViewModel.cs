@@ -126,7 +126,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public override void OnLoaded(object sender)
         {
-            base.OnLoaded(sender);
             CurrentCustomerOrder = MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder;
             DeleteColumnVisibility = IsEnableEdittingBill ? Visibility.Visible : Visibility.Collapsed;
             InstantinateOrderDetailItems();
@@ -212,10 +211,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
-        //private void RefreshViewModel()
-        //{
-        //    Invalidate("CurrentCustomerOrder");
-        //    Invalidate("MedicineOV");
-        //}
     }
 }

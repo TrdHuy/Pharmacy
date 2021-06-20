@@ -1,6 +1,7 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             PaidAmount = (ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder.PurchasePrice;
         }
+
+        [Bindable(true)]
         public string MedicineTextSearch
         {
             get
@@ -28,11 +31,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
             set
             {
+                
                 _medicineTextSearch = value;
                 InvalidateOwn();
             }
         }
 
+       
+        [Bindable(true)]
         public tblMedicine CurrentSelectedMedicine
         {
             get
@@ -45,6 +51,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+        
+        [Bindable(true)]
         public string Quantity
         {
             get
@@ -57,6 +65,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 InvalidateOwn();
             }
         }
+       
+        [Bindable(true)]
         public decimal MedicineCost
         {
             get
@@ -73,6 +83,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
             }
         }
+
+        [Bindable(true)]
         public decimal DebtCost
         {
             get
@@ -114,6 +126,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             {
             }
         }
+
+        [Bindable(true)]
         public decimal TotalCost
         {
             get
@@ -125,6 +139,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
             }
         }
+        
+        [Bindable(true)]
         public decimal PaidAmount
         {
             get
@@ -138,6 +154,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 Invalidate("RestAmount");
             }
         }
+
+        [Bindable(true)]
         public decimal RestAmount
         {
             get
@@ -150,5 +168,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             }
         }
 
+        public override void RefreshViewModel()
+        {
+            _medicineTextSearch = String.Empty;
+            _currentSelectedMedicine = null;
+        }
     }
 }
