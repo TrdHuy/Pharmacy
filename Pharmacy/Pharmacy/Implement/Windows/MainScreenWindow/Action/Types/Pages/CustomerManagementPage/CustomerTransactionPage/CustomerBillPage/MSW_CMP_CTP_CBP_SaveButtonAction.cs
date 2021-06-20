@@ -63,6 +63,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             // Cập nhật lại order detail trong order của customer dựa theo thay đổi (OrderDetailOV)
             // từ phía người dùng
+            CBPViewModel.CurrentCustomerOrder.TotalPrice = 0;
             foreach (tblOrderDetail orderDetail in CBPViewModel.CurrentCustomerOrder.tblOrderDetails)
             {
                 var tempList = CBPViewModel.CurrentOrderDetails.Where(ov => ov.OrderDetailID == orderDetail.OrderDetailID).ToList();
@@ -70,6 +71,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 {
                     orderDetail.Quantity = tempList.First().Quantity;
                     orderDetail.TotalPrice = tempList.First().TotalPrice;
+                    CBPViewModel.CurrentCustomerOrder.TotalPrice += orderDetail.TotalPrice;
                 }
                 else
                 {
