@@ -408,7 +408,6 @@
                         <DataGrid Grid.Row="1"
                                   x:Name="OrderDetailDataGrid"
                                   Margin="0,15,0,0"
-                                  IsReadOnly="True"
                                   VerticalAlignment="Top"
                                   CanUserAddRows="False"
                                   CanUserDeleteRows="False"
@@ -534,6 +533,7 @@
                                 <!--Medicine name column-->
                                 <DataGridTextColumn Width="*"
                                                     CellStyle="{StaticResource DGTextCell}"
+                                                    IsReadOnly="True"
                                                     Header="Tên thuốc"
                                                     Binding="{Binding MedicineName}">
                                 </DataGridTextColumn>
@@ -541,30 +541,116 @@
                                 <!--ĐVT column-->
                                 <DataGridTextColumn Width="0.3*"
                                                     CellStyle="{StaticResource DGTextCell}"
+                                                    IsReadOnly="True"
                                                     Header="ĐVT"
                                                     Binding="{Binding MedicineUnitName}" />
 
-                                <!--Number column-->
-                                <DataGridTextColumn Width="0.6*"
-                                                    CellStyle="{StaticResource DGTextCell}"
-                                                    Header="Số lượng"
-                                                    Binding="{Binding Quantity}" />
+                                <!--Quantity column-->
+                                <DataGridTemplateColumn CanUserResize="False"
+                                                        Header="Số lượng"
+                                                        Width="0.6*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border>
+                                                <Grid>
+                                                    <hps:AkerTextBox AkerTextBoxType="Decimal"
+                                                                     BorderThickness="0"
+                                                                     HorizontalAlignment="Center"
+                                                                     FontSize="{Binding FontSizeOV.FontSizeLarge, ElementName=CustomerBillPageDataContext}"
+                                                                     Background="Transparent"
+                                                                     Text="{Binding QuantityToString,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+                                                        <hps:AkerTextBox.Style>
+                                                            <Style TargetType="hps:AkerTextBox">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsSupportEdittingDataGrid,ElementName=CustomerBillPageDataContext}"
+                                                                                 Value="False">
+                                                                        <Setter Property="IsReadOnly"
+                                                                                Value="True" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </hps:AkerTextBox.Style>
+                                                    </hps:AkerTextBox>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
 
                                 <!--Đơn giá column-->
-                                <DataGridTextColumn Width="0.6*"
-                                                    CellStyle="{StaticResource DGTextCell}"
-                                                    Header="Đơn giá"
-                                                    Binding="{Binding UnitPrice, StringFormat=#\,##0 VND}" />
+                                <DataGridTemplateColumn CanUserResize="False"
+                                                        Header="Đơn giá"
+                                                        Width="0.6*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border>
+                                                <Grid>
+                                                    <hps:AkerTextBox BorderThickness="0"
+                                                                     AkerTextBoxType="Expense"
+                                                                     AkerExpenseUnit="VND"
+                                                                     HorizontalAlignment="Center"
+                                                                     FontSize="{Binding FontSizeOV.FontSizeLarge, ElementName=CustomerBillPageDataContext}"
+                                                                     Background="Transparent"
+                                                                     AkerExpense="{Binding UnitPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+                                                        <hps:AkerTextBox.Style>
+                                                            <Style TargetType="hps:AkerTextBox">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsSupportEdittingDataGrid,ElementName=CustomerBillPageDataContext}"
+                                                                                 Value="False">
+                                                                        <Setter Property="IsReadOnly"
+                                                                                Value="True" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </hps:AkerTextBox.Style>
+                                                    </hps:AkerTextBox>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
 
                                 <!--Chiết khấu column-->
-                                <DataGridTextColumn Width="0.7*"
-                                                    CellStyle="{StaticResource DGTextCell}"
-                                                    Header="Chiết khấu %"
-                                                    Binding="{Binding PromoPercent}" />
+                                <DataGridTemplateColumn CanUserResize="False"
+                                                        Header="Chiết khấu %"
+                                                        Width="0.7*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border>
+                                                <Grid>
+                                                    <hps:AkerTextBox BorderThickness="0"
+                                                                     AkerTextBoxType="Decimal"
+                                                                     HorizontalAlignment="Center"
+                                                                     FontSize="{Binding FontSizeOV.FontSizeLarge, ElementName=CustomerBillPageDataContext}"
+                                                                     Background="Transparent"
+                                                                     Text="{Binding PromoPercentToString,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                        <hps:AkerTextBox.Style>
+                                                            <Style TargetType="hps:AkerTextBox">
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsSupportEdittingDataGrid,ElementName=CustomerBillPageDataContext}"
+                                                                                 Value="False">
+                                                                        <Setter Property="IsReadOnly"
+                                                                                Value="True" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </hps:AkerTextBox.Style>
+                                                    </hps:AkerTextBox>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
 
                                 <!--Thành tiền column-->
                                 <DataGridTextColumn Width="0.6*"
                                                     CellStyle="{StaticResource DGTextCell}"
+                                                    IsReadOnly="True"
                                                     Header="Thành tiền "
                                                     Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
 

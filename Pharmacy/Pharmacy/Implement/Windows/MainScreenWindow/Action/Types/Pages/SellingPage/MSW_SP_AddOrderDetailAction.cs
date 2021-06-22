@@ -137,7 +137,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 }
             }
 
-            orderDetailVO.PromoPercent = appliedPromo.PromoPercent;
+            orderDetailVO.PromoPercentToString = appliedPromo.PromoPercent.ToString();
         }
 
         private void CreateNewOrderDetail()
@@ -148,15 +148,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 orderDetailVO.MedicineName = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
                 orderDetailVO.MedicineID = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
                 orderDetailVO.MedicineUnitName = SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.Quantity = Convert.ToDouble(SPViewModel.MedicineOV.Quantity);
+                orderDetailVO.QuantityToString = Convert.ToDouble(SPViewModel.MedicineOV.Quantity).ToString();
                 orderDetailVO.UnitPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
                 orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
                 GetPromo(orderDetailVO);
-                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(SPViewModel.MedicineOV.Quantity) *
-                   Convert.ToDouble(SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
-                   (100 - orderDetailVO.PromoPercent) / 100);
 
                 OrderDetailOV checkExistedVO = null;
+                orderDetailVO.OnOrderDetailPropertyChanged -= OrderDetailVO_OnOrderDetailPropertyChanged;
+                orderDetailVO.OnOrderDetailPropertyChanged += OrderDetailVO_OnOrderDetailPropertyChanged;
                 try
                 {
                     if (SPViewModel.CustomerOrderDetailItemSource.Count > 0)
@@ -172,8 +171,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
                 if (checkExistedVO != null)
                 {
-                    checkExistedVO.Quantity += orderDetailVO.Quantity;
-                    checkExistedVO.TotalPrice += orderDetailVO.TotalPrice;
+                    checkExistedVO.QuantityToString = (checkExistedVO.Quantity + Convert.ToDouble(SPViewModel.MedicineOV.Quantity)).ToString();
                     orderDetaiDataGrid.Items.Refresh();
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "MedicineCost");
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "TotalCost");
@@ -194,11 +192,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 SPViewModel.MedicineOV.CurrentSelectedMedicine = null;
                 SPViewModel.MedicineOV.Quantity = null;
-                SPViewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");
-                SPViewModel.MedicineOV.Invalidate("Quantity");
             }
 
         }
 
+        private void OrderDetailVO_OnOrderDetailPropertyChanged(object sender, OrderDetailPropertyChangedEventArgs e)
+        {
+            SPViewModel.Invalidate(SPViewModel.MedicineOV, "MedicineCost");
+            SPViewModel.Invalidate(SPViewModel.MedicineOV, "TotalCost");
+            SPViewModel.Invalidate(SPViewModel.MedicineOV, "RestAmount");
+        }
     }
 }

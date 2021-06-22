@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+﻿using HPSolutionCCDevPackage.netFramework;
+using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Selling
         public SellingPage()
         {
             InitializeComponent();
+        }
+
+        private void AkerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var ctrl = sender as AkerTextBox;
+
+            int a = 1;
         }
     }
 }

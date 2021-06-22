@@ -1,4 +1,5 @@
-﻿using Pharmacy.Implement.Utils;
+﻿using Pharmacy.Config;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
@@ -25,6 +26,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public MSW_SP_CustomerOV CustomerOV { get; set; }
         public MSW_SP_MedicineOV MedicineOV { get; set; }
+        public bool IsSupportEdittingDataGrid { get; } = RUNE.IS_SUPPORT_DIRECTLY_EDITTING_DATAGRID;
+
 
         public string OrderDescription
         {
@@ -45,7 +48,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 return MedicineOV.CurrentSelectedMedicine != null
                     && !String.IsNullOrEmpty(CustomerOV.CustomerPhone)
                     && !String.IsNullOrEmpty(CustomerOV.CustomerName)
-                    && !String.IsNullOrEmpty(MedicineOV.Quantity) 
+                    && !String.IsNullOrEmpty(MedicineOV.Quantity)
                     && !MedicineOV.Quantity.Equals("0");
             }
         }
@@ -98,10 +101,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         private void CustomerOrderList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Invalidate(CustomerOV,"IsCustomerChooserEnable");
-            Invalidate(MedicineOV,"MedicineCost");
-            Invalidate(MedicineOV,"TotalCost");
-            Invalidate(MedicineOV,"RestAmount");
+            Invalidate(CustomerOV, "IsCustomerChooserEnable");
+            Invalidate(MedicineOV, "MedicineCost");
+            Invalidate(MedicineOV, "TotalCost");
+            Invalidate(MedicineOV, "RestAmount");
         }
 
         private void InstantiateMedicineItems()

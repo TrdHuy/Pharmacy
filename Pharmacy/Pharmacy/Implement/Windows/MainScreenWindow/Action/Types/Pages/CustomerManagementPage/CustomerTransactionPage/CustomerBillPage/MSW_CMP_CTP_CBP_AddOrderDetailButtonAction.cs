@@ -50,13 +50,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 orderDetailVO.MedicineName = CBPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
                 orderDetailVO.MedicineID = CBPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
                 orderDetailVO.MedicineUnitName = CBPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.Quantity = Convert.ToDouble(CBPViewModel.MedicineOV.Quantity);
+                orderDetailVO.QuantityToString = Convert.ToDouble(CBPViewModel.MedicineOV.Quantity).ToString();
                 orderDetailVO.UnitPrice = CBPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
                 orderDetailVO.UnitBidPrice = CBPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
                 GetPromo(orderDetailVO);
-                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(CBPViewModel.MedicineOV.Quantity) *
-                   Convert.ToDouble(CBPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
-                   (100 - orderDetailVO.PromoPercent) / 100);
 
                 OrderDetailOV checkExistedVO = null;
                 try
@@ -74,13 +71,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
 
                 if (checkExistedVO != null)
                 {
-                    checkExistedVO.Quantity += orderDetailVO.Quantity;
-                    checkExistedVO.TotalPrice += orderDetailVO.TotalPrice;
-                    //ctrl.Items.Refresh();
-                    //_viewModel.Invalidate(_viewModel, "MedicineCost");
-                    //_viewModel.Invalidate(_viewModel, "TotalCost");
-                    //_viewModel.Invalidate(_viewModel, "RestAmount");
+                    checkExistedVO.QuantityToString = (checkExistedVO.Quantity + Convert.ToDouble(CBPViewModel.MedicineOV.Quantity)).ToString();
 
+                    CBPViewModel.Invalidate(CBPViewModel, "MedicineCost");
+                    CBPViewModel.Invalidate(CBPViewModel, "TotalCost");
+                    CBPViewModel.Invalidate(CBPViewModel, "RestAmount");
                 }
                 else
                 {
@@ -117,7 +112,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 }
             }
 
-            orderDetailVO.PromoPercent = appliedPromo.PromoPercent;
+            orderDetailVO.PromoPercentToString = appliedPromo.PromoPercent.ToString();
         }
     }
 }
