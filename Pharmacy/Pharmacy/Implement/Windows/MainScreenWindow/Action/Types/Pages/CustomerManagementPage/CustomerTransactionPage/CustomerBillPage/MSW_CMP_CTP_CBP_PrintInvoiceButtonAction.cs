@@ -46,7 +46,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 printPreview.Report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
-                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + CBPViewModel.CurrentCustomerOrder.OrderTime.Hour + ":" + CBPViewModel.CurrentCustomerOrder.OrderTime.Minute + " " + CBPViewModel.CurrentCustomerOrder.OrderTime.Day + "/" + CBPViewModel.CurrentCustomerOrder.OrderTime.Month + "/" + CBPViewModel.CurrentCustomerOrder.OrderTime.Year);
+                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + CBPViewModel.CurrentCustomerOrder.OrderTime.ToString("HH:mm dd/MM/yyyy"));
                 reportParameters[1] = new ReportParameter("KhachHang", CBPViewModel.CurrentCustomerOrder.tblCustomer.CustomerName);
                 reportParameters[2] = new ReportParameter("SDT", CBPViewModel.CurrentCustomerOrder.tblCustomer.Phone);
                 reportParameters[3] = new ReportParameter("DiaChi", CBPViewModel.CurrentCustomerOrder.tblCustomer.Address);
@@ -62,7 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 PharmacyDBDataSet.InvoiceDetailListDataTable tbl = new PharmacyDBDataSet.InvoiceDetailListDataTable();
 
                 int id = 1;
-                foreach (var item in CBPViewModel.CurrentCustomerOrder.tblOrderDetails.OrderBy(o=>o.tblMedicine.MedicineName))
+                foreach (var item in CBPViewModel.CurrentCustomerOrder.tblOrderDetails.Where(o => o.IsActive).OrderBy(o => o.tblMedicine.MedicineName))
                 {
                     tbl.AddInvoiceDetailListRow(id++.ToString(), item.tblMedicine.MedicineName, item.tblMedicine.tblMedicineUnit.MedicineUnitName,
                         item.Quantity.ToString(), item.UnitPrice.ToString(), item.PromoPercent.ToString(), item.TotalPrice.ToString());

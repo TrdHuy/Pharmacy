@@ -149,7 +149,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 printPreview.Report.LocalReport.ReportPath = Path.GetFullPath(@"Implement/Windows/MainScreenWindow/MVVM/Views/ReportViewers/SellingInvoice.rdlc");
 
                 ReportParameter[] reportParameters = new ReportParameter[10];
-                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _newOrder.OrderTime.Hour + ":" + _newOrder.OrderTime.Minute + " " + _newOrder.OrderTime.Day + "/" + _newOrder.OrderTime.Month + "/" + _newOrder.OrderTime.Year);
+                reportParameters[0] = new ReportParameter("NgayBaoCao", "Ngày xuất: " + _newOrder.OrderTime.ToString("HH:mm dd/MM/yyyy"));
                 reportParameters[1] = new ReportParameter("KhachHang", _newOrder.tblCustomer.CustomerName);
                 reportParameters[2] = new ReportParameter("SDT", _newOrder.tblCustomer.Phone);
                 reportParameters[3] = new ReportParameter("DiaChi", _newOrder.tblCustomer.Address);
@@ -165,7 +165,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 PharmacyDBDataSet.InvoiceDetailListDataTable tbl = new PharmacyDBDataSet.InvoiceDetailListDataTable();
 
                 int id = 1;
-                foreach (var item in _newOrder.tblOrderDetails.OrderBy(o=>o.tblMedicine.MedicineName))
+                foreach (var item in _newOrder.tblOrderDetails.Where(o => o.IsActive).OrderBy(o => o.tblMedicine.MedicineName))
                 {
                     tbl.AddInvoiceDetailListRow(id++.ToString(), item.tblMedicine.MedicineName, item.tblMedicine.tblMedicineUnit.MedicineUnitName,
                         item.Quantity.ToString(), item.UnitPrice.ToString(), item.PromoPercent.ToString(), item.TotalPrice.ToString());
