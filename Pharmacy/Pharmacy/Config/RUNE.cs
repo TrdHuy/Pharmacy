@@ -90,7 +90,10 @@ namespace Pharmacy.Config
 
         public static readonly bool IS_SUPPORT_STATISTICAL_CHART = FeaturesParser
            .FeatureOrders["HPS_FT_IS_SUPPORT_STATISTICAL_CHART"];
-        
+
+        public static readonly bool IS_SUPPORT_DIRECTLY_EDITTING_DATAGRID = FeaturesParser
+            .FeatureOrders["HPS_FT_IS_SUPPORT_DIRECTLY_EDITTING_DATAGRID"];
+
         private sealed class FeaturesParser
         {
             private static string _titleGroup = @"(?<Title>\S+)";
