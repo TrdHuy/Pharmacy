@@ -51,7 +51,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         );
                 }
 
-                CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
             else
             {
@@ -71,6 +70,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 {
                     orderDetail.Quantity = tempList.First().Quantity;
                     orderDetail.TotalPrice = tempList.First().TotalPrice;
+                    orderDetail.UnitPrice = tempList.First().UnitPrice;
+                    orderDetail.PromoPercent = tempList.First().PromoPercent;
                     CBPViewModel.CurrentCustomerOrder.TotalPrice += orderDetail.TotalPrice;
                 }
                 else
@@ -111,15 +112,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                OwnerWindow.MainScreen,
                "Thông báo!!");
-
-                if (PageHost.PreviousePageSource != PageSource.NONE)
-                {
-                    PageHost.UpdateCurrentPageSource(PageHost.PreviousePageSource);
-                }
-                else
-                {
-                    PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
-                }
             }
             else
             {
