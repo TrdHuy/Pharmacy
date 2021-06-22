@@ -51,7 +51,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         );
                 }
 
-                CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
             else
             {
@@ -71,6 +70,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 {
                     orderDetail.Quantity = tempList.First().Quantity;
                     orderDetail.TotalPrice = tempList.First().TotalPrice;
+                    orderDetail.UnitPrice = tempList.First().UnitPrice;
+                    orderDetail.PromoPercent = tempList.First().PromoPercent;
                     CBPViewModel.CurrentCustomerOrder.TotalPrice += orderDetail.TotalPrice;
                 }
                 else
@@ -106,20 +107,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                App.Current.ShowApplicationMessageBox("Cập nhật hóa đơn thành công!",
-               HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-               HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
-               OwnerWindow.MainScreen,
-               "Thông báo!!");
+                CBPViewModel.IsOrderDetailsModified = false;
 
-                if (PageHost.PreviousePageSource != PageSource.NONE)
-                {
-                    PageHost.UpdateCurrentPageSource(PageHost.PreviousePageSource);
-                }
-                else
-                {
-                    PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
-                }
+                App.Current.ShowApplicationMessageBox("Cập nhật hóa đơn thành công!",
+                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
+                OwnerWindow.MainScreen,
+                "Thông báo!!");
             }
             else
             {
