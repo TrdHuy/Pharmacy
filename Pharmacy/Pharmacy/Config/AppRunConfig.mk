@@ -37,6 +37,12 @@ HPS_FT_IS_SUPPORT_STATISTICAL_CHART=FALSE
 ############################################################
 
 
+############################################################
+#Feature price: 1,500,000 vnd
+#Price editor datagrid
+HPS_FT_IS_SUPPORT_DIRECTLY_EDITTING_DATAGRID=TRUE
+############################################################
+
 #Adminstrator change user image
 HPS_FT_IS_SUPPORT_ADMIN_CHANGE_USER_IMAGE=TRUE
 

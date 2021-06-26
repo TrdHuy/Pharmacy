@@ -62,7 +62,7 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.Action.Types.Pages.BugRep
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                 OwnerWindow.Default,
-                "Thông báo!");
+                "Cảnh báo!");
 
                 // Set complete flag to unregister action from executing action cache
                 IsCompleted = true;
@@ -89,7 +89,7 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.Action.Types.Pages.BugRep
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                 OwnerWindow.Default,
-                "Thông báo!");
+                "Thông báo");
         }
 
         private async Task<AsyncTaskResult> SendRequestSaveBugReportToHpssServer()
@@ -185,7 +185,7 @@ namespace Pharmacy.Implement.Windows.PopupScreenWindow.Action.Types.Pages.BugRep
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                     OwnerWindow.Default,
-                    "Thông báo!");
+                    "Thông báo");
 
             }
             else

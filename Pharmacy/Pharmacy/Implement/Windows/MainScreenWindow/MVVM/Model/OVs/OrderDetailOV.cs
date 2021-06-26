@@ -4,15 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
 {
     public class OrderDetailOV : BaseViewModel
     {
+
         private string _medicineName;
         private string _medicineID;
         private string _medicineUnitName;
         private double _quantity;
+        private string _quantityToString;
+        private string _promoPercentToString;
+
         private decimal _unitPrice;
         private decimal _totalPrice;
         private double _promoPercent;
@@ -63,9 +68,32 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
             set
             {
                 _quantity = value;
+                UpdateTotalPrice();
                 InvalidateOwn();
             }
         }
+
+        public string QuantityToString
+        {
+            get
+            {
+                return _quantityToString;
+            }
+            set
+            {
+                _quantityToString = value;
+                try
+                {
+                    Quantity = Convert.ToDouble(_quantityToString);
+                }
+                catch
+                {
+                    Quantity = 0d;
+                }
+                InvalidateOwn();
+            }
+        }
+
         public decimal UnitPrice
         {
             get
@@ -75,6 +103,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
             set
             {
                 _unitPrice = value;
+                UpdateTotalPrice();
                 InvalidateOwn();
             }
         }
@@ -99,9 +128,40 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
             set
             {
                 _promoPercent = value;
+                UpdateTotalPrice();
+                InvalidateOwn();
+            }
+        }
+        public string PromoPercentToString
+        {
+            get
+            {
+                return _promoPercentToString;
+            }
+            set
+            {
+                _promoPercentToString = value;
+                try
+                {
+                    PromoPercent = Convert.ToDouble(_promoPercentToString);
+                }
+                catch
+                {
+                    PromoPercent = 0d;
+                }
                 InvalidateOwn();
             }
         }
         public decimal UnitBidPrice { get; set; }
+
+        private void UpdateTotalPrice()
+        {
+            var newValue = Convert.ToDecimal(Convert.ToDouble(_quantity) *
+                  Convert.ToDouble(_unitPrice) *
+                  (100 - _promoPercent) / 100);
+            TotalPrice = newValue;
+
+        }
     }
+
 }

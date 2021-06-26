@@ -21,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                             HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                             HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                             OwnerWindow.MainScreen,
-                            "Thông báo!");
+                            "Thông báo");
 
             if (mesResult == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
@@ -34,7 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                         HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                         OwnerWindow.MainScreen,
-                        "Thông báo!");
+                        "Thông báo");
 
                         CMPViewModel.CustomerItemSource.Remove((tblCustomer)_customerDataGrid.SelectedItem);
 

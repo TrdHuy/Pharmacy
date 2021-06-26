@@ -36,7 +36,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                OwnerWindow.MainScreen,
-               "Thông báo!!");
+               "Thông báo");
 
                 if (mbRes == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
                 {
@@ -51,7 +51,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         );
                 }
 
-                CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             }
             else
             {
@@ -71,6 +70,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 {
                     orderDetail.Quantity = tempList.First().Quantity;
                     orderDetail.TotalPrice = tempList.First().TotalPrice;
+                    orderDetail.UnitPrice = tempList.First().UnitPrice;
+                    orderDetail.PromoPercent = tempList.First().PromoPercent;
                     CBPViewModel.CurrentCustomerOrder.TotalPrice += orderDetail.TotalPrice;
                 }
                 else
@@ -106,20 +107,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
         {
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                App.Current.ShowApplicationMessageBox("Cập nhật hóa đơn thành công!",
-               HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-               HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
-               OwnerWindow.MainScreen,
-               "Thông báo!!");
+                CBPViewModel.IsOrderDetailsModified = false;
 
-                if (PageHost.PreviousePageSource != PageSource.NONE)
-                {
-                    PageHost.UpdateCurrentPageSource(PageHost.PreviousePageSource);
-                }
-                else
-                {
-                    PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_TRANSACTION_HISTORY_PAGE);
-                }
+                App.Current.ShowApplicationMessageBox("Cập nhật hóa đơn thành công!",
+                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
+                OwnerWindow.MainScreen,
+                "Thông báo");
             }
             else
             {
@@ -127,7 +121,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                 OwnerWindow.MainScreen,
-                "Thông báo!!");
+                "Lỗi!");
             }
 
             CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
@@ -140,7 +134,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                 OwnerWindow.MainScreen,
-                "Thông báo!!");
+                "Thông báo");
 
             if (mbRes == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
@@ -165,7 +159,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                 OwnerWindow.MainScreen,
-                "Thông báo!!");
+                "Thông báo");
 
                 if (PageHost.PreviousePageSource != PageSource.NONE)
                 {
@@ -182,7 +176,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                 OwnerWindow.MainScreen,
-                "Thông báo!!");
+                "Lỗi!");
             }
 
             CBPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;

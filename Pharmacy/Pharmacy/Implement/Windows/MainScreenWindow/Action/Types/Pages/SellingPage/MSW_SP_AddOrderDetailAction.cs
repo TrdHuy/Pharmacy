@@ -28,7 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Cảnh báo!");
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                     return;
                 }
@@ -38,7 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Cảnh báo!");
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 }
 
@@ -59,7 +59,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Thông báo");
                 if (x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
                 {
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
@@ -108,16 +108,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
-                   "Thông báo!!");
+                   "Thông báo");
                 CreateNewOrderDetail();
             }
             else
             {
-                App.Current.ShowApplicationMessageBox("Lỗi thêm khách hàng mới!",
+                App.Current.ShowApplicationMessageBox("Lỗi thêm khách hàng mới. Vui lòng liên hệ CSKH để biết thêm thông tin!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
-                   "Lỗi!!");
+                   "Lỗi!");
                 SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
             }
         }
@@ -137,7 +137,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 }
             }
 
-            orderDetailVO.PromoPercent = appliedPromo.PromoPercent;
+            orderDetailVO.PromoPercentToString = appliedPromo.PromoPercent.ToString();
         }
 
         private void CreateNewOrderDetail()
@@ -148,13 +148,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 orderDetailVO.MedicineName = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
                 orderDetailVO.MedicineID = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
                 orderDetailVO.MedicineUnitName = SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.Quantity = Convert.ToDouble(SPViewModel.MedicineOV.Quantity);
+                orderDetailVO.QuantityToString = Convert.ToDouble(SPViewModel.MedicineOV.Quantity).ToString();
                 orderDetailVO.UnitPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
                 orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
                 GetPromo(orderDetailVO);
-                orderDetailVO.TotalPrice = Convert.ToDecimal(Convert.ToDouble(SPViewModel.MedicineOV.Quantity) *
-                   Convert.ToDouble(SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice) *
-                   (100 - orderDetailVO.PromoPercent) / 100);
 
                 OrderDetailOV checkExistedVO = null;
                 try
@@ -172,8 +169,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
                 if (checkExistedVO != null)
                 {
-                    checkExistedVO.Quantity += orderDetailVO.Quantity;
-                    checkExistedVO.TotalPrice += orderDetailVO.TotalPrice;
+                    checkExistedVO.QuantityToString = (checkExistedVO.Quantity + Convert.ToDouble(SPViewModel.MedicineOV.Quantity)).ToString();
                     orderDetaiDataGrid.Items.Refresh();
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "MedicineCost");
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "TotalCost");
@@ -194,11 +190,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 SPViewModel.MedicineOV.CurrentSelectedMedicine = null;
                 SPViewModel.MedicineOV.Quantity = null;
-                SPViewModel.MedicineOV.Invalidate("CurrentSelectedMedicine");
-                SPViewModel.MedicineOV.Invalidate("Quantity");
             }
 
         }
-
     }
 }

@@ -65,7 +65,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                 OwnerWindow.MainScreen,
-                "Thông báo!");
+                "Thông báo");
         }
         #endregion
 
@@ -146,14 +146,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
                                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                                 OwnerWindow.MainScreen,
-                                "Thông báo!");
+                                "Thông báo");
                             break;
                         case "Lower":
                             var x = App.Current.ShowApplicationMessageBox("Hiện đã có phiên bản mới, bạn có muốn cập nhật không?",
                                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                                 OwnerWindow.MainScreen,
-                                "Thông báo!");
+                                "Thông báo");
 
 
                             if (x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)

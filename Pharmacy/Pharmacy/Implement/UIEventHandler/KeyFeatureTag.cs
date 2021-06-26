@@ -191,6 +191,7 @@
         //Setting page key string
         public const string KEY_TAG_MSW_SeP_SAVE_BUTTON = "msw_sep_save_button";
         public const string KEY_TAG_MSW_SeP_CANCLE_BUTTON = "msw_sep_cancle_button";
+        public const string KEY_TAG_MSW_SeP_BACKUP_DB_BUTTON = "msw_sep_backup_db_button";
 
         //Report page key string
         public const string KEY_TAG_MSW_RP_INIT_SELLING_REPORT_BUTTON = "msw_rp_init_selling_report_button";

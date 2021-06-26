@@ -2,6 +2,7 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Observable;
 using Pharmacy.Base.UIEventHandler.Action;
+using Pharmacy.Config;
 using Pharmacy.Implement.UIEventHandler;
 using Pharmacy.Implement.UIEventHandler.Listener;
 using Pharmacy.Implement.Utils;
@@ -44,7 +45,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         [Bindable(true)]
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
 
-        public bool IsOrderDetailsModified { get; private set; }
+        public bool IsSupportEdittingDataGrid { get; } = RUNE.IS_SUPPORT_DIRECTLY_EDITTING_DATAGRID;
+        public bool IsOrderDetailsModified { get; set; }
         public bool IsOrderModified
         {
             get
@@ -160,10 +162,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                         MedicineName = orderDetail.tblMedicine.MedicineName,
                         MedicineID = orderDetail.tblMedicine.MedicineID,
                         MedicineUnitName = orderDetail.tblMedicine.tblMedicineUnit.MedicineUnitName,
-                        Quantity = orderDetail.Quantity,
+                        QuantityToString = orderDetail.Quantity.ToString(),
                         UnitPrice = orderDetail.UnitPrice,
                         TotalPrice = orderDetail.TotalPrice,
-                        PromoPercent = orderDetail.PromoPercent,
+                        PromoPercentToString = orderDetail.PromoPercent.ToString(),
                         UnitBidPrice = orderDetail.UnitBidPrice
                     };
                     CurrentOrderDetails.Add(oDOV);
@@ -207,7 +209,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Lỗi!");
             }
         }
 

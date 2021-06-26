@@ -10,11 +10,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         {
             if (SPViewModel.CustomerOrderDetailItemSource.Count > 0)
             {
-                var x = App.Current.ShowApplicationMessageBox("Bạn có chắc tạo mới!",
+                var x = App.Current.ShowApplicationMessageBox("Bạn có chắc tạo mới?",
                  HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                  HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                  OwnerWindow.MainScreen,
-                 "Thông báo!!");
+                 "Thông báo");
                 if (x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
                 {
                     return;

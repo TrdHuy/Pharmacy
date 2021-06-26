@@ -1,4 +1,6 @@
-﻿using Pharmacy.Implement.Utils;
+﻿using Pharmacy.Base.Observable;
+using Pharmacy.Config;
+using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Utils.DatabaseManager;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
@@ -7,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage
@@ -20,11 +23,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
-        public ObservableCollection<OrderDetailOV> CustomerOrderDetailItemSource { get; set; }
+        public ObservablePropertiesCollection<OrderDetailOV> CustomerOrderDetailItemSource { get; set; }
         public MSW_SP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         public MSW_SP_CustomerOV CustomerOV { get; set; }
         public MSW_SP_MedicineOV MedicineOV { get; set; }
+        public bool IsSupportEdittingDataGrid { get; } = RUNE.IS_SUPPORT_DIRECTLY_EDITTING_DATAGRID;
+
 
         public string OrderDescription
         {
@@ -45,7 +50,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                 return MedicineOV.CurrentSelectedMedicine != null
                     && !String.IsNullOrEmpty(CustomerOV.CustomerPhone)
                     && !String.IsNullOrEmpty(CustomerOV.CustomerName)
-                    && !String.IsNullOrEmpty(MedicineOV.Quantity) 
+                    && !String.IsNullOrEmpty(MedicineOV.Quantity)
                     && !MedicineOV.Quantity.Equals("0");
             }
         }
@@ -91,17 +96,28 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         private void InstantiateCustomerOrderDetailItems()
         {
-            CustomerOrderDetailItemSource = new ObservableCollection<OrderDetailOV>();
-            CustomerOrderDetailItemSource.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(CustomerOrderList_CollectionChanged);
+            CustomerOrderDetailItemSource = new ObservablePropertiesCollection<OrderDetailOV>();
+            CustomerOrderDetailItemSource.CollectionChanged -= new NotifyCollectionChangedEventHandler(CustomerOrderList_CollectionChanged);
+            CustomerOrderDetailItemSource.CollectionChanged += new NotifyCollectionChangedEventHandler(CustomerOrderList_CollectionChanged);
+
+            CustomerOrderDetailItemSource.ItemPropertiesChanged -= new PropertyChangedEventHandler(CustomerOrderList_ItemsPropertyChanged);
+            CustomerOrderDetailItemSource.ItemPropertiesChanged += new PropertyChangedEventHandler(CustomerOrderList_ItemsPropertyChanged);
 
         }
 
         private void CustomerOrderList_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Invalidate(CustomerOV,"IsCustomerChooserEnable");
-            Invalidate(MedicineOV,"MedicineCost");
-            Invalidate(MedicineOV,"TotalCost");
-            Invalidate(MedicineOV,"RestAmount");
+            Invalidate(CustomerOV, "IsCustomerChooserEnable");
+            Invalidate(MedicineOV, "MedicineCost");
+            Invalidate(MedicineOV, "TotalCost");
+            Invalidate(MedicineOV, "RestAmount");
+        }
+
+        private void CustomerOrderList_ItemsPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Invalidate(MedicineOV, "MedicineCost");
+            Invalidate(MedicineOV, "TotalCost");
+            Invalidate(MedicineOV, "RestAmount");
         }
 
         private void InstantiateMedicineItems()
@@ -134,7 +150,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Lỗi!");
             }
         }
 
@@ -150,7 +166,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Lỗi!");
             }
         }
 
