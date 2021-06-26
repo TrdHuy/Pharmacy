@@ -40,6 +40,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         public MSW_CMP_CTP_CBP_MedicineOV MedicineOV { get; set; }
 
         [Bindable(true)]
+        public string OrderDescription { get; set; }
+
+        [Bindable(true)]
         public MSW_CMP_CTP_CBP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         [Bindable(true)]
@@ -52,7 +55,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             get
             {
                 return IsOrderDetailsModified ||
-                    CurrentCustomerOrder.PurchasePrice != MedicineOV?.PaidAmount;
+                    CurrentCustomerOrder.PurchasePrice != MedicineOV?.PaidAmount
+                    || OrderDescription!=CurrentCustomerOrder.OrderDescription;
             }
         }
 
@@ -130,6 +134,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             CurrentCustomerOrder = MSW_DataFlowHost.Current.CurrentSelectedCustomerOrder;
             DeleteColumnVisibility = IsEnableEdittingBill ? Visibility.Visible : Visibility.Collapsed;
+            OrderDescription = CurrentCustomerOrder.OrderDescription;
             InstantinateOrderDetailItems();
 
             RefreshViewModel();
@@ -139,7 +144,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         {
             InstantinateOrderDetailItems();
             MedicineOV.PaidAmount = CurrentCustomerOrder.PurchasePrice;
+            OrderDescription = CurrentCustomerOrder.OrderDescription;
             Invalidate("MedicineOV");
+            Invalidate("OrderDescription");
         }
 
         private void InstantiateItems()

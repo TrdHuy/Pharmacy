@@ -101,6 +101,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
             }
 
             CBPViewModel.CurrentCustomerOrder.PurchasePrice = CBPViewModel.MedicineOV.PaidAmount;
+            CBPViewModel.CurrentCustomerOrder.OrderDescription = CBPViewModel.OrderDescription;
         }
 
         private void UpdateCustomerOrderDetailQueryCallback(SQLQueryResult queryResult)
