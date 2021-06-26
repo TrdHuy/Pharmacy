@@ -111,6 +111,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -253,6 +254,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SellingPage\MSW_SP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_CancleButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_BackupDBButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SettingPage\MSW_SeP_SaveButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\AddSupplierPage\MSW_SMP_ASP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\SupplierManagementPage\ModifySupplierPage\MSW_SMP_MSP_ButtonAction.cs" />

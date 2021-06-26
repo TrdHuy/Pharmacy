@@ -20,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                 OwnerWindow.MainScreen,
-                "Thông báo!");
+                "Thông báo");
 
             if (mesResult == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
@@ -33,7 +33,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.OtherPa
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                         HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                         OwnerWindow.MainScreen,
-                        "Thông báo!");
+                        "Thông báo");
 
                         OPMPViewModel.OtherPaymentItemSource.Remove(otherPaymentsDataGrid.SelectedItem as tblOtherPayment);
                     }

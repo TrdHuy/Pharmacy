@@ -65,7 +65,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
                 return false;
             }
 
@@ -75,7 +75,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Thông báo");
                 return false;
             }
 

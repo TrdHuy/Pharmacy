@@ -41,7 +41,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                   OwnerWindow.MainScreen,
-                  "Thông báo!!");
+                  "Thông báo");
                 return false;
             }
             if (SPViewModel.CustomerOrderDetailItemSource == null
@@ -51,7 +51,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                   OwnerWindow.MainScreen,
-                  "Thông báo!!");
+                  "Cảnh báo!");
                 return false;
             }
             return true;
@@ -86,11 +86,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             }
             catch (Exception e)
             {
-                App.Current.ShowApplicationMessageBox("Không thể tạo hóa đơn mới, vui lòng liên hệ CSKH!",
+                App.Current.ShowApplicationMessageBox("Không thể tạo hóa đơn mới. Vui lòng liên hệ CSKH để biết thêm thông tin!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                    OwnerWindow.MainScreen,
-                   "Lỗi!!");
+                   "Lỗi!");
                 SPViewModel.ButtonCommandOV.IsInstantiateNewOrderButtonRunning = false;
             }
 
@@ -116,7 +116,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                   OwnerWindow.MainScreen,
-                  "Thông báo!!");
+                  "Thông báo");
 
                 PrintInvoice();
 
@@ -124,11 +124,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
             }
             else
             {
-                App.Current.ShowApplicationMessageBox("Lỗi tạo hóa đơn mới!",
+                App.Current.ShowApplicationMessageBox("Lỗi tạo hóa đơn mới. Vui lòng liên hệ CSKH để biết thêm thông tin!",
                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                   OwnerWindow.MainScreen,
-                  "Lỗi!!");
+                  "Lỗi!");
             }
 
             SPViewModel.ButtonCommandOV.IsInstantiateNewOrderButtonRunning = false;

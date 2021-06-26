@@ -20,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Cảnh báo!");
                     CBPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                     return;
                 }
@@ -30,7 +30,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Cảnh báo!");
                     CBPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 }
 

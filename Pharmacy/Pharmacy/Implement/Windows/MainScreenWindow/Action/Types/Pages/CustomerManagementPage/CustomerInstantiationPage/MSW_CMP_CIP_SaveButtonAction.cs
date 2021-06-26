@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
                 CIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
@@ -45,7 +45,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                         HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                         OwnerWindow.MainScreen,
-                        "Thông báo!");
+                        "Thông báo");
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Lỗi!");
             }
             CIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.CUSTOMER_MANAGEMENT_PAGE);

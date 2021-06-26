@@ -19,7 +19,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                 OwnerWindow.MainScreen,
-                "Thông báo!");
+                "Thông báo");
 
             if (mesResult == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
@@ -27,7 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                         HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                         OwnerWindow.MainScreen,
-                        "Thông báo!");
+                        "Thông báo");
 
                 var detail = MWIPViewModel.ImportInfo.tblWarehouseImportDetails.Where(o => o.MedicineID == MWIPViewModel.LstWarehouseImportDetail[ctrl.SelectedIndex].MedicineID).FirstOrDefault();
                 if (detail != null)

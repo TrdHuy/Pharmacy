@@ -15,7 +15,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Custome
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Thông báo");
 
                 if(x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
                 {

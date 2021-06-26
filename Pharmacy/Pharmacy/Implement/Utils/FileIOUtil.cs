@@ -108,7 +108,7 @@ namespace Pharmacy.Implement.Utils
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                         HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                         OwnerWindow.MainScreen,
-                        "Thông báo!");
+                        "Lỗi!");
             }
         }
 

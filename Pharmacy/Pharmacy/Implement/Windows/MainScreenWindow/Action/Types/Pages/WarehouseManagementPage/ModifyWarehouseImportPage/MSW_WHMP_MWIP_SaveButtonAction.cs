@@ -20,7 +20,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
                 MWIPViewModel.ButtonCommandOV.IsAddWarehouseImportButtonRunning = false;
                 return;
             }
@@ -55,11 +55,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
         {
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                App.Current.ShowApplicationMessageBox("Chỉnh sửa thông tin nhập kho thành công",
+                App.Current.ShowApplicationMessageBox("Chỉnh sửa thông tin nhập kho thành công!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Thông báo");
             }
             else
             {
@@ -67,7 +67,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Warehou
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Lỗi!");
             }
             MWIPViewModel.ButtonCommandOV.IsAddWarehouseImportButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.WAREHOUSE_MANAGEMENT_PAGE);

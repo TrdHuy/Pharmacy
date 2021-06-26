@@ -778,8 +778,6 @@
                         </hps:HorusBox>
 
                     </Grid>
-
-
                 </Grid>
             </ScrollViewer>
 
@@ -795,6 +793,28 @@
                 <ColumnDefinition Width="0.13*" />
             </Grid.ColumnDefinitions>
 
+            <hps:OsirisButton Margin="10,5,0,20"
+                              Grid.Column="0"
+                              TextContent="Sao lưu CSDL"
+                              IsUsingDropShadowEffect="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center"
+                              HorizontalAlignment="Left"
+                              Padding="10,0"
+                              IconSource="{StaticResource SettingIcon}"
+                              IconStretch="Uniform"
+                              IconWidth="30"
+                              IconHeight="30"
+                              IconTextGapWidth="5"
+                              FontSize="{StaticResource FontSizeXLarge}"
+                              Command="{Binding ButtonCommandOV.BackupDBButtonCommand}"
+                              IsBusy="{Binding ButtonCommandOV.IsBackupDBButtonRunning}"
+                              ProgressSpinnerSize="30"
+                              ProgressSpinnerBackground="Black"
+                              BorderThickness="0"
+                              Background="{StaticResource ForegroundMainBrush}"
+                              Foreground="White" />
+            
             <hps:OsirisButton Margin="0,5,0,20"
                               Grid.Column="1"
                               TextContent="Quay lại"

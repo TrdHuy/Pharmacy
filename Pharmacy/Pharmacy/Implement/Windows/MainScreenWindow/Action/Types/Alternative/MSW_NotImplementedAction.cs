@@ -11,7 +11,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Alternative
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                 OwnerWindow.MainScreen,
-                "Thông báo!");
+                "Cảnh báo!");
         }
     }
 }
