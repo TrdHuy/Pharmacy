@@ -95,7 +95,6 @@ namespace Pharmacy.Implement.Utils
 
                 AppDomain.CurrentDomain.ProcessExit -= CurrentDomain_ProcessExit;
                 AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
-
                 AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
                 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -146,7 +145,7 @@ namespace Pharmacy.Implement.Utils
                 var fileCount = enumerateFile.Count();
                 if (fileCount > OLD_LOG_FILES_CAPACITY)
                 {
-                    for(int i = OLD_LOG_FILES_CAPACITY; i < fileCount; i++)
+                    for (int i = 0; i < fileCount - OLD_LOG_FILES_CAPACITY; i++)
                     {
                         var temp = fileNames[i];
                         File.Delete(temp);
@@ -181,10 +180,11 @@ namespace Pharmacy.Implement.Utils
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             WriteLog("F", TAG, "[UnhandledException]:" + e.ExceptionObject.ToString());
-            var task1 = GenerateTask("F", TAG, "[UnhandledException]:" + e.ExceptionObject.ToString());
-            TaskQueue.Enqueue(task1);
-            var task2 = GenerateTask("", "", "", true);
-            TaskQueue.Enqueue(task2);
+            ExportLogFile();
+            //var task1 = GenerateTask("F", TAG, "[UnhandledException]:" + e.ExceptionObject.ToString());
+            //TaskQueue.Enqueue(task1);
+            //var task2 = GenerateTask("", "", "", true);
+            //TaskQueue.Enqueue(task2);
         }
 
         /// <summary>
@@ -211,6 +211,7 @@ namespace Pharmacy.Implement.Utils
 
         private static void CurrentDomain_ProcessExit(object sender, EventArgs e)
         {
+            WriteLog("I", "App", "User requested exit app!");
             ExportLogFile();
         }
 
@@ -392,10 +393,11 @@ namespace Pharmacy.Implement.Utils
         {
             try
             {
+
                 var dateTimeNow = DateTime.Now.ToString("dd-MM HH:mm:ss:ffffff");
                 var newLogLine = dateTimeNow + " " +
-                    logLv + " " +
-                    tag + " " +
+                logLv + " " +
+                tag + " " +
                     message;
 
                 if (_logBuilder != null)
