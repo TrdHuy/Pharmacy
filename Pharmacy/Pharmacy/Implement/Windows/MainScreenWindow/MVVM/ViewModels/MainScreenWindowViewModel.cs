@@ -88,7 +88,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
                             HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                             HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                             OwnerWindow.MainScreen,
-                            "Thông báo!!");
+                            "Thông báo");
                     }
                     break;
                 default:
@@ -104,7 +104,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels
                             HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                             HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                             OwnerWindow.MainScreen,
-                            "Thông báo!!");
+                            "Thông báo");
                     }
                     break;
             }

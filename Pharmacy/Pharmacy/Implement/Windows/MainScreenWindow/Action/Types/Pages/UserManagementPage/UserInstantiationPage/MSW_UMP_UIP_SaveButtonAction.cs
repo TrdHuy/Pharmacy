@@ -22,7 +22,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
                 UIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
@@ -47,11 +47,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         {
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                App.Current.ShowApplicationMessageBox("Thêm tài khoản mới thành công",
+                App.Current.ShowApplicationMessageBox("Thêm tài khoản mới thành công!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Thông báo");
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Lỗi!");
             }
             UIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);
@@ -84,7 +84,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
 
                 if (queryRes == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
                 {

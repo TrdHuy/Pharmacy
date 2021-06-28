@@ -820,7 +820,7 @@
                                              IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                              AkerTextBoxType="Normal"
                                              TextWrapping="Wrap"
-                                             Text="{Binding CurrentCustomerOrder.OrderDescription}"
+                                             Text="{Binding OrderDescription}"
                                              VerticalContentAlignment="Top"
                                              Tag="Thêm ghi chú tại đây" />
                             <Grid Grid.Column="4">

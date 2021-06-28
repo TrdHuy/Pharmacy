@@ -412,6 +412,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON:
                     viewModelCommandExecuter = new MSW_SeP_CancleButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_SeP_BACKUP_DB_BUTTON:
+                    viewModelCommandExecuter = new MSW_SeP_BackupDBButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_SeP_SAVE_BUTTON:
                     viewModelCommandExecuter = new MSW_SeP_SaveButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;

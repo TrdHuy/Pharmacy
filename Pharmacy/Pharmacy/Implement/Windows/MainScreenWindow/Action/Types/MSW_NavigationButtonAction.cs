@@ -26,11 +26,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types
 
         public bool PreviewGoToNewSource()
         {
-            var res = App.Current.ShowApplicationMessageBox("Tác vụ đang được thực hiện, bạn có muốn hủy bỏ tác vụ!"
+            var res = App.Current.ShowApplicationMessageBox("Tác vụ đang được thực hiện, bạn có muốn hủy bỏ tác vụ?"
                 , HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo
                 , HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question
                 , OwnerWindow.MainScreen
-                , "Thông báo!");
+                , "Cảnh báo!");
             if (res == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
             {
                 return true;

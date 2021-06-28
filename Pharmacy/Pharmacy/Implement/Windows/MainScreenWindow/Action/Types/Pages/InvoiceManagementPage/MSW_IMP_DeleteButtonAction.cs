@@ -38,7 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                 OwnerWindow.MainScreen,
-                "Thông báo!!");
+                "Thông báo");
 
                 IMPViewModel.CustomerOrdersItemSource.Remove(IMPViewModel.CurrentSelectedOrderOV);
             }
@@ -48,7 +48,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invoice
                 HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                 HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                 OwnerWindow.MainScreen,
-                "Thông báo!!");
+                "Lỗi!");
             }
         }
     }

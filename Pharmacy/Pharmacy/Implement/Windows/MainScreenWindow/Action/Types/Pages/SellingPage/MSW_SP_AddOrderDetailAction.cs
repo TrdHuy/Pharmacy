@@ -28,7 +28,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Cảnh báo!");
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                     return;
                 }
@@ -38,7 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Cảnh báo!");
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 }
 
@@ -59,7 +59,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
-                    "Thông báo!!");
+                    "Thông báo");
                 if (x == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
                 {
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
@@ -108,16 +108,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
-                   "Thông báo!!");
+                   "Thông báo");
                 CreateNewOrderDetail();
             }
             else
             {
-                App.Current.ShowApplicationMessageBox("Lỗi thêm khách hàng mới!",
+                App.Current.ShowApplicationMessageBox("Lỗi thêm khách hàng mới. Vui lòng liên hệ CSKH để biết thêm thông tin!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
-                   "Lỗi!!");
+                   "Lỗi!");
                 SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
             }
         }

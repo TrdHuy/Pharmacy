@@ -21,7 +21,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
                 UMoPViewModel.ButtomCommandOV.IsSaveButtonRunning = false;
                 return;
             }
@@ -50,19 +50,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.UserMan
         {
             if (queryResult.MesResult == MessageQueryResult.Done)
             {
-                App.Current.ShowApplicationMessageBox("Thay đổi thông tin thành công",
+                App.Current.ShowApplicationMessageBox("Thay đổi thông tin thành công!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Thông báo");
             }
             else
             {
-                App.Current.ShowApplicationMessageBox("Lỗi! Không thể thay đổi thông tin. Vui lòng liên hệ CSKH để biết thêm thông tin!",
+                App.Current.ShowApplicationMessageBox("Lỗi không thể thay đổi thông tin. Vui lòng liên hệ CSKH để biết thêm thông tin!",
                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
                    OwnerWindow.MainScreen,
-                   "Thông báo!");
+                   "Lỗi!");
             }
             UMoPViewModel.ButtomCommandOV.IsSaveButtonRunning = false;
             PageHost.UpdateCurrentPageSource(PageSource.USER_MANAGEMENT_PAGE);

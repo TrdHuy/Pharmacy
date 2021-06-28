@@ -37,12 +37,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Setting
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Thông báo");
                 PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
             }
             else
             {
-                App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin!");
+                App.Current.ShowApplicationMessageBox("Lỗi cập nhật cài đặt. Vui lòng liên hệ CSKH để biết thêm thông tin!",
+                  HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                  HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                  OwnerWindow.MainScreen,
+                  "Lỗi!");
             }
             SPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
         }

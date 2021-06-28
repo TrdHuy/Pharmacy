@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Cảnh báo!");
                 PIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
                 return;
             }
@@ -59,12 +59,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Persona
                     HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                     HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                     OwnerWindow.MainScreen,
-                    "Thông báo!");
+                    "Thông báo");
                 PageHost.UpdateCurrentPageSource(PageSource.HOME_PAGE);
             }
             else
             {
-                App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin!");
+                App.Current.ShowApplicationMessageBox("Lỗi cập nhật thông tin. Vui lòng liên hệ CSKH để biết thêm thông tin!",
+                  HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                  HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                  OwnerWindow.MainScreen,
+                  "Lỗi!");
             }
             PIPViewModel.ButtonCommandOV.IsSaveButtonRunning = false;
         }
