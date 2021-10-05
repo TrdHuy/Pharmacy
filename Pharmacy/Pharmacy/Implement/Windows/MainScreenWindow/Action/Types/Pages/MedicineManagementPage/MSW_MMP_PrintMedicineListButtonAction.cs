@@ -9,21 +9,22 @@ using Pharmacy.Implement.Utils.CustomControls;
 using System.Collections.ObjectModel;
 using Pharmacy.Implement.Windows.PopupScreenWindow.MVVM.Views.UserControls;
 using System.Drawing.Printing;
+using System.Text;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
     internal class MSW_MMP_PrintMedicineListButtonAction : MSW_MMP_ButtonAction
     {
         public MSW_MMP_PrintMedicineListButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
-       
+
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
-            var lstMedicine = MMPViewModel.MedicineItemSource;
+            var lstMedicine = MMPViewModel.LstMedicine;
 
             var lstCaoDon = lstMedicine.Where(o => o.MedicineTypeID == 2).ToList();
             var lstDuocLieu = lstMedicine.Where(o => o.MedicineTypeID == 1).ToList();
-            
+
             PrintInvoice(lstCaoDon, lstDuocLieu);
         }
 
@@ -47,13 +48,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 int id = 1;
                 foreach (var item in lstCaoDon)
                 {
-                    tblCaoDon.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, item.tblSupplier.SupplierName, item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
+                    StringBuilder suppliers = new StringBuilder();
+                    foreach (var supplier in item.tblMedicineSuppliers)
+                    {
+                        suppliers.Append(supplier + ", ");
+                    }
+                    tblCaoDon.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, suppliers.Remove(suppliers.Length - 3, 2).ToString(), item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
                 }
 
                 id = 1;
                 foreach (var item in lstDuocLieu)
                 {
-                    tblDuocLieu.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, item.tblSupplier.SupplierName, item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
+                    StringBuilder suppliers = new StringBuilder();
+                    foreach (var supplier in item.tblMedicineSuppliers)
+                    {
+                        suppliers.Append(supplier + ", ");
+                    }
+                    tblDuocLieu.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, suppliers.Remove(suppliers.Length - 3, 2).ToString(), item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
                 }
 
                 ReportDataSource reportDataSource = new ReportDataSource();

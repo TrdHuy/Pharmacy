@@ -14,6 +14,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_Base
 using Pharmacy.Implement.Utils;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
 using System.Windows;
+using System.Text;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement
 {
@@ -21,10 +22,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
     {
         private static Logger L = new Logger("MedicineManagementPageViewModel");
 
-        public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
+        public ObservableCollection<MSW_MMP_MedicineOV> MedicineItemSource { get; set; }
         public MSW_MMP_ButtonCommandOV ButtonCommandOV { get; set; }
         public CommandModel FilterMedicineTypeCommand { get; set; }
-        public EventCommandModel ShowMedicineInfoCommand { get; set; }
         public EventCommandModel SearchTextChangedCommand { get; set; }
         public string FilterText { get; set; } = "";
 
@@ -42,17 +42,17 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
         private List<int> _lstMedicineTypeFilter = new List<int>();
         private List<tblMedicineType> _lstMedicineType = new List<tblMedicineType>();
+        public ObservableCollection<tblMedicine> LstMedicine;
 
         protected override Logger logger => L;
 
         protected override void OnInitializing()
         {
-            MedicineItemSource = new ObservableCollection<tblMedicine>();
+            MedicineItemSource = new ObservableCollection<MSW_MMP_MedicineOV>();
             ButtonCommandOV = new MSW_MMP_ButtonCommandOV(this);
 
             FilterMedicineTypeCommand = new CommandModel(FilterMedicineTypeClickEvent);
             SearchTextChangedCommand = new EventCommandModel(SearchTextChangedEvent);
-            ShowMedicineInfoCommand = new EventCommandModel(ShowMedicineInfoEvent);
 
             InstantiateItems();
         }
@@ -90,8 +90,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
-                    MedicineItemSource = new ObservableCollection<tblMedicine>((queryResult.Result as List<tblMedicine>).OrderBy(o => o.tblSupplier.SupplierName).ThenBy(o => o.MedicineName));
-                    Invalidate("MedicineItemSource");
+                    LstMedicine = new ObservableCollection<tblMedicine>((queryResult.Result as List<tblMedicine>).OrderBy(o => o.tblMedicineType.MedicineTypeName).ThenBy(o => o.MedicineName));
+                    foreach (var item in LstMedicine)
+                    {
+                        MedicineItemSource.Add(new MSW_MMP_MedicineOV(item.MedicineID, item.MedicineName, item.tblMedicineType.MedicineTypeName,
+                            item.MedicineTypeID, item.BidPrice, item.AskingPrice, item.tblMedicineSuppliers.ToList()));
+                    }
                 }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY
@@ -135,48 +139,39 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             _timerUpdateFilter.Tick += (sender, e) =>
             {
                 _timerUpdateFilter.Stop();
-                dataGrid.Items.Filter = new Predicate<object>(medicine => FilterMedicineList(medicine as tblMedicine, FilterText));
+                dataGrid.Items.Filter = new Predicate<object>(medicine => FilterMedicineList(medicine as MSW_MMP_MedicineOV, FilterText));
             };
 
             _timerUpdateFilter.Start();
         }
 
-        private bool FilterMedicineList(tblMedicine medicine, string filterText)
+        private bool FilterMedicineList(MSW_MMP_MedicineOV medicine, string filterText)
         {
             return (SearchByID(medicine, filterText) || SearchByName(medicine, filterText) || SearchBySupplierName(medicine, filterText)) && FilterByType(medicine, filterText);
         }
 
-        private bool SearchByID(tblMedicine medicine, string filterText)
+        private bool SearchByID(MSW_MMP_MedicineOV medicine, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_ID ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.MedicineID, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
 
-        private bool SearchByName(tblMedicine medicine, string filterText)
+        private bool SearchByName(MSW_MMP_MedicineOV medicine, string filterText)
         {
             return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.MedicineName, filterText, CompareOptions.IgnoreCase) >= 0) : false;
         }
 
-        private bool SearchBySupplierName(tblMedicine medicine, string filterText)
+        private bool SearchBySupplierName(MSW_MMP_MedicineOV medicine, string filterText)
         {
-            return RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_SUPPLIER_NAME ? (CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.tblSupplier.SupplierName, filterText, CompareOptions.IgnoreCase) >= 0) : false;
+            if (RUNE.IS_SUPPORT_SEARCH_MEDICINE_BY_SUPPLIER_NAME)
+            {
+                return CultureInfo.CurrentCulture.CompareInfo.IndexOf(medicine.Suppliers, filterText, CompareOptions.IgnoreCase) >= 0;
+            }
+            return false;
         }
 
-        private bool FilterByType(tblMedicine medicine, string filterText)
+        private bool FilterByType(MSW_MMP_MedicineOV medicine, string filterText)
         {
-            return RUNE.IS_SUPPORT_FILTER_MEDICINE_BY_TYPE ? (_lstMedicineTypeFilter.Contains(medicine.MedicineTypeID)) : false;
+            return RUNE.IS_SUPPORT_FILTER_MEDICINE_BY_TYPE ? _lstMedicineTypeFilter.Contains(medicine.MedicineTypeID) : false;
         }
-
-        private void ShowMedicineInfoEvent(object sender, EventArgs e, object paramaters)
-        {
-            object[] dataTransfer = new object[2];
-            dataTransfer[0] = this;
-            dataTransfer[1] = paramaters;
-            _keyActionListener.OnKey(this
-                , logger
-                , WindowTag.WINDOW_TAG_MAIN_SCREEN
-                , KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON
-                , dataTransfer);
-        }
-
     }
 }

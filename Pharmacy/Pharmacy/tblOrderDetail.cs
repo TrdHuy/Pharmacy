@@ -24,7 +24,7 @@ namespace Pharmacy
         public double PromoPercent { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual tblMedicine tblMedicine { get; set; }
         public virtual tblOrder tblOrder { get; set; }
+        public virtual tblMedicine tblMedicine { get; set; }
     }
 }

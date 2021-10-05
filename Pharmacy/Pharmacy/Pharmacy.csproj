@@ -195,6 +195,7 @@
     <Compile Include="Implement\AppImpl\Models\VOs\AppInfoVO.cs" />
     <Compile Include="Implement\UIEventHandler\Listener\ActionExecuteHelper.cs" />
     <Compile Include="Implement\Utils\CustomControls\QuotableEventPage\IQuotableEvent.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActiveSuppliersOfMedicine.cs" />
     <Compile Include="Implement\Utils\Extensions\LocalReportExtensions.cs" />
     <Compile Include="Implement\Utils\CustomControls\BusyDataGrid.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetInfoForComprehensiveReportAction.cs" />
@@ -280,8 +281,8 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicine\OVs\MSW_MMP_AMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicine\OVs\MSW_MMP_DBMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagement\OVs\MSW_MMP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagement\OVs\MSW_MMP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ModifyMedicine\OVs\MSW_MMP_MMoP_ButtonCommandOV.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfo\OVs\MSW_MMP_SMIP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MSW_BasePageVM\OVs\MSW_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\AddOtherPayment\OVs\MSW_OPMP_AOPP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\OtherPaymentsManagementPage\ModifyOtherPayment\OVs\MSW_OPMP_MOPP_ButtonCommandOV.cs" />
@@ -408,7 +409,6 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ModifyMedicinePage\MSW_MMP_MMP_CancelButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\ModifyMedicinePage\MSW_MMP_MMP_CameraButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_DiscountByMedicineButtonAction.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_ShowMedicineInfoButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_ModifyMedicineButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_AddNewMedicineButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\MSW_MMP_DeleteMedicineButtonAction.cs" />
@@ -506,7 +506,6 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\CustomerDebtsPage\CustomerDebtsPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePage\HomePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicine\DiscountByMedicinePageViewModel.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ShowMedicineInfo\ShowMedicineInfoPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\ModifyMedicine\ModifyMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicine\AddMedicinePageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagement\MedicineManagementPageViewModel.cs" />
@@ -546,9 +545,6 @@
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\DiscountByMedicinePage.xaml.cs">
       <DependentUpon>DiscountByMedicinePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ShowMedicineInfoPage.xaml.cs">
-      <DependentUpon>ShowMedicineInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ModifyMedicinePage.xaml.cs">
       <DependentUpon>ModifyMedicinePage.xaml</DependentUpon>
@@ -677,6 +673,9 @@
     <Compile Include="tblMedicine.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblMedicineSupplier.cs">
+      <DependentUpon>PharmacyDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblMedicineType.cs">
       <DependentUpon>PharmacyDBModel.tt</DependentUpon>
     </Compile>
@@ -780,10 +779,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\DiscountByMedicinePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\MedicineManagement\ShowMedicineInfoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

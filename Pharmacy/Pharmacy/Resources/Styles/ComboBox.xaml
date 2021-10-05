@@ -51,7 +51,7 @@
     <Style TargetType="{x:Type hps:HorusBox}"
            x:Key="SearchingBoxTheme">
         <Setter Property="MaxDropDownHeight"
-                Value="100" />
+                Value="200" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="VerticalContentAlignment"

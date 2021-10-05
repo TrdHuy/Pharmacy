@@ -1,19 +1,19 @@
 ﻿<quotableEventPage:QuotableEventPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
-      xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
-      xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
-      x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.WarehouseManagement.ModifyWarehouseImportPage"
-      mc:Ignorable="d"
-      Background="White"
-      x:Name="ModifyWarehouseImport"
-      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
-      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
-      FontSize="{Binding FontSizeOV.FontSizeLarge}"
-      Title="ModifyWarehouseImportPage">
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                     xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                     x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.WarehouseManagement.ModifyWarehouseImportPage"
+                                     mc:Ignorable="d"
+                                     Background="White"
+                                     x:Name="ModifyWarehouseImport"
+                                     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                     FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                                     Title="ModifyWarehouseImportPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"
@@ -123,9 +123,9 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
 
@@ -145,20 +145,71 @@
                 <hps:HorusBox Grid.Column="2"
                               Grid.Row="0"
                               Margin="3"
-                              Tag="Nhập tên thuốc để tìm kiếm"
+                              Tag="Nhập mã hoặc tên thuốc để tìm kiếm"
                               ItemsSource="{Binding LstMedicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               SelectedItem="{Binding SelectedMedicine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Style="{StaticResource SearchingBoxTheme}"
-                              DisplayMemberPath="MedicineName">
-                    <hps:HorusBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
-                                                    VirtualizingPanel.CacheLengthUnit="Item" />
-                        </ItemsPanelTemplate>
-                    </hps:HorusBox.ItemsPanel>
+                              FilterPathItems="{Binding MedicineFilterPathList}"
+                              Style="{StaticResource SearchingBoxTheme}">
+                    <hps:HorusBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0">
+                                    <Border.OpacityMask>
+                                        <ImageBrush Stretch="Uniform"
+                                                    ImageSource="{StaticResource AvatarImageOpacityMask}">
+                                        </ImageBrush>
+                                    </Border.OpacityMask>
+
+                                    <Image Stretch="Uniform"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource AppIcon}" />
+                                </Border>
+                                <TextBlock Grid.Column="1"
+                                           Foreground="Black"
+                                           Text="{Binding MedicineID}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Stretch"
+                                           FontSize="{Binding FontSizeOV.FontSizeRegular}" />
+
+                                <TextBlock Grid.Column="3"
+                                           Foreground="Black"
+                                           Text="{Binding MedicineName}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"
+                                           FontSize="{Binding FontSizeOV.FontSizeRegular}" />
+                            </Grid>
+
+                        </DataTemplate>
+                    </hps:HorusBox.ItemTemplate>
                 </hps:HorusBox>
 
                 <TextBlock Grid.Column="3"
+                           Grid.Row="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="10,0,0,0"
+                           Text="Số lượng:" />
+
+                <hps:AkerTextBox VerticalContentAlignment="Center"
+                                 AkerTextBoxType="Decimal"
+                                 Grid.Column="4"
+                                 Grid.Row="0"
+                                 BorderThickness="2"
+                                 BorderBrush="Black"
+                                 Text="{Binding MedicineQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="3" />
+
+
+
+                <TextBlock Grid.Column="5"
                            Grid.Row="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Right"
@@ -168,27 +219,11 @@
                 <hps:AkerTextBox VerticalContentAlignment="Center"
                                  AkerTextBoxType="Expense"
                                  AkerExpenseUnit="VND"
-                                 Grid.Column="4"
-                                 Grid.Row="0"
-                                 BorderThickness="2"
-                                 BorderBrush="Black"
-                                 AkerExpense="{Binding MedicinePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="3" />
-
-                <TextBlock Grid.Column="5"
-                           Grid.Row="0"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
-                           Margin="10,0,0,0"
-                           Text="Số lượng:" />
-
-                <hps:AkerTextBox VerticalContentAlignment="Center"
-                                 AkerTextBoxType="Decimal"
                                  Grid.Column="6"
                                  Grid.Row="0"
                                  BorderThickness="2"
                                  BorderBrush="Black"
-                                 Text="{Binding MedicineQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 AkerExpense="{Binding MedicinePrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Margin="3" />
 
                 <hps:OsirisButton Grid.Column="7"
@@ -366,7 +401,7 @@
                                     <hps:OsirisButton BorderThickness="0"
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
-                                                      Background="White"
+                                                      Background="Transparent"
                                                       VerticalAlignment="Center"
                                                       IconStretch="Uniform"
                                                       Command="{Binding DataContext.ButtonCommandOV.DeleteMedicineFromListButtonCommand,ElementName=ModifyWarehouseImport}"

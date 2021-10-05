@@ -24,12 +24,31 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
                 appDBContext.tblWarehouseImports.Add(import);
                 appDBContext.SaveChanges();
 
-                //Cập nhật giá vào thông tin thuốc
+                //Cập nhật giá vào thông tin thuốc và Lưu thông tin thuốc - nhà cung cấp
                 foreach (var item in import.tblWarehouseImportDetails)
                 {
                     item.tblMedicine.BidPrice = item.Price;
+
+                    tblMedicineSupplier medicineSupplier = appDBContext.tblMedicineSuppliers
+                        .Where(o => o.MedicineID == item.MedicineID && o.SupplierID == import.SupplierID).FirstOrDefault();
+                    if (medicineSupplier != null)
+                    {
+                        medicineSupplier.BidPrice = item.Price;
+                        medicineSupplier.IsActive = true;
+                    }
+                    else
+                    {
+                        medicineSupplier = new tblMedicineSupplier();
+                        medicineSupplier.MedicineID = item.MedicineID;
+                        medicineSupplier.SupplierID = import.SupplierID;
+                        medicineSupplier.BidPrice = item.Price;
+                        medicineSupplier.IsActive = true;
+                        appDBContext.tblMedicineSuppliers.Add(medicineSupplier);
+                    }
                 }
                 appDBContext.SaveChanges();
+
+
 
                 if (imageFolder.Length > 0 && !SaveImageToFile(import.ImportID.ToString(), imageFolder, ImageType.WarehouseImport))
                 {

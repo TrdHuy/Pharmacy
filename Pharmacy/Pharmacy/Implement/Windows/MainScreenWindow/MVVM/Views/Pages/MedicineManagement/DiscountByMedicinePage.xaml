@@ -85,7 +85,7 @@
                           Margin="3">
                 <hps:HorusBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="Transparent">
+                        <Grid Background="Transparent" MinHeight="30">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10" />
                                 <ColumnDefinition Width="30" />
@@ -470,7 +470,7 @@
                                     <hps:OsirisButton BorderThickness="0"
                                                       HorizontalAlignment="Center"
                                                       IsUsingDropShadowEffect="True"
-                                                      Background="White"
+                                                      Background="Transparent"
                                                       VerticalAlignment="Center"
                                                       IconStretch="Uniform"
                                                       Command="{Binding DataContext.ButtonCommandOV.DeleteButtonCommand,ElementName=MedicineManagementPage}"

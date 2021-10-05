@@ -202,8 +202,7 @@
 
                     <Setter Property="Height"
                             Value="{StaticResource DefaultDataGrid_RowHeight}" />
-                    <EventSetter Event="MouseDoubleClick"
-                                 Handler="DataGridRow_MouseDoubleClick" />
+
                 </Style>
 
             </DataGrid.RowStyle>
@@ -238,13 +237,13 @@
                 <DataGridTextColumn Width="auto"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Loại thuốc"
-                                    Binding="{Binding tblMedicineType.MedicineTypeName}" />
+                                    Binding="{Binding MedicineTypeName}" />
 
                 <!--Supplier column-->
                 <DataGridTextColumn Width="*"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Nhà cung cấp"
-                                    Binding="{Binding tblSupplier.SupplierName}" />
+                                    Binding="{Binding Suppliers}" />
 
                 <!--BidPrice column-->
                 <DataGridTextColumn Width="auto"
