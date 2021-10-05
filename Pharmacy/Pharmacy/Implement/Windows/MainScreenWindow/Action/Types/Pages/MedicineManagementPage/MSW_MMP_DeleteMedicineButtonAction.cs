@@ -2,6 +2,8 @@
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.Windows.Controls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
+using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
@@ -29,20 +31,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                 {
                     if (queryResult.MesResult == MessageQueryResult.Done)
                     {
+                        string medicineID = (medicineDataGrid.SelectedItem as MSW_MMP_MedicineOV).MedicineID;
+                        MMPViewModel.MedicineItemSource.Remove(medicineDataGrid.SelectedItem as MSW_MMP_MedicineOV);
+                        MMPViewModel.LstMedicine.Remove(MMPViewModel.LstMedicine.Where(o => o.MedicineID == medicineID).FirstOrDefault());
+
+
                         App.Current.ShowApplicationMessageBox("Xóa thuốc thành công!",
                         HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
                         HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Success,
                         OwnerWindow.MainScreen,
                         "Thông báo");
-
-                        MMPViewModel.MedicineItemSource.Remove(medicineDataGrid.SelectedItem as tblMedicine);
-
                     }
                 });
 
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.SET_MEDICINE_DEACTIVE_CMD_KEY,
                     sqlQueryObserver,
-                    (medicineDataGrid.SelectedItem as tblMedicine).MedicineID);
+                    (medicineDataGrid.SelectedItem as MSW_MMP_MedicineOV).MedicineID);
 
                 return ;
             }

@@ -151,7 +151,7 @@
                                                 BorderThickness="{TemplateBinding BorderThickness}">
                                             <Grid Background="{TemplateBinding Background}">
                                                 <ContentPresenter Focusable="False"
-                                                                  HorizontalAlignment="Stretch"
+                                                                  HorizontalAlignment="Center"
                                                                   VerticalAlignment="Center"
                                                                   Content="{TemplateBinding Content}">
 
@@ -212,8 +212,20 @@
                                     Value="{Binding FontSizeOV.FontSizeLarge, ElementName=InvoiceManagementPageDataContext}" />
 
                         </Style>
-
                     </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Resources>
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                  Color="{StaticResource NormalTheme_3rd_Color}" />
+                            </Style.Resources>
+
+                            <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                        </Style>
+
+                    </DataGrid.RowStyle>
 
                     <DataGrid.Columns>
 
@@ -235,33 +247,20 @@
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
-                        <DataGridTemplateColumn Header="Danh sách thuốc"
-                                                Width="1.75*"                                                
-                                                CellStyle="{StaticResource DGTextCell}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox IsReadOnly="True"
-                                             Text="{Binding OrderDetail, Mode=OneWay}"
-                                             HorizontalScrollBarVisibility="Auto"
-                                             VerticalScrollBarVisibility="Auto"
-                                             HorizontalContentAlignment="Left"
-                                             HorizontalAlignment="Stretch"
-                                             BorderThickness="0"
-                                             Background="Transparent"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <!--Order deatails column-->
                         <DataGridTextColumn Width="*"
                                             CellStyle="{StaticResource DGTextCell}"
                                             Header="Thành tiền"
-                                            Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}">
-                            <!--<DataGridTextColumn.Binding>
-                                <Binding Path="TotalPrice"
-                                         StringFormat="#\,##0 VND"/>
-                            </DataGridTextColumn.Binding>-->
-                        </DataGridTextColumn>
+                                            Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
+
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Đã thanh toán"
+                                            Binding="{Binding PurchasedPrice, StringFormat=#\,##0 VND}" />
+
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Còn lại"
+                                            Binding="{Binding RemainPrice, StringFormat=#\,##0 VND}" />
 
                         <!--Edit column-->
                         <DataGridTemplateColumn CanUserResize="False"

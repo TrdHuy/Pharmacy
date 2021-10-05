@@ -3,6 +3,8 @@ using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.Windows.Controls;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
+using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
@@ -16,7 +18,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
 
             DataGrid ctrl = DataTransfer[0] as DataGrid;
 
-            MSW_DataFlowHost.Current.CurrentModifiedMedicine = ctrl.SelectedItem as tblMedicine;
+            var selectedItem = ctrl.SelectedItem as MSW_MMP_MedicineOV;
+            MSW_DataFlowHost.Current.CurrentModifiedMedicine = MMPViewModel.LstMedicine.Where(o => o.MedicineID == selectedItem.MedicineID).FirstOrDefault();
             PageHost.UpdateCurrentPageSource(PageSource.DISCOUNT_BY_MEDICINE_PAGE);
         }
     }

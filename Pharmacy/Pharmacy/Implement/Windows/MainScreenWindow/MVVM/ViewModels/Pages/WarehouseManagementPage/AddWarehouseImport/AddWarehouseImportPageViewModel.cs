@@ -23,25 +23,22 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public ObservableCollection<tblSupplier> LstSupplier { get; set; }
         public ObservableCollection<tblMedicine> LstMedicine { get; set; }
         public ObservableCollection<MSW_WHMP_WarehouseImportDetailOV> LstWarehouseImportDetail { get; set; }
+        public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
         public tblSupplier SelectedSupplier
         {
             get { return _selectedSupplier; }
             set
             {
-                if (CheckResetAllWhenSupplierChanged(value))
+                _selectedSupplier = value;
+                if (value == null)
                 {
-                    _selectedSupplier = value;
-                    if (value != null)
-                    {
-                        SelectedSupplierCheckingStatus = 1;
-                        UpdateMedicineListBySupplier();
-                    }
-                    else
-                    {
-                        SelectedSupplierCheckingStatus = -1;
-                    }
-                    Invalidate("SelectedSupplierCheckingStatus");
+                    SelectedSupplierCheckingStatus = -1;
                 }
+                else
+                {
+                    SelectedSupplierCheckingStatus = 1;
+                }
+                Invalidate("SelectedSupplierCheckingStatus");
                 InvalidateOwn();
             }
         }
@@ -84,7 +81,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         {
             get
             {
-                if (SelectedSupplier != null
+                if (SelectedSupplierCheckingStatus == 1
                         && (LstWarehouseImportDetail.Count > 0 || PurchasedPrice > 0))
                     return true;
                 return false;
@@ -92,7 +89,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         }
 
         private KeyActionListener _keyActionListener = KeyActionListener.Current;
-        private List<tblMedicine> _lstMedicineFull;
         private tblSupplier _selectedSupplier;
         private tblMedicine _selectedMedicine;
         private decimal _purchasedPrice;
@@ -102,12 +98,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_WHMP_AWIP_ButtonCommandOV(this);
-            InstantiateItems();
-            InitImportDetail();
         }
 
         protected override void OnInitialized()
         {
+            InitImportDetail();
+            InstantiateItems();
         }
 
         public void UpdateTotalPriceAndNewPrice()
@@ -130,7 +126,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
-                    _lstMedicineFull = queryResult.Result as List<tblMedicine>;
+                    LstMedicine = new ObservableCollection<tblMedicine>((queryResult.Result as List<tblMedicine>).OrderBy(o => o.MedicineName));
                 }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY
@@ -144,51 +140,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
                     LstSupplier = new ObservableCollection<tblSupplier>(queryResult.Result as List<tblSupplier>);
-                    Invalidate("LstSupplier");
                 }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_SUPPLIER_DATA_CMD_KEY
                     , _sqlCmdObserver);
         }
 
-        private void UpdateMedicineListBySupplier()
-        {
-            if (SelectedSupplier != null)
-            {
-                LstMedicine = new ObservableCollection<tblMedicine>(_lstMedicineFull.Where(o => o.SupplierID == SelectedSupplier.SupplierID).OrderBy(o => o.MedicineName));
-                Invalidate("LstMedicine");
-                SelectedMedicine = null;
-            }
-        }
-
         private void UpdateNetPrice()
         {
             NetPrice = TotalPrice - PurchasedPrice;
             Invalidate("NetPrice");
-        }
-
-        private bool CheckResetAllWhenSupplierChanged(tblSupplier newValue)
-        {
-            if (LstWarehouseImportDetail.Count > 0 && _selectedSupplier != newValue)
-            {
-                var result = App.Current.ShowApplicationMessageBox("Thay đổi nhà cung cấp sẽ xóa toàn bộ dữ liệu nhập kho trong danh sách bên dưới.\nBạn có muốn tiếp tục?",
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
-                   HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Question,
-                   OwnerWindow.MainScreen,
-                   "Cảnh báo!");
-                if (result == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultYes)
-                {
-                    InitImportDetail();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            if (LstMedicine != null)
-                InitImportDetail();
-            return true;
         }
 
         private void InitImportDetail()

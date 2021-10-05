@@ -21,7 +21,7 @@ namespace Pharmacy
         public long ImportID { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual tblMedicine tblMedicine { get; set; }
         public virtual tblWarehouseImport tblWarehouseImport { get; set; }
+        public virtual tblMedicine tblMedicine { get; set; }
     }
 }

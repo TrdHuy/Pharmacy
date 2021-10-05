@@ -56,17 +56,52 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
 
                 appDBContext.SaveChanges();
 
-                //Cập nhật giá vào thông tin thuốc
+                //Cập nhật giá vào thông tin thuốc và thông tin thuốc - nhà cung cấp
                 foreach (var item in import.tblWarehouseImportDetails)
                 {
                     if (item.IsActive)
+                    {
                         item.tblMedicine.BidPrice = item.Price;
+
+                        tblMedicineSupplier medicineSupplier = appDBContext.tblMedicineSuppliers
+                            .Where(o => o.MedicineID == item.MedicineID && o.SupplierID == import.SupplierID).FirstOrDefault();
+                        if (medicineSupplier != null)
+                        {
+                            medicineSupplier.BidPrice = item.Price;
+                            medicineSupplier.IsActive = true;
+                        }
+                        else
+                        {
+                            medicineSupplier = new tblMedicineSupplier();
+                            medicineSupplier.MedicineID = item.MedicineID;
+                            medicineSupplier.SupplierID = import.SupplierID;
+                            medicineSupplier.BidPrice = item.Price;
+                            medicineSupplier.IsActive = true;
+                            appDBContext.tblMedicineSuppliers.Add(medicineSupplier);
+                        }
+                    }
                     else
                     {
                         //Cập nhật giá nhập thuốc dựa vào giá của đơn nhập gần nhất sau khi xóa thông tin ở đơn hiện tại
-                        var prevDetail = item.tblMedicine.tblWarehouseImportDetails.Where(o => o.IsActive).OrderByDescending(o => o.tblWarehouseImport.ImportTime).FirstOrDefault();
+                        var prevDetail = item.tblMedicine.tblWarehouseImportDetails
+                            .Where(o => o.IsActive).OrderByDescending(o => o.tblWarehouseImport.ImportTime).FirstOrDefault();
                         if (prevDetail != null)
                             item.tblMedicine.BidPrice = prevDetail.Price;
+
+                        tblMedicineSupplier medicineSupplier = appDBContext.tblMedicineSuppliers
+                            .Where(o => o.MedicineID == item.MedicineID && o.SupplierID == import.SupplierID).FirstOrDefault();
+                        if (medicineSupplier != null)
+                        {
+                            if (prevDetail == null)
+                            {
+                                medicineSupplier.IsActive = false;
+                            }
+                            else
+                            {
+                                medicineSupplier.BidPrice = prevDetail.Price;
+                                medicineSupplier.IsActive = true;
+                            }
+                        }
                     }
                 }
                 appDBContext.SaveChanges();
