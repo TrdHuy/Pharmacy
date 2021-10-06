@@ -35,6 +35,7 @@ namespace Pharmacy.Implement.Windows.BaseWindow.Utils.PageController
         ADD_OTHER_PAYMENT_PAGE = 22,
         MODIFY_OTHER_PAYMENT_PAGE = 23,
         SETTING_PAGE = 24,
+        INVENTORY_MANAGEMENT_PAGE = 25,
         USER_MODIFICATION_PAGE = 31,
         USER_INSTANTIATION_PAGE = 32,
         CUSTOMER_MODIFICATION_PAGE = 41,

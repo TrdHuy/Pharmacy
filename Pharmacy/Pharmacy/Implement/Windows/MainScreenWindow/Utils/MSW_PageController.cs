@@ -183,7 +183,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
             new Uri(PharmacyDefinitions.APP_INFO_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
             PharmacyDefinitions.APP_INFO_PAGE_LOADING_DELAY_TIME));
 
-
+        private Lazy<PageVO> InventoryManagementPage = new Lazy<PageVO>(() =>
+        new PageVO(
+            new Uri(PharmacyDefinitions.INVENTOR_MANAGEMENT_PAGE_URI_ORIGINAL_STRING, UriKind.Relative),
+            PharmacyDefinitions.INVENTORY_MANAGEMENT_PAGE_LOADING_DELAY_TIME));
 
         private MSW_PageController()
         {
@@ -241,6 +244,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                 case PageSource.WAREHOUSE_MANAGEMENT_PAGE:
                     CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PageSource.INVENTORY_MANAGEMENT_PAGE:
+                    CurrentPageOV.PageUri = InventoryManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = InventoryManagementPage.Value.LoadingDelayTime;
                     break;
                 case PageSource.ADD_MEDICINE_PAGE:
                     CurrentPageOV.PageUri = AddMedicinePage.Value.PageUri;
@@ -400,6 +407,11 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Utils
                     CurrentPageSource = PageSource.WAREHOUSE_MANAGEMENT_PAGE;
                     CurrentPageOV.PageUri = WarehouseManagementPage.Value.PageUri;
                     CurrentPageOV.LoadingDelayTime = WarehouseManagementPage.Value.LoadingDelayTime;
+                    break;
+                case PharmacyDefinitions.INVENTOR_MANAGEMENT_PAGE_URI_ORIGINAL_STRING:
+                    CurrentPageSource = PageSource.INVENTORY_MANAGEMENT_PAGE;
+                    CurrentPageOV.PageUri = InventoryManagementPage.Value.PageUri;
+                    CurrentPageOV.LoadingDelayTime = InventoryManagementPage.Value.LoadingDelayTime;
                     break;
                 case PharmacyDefinitions.USER_INSTANTIATION_PAGE_URI_ORIGINAL_STRING:
                     CurrentPageSource = PageSource.USER_INSTANTIATION_PAGE;

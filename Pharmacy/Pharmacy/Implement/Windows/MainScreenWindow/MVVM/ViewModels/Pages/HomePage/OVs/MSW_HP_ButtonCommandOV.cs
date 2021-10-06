@@ -16,6 +16,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Home
         public NavigationCommandExecuterModel MedicineManagementCommand { get; set; }
         public NavigationCommandExecuterModel SupplierManagementCommand { get; set; }
         public NavigationCommandExecuterModel WarehouseManagementCommand { get; set; }
+        public NavigationCommandExecuterModel InventoryManagementCommand { get; set; }
         public NavigationCommandExecuterModel InvoiceManagementCommand { get; set; }
         public NavigationCommandExecuterModel OtherPaymentsManagementCommand { get; set; }
         public NavigationCommandExecuterModel ReportCommand { get; set; }
@@ -63,6 +64,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Home
             WarehouseManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_WAREHOUSE_MANAGEMENT
+                    , paramaters
+                    , false);
+            });
+
+            InventoryManagementCommand = new NavigationCommandExecuterModel((paramaters) =>
+            {
+                return OnKey(KeyFeatureTag.KEY_TAG_MSW_INVENTORY_MANAGEMENT
                     , paramaters
                     , false);
             });

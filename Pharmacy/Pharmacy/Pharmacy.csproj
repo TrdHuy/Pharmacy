@@ -196,6 +196,7 @@
     <Compile Include="Implement\UIEventHandler\Listener\ActionExecuteHelper.cs" />
     <Compile Include="Implement\Utils\CustomControls\QuotableEventPage\IQuotableEvent.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActiveSuppliersOfMedicine.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\GetInventoryDataAction.cs" />
     <Compile Include="Implement\Utils\Extensions\LocalReportExtensions.cs" />
     <Compile Include="Implement\Utils\CustomControls\BusyDataGrid.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Report\GetInfoForComprehensiveReportAction.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_AppInfoAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_NavigationButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_SettingAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\MSW_InventoryManagementAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_AppUpdateButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_BugReportButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\AppInfoPage\MSW_AIP_ButtonAction.cs" />
@@ -278,6 +280,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerModification\OVs\MSW_CMP_CMoP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\CustomerManagementPage\CustomerTransaction\OVs\MSW_CMP_CTHP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePage\OVs\MSW_HP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\InventoryManagementPageViewModel.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicine\OVs\MSW_MMP_AMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicine\OVs\MSW_MMP_DBMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\MedicineManagement\OVs\MSW_MMP_ButtonCommandOV.cs" />
@@ -579,6 +584,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\UserManagement\UserModificationPage.xaml.cs">
       <DependentUpon>UserModificationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\ShowWarehouseImportInfoPage.xaml.cs">
       <DependentUpon>ShowWarehouseImportInfoPage.xaml</DependentUpon>
     </Compile>
@@ -826,6 +834,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Implement\Windows\MainScreenWindow\MVVM\Views\Pages\WarehouseManagement\ShowWarehouseImportInfoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -987,6 +999,7 @@
     <Content Include="Implement\Windows\MainScreenWindow\MVVM\Views\ReportViewers\SellingReport.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\inventory.png" />
     <Resource Include="Resources\Fonts\AdobeGothicStd-Bold.otf" />
     <Resource Include="Resources\Images\anti_bug.png" />
     <EmbeddedResource Include="Properties\Resources.resx">

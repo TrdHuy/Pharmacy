@@ -16,6 +16,7 @@
         public const string KEY_TAG_MSW_MEDICINE_MANAGEMENT = "msw_medicine_management";
         public const string KEY_TAG_MSW_OTHER_PAYMENTS_MANAGEMENT = "msw_other_payments_management";
         public const string KEY_TAG_MSW_WAREHOUSE_MANAGEMENT = "msw_warehouse_management";
+        public const string KEY_TAG_MSW_INVENTORY_MANAGEMENT = "msw_inventory_management";
         public const string KEY_TAG_MSW_REPORT = "msw_report";
         public const string KEY_TAG_MSW_SETTING = "msw_setting";
         public const string KEY_TAG_MSW_APP_INFO = "msw_app_info";

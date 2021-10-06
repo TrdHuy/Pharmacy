@@ -140,6 +140,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.AppInfo
                 {
                     switch (dataResponse.compareStatus.ToString())
                     {
+                        case "Greater":
+                            Logger.E("Response App update request = Greater. Check server side!");
+                            break;
                         case "NotCompatible":
                         case "Equal":
                             App.Current.ShowApplicationMessageBox(dataResponse.message.ToString(),

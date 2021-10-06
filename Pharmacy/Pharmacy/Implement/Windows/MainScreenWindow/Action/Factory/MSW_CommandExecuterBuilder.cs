@@ -88,6 +88,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_WAREHOUSE_MANAGEMENT:
                     commandExecuter = new MSW_WarehouseManagementAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_INVENTORY_MANAGEMENT:
+                    commandExecuter = new MSW_InventoryManagementAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_REPORT:
                     commandExecuter = new MSW_ReportAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, logger);
                     break;

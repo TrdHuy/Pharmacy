@@ -1,0 +1,383 @@
+﻿<quotableEventPage:QuotableEventPage x:Class="Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.WarehouseManagement.InventoryPage"
+                                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                     xmlns:quotableEventPage="clr-namespace:Pharmacy.Implement.Utils.CustomControls.QuotableEventPage"
+                                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                     xmlns:conv="clr-namespace:Pharmacy.Implement.Utils.Converter"
+                                     xmlns:hps="clr-namespace:HPSolutionCCDevPackage.netFramework;assembly=HPSolutionCCDevPackage.netFramework"
+                                     xmlns:vm="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InventoryManagementPage"
+                                     xmlns:uc="clr-namespace:Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.UserControls"
+                                     xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
+                                     mc:Ignorable="d"
+                                     Background="White"
+                                     x:Name="ModifyWarehouseImport"
+                                     d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
+                                     d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
+                                     FontSize="{Binding FontSizeOV.FontSizeLarge}"
+                                     Title="InventoryPage">
+
+    <Page.DataContext>
+        <vm:InventoryManagementPageViewModel x:Name="InventoryManagementPageDataContext" />
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Header-->
+            <RowDefinition Height="0.4*"
+                           MaxHeight="{StaticResource PageHeaderMaxHeight}" />
+
+            <!--Body-->
+            <RowDefinition Height="4.0375*" />
+
+            <!--Footer-->
+            <RowDefinition Height="0.5625*" />
+        </Grid.RowDefinitions>
+        <uc:PageHeader Grid.Row="0"
+                       HeaderText="Tồn kho"
+                       HeaderIcon="{StaticResource InventoryImage}" />
+
+        <!--Body area-->
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.02*" />
+                <RowDefinition Height="0.9*" />
+            </Grid.RowDefinitions>
+
+            <!--Search area-->
+            <Grid x:Name="SearchGridPanel"
+                  Margin="10,30,10,0"
+                  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="0.15*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="0.15*" />
+                </Grid.ColumnDefinitions>
+
+                <hps:HorusBox   Grid.Column="0"
+                                Padding="3"
+                                Tag="Nhập mã hoặc tên thuốc để tìm kiếm"
+                                Style="{StaticResource SearchingBoxTheme}"
+                                FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                BorderThickness="1"
+                                FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
+                                SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine}"
+                                ItemsSource="{Binding MedicineItemSource}"
+                                FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}">
+                    <hps:HorusBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0">
+                                    <Border.OpacityMask>
+                                        <ImageBrush Stretch="Uniform"
+                                                    ImageSource="{StaticResource AvatarImageOpacityMask}">
+                                        </ImageBrush>
+                                    </Border.OpacityMask>
+
+                                    <Image Stretch="Uniform"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Source="{StaticResource AppIcon}" />
+                                </Border>
+                                <TextBlock Grid.Column="1"
+                                           Foreground="Black"
+                                           Text="{Binding MedicineID}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Stretch"
+                                           FontSize="{Binding FontSizeOV.FontSizeRegular}" />
+
+                                <TextBlock Grid.Column="3"
+                                           Foreground="Black"
+                                           Text="{Binding MedicineName}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"
+                                           FontSize="{Binding FontSizeOV.FontSizeRegular}" />
+                            </Grid>
+
+
+                        </DataTemplate>
+                    </hps:HorusBox.ItemTemplate>
+                </hps:HorusBox>
+
+                <hps:HorusBox Grid.Column="2"
+                              Tag="Danh mục"
+                              Padding="3"
+                              FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                              BorderThickness="1,1,0,1"
+                              DropDownBorderBrush="Black"
+                              DropDownBorderThickness="0,1,1,1"
+                              Style="{StaticResource HorusBoxCustomNormalTheme}"
+                              IsReadOnly="True"
+                              ItemsSource="{Binding LstMedicineType}"
+                              DisplayMemberPath="MedicineTypeName"
+                              IconHeight="{Binding FontSizeOV.FontSizeLarge}"
+                              IsUsingHorusShadow="False" />
+
+                <TextBlock Text="Từ:"
+                           Grid.Column="4"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+                <cc:DatePickerCustom x:Name="dprStartDateFilter"
+                                     Grid.Column="5"
+                                     BorderThickness="1"
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+
+                <TextBlock Text="Đến: "
+                           Grid.Column="7"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+
+                <cc:DatePickerCustom x:Name="dprEndDateFilter"
+                                     Grid.Column="8"
+                                     BorderThickness="1"
+                                     FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+
+
+
+                <hps:OsirisButton Margin="10,10,10,0"
+                                  Grid.Column="5"
+                                  Grid.Row="1"
+                                  Padding="3"
+                                  TextContent="Tìm kiếm"
+                                  ProgressSpinnerSize="30"
+                                  ProgressSpinnerBackground="Black"
+                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                  BorderThickness="0"
+                                  HorizontalContentAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  IsUsingDropShadowEffect="True"
+                                  Foreground="White"
+                                  Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+
+                <hps:OsirisButton Margin="0,10,30,0"
+                                  Grid.Column="8"
+                                  Grid.Row="1"
+                                  Padding="3"
+                                  OBContentOrientation="Horizontal"
+                                  TextContent="Xuất file"
+                                  ProgressSpinnerSize="30"
+                                  ProgressSpinnerBackground="Black"
+                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                  BorderThickness="0"
+                                  IconTextGapWidth="10"
+                                  IconStretch="UniformToFill"
+                                  IconSource="{StaticResource ExcelImport}"
+                                  IconHeight="{Binding FontSizeOV.FontSizeXLarge}"
+                                  IconWidth="{Binding FontSizeOV.FontSizeXLarge}"
+                                  HorizontalContentAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  IsUsingDropShadowEffect="True"
+                                  Foreground="White"
+                                  Background="{StaticResource NormalTheme_LightGreenBrush}" />
+            </Grid>
+
+            <!--Data area-->
+            <Grid x:Name="MainDataGridPanel"
+                  Grid.Row="2">
+
+                <cc:BusyDataGrid x:Name="InventoryDataGrid"
+                                 IsReadOnly="True"
+                                 VerticalAlignment="Top"
+                                 CanUserAddRows="False"
+                                 WaitingIconSource="{StaticResource AppIcon}"
+                                 IsBusy="{Binding IsDataGridLoading}"
+                                 CanUserDeleteRows="False"
+                                 AutoGenerateColumns="False"
+                                 Height="{Binding ElementName=MainDataGridPanel,Path=ActualHeight}"
+                                 ItemsSource="{Binding InventoryDataSource}"
+                                 Margin="10,0,10,0"
+                                 SelectionMode="Single"
+                                 HorizontalGridLinesBrush="White"
+                                 VerticalGridLinesBrush="White"
+                                 HeadersVisibility="Column"
+                                 VerticalScrollBarVisibility="Auto"
+                                 HorizontalScrollBarVisibility="Auto"
+                                 Style="{StaticResource DefaultBusyDataGridStyle}">
+                    <DataGrid.Resources>
+
+                        <Style TargetType="DataGridCell"
+                               x:Key="DGTextCell">
+                            <Setter Property="IsTabStop"
+                                    Value="False" />
+
+                            <Setter Property="TextBox.IsReadOnly"
+                                    Value="True" />
+
+                            <Setter Property="FontSize"
+                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge, ElementName=CMP}" />
+
+                            <Setter Property="Foreground"
+                                    Value="Black" />
+
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DataGridCell">
+                                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Grid Background="{TemplateBinding Background}">
+                                                <ContentPresenter Focusable="False"
+                                                                  HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  Content="{TemplateBinding Content}">
+
+                                                </ContentPresenter>
+                                            </Grid>
+                                        </Border>
+
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+
+                            <Setter Property="BorderThickness"
+                                    Value="1" />
+
+                            <Setter Property="BorderBrush"
+                                    Value="White" />
+
+                            <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_ColumnHeaderHeight}" />
+
+                            <Setter Property="Background"
+                                    Value="{StaticResource NormalTheme_DefaultDataGrid_ColumnHeaderBackgroundBrush}" />
+
+                            <Setter Property="Foreground"
+                                    Value="White" />
+
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Center" />
+
+                            <Setter Property="FontSize"
+                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=CMP}" />
+
+                        </Style>
+
+                    </DataGrid.ColumnHeaderStyle>
+
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Style.Resources>
+                                <SolidColorBrush  x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                                  Color="{StaticResource NormalTheme_3rd_Color}" />
+                            </Style.Resources>
+
+                            <Setter Property="Height"
+                                    Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                        </Style>
+
+                    </DataGrid.RowStyle>
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="STT">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="ID" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Danh mục">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Med.tblMedicineType.MedicineTypeName" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="1.75*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Tên thuốc">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Med.MedicineName" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="1.75*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Binding="{Binding Path=ImportDate, 
+                                                Converter={conv:SystemDateTimeToStringConverter},
+                                                ConverterParameter=DATE}"
+                                            Header="Ngày nhập">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="1.75*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Đơn vị">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="Med.tblMedicineUnit.MedicineUnitName" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="1.75*"
+                                            CellStyle="{StaticResource DGTextCell}"
+                                            Header="Tồn kho">
+                            <DataGridTextColumn.Binding>
+                                <Binding Path="TotalQuantity" />
+                            </DataGridTextColumn.Binding>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </cc:BusyDataGrid>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</quotableEventPage:QuotableEventPage>

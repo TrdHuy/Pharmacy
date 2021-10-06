@@ -142,6 +142,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_WAREHOUSE_IMPORT_DATA_CMD_KEY:
                     _result = new GetAllActiveWarehouseImportDataAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_INVENTORY_DATA_CMD_KEY:
+                    _result = new GetInventoryDataAction().Execute(_appDBContext, paramaters);
+                    break;
                 case SQLCommandKey.SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY:
                     _result = new SetWarehouseImportDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
@@ -301,6 +304,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for getting info of all active warehouse import data in database
         public const string GET_ALL_ACTIVE_WAREHOUSE_IMPORT_DATA_CMD_KEY = "get_all_active_warehouse_import_data";
+
+        //Key for getting info of inventory data in database
+        public const string GET_INVENTORY_DATA_CMD_KEY = "get_inventory_data_cmd_key";
 
         //Key for set a warehouse import deactive
         public const string SET_WAREHOUSE_IMPORT_DEACTIVE_CMD_KEY = "set_warehouse_import_deactive";

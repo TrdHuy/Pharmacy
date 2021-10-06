@@ -15,7 +15,7 @@
         <Setter Property="IsUsingHorusPopupShadow"
                 Value="True" />
         <Setter Property="IsUsingHorusShadow"
-                Value="True" />
+                Value="False" />
         <Setter Property="IsTextSearchEnabled"
                 Value="True" />
         <Setter Property="PopupBackground"

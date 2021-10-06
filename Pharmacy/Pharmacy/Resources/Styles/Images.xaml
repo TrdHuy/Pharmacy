@@ -51,7 +51,10 @@
 
     <BitmapImage x:Key="BillIcon"
                  UriSource="/Pharmacy;component/Resources/Icons/bill_icon.png" />
-
+    
+    <BitmapImage x:Key="InventoryImage"
+                 UriSource="/Pharmacy;component/Resources/Images/inventory.png" />
+    
     <BitmapImage x:Key="DefaultCustomerImage"
                  UriSource="/Pharmacy;component/Resources/Images/customer_default_icon.png" />
 

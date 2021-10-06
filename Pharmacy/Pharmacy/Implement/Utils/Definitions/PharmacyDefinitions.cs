@@ -56,6 +56,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public const string CUSTOMER_DEBTS_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerTransaction/CustomerDebtsPage.xaml";
         public const string CUSTOMER_BILL_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/CustomerManagement/CustomerTransaction/CustomerBillPage.xaml";
         public const string ADD_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/AddWarehouseImportPage.xaml";
+        public const string INVENTOR_MANAGEMENT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/InventoryPage.xaml";
         public const string MODIFY_WAREHOUSE_IMPORT_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/ModifyWarehouseImportPage.xaml";
         public const string SHOW_WAREHOUSE_IMPORT_INFO_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/WarehouseManagement/ShowWarehouseImportInfoPage.xaml";
         public const string ADD_SUPPLIER_PAGE_URI_ORIGINAL_STRING = "/Pharmacy;component/Implement/Windows/MainScreenWindow/MVVM/Views/Pages/SupplierManagement/AddSupplierPage.xaml";
@@ -80,6 +81,7 @@ namespace Pharmacy.Implement.Utils.Definitions
         public static readonly long MEDICINE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long OTHER_PAYMENT_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long WAREHOUSE_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
+        public static readonly long INVENTORY_MANAGEMENT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long REPORT_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long USER_MODIFICATION_PAGE_LOADING_DELAY_TIME = 1000;
         public static readonly long USER_INSTANTIATION_PAGE_LOADING_DELAY_TIME = 500;
