@@ -193,6 +193,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_CMD_KEY:
                     _result = new GetInfoForComprehensiveReportAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_ALL_ACTIVE_SUPPLIERS_OF_MEDICINE:
+                    _result = new GetAllActiveSuppliersOfMedicineDataAction().Execute(_appDBContext, paramaters);
+                    break;
                 default:
                     break;
             }
@@ -349,6 +352,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for get all info for Comprehensive report
         public const string GET_ALL_ACTIVE_INFO_FOR_COMPREHENSIVE_REPORT_CMD_KEY = "get_all_active_info_for_comprehensive_report";
+
+        //Key for get all active suppliers of medicine
+        public const string GET_ALL_ACTIVE_SUPPLIERS_OF_MEDICINE = "get_all_active_suppliers_of_medicine";
     }
 
     public class SQLQueryResult

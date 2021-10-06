@@ -17,8 +17,8 @@ namespace Pharmacy
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblSupplier()
         {
-            this.tblMedicines = new HashSet<tblMedicine>();
             this.tblWarehouseImports = new HashSet<tblWarehouseImport>();
+            this.tblMedicineSuppliers = new HashSet<tblMedicineSupplier>();
         }
     
         public int SupplierID { get; set; }
@@ -30,8 +30,8 @@ namespace Pharmacy
         public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblMedicine> tblMedicines { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblWarehouseImport> tblWarehouseImports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMedicineSupplier> tblMedicineSuppliers { get; set; }
     }
 }

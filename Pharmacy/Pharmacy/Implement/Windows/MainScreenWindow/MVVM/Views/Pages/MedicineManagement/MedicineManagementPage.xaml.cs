@@ -20,10 +20,5 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.MedicineM
         {
             ((MedicineManagementPageViewModel)DataContext).SearchTextChangedCommand.Execute(sender, e, DataGrid, this);
         }
-
-        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            ((MedicineManagementPageViewModel)DataContext).ShowMedicineInfoCommand.Execute(sender, e, DataGrid, this);
-        }
     }
 }

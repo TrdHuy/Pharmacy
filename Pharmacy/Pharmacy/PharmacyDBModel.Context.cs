@@ -26,7 +26,6 @@ namespace Pharmacy
         }
     
         public virtual DbSet<tblCustomer> tblCustomers { get; set; }
-        public virtual DbSet<tblMedicine> tblMedicines { get; set; }
         public virtual DbSet<tblMedicineType> tblMedicineTypes { get; set; }
         public virtual DbSet<tblMedicineUnit> tblMedicineUnits { get; set; }
         public virtual DbSet<tblOrder> tblOrders { get; set; }
@@ -37,5 +36,7 @@ namespace Pharmacy
         public virtual DbSet<tblWarehouseImport> tblWarehouseImports { get; set; }
         public virtual DbSet<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
         public virtual DbSet<tblOrderDetail> tblOrderDetails { get; set; }
+        public virtual DbSet<tblMedicineSupplier> tblMedicineSuppliers { get; set; }
+        public virtual DbSet<tblMedicine> tblMedicines { get; set; }
     }
 }

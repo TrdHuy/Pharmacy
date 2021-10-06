@@ -29,7 +29,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.MedicineManagemen
                 medicine.MedicineName = updateMedicine.MedicineName;
                 medicine.MedicineTypeID = updateMedicine.MedicineTypeID;
                 medicine.MedicineUnitID = updateMedicine.MedicineUnitID;
-                medicine.SupplierID = updateMedicine.SupplierID;
                 medicine.BidPrice = updateMedicine.BidPrice;
                 medicine.AskingPrice = updateMedicine.AskingPrice;
                 medicine.MedicineDescription = updateMedicine.MedicineDescription;

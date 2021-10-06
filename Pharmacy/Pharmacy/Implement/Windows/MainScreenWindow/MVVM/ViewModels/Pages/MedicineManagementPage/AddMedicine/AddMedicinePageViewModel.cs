@@ -33,7 +33,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public int MedicineNameCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int MedicineTypeCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int MedicineUnitCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-        public int SupplierCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int BidPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int AskingPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
       
@@ -45,7 +44,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                     && MedicineNameCheckingStatus == 1
                     && MedicineTypeCheckingStatus == 1
                     && MedicineUnitCheckingStatus == 1
-                    && SupplierCheckingStatus == 1
                     && BidPriceCheckingStatus == 1
                     && AskingPriceCheckingStatus == 1;
             }
@@ -98,18 +96,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 CheckMedicineUnit();
             }
         }
-        public int SupplierID
-        {
-            get
-            {
-                return _supplierID;
-            }
-            set
-            {
-                _supplierID = value;
-                CheckSupplier();
-            }
-        }
         public decimal BidPrice
         {
             get
@@ -142,7 +128,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private string _medicineName = "";
         private int _medicineTypeID = -1;
         private int _medicineUnitID = -1;
-        private int _supplierID = -1;
         private decimal _bidPrice;
         private decimal _askingPrice;
 
@@ -225,15 +210,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             else
                 MedicineUnitCheckingStatus = -1;
             Invalidate("MedicineUnitCheckingStatus");
-        }
-
-        private void CheckSupplier()
-        {
-            if (SupplierID != -1)
-                SupplierCheckingStatus = 1;
-            else
-                SupplierCheckingStatus = -1;
-            Invalidate("SupplierCheckingStatus");
         }
 
         private void CheckBidPrice()
