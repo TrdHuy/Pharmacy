@@ -38,6 +38,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
             medicine.MedicineName = AMPViewModel.MedicineName.Trim();
             medicine.MedicineTypeID = AMPViewModel.LstMedicineType[AMPViewModel.MedicineTypeID].MedicineTypeID;
             medicine.MedicineUnitID = AMPViewModel.LstMedicineUnit[AMPViewModel.MedicineUnitID].MedicineUnitID;
+            medicine.SupplierID = AMPViewModel.LstSupplier[AMPViewModel.SupplierID].SupplierID;
             medicine.BidPrice = AMPViewModel.BidPrice;
             medicine.AskingPrice = AMPViewModel.AskingPrice;
             medicine.MedicineDescription = AMPViewModel.MedicineDescription;

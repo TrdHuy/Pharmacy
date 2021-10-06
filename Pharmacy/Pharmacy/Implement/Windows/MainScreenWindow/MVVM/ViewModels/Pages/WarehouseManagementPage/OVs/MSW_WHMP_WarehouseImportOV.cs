@@ -16,7 +16,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public string SupplierName { get; set; }
         public decimal PurchasePrice { get; set; }
         public decimal TotalPrice { get; set; }
-        public decimal RemainPrice { get; set; }
         public string ImportDescription { get; set; }
         public List<tblWarehouseImportDetail> tblWarehouseImportDetails { get; set; }
 

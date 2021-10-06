@@ -71,7 +71,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                         detail.TotalPrice = item.TotalPrice;
                         detail.SupplierID = item.SupplierID;
                         detail.SupplierName = item.tblSupplier.SupplierName;
-                        detail.RemainPrice = detail.TotalPrice - detail.PurchasePrice;
                         detail.tblWarehouseImportDetails = item.tblWarehouseImportDetails.Where(o => o.IsActive).ToList();
 
                         WarehouseImportItemSource.Add(detail);

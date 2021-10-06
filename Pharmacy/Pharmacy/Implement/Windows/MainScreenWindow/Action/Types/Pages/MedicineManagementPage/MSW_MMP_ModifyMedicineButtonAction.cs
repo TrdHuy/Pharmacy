@@ -3,24 +3,19 @@ using Pharmacy.Implement.Windows.BaseWindow.Utils.PageController;
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.Windows.Controls;
-using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.MedicineManagement.OVs;
-using System.Linq;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage
 {
     internal class MSW_MMP_ModifyMedicineButtonAction : MSW_MMP_ButtonAction
     {
-        public MSW_MMP_ModifyMedicineButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) {
-        
-        }
+        public MSW_MMP_ModifyMedicineButtonAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
 
         protected override void ExecuteCommand()
         {
             base.ExecuteCommand();
             DataGrid ctrl = DataTransfer[0] as DataGrid;
 
-            var selectedItem = ctrl.SelectedItem as MSW_MMP_MedicineOV;
-            MSW_DataFlowHost.Current.CurrentModifiedMedicine = MMPViewModel.LstMedicine.Where(o=>o.MedicineID==selectedItem.MedicineID).FirstOrDefault();
+            MSW_DataFlowHost.Current.CurrentModifiedMedicine = ctrl.SelectedItem as tblMedicine;
             PageHost.UpdateCurrentPageSource(PageSource.MODIFY_MEDICINE_PAGE);
         }
     }

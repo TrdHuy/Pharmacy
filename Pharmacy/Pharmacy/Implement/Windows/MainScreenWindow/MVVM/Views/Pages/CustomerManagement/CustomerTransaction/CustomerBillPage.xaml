@@ -271,7 +271,7 @@
 
                             <hps:HorusBox Grid.Column="2"
                                           Style="{StaticResource SearchingBoxTheme}"
-                                          Tag="Nhập mã hoặc tên thuốc để tìm kiếm"
+                                          Tag="Nhập thuốc tại đây"
                                           IsEnabled="{Binding IsEnableEdittingBill,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                           BorderThickness="1"
                                           FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"

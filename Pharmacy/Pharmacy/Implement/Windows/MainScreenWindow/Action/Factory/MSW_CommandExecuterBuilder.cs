@@ -199,6 +199,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_EDIT_BUTTON:
                     viewModelCommandExecuter = new MSW_MMP_ModifyMedicineButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
+                case KeyFeatureTag.KEY_TAG_MSW_MMP_SHOW_INFO_BUTTON:
+                    viewModelCommandExecuter = new MSW_MMP_ShowMedicineInfoButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
                 case KeyFeatureTag.KEY_TAG_MSW_MMP_PRINT_MEDICINE_BUTTON:
                     viewModelCommandExecuter = new MSW_MMP_PrintMedicineListButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;

@@ -44,7 +44,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
                 InvalidateOwn();
             }
         }
-        public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
         public string InvoiceImageURL { get; set; } = "";
         public string NoteString { get; set; } = "";
         public string MedicineQuantity { get; set; }
@@ -63,6 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         public decimal NetPrice { get; set; }
         public MSW_WHMP_MWIP_ButtonCommandOV ButtonCommandOV { get; set; }
 
+        private List<tblMedicine> _lstMedicineFull;
         private tblMedicine _selectedMedicine;
         private decimal _purchasedPrice;
 
@@ -71,8 +71,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_WHMP_MWIP_ButtonCommandOV(this);
-            InitImportDetail();
             InstantiateItems();
+            InitImportDetail();
         }
 
         protected override void OnInitialized()
@@ -86,7 +86,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             Invalidate("TotalPrice");
             Invalidate("NetPrice");
         }
-
+   
         private void InstantiateItems()
         {
             GetMedicineList();
@@ -98,11 +98,21 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
-                    LstMedicine = new ObservableCollection<tblMedicine>((queryResult.Result as List<tblMedicine>).OrderBy(o => o.MedicineName));
+                    _lstMedicineFull = queryResult.Result as List<tblMedicine>;
                 }
             });
             DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY
                     , _sqlCmdObserver);
+        }
+
+        private void UpdateMedicineListBySupplier()
+        {
+            if (ImportInfo != null)
+            {
+                LstMedicine = new ObservableCollection<tblMedicine>(_lstMedicineFull.Where(o => o.SupplierID == ImportInfo.SupplierID).OrderBy(o => o.MedicineName));
+                Invalidate("LstMedicine");
+                SelectedMedicine = null;
+            }
         }
 
         private void UpdateNetPrice()
@@ -114,6 +124,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
         private void InitImportDetail()
         {
             ImportInfo = MSW_DataFlowHost.Current.CurrentModifiedWarehouseImport;
+            UpdateMedicineListBySupplier();
             NoteString = ImportInfo.ImportDescription;
             MedicinePrice = 0;
             MedicineQuantity = "";

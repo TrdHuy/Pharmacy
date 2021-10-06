@@ -87,6 +87,13 @@
                        Margin="0,7,4,7"
                        Text="Đơn vị tính:*" />
 
+            <TextBlock Grid.Column="0"
+                       Grid.Row="8"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       Margin="0,7,2,7"
+                       Text="Nhà cung cấp:*" />
+
             <TextBlock Grid.Column="2"
                        Grid.Row="0"
                        VerticalAlignment="Center"
@@ -240,6 +247,43 @@
                                         Value="Hãy chọn đơn vị tính trong danh sách" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding MedicineUnitCheckingStatus}"
+                                         Value="1">
+                                <Setter Property="Visibility"
+                                        Value="Hidden" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <hps:HorusBox VerticalContentAlignment="Center"
+                          Grid.Column="1"
+                          Grid.Row="8"
+                          ItemsSource="{Binding LstSupplier}"
+                          DisplayMemberPath="SupplierName"
+                          SelectedIndex="{Binding SupplierID}"
+                          Style="{StaticResource HorusBoxCustomNormalTheme}"
+                          Margin="3" />
+
+            <TextBlock Grid.Row="9"
+                       Grid.Column="1"
+                       FontSize="{Binding FontSizeOV.FontSizeXSmall}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="3,0,0,0">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SupplierCheckingStatus}"
+                                         Value="-1">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                                <Setter Property="Foreground"
+                                        Value="Red" />
+                                <Setter Property="Text"
+                                        Value="Hãy chọn nhà cung cấp trong danh sách" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SupplierCheckingStatus}"
                                          Value="1">
                                 <Setter Property="Visibility"
                                         Value="Hidden" />

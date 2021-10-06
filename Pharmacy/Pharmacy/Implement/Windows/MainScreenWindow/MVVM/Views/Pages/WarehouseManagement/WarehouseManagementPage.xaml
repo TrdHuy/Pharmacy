@@ -184,7 +184,7 @@
                     </Style.Resources>
 
                     <Setter Property="Height"
-                            Value="{StaticResource DefaultDataGrid_RowHeight}" />
+                            Value="{StaticResource DefaultDataGrid_HavingListBox_RowHeight}" />
                     <EventSetter Event="MouseDoubleClick"
                                  Handler="DataGridRow_MouseDoubleClick" />
                 </Style>
@@ -192,34 +192,58 @@
             </DataGrid.RowStyle>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*"
+                <DataGridTextColumn Width="auto"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Thời gian"
                                     Binding="{Binding ImportTime, Converter={conv:SystemDateTimeToStringConverter}, ConverterParameter=DATETIME}" />
 
-                <DataGridTextColumn Width="2*"
+                <DataGridTextColumn Width="auto"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Nhà cung cấp"
                                     Binding="{Binding SupplierName}" />
 
-                <DataGridTextColumn Width="*"
+                <DataGridTemplateColumn CanUserResize="False"
+                                        Width="1.5*"
+                                        Header="Danh sách thuốc">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <ListBox ItemsSource="{Binding tblWarehouseImportDetails}"
+                                         FontSize="{Binding FontSizeOV.FontSizeSmall}" Background="Transparent">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel VirtualizingPanel.CacheLength="10"
+                                                                    VirtualizingPanel.CacheLengthUnit="Item" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListBoxItem}">
+                                            <Setter Property="HorizontalContentAlignment"
+                                                    Value="Stretch" />
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding tblMedicine.MedicineName}"
+                                                     IsReadOnly="True"
+                                                     BorderThickness="0"
+                                                     Background="Transparent" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Width="auto"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Thành tiền"
                                     Binding="{Binding TotalPrice, StringFormat=#\,##0 VND}" />
 
-                <DataGridTextColumn Width="*"
-                                    CellStyle="{StaticResource DGTextCell}"
-                                    Header="Đã thanh toán"
-                                    Binding="{Binding PurchasePrice, StringFormat=#\,##0 VND}" />
-
-                <DataGridTextColumn Width="*"
-                                    CellStyle="{StaticResource DGTextCell}"
-                                    Header="Còn lại"
-                                    Binding="{Binding RemainPrice, StringFormat=#\,##0 VND}" />
-
                 <!--Edit column-->
                 <DataGridTemplateColumn CanUserResize="False"
-                                        Width="*"
+                                        Width="0.5*"
                                         MaxWidth="{StaticResource DefaultDataGrid_MaxWidthEditColumn}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

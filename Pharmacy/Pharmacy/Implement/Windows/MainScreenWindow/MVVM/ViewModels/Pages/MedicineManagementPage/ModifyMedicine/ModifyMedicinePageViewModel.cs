@@ -6,7 +6,6 @@ using Pharmacy.Implement.Utils.InputCommand;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MedicineManagementPage.ModifyMedicine.OVs;
 using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.MSW_BasePageVM;
 using Pharmacy.Implement.Windows.MainScreenWindow.Utils;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
@@ -20,13 +19,14 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         public MSW_MMP_MMoP_ButtonCommandOV ButtonCommandOV { get; set; }
         public ObservableCollection<tblMedicineType> LstMedicineType { get; set; }
         public ObservableCollection<tblMedicineUnit> LstMedicineUnit { get; set; }
-        public ObservableCollection<tblMedicineSupplier> LstSupplier { get; set; }
+        public ObservableCollection<tblSupplier> LstSupplier { get; set; }
         public int MedicineNameCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int MedicineTypeCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int MedicineUnitCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
+        public int SupplierCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int BidPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
         public int AskingPriceCheckingStatus { get; set; } = -1; //-1:Invalid 0:Checking 1:Valid
-
+        
         public bool IsSaveButtonCanPerform
         {
             get
@@ -34,6 +34,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 return MedicineNameCheckingStatus == 1
                     && MedicineTypeCheckingStatus == 1
                     && MedicineUnitCheckingStatus == 1
+                    && SupplierCheckingStatus == 1
                     && BidPriceCheckingStatus == 1
                     && AskingPriceCheckingStatus == 1;
             }
@@ -89,6 +90,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
                 InvalidateOwn();
             }
         }
+        public int SupplierID
+        {
+            get
+            {
+                return _supplierID;
+            }
+            set
+            {
+                _supplierID = value;
+                CheckSupplier();
+                InvalidateOwn();
+            }
+        }
         public decimal BidPrice
         {
             get
@@ -124,6 +138,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         private string _medicineName = "";
         private int _medicineTypeID = -1;
         private int _medicineUnitID = -1;
+        private int _supplierID = -1;
         private decimal _bidPrice = 0;
         private decimal _askingPrice = 0;
         private tblMedicine _modifiedMedicine;
@@ -148,33 +163,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             MedicineName = _modifiedMedicine.MedicineName;
             MedicineTypeID = LstMedicineType.IndexOf(_modifiedMedicine.tblMedicineType);
             MedicineUnitID = LstMedicineUnit.IndexOf(_modifiedMedicine.tblMedicineUnit);
+            SupplierID = LstSupplier.IndexOf(_modifiedMedicine.tblSupplier);
             BidPrice = _modifiedMedicine.BidPrice;
             AskingPrice = _modifiedMedicine.AskingPrice;
             MedicineDescription = _modifiedMedicine.MedicineDescription;
 
             GetWarehouseImportDetail();
-            GetListSupplier();
             MedicineImageSource = FileIOUtil.
                 GetBitmapFromName(_modifiedMedicine.MedicineID.ToString(), FileIOUtil.MEDICINE_IMAGE_FOLDER_NAME).
                 ToImageSource();
-        }
-
-        private void GetListSupplier()
-        {
-            SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
-            {
-                if (queryResult.MesResult == MessageQueryResult.Done)
-                {
-                    LstSupplier = new ObservableCollection<tblMedicineSupplier>(queryResult.Result as List<tblMedicineSupplier>);
-                }
-                else
-                {
-                    LstSupplier = new ObservableCollection<tblMedicineSupplier>();
-                }
-            });
-            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_SUPPLIERS_OF_MEDICINE
-                    , _sqlCmdObserver
-                    , MedicineID);
         }
 
         private void GetWarehouseImportDetail()
@@ -183,8 +180,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
-                    var result = queryResult.Result as List<tblWarehouseImportDetail>;
-                    LstWarehouseImportDetail = new ObservableCollection<tblWarehouseImportDetail>(result.GetRange(0, result.Count <= 10 ? result.Count : 10));
+                    LstWarehouseImportDetail = new ObservableCollection<tblWarehouseImportDetail>(queryResult.Result as List<tblWarehouseImportDetail>);
                 }
                 else
                 {
@@ -223,6 +219,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             Invalidate("MedicineUnitCheckingStatus");
         }
 
+        private void CheckSupplier()
+        {
+            if (SupplierID != -1)
+                SupplierCheckingStatus = 1;
+            else
+                SupplierCheckingStatus = -1;
+            Invalidate("SupplierCheckingStatus");
+        }
+
         private void CheckBidPrice()
         {
             if (BidPrice >= 0)
@@ -245,6 +250,24 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
         {
             GetListOfMedicineType();
             GetListOfMedicineUnit();
+            GetListOfSupplier();
+        }
+
+        private void GetListOfSupplier()
+        {
+            SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
+            {
+                if (queryResult.MesResult == MessageQueryResult.Done)
+                {
+                    LstSupplier = new ObservableCollection<tblSupplier>(queryResult.Result as List<tblSupplier>);
+                }
+                else
+                {
+                    LstSupplier = new ObservableCollection<tblSupplier>();
+                }
+            });
+            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_ACTIVE_SUPPLIER_DATA_CMD_KEY
+                    , _sqlCmdObserver);
         }
 
         private void GetListOfMedicineUnit()
