@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daafb883_e7539a49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-10-07T16:55:14Z",
+      "side": 1,
+      "message": "- Font của grid view\n- STT bắt đầu từ 1\n- Mặc định combobox loại thuốc là \"Tất cả\"\n- Nút reset \u003d\u003e xoá filter text và reset filter loại thuốc thành \"Tất cả\"\n- Đưa nút Xuất Excel xuống góc dưới\n- Cột ngày nhập hiển thị ngày-giờ nhập",
+      "revId": "7345b16712088bbc70baefa4990f9e919ef38c27",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}
