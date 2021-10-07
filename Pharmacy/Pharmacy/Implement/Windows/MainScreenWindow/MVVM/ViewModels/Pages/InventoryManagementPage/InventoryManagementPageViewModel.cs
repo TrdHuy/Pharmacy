@@ -8,25 +8,85 @@ using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inventor
 using System.Dynamic;
 using System;
 using Pharmacy.Implement.Utils.Definitions;
+using System.ComponentModel;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InventoryManagementPage
 {
     internal class InventoryManagementPageViewModel : MSW_BasePageViewModel
     {
         private static Logger L = new Logger("InventoryManagementPageViewModel");
-
-        public MSW_IMP_ButtonCommandOV ButtonCommandOV { get; set; }
-        public MSW_IMP_MedicineOV MedicineOV { get; set; }
-        public ObservableCollection<tblMedicineType> LstMedicineType { get; set; }
-        public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
-        public ObservableCollection<object> InventoryDataSource { get; set; }
+        private ObservableCollection<object> _inventoryDataSource;
+        private ObservableCollection<tblMedicine> _medicineItemSource;
+        private ObservableCollection<tblMedicineType> _lstMedicineType;
+        private bool _isDataGridLoading;
 
         protected override Logger logger => L;
 
+        [Bindable(true)]
+        public MSW_IMP_ButtonCommandOV ButtonCommandOV { get; set; }
+        [Bindable(true)]
+        public MSW_IMP_MedicineOV MedicineOV { get; set; }
+        [Bindable(true)]
+        public MSW_IMP_EventCommandOV EventCommandOV { get; set; }
+        [Bindable(true)]
+        public ObservableCollection<tblMedicineType> LstMedicineType
+        {
+            get
+            {
+                return _lstMedicineType;
+            }
+            set
+            {
+                _lstMedicineType = value;
+                InvalidateOwn();
+            }
+        }
+        [Bindable(true)]
+        public ObservableCollection<tblMedicine> MedicineItemSource
+        {
+            get
+            {
+                return _medicineItemSource;
+            }
+            set
+            {
+                _medicineItemSource = value;
+                InvalidateOwn();
+            }
+        }
+        [Bindable(true)]
+        public ObservableCollection<object> InventoryDataSource
+        {
+            get
+            {
+                return _inventoryDataSource;
+            }
+            set
+            {
+                _inventoryDataSource = value;
+                InvalidateOwn();
+            }
+        }
+        [Bindable(true)]
+        public bool IsDataGridLoading
+        {
+            get
+            {
+                return _isDataGridLoading;
+            }
+            set
+            {
+                _isDataGridLoading = value;
+                InvalidateOwn();
+            }
+        }
+
+        
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_IMP_ButtonCommandOV(this);
             MedicineOV = new MSW_IMP_MedicineOV(this);
+            EventCommandOV = new MSW_IMP_EventCommandOV(this);
             InitData();
 
         }
@@ -59,8 +119,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
                         "Lỗi!");
                 }
             });
-            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_INVENTORY_DATA_CMD_KEY
-                    , _sqlCmdObserver);
+            DbManager.Instance.ExecuteQueryAsync(true, SQLCommandKey.GET_INVENTORY_DATA_CMD_KEY,
+               PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
+               _sqlCmdObserver);
         }
 
         private void GetListOfMedicineType()
@@ -105,7 +166,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
             DbManager.Instance.ExecuteQueryAsync(true, SQLCommandKey.GET_ALL_ACTIVE_MEDICINE_DATA_CMD_KEY,
                PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
                _sqlCmdObserver);
-           
+
         }
     }
 }

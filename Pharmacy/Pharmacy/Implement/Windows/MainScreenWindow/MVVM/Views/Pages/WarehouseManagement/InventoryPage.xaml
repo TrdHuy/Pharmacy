@@ -66,61 +66,18 @@
                     <ColumnDefinition Width="0.15*" />
                 </Grid.ColumnDefinitions>
 
-                <hps:HorusBox   Grid.Column="0"
-                                Padding="3"
-                                Tag="Nhập mã hoặc tên thuốc để tìm kiếm"
-                                Style="{StaticResource SearchingBoxTheme}"
-                                FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                BorderThickness="1"
-                                FilterText="{Binding MedicineOV.MedicineTextSearch,Mode=TwoWay}"
-                                SelectedItem="{Binding MedicineOV.CurrentSelectedMedicine}"
-                                ItemsSource="{Binding MedicineItemSource}"
-                                FilterPathItems="{Binding MedicineOV.MedicineFilterPathList}">
-                    <hps:HorusBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="10" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Border Grid.Column="0">
-                                    <Border.OpacityMask>
-                                        <ImageBrush Stretch="Uniform"
-                                                    ImageSource="{StaticResource AvatarImageOpacityMask}">
-                                        </ImageBrush>
-                                    </Border.OpacityMask>
-
-                                    <Image Stretch="Uniform"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Source="{StaticResource AppIcon}" />
-                                </Border>
-                                <TextBlock Grid.Column="1"
-                                           Foreground="Black"
-                                           Text="{Binding MedicineID}"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Stretch"
-                                           FontSize="{Binding FontSizeOV.FontSizeRegular}" />
-
-                                <TextBlock Grid.Column="3"
-                                           Foreground="Black"
-                                           Text="{Binding MedicineName}"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Right"
-                                           FontSize="{Binding FontSizeOV.FontSizeRegular}" />
-                            </Grid>
-
-
-                        </DataTemplate>
-                    </hps:HorusBox.ItemTemplate>
-                </hps:HorusBox>
+                <hps:AkerTextBox   Grid.Column="0"
+                                   Padding="3"
+                                   TextChanged="SearchTextBox_TextChanged"
+                                   Tag="Nhập mã hoặc tên thuốc để tìm kiếm"
+                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                   BorderThickness="1">
+                </hps:AkerTextBox>
 
                 <hps:HorusBox Grid.Column="2"
                               Tag="Danh mục"
                               Padding="3"
+                              SelectionChanged="MedTypeSearchbox_SelectionChanged"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               BorderThickness="1,1,0,1"
                               DropDownBorderBrush="Black"
@@ -154,42 +111,79 @@
                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
 
+                <Grid  Grid.Column="5"
+                       Grid.Row="1"
+                       Margin="0,10,0,0"
+                       Grid.ColumnSpan="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="0.5*" />
+                    </Grid.ColumnDefinitions>
+                    <hps:OsirisButton Padding="3"
+                                      TextContent="Tìm kiếm"
+                                      ProgressSpinnerSize="30"
+                                      ProgressSpinnerBackground="Black"
+                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                      BorderThickness="0"
+                                      Command="{Binding ButtonCommandOV.SearchButtonCommand}"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      IsUsingDropShadowEffect="True"
+                                      Foreground="White"
+                                      Background="{StaticResource NormalTheme_1st_Background_Brush}">
+                        <hps:OsirisButton.CommandParameter>
+                            <MultiBinding Converter="{conv:MultiBindingConverter}">
+                                <Binding ElementName="dprStartDateFilter" />
+                                <Binding ElementName="dprEndDateFilter" />
+                            </MultiBinding>
+                        </hps:OsirisButton.CommandParameter>
+                    </hps:OsirisButton>
 
-                <hps:OsirisButton Margin="10,10,10,0"
-                                  Grid.Column="5"
-                                  Grid.Row="1"
-                                  Padding="3"
-                                  TextContent="Tìm kiếm"
-                                  ProgressSpinnerSize="30"
-                                  ProgressSpinnerBackground="Black"
-                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                  BorderThickness="0"
-                                  HorizontalContentAlignment="Center"
-                                  VerticalContentAlignment="Center"
-                                  IsUsingDropShadowEffect="True"
-                                  Foreground="White"
-                                  Background="{StaticResource NormalTheme_1st_Background_Brush}" />
+                  
+                    <hps:OsirisButton Padding="3"
+                                      Grid.Column="2"
+                                      OBContentOrientation="Horizontal"
+                                      TextContent="Xuất file"
+                                      ProgressSpinnerSize="30"
+                                      ProgressSpinnerBackground="Black"
+                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                      BorderThickness="0"
+                                      Command="{Binding ButtonCommandOV.ExportExcelButtonCommand}"
+                                      IconTextGapWidth="10"
+                                      IconStretch="UniformToFill"
+                                      IconSource="{StaticResource ExcelImport}"
+                                      IconHeight="{Binding FontSizeOV.FontSizeXLarge}"
+                                      IconWidth="{Binding FontSizeOV.FontSizeXLarge}"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      IsUsingDropShadowEffect="True"
+                                      Foreground="White"
+                                      Background="{StaticResource NormalTheme_LightGreenBrush}" />
 
-                <hps:OsirisButton Margin="0,10,30,0"
-                                  Grid.Column="8"
-                                  Grid.Row="1"
-                                  Padding="3"
-                                  OBContentOrientation="Horizontal"
-                                  TextContent="Xuất file"
-                                  ProgressSpinnerSize="30"
-                                  ProgressSpinnerBackground="Black"
-                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                  BorderThickness="0"
-                                  IconTextGapWidth="10"
-                                  IconStretch="UniformToFill"
-                                  IconSource="{StaticResource ExcelImport}"
-                                  IconHeight="{Binding FontSizeOV.FontSizeXLarge}"
-                                  IconWidth="{Binding FontSizeOV.FontSizeXLarge}"
-                                  HorizontalContentAlignment="Center"
-                                  VerticalContentAlignment="Center"
-                                  IsUsingDropShadowEffect="True"
-                                  Foreground="White"
-                                  Background="{StaticResource NormalTheme_LightGreenBrush}" />
+                    <hps:OsirisButton BorderThickness="0"
+                                      Command="{Binding ButtonCommandOV.ClearButtonCommand}"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      OBTextVerticalAlignment="Center"
+                                      FontSize="{Binding FontSizeOV.FontSizeRegular}"
+                                      FontFamily="{StaticResource FontAwesome}"
+                                      TextContent="&#xf0e2;"
+                                      IsUsingDropShadowEffect="True"
+                                      Grid.Column="4"
+                                      ToolTip="Hoàn tác">
+                        <hps:OsirisButton.CommandParameter>
+                            <MultiBinding Converter="{conv:MultiBindingConverter}">
+                                <Binding ElementName="dprStartDateFilter" />
+                                <Binding ElementName="dprEndDateFilter" />
+                            </MultiBinding>
+                        </hps:OsirisButton.CommandParameter>
+                    </hps:OsirisButton>
+                </Grid>
+
             </Grid>
 
             <!--Data area-->
@@ -334,9 +328,9 @@
 
                         <DataGridTextColumn Width="*"
                                             CellStyle="{StaticResource DGTextCell}"
-                                            Header="Danh mục">
+                                            Header="Loại thuốc">
                             <DataGridTextColumn.Binding>
-                                <Binding Path="Med.tblMedicineType.MedicineTypeName" />
+                                <Binding Path="MedType" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
@@ -344,7 +338,7 @@
                                             CellStyle="{StaticResource DGTextCell}"
                                             Header="Tên thuốc">
                             <DataGridTextColumn.Binding>
-                                <Binding Path="Med.MedicineName" />
+                                <Binding Path="MedName" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
@@ -360,7 +354,7 @@
                                             CellStyle="{StaticResource DGTextCell}"
                                             Header="Đơn vị">
                             <DataGridTextColumn.Binding>
-                                <Binding Path="Med.tblMedicineUnit.MedicineUnitName" />
+                                <Binding Path="MedUnit" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 
@@ -368,7 +362,7 @@
                                             CellStyle="{StaticResource DGTextCell}"
                                             Header="Tồn kho">
                             <DataGridTextColumn.Binding>
-                                <Binding Path="TotalQuantity" />
+                                <Binding Path="Quantity" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
 

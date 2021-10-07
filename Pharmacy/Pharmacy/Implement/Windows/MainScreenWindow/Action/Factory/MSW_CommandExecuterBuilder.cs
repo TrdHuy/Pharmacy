@@ -13,6 +13,7 @@ using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerMan
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerBillPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.CustomerManagementPage.CustomerTransactionPage.CustomerDebtsPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.InventoryManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.InvoiceManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage;
 using Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.MedicineManagementPage.AddMedicinePage;
@@ -408,6 +409,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Factory
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_IMP_DELETE_BUTTON:
                     viewModelCommandExecuter = new MSW_IMP_DeleteButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_InvMP_SEARCH_BUTTON:
+                    viewModelCommandExecuter = new MSW_InvMP_SearchAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_InvMP_EXPORT_EXCEL_FILE_BUTTON:
+                    viewModelCommandExecuter = new MSW_InvMP_ExportExcelFileAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
+                    break;
+                case KeyFeatureTag.KEY_TAG_MSW_InvMP_CLEAR_BUTTON:
+                    viewModelCommandExecuter = new MSW_InvMP_ResetAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);
                     break;
                 case KeyFeatureTag.KEY_TAG_MSW_SeP_CANCLE_BUTTON:
                     viewModelCommandExecuter = new MSW_SeP_CancleButtonAction(keyTag, WindowTag.WINDOW_TAG_MAIN_SCREEN, viewModel, logger);

@@ -12,6 +12,10 @@ namespace Pharmacy.Implement.Utils.Converter
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+            {
+                return "--/--/--";
+            }
             DateTime dateTime = (DateTime)value;
             string type = parameter?.ToString();
 

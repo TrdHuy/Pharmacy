@@ -240,6 +240,9 @@
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\CustomerDebtsPage\MSW_CMP_CTP_CDP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\CustomerTransactionPage\MSW_CMP_CTP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\CustomerManagementPage\MSW_CMP_ButtonAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InventoryManagementPage\MSW_InvMP_ExportExcelFileAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InventoryManagementPage\MSW_InvMP_ResetAction.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InventoryManagementPage\MSW_InvMP_SearchAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\InvoiceManagementPage\MSW_IMP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\AddMedicinePage\MSW_MMP_AMP_ButtonAction.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\Action\Types\Pages\MedicineManagementPage\DiscountByMedicinePage\MSW_MMP_DBMP_ButtonAction.cs" />
@@ -282,6 +285,7 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePage\OVs\MSW_HP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\InventoryManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_ButtonCommandOV.cs" />
+    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_EventCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicine\OVs\MSW_MMP_AMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicine\OVs\MSW_MMP_DBMP_ButtonCommandOV.cs" />

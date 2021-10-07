@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Implement.Utils.CustomControls.QuotableEventPage;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InventoryManagementPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.Warehouse
         public InventoryPage()
         {
             InitializeComponent();
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ((InventoryManagementPageViewModel)DataContext).EventCommandOV.SearchTextChangedCommand.Execute(sender, e, InventoryDataGrid, this);
+        }
+
+        private void MedTypeSearchbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ((InventoryManagementPageViewModel)DataContext).EventCommandOV.SearchMedTypeCommand.Execute(sender, e, InventoryDataGrid, this);
         }
     }
 }

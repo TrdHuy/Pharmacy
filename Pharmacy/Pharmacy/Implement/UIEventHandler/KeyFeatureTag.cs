@@ -188,6 +188,11 @@
         public const string KEY_TAG_MSW_IMP_DELETE_BUTTON = "msw_imp_delete_button";
         public const string KEY_TAG_MSW_IMP_EDIT_BUTTON = "msw_imp_edit_button";
 
+        //Inventory management page key string
+        public const string KEY_TAG_MSW_InvMP_SEARCH_BUTTON = "msw_invmp_search_button";
+        public const string KEY_TAG_MSW_InvMP_EXPORT_EXCEL_FILE_BUTTON = "msw_invmp_export_excel_file_button";
+        public const string KEY_TAG_MSW_InvMP_CLEAR_BUTTON = "msw_invmp_clear_button";
+        
         //Setting page key string
         public const string KEY_TAG_MSW_SeP_SAVE_BUTTON = "msw_sep_save_button";
         public const string KEY_TAG_MSW_SeP_CANCLE_BUTTON = "msw_sep_cancle_button";
