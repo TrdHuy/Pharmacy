@@ -40,6 +40,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Invento
             }
 
             IMPViewModel.IsDataGridLoading = true;
+
+            //Reset search text
+            IMPViewModel.MedicineOV.IsNeedToFilterAfterPropertyChanged = false;
+            IMPViewModel.MedicineOV.MedicineTextSearch = "";
+
+            //Reset search tpye
+            IMPViewModel.MedicineOV.IsNeedToFilterAfterPropertyChanged = false;
+            IMPViewModel.MedicineOV.SelectedMedType = IMPViewModel.LstMedicineType[IMPViewModel.LstMedicineType.Count - 1];
+
+            //Reset data
             SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)

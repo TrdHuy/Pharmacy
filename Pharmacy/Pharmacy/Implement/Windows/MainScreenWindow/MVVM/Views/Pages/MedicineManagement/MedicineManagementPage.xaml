@@ -148,6 +148,10 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
+
+                <hps:BindingProxy x:Key="AdminToolboxsVisibility"
+                                  Data="{Binding AdminToolboxsVisibility}" />
+                
             </DataGrid.Resources>
 
             <DataGrid.CellStyle>
@@ -188,7 +192,6 @@
 
                     <Setter Property="FontSize"
                             Value="{Binding FontSizeOV.FontSizeLarge,ElementName=MedicineManagementDataContext}" />
-
                 </Style>
 
             </DataGrid.ColumnHeaderStyle>
@@ -249,6 +252,7 @@
                 <DataGridTextColumn Width="auto"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Giá mua vào"
+                                    Visibility="{Binding Data, Source={StaticResource AdminToolboxsVisibility}}"
                                     Binding="{Binding BidPrice, StringFormat=#\,##0 VND}" />
 
                 <!--AskingPrice column-->

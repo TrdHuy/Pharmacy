@@ -9,6 +9,10 @@ using System.Dynamic;
 using System;
 using Pharmacy.Implement.Utils.Definitions;
 using System.ComponentModel;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Views.Pages.WarehouseManagement;
+using Pharmacy.Base.Utils;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.InventoryManagementPage
 {
@@ -22,12 +26,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
 
         protected override Logger logger => L;
 
+        public DataGrid InventoryDataGridCache;
+
         [Bindable(true)]
         public MSW_IMP_ButtonCommandOV ButtonCommandOV { get; set; }
         [Bindable(true)]
         public MSW_IMP_MedicineOV MedicineOV { get; set; }
-        [Bindable(true)]
-        public MSW_IMP_EventCommandOV EventCommandOV { get; set; }
         [Bindable(true)]
         public ObservableCollection<tblMedicineType> LstMedicineType
         {
@@ -81,18 +85,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
             }
         }
 
-        
+
         protected override void OnInitializing()
         {
             ButtonCommandOV = new MSW_IMP_ButtonCommandOV(this);
             MedicineOV = new MSW_IMP_MedicineOV(this);
-            EventCommandOV = new MSW_IMP_EventCommandOV(this);
             InitData();
-
         }
 
         protected override void OnInitialized()
         {
+        }
+
+        public override void OnLoaded(object sender)
+        {
+            base.OnLoaded(sender);
+
+            MedicineOV.IsNeedToFilterAfterPropertyChanged = false;
+            // Đặt lệnh gán này trong OnLoaded khi khởi tạo để tránh issue
+            // Không nên đặt trong callback của sqlCmdObserver
+            MedicineOV.SelectedMedType = LstMedicineType[LstMedicineType.Count - 1];
+            InventoryDataGridCache = ((InventoryPage)sender).FindChild<DataGrid>("InventoryDataGrid");
         }
 
         private void InitData()
@@ -130,8 +143,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
             {
                 if (queryResult.MesResult == MessageQueryResult.Done)
                 {
+                    var typeAll = new tblMedicineType() { MedicineTypeName = "Tất cả" };
                     LstMedicineType = new ObservableCollection<tblMedicineType>(queryResult.Result as List<tblMedicineType>);
-                    LstMedicineType.Add(new tblMedicineType() { MedicineTypeName = "Tất cả" });
+                    LstMedicineType.Add(typeAll);
                 }
                 else
                 {
@@ -139,8 +153,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
                 }
             });
 
-            DbManager.Instance.ExecuteQueryAsync(true, SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY,
-                PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
+            DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_ALL_MEDICINE_TYPE_DATA_CMD_KEY,
                 _sqlCmdObserver);
         }
 
@@ -168,5 +181,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
                _sqlCmdObserver);
 
         }
+
+
     }
 }

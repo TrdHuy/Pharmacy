@@ -11,7 +11,7 @@
                                      xmlns:cc="clr-namespace:Pharmacy.Implement.Utils.CustomControls"
                                      mc:Ignorable="d"
                                      Background="White"
-                                     x:Name="ModifyWarehouseImport"
+                                     x:Name="InvMP"
                                      d:DesignHeight="{StaticResource DefaultWindowContentHeight}"
                                      d:DesignWidth="{StaticResource DefaultWindowContentWidth}"
                                      FontSize="{Binding FontSizeOV.FontSizeLarge}"
@@ -28,10 +28,9 @@
                            MaxHeight="{StaticResource PageHeaderMaxHeight}" />
 
             <!--Body-->
-            <RowDefinition Height="4.0375*" />
+            <RowDefinition Height="4.6*" />
 
             <!--Footer-->
-            <RowDefinition Height="0.5625*" />
         </Grid.RowDefinitions>
         <uc:PageHeader Grid.Row="0"
                        HeaderText="Tồn kho"
@@ -44,6 +43,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.02*" />
                 <RowDefinition Height="0.9*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!--Search area-->
@@ -68,16 +68,16 @@
 
                 <hps:AkerTextBox   Grid.Column="0"
                                    Padding="3"
-                                   TextChanged="SearchTextBox_TextChanged"
+                                   Text="{Binding MedicineOV.MedicineTextSearch, UpdateSourceTrigger=PropertyChanged}"
                                    Tag="Nhập mã hoặc tên thuốc để tìm kiếm"
                                    FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                                    BorderThickness="1">
                 </hps:AkerTextBox>
 
                 <hps:HorusBox Grid.Column="2"
-                              Tag="Danh mục"
+                              Tag="Loại thuốc"
                               Padding="3"
-                              SelectionChanged="MedTypeSearchbox_SelectionChanged"
+                              SelectedItem="{Binding MedicineOV.SelectedMedType}"
                               FontSize="{Binding FontSizeOV.FontSizeXLarge}"
                               BorderThickness="1,1,0,1"
                               DropDownBorderBrush="Black"
@@ -124,6 +124,7 @@
                         <ColumnDefinition Width="0.5*" />
                     </Grid.ColumnDefinitions>
                     <hps:OsirisButton Padding="3"
+                                      Grid.Column="2"
                                       TextContent="Tìm kiếm"
                                       ProgressSpinnerSize="30"
                                       ProgressSpinnerBackground="Black"
@@ -143,26 +144,8 @@
                         </hps:OsirisButton.CommandParameter>
                     </hps:OsirisButton>
 
-                  
-                    <hps:OsirisButton Padding="3"
-                                      Grid.Column="2"
-                                      OBContentOrientation="Horizontal"
-                                      TextContent="Xuất file"
-                                      ProgressSpinnerSize="30"
-                                      ProgressSpinnerBackground="Black"
-                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}"
-                                      BorderThickness="0"
-                                      Command="{Binding ButtonCommandOV.ExportExcelButtonCommand}"
-                                      IconTextGapWidth="10"
-                                      IconStretch="UniformToFill"
-                                      IconSource="{StaticResource ExcelImport}"
-                                      IconHeight="{Binding FontSizeOV.FontSizeXLarge}"
-                                      IconWidth="{Binding FontSizeOV.FontSizeXLarge}"
-                                      HorizontalContentAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      IsUsingDropShadowEffect="True"
-                                      Foreground="White"
-                                      Background="{StaticResource NormalTheme_LightGreenBrush}" />
+
+
 
                     <hps:OsirisButton BorderThickness="0"
                                       Command="{Binding ButtonCommandOV.ClearButtonCommand}"
@@ -219,7 +202,7 @@
                                     Value="True" />
 
                             <Setter Property="FontSize"
-                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge, ElementName=CMP}" />
+                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge, ElementName=InvMP}" />
 
                             <Setter Property="Foreground"
                                     Value="Black" />
@@ -262,20 +245,6 @@
                         </Style>
                     </DataGrid.Resources>
 
-                    <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell">
-                            <Setter Property="Background"
-                                    Value="{StaticResource NormalTheme_DataGridCellBgBrush}" />
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected"
-                                         Value="True">
-                                    <Setter Property="Background"
-                                            Value="{StaticResource NormalTheme_SelectedItem_Background_Brush}" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.CellStyle>
-
                     <DataGrid.ColumnHeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
 
@@ -298,7 +267,7 @@
                                     Value="Center" />
 
                             <Setter Property="FontSize"
-                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=CMP}" />
+                                    Value="{Binding DataContext.FontSizeOV.FontSizeXLarge,ElementName=InvMP}" />
 
                         </Style>
 
@@ -345,8 +314,7 @@
                         <DataGridTextColumn Width="1.75*"
                                             CellStyle="{StaticResource DGTextCell}"
                                             Binding="{Binding Path=ImportDate, 
-                                                Converter={conv:SystemDateTimeToStringConverter},
-                                                ConverterParameter=DATE}"
+                                                Converter={conv:SystemDateTimeToStringConverter}}"
                                             Header="Ngày nhập">
                         </DataGridTextColumn>
 
@@ -371,6 +339,40 @@
 
             </Grid>
 
+            <Grid Margin="10"
+                  Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7.8*" />
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="0.2*" />
+                </Grid.ColumnDefinitions>
+
+                <hps:OsirisButton Padding="3"
+                                  Grid.Row="4"
+                                  Grid.Column="1"
+                                  OBContentOrientation="Horizontal"
+                                  TextContent="Xuất file"
+                                  ProgressSpinnerSize="30"
+                                  ProgressSpinnerBackground="Black"
+                                  FontSize="{Binding FontSizeOV.FontSizeXLarge}"
+                                  BorderThickness="0"
+                                  Command="{Binding ButtonCommandOV.ExportExcelButtonCommand}"
+                                  IconTextGapWidth="10"
+                                  IconStretch="UniformToFill"
+                                  IconSource="{StaticResource ExcelImport}"
+                                  IconHeight="{Binding FontSizeOV.FontSizeXLarge}"
+                                  IconWidth="{Binding FontSizeOV.FontSizeXLarge}"
+                                  HorizontalContentAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  IsUsingDropShadowEffect="True"
+                                  Foreground="White"
+                                  Background="{StaticResource NormalTheme_LightGreenBrush}" />
+            </Grid>
+            
         </Grid>
 
     </Grid>

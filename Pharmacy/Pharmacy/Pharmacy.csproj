@@ -285,7 +285,6 @@
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\HomePage\OVs\MSW_HP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\InventoryManagementPageViewModel.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_ButtonCommandOV.cs" />
-    <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_EventCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\InventoryManagementPage\OVs\MSW_IMP_MedicineOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\AddMedicine\OVs\MSW_MMP_AMP_ButtonCommandOV.cs" />
     <Compile Include="Implement\Windows\MainScreenWindow\MVVM\ViewModels\Pages\MedicineManagementPage\DiscountByMedicine\OVs\MSW_MMP_DBMP_ButtonCommandOV.cs" />
