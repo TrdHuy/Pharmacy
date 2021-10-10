@@ -16,6 +16,23 @@
       "message": "- STT bắt đầu từ 1",
       "revId": "3fde63fde8f8103719b0db53d02849fc7af5f4e9",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e53f1f8_c51886c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018165
+      },
+      "writtenOn": "2021-10-10T16:17:29Z",
+      "side": 1,
+      "message": "ok",
+      "revId": "3fde63fde8f8103719b0db53d02849fc7af5f4e9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }
