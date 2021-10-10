@@ -39,7 +39,7 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
                         .Where(o => o.IsActive)
                         .ToList();
                 ObservableCollection<object> output = new ObservableCollection<object>();
-                int count = 0;
+                int count = 1;
                 foreach (var item in LstMedicine)
                 {
                     var imprtQuan = item.tblWarehouseImportDetails?

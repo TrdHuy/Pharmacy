@@ -57,6 +57,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.4*" />
                     <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="0.2*" />
                     <ColumnDefinition Width="30" />
                     <ColumnDefinition Width="auto" />
@@ -74,7 +75,13 @@
                                    BorderThickness="1">
                 </hps:AkerTextBox>
 
-                <hps:HorusBox Grid.Column="2"
+                <TextBlock Text="Loại thuốc: "
+                           Grid.Column="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
+
+                <hps:HorusBox Grid.Column="3"
                               Tag="Loại thuốc"
                               Padding="3"
                               SelectedItem="{Binding MedicineOV.SelectedMedType}"
@@ -89,24 +96,24 @@
                               IconHeight="{Binding FontSizeOV.FontSizeLarge}"
                               IsUsingHorusShadow="False" />
 
-                <TextBlock Text="Từ:"
-                           Grid.Column="4"
+                <TextBlock Text="Từ: "
+                           Grid.Column="5"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
                 <cc:DatePickerCustom x:Name="dprStartDateFilter"
-                                     Grid.Column="5"
+                                     Grid.Column="6"
                                      BorderThickness="1"
                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                 <TextBlock Text="Đến: "
-                           Grid.Column="7"
+                           Grid.Column="8"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
                 <cc:DatePickerCustom x:Name="dprEndDateFilter"
-                                     Grid.Column="8"
+                                     Grid.Column="9"
                                      BorderThickness="1"
                                      FontSize="{Binding FontSizeOV.FontSizeXLarge}" />
 
@@ -118,13 +125,12 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="0.3*" />
-                        <ColumnDefinition Width="2*" />
-                        <ColumnDefinition Width="0.3*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="0.3*" />
+                        <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
                     <hps:OsirisButton Padding="3"
-                                      Grid.Column="2"
+                                      Grid.Column="4"
                                       TextContent="Tìm kiếm"
                                       ProgressSpinnerSize="30"
                                       ProgressSpinnerBackground="Black"
@@ -156,7 +162,7 @@
                                       FontFamily="{StaticResource FontAwesome}"
                                       TextContent="&#xf0e2;"
                                       IsUsingDropShadowEffect="True"
-                                      Grid.Column="4"
+                                      Grid.Column="2"
                                       ToolTip="Hoàn tác">
                         <hps:OsirisButton.CommandParameter>
                             <MultiBinding Converter="{conv:MultiBindingConverter}">
@@ -315,7 +321,7 @@
                                             CellStyle="{StaticResource DGTextCell}"
                                             Binding="{Binding Path=ImportDate, 
                                                 Converter={conv:SystemDateTimeToStringConverter}}"
-                                            Header="Ngày nhập">
+                                            Header="Ngày nhập gần nhất">
                         </DataGridTextColumn>
 
                         <DataGridTextColumn Width="1.75*"
@@ -348,14 +354,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7.8*" />
                     <ColumnDefinition Width="1.2*" />
-                    <ColumnDefinition Width="0.2*" />
                 </Grid.ColumnDefinitions>
 
                 <hps:OsirisButton Padding="3"
                                   Grid.Row="4"
                                   Grid.Column="1"
                                   OBContentOrientation="Horizontal"
-                                  TextContent="Xuất file"
+                                  TextContent="Xuất Excel"
                                   ProgressSpinnerSize="30"
                                   ProgressSpinnerBackground="Black"
                                   FontSize="{Binding FontSizeOV.FontSizeXLarge}"
