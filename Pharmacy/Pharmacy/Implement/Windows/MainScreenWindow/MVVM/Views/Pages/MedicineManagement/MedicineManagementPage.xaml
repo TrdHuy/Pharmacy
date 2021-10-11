@@ -246,7 +246,14 @@
                 <DataGridTextColumn Width="*"
                                     CellStyle="{StaticResource DGTextCell}"
                                     Header="Nhà cung cấp"
-                                    Binding="{Binding Suppliers}" />
+                                    Binding="{Binding Suppliers}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping"
+                                    Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
                 <!--BidPrice column-->
                 <DataGridTextColumn Width="auto"

@@ -43,7 +43,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="0.02*" />
                 <RowDefinition Height="0.9*" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.15*"
+                               MaxHeight="100" />
             </Grid.RowDefinitions>
 
             <!--Search area-->
@@ -347,17 +348,12 @@
 
             <Grid Margin="10"
                   Grid.Row="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="7.8*" />
                     <ColumnDefinition Width="1.2*" />
                 </Grid.ColumnDefinitions>
 
                 <hps:OsirisButton Padding="3"
-                                  Grid.Row="4"
                                   Grid.Column="1"
                                   OBContentOrientation="Horizontal"
                                   TextContent="Xuất Excel"
