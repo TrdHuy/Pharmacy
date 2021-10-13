@@ -157,6 +157,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.UPDATE_CUSTOMER_ORDER_DEATAIL_CMD_KEY:
                     _result = new UpdateCustomerOrderAction().Execute(_appDBContext, paramaters);
                     break;
+                case SQLCommandKey.GET_MEDICINE_QUANTITY:
+                    _result = new GetMedicineQuantityAction().Execute(_appDBContext, paramaters);
+                    break;
                 case SQLCommandKey.ADD_WAREHOUSE_IMPORT_CMD_KEY:
                     _result = new AddNewWarehouseImportAction().Execute(_appDBContext, paramaters);
                     break;
@@ -319,6 +322,9 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for updating customer order detail to database
         public const string UPDATE_CUSTOMER_ORDER_DEATAIL_CMD_KEY = "update_customer_order_detail";
+
+        //Key for get medicine quantity 
+        public const string GET_MEDICINE_QUANTITY = "get_medicine_quantity";
 
         //Key for add new warehouse import
         public const string ADD_WAREHOUSE_IMPORT_CMD_KEY = "add_warehouse_import";
