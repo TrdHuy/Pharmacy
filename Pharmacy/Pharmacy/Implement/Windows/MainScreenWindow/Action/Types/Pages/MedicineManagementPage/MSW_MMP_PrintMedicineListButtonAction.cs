@@ -51,9 +51,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     StringBuilder suppliers = new StringBuilder();
                     foreach (var supplier in item.tblMedicineSuppliers)
                     {
-                        suppliers.Append(supplier + ", ");
+                        suppliers.Append(supplier.tblSupplier.SupplierName + ", ");
                     }
-                    tblCaoDon.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, suppliers.Remove(suppliers.Length - 3, 2).ToString(), item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
+                    tblCaoDon.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, suppliers.Length != 0 ? suppliers.Remove(suppliers.Length - 3, 2).ToString() : "", item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
                 }
 
                 id = 1;
@@ -62,9 +62,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Medicin
                     StringBuilder suppliers = new StringBuilder();
                     foreach (var supplier in item.tblMedicineSuppliers)
                     {
-                        suppliers.Append(supplier + ", ");
+                        suppliers.Append(supplier.tblSupplier.SupplierName + ", ");
                     }
-                    tblDuocLieu.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, suppliers.Remove(suppliers.Length - 3, 2).ToString(), item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
+                    tblDuocLieu.AddMedicineInfoRow(item.MedicineID, item.MedicineName, item.tblMedicineUnit.MedicineUnitName, suppliers.Length != 0 ? suppliers.Remove(suppliers.Length - 3, 2).ToString() : "", item.BidPrice.ToString(), item.AskingPrice.ToString(), id++ + "");
                 }
 
                 ReportDataSource reportDataSource = new ReportDataSource();
