@@ -32,10 +32,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
             }
             set
             {
+                DateTime? tmp = _endDate;
                 _startDate = value;
                 if (value != null && EndDate != null)
                 {
-                    FilterDataByDate();
+                    if (!FilterDataByDate())
+                    {
+                        _startDate = tmp;
+                        InvalidateOwn();
+                    }
                 }
             }
         }
@@ -47,10 +52,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
             }
             set
             {
+                DateTime? tmp = _endDate;
                 _endDate = value;
                 if (value != null && StartDate != null)
                 {
-                    FilterDataByDate();
+                    if (!FilterDataByDate())
+                    {
+                        _endDate = tmp;
+                        InvalidateOwn();
+                    }
                 }
             }
         }
@@ -208,7 +218,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
         }
         #endregion
 
-        private void FilterDataByDate()
+        private bool FilterDataByDate()
         {
             var model = (InventoryManagementPageViewModel)ParentsModel;
             model.IsDataGridLoading = true;
@@ -221,6 +231,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
                 OwnerWindow.MainScreen,
                 "Thông báo");
                 model.IsDataGridLoading = false;
+                return false;
             }
             else
             {
@@ -245,6 +256,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
                    _sqlCmdObserver,
                    StartDate,
                    EndDate.Value.AddDays(1));
+                return true;
             }
         }
 
