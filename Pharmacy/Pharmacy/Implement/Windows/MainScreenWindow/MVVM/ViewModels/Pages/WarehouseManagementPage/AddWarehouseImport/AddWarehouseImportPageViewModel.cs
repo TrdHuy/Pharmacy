@@ -112,6 +112,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Ware
             NetPrice = TotalPrice - PurchasedPrice;
             Invalidate("TotalPrice");
             Invalidate("NetPrice");
+
+            SelectedMedicine = null;
+            MedicinePrice = 0;
+            MedicineQuantity = "";
         }
 
         private void InstantiateItems()
