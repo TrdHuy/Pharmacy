@@ -13,6 +13,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
     {
         private SQLQueryCustodian _queryObserver;
         private DataGrid orderDetaiDataGrid;
+        private double _quantityLeft;
+        private bool _useQuantityLeft = false;
 
         public MSW_SP_AddOrderDetailAction(string actionID, string builderID, BaseViewModel viewModel, ILogger logger) : base(actionID, builderID, viewModel, logger) { }
         protected override void ExecuteCommand()
@@ -22,6 +24,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
             if (!SPViewModel.IsAddOrderDetailCanPerform)
             {
+
                 if (String.IsNullOrEmpty(SPViewModel.MedicineOV.Quantity) || SPViewModel.MedicineOV.Quantity.Equals("0"))
                 {
                     App.Current.ShowApplicationMessageBox("Kiểm tra lại số lượng!",
@@ -41,10 +44,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     "Cảnh báo!");
                     SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                 }
-
                 return;
             }
-
             ShouldCreateNewCustomer();
 
             return;
@@ -144,21 +145,13 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
         {
             try
             {
-                OrderDetailOV orderDetailVO = new OrderDetailOV();
-                orderDetailVO.MedicineName = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
-                orderDetailVO.MedicineID = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
-                orderDetailVO.MedicineUnitName = SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.QuantityToString = Convert.ToDouble(SPViewModel.MedicineOV.Quantity).ToString();
-                orderDetailVO.UnitPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
-                orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
-                GetPromo(orderDetailVO);
-
                 OrderDetailOV checkExistedVO = null;
                 try
                 {
                     if (SPViewModel.CustomerOrderDetailItemSource.Count > 0)
                     {
-                        checkExistedVO = SPViewModel.CustomerOrderDetailItemSource.First(VO => VO.MedicineID.Equals(orderDetailVO.MedicineID));
+                        checkExistedVO = SPViewModel.CustomerOrderDetailItemSource.First(VO => 
+                        VO.MedicineID.Equals(SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID));
                     }
                 }
                 catch (Exception e)
@@ -166,7 +159,58 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
 
                 }
 
+                var inputQuantity = Convert.ToDouble(SPViewModel.MedicineOV.Quantity);
+                _queryObserver = new SQLQueryCustodian((res) =>
+                {
+                    _quantityLeft = Convert.ToDouble(res.Result);
+                    if (checkExistedVO != null)
+                    {
+                        _quantityLeft -= checkExistedVO.Quantity;
+                    }
+                });
 
+                DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_MEDICINE_QUANTITY,
+                    _queryObserver,
+                    SPViewModel.MedicineOV.CurrentSelectedMedicine);
+                
+                if (inputQuantity > _quantityLeft && _quantityLeft != 0)
+                {
+                    var result = App.Current.ShowApplicationMessageBox("Sản phẩm này trong kho chỉ còn "
+                        + _quantityLeft + "("
+                        + SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName + ")\n"
+                        + "Bạn có muốn tiếp tục nhập",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
+                    if (result == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
+                    {
+                        SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                        return;
+                    }
+                    _useQuantityLeft = true;
+                }
+                else if (_quantityLeft == 0)
+                {
+                    App.Current.ShowApplicationMessageBox("Hiện tại sản phẩm này trong kho đã hết!",
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                    OwnerWindow.MainScreen,
+                    "Thông báo!");
+                    SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                    return;
+                }
+
+                OrderDetailOV orderDetailVO = new OrderDetailOV();
+                orderDetailVO.MedicineName = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
+                orderDetailVO.MedicineID = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
+                orderDetailVO.MedicineUnitName = SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
+                orderDetailVO.QuantityToString = _useQuantityLeft ? _quantityLeft.ToString() : SPViewModel.MedicineOV.Quantity;
+                orderDetailVO.UnitPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
+                orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
+                GetPromo(orderDetailVO);
+
+               
                 if (checkExistedVO != null)
                 {
                     checkExistedVO.QuantityToString = (checkExistedVO.Quantity + Convert.ToDouble(SPViewModel.MedicineOV.Quantity)).ToString();
