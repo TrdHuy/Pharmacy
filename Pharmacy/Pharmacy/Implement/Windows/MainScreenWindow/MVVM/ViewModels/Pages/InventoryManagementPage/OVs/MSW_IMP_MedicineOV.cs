@@ -1,7 +1,10 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Config;
+using Pharmacy.Implement.Utils.DatabaseManager;
+using Pharmacy.Implement.Utils.Definitions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -14,10 +17,43 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
     {
         private string _medicineTextSearch;
         private tblMedicineType _medTypeSelected;
+        private DateTime? _startDate;
+        private DateTime? _endDate;
         private CancellationTokenSource Cts { get; set; }
 
         public string[] MedicineFilterPathList { get; set; } = new string[] { "MedicineName", "MedicineID" };
         public bool IsNeedToFilterAfterPropertyChanged = true;
+
+        public DateTime? StartDate
+        {
+            get
+            {
+                return _startDate;
+            }
+            set
+            {
+                _startDate = value;
+                if (value != null && EndDate != null)
+                {
+                    FilterDataByDate();
+                }
+            }
+        }
+        public DateTime? EndDate
+        {
+            get
+            {
+                return _endDate;
+            }
+            set
+            {
+                _endDate = value;
+                if (value != null && StartDate != null)
+                {
+                    FilterDataByDate();
+                }
+            }
+        }
 
         public string MedicineTextSearch
         {
@@ -172,5 +208,46 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Inve
         }
         #endregion
 
+        private void FilterDataByDate()
+        {
+            var model = (InventoryManagementPageViewModel)ParentsModel;
+            model.IsDataGridLoading = true;
+
+            if (DateTime.Compare(EndDate.Value, StartDate.Value) < 0)
+            {
+                App.Current.ShowApplicationMessageBox("Ngày kết thúc phải lớn hơn ngày bắt đầu!",
+                HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Hand,
+                OwnerWindow.MainScreen,
+                "Thông báo");
+                model.IsDataGridLoading = false;
+            }
+            else
+            {
+                SQLQueryCustodian _sqlCmdObserver = new SQLQueryCustodian((queryResult) =>
+                {
+                    if (queryResult.MesResult == MessageQueryResult.Done)
+                    {
+                        model.InventoryDataSource = (ObservableCollection<object>)(queryResult.Result);
+                    }
+                    else
+                    {
+                        App.Current.ShowApplicationMessageBox("Lỗi load dữ liệu kho hàng, vui lòng mở lại ứng dụng hoặc liên hệ CSKH để biết thêm thông tin!",
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
+                            HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Error,
+                            OwnerWindow.MainScreen,
+                            "Lỗi!");
+                    }
+                    model.IsDataGridLoading = false;
+                });
+                DbManager.Instance.ExecuteQueryAsync(true, SQLCommandKey.GET_INVENTORY_DATA_CMD_KEY,
+                   PharmacyDefinitions.ADD_NEW_CUSTOMER_DELAY_TIME,
+                   _sqlCmdObserver,
+                   StartDate,
+                   EndDate.Value.AddDays(1));
+            }
+        }
+
     }
 }
+
