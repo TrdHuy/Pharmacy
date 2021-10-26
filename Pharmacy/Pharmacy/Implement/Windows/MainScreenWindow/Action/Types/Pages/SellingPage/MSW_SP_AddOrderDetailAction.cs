@@ -216,14 +216,10 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                    if (result == 2 || result == -1)
+                    if (result == 1 || result == -1)
                     {
                         SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                         return;
-                    }
-                    else if (result == 0)
-                    {
-                        _useQuantityLeft = true;
                     }
                 }
 
