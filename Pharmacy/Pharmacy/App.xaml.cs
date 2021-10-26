@@ -107,11 +107,21 @@ namespace Pharmacy
             return _winDirector.ShowMessageBox(message, owner, mesType, mesIcon, caption);
         }
 
+        public int ShowApplicationMultiOptionMessageBox(
+            string message,
+            IEnumerable<OsirisButton> optsSource,
+            AnubisMessageImage mesIcon = AnubisMessageImage.Non,
+            OwnerWindow owner = OwnerWindow.Default,
+            string caption = "Cảnh báo!!!")
+        {
+            return _winDirector.ShowMultiOptionMessageBox(message, optsSource, owner, mesIcon, caption);
+        }
+
         public void ShowPopupScreenWindow(PopupScreenWindowViewModel dataContext)
         {
             _winDirector.ShowPopupScreenWindow(dataContext);
         }
-        
+
         /// <summary>
         /// Display the bug report window
         /// </summary>

@@ -199,6 +199,7 @@
     <Compile Include="Implement\AppImpl\Models\VOs\AppInfoVO.cs" />
     <Compile Include="Implement\UIEventHandler\Listener\ActionExecuteHelper.cs" />
     <Compile Include="Implement\Utils\CustomControls\QuotableEventPage\IQuotableEvent.cs" />
+    <Compile Include="Implement\Utils\DatabaseManager\QueryAction\CustomerManagement\CustomerBill\GetMedicineQuantityOfInvoiceCreationDateAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\MedicineManagement\GetAllActiveSuppliersOfMedicine.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\Selling\GetMedicineQuantityAction.cs" />
     <Compile Include="Implement\Utils\DatabaseManager\QueryAction\WarehouseManagement\GetInventoryDataAction.cs" />
