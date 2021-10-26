@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Controls;
 using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
+using System.Collections.Generic;
+using HPSolutionCCDevPackage.netFramework;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
@@ -150,7 +152,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 {
                     if (SPViewModel.CustomerOrderDetailItemSource.Count > 0)
                     {
-                        checkExistedVO = SPViewModel.CustomerOrderDetailItemSource.First(VO => 
+                        checkExistedVO = SPViewModel.CustomerOrderDetailItemSource.First(VO =>
                         VO.MedicineID.Equals(SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID));
                     }
                 }
@@ -172,33 +174,57 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_MEDICINE_QUANTITY,
                     _queryObserver,
                     SPViewModel.MedicineOV.CurrentSelectedMedicine);
-                
-                if (inputQuantity > _quantityLeft && _quantityLeft != 0)
+
+                var optsSource = new List<OsirisButton>();
+               
+
+                if (inputQuantity > _quantityLeft && _quantityLeft > 0)
                 {
-                    var result = App.Current.ShowApplicationMessageBox("Sản phẩm này trong kho chỉ còn "
+                    optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm tối đa" });
+                    optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
+                    optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
+
+                    var result = App.Current.ShowApplicationMultiOptionMessageBox("Sản phẩm này trong kho chỉ còn "
                         + _quantityLeft + "("
                         + SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName + ")\n"
-                        + "Bạn có muốn tiếp tục nhập",
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.YesNo,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                        + "Bạn có muốn tiếp tục nhập?",
+                    optsSource,
+                    AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                    if (result == HPSolutionCCDevPackage.netFramework.AnubisMessgaeResult.ResultNo)
+                    if (result == 2 || result == -1)
                     {
                         SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
                         return;
                     }
-                    _useQuantityLeft = true;
+                    else if (result == 0)
+                    {
+                        _useQuantityLeft = true;
+                    }
+                    
                 }
-                else if (_quantityLeft == 0)
+                else if (_quantityLeft <= 0)
                 {
-                    App.Current.ShowApplicationMessageBox("Hiện tại sản phẩm này trong kho đã hết!",
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageBoxType.Default,
-                    HPSolutionCCDevPackage.netFramework.AnubisMessageImage.Info,
+                    optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
+                    optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
+
+                    var result = App.Current.ShowApplicationMultiOptionMessageBox("Sản phẩm này đã hết (hoặc bị âm "
+                        + _quantityLeft + "("
+                        + SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName + "))\n"
+                        + "Bạn có muốn tiếp tục nhập?",
+                    optsSource,
+                    AnubisMessageImage.Question,
                     OwnerWindow.MainScreen,
                     "Thông báo!");
-                    SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
-                    return;
+                    if (result == 2 || result == -1)
+                    {
+                        SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                        return;
+                    }
+                    else if (result == 0)
+                    {
+                        _useQuantityLeft = true;
+                    }
                 }
 
                 OrderDetailOV orderDetailVO = new OrderDetailOV();
@@ -210,7 +236,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                 orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
                 GetPromo(orderDetailVO);
 
-               
+
                 if (checkExistedVO != null)
                 {
                     checkExistedVO.QuantityToString = (checkExistedVO.Quantity + Convert.ToDouble(SPViewModel.MedicineOV.Quantity)).ToString();

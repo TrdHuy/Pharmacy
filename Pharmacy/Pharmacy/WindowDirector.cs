@@ -311,6 +311,81 @@ namespace Pharmacy
             return messageBox.Show();
         }
 
+        public int ShowMultiOptionMessageBox(
+            string message,
+            IEnumerable<OsirisButton> optionsSource,
+            OwnerWindow owner = OwnerWindow.Default,
+            AnubisMessageImage messageIcon = AnubisMessageImage.Non,
+            string caption = "Cảnh báo!!!")
+        {
+            AnubisMessageBox messageBox;
+            switch (owner)
+            {
+                case OwnerWindow.Default:
+                    messageBox = new AnubisMessageBox(message, AnubisMessageBoxType.MultiOptions, messageIcon, caption);
+                    break;
+                case OwnerWindow.LoginScreen:
+                    messageBox = new AnubisMessageBox(LoginScreenWindow, message, AnubisMessageBoxType.MultiOptions, messageIcon);
+                    break;
+                case OwnerWindow.MainScreen:
+                    messageBox = new AnubisMessageBox(MainScreenWindow, message, AnubisMessageBoxType.MultiOptions, messageIcon);
+                    break;
+                default:
+                    messageBox = new AnubisMessageBox(message, AnubisMessageBoxType.MultiOptions, messageIcon, caption);
+                    break;
+            }
+            var defaultOptStyle = new Style();
+            defaultOptStyle.TargetType = typeof(OsirisButton);
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.BackgroundProperty, new SolidColorBrush(Colors.Transparent)));
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.BorderThicknessProperty, new Thickness(0)));
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.MarginProperty, new Thickness(20, 5, 20, 5)));
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.FontSizeProperty, 12d));
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.FontWeightProperty, FontWeights.Normal));
+
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.VerticalContentAlignmentProperty, VerticalAlignment.Center));
+            defaultOptStyle.Setters.Add(new Setter(OsirisButton.HorizontalContentAlignmentProperty, HorizontalAlignment.Left));
+
+            Trigger mouseOverTrigger = new Trigger();
+            mouseOverTrigger.Property = OsirisButton.IsMouseOverProperty;
+            mouseOverTrigger.Value = true;
+            Setter setterMouseOverTrigger_1 = new Setter();
+            setterMouseOverTrigger_1.Property = OsirisButton.ForegroundProperty;
+            setterMouseOverTrigger_1.Value = Brushes.LightGreen;
+            mouseOverTrigger.Setters.Add(setterMouseOverTrigger_1);
+            Setter setterMouseOverTrigger_2 = new Setter();
+            setterMouseOverTrigger_2.Property = OsirisButton.BorderThicknessProperty;
+            setterMouseOverTrigger_2.Value = new Thickness(1);
+            mouseOverTrigger.Setters.Add(setterMouseOverTrigger_2);
+
+            Trigger mousePressedTrigger = new Trigger();
+            mousePressedTrigger.Property = OsirisButton.IsPressedProperty;
+            mousePressedTrigger.Value = true;
+            Setter setterMousePressedTrigger_1 = new Setter();
+            setterMousePressedTrigger_1.Property = OsirisButton.ForegroundProperty;
+            setterMousePressedTrigger_1.Value = Brushes.DarkGreen;
+            mousePressedTrigger.Setters.Add(setterMousePressedTrigger_1);
+            Setter setterMousePressedTrigger_2 = new Setter();
+            setterMousePressedTrigger_2.Property = OsirisButton.BorderThicknessProperty;
+            setterMousePressedTrigger_2.Value = new Thickness(1);
+            mousePressedTrigger.Setters.Add(setterMousePressedTrigger_2);
+
+            defaultOptStyle.Triggers.Add(mouseOverTrigger);
+            defaultOptStyle.Triggers.Add(mousePressedTrigger);
+
+            foreach (var btn in optionsSource)
+            {
+                btn.Style = defaultOptStyle;
+            }
+
+            messageBox.CaptionContent = caption;
+            messageBox.AnubisMesOptionsSource = optionsSource;
+            messageBox.BorderThickness = new Thickness(1);
+            messageBox.FontSize = 15;
+            messageBox.FontWeight = FontWeights.Bold;
+            messageBox.Show();
+            return messageBox.SelectedOption;
+        }
+
         public void ShowPopupScreenWindow(PopupScreenWindowViewModel dataContext)
         {
             PopupScreenWindow popup = new PopupScreenWindow()
