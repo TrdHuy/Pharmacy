@@ -1,4 +1,5 @@
 ﻿using Pharmacy.Base.MVVM.ViewModels;
+using Pharmacy.Implement.Utils.DatabaseManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,15 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
 {
     public class OrderDetailOV : BaseViewModel
     {
+        public OrderDetailOV() : base() { }
 
+        public OrderDetailOV(BaseViewModel parent) : base(parent) { }
+        
         private string _medicineName;
         private string _medicineID;
         private string _medicineUnitName;
         private double _quantity;
-        private string _quantityToString;
+        protected string _quantityToString;
         private string _promoPercentToString;
 
         private decimal _unitPrice;
@@ -23,6 +27,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
         private double _promoPercent;
 
         public long OrderDetailID { get; set; } = -1;
+        public tblMedicine Medicine { get; set; }
+        public tblOrder Order { get; set; }
+
         public string MedicineName
         {
             get
@@ -81,16 +88,19 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
             }
             set
             {
-                _quantityToString = value;
-                try
+                if (ShouldUpdateQuantity(value))
                 {
-                    Quantity = Convert.ToDouble(_quantityToString);
+                    _quantityToString = value;
+                    try
+                    {
+                        Quantity = Convert.ToDouble(_quantityToString);
+                    }
+                    catch
+                    {
+                        Quantity = 0d;
+                    }
+                    InvalidateOwn();
                 }
-                catch
-                {
-                    Quantity = 0d;
-                }
-                InvalidateOwn();
             }
         }
 
@@ -162,6 +172,12 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.Model.OVs
             TotalPrice = newValue;
 
         }
+
+        protected virtual bool ShouldUpdateQuantity(string quantityToString)
+        {
+            return true;
+        }
+
     }
 
 }

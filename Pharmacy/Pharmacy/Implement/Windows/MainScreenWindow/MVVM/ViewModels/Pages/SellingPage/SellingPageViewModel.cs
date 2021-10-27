@@ -23,7 +23,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         public ObservableCollection<tblCustomer> CustomerItemSource { get; set; }
         public ObservableCollection<tblMedicine> MedicineItemSource { get; set; }
-        public ObservablePropertiesCollection<OrderDetailOV> CustomerOrderDetailItemSource { get; set; }
+        public ObservablePropertiesCollection<MSW_SP_OrderDetailOV> CustomerOrderDetailItemSource { get; set; }
         public MSW_SP_ButtonCommandOV ButtonCommandOV { get; set; }
 
         public MSW_SP_CustomerOV CustomerOV { get; set; }
@@ -96,7 +96,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         private void InstantiateCustomerOrderDetailItems()
         {
-            CustomerOrderDetailItemSource = new ObservablePropertiesCollection<OrderDetailOV>();
+            CustomerOrderDetailItemSource = new ObservablePropertiesCollection<MSW_SP_OrderDetailOV>();
             CustomerOrderDetailItemSource.CollectionChanged -= new NotifyCollectionChangedEventHandler(CustomerOrderList_CollectionChanged);
             CustomerOrderDetailItemSource.CollectionChanged += new NotifyCollectionChangedEventHandler(CustomerOrderList_CollectionChanged);
 

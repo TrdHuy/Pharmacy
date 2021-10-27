@@ -31,7 +31,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private SQLQueryCustodian _sqlCmdObserver;
         private bool _isEnableEdittingBill;
         private Visibility _deleteColumnVisibility;
-        private ObservablePropertiesCollection<OrderDetailOV> _currentOrderDetails;
+        private ObservablePropertiesCollection<MSW_CMP_CTP_CBP_OderDetailOV> _currentOrderDetails;
+        public bool IsLoaded { get; private set; }
 
         [Bindable(true)]
         public tblOrder CurrentCustomerOrder { get; set; }
@@ -61,7 +62,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         }
 
         [Bindable(true)]
-        public ObservablePropertiesCollection<OrderDetailOV> CurrentOrderDetails
+        public ObservablePropertiesCollection<MSW_CMP_CTP_CBP_OderDetailOV> CurrentOrderDetails
         {
             get
             {
@@ -138,6 +139,8 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             InstantinateOrderDetailItems();
 
             RefreshViewModel();
+
+            IsLoaded = true;
         }
 
         public void RefreshListOrder()
@@ -158,14 +161,16 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
         private void InstantinateOrderDetailItems()
         {
             IsOrderDetailsModified = false;
-            CurrentOrderDetails = new ObservablePropertiesCollection<OrderDetailOV>();
+            CurrentOrderDetails = new ObservablePropertiesCollection<MSW_CMP_CTP_CBP_OderDetailOV>();
             foreach (tblOrderDetail orderDetail in CurrentCustomerOrder.tblOrderDetails)
             {
                 if (orderDetail.IsActive)
                 {
-                    var oDOV = new OrderDetailOV()
+                    var oDOV = new MSW_CMP_CTP_CBP_OderDetailOV(this)
                     {
                         OrderDetailID = orderDetail.OrderDetailID,
+                        Medicine = orderDetail.tblMedicine,
+                        Order = orderDetail.tblOrder,
                         MedicineName = orderDetail.tblMedicine.MedicineName,
                         MedicineID = orderDetail.tblMedicine.MedicineID,
                         MedicineUnitName = orderDetail.tblMedicine.tblMedicineUnit.MedicineUnitName,

@@ -566,7 +566,7 @@
                                                                      HorizontalAlignment="Center"
                                                                      FontSize="{Binding FontSizeOV.FontSizeLarge, ElementName=SellingPageDataContext}"
                                                                      Background="Transparent"
-                                                                     Text="{Binding QuantityToString,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                                                     Text="{Binding QuantityToString,Mode=TwoWay,UpdateSourceTrigger=LostFocus}">
 
                                                         <hps:AkerTextBox.Style>
                                                             <Style TargetType="hps:AkerTextBox">

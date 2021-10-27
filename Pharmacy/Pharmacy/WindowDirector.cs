@@ -350,7 +350,7 @@ namespace Pharmacy
             mouseOverTrigger.Value = true;
             Setter setterMouseOverTrigger_1 = new Setter();
             setterMouseOverTrigger_1.Property = OsirisButton.ForegroundProperty;
-            setterMouseOverTrigger_1.Value = Brushes.LightGreen;
+            setterMouseOverTrigger_1.Value = Brushes.DarkGreen;
             mouseOverTrigger.Setters.Add(setterMouseOverTrigger_1);
             Setter setterMouseOverTrigger_2 = new Setter();
             setterMouseOverTrigger_2.Property = OsirisButton.BorderThicknessProperty;
@@ -368,6 +368,10 @@ namespace Pharmacy
             setterMousePressedTrigger_2.Property = OsirisButton.BorderThicknessProperty;
             setterMousePressedTrigger_2.Value = new Thickness(1);
             mousePressedTrigger.Setters.Add(setterMousePressedTrigger_2);
+            Setter setterMousePressedTrigger_3 = new Setter();
+            setterMousePressedTrigger_3.Property = OsirisButton.FontWeightProperty;
+            setterMousePressedTrigger_3.Value = FontWeights.Black;
+            mousePressedTrigger.Setters.Add(setterMousePressedTrigger_3);
 
             defaultOptStyle.Triggers.Add(mouseOverTrigger);
             defaultOptStyle.Triggers.Add(mousePressedTrigger);

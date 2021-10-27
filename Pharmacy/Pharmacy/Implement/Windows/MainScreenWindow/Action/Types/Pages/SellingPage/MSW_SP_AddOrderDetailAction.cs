@@ -8,6 +8,7 @@ using Pharmacy.Base.MVVM.ViewModels;
 using Pharmacy.Base.Utils;
 using System.Collections.Generic;
 using HPSolutionCCDevPackage.netFramework;
+using Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.SellingPage.OVs;
 
 namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.SellingPage
 {
@@ -223,41 +224,41 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.Action.Types.Pages.Selling
                     }
                 }
 
-                OrderDetailOV orderDetailVO = new OrderDetailOV();
-                orderDetailVO.MedicineName = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
-                orderDetailVO.MedicineID = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
-                orderDetailVO.MedicineUnitName = SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
-                orderDetailVO.QuantityToString = _useQuantityLeft ? _quantityLeft.ToString() : SPViewModel.MedicineOV.Quantity;
-                orderDetailVO.UnitPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
-                orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
-                GetPromo(orderDetailVO);
+                
 
 
                 if (checkExistedVO != null)
                 {
-                    checkExistedVO.QuantityToString = (checkExistedVO.Quantity + Convert.ToDouble(SPViewModel.MedicineOV.Quantity)).ToString();
+                    checkExistedVO.QuantityToString = (checkExistedVO.Quantity 
+                        + Convert.ToDouble(_useQuantityLeft ? _quantityLeft.ToString() : SPViewModel.MedicineOV.Quantity)).ToString();
                     orderDetaiDataGrid.Items.Refresh();
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "MedicineCost");
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "TotalCost");
                     SPViewModel.Invalidate(SPViewModel.MedicineOV, "RestAmount");
-
                 }
                 else
                 {
+                    MSW_SP_OrderDetailOV orderDetailVO = new MSW_SP_OrderDetailOV(SPViewModel);
+                    orderDetailVO.MedicineName = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineName;
+                    orderDetailVO.Medicine = SPViewModel.MedicineOV.CurrentSelectedMedicine;
+                    orderDetailVO.MedicineID = SPViewModel.MedicineOV.CurrentSelectedMedicine.MedicineID;
+                    orderDetailVO.MedicineUnitName = SPViewModel.MedicineOV.CurrentSelectedMedicine.tblMedicineUnit.MedicineUnitName;
+                    orderDetailVO.QuantityToString = _useQuantityLeft ? _quantityLeft.ToString() : SPViewModel.MedicineOV.Quantity;
+                    orderDetailVO.UnitPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.AskingPrice;
+                    orderDetailVO.UnitBidPrice = SPViewModel.MedicineOV.CurrentSelectedMedicine.BidPrice;
+                    GetPromo(orderDetailVO);
+
                     SPViewModel.CustomerOrderDetailItemSource.Add(orderDetailVO);
                 }
+
+                SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
+                SPViewModel.MedicineOV.CurrentSelectedMedicine = null;
+                SPViewModel.MedicineOV.Quantity = null;
             }
             catch (Exception e)
             {
 
             }
-            finally
-            {
-                SPViewModel.ButtonCommandOV.IsAddOrderDeatailButtonRunning = false;
-                SPViewModel.MedicineOV.CurrentSelectedMedicine = null;
-                SPViewModel.MedicineOV.Quantity = null;
-            }
-
         }
     }
 }
