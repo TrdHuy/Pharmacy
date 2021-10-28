@@ -30,16 +30,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Othe
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_EDIT_BUTTON
                 , paramaters);
             }); 
-            DeleteOtherPaymentButtonCommand = new CommandExecuterModel((paramaters) =>
-            {
-                return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_DELETE_BUTTON
-                , paramaters);
-            });
             ShowInvoiceButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_SHOW_INVOICE_BUTTON
                 , paramaters);
             });
+            if (App.Current.CurrentUser.IsAdmin)
+            {
+                DeleteOtherPaymentButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_OPMP_DELETE_BUTTON
+                    , paramaters);
+                });
+            }
+            else
+            {
+                DeleteOtherPaymentButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON
+                    , paramaters);
+                });
+            }
         }
 
     }

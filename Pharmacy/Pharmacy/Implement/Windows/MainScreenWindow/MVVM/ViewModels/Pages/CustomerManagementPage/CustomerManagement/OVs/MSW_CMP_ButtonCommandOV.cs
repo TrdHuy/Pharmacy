@@ -27,24 +27,39 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                     , paramaters);
             });
 
-            DeleteButtonCommand = new CommandExecuterModel((paramaters) =>
-            {
-                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_DELETE_BUTTON
-                    , paramaters);
-            });
-
-            HistoryButtonCommand = new CommandExecuterModel((paramaters) =>
-            {
-                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_HISTORY_BUTTON
-                    , paramaters);
-            });
-
             AddNewCustomerButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_ADD_BUTTON
                     , paramaters);
             });
+            if (App.Current.CurrentUser.IsAdmin)
+            {
+                DeleteButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_DELETE_BUTTON
+                        , paramaters);
+                });
 
+                HistoryButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_HISTORY_BUTTON
+                        , paramaters);
+                });
+            }
+            else
+            {
+                DeleteButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON
+                        , paramaters);
+                });
+
+                HistoryButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON
+                        , paramaters);
+                });
+            }
         }
 
     }
