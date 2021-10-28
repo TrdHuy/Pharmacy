@@ -21,22 +21,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
             try
             {
                 var quantityLeft = 0d;
-                var quantityTillNowLeft = 0d;
                 var inputQuantity = Convert.ToDouble(quantityToString);
                 var useQuantityMax = false;
-                var queryObserver = new SQLQueryCustodian((res) =>
+
+                if (inputQuantity < 0) return false;
+
+                SQLQueryCustodian queryObserver = new SQLQueryCustodian((res) =>
                 {
                     quantityLeft = Convert.ToDouble(res.Result);
-                });
-                DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_MEDICINE_QUANTITY_OF_INVOICE_CREATION_DATE_CMD_KEY,
-                    queryObserver,
-                    Medicine,
-                    Order.OrderTime);
-
-                queryObserver = new SQLQueryCustodian((res) =>
-                {
-                    quantityTillNowLeft = Convert.ToDouble(res.Result);
-                    quantityTillNowLeft -= Quantity;
+                    quantityLeft -= Quantity;
+                    if (Quantity == 0)
+                    {
+                        var tmp = (ParentsModel as CustomerBillPageViewModel).CurrentCustomerOrder.tblOrderDetails.Where(o => o.MedicineID == MedicineID).FirstOrDefault();
+                        if (tmp != null)
+                        {
+                            quantityLeft += tmp.Quantity;
+                        }
+                    }
                 });
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_MEDICINE_QUANTITY_TILL_NOW_EXCEPT_EDITTING_ORDER_DETAIL_CMD_KEY,
                     queryObserver,
@@ -45,68 +46,54 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
                 var optsSource = new List<OsirisButton>();
 
-
-                if (inputQuantity > quantityLeft && quantityLeft >= 0)
+                if (inputQuantity > Quantity)
                 {
-                    optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm tối đa" });
-                    optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
-                    optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
-
-                    var result = App.Current.ShowApplicationMultiOptionMessageBox("Tính đến thời điểm tạo hóa đơn: "
-                        + Order.OrderTime.ToString("dd/MM/yyyy HH:mm") + "\n"
-
-                        + (quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn ")
-                        + quantityLeft + "("
-                        + MedicineUnitName + ")\n"
-
-                        + "Tính đến nay:\n"
-                        + (quantityTillNowLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
-                        + quantityTillNowLeft + "("
-                        + MedicineUnitName + ")\n\n"
-
-                        + "Bạn có muốn tiếp tục nhập?",
-                    optsSource,
-                    AnubisMessageImage.Question,
-                    OwnerWindow.MainScreen,
-                    "Thông báo!");
-                    if (result == 2 || result == -1)
+                    if (inputQuantity - Quantity > quantityLeft && quantityLeft >= 0)
                     {
-                        return false;
+                        optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm tối đa" });
+                        optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
+                        optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
+
+                        var result = App.Current.ShowApplicationMultiOptionMessageBox((quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn ")
+                            + quantityLeft + "("
+                            + MedicineUnitName + ")\n"
+
+                            + "Bạn có muốn tiếp tục nhập?",
+                        optsSource,
+                        AnubisMessageImage.Question,
+                        OwnerWindow.MainScreen,
+                        "Thông báo!");
+                        if (result == 2 || result == -1)
+                        {
+                            return false;
+                        }
+                        else if (result == 0)
+                        {
+                            useQuantityMax = true;
+                        }
                     }
-                    else if (result == 0)
+                    else if (quantityLeft < 0)
                     {
-                        useQuantityMax = true;
-                    }
-                }
-                else if (quantityLeft < 0)
-                {
-                    optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
-                    optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
+                        optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
+                        optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
 
-                    var result = App.Current.ShowApplicationMultiOptionMessageBox("Tính đến thời điểm tạo hóa đơn: "
-                        + Order.OrderTime.ToString("dd/MM/yyyy HH:mm") + "\n"
+                        var result = App.Current.ShowApplicationMultiOptionMessageBox((quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn ")
+                            + quantityLeft + "("
+                            + MedicineUnitName + ")\n"
 
-                        + (quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
-                        + quantityLeft + "("
-                        + MedicineUnitName + ")\n"
-
-                        + "Tính đến nay:\n"
-                        + (quantityTillNowLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
-                        + quantityTillNowLeft + "("
-                        + MedicineUnitName + ")\n\n"
-
-                        + "Bạn có muốn tiếp tục nhập?",
-                    optsSource,
-                    AnubisMessageImage.Question,
-                    OwnerWindow.MainScreen,
-                    "Thông báo!");
-                    if (result == 1 || result == -1)
-                    {
-                        return false;
+                            + "Bạn có muốn tiếp tục nhập?",
+                        optsSource,
+                        AnubisMessageImage.Question,
+                        OwnerWindow.MainScreen,
+                        "Thông báo!");
+                        if (result == 1 || result == -1)
+                        {
+                            return false;
+                        }
                     }
                 }
 
-                _quantityToString = useQuantityMax ? quantityLeft.ToString() : quantityToString;
+                _quantityToString = useQuantityMax ? (Quantity + quantityLeft).ToString() : quantityToString;
                 try
                 {
                     Quantity = Convert.ToDouble(_quantityToString);

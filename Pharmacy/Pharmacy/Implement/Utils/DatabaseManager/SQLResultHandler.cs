@@ -181,9 +181,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
                 case SQLCommandKey.SET_OTHER_PAYMENT_DEACTIVE_CMD_KEY:
                     _result = new SetOtherPaymentDeactiveAction().Execute(_appDBContext, paramaters);
                     break;
-                case SQLCommandKey.GET_MEDICINE_QUANTITY_OF_INVOICE_CREATION_DATE_CMD_KEY:
-                    _result = new GetMedicineQuantityOfInvoiceCreationDateAction().Execute(_appDBContext, paramaters);
-                    break;
                 case SQLCommandKey.GET_MEDICINE_QUANTITY_TILL_NOW_EXCEPT_EDITTING_ORDER_DETAIL_CMD_KEY:
                     _result = new GetMedicineQuantityTillNowExceptEdittingOrderDetailAction().Execute(_appDBContext, paramaters);
                     break;
@@ -271,9 +268,6 @@ namespace Pharmacy.Implement.Utils.DatabaseManager
 
         //Key for updating a customer info in database
         public const string UPDATE_CUSTOMER_INFO_CMD_KEY = "update_customer_info";
-
-        //Key for get medicine quantity of invoice creatation date
-        public const string GET_MEDICINE_QUANTITY_OF_INVOICE_CREATION_DATE_CMD_KEY = "get_medicine_quantity_of_invoice_creation_date";
 
         //Key for get medicine quantity of invoice creatation date
         public const string GET_MEDICINE_QUANTITY_TILL_NOW_EXCEPT_EDITTING_ORDER_DETAIL_CMD_KEY = "get_medicine_quantity_till_now_except_editting_order_detail";

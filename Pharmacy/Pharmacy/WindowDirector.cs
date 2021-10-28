@@ -348,33 +348,29 @@ namespace Pharmacy
             Trigger mouseOverTrigger = new Trigger();
             mouseOverTrigger.Property = OsirisButton.IsMouseOverProperty;
             mouseOverTrigger.Value = true;
-            Setter setterMouseOverTrigger_1 = new Setter();
-            setterMouseOverTrigger_1.Property = OsirisButton.ForegroundProperty;
-            setterMouseOverTrigger_1.Value = Brushes.DarkGreen;
-            mouseOverTrigger.Setters.Add(setterMouseOverTrigger_1);
             Setter setterMouseOverTrigger_2 = new Setter();
             setterMouseOverTrigger_2.Property = OsirisButton.BorderThicknessProperty;
             setterMouseOverTrigger_2.Value = new Thickness(1);
             mouseOverTrigger.Setters.Add(setterMouseOverTrigger_2);
+            Setter setterMouseOverTrigger_3 = new Setter();
+            setterMouseOverTrigger_3.Property = OsirisButton.FontWeightProperty;
+            setterMouseOverTrigger_3.Value = FontWeights.Black;
+            mouseOverTrigger.Setters.Add(setterMouseOverTrigger_3);
 
-            Trigger mousePressedTrigger = new Trigger();
-            mousePressedTrigger.Property = OsirisButton.IsPressedProperty;
-            mousePressedTrigger.Value = true;
-            Setter setterMousePressedTrigger_1 = new Setter();
-            setterMousePressedTrigger_1.Property = OsirisButton.ForegroundProperty;
-            setterMousePressedTrigger_1.Value = Brushes.DarkGreen;
-            mousePressedTrigger.Setters.Add(setterMousePressedTrigger_1);
-            Setter setterMousePressedTrigger_2 = new Setter();
-            setterMousePressedTrigger_2.Property = OsirisButton.BorderThicknessProperty;
-            setterMousePressedTrigger_2.Value = new Thickness(1);
-            mousePressedTrigger.Setters.Add(setterMousePressedTrigger_2);
-            Setter setterMousePressedTrigger_3 = new Setter();
-            setterMousePressedTrigger_3.Property = OsirisButton.FontWeightProperty;
-            setterMousePressedTrigger_3.Value = FontWeights.Black;
-            mousePressedTrigger.Setters.Add(setterMousePressedTrigger_3);
+            //Trigger mousePressedTrigger = new Trigger();
+            //mousePressedTrigger.Property = OsirisButton.IsPressedProperty;
+            //mousePressedTrigger.Value = true;
+            //Setter setterMousePressedTrigger_2 = new Setter();
+            //setterMousePressedTrigger_2.Property = OsirisButton.BorderThicknessProperty;
+            //setterMousePressedTrigger_2.Value = new Thickness(1);
+            //mousePressedTrigger.Setters.Add(setterMousePressedTrigger_2);
+            //Setter setterMousePressedTrigger_3 = new Setter();
+            //setterMousePressedTrigger_3.Property = OsirisButton.FontWeightProperty;
+            //setterMousePressedTrigger_3.Value = FontWeights.Black;
+            //mousePressedTrigger.Setters.Add(setterMousePressedTrigger_3);
 
             defaultOptStyle.Triggers.Add(mouseOverTrigger);
-            defaultOptStyle.Triggers.Add(mousePressedTrigger);
+            //defaultOptStyle.Triggers.Add(mousePressedTrigger);
 
             foreach (var btn in optionsSource)
             {

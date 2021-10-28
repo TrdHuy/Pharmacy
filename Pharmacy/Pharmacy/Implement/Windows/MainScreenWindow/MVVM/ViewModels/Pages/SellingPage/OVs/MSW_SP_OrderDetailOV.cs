@@ -16,20 +16,27 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
 
         protected override bool ShouldUpdateQuantity(string quantityToString)
         {
-            if (String.IsNullOrEmpty(_quantityToString)) return true;
-
             try
             {
                 var quantityLeft = 0d;
                 var inputQuantity = Convert.ToDouble(quantityToString);
                 var useMaxQuantity = false;
+
+                if (inputQuantity < 0) return false;
+
                 var queryObserver = new SQLQueryCustodian((res) =>
                 {
                     quantityLeft = Convert.ToDouble(res.Result);
+                    var tmp = (ParentsModel as SellingPageViewModel).CustomerOrderDetailItemSource.Where(o => o.MedicineID == MedicineID).FirstOrDefault();
+                    if (tmp != null)
+                    {
+                        quantityLeft -= tmp.Quantity;
+                    }
                 });
                 DbManager.Instance.ExecuteQuery(SQLCommandKey.GET_MEDICINE_QUANTITY,
                      queryObserver,
                      Medicine);
+
                 var optsSource = new List<OsirisButton>();
 
                 if (inputQuantity > quantityLeft && quantityLeft >= 0)
@@ -38,10 +45,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                     optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
                     optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
 
-                    var result = App.Current.ShowApplicationMultiOptionMessageBox("Tính đến nay:\n"
-                        + (quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
+                    var result = App.Current.ShowApplicationMultiOptionMessageBox((quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
                         + quantityLeft + "("
-                        + MedicineUnitName + ")\n\n"
+                        + MedicineUnitName + ")\n"
 
                         + "Bạn có muốn tiếp tục nhập?",
                     optsSource,
@@ -62,10 +68,9 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Sell
                     optsSource.Add(new OsirisButton() { TextContent = "Chọn số lượng sản phẩm mong muốn (trong kho sẽ bị âm)" });
                     optsSource.Add(new OsirisButton() { TextContent = "Hủy" });
 
-                    var result = App.Current.ShowApplicationMultiOptionMessageBox("Tính đến nay:\n"
-                        + (quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
+                    var result = App.Current.ShowApplicationMultiOptionMessageBox((quantityLeft <= 0 ? "Sản phẩm này trong kho đã hết (hoặc bị âm) " : "Sản phẩm này trong kho còn")
                         + quantityLeft + "("
-                        + MedicineUnitName + ")\n\n"
+                        + MedicineUnitName + ")\n"
 
                         + "Bạn có muốn tiếp tục nhập?",
                     optsSource,
