@@ -23,11 +23,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Invo
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_IMP_EDIT_BUTTON
                     , paramaters);
             });
-            DeleteOrderButtonCommand = new CommandExecuterModel((paramaters) =>
+
+            if (App.Current.CurrentUser.IsAdmin)
             {
-                return OnKey(KeyFeatureTag.KEY_TAG_MSW_IMP_DELETE_BUTTON
-                    , paramaters);
-            });
+                DeleteOrderButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_IMP_DELETE_BUTTON
+                        , paramaters);
+                });
+            }
+            else
+            {
+                DeleteOrderButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON
+                        , paramaters);
+                });
+            }
         }
     }
 }

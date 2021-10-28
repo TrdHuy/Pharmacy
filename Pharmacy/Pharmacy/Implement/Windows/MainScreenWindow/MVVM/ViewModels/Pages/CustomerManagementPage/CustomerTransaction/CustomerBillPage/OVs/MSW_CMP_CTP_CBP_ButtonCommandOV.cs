@@ -66,12 +66,6 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
 
         public MSW_CMP_CTP_CBP_ButtonCommandOV(BaseViewModel parentVM) : base(parentVM)
         {
-            EditEnablerButtonCommand = new CommandExecuterModel((paramaters) =>
-            {
-                return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
-                    , paramaters);
-            });
-
             AddNewOrderDetailButtonCommand = new CommandExecuterModel((paramaters) =>
             {
                 IsAddOrderDeatailButtonRunning = true;
@@ -111,6 +105,23 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Cust
                 return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_PRINT_INVOICE_BUTTON
                   , paramaters);
             });
+
+            if (App.Current.CurrentUser.IsAdmin)
+            {
+                EditEnablerButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_CMP_CTP_CBP_EDIT_ENABLER_BUTTON
+                        , paramaters);
+                });
+            }
+            else
+            {
+                EditEnablerButtonCommand = new CommandExecuterModel((paramaters) =>
+                {
+                    return OnKey(KeyFeatureTag.KEY_TAG_MSW_NONADMIN_BUTTON
+                        , paramaters);
+                });
+            }
         }
 
     }

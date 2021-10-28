@@ -188,7 +188,6 @@
                                       Command="{Binding ButtonCommandOV.InvoiceManagementCommand}"
                                       MaxHeight="300"
                                       MinHeight="200"
-                                      Visibility="{Binding AdminToolboxsVisibility}"
                                       HorizontalContentAlignment="Center"
                                       VerticalContentAlignment="Center"
                                       IsUsingDropShadowEffect="True"
