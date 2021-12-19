@@ -27,7 +27,7 @@ namespace Pharmacy.Implement.Windows.MainScreenWindow.MVVM.ViewModels.Pages.Medi
             BidPrice = bidPrice;
             AskingPrice = askingPrice;
 
-            if (lstSuppliers.Count > 0)
+            if (lstSuppliers.Where(o => o.IsActive).Count() > 0)
             {
                 StringBuilder supplier = new StringBuilder();
                 foreach (var item in lstSuppliers.Where(o => o.IsActive))

@@ -31,6 +31,21 @@ namespace Pharmacy.Implement.Utils.DatabaseManager.QueryAction.WarehouseManageme
                         var prevDetail = item.tblMedicine.tblWarehouseImportDetails.Where(o => o.IsActive).OrderByDescending(o => o.tblWarehouseImport.ImportTime).FirstOrDefault();
                         if (prevDetail != null)
                             item.tblMedicine.BidPrice = prevDetail.Price;
+
+                        tblMedicineSupplier medicineSupplier = appDBContext.tblMedicineSuppliers
+                            .Where(o => o.MedicineID == item.MedicineID && o.SupplierID == item.tblWarehouseImport.SupplierID).FirstOrDefault();
+                        if (medicineSupplier != null)
+                        {
+                            if (prevDetail == null)
+                            {
+                                medicineSupplier.IsActive = false;
+                            }
+                            else
+                            {
+                                medicineSupplier.BidPrice = prevDetail.Price;
+                                medicineSupplier.IsActive = true;
+                            }
+                        }
                     }
                 }
                 appDBContext.SaveChanges();
