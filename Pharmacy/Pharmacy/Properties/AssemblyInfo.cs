@@ -18,17 +18,17 @@ using System.Windows;
 
 //================================================================================
 // Check release detail when package the product
-[assembly: AssemblyReleaseDetail("Release for testing new features")]
+[assembly: AssemblyReleaseDetail("Stable version 1.1.0.2")]
 
 // Update the date when package the product
 // date format dd-MM-yyyy
-[assembly: AssemblyReleaseDate("29-10-2021")]
+[assembly: AssemblyReleaseDate("20-12-2021")]
 
 // Update the product ID when version up as guide below
 // product id naming rule
 // <Prod_name(short name)>_<Release_date(ddmm)>_<other_code(A-Z)>_<Version>
 // Pharmacy package code: <PMC>_<Release_date(ddmm)>_<XXU>_<Version>
-[assembly: AssemblyProductID("PMC2910XXU1101")]
+[assembly: AssemblyProductID("PMC2012XXU1102")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -68,5 +68,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.1")]
-[assembly: AssemblyFileVersion("1.1.0.1")]
+[assembly: AssemblyVersion("1.1.0.2")]
+[assembly: AssemblyFileVersion("1.1.0.2")]
